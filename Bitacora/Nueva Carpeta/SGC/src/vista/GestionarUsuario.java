@@ -285,6 +285,8 @@ public class GestionarUsuario extends javax.swing.JFrame {
             }
         });
     }
+    
+    //esto es una prueba para gitthub
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntModificar;
