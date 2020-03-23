@@ -31,19 +31,19 @@ public class GestionarUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        cedula = new javax.swing.JTextField();
+        usuario = new javax.swing.JTextField();
+        nombre = new javax.swing.JTextField();
+        telefono = new javax.swing.JTextField();
+        apellido = new javax.swing.JTextField();
+        contraseña = new javax.swing.JPasswordField();
         btnBuscar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         bntModificar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        tipo = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -62,44 +62,49 @@ public class GestionarUsuario extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 3, true));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 270, 40));
-
-        jTextField2.setFont(new java.awt.Font("Raleway", 1, 18)); // NOI18N
-        jTextField2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 3, true));
-        jTextField2.setOpaque(false);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        cedula.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        cedula.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 3, true));
+        cedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                cedulaActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 270, 40));
+        jPanel1.add(cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 270, 40));
 
-        jTextField3.setFont(new java.awt.Font("Raleway", 1, 18)); // NOI18N
-        jTextField3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 3, true));
-        jTextField3.setOpaque(false);
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 270, 40));
-
-        jTextField4.setFont(new java.awt.Font("Raleway", 1, 18)); // NOI18N
-        jTextField4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 3, true));
-        jTextField4.setOpaque(false);
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        usuario.setFont(new java.awt.Font("Raleway", 1, 18)); // NOI18N
+        usuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 3, true));
+        usuario.setOpaque(false);
+        usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                usuarioActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 160, 270, 40));
+        jPanel1.add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 270, 40));
 
-        jTextField5.setFont(new java.awt.Font("Raleway", 1, 18)); // NOI18N
-        jTextField5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 3, true));
-        jTextField5.setOpaque(false);
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 250, 270, 40));
+        nombre.setFont(new java.awt.Font("Raleway", 1, 18)); // NOI18N
+        nombre.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 3, true));
+        nombre.setOpaque(false);
+        jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 270, 40));
 
-        jPasswordField1.setFont(new java.awt.Font("Raleway", 1, 18)); // NOI18N
-        jPasswordField1.setText("jPasswordField1");
-        jPasswordField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 3, true));
-        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, 270, 40));
+        telefono.setFont(new java.awt.Font("Raleway", 1, 18)); // NOI18N
+        telefono.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 3, true));
+        telefono.setOpaque(false);
+        telefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                telefonoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 270, 40));
+
+        apellido.setFont(new java.awt.Font("Raleway", 1, 18)); // NOI18N
+        apellido.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 3, true));
+        apellido.setOpaque(false);
+        jPanel1.add(apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 250, 270, 40));
+
+        contraseña.setFont(new java.awt.Font("Raleway", 1, 18)); // NOI18N
+        contraseña.setText("jPasswordField1");
+        contraseña.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 3, true));
+        jPanel1.add(contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 170, 270, 40));
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/085-magnifying-glassOff.png"))); // NOI18N
         btnBuscar.setBorder(null);
@@ -140,6 +145,11 @@ public class GestionarUsuario extends javax.swing.JFrame {
         btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/071-disketteOn.png"))); // NOI18N
         btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/071-disketteOn.png"))); // NOI18N
         btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/071-disketteOn.png"))); // NOI18N
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 560, 80, 80));
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/028-minimizeOFF.png"))); // NOI18N
@@ -170,11 +180,11 @@ public class GestionarUsuario extends javax.swing.JFrame {
         });
         jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 10, -1, 30));
 
-        jComboBox1.setFont(new java.awt.Font("Raleway", 1, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un tipo de usuario", "Administrador", "Propietario" }));
-        jComboBox1.setBorder(null);
-        jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 360, 270, -1));
+        tipo.setFont(new java.awt.Font("Raleway", 1, 18)); // NOI18N
+        tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un tipo de usuario", "Administrador", "Propietario" }));
+        tipo.setBorder(null);
+        tipo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.add(tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 360, 270, -1));
 
         jLabel11.setFont(new java.awt.Font("Raleway", 1, 18)); // NOI18N
         jLabel11.setText("<html> Tipo de <br> Usuario: </html>");
@@ -243,13 +253,21 @@ public class GestionarUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_usuarioActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefonoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_telefonoActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void cedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cedulaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -289,13 +307,15 @@ public class GestionarUsuario extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bntModificar;
-    private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnGuardar;
+    public javax.swing.JTextField apellido;
+    public javax.swing.JButton bntModificar;
+    public javax.swing.JButton btnBuscar;
+    public javax.swing.JButton btnEliminar;
+    public javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnMinimizar;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JComboBox<String> jComboBox1;
+    public javax.swing.JTextField cedula;
+    public javax.swing.JPasswordField contraseña;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -307,11 +327,9 @@ public class GestionarUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    public javax.swing.JTextField nombre;
+    public javax.swing.JTextField telefono;
+    public javax.swing.JComboBox<String> tipo;
+    public javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,9 +9,9 @@ import java.util.logging.Logger;
 
 public class ConexionBD {
     /*Aqui Declaramoslas variables y las inicializamos.*/
-    private final String base = "escuela";
+    private final String base = "proyecto";
     private final String user = "postgres";
-    final String clave = "root";
+    final String clave = "1234";
     private final String url = "jdbc:postgresql://localhost:5432/" + base;
     private Connection con = null;
 
