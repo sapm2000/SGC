@@ -68,7 +68,7 @@
                   <Font name="Tahoma" size="14" style="1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/092-right-arrowoff.png"/>
+                  <Image iconType="3" name="/img/next.png"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
@@ -79,13 +79,13 @@
                   <Color id="Cursor de Mano"/>
                 </Property>
                 <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/092-right-arrowon.png"/>
+                  <Image iconType="3" name="/img/next (3).png"/>
                 </Property>
                 <Property name="rolloverSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/092-right-arrowon.png"/>
+                  <Image iconType="3" name="/img/next (3).png"/>
                 </Property>
                 <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/092-right-arrowon.png"/>
+                  <Image iconType="3" name="/img/next (3).png"/>
                 </Property>
               </Properties>
               <Events>
@@ -267,7 +267,7 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/user (1).png"/>
+              <Image iconType="3" name="/img/user (2).png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -279,7 +279,7 @@
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/key (1).png"/>
+              <Image iconType="3" name="/img/key (2).png"/>
             </Property>
           </Properties>
           <Constraints>
