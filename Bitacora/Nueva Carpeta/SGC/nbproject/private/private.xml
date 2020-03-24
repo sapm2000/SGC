@@ -5,8 +5,7 @@
         <group>
             <file>file:/C:/Users/rma/Documents/NetBeansProjects/SGC/Bitacora/Nueva%20Carpeta/SGC/src/vista/GestionarUsuario.java</file>
             <file>file:/C:/Users/rma/Documents/NetBeansProjects/SGC/Bitacora/Nueva%20Carpeta/SGC/src/controlador/CtrlUsuario.java</file>
-            <file>file:/C:/Users/rma/Documents/NetBeansProjects/SGC/Bitacora/Nueva%20Carpeta/SGC/src/modelo/ConexionBD.java</file>
-            <file>file:/C:/Users/rma/Documents/NetBeansProjects/SGC/Bitacora/Nueva%20Carpeta/SGC/src/modelo/Usuario.java</file>
+            <file>file:/C:/Users/rma/Documents/NetBeansProjects/SGC/Bitacora/Nueva%20Carpeta/SGC/src/sgc/SGC.java</file>
         </group>
     </open-files>
 </project-private>
