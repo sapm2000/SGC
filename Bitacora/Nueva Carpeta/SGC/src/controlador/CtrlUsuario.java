@@ -17,37 +17,41 @@ import vista.GestionarUsuario;
  */
 public class CtrlUsuario implements ActionListener {
 
-    private GestionarUsuario gestU;
-    private Usuario usu;
+    private GestionarUsuario VUsuario;
+    private Usuario modU;
 
-    public CtrlUsuario(GestionarUsuario gestU, Usuario usu) {
-        this.gestU = gestU;
-        this.usu = usu;
-        this.gestU.btnBuscar.addActionListener(this);
-        this.gestU.btnGuardar.addActionListener(this);
-        this.gestU.bntModificar.addActionListener(this);
-        this.gestU.btnEliminar.addActionListener(this);
+    public CtrlUsuario(GestionarUsuario VUsuario, Usuario usu) {
+        this.VUsuario = VUsuario;
+        this.modU = usu;
+        this.VUsuario.btnBuscar.addActionListener(this);
+        this.VUsuario.btnGuardar.addActionListener(this);
+        this.VUsuario.bntModificar.addActionListener(this);
+        this.VUsuario.btnEliminar.addActionListener(this);
     }
 
+        public CtrlUsuario(GestionarUsuario aThis) {
+       this.VUsuario = aThis;
+    }
+    
     public void iniciar() {
 
-        gestU.setTitle("Usuario");
-        gestU.setLocationRelativeTo(null);
+        VUsuario.setTitle("Usuario");
+        VUsuario.setLocationRelativeTo(null);
     }
 
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == gestU.btnGuardar) {
+        if (e.getSource() == VUsuario.btnGuardar) {
 
-            usu.setCedula(gestU.txtCedula.getText());
-            usu.setUsuario(gestU.txtUsuario.getText());
-            usu.setContraseña(gestU.contraseña.getText());
-            usu.setNombre(gestU.txtNombre.getText());
-            usu.setApellido(gestU.txtApellido.getText());
-            usu.setTelefono(gestU.txtTelefono.getText());
-            usu.setTipo(gestU.cbxTipo.getSelectedItem().toString());
+            modU.setCedula(VUsuario.txtCedula.getText());
+            modU.setUsuario(VUsuario.txtUsuario.getText());
+            modU.setContraseña(VUsuario.jpContraseña.getText());
+            modU.setNombre(VUsuario.txtNombre.getText());
+            modU.setApellido(VUsuario.txtApellido.getText());
+            modU.setTelefono(VUsuario.txtTelefono.getText());
+            modU.setTipo(VUsuario.cbxTipo.getSelectedItem().toString());
 
-            if (usu.registrar(usu)) {
+            if (modU.registrar(modU)) {
 
                 JOptionPane.showMessageDialog(null, "Registro Guardado");
 
@@ -59,18 +63,18 @@ public class CtrlUsuario implements ActionListener {
 
         }
 
-        if (e.getSource() == gestU.bntModificar) {
+        if (e.getSource() == VUsuario.bntModificar) {
 
-            usu.setCedula(gestU.txtCedula.getText());
-            usu.setUsuario(gestU.txtUsuario.getText());
-            usu.setContraseña(gestU.contraseña.getText());
-            usu.setNombre(gestU.txtNombre.getText());
-            usu.setApellido(gestU.txtApellido.getText());
-            usu.setTelefono(gestU.txtTelefono.getText());
-            usu.setTipo(gestU.cbxTipo.getSelectedItem().toString());
+            modU.setCedula(VUsuario.txtCedula.getText());
+            modU.setUsuario(VUsuario.txtUsuario.getText());
+            modU.setContraseña(VUsuario.jpContraseña.getText());
+            modU.setNombre(VUsuario.txtNombre.getText());
+            modU.setApellido(VUsuario.txtApellido.getText());
+            modU.setTelefono(VUsuario.txtTelefono.getText());
+            modU.setTipo(VUsuario.cbxTipo.getSelectedItem().toString());
 
             /*si la modificacion fue exitosa o no mandamos una ventana con un mensaje segun sea el caso.*/
-            if (usu.modificar(usu)) {
+            if (modU.modificar(modU)) {
 
                 JOptionPane.showMessageDialog(null, "Registro modificado");
 
@@ -82,12 +86,12 @@ public class CtrlUsuario implements ActionListener {
 
         }
 
-        if (e.getSource() == gestU.btnEliminar) {
+        if (e.getSource() == VUsuario.btnEliminar) {
             /*el Id esta oculto en el sistema se auto incrementa solo*/
-            usu.setCedula(gestU.txtCedula.getText());
+            modU.setCedula(VUsuario.txtCedula.getText());
 
             /*enviamos una ventana emergente diciendo si los datos fueron eliminados correctamente o existe un error*/
-            if (usu.eliminar(usu)) {
+            if (modU.eliminar(modU)) {
 
                 JOptionPane.showMessageDialog(null, "Registro Eliminado");
 
@@ -99,20 +103,20 @@ public class CtrlUsuario implements ActionListener {
 
         }
 
-        if (e.getSource() == gestU.btnBuscar) {
+        if (e.getSource() == VUsuario.btnBuscar) {
 
-            usu.setCedula(gestU.txtCedula.getText());
+            modU.setCedula(VUsuario.txtCedula.getText());
 
-            if (usu.buscar(usu)) {
+            if (modU.buscar(modU)) {
 
                 
-                gestU.txtCedula.setText(usu.getCedula());
-                gestU.txtUsuario.setText(usu.getUsuario());
-                gestU.contraseña.setText(usu.getContraseña());
-                gestU.txtNombre.setText(usu.getNombre());
-                gestU.txtApellido.setText(usu.getApellido());
-                gestU.txtTelefono.setText(usu.getTelefono());
-                gestU.cbxTipo.setSelectedItem(usu.getTipo());
+                VUsuario.txtCedula.setText(modU.getCedula());
+                VUsuario.txtUsuario.setText(modU.getUsuario());
+                VUsuario.jpContraseña.setText(modU.getContraseña());
+                VUsuario.txtNombre.setText(modU.getNombre());
+                VUsuario.txtApellido.setText(modU.getApellido());
+                VUsuario.txtTelefono.setText(modU.getTelefono());
+                VUsuario.cbxTipo.setSelectedItem(modU.getTipo());
 
             } else {
 

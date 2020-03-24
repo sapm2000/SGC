@@ -6,13 +6,14 @@
 package vista;
 
 import javax.swing.JOptionPane;
+import controlador.CtrlUsuario;
 
 /**
  *
  * @author Anthony
  */
 public class GestionarUsuario extends javax.swing.JFrame {
-
+        CtrlUsuario ctrl = new CtrlUsuario(this);
     /**
      * Creates new form GestionarUsuario
      */
@@ -46,7 +47,7 @@ public class GestionarUsuario extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
-        contraseña = new javax.swing.JPasswordField();
+        jpContraseña = new javax.swing.JPasswordField();
         txtApellido = new javax.swing.JTextField();
         jcampo1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -140,6 +141,7 @@ public class GestionarUsuario extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 80, 80));
+        btnGuardar.addActionListener(ctrl);
 
         bntModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editOff.png"))); // NOI18N
         bntModificar.setBorder(null);
@@ -149,6 +151,7 @@ public class GestionarUsuario extends javax.swing.JFrame {
         bntModificar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editOn.png"))); // NOI18N
         bntModificar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editOn.png"))); // NOI18N
         jPanel3.add(bntModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 80, 70));
+        btnMinimizar.addActionListener(ctrl);
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/trashOff.png"))); // NOI18N
         btnEliminar.setBorder(null);
@@ -163,6 +166,7 @@ public class GestionarUsuario extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 70, 80));
+        btnEliminar.addActionListener(ctrl);
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 510, 510, 130));
 
@@ -205,10 +209,10 @@ public class GestionarUsuario extends javax.swing.JFrame {
         });
         jPanel2.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 270, 40));
 
-        contraseña.setFont(new java.awt.Font("Raleway", 1, 18)); // NOI18N
-        contraseña.setText("sssssss");
-        contraseña.setBorder(null);
-        jPanel2.add(contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, 220, 30));
+        jpContraseña.setFont(new java.awt.Font("Raleway", 1, 18)); // NOI18N
+        jpContraseña.setText("sssssss");
+        jpContraseña.setBorder(null);
+        jPanel2.add(jpContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, 220, 30));
 
         txtApellido.setBackground(new java.awt.Color(0, 94, 159));
         txtApellido.setFont(new java.awt.Font("Raleway", 1, 18)); // NOI18N
@@ -258,6 +262,7 @@ public class GestionarUsuario extends javax.swing.JFrame {
         btnBuscar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/searchOn1.png"))); // NOI18N
         btnBuscar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/searchOn1.png"))); // NOI18N
         jPanel2.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 60, 50));
+        btnBuscar.addActionListener(ctrl);
 
         jcampo4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/txtWhite.png"))); // NOI18N
         jcampo4.setText("jLabel1");
@@ -381,7 +386,6 @@ public class GestionarUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnMinimizar;
     private javax.swing.JButton btnSalir;
     public javax.swing.JComboBox<String> cbxTipo;
-    public javax.swing.JPasswordField contraseña;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -400,6 +404,7 @@ public class GestionarUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jcampo4;
     private javax.swing.JLabel jcampo5;
     private javax.swing.JLabel jcampo6;
+    public javax.swing.JPasswordField jpContraseña;
     public javax.swing.JTextField txtApellido;
     public javax.swing.JTextField txtCedula;
     public javax.swing.JTextField txtNombre;
