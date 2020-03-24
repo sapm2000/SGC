@@ -39,13 +39,13 @@ public class CtrlUsuario implements ActionListener {
 
         if (e.getSource() == gestU.btnGuardar) {
 
-            usu.setCedula(gestU.cedula.getText());
-            usu.setUsuario(gestU.usuario.getText());
+            usu.setCedula(gestU.txtCedula.getText());
+            usu.setUsuario(gestU.txtUsuario.getText());
             usu.setContraseña(gestU.contraseña.getText());
-            usu.setNombre(gestU.nombre.getText());
-            usu.setApellido(gestU.apellido.getText());
-            usu.setTelefono(gestU.telefono.getText());
-            usu.setTipo(gestU.tipo.getSelectedItem().toString());
+            usu.setNombre(gestU.txtNombre.getText());
+            usu.setApellido(gestU.txtApellido.getText());
+            usu.setTelefono(gestU.txtTelefono.getText());
+            usu.setTipo(gestU.cbxTipo.getSelectedItem().toString());
 
             if (usu.registrar(usu)) {
 
@@ -61,13 +61,13 @@ public class CtrlUsuario implements ActionListener {
 
         if (e.getSource() == gestU.bntModificar) {
 
-            usu.setCedula(gestU.cedula.getText());
-            usu.setUsuario(gestU.usuario.getText());
+            usu.setCedula(gestU.txtCedula.getText());
+            usu.setUsuario(gestU.txtUsuario.getText());
             usu.setContraseña(gestU.contraseña.getText());
-            usu.setNombre(gestU.nombre.getText());
-            usu.setApellido(gestU.apellido.getText());
-            usu.setTelefono(gestU.telefono.getText());
-            usu.setTipo(gestU.tipo.getSelectedItem().toString());
+            usu.setNombre(gestU.txtNombre.getText());
+            usu.setApellido(gestU.txtApellido.getText());
+            usu.setTelefono(gestU.txtTelefono.getText());
+            usu.setTipo(gestU.cbxTipo.getSelectedItem().toString());
 
             /*si la modificacion fue exitosa o no mandamos una ventana con un mensaje segun sea el caso.*/
             if (usu.modificar(usu)) {
@@ -84,7 +84,7 @@ public class CtrlUsuario implements ActionListener {
 
         if (e.getSource() == gestU.btnEliminar) {
             /*el Id esta oculto en el sistema se auto incrementa solo*/
-            usu.setCedula(gestU.cedula.getText());
+            usu.setCedula(gestU.txtCedula.getText());
 
             /*enviamos una ventana emergente diciendo si los datos fueron eliminados correctamente o existe un error*/
             if (usu.eliminar(usu)) {
@@ -101,18 +101,18 @@ public class CtrlUsuario implements ActionListener {
 
         if (e.getSource() == gestU.btnBuscar) {
 
-            usu.setCedula(gestU.cedula.getText());
+            usu.setCedula(gestU.txtCedula.getText());
 
             if (usu.buscar(usu)) {
 
                 
-                gestU.cedula.setText(usu.getCedula());
-                gestU.usuario.setText(usu.getUsuario());
+                gestU.txtCedula.setText(usu.getCedula());
+                gestU.txtUsuario.setText(usu.getUsuario());
                 gestU.contraseña.setText(usu.getContraseña());
-                gestU.nombre.setText(usu.getNombre());
-                gestU.apellido.setText(usu.getApellido());
-                gestU.telefono.setText(usu.getTelefono());
-                gestU.tipo.setSelectedItem(usu.getTipo());
+                gestU.txtNombre.setText(usu.getNombre());
+                gestU.txtApellido.setText(usu.getApellido());
+                gestU.txtTelefono.setText(usu.getTelefono());
+                gestU.cbxTipo.setSelectedItem(usu.getTipo());
 
             } else {
 
