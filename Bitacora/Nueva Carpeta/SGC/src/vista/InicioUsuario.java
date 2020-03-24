@@ -51,14 +51,14 @@ public class InicioUsuario extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/092-right-arrowoff.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/next.png"))); // NOI18N
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/092-right-arrowon.png"))); // NOI18N
-        jButton2.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/092-right-arrowon.png"))); // NOI18N
-        jButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/092-right-arrowon.png"))); // NOI18N
+        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/next (3).png"))); // NOI18N
+        jButton2.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/next (3).png"))); // NOI18N
+        jButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/next (3).png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -144,10 +144,10 @@ public class InicioUsuario extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/condominio1 (2).png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user (1).png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user (2).png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/key (1).png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/key (2).png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 500));
