@@ -1,126 +1,180 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import modelo.CrudUsuario;
 import modelo.Usuario;
 import vista.GestionarUsuario;
 
-/**
- *
- * @author rma
- */
-public class CtrlUsuario implements ActionListener {
+public class CtrlUsuario implements ActionListener, KeyListener, ItemListener{
+    
+    private Usuario mod;
+    private CrudUsuario modC;
+    private GestionarUsuario vistaGU;
 
-    private GestionarUsuario gestU;
-    private Usuario usu;
 
-    public CtrlUsuario(GestionarUsuario gestU, Usuario usu) {
-        this.gestU = gestU;
-        this.usu = usu;
-        this.gestU.btnBuscar.addActionListener(this);
-        this.gestU.btnGuardar.addActionListener(this);
-        this.gestU.bntModificar.addActionListener(this);
-        this.gestU.btnEliminar.addActionListener(this);
+    
+    //Constructor de inicializacion de variables. Desde la linea 16 a la 26
+    
+    public CtrlUsuario(Usuario mod, CrudUsuario modC, GestionarUsuario vistaGU){
+    
+        this.mod = mod;
+        this.modC = modC;
+        this.vistaGU = vistaGU;
+        this.vistaGU.btnBuscar.addActionListener(this);
+        this.vistaGU.btnGuardar.addActionListener(this);
+        this.vistaGU.btnEliminar.addActionListener(this);
+        this.vistaGU.btnModificar.addActionListener(this);
+        this.vistaGU.btnLimpiar.addActionListener(this);
     }
+    //Fin del constructor
 
-    public void iniciar() {
-
-        gestU.setTitle("Usuario");
-        gestU.setLocationRelativeTo(null);
+  
+    
+    
+    public void iniciar(){
+  
     }
-
-    public void actionPerformed(ActionEvent e) {
-
-        if (e.getSource() == gestU.btnGuardar) {
-
-            usu.setCedula(gestU.cedula.getText());
-            usu.setUsuario(gestU.usuario.getText());
-            usu.setContraseña(gestU.contraseña.getText());
-            usu.setNombre(gestU.nombre.getText());
-            usu.setApellido(gestU.apellido.getText());
-            usu.setTelefono(gestU.telefono.getText());
-            usu.setTipo(gestU.tipo.getSelectedItem().toString());
-
-            if (usu.registrar(usu)) {
-
-                JOptionPane.showMessageDialog(null, "Registro Guardado");
-
-            } else {
-
-                JOptionPane.showMessageDialog(null, "Error al Guardar");
-
-            }
-
-        }
-
-        if (e.getSource() == gestU.bntModificar) {
-
-            usu.setCedula(gestU.cedula.getText());
-            usu.setUsuario(gestU.usuario.getText());
-            usu.setContraseña(gestU.contraseña.getText());
-            usu.setNombre(gestU.nombre.getText());
-            usu.setApellido(gestU.apellido.getText());
-            usu.setTelefono(gestU.telefono.getText());
-            usu.setTipo(gestU.tipo.getSelectedItem().toString());
-
-            /*si la modificacion fue exitosa o no mandamos una ventana con un mensaje segun sea el caso.*/
-            if (usu.modificar(usu)) {
-
-                JOptionPane.showMessageDialog(null, "Registro modificado");
-
-            } else {
-
-                JOptionPane.showMessageDialog(null, "Error al Modificar");
-
-            }
-
-        }
-
-        if (e.getSource() == gestU.btnEliminar) {
-            /*el Id esta oculto en el sistema se auto incrementa solo*/
-            usu.setCedula(gestU.cedula.getText());
-
-            /*enviamos una ventana emergente diciendo si los datos fueron eliminados correctamente o existe un error*/
-            if (usu.eliminar(usu)) {
-
-                JOptionPane.showMessageDialog(null, "Registro Eliminado");
-
-            } else {
-
-                JOptionPane.showMessageDialog(null, "Error al Eliminar");
-
-            }
-
-        }
-
-        if (e.getSource() == gestU.btnBuscar) {
-
-            usu.setCedula(gestU.cedula.getText());
-
-            if (usu.buscar(usu)) {
-
+    
+    @Override
+    public void actionPerformed(ActionEvent e){
+    
+        if (e.getSource() == vistaGU.btnGuardar) {
+            
+            mod.setCedula(vistaGU.txtCedula.getText());
+            mod.setUsuario(vistaGU.txtUsuario.getText());
+            mod.setPassword(vistaGU.jpPassword.getText());
+            mod.setNombre(vistaGU.txtNombre.getText());
+            mod.setApellido(vistaGU.txtApellido.getText());
+            mod.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
+            
+            
+            if (modC.registrar(mod)) {
                 
-                gestU.cedula.setText(usu.getCedula());
-                gestU.usuario.setText(usu.getUsuario());
-                gestU.contraseña.setText(usu.getContraseña());
-                gestU.nombre.setText(usu.getNombre());
-                gestU.apellido.setText(usu.getApellido());
-                gestU.telefono.setText(usu.getTelefono());
-                gestU.tipo.setSelectedItem(usu.getTipo());
-
-            } else {
-
-                JOptionPane.showMessageDialog(null, "No se encontro registro");
+                JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
+                limpiar();
+                
+            }else{
+            
+                JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR");
+                limpiar();
                 
             }
+        }
+            
+            if (e.getSource() == vistaGU.btnModificar) {
+            
+          
+            mod.setUsuario(vistaGU.txtUsuario.getText());
+            mod.setPassword(vistaGU.jpPassword.getText());
+            mod.setNombre(vistaGU.txtNombre.getText());
+            mod.setApellido(vistaGU.txtApellido.getText());
+            mod.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
+            
 
+                   
+            if (modC.modificar(mod)) {
+                
+                JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
+               
+                limpiar();
+                
+            }else{
+            
+                JOptionPane.showMessageDialog(null, "ERROR AL MODIFICAR");
+                limpiar();
+                
+            }
+            
+        }
+    
+            if (e.getSource() == vistaGU.btnEliminar) {
+            
+            mod.setCedula(vistaGU.txtCedula.getText());
+            
+            
+            if (modC.eliminar(mod)) {
+                
+                JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
+                limpiar();
+                
+            }else{
+            
+                JOptionPane.showMessageDialog(null, "ERROR AL ELIMINAR");
+                limpiar();
+                
+            }
+            
+        }
+            if (e.getSource() == vistaGU.btnBuscar) {
+            
+            mod.setCedula(vistaGU.txtCedula.getText());
+            
+            
+            if (modC.buscar(mod)) {
+                
+                vistaGU.txtCedula.setText(mod.getCedula());
+                vistaGU.txtUsuario.setText(mod.getUsuario());
+                vistaGU.jpPassword.setText(mod.getPassword());
+                vistaGU.txtNombre.setText(mod.getNombre());
+                vistaGU.txtApellido.setText(mod.getApellido());
+                vistaGU.cbxTipo.setSelectedItem(mod.getTipo());
+                
+            }else{
+            
+                JOptionPane.showMessageDialog(null, "NO SE ENCONTRO REGISTRO");
+                limpiar();
+                
+            }
+            
+        }
+            
+            if (e.getSource() == vistaGU.btnLimpiar) {
+                limpiar();
+        }
+        
+    }
+    
+     
+    public void limpiar(){
+        
+            vistaGU.txtCedula.setText(null);
+            vistaGU.txtUsuario.setText(null);
+            vistaGU.jpPassword.setText(null);
+            vistaGU.txtNombre.setText(null);
+            vistaGU.txtApellido.setText(null);
+            vistaGU.cbxTipo.setToolTipText(null);
+            
         }
 
+    @Override
+    public void keyTyped(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+        
 }

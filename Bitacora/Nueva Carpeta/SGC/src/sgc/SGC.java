@@ -1,21 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sgc;
 
-/**
- *
- * @author Anthony
- */
+import controlador.CtrlUsuario;
+import modelo.CrudUsuario;
+import modelo.Usuario;
+import vista.GestionarUsuario;
+
+
 public class SGC {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+
+        GestionarUsuario vistaGu = new GestionarUsuario();
+        Usuario mod = new Usuario();
+        CrudUsuario modC = new CrudUsuario();
+        
+        CtrlUsuario ctrl = new CtrlUsuario(mod, modC, vistaGu);
+        vistaGu.iniciar();
+        vistaGu.setVisible(true);
     }
     
 }
