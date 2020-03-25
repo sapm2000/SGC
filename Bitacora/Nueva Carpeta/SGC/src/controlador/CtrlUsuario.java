@@ -2,16 +2,26 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import modelo.CrudUsuario;
 import modelo.Usuario;
 import vista.GestionarUsuario;
 
-public class CtrlUsuario implements ActionListener{
+public class CtrlUsuario implements ActionListener, KeyListener, ItemListener{
     
     private Usuario mod;
     private CrudUsuario modC;
     private GestionarUsuario vistaGU;
+
+
     
     //Constructor de inicializacion de variables. Desde la linea 16 a la 26
     
@@ -40,12 +50,13 @@ public class CtrlUsuario implements ActionListener{
     
         if (e.getSource() == vistaGU.btnGuardar) {
             
-            mod.setCedula(Integer.parseInt(vistaGU.txtCedula.getText()));
+            mod.setCedula(vistaGU.txtCedula.getText());
             mod.setUsuario(vistaGU.txtUsuario.getText());
             mod.setPassword(vistaGU.jpPassword.getText());
             mod.setNombre(vistaGU.txtNombre.getText());
             mod.setApellido(vistaGU.txtApellido.getText());
-            mod.setTipo(vistaGU.cbxTipo.getToolTipText());
+            mod.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
+            
             
             if (modC.registrar(mod)) {
                 
@@ -62,16 +73,19 @@ public class CtrlUsuario implements ActionListener{
             
             if (e.getSource() == vistaGU.btnModificar) {
             
-            mod.setCedula(Integer.parseInt(vistaGU.txtCedula.getText()));
+          
             mod.setUsuario(vistaGU.txtUsuario.getText());
             mod.setPassword(vistaGU.jpPassword.getText());
             mod.setNombre(vistaGU.txtNombre.getText());
             mod.setApellido(vistaGU.txtApellido.getText());
-            mod.setTipo(vistaGU.cbxTipo.getToolTipText());
+            mod.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
             
+
+                   
             if (modC.modificar(mod)) {
                 
                 JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
+               
                 limpiar();
                 
             }else{
@@ -85,7 +99,7 @@ public class CtrlUsuario implements ActionListener{
     
             if (e.getSource() == vistaGU.btnEliminar) {
             
-            mod.setCedula(Integer.parseInt(vistaGU.txtCedula.getText()));
+            mod.setCedula(vistaGU.txtCedula.getText());
             
             
             if (modC.eliminar(mod)) {
@@ -103,17 +117,17 @@ public class CtrlUsuario implements ActionListener{
         }
             if (e.getSource() == vistaGU.btnBuscar) {
             
-            mod.setCedula(Integer.parseInt(vistaGU.txtCedula.getText()));
+            mod.setCedula(vistaGU.txtCedula.getText());
             
             
             if (modC.buscar(mod)) {
                 
-                vistaGU.txtCedula.setText(String.valueOf(mod.getCedula()));
+                vistaGU.txtCedula.setText(mod.getCedula());
                 vistaGU.txtUsuario.setText(mod.getUsuario());
                 vistaGU.jpPassword.setText(mod.getPassword());
                 vistaGU.txtNombre.setText(mod.getNombre());
                 vistaGU.txtApellido.setText(mod.getApellido());
-                vistaGU.cbxTipo.setToolTipText(mod.getTipo());
+                vistaGU.cbxTipo.setSelectedItem(mod.getTipo());
                 
             }else{
             
@@ -141,6 +155,26 @@ public class CtrlUsuario implements ActionListener{
             vistaGU.cbxTipo.setToolTipText(null);
             
         }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
         
 }

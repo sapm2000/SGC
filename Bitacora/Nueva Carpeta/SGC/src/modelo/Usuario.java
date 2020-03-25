@@ -3,18 +3,18 @@ package modelo;
 
 public class Usuario {
  
-    private int cedula;
+    private String cedula;
     private String usuario;
     private String password;
     private String nombre;
     private String apellido;
     private String tipo;
 
-    public int getCedula() {
+    public String getCedula() {
         return cedula;
     }
 
-    public void setCedula(int cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 

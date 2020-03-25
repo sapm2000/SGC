@@ -18,7 +18,7 @@ public class CrudUsuario extends ConexionBD {
             try {
             
                 ps = con.prepareStatement(sql);
-                ps.setInt(1, usu.getCedula());
+                ps.setString(1, usu.getCedula());
                 ps.setString(2, usu.getUsuario());
                 ps.setString(3, usu.getPassword());
                 ps.setString(4, usu.getNombre());
@@ -31,7 +31,7 @@ public class CrudUsuario extends ConexionBD {
                 
         } catch (SQLException e) {
             
-                System.err.println("e");
+                System.err.println(e);
                 return false;
                 
         } finally{
@@ -41,7 +41,7 @@ public class CrudUsuario extends ConexionBD {
                     
                 } catch (SQLException e) {
                 
-                    System.err.println("e");
+                    System.err.println(e);
                 
                 }
                 
@@ -61,20 +61,20 @@ public class CrudUsuario extends ConexionBD {
             try {
             
                 ps = con.prepareStatement(sql);
-                ps.setInt(1, usu.getCedula());
-                ps.setString(2, usu.getUsuario());
-                ps.setString(3, usu.getPassword());
-                ps.setString(4, usu.getNombre());
-                ps.setString(5, usu.getApellido());
-                ps.setString(6, usu.getTipo());
                 
+                ps.setString(1, usu.getUsuario());
+                ps.setString(2, usu.getPassword());
+                ps.setString(3, usu.getNombre());
+                ps.setString(4, usu.getApellido());
+                ps.setString(5, usu.getTipo());
+                ps.setString(6, usu.getCedula());
                 ps.execute();
                 
                 return true;
                 
         } catch (SQLException e) {
             
-                System.err.println("e");
+                System.err.println(e);
                 return false;
                 
         } finally{
@@ -84,7 +84,7 @@ public class CrudUsuario extends ConexionBD {
                     
                 } catch (SQLException e) {
                 
-                    System.err.println("e");
+                    System.err.println(e);
                 
                 }
                 
@@ -104,7 +104,7 @@ public class CrudUsuario extends ConexionBD {
             try {
             
                 ps = con.prepareStatement(sql);
-                ps.setInt(1, usu.getCedula());
+                ps.setString(1, usu.getCedula());
                                 
                 ps.execute();
                 
@@ -112,7 +112,7 @@ public class CrudUsuario extends ConexionBD {
                 
         } catch (SQLException e) {
             
-                System.err.println("e");
+                System.err.println(e);
                 return false;
                 
         } finally{
@@ -122,7 +122,7 @@ public class CrudUsuario extends ConexionBD {
                     
                 } catch (SQLException e) {
                 
-                    System.err.println("e");
+                    System.err.println(e);
                 
                 }
                 
@@ -143,13 +143,13 @@ public class CrudUsuario extends ConexionBD {
             try {
             
                 ps = con.prepareStatement(sql);
-                ps.setInt(1, usu.getCedula());
-             
+                ps.setString(1,usu.getCedula());
+                
                 rs = ps.executeQuery();
                 
                 if (rs.next()) {
                     
-                    usu.setCedula( Integer.parseInt(rs.getString("cedula")));
+                    usu.setCedula(rs.getString("cedula"));
                     usu.setUsuario(rs.getString("usuario"));
                     usu.setPassword(rs.getString("password"));
                     usu.setNombre(rs.getString("nombre"));
@@ -164,7 +164,7 @@ public class CrudUsuario extends ConexionBD {
                 
         } catch (SQLException e) {
             
-                System.err.println("e");
+                System.err.println(e);
                 return false;
                 
         } finally{
@@ -174,7 +174,7 @@ public class CrudUsuario extends ConexionBD {
                     
                 } catch (SQLException e) {
                 
-                    System.err.println("e");
+                    System.err.println(e);
                 
                 }
                 

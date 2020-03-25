@@ -110,7 +110,7 @@ public class GestionarUsuario extends javax.swing.JFrame {
         cbxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un tipo de usuario", "Administrador", "Propietario" }));
         cbxTipo.setBorder(null);
         cbxTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.add(cbxTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 380, 270, -1));
+        jPanel1.add(cbxTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 368, 250, 40));
 
         jLabel8.setFont(new java.awt.Font("Raleway", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
