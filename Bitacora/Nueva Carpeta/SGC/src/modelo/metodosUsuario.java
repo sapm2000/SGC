@@ -33,7 +33,7 @@ public class metodosUsuario {
                  
                  if(conectar!=null){
                  
-                            String  sql = "SELECT usuario, password FROM usuario WHERE usuario=? AND password";
+                            String  sql = "SELECT usuario, password FROM usuario WHERE usuario=? AND password=?";
                             
                             ps = conectar.prepareStatement(sql);
                             
