@@ -1,9 +1,12 @@
 
 package vista;
 
+import controlador.CtrlUsuario;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import modelo.CrudUsuario;
+import modelo.Usuario;
 /**
  *
  * @author Anthony
@@ -98,7 +101,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenu2.setText("Archivos");
         jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jMenuItem1.setText("jMenuItem1");
+        jMenuItem1.setText("Gestionar Usuario");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem1);
 
         jMenuItem2.setText("jMenuItem2");
@@ -142,6 +150,16 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
         this.setState(vista.InicioUsuario.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+       GestionarUsuario vistaGu = new GestionarUsuario();
+        Usuario mod = new Usuario();
+        CrudUsuario modC = new CrudUsuario();
+        
+        CtrlUsuario ctrl = new CtrlUsuario(mod, modC, vistaGu);
+        
+        vistaGu.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments

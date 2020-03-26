@@ -22,11 +22,7 @@ public class GestionarUsuario extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
        
     }
-    public void iniciar(){
-     this.setLocationRelativeTo(null);
-        this.setTitle("Vista");
-        this.setVisible(false);
-    }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
