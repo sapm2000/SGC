@@ -1,17 +1,19 @@
 package modelo;
 
 
-public class Login {
+public class UsuarioL {
     
     private String usuario;
     private String password;
+
+public UsuarioL(){
     
-    public Login(){
-     
-        usuario="";
-        password="";
-        
-    }
+            usuario="";
+            password="";
+
+}
+
+
 
     public String getUsuario() {
         return usuario;
@@ -29,6 +31,6 @@ public class Login {
         this.password = password;
     }
     
-    
-            
+
+
 }
