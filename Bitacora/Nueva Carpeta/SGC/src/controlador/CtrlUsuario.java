@@ -38,12 +38,6 @@ public class CtrlUsuario implements ActionListener, KeyListener, ItemListener{
     }
     //Fin del constructor
 
-  
-    
-    
-    public void iniciar(){
-  
-    }
     
     @Override
     public void actionPerformed(ActionEvent e){

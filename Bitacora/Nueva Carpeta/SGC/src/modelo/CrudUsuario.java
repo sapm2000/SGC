@@ -13,7 +13,7 @@ public class CrudUsuario extends ConexionBD {
             PreparedStatement ps = null;
             Connection con = getConexion();
             
-            String sql = "INSERT INTO usuario (cedula, usuario, password, nombre, apellido, tipo) VALUES(?,?,?,?,?,?)";
+            String sql = "INSERT INTO usuario (cedula, usuario, password, nombre, apellido, tipo, ntelefono) VALUES(?,?,?,?,?,?,?)";
             
             try {
             
@@ -24,6 +24,7 @@ public class CrudUsuario extends ConexionBD {
                 ps.setString(4, usu.getNombre());
                 ps.setString(5, usu.getApellido());
                 ps.setString(6, usu.getTipo());
+                ps.setString(7, usu.getTipo());
                 
                 ps.execute();
                 
@@ -56,7 +57,7 @@ public class CrudUsuario extends ConexionBD {
             PreparedStatement ps = null;
             Connection con = getConexion();
             
-            String sql = "UPDATE usuario SET usuario=?, password=?, nombre=?, apellido=?, tipo=? WHERE cedula=? ";
+            String sql = "UPDATE usuario SET usuario=?, password=?, nombre=?, apellido=?, tipo=?, ntelefono=? WHERE cedula=? ";
             
             try {
             
@@ -67,7 +68,8 @@ public class CrudUsuario extends ConexionBD {
                 ps.setString(3, usu.getNombre());
                 ps.setString(4, usu.getApellido());
                 ps.setString(5, usu.getTipo());
-                ps.setString(6, usu.getCedula());
+                ps.setString(6, usu.getNtelefono());
+                ps.setString(7, usu.getCedula());
                 ps.execute();
                 
                 return true;
@@ -155,6 +157,7 @@ public class CrudUsuario extends ConexionBD {
                     usu.setNombre(rs.getString("nombre"));
                     usu.setApellido(rs.getString("apellido"));
                     usu.setTipo(rs.getString("tipo"));
+                    usu.setNtelefono(rs.getString("ntelefono"));
                     
                     return true;
                     

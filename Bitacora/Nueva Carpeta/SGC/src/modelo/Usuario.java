@@ -9,6 +9,7 @@ public class Usuario {
     private String nombre;
     private String apellido;
     private String tipo;
+    private String ntelefono;
 
     public String getCedula() {
         return cedula;
@@ -56,6 +57,14 @@ public class Usuario {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getNtelefono() {
+        return ntelefono;
+    }
+
+    public void setNtelefono(String ntelefono) {
+        this.ntelefono = ntelefono;
     }
     
     
