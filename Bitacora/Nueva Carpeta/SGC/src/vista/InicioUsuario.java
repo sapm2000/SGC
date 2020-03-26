@@ -10,7 +10,12 @@ public class InicioUsuario extends javax.swing.JFrame {
      */
     public InicioUsuario() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        
+    }
+    public void Inicio(){
+     this.setLocationRelativeTo(null);
+        this.setTitle("Vista");
+        this.setVisible(false);
     }
     
     public Image getIconImagine(){
@@ -28,6 +33,7 @@ public class InicioUsuario extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         btnEnviar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         txtUsuario = new javax.swing.JTextField();
@@ -38,6 +44,7 @@ public class InicioUsuario extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        checkViewPass = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImagine());
@@ -67,7 +74,15 @@ public class InicioUsuario extends javax.swing.JFrame {
         });
         jPanel2.add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 410, 100));
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, -1, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 410, 90));
 
         btnMinimizar.setBackground(new java.awt.Color(255, 255, 255));
         btnMinimizar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -151,6 +166,14 @@ public class InicioUsuario extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/key (2).png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
 
+        checkViewPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)));
+        checkViewPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkViewPassActionPerformed(evt);
+            }
+        });
+        jPanel1.add(checkViewPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, -1, 10));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 500));
 
         pack();
@@ -204,6 +227,14 @@ public class InicioUsuario extends javax.swing.JFrame {
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void checkViewPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkViewPassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkViewPassActionPerformed
 //le damos la accion al boton de cerrar. y mostrar una ventana de confirmacion
    
 
@@ -243,6 +274,8 @@ public class InicioUsuario extends javax.swing.JFrame {
     public javax.swing.JButton btnEnviar;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnMinimizar;
+    public javax.swing.JButton btnSalir;
+    public javax.swing.JCheckBox checkViewPass;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
