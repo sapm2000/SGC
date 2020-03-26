@@ -24,7 +24,7 @@ public class CrudUsuario extends ConexionBD {
                 ps.setString(4, usu.getNombre());
                 ps.setString(5, usu.getApellido());
                 ps.setString(6, usu.getTipo());
-                ps.setString(7, usu.getTipo());
+                ps.setString(7, usu.getNtelefono());
                 
                 ps.execute();
                 

@@ -7,6 +7,7 @@ package vista;
 
 import javax.swing.JOptionPane;
 import controlador.CtrlUsuario;
+import javax.swing.JButton;
 
 /**
  *
@@ -425,4 +426,5 @@ public class GestionarUsuario extends javax.swing.JFrame {
     public javax.swing.JTextField txtTelefono;
     public javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
 }
