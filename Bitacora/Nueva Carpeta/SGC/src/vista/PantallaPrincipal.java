@@ -16,8 +16,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public PantallaPrincipal() {
         initComponents();
         
-    }
-    public void Inicio(){
+  
      this.setLocationRelativeTo(null);
         this.setTitle("Vista");
         this.setVisible(false);
