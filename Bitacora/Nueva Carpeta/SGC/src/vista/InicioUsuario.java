@@ -1,22 +1,22 @@
 package vista;
+import controlador.CtrlUsuarioL;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 public class InicioUsuario extends javax.swing.JFrame {
 
-    /**
-     * Creates new form InicioUsuario
-     */
+    CtrlUsuarioL ctrlU;
+    
     public InicioUsuario() {
         initComponents();
         
+        this.setLocationRelativeTo(null);
+        
+        ctrlU = new CtrlUsuarioL(this);
+        
     }
-    public void Inicio(){
-     this.setLocationRelativeTo(null);
-        this.setTitle("Vista");
-        this.setVisible(false);
-    }
+    
     
     public Image getIconImagine(){
         
