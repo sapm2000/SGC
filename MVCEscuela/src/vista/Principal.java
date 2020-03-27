@@ -60,8 +60,11 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        internalPanel = new javax.swing.JPanel();
         escritorioP = new javax.swing.JDesktopPane();
+        internalPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnMenu = new javax.swing.JMenu();
         itemPersona = new javax.swing.JMenuItem();
@@ -73,28 +76,20 @@ public class Principal extends javax.swing.JFrame {
 
         escritorioP.setBackground(new java.awt.Color(255, 255, 255));
         escritorioP.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 204, 204), 5, true));
+        escritorioP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout escritorioPLayout = new javax.swing.GroupLayout(escritorioP);
-        escritorioP.setLayout(escritorioPLayout);
-        escritorioPLayout.setHorizontalGroup(
-            escritorioPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 739, Short.MAX_VALUE)
-        );
-        escritorioPLayout.setVerticalGroup(
-            escritorioPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 343, Short.MAX_VALUE)
-        );
+        internalPanel.setBackground(new java.awt.Color(255, 255, 255));
+        internalPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 204, 204), 5, true));
+        internalPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout internalPanelLayout = new javax.swing.GroupLayout(internalPanel);
-        internalPanel.setLayout(internalPanelLayout);
-        internalPanelLayout.setHorizontalGroup(
-            internalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorioP)
-        );
-        internalPanelLayout.setVerticalGroup(
-            internalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorioP)
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/calculator1.png"))); // NOI18N
+        internalPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/file1.png"))); // NOI18N
+        internalPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/school1.png"))); // NOI18N
+        internalPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, -1, -1));
 
         mnMenu.setText("Menu");
 
@@ -136,10 +131,20 @@ public class Principal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(internalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(escritorioP, javax.swing.GroupLayout.PREFERRED_SIZE, 749, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(internalPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(escritorioP, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -210,6 +215,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane escritorioP;
     private javax.swing.JPanel internalPanel;
     public javax.swing.JMenuItem itemPersona;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
