@@ -65,6 +65,9 @@ public class Principal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnMenu = new javax.swing.JMenu();
         itemPersona = new javax.swing.JMenuItem();
@@ -83,16 +86,28 @@ public class Principal extends javax.swing.JFrame {
         internalPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/calculator1.png"))); // NOI18N
-        internalPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, -1, -1));
+        internalPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/file1.png"))); // NOI18N
-        internalPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, -1, -1));
+        internalPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/school1.png"))); // NOI18N
-        internalPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, -1, -1));
+        internalPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel4.setText("¡Bienvenidos!");
+        internalPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, -1, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow.png"))); // NOI18N
+        internalPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, -1, -1));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow.png"))); // NOI18N
+        internalPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, -1, -1));
 
         mnMenu.setText("Menu");
 
+        itemPersona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/school2.png"))); // NOI18N
         itemPersona.setText("Registro Persona");
         itemPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,6 +118,7 @@ public class Principal extends javax.swing.JFrame {
         ctrl = new CtrlPrincipal(this);
         itemPersona.addActionListener(ctrl);
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/calculator2.png"))); // NOI18N
         jMenuItem1.setText("Operadores");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,6 +127,7 @@ public class Principal extends javax.swing.JFrame {
         });
         mnMenu.add(jMenuItem1);
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/file2.png"))); // NOI18N
         jMenuItem2.setText("Registrar usuario");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,6 +235,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
