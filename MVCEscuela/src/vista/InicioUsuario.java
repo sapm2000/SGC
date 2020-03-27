@@ -16,6 +16,7 @@ public class InicioUsuario extends javax.swing.JFrame {
      */
     public InicioUsuario() {
         initComponents();
+        
     }
 
     /**
