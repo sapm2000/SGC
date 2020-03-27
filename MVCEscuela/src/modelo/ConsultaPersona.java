@@ -22,20 +22,19 @@ public class ConsultaPersona extends Conexion {
         
         
         
-        String sql = "INSERT INTO persona (clave, nombre, domicilio, telefono, correo_electronico, fecha_nacimiento, genero,nacionalidad) VALUES(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO persona (clave, nombre, apellido, domicilio, telefono, fecha_nacimiento, genero,nacionalidad) VALUES(?,?,?,?,?,?,?,?)";
         
         try {
             
             ps = con.prepareStatement(sql);
             ps.setString(1, prs.getClave());
             ps.setString(2, prs.getNombre());
-            ps.setString(3, prs.getDomicilio());
-            ps.setString(4, prs.getTelefono());
-            ps.setString(5, prs.getCorreo_electronico());
+            ps.setString(3, prs.getApellido());
+            ps.setString(4, prs.getDomicilio());
+            ps.setString(5, prs.getTelefono());
             ps.setString(6, prs.getFecha_nacimiento());
             ps.setString(7, prs.getGenero());
             ps.setString(8, prs.getNacionalidad());
-            
             ps.execute();
             return true;
 
@@ -59,22 +58,22 @@ public class ConsultaPersona extends Conexion {
         PreparedStatement ps = null;
         Connection con = getConexion();
         
-        String sql = "UPDATE persona SET clave=?, nombre=?, domicilio=?, telefono=?, correo_electronico=?, fecha_nacimiento=?, genero=?,nacionalidad=? WHERE id=?";
+        String sql = "UPDATE persona SET nombre=?, apellido=?, domicilio=?, telefono=?, fecha_nacimiento=?, genero=?, nacionalidad=? WHERE clave=?";
         
         try {
             
             ps = con.prepareStatement(sql);
-            ps.setString(1, prs.getClave());
-            ps.setString(2, prs.getNombre());
+            
+            ps.setString(1, prs.getNombre());
+            ps.setString(2, prs.getApellido());
             ps.setString(3, prs.getDomicilio());
             ps.setString(4, prs.getTelefono());
-            ps.setString(5, prs.getCorreo_electronico());
-            ps.setString(6, prs.getFecha_nacimiento());
-            ps.setString(7, prs.getGenero());
-            ps.setString(8, prs.getNacionalidad());
+            ps.setString(5, prs.getFecha_nacimiento());
+            ps.setString(6, prs.getGenero());
+            ps.setString(7, prs.getNacionalidad());
         
            
-            ps.setInt(9, prs.getId());
+            ps.setString(8, prs.getClave());
             ps.execute();
             return true;
 
@@ -98,12 +97,12 @@ public class ConsultaPersona extends Conexion {
         PreparedStatement ps = null;
         Connection con = getConexion();
         
-        String sql = "DELETE FROM persona WHERE id=?";
+        String sql = "DELETE FROM persona WHERE clave=?";
         
         try {
             
             ps = con.prepareStatement(sql);
-            ps.setInt(1, prs.getId());
+            ps.setString(1, prs.getClave());
             ps.execute();
             return true;
 
@@ -137,12 +136,12 @@ public class ConsultaPersona extends Conexion {
             rs = ps.executeQuery();
             
             if (rs.next()) {
-                prs.setId( Integer.parseInt(rs.getString("id")));
+                
                 prs.setClave(rs.getString("clave"));
                 prs.setNombre(rs.getString("nombre"));
+                prs.setApellido(rs.getString("apellido"));
                 prs.setDomicilio(rs.getString("domicilio"));
                 prs.setTelefono(rs.getString("telefono"));
-                prs.setCorreo_electronico(rs.getString("correo_electronico"));
                 prs.setFecha_nacimiento(rs.getString("fecha_nacimiento"));
                 prs.setGenero(rs.getString("genero"));
                 prs.setNacionalidad(rs.getString("nacionalidad"));
@@ -168,6 +167,36 @@ public class ConsultaPersona extends Conexion {
     
        
     }
+    
+    public ArrayList<Persona> lPerson(Persona prs){
+       ArrayList listaPersona = new ArrayList();
+     
+       Connection con = getConexion();
+       PreparedStatement ps = null;
+       ResultSet rs = null;
+       
+       String sql = "SELECT clave, nombre, apellido, domicilio FROM persona";
+            try {
+             ps = con.prepareStatement(sql);
+             rs= ps.executeQuery();
+             
+                while (rs.next()) {
+                    
+                    //prs = new Persona();
+                    prs.setClave(rs.getString(1));
+                    prs.setNombre(rs.getString(2));
+                    prs.setApellido(rs.getString(3));
+                    prs.setDomicilio(rs.getString(4));
+                    listaPersona.add(prs);
+                }
+             
+       } catch (Exception e) {
+       }
+        
+        
+       return listaPersona;
+     
+   }
 
     
 }

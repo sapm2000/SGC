@@ -7,12 +7,12 @@ package modelo;
  */
 public class Persona {
     
-    private int id;
+    //private int id;
     private String clave;
     private String nombre;
+    private String apellido;
     private String domicilio;
     private String telefono;
-    private String correo_electronico;
     private String fecha_nacimiento;
     private String genero;
     private String nacionalidad;
@@ -35,13 +35,13 @@ public class Persona {
     
     }
 
-    public int getId() {
-        return id;
-    }
+   // public int getId() {
+      //  return id;
+   // }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    //public void setId(int id) {
+   //     this.id = id;
+   // }
 
     public String getClave() {
         return clave;
@@ -75,12 +75,12 @@ public class Persona {
         this.telefono = telefono;
     }
 
-    public String getCorreo_electronico() {
-        return correo_electronico;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setCorreo_electronico(String correo_electronico) {
-        this.correo_electronico = correo_electronico;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getFecha_nacimiento() {

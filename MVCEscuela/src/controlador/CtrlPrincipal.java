@@ -9,12 +9,12 @@ import vista.VistaPersona;
 
 public class CtrlPrincipal implements ActionListener {
     /*declaramos variables de tipo objeto */
-    private Principal vista;
-    private CtrlPersona ctrlp;
+    private Principal vista;//
+    private CtrlPersona ctrlp;//
     
-    private Persona mod = new Persona();
+    private Persona mod = new Persona();//
     private ConsultaPersona modC = new ConsultaPersona();
-    private VistaPersona vistap = new VistaPersona();
+    private VistaPersona vistap = new VistaPersona();//
     /*creamos contructor con 1 parametro*/
     public CtrlPrincipal(Principal vista) {
         this.ctrlp = new CtrlPersona(mod, modC, vistap);
@@ -33,7 +33,7 @@ public class CtrlPrincipal implements ActionListener {
     /* recibe el evento */
     public void actionPerformed(ActionEvent evento) {
         if (evento.getSource() == vista.getItemPersona()) {
-            vistap.txtId.setVisible(false);
+            
             vistap.setVisible(true);
             ctrlp.iniciar();
 
