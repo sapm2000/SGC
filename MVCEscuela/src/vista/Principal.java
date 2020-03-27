@@ -67,15 +67,18 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        escritorioP.setBackground(new java.awt.Color(255, 255, 255));
+        escritorioP.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 204, 204), 5, true));
+
         javax.swing.GroupLayout escritorioPLayout = new javax.swing.GroupLayout(escritorioP);
         escritorioP.setLayout(escritorioPLayout);
         escritorioPLayout.setHorizontalGroup(
             escritorioPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 749, Short.MAX_VALUE)
+            .addGap(0, 739, Short.MAX_VALUE)
         );
         escritorioPLayout.setVerticalGroup(
             escritorioPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 353, Short.MAX_VALUE)
+            .addGap(0, 343, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout internalPanelLayout = new javax.swing.GroupLayout(internalPanel);
