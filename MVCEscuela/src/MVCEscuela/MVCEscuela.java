@@ -15,17 +15,18 @@ public class MVCEscuela {
     public static void main(String[] args) {
         
   
-        Principal vista = new Principal();
+        /*Principal vista = new Principal();
   
         
         CtrlPrincipal ctrl = new CtrlPrincipal(vista);
         
         ctrl.iniciar();
         
-        vista.setVisible(true);
+        vista.setVisible(true);*/
       
         
-                
+                InicioUsuario vistaU = new InicioUsuario();
+        vistaU.setVisible(true);
         
     }
     
