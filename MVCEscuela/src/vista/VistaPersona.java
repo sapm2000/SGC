@@ -5,10 +5,10 @@
  */
 package vista;
 
-/**
- *
- * @author Anthony
- */
+import java.awt.Component;
+import javax.swing.JTable;
+import sun.swing.table.DefaultTableCellHeaderRenderer;
+
 public class VistaPersona extends javax.swing.JFrame {
 
     /**
@@ -17,7 +17,7 @@ public class VistaPersona extends javax.swing.JFrame {
     public VistaPersona() {
         initComponents();
         setLocationRelativeTo(null);
-        
+        jtDatos.getTableHeader().setDefaultRenderer(new Headercolor());
         
         
     }
@@ -156,14 +156,14 @@ public class VistaPersona extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jtDatos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 351, 1040, 97));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 351, 1010, 97));
 
         btnListar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnListar.setForeground(new java.awt.Color(255, 255, 255));
         btnListar.setText("Listar");
         btnListar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 153), 3, true));
         btnListar.setContentAreaFilled(false);
-        jPanel1.add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 310, 90, -1));
+        jPanel1.add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 310, 90, 30));
 
         cbxNacionalidad.setEditable(true);
         cbxNacionalidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "V", "E", " " }));
@@ -184,7 +184,7 @@ public class VistaPersona extends javax.swing.JFrame {
                 btnBuscarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 109, -1));
+        jPanel2.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 109, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, 110, 30));
 
@@ -375,4 +375,18 @@ public class VistaPersona extends javax.swing.JFrame {
     public javax.swing.JTextField txtNombre;
     public javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
+
+    static public class Headercolor extends DefaultTableCellHeaderRenderer {
+    public Headercolor () {
+        setOpaque(true);
+    }
+    public Component getTableCellRendererComponent(JTable mytable, Object value, boolean selected, boolean focused,int row,int column) {
+        super.getTableCellRendererComponent(mytable, value, selected, focused, row, column);
+        setBackground(new java.awt.Color(0,204,204));
+        return this;
+    }
+}
+
+
+
 }
