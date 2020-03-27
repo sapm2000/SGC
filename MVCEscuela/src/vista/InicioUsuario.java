@@ -34,6 +34,7 @@ public class InicioUsuario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnEnviar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -57,6 +58,9 @@ public class InicioUsuario extends javax.swing.JFrame {
 
         btnEnviar.setText("entrar");
         jPanel1.add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, -1, -1));
+
+        btnSalir.setText("salir");
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 430));
 
@@ -99,12 +103,13 @@ public class InicioUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEnviar;
-    private javax.swing.JCheckBox checkViewPass;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    public javax.swing.JButton btnEnviar;
+    public javax.swing.JButton btnSalir;
+    public javax.swing.JCheckBox checkViewPass;
+    public javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtUsuario;
-    private javax.swing.JPasswordField txtpassword;
+    public javax.swing.JTextField txtUsuario;
+    public javax.swing.JPasswordField txtpassword;
     // End of variables declaration//GEN-END:variables
 }
