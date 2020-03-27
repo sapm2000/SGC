@@ -12,6 +12,9 @@ import javax.swing.JMenuItem;
  import controlador.CtrlPrincipal;
 import controlador.controladorm;
 import modelo.MOperadores;
+import modelo.CrudUsuario;
+import modelo.Usuario;
+import controlador.CtrlUsuario;
 
 /**
  *
@@ -63,6 +66,7 @@ public class Principal extends javax.swing.JFrame {
         mnMenu = new javax.swing.JMenu();
         itemPersona = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -112,6 +116,14 @@ public class Principal extends javax.swing.JFrame {
         });
         mnMenu.add(jMenuItem1);
 
+        jMenuItem2.setText("Registrar usuario");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        mnMenu.add(jMenuItem2);
+
         jMenuBar1.add(mnMenu);
 
         jMenu2.setText("Edit");
@@ -148,6 +160,16 @@ public class Principal extends javax.swing.JFrame {
         vistaOp.setVisible(true);
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+       GestionarUsuario vistaGu = new GestionarUsuario();
+         Usuario mod = new Usuario();
+        CrudUsuario modC = new CrudUsuario();
+        
+        CtrlUsuario ctrl = new CtrlUsuario(mod, modC, vistaGu);
+        
+        vistaGu.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,6 +213,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     public javax.swing.JMenu mnMenu;
     // End of variables declaration//GEN-END:variables
 
