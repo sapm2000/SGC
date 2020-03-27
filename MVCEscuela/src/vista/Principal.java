@@ -7,6 +7,7 @@ package vista;
 
 
 
+import controlador.CtrlPersona;
 import javax.swing.JDesktopPane;
 import javax.swing.JMenuItem;
  import controlador.CtrlPrincipal;
@@ -15,13 +16,15 @@ import modelo.MOperadores;
 import modelo.CrudUsuario;
 import modelo.Usuario;
 import controlador.CtrlUsuario;
+import modelo.ConsultaPersona;
+import modelo.Persona;
 
 /**
  *
  * @author Anthony
  */
 public class Principal extends javax.swing.JFrame {
-   CtrlPrincipal ctrl;
+  // CtrlPrincipal ctrl;
 
 
     public JDesktopPane getEscritorioP() {
@@ -105,8 +108,8 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         mnMenu.add(itemPersona);
-        ctrl = new CtrlPrincipal(this);
-        itemPersona.addActionListener(ctrl);
+        //ctrl = new CtrlPrincipal(this);
+        //itemPersona.addActionListener(ctrl);
 
         jMenuItem1.setText("Operadores");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -146,7 +149,13 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPersonaActionPerformed
-        // TODO add your handling code here:
+         VistaPersona vistaP = new VistaPersona();
+           ConsultaPersona modC = new ConsultaPersona();
+        Persona mod = new Persona();
+        
+        CtrlPersona ctrl = new CtrlPersona(mod, modC, vistaP);
+        
+        vistaP.setVisible(true);
     }//GEN-LAST:event_itemPersonaActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -166,7 +175,7 @@ public class Principal extends javax.swing.JFrame {
          Usuario mod = new Usuario();
         CrudUsuario modC = new CrudUsuario();
         
-        CtrlUsuario ctrl = new CtrlUsuario(mod, modC, vistaGu);
+        CtrlUsuario ctrlu = new CtrlUsuario(mod, modC, vistaGu);
         
         vistaGu.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed

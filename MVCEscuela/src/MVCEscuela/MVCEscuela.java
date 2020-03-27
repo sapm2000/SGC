@@ -25,7 +25,7 @@ public class MVCEscuela {
         vista.setVisible(true);*/
       
         
-                InicioUsuario vistaU = new InicioUsuario();
+        InicioUsuario vistaU = new InicioUsuario();
         vistaU.setVisible(true);
         
     }

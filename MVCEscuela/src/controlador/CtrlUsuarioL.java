@@ -39,7 +39,7 @@ public class CtrlUsuarioL implements ActionListener{
         
         if(evt.equals(vistaU.btnEnviar)){
         
-            char p[ ] = vistaU.txtpassword.getPassword();
+            char p[ ] = vistaU.txtPassword.getPassword();
             String pass = new String(p);
             
             if (vistaU.txtUsuario.getText().isEmpty() || pass.isEmpty()) {
@@ -83,11 +83,11 @@ public class CtrlUsuarioL implements ActionListener{
         
             if(vistaU.checkViewPass.isSelected()){
             
-                vistaU.txtpassword.setEchoChar((char) 0);
+                vistaU.txtPassword.setEchoChar((char) 0);
                 
             }else{
             
-                vistaU.txtpassword.setEchoChar('*');//coloca * en la contrasenha;
+                vistaU.txtPassword.setEchoChar('*');//coloca * en la contrasenha;
                 
             }
             

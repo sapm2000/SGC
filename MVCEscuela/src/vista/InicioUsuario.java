@@ -29,7 +29,7 @@ public class InicioUsuario extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         txtUsuario = new javax.swing.JTextField();
-        txtpassword = new javax.swing.JPasswordField();
+        txtPassword = new javax.swing.JPasswordField();
         checkViewPass = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -44,8 +44,8 @@ public class InicioUsuario extends javax.swing.JFrame {
         txtUsuario.setText("jTextField1");
         jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, -1));
 
-        txtpassword.setText("jPasswordField1");
-        jPanel1.add(txtpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, -1, -1));
+        txtPassword.setText("jPasswordField1");
+        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, -1, -1));
 
         checkViewPass.setText("ver clave");
         jPanel1.add(checkViewPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, -1, -1));
@@ -109,7 +109,7 @@ public class InicioUsuario extends javax.swing.JFrame {
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    public javax.swing.JPasswordField txtPassword;
     public javax.swing.JTextField txtUsuario;
-    public javax.swing.JPasswordField txtpassword;
     // End of variables declaration//GEN-END:variables
 }
