@@ -97,8 +97,8 @@ public class GestionarUsuario extends javax.swing.JFrame {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, -1, -1));
 
         id.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        id.setText("Nombre:");
-        jPanel1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
+        id.setText("Id:");
+        jPanel1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, -1, -1));
 
         jSeparator1.setForeground(new java.awt.Color(0, 204, 204));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 110, 10));
@@ -117,7 +117,7 @@ public class GestionarUsuario extends javax.swing.JFrame {
         btnBuscar.setText("Buscar");
         btnBuscar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 153), 3, true));
         btnBuscar.setContentAreaFilled(false);
-        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 90, 30));
@@ -132,7 +132,7 @@ public class GestionarUsuario extends javax.swing.JFrame {
         btnEliminar.setBorder(null);
         btnEliminar.setBorderPainted(false);
         btnEliminar.setContentAreaFilled(false);
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel3.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 90, 30));
 
         btnModificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -141,7 +141,7 @@ public class GestionarUsuario extends javax.swing.JFrame {
         btnModificar.setBorder(null);
         btnModificar.setBorderPainted(false);
         btnModificar.setContentAreaFilled(false);
-        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel3.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 90, 30));
 
         btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -151,7 +151,7 @@ public class GestionarUsuario extends javax.swing.JFrame {
         btnGuardar.setBorder(null);
         btnGuardar.setBorderPainted(false);
         btnGuardar.setContentAreaFilled(false);
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel3.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 90, 30));
 
         btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -160,7 +160,7 @@ public class GestionarUsuario extends javax.swing.JFrame {
         btnLimpiar.setBorder(null);
         btnLimpiar.setBorderPainted(false);
         btnLimpiar.setContentAreaFilled(false);
-        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel3.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 90, 30));
 
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -171,7 +171,7 @@ public class GestionarUsuario extends javax.swing.JFrame {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minus1.png"))); // NOI18N
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minus (1)1.png"))); // NOI18N
         jButton2.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minus (1)1.png"))); // NOI18N
         jButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minus (1)1.png"))); // NOI18N
@@ -185,7 +185,7 @@ public class GestionarUsuario extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/multiply-mathematical-sign1.png"))); // NOI18N
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/multiply-mathematical-sign (1)1.png"))); // NOI18N
         jButton1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/multiply-mathematical-sign (1)1.png"))); // NOI18N
         jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/multiply-mathematical-sign (1)1.png"))); // NOI18N
