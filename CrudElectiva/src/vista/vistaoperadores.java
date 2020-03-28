@@ -16,6 +16,7 @@ public class vistaoperadores extends javax.swing.JFrame {
      */
     public vistaoperadores() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -44,21 +45,33 @@ public class vistaoperadores extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 204, 204), 5, true));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(txtNumero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 110, -1));
 
+        txtNumero1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtNumero1.setBorder(null);
+        jPanel1.add(txtNumero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 110, 20));
+
+        txtNumero2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtNumero2.setBorder(null);
         txtNumero2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumero2ActionPerformed(evt);
             }
         });
         jPanel1.add(txtNumero2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 110, 20));
+
+        txtResultado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtResultado.setBorder(null);
         jPanel1.add(txtResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, 110, 20));
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
@@ -150,6 +163,15 @@ public class vistaoperadores extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, 40, 40));
 
+        jSeparator4.setForeground(new java.awt.Color(0, 204, 204));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, 110, 20));
+
+        jSeparator5.setForeground(new java.awt.Color(0, 204, 204));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 110, 20));
+
+        jSeparator6.setForeground(new java.awt.Color(0, 204, 204));
+        jPanel1.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 110, 20));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 460));
 
         pack();
@@ -217,6 +239,9 @@ public class vistaoperadores extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     public javax.swing.JTextField txtNumero1;
     public javax.swing.JTextField txtNumero2;
     public javax.swing.JTextField txtResultado;
