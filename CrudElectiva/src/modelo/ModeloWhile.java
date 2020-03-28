@@ -21,9 +21,9 @@ public int whiledo(){
            int i = 0;
                          do {        
                
-                  JOptionPane.showMessageDialog(null,"numero "+i);
+                JOptionPane.showMessageDialog(null,"numero "+i++);
                     i++;
-    } while (i<=0);
+    } while (i>15);
            return 0;
        }else{
            JOptionPane.showMessageDialog(null, "debe introducir un numero menor que 15");
