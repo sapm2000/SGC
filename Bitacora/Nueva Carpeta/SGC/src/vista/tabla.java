@@ -206,6 +206,7 @@ static public class Headercolor extends DefaultTableCellHeaderRenderer {
         super.getTableCellRendererComponent(mytable, value, selected, focused, row, column);
         setBackground(new java.awt.Color(0,94,159));
         setForeground(Color.white);
+        
         return this;
     }
 }
