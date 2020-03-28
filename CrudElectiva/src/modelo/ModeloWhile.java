@@ -22,8 +22,8 @@ public int whiledo(){
            int i = this.numeroA;
                          do {        
                
-                JOptionPane.showMessageDialog(null,"numero "+this.numeroA++);
-                    i++;
+                JOptionPane.showMessageDialog(null,"numero "+i++);
+                   
     } while (i<=15);
                          
            
