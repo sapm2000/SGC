@@ -22,10 +22,10 @@ public int whiledo(){
            int i = this.numeroA;
                          do {        
                
-                JOptionPane.showMessageDialog(null,"numero "+i--);
-                    
-    } while (i==0);
-                         System.exit(0);
+                JOptionPane.showMessageDialog(null,"numero "+i++);
+                   
+    } while (i<=15);
+                         
            
                     return 0;
        }else{
