@@ -17,7 +17,8 @@ public class ModeloWhile {
     }
     
 public int whiledo(){
-    
+    //aqui decimos que de los datos enviados desde lacaja de texto. solo deben ser menor o igual a 15. caso contrario
+    // mostrara un mensaje. en el do while. hacemos que la ventana de dialogo se muestre hasta llegar a 15
        if (this.numeroA <= 15) {
            int i = this.numeroA;
                          do {        
