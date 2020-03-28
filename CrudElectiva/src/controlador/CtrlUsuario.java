@@ -18,7 +18,7 @@ public class CtrlUsuario implements ActionListener, ItemListener{
     //Constructor de inicializacion de variables. Desde la linea 16 a la 26
     
     public CtrlUsuario(Usuario mod, CrudUsuario modC, GestionarUsuario vistaGU){
-    
+        //ponesmos atentos las vistas y los botones
         this.mod = mod;
         this.modC = modC;
         this.vistaGU = vistaGU;
@@ -31,7 +31,7 @@ public class CtrlUsuario implements ActionListener, ItemListener{
     //Fin del constructor
 
 
-    
+    //En este condicional decimos que segun lo que btn escuhe edjecute la accion y contacte al modelo
     @Override
     public void actionPerformed(ActionEvent e){
     
@@ -117,6 +117,7 @@ public class CtrlUsuario implements ActionListener, ItemListener{
         }
         
     }
+    //para limpiar
         public void limpiar(){
         
             vistaGU.txtID.setText(null);
