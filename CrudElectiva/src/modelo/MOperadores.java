@@ -42,7 +42,7 @@ public class MOperadores {
         return this.resultado; 
     
     }
-  
+ // aqui cumplicos con las sentencias matematiicas. indicamos que dela accion que mande el boton. escuja un procesomatematico y lo ejecute
     
     public int sumar(){
     
@@ -55,7 +55,7 @@ public class MOperadores {
         return this.resultado;
     }
         public int dividir(){
-    
+    // en la division agregamos un if que indica que no se puede dividir entre cero
      if(numeroDos!=0){
      this.resultado = this.numeroUno / this.numeroDos;  
      return this.resultado; 
