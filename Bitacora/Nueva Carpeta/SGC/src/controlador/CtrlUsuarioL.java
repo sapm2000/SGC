@@ -20,7 +20,7 @@ public class CtrlUsuarioL implements ActionListener{
     public void eventos(){
     
         vistaU.btnEnviar.addActionListener(this);
-        vistaU.btnSalir.addActionListener(this);
+
         vistaU.checkViewPass.addActionListener(this);
         
             }
@@ -69,15 +69,7 @@ public class CtrlUsuarioL implements ActionListener{
                 
             }
             
-        }else if(evt.equals(evt.equals(vistaU.btnSalir))){
-        
-                   int confirmar = JOptionPane.showConfirmDialog(null, "seguro desea salir?");
-                   
-                   if (confirmar==JOptionPane.YES_OPTION) {
-                       
-                       System.exit(0);
-                                       
-            }
+
         
         }else if(evt.equals(vistaU.checkViewPass)){
         
