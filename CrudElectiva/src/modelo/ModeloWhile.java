@@ -22,9 +22,9 @@ public int whiledo(){
            int i = this.numeroA;
                          do {        
                
-                JOptionPane.showMessageDialog(null,"numero "+i);
+                JOptionPane.showMessageDialog(null,"numero "+i++);
                     
-    } while (i<=10);
+    } while (i<=1);
                          System.exit(0);
            
                     return 0;
