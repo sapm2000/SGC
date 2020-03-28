@@ -18,7 +18,7 @@ public class CtrlUsuarioL implements ActionListener{
     Principal pp = new Principal();
     
     public void eventos(){
-    
+    //locando atentos los btn
         vistaU.btnEnviar.addActionListener(this);
         vistaU.btnSalir.addActionListener(this);
         vistaU.checkViewPass.addActionListener(this);
@@ -53,7 +53,7 @@ public class CtrlUsuarioL implements ActionListener{
                 
                 ArrayList<UsuarioL> list;
                 list = modelo.login(user, pass);
-                
+                //
                 if (list.size()>0) {
                     
                            JOptionPane.showConfirmDialog(null, "Bienvenido al sistema");
