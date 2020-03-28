@@ -147,7 +147,8 @@ public class Principal extends javax.swing.JFrame {
         });
         mnMenu.add(jMenuItem3);
 
-        jMenuItem4.setText("jMenuItem4");
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cubos (1).png"))); // NOI18N
+        jMenuItem4.setText("Ingresa un Número");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
