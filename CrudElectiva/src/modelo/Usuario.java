@@ -1,8 +1,7 @@
 package modelo;
 
-
 public class Usuario {
- 
+
     private String id;
     private String usuario;
     private String password;
@@ -14,8 +13,6 @@ public class Usuario {
     public void setId(String id) {
         this.id = id;
     }
-
-
 
     public String getUsuario() {
         return usuario;

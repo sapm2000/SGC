@@ -1,4 +1,3 @@
-
 package modelo;
 
 /**
@@ -6,7 +5,7 @@ package modelo;
  * @author Anthony
  */
 public class Persona {
-    
+
     //private int id;
     private String clave;
     private String nombre;
@@ -16,33 +15,23 @@ public class Persona {
     private String fecha_nacimiento;
     private String genero;
     private String nacionalidad;
- 
 
-    
-    
-    
-    
-    
-    
-    public String getNacionalidad(){
+    public String getNacionalidad() {
         return nacionalidad;
-    
-        
+
     }
-    
-    public void setNacionalidad(String nacionalidad){
+
+    public void setNacionalidad(String nacionalidad) {
         this.nacionalidad = nacionalidad;
-    
+
     }
 
-   // public int getId() {
-      //  return id;
-   // }
-
+    // public int getId() {
+    //  return id;
+    // }
     //public void setId(int id) {
-   //     this.id = id;
-   // }
-
+    //     this.id = id;
+    // }
     public String getClave() {
         return clave;
     }
@@ -98,8 +87,5 @@ public class Persona {
     public void setGenero(String genero) {
         this.genero = genero;
     }
-    
-    
 
-    
 }
