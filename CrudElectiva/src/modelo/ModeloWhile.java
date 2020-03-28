@@ -21,7 +21,7 @@ public int whiledo(){
            int i = 0;
                          do {        
                
-                  JOptionPane.showMessageDialog(null,%i.\n);
+                  JOptionPane.showMessageDialog(null,"numero "+i);
                     i++;
     } while (i<=0);
            return 0;
