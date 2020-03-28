@@ -36,7 +36,7 @@ public class controladorm implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
          
-        
+        //con los controladores podemos fijarnos en el polimorfismo. dependiendo de la accion que escuche cada boton buscara en el modelo y ejecutara dicha accion
           if (e.getSource() == vistaOp.btnSumar) {
         mod.setNumeroUno(Integer.parseInt(vistaOp.txtNumero1.getText()));
         mod.setNumeroDos(Integer.parseInt(vistaOp.txtNumero2.getText()));

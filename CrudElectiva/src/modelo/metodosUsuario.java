@@ -41,7 +41,7 @@ public class metodosUsuario {
                             ps.setString(2, pass);
                             
                             rs = ps.executeQuery();
-                            
+                            //aqui espesificamos que si los datos obtenidos por  el sql corresponde entre al sistema si no ejecutar hasta que los datos coincidadn con el sql
                             while(rs.next()){
                             
                                     usuarioL = new UsuarioL();

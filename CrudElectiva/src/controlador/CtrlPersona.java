@@ -37,7 +37,7 @@ public class CtrlPersona implements ActionListener{
         this.vistaP.btnLimpiar.addActionListener(this);
         this.vistaP.btnListar.addActionListener(this);
       
-
+// los modelos que utilizamos la mayoria cumplen con  la misma funcion escuchar los eventos y distribuirlos a sus lugares 
         
                 
     }
