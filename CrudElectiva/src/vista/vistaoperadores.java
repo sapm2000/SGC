@@ -42,6 +42,8 @@ public class vistaoperadores extends javax.swing.JFrame {
         btnRestar = new javax.swing.JButton();
         btnSumar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -73,8 +75,10 @@ public class vistaoperadores extends javax.swing.JFrame {
         btnDividir.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnDividir.setForeground(new java.awt.Color(255, 255, 255));
         btnDividir.setText("Dividir");
-        btnDividir.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 153), 3, true));
+        btnDividir.setBorder(null);
+        btnDividir.setBorderPainted(false);
         btnDividir.setContentAreaFilled(false);
+        btnDividir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(btnDividir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 90, 30));
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -89,28 +93,62 @@ public class vistaoperadores extends javax.swing.JFrame {
         btnMultiplicar.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnMultiplicar.setForeground(new java.awt.Color(255, 255, 255));
         btnMultiplicar.setText("Multiplicar");
-        btnMultiplicar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 153), 3, true));
+        btnMultiplicar.setBorder(null);
+        btnMultiplicar.setBorderPainted(false);
         btnMultiplicar.setContentAreaFilled(false);
+        btnMultiplicar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(btnMultiplicar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 110, 30));
 
         btnRestar.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnRestar.setForeground(new java.awt.Color(255, 255, 255));
         btnRestar.setText("Restar");
-        btnRestar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 153), 3, true));
+        btnRestar.setBorder(null);
+        btnRestar.setBorderPainted(false);
         btnRestar.setContentAreaFilled(false);
+        btnRestar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(btnRestar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 90, 30));
 
         btnSumar.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnSumar.setForeground(new java.awt.Color(255, 255, 255));
         btnSumar.setText("Sumar");
-        btnSumar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 153), 3, true));
+        btnSumar.setBorder(null);
+        btnSumar.setBorderPainted(false);
         btnSumar.setContentAreaFilled(false);
+        btnSumar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(btnSumar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 90, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 460, 50));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/equal1.png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, -1, -1));
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minus1.png"))); // NOI18N
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minus (1)1.png"))); // NOI18N
+        jButton2.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minus (1)1.png"))); // NOI18N
+        jButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minus (1)1.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 40, 20));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/multiply-mathematical-sign1.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/multiply-mathematical-sign (1)1.png"))); // NOI18N
+        jButton1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/multiply-mathematical-sign (1)1.png"))); // NOI18N
+        jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/multiply-mathematical-sign (1)1.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, 40, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 460));
 
@@ -120,6 +158,14 @@ public class vistaoperadores extends javax.swing.JFrame {
     private void txtNumero2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumero2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNumero2ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.setState(vista.InicioUsuario.ICONIFIED);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        System.exit(0);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,6 +207,8 @@ public class vistaoperadores extends javax.swing.JFrame {
     public javax.swing.JButton btnMultiplicar;
     public javax.swing.JButton btnRestar;
     public javax.swing.JButton btnSumar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
