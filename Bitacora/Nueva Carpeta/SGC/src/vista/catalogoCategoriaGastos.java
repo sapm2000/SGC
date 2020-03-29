@@ -80,6 +80,7 @@ public class catalogoCategoriaGastos extends javax.swing.JFrame {
                 "Nombre", "Descripción", "Acción"
             }
         ));
+        jTable2.setRowHeight(20);
         jScrollPane2.setViewportView(jTable2);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, -1, 257));
