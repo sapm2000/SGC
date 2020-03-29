@@ -36,13 +36,13 @@ public class catalogoUnidades extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "nombre de la unidad", "propietario/inquilimo", "ci/rif", "telefono", "direccion", "correo", "area (mts 2)"
+                "nombre de la unidad", "propietario/inquilimo", "ci/rif", "telefono", "direccion", "correo", "area (mts 2)", "accion"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
