@@ -7,6 +7,7 @@ package vista;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
@@ -206,7 +207,7 @@ static public class Headercolor extends DefaultTableCellHeaderRenderer {
         super.getTableCellRendererComponent(mytable, value, selected, focused, row, column);
         setBackground(new java.awt.Color(0,94,159));
         setForeground(Color.white);
-        
+        setFont(new Font("Tahoma", Font.BOLD, 14));
         return this;
     }
 }
