@@ -138,9 +138,11 @@ public class InicioUsuario extends javax.swing.JFrame {
         });
         jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 220, 40));
 
+        jSeparator1.setBackground(new java.awt.Color(51, 204, 255));
         jSeparator1.setForeground(new java.awt.Color(51, 204, 255));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, 220, 10));
 
+        jSeparator2.setBackground(new java.awt.Color(51, 204, 255));
         jSeparator2.setForeground(new java.awt.Color(51, 204, 255));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 220, 10));
 
@@ -161,6 +163,7 @@ public class InicioUsuario extends javax.swing.JFrame {
         checkViewPass.setBackground(new java.awt.Color(255, 255, 255));
         checkViewPass.setText("Ver clave");
         checkViewPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)));
+        checkViewPass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         checkViewPass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (2).png"))); // NOI18N
         checkViewPass.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         checkViewPass.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
