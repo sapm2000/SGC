@@ -18,6 +18,7 @@ public class conceptoGasto extends javax.swing.JFrame {
      */
     public conceptoGasto() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -66,6 +67,7 @@ public class conceptoGasto extends javax.swing.JFrame {
         jButton5.setText("jButton5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
