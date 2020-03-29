@@ -5,7 +5,6 @@
  */
 package vista;
 
-import javax.swing.JOptionPane;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -61,11 +60,14 @@ public class catalogoCategoriaGastos extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 94, 159), 5, true));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -75,7 +77,7 @@ public class catalogoCategoriaGastos extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "nombre", "descripcion", "accion"
+                "Nombre", "Descripción", "Acción"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
