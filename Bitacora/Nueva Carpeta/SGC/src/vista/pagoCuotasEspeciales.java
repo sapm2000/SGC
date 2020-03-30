@@ -12,12 +12,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 
-public class cuentasPorCobrar extends javax.swing.JFrame {
+public class pagoCuotasEspeciales extends javax.swing.JFrame {
 
     /**
-     * Creates new form cuentasPorCobrar
+     * Creates new form cuentasPorPagar
      */
-    public cuentasPorCobrar() {
+    public pagoCuotasEspeciales() {
         initComponents();
         jTable1.getTableHeader().setDefaultRenderer(new tabla.Headercolor());
         setLocationRelativeTo(null);
@@ -32,40 +32,45 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel9 = new javax.swing.JLabel();
+        jComboBox5 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel8 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
+        jTextField5 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        btnSalir = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
+        jLabel11 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
+
+        jLabel9.setText("jLabel9");
+
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -85,7 +90,7 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Seleccione", "Fecha", "Descripción", "Monto", "Saldo", "Estado", "Tipo"
+                "Seleccione", "Fecha", "Concepto", "Monto", "Saldo Restante", "Estado", "Tipo"
             }
         ) {
             Class[] types = new Class [] {
@@ -96,133 +101,107 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        jTable1.setRowHeight(20);
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 460, 740, 159));
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel8.setText("<html>\nSeleccione en la tabla las <br> facturas a procesar pago.\n</html>");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 290, 50));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 456, 730, 170));
 
         jPanel2.setBackground(new java.awt.Color(0, 94, 159));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField3.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jTextField3.setBorder(null);
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 210, 30));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("mes a pagar");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 110, 30));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("<html>\nForma <br> de Pago:\n</html>");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, 40));
+
+        jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 190, -1));
 
         jTextField1.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setBorder(null);
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 210, 30));
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 200, 30));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("<html>\nNº de <br> Referencia:\n</html>");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
-
-        jTextField4.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jTextField4.setBorder(null);
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 210, 30));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("<html>\nNombre de <br> la Unidad:\n</html>");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 100, -1));
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("<html> Fecha <br> del Pago: </html>");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 90, -1));
-
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 210, -1));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Descripción:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 120, 20));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 100, 30));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("<html>\nCuenta <br> depositada:\n</html>");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 110, -1));
-
-        jComboBox3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 220, -1));
-
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 220, -1));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("<html>\nForma <br> de Pago:\n</html>");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, -1, -1));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Monto:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, 70, 30));
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("<html>\nFondo a <br> Depositar:\n</html>");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 100, -1));
-
-        jComboBox4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, 220, -1));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("<html>\nFecha <br> de Pago:\n</html>");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
 
         jTextField2.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
         jTextField2.setBorder(null);
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, 220, 30));
+        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 200, 30));
 
-        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, 220, 20));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("<html>\nNúmero de <br> Referencia:\n</html>");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, -1, -1));
+
+        jTextField3.setBackground(new java.awt.Color(0, 94, 159));
+        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField3.setBorder(null);
+        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 200, 30));
+
+        jComboBox3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel2.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 190, -1));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("<html>\nCuenta <br> Transferida:\n</html>");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Monto:");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, 60, 30));
+
+        jTextField4.setBackground(new java.awt.Color(0, 94, 159));
+        jTextField4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jTextField4.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField4.setBorder(null);
+        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, 200, 30));
+
+        jComboBox4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel2.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, 190, -1));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("<html>\nFondo <br> Retirado:\n</html>");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, -1, -1));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 210, 20));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 200, 20));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 210, 20));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 200, 20));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 210, 20));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 200, 20));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 760, 280));
+        jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 200, 20));
+        jPanel2.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 190, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 750, 280));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 800, 300));
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel11.setText("Cuentas por Cobrar");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, -1, -1));
-
-        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
-        btnSalir.setBorder(null);
-        btnSalir.setBorderPainted(false);
-        btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
-        btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
-        btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, -1, 30));
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
         btnMinimizar.setBorder(null);
@@ -239,6 +218,21 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
         });
         jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 10, 40, 30));
 
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
+        btnSalir.setBorder(null);
+        btnSalir.setBorderPainted(false);
+        btnSalir.setContentAreaFilled(false);
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
+        btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
+        btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, -1, 30));
+
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, 510, 300));
 
@@ -249,6 +243,10 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
         jSeparator5.setForeground(new java.awt.Color(0, 94, 159));
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 20, 50));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel11.setText("<html> Seleccione en la tabla las <br> cuotas a procesar pago. </html>");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, 260, -1));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/1imageonline-co-merged-image.png"))); // NOI18N
@@ -269,9 +267,9 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
+        this.setState(vista.InicioUsuario.ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         try {
@@ -288,10 +286,6 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_btnSalirActionPerformed
-
-    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
-        this.setState(vista.InicioUsuario.ICONIFIED);
-    }//GEN-LAST:event_btnMinimizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -310,20 +304,23 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(cuentasPorCobrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(pagoCuotasEspeciales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(cuentasPorCobrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(pagoCuotasEspeciales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(cuentasPorCobrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(pagoCuotasEspeciales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(cuentasPorCobrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(pagoCuotasEspeciales.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new cuentasPorCobrar().setVisible(true);
+                new pagoCuotasEspeciales().setVisible(true);
             }
         });
     }
@@ -332,10 +329,10 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnSalir;
     private javax.swing.JButton jButton1;
-    public javax.swing.JComboBox<String> jComboBox1;
     public javax.swing.JComboBox<String> jComboBox2;
     public javax.swing.JComboBox<String> jComboBox3;
     public javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -349,22 +346,22 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    public javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JTable jTable1;
     public javax.swing.JTextField jTextField1;
     public javax.swing.JTextField jTextField2;
     public javax.swing.JTextField jTextField3;
     public javax.swing.JTextField jTextField4;
+    public javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
-
     static public class Headercolor extends DefaultTableCellHeaderRenderer {
     public Headercolor () {
         setOpaque(true);
