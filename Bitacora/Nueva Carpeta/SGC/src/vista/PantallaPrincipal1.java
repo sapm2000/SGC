@@ -1,22 +1,19 @@
 
 package vista;
 
-import controlador.CtrlUsuario;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
-import modelo.CrudUsuario;
-import modelo.Usuario;
 /**
  *
  * @author Anthony
  */
-public class PantallaPrincipal extends javax.swing.JFrame {
+public class PantallaPrincipal1 extends javax.swing.JFrame {
 
     /**
      * Creates new form PantallaPrincipal
      */
-    public PantallaPrincipal() {
+    public PantallaPrincipal1() {
         initComponents();
         
   
@@ -43,20 +40,27 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jMenu1 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jTextField1 = new javax.swing.JTextField();
         btnSalir = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
@@ -64,6 +68,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenu1.setText("jMenu1");
 
         jMenuItem8.setText("jMenuItem8");
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
@@ -112,26 +118,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenu2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        jMenuItem2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem2.setText("condominio");
-        jMenuItem2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem2);
-
-        jMenuItem9.setText("tipo de usuario");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem9);
-
         jMenuItem1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem1.setText("Gestionar Usuario");
+        jMenuItem1.setText("asambleas");
         jMenuItem1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,7 +128,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem1);
 
-        jMenuItem4.setText("categoria gastos");
+        jMenuItem4.setText("cuotas especiales");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -148,15 +136,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem4);
 
-        jMenuItem5.setText("concepto gastos");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem2.setText("gastos comunes");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem5);
+        jMenu2.add(jMenuItem2);
 
-        jMenuItem3.setText("banco");
+        jMenuItem3.setText("intereses");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -164,7 +152,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem3);
 
-        jMenuItem6.setText("cuentas bancarias");
+        jMenuItem5.setText("propietarios");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem5);
+
+        jMenuItem6.setText("sanciones");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
@@ -172,7 +168,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem6);
 
-        jMenuItem7.setText("proveedores");
+        jMenuItem7.setText("unidades");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
@@ -180,12 +176,69 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem7);
 
+        jMenuItem9.setText("fondo");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem9);
+
+        jMenuItem10.setText("comunicados");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem10);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/settings.png"))); // NOI18N
         jMenu3.setText("Procesos");
         jMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenu3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        jMenuItem11.setText("cuentas por cobrar");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem11);
+
+        jMenuItem12.setText("cuentas por pagar");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem12);
+
+        jMenuItem13.setText("visitas autorizadas");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem13);
+
+        jMenuItem14.setText("pago cuotas especiales");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem14);
+
+        jMenuItem15.setText("generar recibo");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem15);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/list.png"))); // NOI18N
@@ -231,50 +284,75 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         this.setState(vista.InicioUsuario.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+      catalogoCuotasEspeciales catace = new catalogoCuotasEspeciales();
+      catace.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-       GestionarUsuario vistaGu = new GestionarUsuario();
-        Usuario mod = new Usuario();
-        CrudUsuario modC = new CrudUsuario();
-        
-        CtrlUsuario ctrl = new CtrlUsuario(mod, modC, vistaGu);
-        
-        vistaGu.setVisible(true);
+     catalogoAsambleas cataa = new catalogoAsambleas();
+     cataa.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        catalogoCondominio cataCon = new catalogoCondominio();
-        cataCon.setVisible(true);
+        catalogoGastoComun catagac = new catalogoGastoComun();
+        catagac.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        catalogoBanco cataBan = new catalogoBanco();
-        cataBan.setVisible(true);
+        catalogoInteres catain = new catalogoInteres();
+        catain.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-       catalogoCategoriaGastos catacg = new catalogoCategoriaGastos();
-       catacg.setVisible(true);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-      catalogoConceptoGasto catacog = new catalogoConceptoGasto();
-      catacog.setVisible(true);
+        catalogoPropietarios cataprop = new catalogoPropietarios();
+        cataprop.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-       catalogoCuenta catacu = new catalogoCuenta();
-       catacu.setVisible(true);
+        catalogoSancion catasan = new catalogoSancion();
+        catasan.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-       catalogoProveedores cataprov = new catalogoProveedores();
-       cataprov.setVisible(true);
+        catalogoUnidades cataun = new catalogoUnidades();
+        cataun.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-       catalogoTipoUsuario catati = new catalogoTipoUsuario();
-       catati.setVisible(true);
+        CatalogoFondo catafon = new CatalogoFondo();
+        catafon.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+       catalogocomunicados catacomu = new catalogocomunicados();
+       catacomu.setVisible(true);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        cuentasPorCobrar cuenco = new cuentasPorCobrar();
+        cuenco.setVisible(true);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        cuentasPorPagar cuenpa = new cuentasPorPagar();
+        cuenpa.setVisible(true);
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        registroVisitas regiv = new registroVisitas();
+        regiv.setVisible(true);
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        pagoCuotasEspeciales pagoce = new pagoCuotasEspeciales();
+        pagoce.setVisible(true);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+       recibo reci = new recibo();
+       reci.setVisible(true);
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
 
    
     /**
@@ -307,7 +385,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PantallaPrincipal().setVisible(true);
+                new PantallaPrincipal1().setVisible(true);
             }
         });
     }
@@ -324,6 +402,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -332,5 +416,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
