@@ -56,13 +56,13 @@ public class Cuenta extends javax.swing.JFrame {
         btnLimpiar = new javax.swing.JButton();
         jSeparator8 = new javax.swing.JSeparator();
         jSeparator9 = new javax.swing.JSeparator();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
         jLabel9 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox5 = new javax.swing.JCheckBox();
         jLabel10 = new javax.swing.JLabel();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBox3 = new javax.swing.JCheckBox();
+        jCheckBox4 = new javax.swing.JCheckBox();
 
         jLabel6.setText("jLabel6");
 
@@ -88,43 +88,43 @@ public class Cuenta extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("C.I. / RIF.:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 100, 30));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 100, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Banco:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 70, 30));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 70, 30));
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 200, 30));
+        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 290, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Tipo:");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 50, 30));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 50, 30));
 
         jTextField1.setBackground(new java.awt.Color(0, 94, 159));
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setBorder(null);
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 200, 30));
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 290, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("N° de Cuenta:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 130, 30));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 130, 30));
 
         jTextField2.setBackground(new java.awt.Color(0, 94, 159));
         jTextField2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(255, 255, 255));
         jTextField2.setBorder(null);
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, 200, 30));
+        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 290, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Beneficiario:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 120, 30));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 120, 30));
 
         jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -138,24 +138,24 @@ public class Cuenta extends javax.swing.JFrame {
                 jComboBox2PropertyChange(evt);
             }
         });
-        jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 200, 30));
+        jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 290, 30));
 
         jTextField3.setBackground(new java.awt.Color(0, 94, 159));
         jTextField3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(255, 255, 255));
         jTextField3.setBorder(null);
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 200, 30));
+        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 290, 30));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 200, 10));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 290, 10));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 200, 10));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 290, 10));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 200, 10));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 290, 10));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 480, 280));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 480, 280));
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
         btnSalir.setBorder(null);
@@ -170,7 +170,7 @@ public class Cuenta extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, 30));
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 20, -1, 30));
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
         btnMinimizar.setBorder(null);
@@ -185,14 +185,14 @@ public class Cuenta extends javax.swing.JFrame {
                 btnMinimizarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 40, 30));
+        jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 20, 40, 30));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("Registro de Cuentas");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
 
         jPanel3.setBackground(new java.awt.Color(0, 94, 159));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -241,30 +241,77 @@ public class Cuenta extends javax.swing.JFrame {
         jSeparator9.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel3.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, 10, 70));
 
-        jCheckBox2.setText("jCheckBox2");
-        jPanel3.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, -1, -1));
-
-        jCheckBox3.setText("jCheckBox3");
-        jPanel3.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, -1, -1));
-
-        jCheckBox4.setText("jCheckBox4");
-        jPanel3.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, -1, -1));
-
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 360, 90));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 500, 360, 90));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondobtn1chiqui.png"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, -1, 120));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, -1, 120));
 
+        jCheckBox1.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jCheckBox1.setForeground(new java.awt.Color(0, 94, 159));
         jCheckBox1.setText("jCheckBox1");
-        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
+        jCheckBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (2).png"))); // NOI18N
+        jCheckBox1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (2).png"))); // NOI18N
+        jCheckBox1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jCheckBox1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (2).png"))); // NOI18N
+        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, -1, -1));
 
+        jCheckBox5.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckBox5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jCheckBox5.setForeground(new java.awt.Color(0, 94, 159));
         jCheckBox5.setText("jCheckBox5");
-        jPanel1.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 390, -1, -1));
+        jCheckBox5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (2).png"))); // NOI18N
+        jCheckBox5.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (2).png"))); // NOI18N
+        jCheckBox5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox5.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jCheckBox5.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (2).png"))); // NOI18N
+        jPanel1.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 420, -1, -1));
 
-        jLabel10.setText("seleccione los condominios a aplicar esta cuenta");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, -1));
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 94, 159));
+        jLabel10.setText("Seleccione los condominios a aplicar esta cuenta");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 530));
+        jCheckBox2.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckBox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jCheckBox2.setForeground(new java.awt.Color(0, 94, 159));
+        jCheckBox2.setText("jCheckBox2");
+        jCheckBox2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (2).png"))); // NOI18N
+        jCheckBox2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (2).png"))); // NOI18N
+        jCheckBox2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox2.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jCheckBox2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (2).png"))); // NOI18N
+        jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 420, -1, -1));
+
+        jCheckBox3.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckBox3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jCheckBox3.setForeground(new java.awt.Color(0, 94, 159));
+        jCheckBox3.setText("jCheckBox3");
+        jCheckBox3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (2).png"))); // NOI18N
+        jCheckBox3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (2).png"))); // NOI18N
+        jCheckBox3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox3.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jCheckBox3.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (2).png"))); // NOI18N
+        jPanel1.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 420, -1, -1));
+
+        jCheckBox4.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckBox4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jCheckBox4.setForeground(new java.awt.Color(0, 94, 159));
+        jCheckBox4.setText("jCheckBox4");
+        jCheckBox4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (2).png"))); // NOI18N
+        jCheckBox4.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (2).png"))); // NOI18N
+        jCheckBox4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox4.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jCheckBox4.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (2).png"))); // NOI18N
+        jPanel1.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 420, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 590));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
