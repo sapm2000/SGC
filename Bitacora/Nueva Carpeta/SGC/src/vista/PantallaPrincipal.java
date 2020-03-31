@@ -113,7 +113,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenu2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jMenuItem2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem2.setText("condominio");
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/condominio.png"))); // NOI18N
+        jMenuItem2.setText("Condominio");
         jMenuItem2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,7 +123,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem2);
 
-        jMenuItem9.setText("tipo de usuario");
+        jMenuItem9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuario.png"))); // NOI18N
+        jMenuItem9.setText("Tipos de Usuarios");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem9ActionPerformed(evt);
@@ -131,6 +134,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenu2.add(jMenuItem9);
 
         jMenuItem1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/administracion.png"))); // NOI18N
         jMenuItem1.setText("Gestionar Usuario");
         jMenuItem1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +144,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem1);
 
-        jMenuItem4.setText("categoria gastos");
+        jMenuItem4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gastos.png"))); // NOI18N
+        jMenuItem4.setText("Categoría Gastos");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -148,7 +154,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem4);
 
-        jMenuItem5.setText("concepto gastos");
+        jMenuItem5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/analisis.png"))); // NOI18N
+        jMenuItem5.setText("Concepto Gastos");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
@@ -156,7 +164,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem5);
 
-        jMenuItem3.setText("banco");
+        jMenuItem3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banco.png"))); // NOI18N
+        jMenuItem3.setText("Bancos");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -164,7 +174,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem3);
 
-        jMenuItem6.setText("cuentas bancarias");
+        jMenuItem6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cuota.png"))); // NOI18N
+        jMenuItem6.setText("Cuentas Bancarias");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
@@ -172,7 +184,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem6);
 
-        jMenuItem7.setText("proveedores");
+        jMenuItem7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/proveedor.png"))); // NOI18N
+        jMenuItem7.setText("Proveedores");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
