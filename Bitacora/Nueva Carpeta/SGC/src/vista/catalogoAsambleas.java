@@ -67,13 +67,13 @@ public class catalogoAsambleas extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nombre", "Fecha", "Descripción", "Cantidad de Asistentes", "Acción"
+                "Nombre", "Fecha", "Descripción", "Cantidad de Asistentes"
             }
         ));
         jTable1.setRowHeight(20);

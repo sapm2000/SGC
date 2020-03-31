@@ -65,13 +65,13 @@ public class catalogoConceptoGasto extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Nombre", "Descripción", "Categoría", "Acción"
+                "Nombre", "Descripción", "Categoría"
             }
         ));
         jTable1.setRowHeight(20);

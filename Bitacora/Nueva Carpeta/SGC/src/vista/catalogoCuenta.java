@@ -64,13 +64,13 @@ public class catalogoCuenta extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Banco", "Cuenta", "C.I. / RIF.", "Beneficiario", "Tipo", "Condominio", "Acción"
+                "Banco", "Cuenta", "C.I. / RIF.", "Beneficiario", "Tipo", "Condominio"
             }
         ));
         jTable1.setRowHeight(20);

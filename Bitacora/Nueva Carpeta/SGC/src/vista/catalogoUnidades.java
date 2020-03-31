@@ -64,19 +64,19 @@ public class catalogoUnidades extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "<html>numero de <br> la Unidad</html>", "<html>Propietario ó <br> Inquilino</html>", "CI / Rif.", "Teléfono", "Dirección", "<html>Correo <br> Electrónico</html>", "Área (mts 2)", "Acción"
+                "<html>Número de <br> la Unidad</html>", "<html>Propietario ó <br> Inquilino</html>", "CI / Rif.", "Teléfono", "Dirección", "<html>Correo <br> Electrónico</html>", "Área (mts 2)"
             }
         ));
         jTable1.setRowHeight(20);
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 760, 260));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 780, 260));
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
         btnMinimizar.setBorder(null);

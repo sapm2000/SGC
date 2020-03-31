@@ -67,13 +67,13 @@ public class catalogoTipoUsuario extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "Nombre", "accion"
+                "Nombre"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
