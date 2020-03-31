@@ -54,13 +54,13 @@ public class catalogoCuotasEspeciales extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Proveedor", "Concepto", "Meses Restantes", "Monto Total", "Comienzo de Cobro", "Observaciones", "Estatus"
+                "Proveedor", "Concepto", "Meses Restantes", "Monto Total", "Comienzo de Cobro", "Observaciones", "Estatus", "accion"
             }
         ));
         jTable1.setRowHeight(20);

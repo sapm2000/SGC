@@ -8,6 +8,7 @@ package vista;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
@@ -25,6 +26,8 @@ public class tabla extends javax.swing.JFrame {
         initComponents();
         mytable.getTableHeader().setDefaultRenderer(new Headercolor());
         setLocationRelativeTo(null);
+        JButton btn1 =  new JButton ("modificar");
+        JButton btn2 = new JButton ("eliminar");
     }
 
     /**
@@ -58,11 +61,11 @@ public class tabla extends javax.swing.JFrame {
         jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
         mytable.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        mytable.setForeground(new java.awt.Color(255, 255, 255));
+
         mytable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
-                {null, null, null, null},
+                {"sadasdada", null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
             },
@@ -87,7 +90,7 @@ public class tabla extends javax.swing.JFrame {
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
@@ -102,7 +105,7 @@ public class tabla extends javax.swing.JFrame {
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
@@ -205,6 +208,11 @@ static public class Headercolor extends DefaultTableCellHeaderRenderer {
     }
     public Component getTableCellRendererComponent(JTable mytable, Object value, boolean selected, boolean focused,int row,int column) {
         super.getTableCellRendererComponent(mytable, value, selected, focused, row, column);
+        
+        if (value instanceof JButton) {
+            JButton btn = (JButton)value;
+            return btn;
+        }
         setBackground(new java.awt.Color(0,94,159));
         setForeground(Color.white);
         setFont(new Font("Tahoma", Font.BOLD, 14));

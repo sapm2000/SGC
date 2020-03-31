@@ -59,13 +59,13 @@ public class catalogoGastoComun extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "<html>Número del <br> Documento</html>", "<html>Fecha del <br> Documento</html>", "<html>Tipo<br></html>", "Proveedor", "Concepto", "Periodo", "Monto", "Observaciones", "Estatus"
+                "<html>Número del <br> Documento</html>", "<html>Fecha del <br> Documento</html>", "<html>Tipo<br></html>", "Proveedor", "Concepto", "Periodo", "Monto", "Observaciones", "Estatus", "accion"
             }
         ));
         jTable1.setRowHeight(20);
