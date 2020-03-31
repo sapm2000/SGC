@@ -69,13 +69,13 @@ public class catalogoCondominio extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "RIF.", "Razón Social", "Teléfono", "Correo Electrónico", "accion"
+                "RIF.", "Razón Social", "Teléfono", "Correo Electrónico"
             }
         ));
         jTable1.setRowHeight(20);

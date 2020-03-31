@@ -78,13 +78,13 @@ public class catalogoCategoriaGastos extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Nombre", "Descripción", "Acción"
+                "Nombre", "Descripción"
             }
         ));
         jTable2.setRowHeight(20);

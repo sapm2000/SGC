@@ -67,23 +67,15 @@ public class catalogoInteres extends javax.swing.JFrame {
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Tipo de Interes", "Factor de Interes", "Vigencia Hasta", "Condominios", "Estatus", "Acción"
+                "Tipo de Interes", "Factor de Interes", "Vigencia Hasta", "Condominios", "Estatus"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, true, true, true, true, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jTable1.setRowHeight(20);
         jScrollPane1.setViewportView(jTable1);
 
