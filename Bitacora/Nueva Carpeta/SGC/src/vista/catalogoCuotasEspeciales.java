@@ -31,6 +31,7 @@ public class catalogoCuotasEspeciales extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -41,6 +42,10 @@ public class catalogoCuotasEspeciales extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+
+        jButton3.setText("jButton3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -120,6 +125,12 @@ public class catalogoCuotasEspeciales extends javax.swing.JFrame {
         jLabel1.setText("Listado de las Cuotas Especiales");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
 
+        jButton1.setText("buscar");
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 60, -1, -1));
+
+        jButton2.setText("nuevo registro");
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 490));
 
         pack();
@@ -183,6 +194,9 @@ public class catalogoCuotasEspeciales extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnSalir;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
