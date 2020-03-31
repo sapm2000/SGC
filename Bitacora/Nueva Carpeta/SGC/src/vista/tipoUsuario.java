@@ -5,6 +5,8 @@
  */
 package vista;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author rma
@@ -16,6 +18,7 @@ public class tipoUsuario extends javax.swing.JFrame {
      */
     public tipoUsuario() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -28,165 +31,408 @@ public class tipoUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         jCheckBox19 = new javax.swing.JCheckBox();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
+        jPanel1 = new javax.swing.JPanel();
+        btnSalir = new javax.swing.JButton();
+        btnMinimizar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
+        jCheckBox9 = new javax.swing.JCheckBox();
+        jCheckBox16 = new javax.swing.JCheckBox();
         jCheckBox6 = new javax.swing.JCheckBox();
         jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox9 = new javax.swing.JCheckBox();
-        jCheckBox10 = new javax.swing.JCheckBox();
+        jCheckBox18 = new javax.swing.JCheckBox();
+        jCheckBox5 = new javax.swing.JCheckBox();
+        jCheckBox20 = new javax.swing.JCheckBox();
+        jCheckBox22 = new javax.swing.JCheckBox();
+        jCheckBox21 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
         jCheckBox11 = new javax.swing.JCheckBox();
+        jCheckBox14 = new javax.swing.JCheckBox();
         jCheckBox12 = new javax.swing.JCheckBox();
         jCheckBox13 = new javax.swing.JCheckBox();
-        jCheckBox14 = new javax.swing.JCheckBox();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jSeparator1 = new javax.swing.JSeparator();
+        jCheckBox3 = new javax.swing.JCheckBox();
+        jCheckBox10 = new javax.swing.JCheckBox();
         jCheckBox15 = new javax.swing.JCheckBox();
-        jCheckBox16 = new javax.swing.JCheckBox();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jCheckBox8 = new javax.swing.JCheckBox();
         jCheckBox17 = new javax.swing.JCheckBox();
-        jCheckBox18 = new javax.swing.JCheckBox();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jSeparator4 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         jCheckBox19.setText("jCheckBox19");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("tipo usuario");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 94, 159), 5, true));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jCheckBox1.setText("jCheckBox1");
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
+        btnSalir.setBorder(null);
+        btnSalir.setBorderPainted(false);
+        btnSalir.setContentAreaFilled(false);
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
+        btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
+        btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, -1, 30));
 
-        jCheckBox2.setText("jCheckBox2");
+        btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
+        btnMinimizar.setBorder(null);
+        btnMinimizar.setBorderPainted(false);
+        btnMinimizar.setContentAreaFilled(false);
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
+        btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
+        btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
+        btnMinimizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinimizarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 10, 40, 30));
 
-        jCheckBox3.setText("jCheckBox3");
+        jPanel2.setBackground(new java.awt.Color(0, 94, 159));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jCheckBox4.setText("jCheckBox4");
+        jCheckBox4.setBackground(new java.awt.Color(0, 94, 159));
+        jCheckBox4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox4.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox4.setText("Unidades");
+        jCheckBox4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion-en-blanco.png"))); // NOI18N
+        jCheckBox4.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox4.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox4.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jPanel2.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 200, 110, -1));
 
-        jCheckBox5.setText("jCheckBox5");
+        jCheckBox9.setBackground(new java.awt.Color(0, 94, 159));
+        jCheckBox9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox9.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox9.setText("Banco");
+        jCheckBox9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion-en-blanco.png"))); // NOI18N
+        jCheckBox9.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox9.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox9.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox9.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jPanel2.add(jCheckBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 110, -1));
 
-        jCheckBox6.setText("jCheckBox6");
+        jCheckBox16.setBackground(new java.awt.Color(0, 94, 159));
+        jCheckBox16.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox16.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox16.setText("Comunicados");
+        jCheckBox16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion-en-blanco.png"))); // NOI18N
+        jCheckBox16.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox16.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox16.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox16.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jPanel2.add(jCheckBox16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 160, -1));
 
-        jCheckBox7.setText("jCheckBox7");
+        jCheckBox6.setBackground(new java.awt.Color(0, 94, 159));
+        jCheckBox6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox6.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox6.setText("<html>\nDetalles <br> de Cuenta\n</html>");
+        jCheckBox6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion-en-blanco.png"))); // NOI18N
+        jCheckBox6.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox6.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox6.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jPanel2.add(jCheckBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 140, -1));
 
-        jCheckBox8.setText("jCheckBox8");
+        jCheckBox7.setBackground(new java.awt.Color(0, 94, 159));
+        jCheckBox7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox7.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox7.setText("Gastos Comunes");
+        jCheckBox7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion-en-blanco.png"))); // NOI18N
+        jCheckBox7.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox7.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox7.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox7.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jPanel2.add(jCheckBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 190, -1));
 
-        jCheckBox9.setText("jCheckBox9");
+        jCheckBox18.setBackground(new java.awt.Color(0, 94, 159));
+        jCheckBox18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox18.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox18.setText("<html>\nPago de <br> Cuotas Especiales\n</html>");
+        jCheckBox18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion-en-blanco.png"))); // NOI18N
+        jCheckBox18.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox18.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox18.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox18.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jPanel2.add(jCheckBox18, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 200, -1));
 
-        jCheckBox10.setText("jCheckBox10");
+        jCheckBox5.setBackground(new java.awt.Color(0, 94, 159));
+        jCheckBox5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox5.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox5.setText("Propietarios");
+        jCheckBox5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion-en-blanco.png"))); // NOI18N
+        jCheckBox5.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox5.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox5.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jPanel2.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, 180, -1));
 
-        jCheckBox11.setText("jCheckBox11");
+        jCheckBox20.setBackground(new java.awt.Color(0, 94, 159));
+        jCheckBox20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox20.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox20.setText("Registro de Visitas");
+        jCheckBox20.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion-en-blanco.png"))); // NOI18N
+        jCheckBox20.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox20.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox20.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox20.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jPanel2.add(jCheckBox20, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, 200, -1));
 
-        jCheckBox12.setText("jCheckBox12");
+        jCheckBox22.setBackground(new java.awt.Color(0, 94, 159));
+        jCheckBox22.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox22.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox22.setText("Tipo de Usuario");
+        jCheckBox22.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion-en-blanco.png"))); // NOI18N
+        jCheckBox22.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox22.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox22.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox22.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jPanel2.add(jCheckBox22, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, 170, -1));
 
-        jCheckBox13.setText("jCheckBox13");
+        jCheckBox21.setBackground(new java.awt.Color(0, 94, 159));
+        jCheckBox21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox21.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox21.setText("Visitas Autorizadas");
+        jCheckBox21.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion-en-blanco.png"))); // NOI18N
+        jCheckBox21.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox21.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox21.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox21.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jPanel2.add(jCheckBox21, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, 200, -1));
 
-        jCheckBox14.setText("jCheckBox14");
+        jCheckBox2.setBackground(new java.awt.Color(0, 94, 159));
+        jCheckBox2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox2.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox2.setText("Asambleas");
+        jCheckBox2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion-en-blanco.png"))); // NOI18N
+        jCheckBox2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox2.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jPanel2.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 140, -1));
 
-        jCheckBox15.setText("jCheckBox15");
+        jCheckBox11.setBackground(new java.awt.Color(0, 94, 159));
+        jCheckBox11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox11.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox11.setText("Condominio");
+        jCheckBox11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion-en-blanco.png"))); // NOI18N
+        jCheckBox11.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox11.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox11.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox11.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jPanel2.add(jCheckBox11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 140, -1));
 
-        jCheckBox16.setText("jCheckBox16");
+        jCheckBox14.setBackground(new java.awt.Color(0, 94, 159));
+        jCheckBox14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox14.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox14.setText("Cuenta");
+        jCheckBox14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion-en-blanco.png"))); // NOI18N
+        jCheckBox14.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox14.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox14.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox14.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jPanel2.add(jCheckBox14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 140, -1));
 
-        jCheckBox17.setText("jCheckBox17");
+        jCheckBox12.setBackground(new java.awt.Color(0, 94, 159));
+        jCheckBox12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox12.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox12.setText("Interes");
+        jCheckBox12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion-en-blanco.png"))); // NOI18N
+        jCheckBox12.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox12.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox12.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox12.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jPanel2.add(jCheckBox12, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 120, -1));
 
-        jCheckBox18.setText("jCheckBox18");
+        jCheckBox13.setBackground(new java.awt.Color(0, 94, 159));
+        jCheckBox13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox13.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox13.setText("Sanción");
+        jCheckBox13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion-en-blanco.png"))); // NOI18N
+        jCheckBox13.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox13.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox13.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox13.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jPanel2.add(jCheckBox13, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 120, -1));
 
-        jButton1.setText("agregar");
+        jCheckBox1.setBackground(new java.awt.Color(0, 94, 159));
+        jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox1.setText("Fondo");
+        jCheckBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion-en-blanco.png"))); // NOI18N
+        jCheckBox1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jPanel2.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 90, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(162, 162, 162)
-                                .addComponent(jLabel2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCheckBox12, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCheckBox13, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox11, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCheckBox14, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCheckBox10, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jCheckBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(28, 28, 28)
-                                            .addComponent(jCheckBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jCheckBox9, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jCheckBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jCheckBox16, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(22, 22, 22)
-                                        .addComponent(jCheckBox17, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox18, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCheckBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCheckBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jCheckBox15, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(283, 283, 283)
-                        .addComponent(jButton1)))
-                .addContainerGap(50, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jCheckBox4)
-                    .addComponent(jCheckBox5)
-                    .addComponent(jCheckBox6))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox7)
-                    .addComponent(jCheckBox8)
-                    .addComponent(jCheckBox9)
-                    .addComponent(jCheckBox10)
-                    .addComponent(jCheckBox11)
-                    .addComponent(jCheckBox12))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox13)
-                    .addComponent(jCheckBox14)
-                    .addComponent(jCheckBox15)
-                    .addComponent(jCheckBox16)
-                    .addComponent(jCheckBox17)
-                    .addComponent(jCheckBox18))
-                .addGap(54, 54, 54)
-                .addComponent(jButton1)
-                .addContainerGap(151, Short.MAX_VALUE))
-        );
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, 10, 270));
+
+        jCheckBox3.setBackground(new java.awt.Color(0, 94, 159));
+        jCheckBox3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox3.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox3.setText("<html>\nCuentas <br> por Cobrar\n</html>");
+        jCheckBox3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion-en-blanco.png"))); // NOI18N
+        jCheckBox3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox3.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox3.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jPanel2.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 130, -1));
+
+        jCheckBox10.setBackground(new java.awt.Color(0, 94, 159));
+        jCheckBox10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox10.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox10.setText("<html>\nCuentas <br> por Pagar\n</html>");
+        jCheckBox10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion-en-blanco.png"))); // NOI18N
+        jCheckBox10.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox10.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox10.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox10.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jPanel2.add(jCheckBox10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 140, -1));
+
+        jCheckBox15.setBackground(new java.awt.Color(0, 94, 159));
+        jCheckBox15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox15.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox15.setText("<html>\nCuotas <br> Especiales\n</html>");
+        jCheckBox15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion-en-blanco.png"))); // NOI18N
+        jCheckBox15.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox15.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox15.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox15.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jPanel2.add(jCheckBox15, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 140, -1));
+
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 10, 270));
+
+        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 10, 270));
+
+        jCheckBox8.setBackground(new java.awt.Color(0, 94, 159));
+        jCheckBox8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox8.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox8.setText("Proveedores");
+        jCheckBox8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion-en-blanco.png"))); // NOI18N
+        jCheckBox8.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox8.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox8.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox8.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jPanel2.add(jCheckBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 240, 170, -1));
+
+        jCheckBox17.setBackground(new java.awt.Color(0, 94, 159));
+        jCheckBox17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox17.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox17.setText("Recibo");
+        jCheckBox17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion-en-blanco.png"))); // NOI18N
+        jCheckBox17.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox17.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
+        jCheckBox17.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
+        jCheckBox17.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
+        jPanel2.add(jCheckBox17, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, 110, -1));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Tipo de Usuario:");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
+
+        jTextField1.setBackground(new java.awt.Color(0, 94, 159));
+        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField1.setBorder(null);
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 200, 30));
+
+        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 200, 10));
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional.png"))); // NOI18N
+        jButton1.setText("Agregar");
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, -1, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 760, 410));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 800, 300));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 800, 300));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Selección de Pestañas para el Usuario");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        try {
+
+            int botonDialogo = JOptionPane.YES_NO_OPTION;
+            int result = JOptionPane.showConfirmDialog(null, "DESEA CERRAR LA VENTANA?", "SALIR", botonDialogo);
+            if (result == 0) {
+
+                System.exit(0);
+
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
+        this.setState(vista.InicioUsuario.ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,6 +470,8 @@ public class tipoUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnMinimizar;
+    public javax.swing.JButton btnSalir;
     public javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox10;
@@ -237,6 +485,9 @@ public class tipoUsuario extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox18;
     private javax.swing.JCheckBox jCheckBox19;
     private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBox20;
+    private javax.swing.JCheckBox jCheckBox21;
+    private javax.swing.JCheckBox jCheckBox22;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JCheckBox jCheckBox5;
@@ -244,7 +495,16 @@ public class tipoUsuario extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JCheckBox jCheckBox9;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     public javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
