@@ -61,7 +61,6 @@ public class gastoComun extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         jSeparator9 = new javax.swing.JSeparator();
         jSeparator10 = new javax.swing.JSeparator();
@@ -232,22 +231,6 @@ public class gastoComun extends javax.swing.JFrame {
         jPanel3.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 80, 70));
         //btnMinimizar.addActionListener(ctrl);
 
-        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/trashOff.png"))); // NOI18N
-        btnEliminar.setBorder(null);
-        btnEliminar.setBorderPainted(false);
-        btnEliminar.setContentAreaFilled(false);
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/trashOn.png"))); // NOI18N
-        btnEliminar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/trashOn.png"))); // NOI18N
-        btnEliminar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/trashOn.png"))); // NOI18N
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 60, 70));
-        //btnEliminar.addActionListener(ctrl);
-
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/clearOff.png"))); // NOI18N
         btnLimpiar.setBorderPainted(false);
         btnLimpiar.setContentAreaFilled(false);
@@ -320,10 +303,6 @@ public class gastoComun extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
     private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
         this.setState(vista.InicioUsuario.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarActionPerformed
@@ -384,7 +363,6 @@ public class gastoComun extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnMinimizar;
