@@ -326,46 +326,73 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
       catalogoCuotasEspeciales catace = new catalogoCuotasEspeciales();
+        catace.jButton2.setEnabled(false);
+        catace.jButton5.setEnabled(false);
+        catace.jButton4.setEnabled(false);
       catace.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
      catalogoAsambleas cataa = new catalogoAsambleas();
+      cataa.jButton2.setEnabled(false);
+        cataa.jButton5.setEnabled(false);
+        cataa.jButton4.setEnabled(false);
      cataa.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         catalogoGastoComun catagac = new catalogoGastoComun();
+              catagac.jButton2.setEnabled(false);
+        catagac.jButton5.setEnabled(false);
+        catagac.jButton4.setEnabled(false);
         catagac.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         catalogoInteres catain = new catalogoInteres();
+           catain.jButton2.setEnabled(false);
+        catain.jButton5.setEnabled(false);
+        catain.jButton4.setEnabled(false);
         catain.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         catalogoPropietarios cataprop = new catalogoPropietarios();
+         cataprop.jButton2.setEnabled(false);
+        cataprop.jButton5.setEnabled(false);
+        cataprop.jButton4.setEnabled(false);
         cataprop.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         catalogoSancion catasan = new catalogoSancion();
+         catasan.jButton2.setEnabled(false);
+        catasan.jButton5.setEnabled(false);
+        catasan.jButton4.setEnabled(false);
         catasan.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         catalogoUnidades cataun = new catalogoUnidades();
+                 cataun.jButton2.setEnabled(false);
+        cataun.jButton5.setEnabled(false);
+        cataun.jButton4.setEnabled(false);
         cataun.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         CatalogoFondo catafon = new CatalogoFondo();
+                     catafon.jButton2.setEnabled(false);
+        catafon.jButton3.setEnabled(false);
+        catafon.jButton4.setEnabled(false);
         catafon.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
        catalogocomunicados catacomu = new catalogocomunicados();
+       catacomu.jButton2.setEnabled(false);
+        catacomu.jButton3.setEnabled(false);
+        catacomu.jButton4.setEnabled(false);
        catacomu.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
