@@ -7,12 +7,12 @@ package vista;
 
 import javax.swing.JOptionPane;
 
-public class Cuenta extends javax.swing.JFrame {
+public class cuenta extends javax.swing.JFrame {
 
     /**
      * Creates new form Cuenta
      */
-    public Cuenta() {
+    public cuenta() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -96,7 +96,6 @@ public class Cuenta extends javax.swing.JFrame {
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 70, 30));
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 290, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -127,7 +126,7 @@ public class Cuenta extends javax.swing.JFrame {
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 120, 30));
 
         jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ahorro", "Corriente" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -249,8 +248,8 @@ public class Cuenta extends javax.swing.JFrame {
         jCheckBox1.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox1.setForeground(new java.awt.Color(0, 94, 159));
-        jCheckBox1.setText("jCheckBox1");
-        jCheckBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox1.setText("condominio1");
+        jCheckBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jCheckBox1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (2).png"))); // NOI18N
         jCheckBox1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (2).png"))); // NOI18N
         jCheckBox1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
@@ -261,8 +260,8 @@ public class Cuenta extends javax.swing.JFrame {
         jCheckBox5.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBox5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox5.setForeground(new java.awt.Color(0, 94, 159));
-        jCheckBox5.setText("jCheckBox5");
-        jCheckBox5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox5.setText("condominio5");
+        jCheckBox5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jCheckBox5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (2).png"))); // NOI18N
         jCheckBox5.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (2).png"))); // NOI18N
         jCheckBox5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
@@ -278,8 +277,8 @@ public class Cuenta extends javax.swing.JFrame {
         jCheckBox2.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox2.setForeground(new java.awt.Color(0, 94, 159));
-        jCheckBox2.setText("jCheckBox2");
-        jCheckBox2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox2.setText("condominio2");
+        jCheckBox2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jCheckBox2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (2).png"))); // NOI18N
         jCheckBox2.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (2).png"))); // NOI18N
         jCheckBox2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
@@ -290,8 +289,8 @@ public class Cuenta extends javax.swing.JFrame {
         jCheckBox3.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBox3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox3.setForeground(new java.awt.Color(0, 94, 159));
-        jCheckBox3.setText("jCheckBox3");
-        jCheckBox3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox3.setText("condominio3");
+        jCheckBox3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jCheckBox3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (2).png"))); // NOI18N
         jCheckBox3.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (2).png"))); // NOI18N
         jCheckBox3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
@@ -302,8 +301,8 @@ public class Cuenta extends javax.swing.JFrame {
         jCheckBox4.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBox4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox4.setForeground(new java.awt.Color(0, 94, 159));
-        jCheckBox4.setText("jCheckBox4");
-        jCheckBox4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox4.setText("condominio4");
+        jCheckBox4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jCheckBox4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (2).png"))); // NOI18N
         jCheckBox4.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (2).png"))); // NOI18N
         jCheckBox4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
@@ -365,20 +364,21 @@ public class Cuenta extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(cuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(cuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(cuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Cuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(cuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cuenta().setVisible(true);
+                new cuenta().setVisible(true);
             }
         });
     }

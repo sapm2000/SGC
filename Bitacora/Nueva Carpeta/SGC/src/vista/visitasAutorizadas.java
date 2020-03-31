@@ -89,13 +89,13 @@ public class visitasAutorizadas extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Cédula", "Nombre", "Apellido", "Matrícula", "Unidad", "Acción"
+                "Cédula", "Nombre", "Apellido", "Matrícula", "Unidad"
             }
         ));
         jTable1.setRowHeight(20);
@@ -153,7 +153,12 @@ public class visitasAutorizadas extends javax.swing.JFrame {
         jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 220, 30));
 
         jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "seleccione unidad", "1-02", " " }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 220, 30));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
@@ -279,6 +284,10 @@ public class visitasAutorizadas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     /**
      * @param args the command line arguments
