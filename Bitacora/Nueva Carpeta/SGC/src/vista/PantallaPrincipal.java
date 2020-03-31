@@ -1,6 +1,10 @@
 package vista;
 
 import controlador.CtrlUsuario;
+import java.awt.Color;
+import static java.awt.Color.black;
+import static java.awt.Color.gray;
+import static java.awt.Color.white;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
@@ -264,57 +268,89 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         catalogoCondominio cataCon = new catalogoCondominio();
         cataCon.setVisible(true);
         cataCon.jButton2.setEnabled(false);
-        cataCon.jButton5.setEnabled(false);
+        cataCon.jButton2.setForeground(gray);
         cataCon.jButton4.setEnabled(false);
+        cataCon.jButton4.setForeground(gray);
+        cataCon.jButton5.setEnabled(false);
+        cataCon.jButton5.setForeground(gray);
+
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         catalogoBanco cataBan = new catalogoBanco();
-        cataBan.setVisible(true);
         cataBan.jButton2.setEnabled(false);
-        cataBan.jButton5.setEnabled(false);
+        cataBan.jButton2.setForeground(gray);
         cataBan.jButton4.setEnabled(false);
+        cataBan.jButton4.setForeground(gray);
+        cataBan.jButton5.setEnabled(false);
+        cataBan.jButton5.setForeground(gray);
+        cataBan.setVisible(true);
+
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         catalogoCategoriaGastos catacg = new catalogoCategoriaGastos();
-        catacg.setVisible(true);
         catacg.jButton2.setEnabled(false);
-        catacg.jButton5.setEnabled(false);
+        catacg.jButton2.setForeground(gray);
         catacg.jButton4.setEnabled(false);
+        catacg.jButton4.setForeground(gray);
+        catacg.jButton5.setEnabled(false);
+        catacg.jButton5.setForeground(gray);
+        catacg.setVisible(true);
+
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         catalogoConceptoGasto catacog = new catalogoConceptoGasto();
+        catacog.jButton2.setForeground(gray);
         catacog.jButton2.setEnabled(false);
-        catacog.jButton5.setEnabled(false);
+
         catacog.jButton4.setEnabled(false);
+        catacog.jButton4.setForeground(gray);
+        catacog.jButton5.setEnabled(false);
+        catacog.jButton5.setForeground(gray);
+
         catacog.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         catalogoCuenta catacu = new catalogoCuenta();
         catacu.jButton2.setEnabled(false);
-        catacu.jButton5.setEnabled(false);
+
+        catacu.jButton2.setForeground(gray);
         catacu.jButton4.setEnabled(false);
+        catacu.jButton4.setForeground(gray);
+        catacu.jButton5.setEnabled(false);
+        catacu.jButton5.setForeground(gray);
+
         catacu.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         catalogoProveedores cataprov = new catalogoProveedores();
+        cataprov.jButton2.setForeground(gray);
         cataprov.jButton2.setEnabled(false);
+
+        cataprov.jButton8.setEnabled(false);
+        cataprov.jButton8.setForeground(gray);
         cataprov.jButton5.setEnabled(false);
-        cataprov.jButton6.setEnabled(false);
+        cataprov.jButton5.setForeground(gray);
+
         cataprov.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         catalogoTipoUsuario catati = new catalogoTipoUsuario();
-        catati.setVisible(true);
+        catati.jButton2.setForeground(gray);
         catati.jButton2.setEnabled(false);
-        catati.jButton5.setEnabled(false);
+
         catati.jButton4.setEnabled(false);
+        catati.jButton4.setForeground(gray);
+        catati.jButton5.setEnabled(false);
+        catati.jButton5.setForeground(gray);
+        catati.setVisible(true);
+
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     /**
