@@ -1,9 +1,10 @@
-
 package vista;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author Anthony
@@ -15,17 +16,16 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
      */
     public PantallaPrincipal1() {
         initComponents();
-        
-  
-     this.setLocationRelativeTo(null);
+
+        this.setLocationRelativeTo(null);
         this.setTitle("Vista");
         this.setVisible(false);
     }
-    
-    public Image getIconImagine(){
-        
+
+    public Image getIconImagine() {
+
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("img/LogoSistema.png"));
-        
+
         return retValue;
     }
 
@@ -325,79 +325,108 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMinimizarActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-      catalogoCuotasEspeciales catace = new catalogoCuotasEspeciales();
+        catalogoCuotasEspeciales catace = new catalogoCuotasEspeciales();
         catace.jButton2.setEnabled(false);
+        catace.jButton2.setForeground(Color.gray);
         catace.jButton5.setEnabled(false);
+        catace.jButton5.setForeground(Color.gray);
         catace.jButton4.setEnabled(false);
-      catace.setVisible(true);
+        catace.jButton4.setForeground(Color.gray);
+
+        catace.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-     catalogoAsambleas cataa = new catalogoAsambleas();
-      cataa.jButton2.setEnabled(false);
+        catalogoAsambleas cataa = new catalogoAsambleas();
+        cataa.jButton2.setEnabled(false);
+        cataa.jButton2.setForeground(Color.gray);
         cataa.jButton5.setEnabled(false);
+        cataa.jButton5.setForeground(Color.gray);
         cataa.jButton4.setEnabled(false);
-     cataa.setVisible(true);
+        cataa.jButton4.setForeground(Color.gray);
+        cataa.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         catalogoGastoComun catagac = new catalogoGastoComun();
-              catagac.jButton2.setEnabled(false);
+        catagac.jButton2.setEnabled(false);
+        catagac.jButton2.setForeground(Color.gray);
         catagac.jButton5.setEnabled(false);
+        catagac.jButton5.setForeground(Color.gray);
         catagac.jButton4.setEnabled(false);
+        catagac.jButton4.setForeground(Color.gray);
         catagac.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         catalogoInteres catain = new catalogoInteres();
-           catain.jButton2.setEnabled(false);
+        catain.jButton2.setEnabled(false);
+        catain.jButton2.setForeground(Color.gray);
         catain.jButton5.setEnabled(false);
+        catain.jButton5.setForeground(Color.gray);
         catain.jButton4.setEnabled(false);
+        catain.jButton4.setForeground(Color.gray);
         catain.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         catalogoPropietarios cataprop = new catalogoPropietarios();
-         cataprop.jButton2.setEnabled(false);
+        cataprop.jButton2.setEnabled(false);
+        cataprop.jButton2.setForeground(Color.gray);
         cataprop.jButton5.setEnabled(false);
+        cataprop.jButton5.setForeground(Color.gray);
         cataprop.jButton4.setEnabled(false);
+        cataprop.jButton4.setForeground(Color.gray);
         cataprop.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         catalogoSancion catasan = new catalogoSancion();
-         catasan.jButton2.setEnabled(false);
+        catasan.jButton2.setEnabled(false);
+        catasan.jButton2.setForeground(Color.gray);
         catasan.jButton5.setEnabled(false);
+        catasan.jButton5.setForeground(Color.gray);
         catasan.jButton4.setEnabled(false);
+        catasan.jButton4.setForeground(Color.gray);
         catasan.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         catalogoUnidades cataun = new catalogoUnidades();
-                 cataun.jButton2.setEnabled(false);
+        cataun.jButton2.setEnabled(false);
+        cataun.jButton2.setForeground(Color.gray);
         cataun.jButton5.setEnabled(false);
+        cataun.jButton5.setForeground(Color.gray);
         cataun.jButton4.setEnabled(false);
+        cataun.jButton4.setForeground(Color.gray);
         cataun.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         CatalogoFondo catafon = new CatalogoFondo();
-                     catafon.jButton2.setEnabled(false);
-        catafon.jButton3.setEnabled(false);
+        catafon.jButton2.setEnabled(false);
+        catafon.jButton2.setForeground(Color.gray);
+        catafon.jButton6.setEnabled(false);
+        catafon.jButton6.setForeground(Color.gray);
         catafon.jButton4.setEnabled(false);
+        catafon.jButton4.setForeground(Color.gray);
         catafon.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-       catalogocomunicados catacomu = new catalogocomunicados();
-       catacomu.jButton2.setEnabled(false);
-        catacomu.jButton3.setEnabled(false);
+        catalogocomunicados catacomu = new catalogocomunicados();
+        catacomu.jButton2.setEnabled(false);
+        catacomu.jButton2.setForeground(Color.gray);
+        catacomu.jButton6.setEnabled(false);
+        catacomu.jButton6.setForeground(Color.gray);
         catacomu.jButton4.setEnabled(false);
-       catacomu.setVisible(true);
+        catacomu.jButton4.setForeground(Color.gray);
+        catacomu.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         cuentasPorCobrar cuenco = new cuentasPorCobrar();
+        
         cuenco.setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
@@ -417,11 +446,10 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-       recibo reci = new recibo();
-       reci.setVisible(true);
+        recibo reci = new recibo();
+        reci.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
-   
     /**
      * @param args the command line arguments
      */
