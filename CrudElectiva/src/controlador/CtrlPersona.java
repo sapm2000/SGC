@@ -2,6 +2,10 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.AbstractButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -16,7 +20,7 @@ import vista.VistaPersona;
  * @author Anthony
  */
 /*aqui con el actionlistener  especificamos los botones que van a ser escuchados. */
-public class CtrlPersona implements ActionListener {
+public class CtrlPersona implements ActionListener, MouseListener, KeyListener {
 
     /*inicializamos unas variables para el llamado del los botones*/
     private Persona mod;
@@ -197,20 +201,46 @@ public class CtrlPersona implements ActionListener {
 
     }
 
-    /**
-     *
-     *
-     * public void habilitar(){
-     *
-     * vistaP.txtClave.setEnabled(true); vistaP.txtNombre.setEnabled(false);
-     * vistaP.txtDomicilio.setEnabled(false);
-     * vistaP.txtTelefono.setEnabled(false);
-     * vistaP.txtCorreo_electronico.setEnabled(false);
-     * vistaP.txtFecha_nacimiento.setEnabled(false);
-     * vistaP.txtGenero.setEnabled(false);
-     *
-     * vistaP.btnBuscar.setEnabled(false);
-     *
-     * }
-     */
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+    
 }
