@@ -28,14 +28,19 @@ public class catalogoCondominio extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton3 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         jButton3.setText("jButton3");
+
+        jButton6.setText("jButton6");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +68,10 @@ public class catalogoCondominio extends javax.swing.JFrame {
 
         jButton2.setText("nuevo registro");
 
+        jButton4.setText("jButton4");
+
+        jButton5.setText("jButton5");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -80,8 +89,12 @@ public class catalogoCondominio extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
-                .addContainerGap(65, Short.MAX_VALUE))
+                        .addComponent(jButton2)
+                        .addGap(32, 32, 32)
+                        .addComponent(jButton4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton5)))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,7 +104,9 @@ public class catalogoCondominio extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(115, Short.MAX_VALUE))
@@ -143,6 +158,9 @@ public class catalogoCondominio extends javax.swing.JFrame {
     public javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
