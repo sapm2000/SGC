@@ -1,5 +1,6 @@
 package vista;
 
+import controlador.controladorCuotasEspeciales;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -326,6 +327,9 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         catalogoCuotasEspeciales catace = new catalogoCuotasEspeciales();
+        cuotasEspeciales cuotae = new cuotasEspeciales();
+        controladorCuotasEspeciales controce = new controladorCuotasEspeciales(cuotae, catace);
+        
         catace.jButton2.setEnabled(false);
         catace.jButton2.setForeground(Color.gray);
         catace.jButton5.setEnabled(false);
@@ -338,6 +342,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         catalogoAsambleas cataa = new catalogoAsambleas();
+        asambleas asam = new asambleas();
         cataa.jButton2.setEnabled(false);
         cataa.jButton2.setForeground(Color.gray);
         cataa.jButton5.setEnabled(false);

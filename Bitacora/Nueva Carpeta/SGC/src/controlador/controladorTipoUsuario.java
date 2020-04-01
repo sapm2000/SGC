@@ -29,7 +29,7 @@ public class controladorTipoUsuario implements ActionListener {
         this.catati.jButton4.addActionListener(this);
         this.catati.jButton5.addActionListener(this);
         this.ti.btnGuardar.addActionListener(this);
-        this.ti.btnLimpiar.addActionListener(this);
+
         this.ti.btnModificar.addActionListener(this);
     }
 
@@ -90,5 +90,6 @@ public class controladorTipoUsuario implements ActionListener {
             JOptionPane.showMessageDialog(null, "registro modificado");
 
         }
-    
+
+    }
 }

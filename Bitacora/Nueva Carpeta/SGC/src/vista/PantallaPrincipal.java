@@ -4,6 +4,7 @@ import controlador.CtrlUsuario;
 import controlador.controladorBanco;
 import controlador.controladorCategoriaGastos;
 import controlador.controladorConceptoGasto;
+import controlador.controladorCondominio;
 import controlador.controladorCuenta;
 import controlador.controladorProveedores;
 import controlador.controladorTipoUsuario;
@@ -272,6 +273,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         catalogoCondominio cataCon = new catalogoCondominio();
+        condominio condo = new condominio();
+        PantallaPrincipal1 panta1 = new PantallaPrincipal1();
+        controladorCondominio controcon= new controladorCondominio(cataCon, condo,panta1);
+
         cataCon.setVisible(true);
         cataCon.jButton2.setEnabled(false);
         cataCon.jButton2.setForeground(gray);
@@ -279,13 +284,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         cataCon.jButton4.setForeground(gray);
         cataCon.jButton5.setEnabled(false);
         cataCon.jButton5.setForeground(gray);
+        cataCon.jButton7.setEnabled(false);
+        cataCon.jButton7.setForeground(gray);
 
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         catalogoBanco cataBan = new catalogoBanco();
-        banco ban= new banco();
+        banco ban = new banco();
         controladorBanco controb = new controladorBanco(ban, cataBan);
         cataBan.jButton2.setEnabled(false);
         cataBan.jButton2.setForeground(gray);
@@ -329,7 +336,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         catalogoCuenta catacu = new catalogoCuenta();
         cuenta cu = new cuenta();
-       controladorCuenta controcu = new controladorCuenta(catacu, cu);
+        controladorCuenta controcu = new controladorCuenta(catacu, cu);
         catacu.jButton2.setEnabled(false);
 
         catacu.jButton2.setForeground(gray);
@@ -358,7 +365,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         catalogoTipoUsuario catati = new catalogoTipoUsuario();
-        tipoUsuario tipou= new tipoUsuario();
+        tipoUsuario tipou = new tipoUsuario();
         controladorTipoUsuario controti = new controladorTipoUsuario(catati, tipou);
         catati.jButton2.setForeground(gray);
         catati.jButton2.setEnabled(false);
