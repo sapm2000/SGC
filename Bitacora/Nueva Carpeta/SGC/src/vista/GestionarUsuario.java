@@ -150,7 +150,6 @@ public class GestionarUsuario extends javax.swing.JFrame {
         });
         jPanel2.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, 220, 20));
 
-        cbxTipo.setBackground(new java.awt.Color(0, 94, 159));
         cbxTipo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         cbxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un tipo de usuario", "Administrador", "Propietario" }));
         cbxTipo.setBorder(null);
