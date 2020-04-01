@@ -212,7 +212,7 @@ public class InicioUsuario extends javax.swing.JFrame {
             int result = JOptionPane.showConfirmDialog(null, "DESEA CERRAR LA VENTANA?", "SALIR", botonDialogo);
             if (result == 0) {
 
-                this.dispose();
+                System.exit(0);
 
             }
 
