@@ -58,11 +58,7 @@ public class visitasAutorizadas extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jSeparator7 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jTextField8 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         btnMinimizar = new javax.swing.JButton();
@@ -177,20 +173,6 @@ public class visitasAutorizadas extends javax.swing.JFrame {
         jSeparator6.setOpaque(true);
         jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 198, 740, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Buscar:");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 80, 20));
-
-        jTextField7.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField7.setBorder(null);
-        jPanel2.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 210, 30));
-
-        jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 210, 10));
-
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional.png"))); // NOI18N
@@ -201,19 +183,7 @@ public class visitasAutorizadas extends javax.swing.JFrame {
         jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         jButton1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 220, -1, 30));
-
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda.png"))); // NOI18N
-        jButton2.setText("Buscar");
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
-        jButton2.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
-        jButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, 130, 30));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, 30));
 
         jTextField8.setBackground(new java.awt.Color(0, 94, 159));
         jTextField8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -328,7 +298,6 @@ public class visitasAutorizadas extends javax.swing.JFrame {
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnSalir;
     public javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     public javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -338,7 +307,6 @@ public class visitasAutorizadas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -349,14 +317,12 @@ public class visitasAutorizadas extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JTable jTable1;
     public javax.swing.JTextField jTextField2;
     public javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     public javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
-    public javax.swing.JTextField jTextField7;
     public javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
     static public class Headercolor extends DefaultTableCellHeaderRenderer {

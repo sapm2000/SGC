@@ -47,8 +47,6 @@ public class catalogocomunicados extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
 
         jButton5.setText("jButton5");
 
@@ -128,7 +126,7 @@ public class catalogocomunicados extends javax.swing.JFrame {
         jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         jButton2.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         jButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 94, 159));
@@ -156,32 +154,6 @@ public class catalogocomunicados extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(0, 94, 159));
         jSeparator1.setForeground(new java.awt.Color(0, 94, 159));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 190, 10));
-
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 94, 159));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png"))); // NOI18N
-        jButton4.setText("Editar");
-        jButton4.setBorder(null);
-        jButton4.setBorderPainted(false);
-        jButton4.setContentAreaFilled(false);
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar (1).png"))); // NOI18N
-        jButton4.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar (1).png"))); // NOI18N
-        jButton4.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar (1).png"))); // NOI18N
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 110, -1));
-
-        jButton6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(0, 94, 159));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar.png"))); // NOI18N
-        jButton6.setText("Eliminar");
-        jButton6.setBorder(null);
-        jButton6.setBorderPainted(false);
-        jButton6.setContentAreaFilled(false);
-        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (1).png"))); // NOI18N
-        jButton6.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (1).png"))); // NOI18N
-        jButton6.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (1).png"))); // NOI18N
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 500));
 
@@ -248,9 +220,7 @@ public class catalogocomunicados extends javax.swing.JFrame {
     public javax.swing.JButton btnSalir;
     public javax.swing.JButton jButton1;
     public javax.swing.JButton jButton2;
-    public javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    public javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

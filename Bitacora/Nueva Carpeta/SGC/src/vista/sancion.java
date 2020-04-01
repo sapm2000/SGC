@@ -135,7 +135,7 @@ public class sancion extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("<html>\nNombre de <br> la Unidad:\n</html>");
+        jLabel1.setText("<html> Numero de <br> la Unidad: </html>");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 100, -1));
 
         jComboBox3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
