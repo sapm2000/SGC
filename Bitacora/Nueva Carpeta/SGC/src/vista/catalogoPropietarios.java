@@ -18,7 +18,7 @@ public class catalogoPropietarios extends javax.swing.JFrame {
      */
     public catalogoPropietarios() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new tabla.Headercolor());
+        jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         setLocationRelativeTo(null);
     }
 

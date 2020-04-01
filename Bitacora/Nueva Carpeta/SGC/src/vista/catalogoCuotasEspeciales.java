@@ -18,7 +18,7 @@ public class catalogoCuotasEspeciales extends javax.swing.JFrame {
      */
     public catalogoCuotasEspeciales() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new tabla.Headercolor());
+        jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         setLocationRelativeTo(null);
     }
 

@@ -19,7 +19,7 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
      */
     public cuentasPorCobrar() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new tabla.Headercolor());
+        jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         setLocationRelativeTo(null);
     }
 

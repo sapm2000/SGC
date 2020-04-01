@@ -23,7 +23,7 @@ public class detallecuenta extends javax.swing.JFrame {
    
     public detallecuenta() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new tabla.Headercolor());
+        jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         setLocationRelativeTo(null);
     }
 
@@ -71,6 +71,7 @@ public class detallecuenta extends javax.swing.JFrame {
         jTextField5.setText("jTextField5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -130,7 +131,7 @@ public class detallecuenta extends javax.swing.JFrame {
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/archivo (1).png"))); // NOI18N
         jButton1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/archivo (1).png"))); // NOI18N
         jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/archivo (1).png"))); // NOI18N
@@ -143,7 +144,7 @@ public class detallecuenta extends javax.swing.JFrame {
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
         jButton2.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
         jButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N

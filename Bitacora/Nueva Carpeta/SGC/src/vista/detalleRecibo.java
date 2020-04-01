@@ -21,7 +21,7 @@ public class detalleRecibo extends javax.swing.JFrame {
      */
     public detalleRecibo() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new tabla.Headercolor());
+        jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         setLocationRelativeTo(null);
     }
 
@@ -224,7 +224,7 @@ public class detalleRecibo extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setText("Detalles de Cuenta");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 630));
 

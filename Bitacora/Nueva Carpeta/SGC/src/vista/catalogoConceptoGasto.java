@@ -19,7 +19,7 @@ public class catalogoConceptoGasto extends javax.swing.JFrame {
      */
     public catalogoConceptoGasto() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new tabla.Headercolor());
+        jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
     setLocationRelativeTo(null);
     }
 
