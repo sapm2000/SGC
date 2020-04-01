@@ -284,7 +284,9 @@
                   <Font name="Tahoma" size="16" style="1"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="0"/>
+                  <StringArray count="1">
+                    <StringItem index="0" value="Seleccione el Nombre de la Unidad"/>
+                  </StringArray>
                 </Property>
               </Properties>
               <Events>
@@ -338,7 +340,9 @@
                   <Font name="Tahoma" size="16" style="1"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="0"/>
+                  <StringArray count="1">
+                    <StringItem index="0" value="Seleccione la Cuenta a Depositar"/>
+                  </StringArray>
                 </Property>
               </Properties>
               <AuxValues>
@@ -358,10 +362,10 @@
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
-                    <StringItem index="0" value="transferencia"/>
-                    <StringItem index="1" value="deposito"/>
-                    <StringItem index="2" value="cheque"/>
-                    <StringItem index="3" value="efectivo"/>
+                    <StringItem index="0" value="Transferencia"/>
+                    <StringItem index="1" value="Deposito"/>
+                    <StringItem index="2" value="Cheque"/>
+                    <StringItem index="3" value="Efectivo"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -432,7 +436,9 @@
                   <Font name="Tahoma" size="16" style="1"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="0"/>
+                  <StringArray count="1">
+                    <StringItem index="0" value="Seleccione el Fondo a Depositar"/>
+                  </StringArray>
                 </Property>
               </Properties>
               <AuxValues>
@@ -555,7 +561,7 @@
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Cursor Por defecto"/>
             </Property>
             <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/img/cancelar (2).png"/>
@@ -590,7 +596,7 @@
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Cursor Por defecto"/>
             </Property>
             <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/img/menos (2).png"/>
@@ -671,7 +677,7 @@
             </Property>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Cursor Por defecto"/>
             </Property>
             <Property name="hideActionText" type="boolean" value="true"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>

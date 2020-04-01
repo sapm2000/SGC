@@ -156,10 +156,11 @@ public class pagoCuotasEspeciales extends javax.swing.JFrame {
         jTextField3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(255, 255, 255));
         jTextField3.setBorder(null);
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 200, 30));
+        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 230, 30));
 
         jComboBox3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jPanel2.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 190, -1));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione la Cuenta Transferida" }));
+        jPanel2.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 230, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -175,10 +176,11 @@ public class pagoCuotasEspeciales extends javax.swing.JFrame {
         jTextField4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jTextField4.setForeground(new java.awt.Color(255, 255, 255));
         jTextField4.setBorder(null);
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, 200, 30));
+        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, 230, 30));
 
         jComboBox4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jPanel2.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, 190, -1));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el Fondo Retirado" }));
+        jPanel2.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, 230, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -189,13 +191,13 @@ public class pagoCuotasEspeciales extends javax.swing.JFrame {
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 200, 20));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 200, 20));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 230, 20));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 200, 20));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 200, 20));
+        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 230, 20));
 
         jTextField6.setBackground(new java.awt.Color(0, 94, 159));
         jTextField6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
