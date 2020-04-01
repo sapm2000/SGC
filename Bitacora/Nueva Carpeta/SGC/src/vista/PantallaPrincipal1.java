@@ -1,6 +1,9 @@
 package vista;
 
+import controlador.controladorAsambleas;
 import controlador.controladorCuotasEspeciales;
+import controlador.controladorGastoComun;
+import controlador.controladorInteres;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -343,6 +346,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         catalogoAsambleas cataa = new catalogoAsambleas();
         asambleas asam = new asambleas();
+        controladorAsambleas controa = new controladorAsambleas(cataa, asam);
         cataa.jButton2.setEnabled(false);
         cataa.jButton2.setForeground(Color.gray);
         cataa.jButton5.setEnabled(false);
@@ -354,6 +358,8 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         catalogoGastoComun catagac = new catalogoGastoComun();
+        gastoComun gc = new gastoComun();
+        controladorGastoComun controgc = new controladorGastoComun(gc, catagac);
         catagac.jButton2.setEnabled(false);
         catagac.jButton2.setForeground(Color.gray);
         catagac.jButton5.setEnabled(false);
@@ -365,6 +371,8 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         catalogoInteres catain = new catalogoInteres();
+        interes in = new interes();
+        controladorInteres controin = new controladorInteres(in, catain);
         catain.jButton2.setEnabled(false);
         catain.jButton2.setForeground(Color.gray);
         catain.jButton5.setEnabled(false);
