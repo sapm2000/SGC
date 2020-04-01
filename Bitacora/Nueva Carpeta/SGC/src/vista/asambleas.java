@@ -53,6 +53,7 @@ public class asambleas extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jTextField5 = new javax.swing.JTextField();
         jSeparator8 = new javax.swing.JSeparator();
+        jButton4 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -143,20 +144,20 @@ public class asambleas extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible.png"))); // NOI18N
-        jButton3.setText("Guardar Asamblea");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar (3).png"))); // NOI18N
+        jButton3.setText("Editar Asamblea");
         jButton3.setBorder(null);
         jButton3.setBorderPainted(false);
         jButton3.setContentAreaFilled(false);
-        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
-        jButton3.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
-        jButton3.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
+        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar (2).png"))); // NOI18N
+        jButton3.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar (2).png"))); // NOI18N
+        jButton3.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar (2).png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 150, 30));
+        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 140, 30));
 
         jTextField5.setBackground(new java.awt.Color(0, 94, 159));
         jTextField5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -166,6 +167,23 @@ public class asambleas extends javax.swing.JFrame {
 
         jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
         jPanel4.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 180, 10));
+
+        jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible.png"))); // NOI18N
+        jButton4.setText("Guardar Asamblea");
+        jButton4.setBorder(null);
+        jButton4.setBorderPainted(false);
+        jButton4.setContentAreaFilled(false);
+        jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
+        jButton4.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
+        jButton4.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 150, 30));
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 480, 280));
 
@@ -271,6 +289,10 @@ public class asambleas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -311,6 +333,7 @@ public class asambleas extends javax.swing.JFrame {
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnSalir;
     public javax.swing.JButton jButton3;
+    public javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
