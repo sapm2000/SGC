@@ -61,12 +61,14 @@ public class controladorInteres implements ActionListener {
         if (e.getSource() == catain.jButton2) {
             this.in.setVisible(true);
             this.in.btnModificar.setVisible(false);
+            this.in.btnGuardar.setVisible(true);
 
         }
 
         if (e.getSource() == catain.jButton4) {
             this.in.setVisible(true);
             this.in.btnGuardar.setVisible(false);
+            this.in.btnModificar.setVisible(true);
 
         }
 

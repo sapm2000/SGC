@@ -16,19 +16,20 @@ import vista.catalogoAsambleas;
  *
  * @author rma
  */
-public class controladorAsambleas implements ActionListener{
+public class controladorAsambleas implements ActionListener {
+
     private catalogoAsambleas cataa;
     private asambleas as;
 
     public controladorAsambleas(catalogoAsambleas cataa, asambleas as) {
         this.cataa = cataa;
-        this.as = as;   
+        this.as = as;
         this.cataa.jButton1.addActionListener(this);
         this.cataa.jButton2.addActionListener(this);
         this.cataa.jButton4.addActionListener(this);
         this.cataa.jButton5.addActionListener(this);
         this.as.btnGuardar.addActionListener(this);
-        
+
         this.as.btnModificar.addActionListener(this);
     }
 
@@ -60,12 +61,14 @@ public class controladorAsambleas implements ActionListener{
         if (e.getSource() == cataa.jButton2) {
             this.as.setVisible(true);
             this.as.btnModificar.setVisible(false);
+            this.as.btnGuardar.setVisible(true);
 
         }
 
         if (e.getSource() == cataa.jButton4) {
             this.as.setVisible(true);
             this.as.btnGuardar.setVisible(false);
+            this.as.btnModificar.setVisible(true);
 
         }
 
@@ -90,6 +93,5 @@ public class controladorAsambleas implements ActionListener{
 
         }
     }
-    
-    
+
 }

@@ -61,12 +61,14 @@ public class controladorGastoComun implements ActionListener {
         if (e.getSource() == catagc.jButton2) {
             this.gc.setVisible(true);
             this.gc.btnModificar.setVisible(false);
+            this.gc.btnGuardar.setVisible(true);
 
         }
 
         if (e.getSource() == catagc.jButton4) {
             this.gc.setVisible(true);
             this.gc.btnGuardar.setVisible(false);
+            this.gc.btnModificar.setVisible(true);
 
         }
 

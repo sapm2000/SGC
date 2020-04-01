@@ -61,6 +61,8 @@ public class controladorFondo implements ActionListener{
         if (e.getSource() == catafon.jButton2) {
             this.fon.setVisible(true);
             this.fon.btnModificar.setVisible(false);
+            this.fon.btnGuardar.setVisible(true);
+            this.fon.jTextField4.setEnabled(true);
 
         }
 
@@ -68,6 +70,7 @@ public class controladorFondo implements ActionListener{
             this.fon.setVisible(true);
             this.fon.btnGuardar.setVisible(false);
             this.fon.jTextField4.setEnabled(false);
+            this.fon.btnModificar.setVisible(true);
 
         }
 

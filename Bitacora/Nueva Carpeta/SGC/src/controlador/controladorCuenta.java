@@ -16,15 +16,15 @@ import vista.cuenta;
  *
  * @author rma
  */
-public class controladorCuenta implements ActionListener{
-    
+public class controladorCuenta implements ActionListener {
+
     private catalogoCuenta catacu;
     private cuenta cu;
 
     public controladorCuenta(catalogoCuenta catacu, cuenta cu) {
         this.catacu = catacu;
         this.cu = cu;
-         this.catacu.jButton1.addActionListener(this);
+        this.catacu.jButton1.addActionListener(this);
         this.catacu.jButton2.addActionListener(this);
         this.catacu.jButton4.addActionListener(this);
         this.catacu.jButton5.addActionListener(this);
@@ -32,7 +32,7 @@ public class controladorCuenta implements ActionListener{
         this.cu.btnLimpiar.addActionListener(this);
         this.cu.btnModificar.addActionListener(this);
     }
-    
+
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == catacu.jButton1) {
@@ -61,12 +61,14 @@ public class controladorCuenta implements ActionListener{
         if (e.getSource() == catacu.jButton2) {
             this.cu.setVisible(true);
             this.cu.btnModificar.setVisible(false);
+            this.cu.btnGuardar.setVisible(true);
 
         }
 
         if (e.getSource() == catacu.jButton4) {
             this.cu.setVisible(true);
             this.cu.btnGuardar.setVisible(false);
+            this.cu.btnModificar.setVisible(true);
 
         }
 
@@ -91,7 +93,5 @@ public class controladorCuenta implements ActionListener{
 
         }
     }
-    
-    
-    
+
 }

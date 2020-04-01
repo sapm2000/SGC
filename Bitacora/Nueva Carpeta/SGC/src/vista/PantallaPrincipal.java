@@ -66,6 +66,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
@@ -210,6 +211,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem7);
 
+        jMenuItem10.setText("Usuarios");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem10);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cogwheel (1).png"))); // NOI18N
@@ -262,20 +271,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMinimizarActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        GestionarUsuario vistaGu = new GestionarUsuario();
-        Usuario mod = new Usuario();
-        CrudUsuario modC = new CrudUsuario();
 
-        CtrlUsuario ctrl = new CtrlUsuario(mod, modC, vistaGu);
-
-        vistaGu.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         catalogoCondominio cataCon = new catalogoCondominio();
         condominio condo = new condominio();
         PantallaPrincipal1 panta1 = new PantallaPrincipal1();
-        controladorCondominio controcon= new controladorCondominio(cataCon, condo,panta1);
+        
+        controladorCondominio controcon = new controladorCondominio(cataCon, condo, panta1,this);
 
         cataCon.setVisible(true);
         cataCon.jButton2.setEnabled(false);
@@ -378,6 +382,25 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        catalogoUsuario catausu = new catalogoUsuario();
+        GestionarUsuario gestusu = new GestionarUsuario();
+        Usuario mod = new Usuario();
+        CrudUsuario modc = new CrudUsuario();
+
+        CtrlUsuario ctrl = new CtrlUsuario(mod, modc, gestusu, catausu);
+        catausu.setVisible(true);
+
+        catausu.jButton2.setForeground(gray);
+        catausu.jButton2.setEnabled(false);
+
+        catausu.jButton4.setEnabled(false);
+        catausu.jButton4.setForeground(gray);
+        catausu.jButton5.setEnabled(false);
+        catausu.jButton5.setForeground(gray);
+
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -425,6 +448,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

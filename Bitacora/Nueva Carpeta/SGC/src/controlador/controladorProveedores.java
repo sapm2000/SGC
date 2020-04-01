@@ -61,12 +61,14 @@ public class controladorProveedores implements ActionListener {
         if (e.getSource() == cataprov.jButton2) {
             this.prov.setVisible(true);
             this.prov.btnModificar.setVisible(false);
+            this.prov.btnGuardar.setVisible(true);
 
         }
 
         if (e.getSource() == cataprov.jButton8) {
             this.prov.setVisible(true);
             this.prov.btnGuardar.setVisible(false);
+            this.prov.btnModificar.setVisible(true);
 
         }
 
