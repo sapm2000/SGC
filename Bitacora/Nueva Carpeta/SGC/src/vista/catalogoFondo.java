@@ -12,13 +12,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 
-public class CatalogoFondo extends javax.swing.JFrame {
+public class catalogoFondo extends javax.swing.JFrame {
 
 
     /**
-     * Creates new form CatalogoFondo
+     * Creates new form catalogoFondo
      */
-    public CatalogoFondo() {
+    public catalogoFondo() {
         initComponents();
         jTable1.getTableHeader().setDefaultRenderer(new Headercolor());
         setLocationRelativeTo(null);
@@ -222,20 +222,20 @@ public class CatalogoFondo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CatalogoFondo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(catalogoFondo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CatalogoFondo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(catalogoFondo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CatalogoFondo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(catalogoFondo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CatalogoFondo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(catalogoFondo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CatalogoFondo().setVisible(true);
+                new catalogoFondo().setVisible(true);
             }
         });
     }

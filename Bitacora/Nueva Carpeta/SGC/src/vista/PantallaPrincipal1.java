@@ -1,9 +1,14 @@
 package vista;
 
 import controlador.controladorAsambleas;
+import controlador.controladorComunicados;
 import controlador.controladorCuotasEspeciales;
+import controlador.controladorFondo;
 import controlador.controladorGastoComun;
 import controlador.controladorInteres;
+import controlador.controladorSancion;
+import controlador.controladorUnidades;
+import controlador.controladorVisita;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -395,6 +400,8 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         catalogoSancion catasan = new catalogoSancion();
+        sancion san = new sancion();
+        controladorSancion controsan = new controladorSancion(san, catasan);
         catasan.jButton2.setEnabled(false);
         catasan.jButton2.setForeground(Color.gray);
         catasan.jButton5.setEnabled(false);
@@ -406,6 +413,10 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         catalogoUnidades cataun = new catalogoUnidades();
+        unidades uni = new unidades();
+        detallecuenta detacun= new detallecuenta();
+        controladorUnidades controuni = new controladorUnidades(uni, cataun,detacun);
+        
         cataun.jButton2.setEnabled(false);
         cataun.jButton2.setForeground(Color.gray);
         cataun.jButton5.setEnabled(false);
@@ -418,7 +429,10 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        CatalogoFondo catafon = new CatalogoFondo();
+        catalogoFondo catafon = new catalogoFondo();
+        fondo fon = new fondo();
+        controladorFondo controfon = new controladorFondo(fon, catafon);
+        
         catafon.jButton2.setEnabled(false);
         catafon.jButton2.setForeground(Color.gray);
         catafon.jButton6.setEnabled(false);
@@ -430,12 +444,11 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         catalogocomunicados catacomu = new catalogocomunicados();
+        comunicados com = new comunicados();
+        controladorComunicados controcom = new controladorComunicados(catacomu, com);
         catacomu.jButton2.setEnabled(false);
         catacomu.jButton2.setForeground(Color.gray);
-        catacomu.jButton6.setEnabled(false);
-        catacomu.jButton6.setForeground(Color.gray);
-        catacomu.jButton4.setEnabled(false);
-        catacomu.jButton4.setForeground(Color.gray);
+      
         catacomu.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
@@ -452,6 +465,8 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         registroVisitas regiv = new registroVisitas();
+        visitasAutorizadas vis = new visitasAutorizadas();
+        controladorVisita controvi = new controladorVisita(regiv, vis);
         regiv.jButton1.setEnabled(false);
         regiv.jButton1.setForeground(Color.gray);
         regiv.jButton3.setEnabled(false);
