@@ -140,7 +140,6 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 90, -1));
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -159,11 +158,10 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 110, -1));
 
         jComboBox3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel2.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 220, -1));
 
         jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "transferencia", "deposito", "cheque", "efectivo" }));
         jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 220, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -182,7 +180,6 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 210, 100, -1));
 
         jComboBox4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel2.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, 220, -1));
 
         jTextField2.setBackground(new java.awt.Color(0, 94, 159));
@@ -216,7 +213,7 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
@@ -231,7 +228,7 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
@@ -259,7 +256,7 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
         jButton1.setText("<html>\n<br><br><br>Procesar el Pago y Descargar el Recibo\n</html>");
         jButton1.setBorder(null);
         jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.setHideActionText(true);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setIconTextGap(10);

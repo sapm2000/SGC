@@ -64,13 +64,13 @@ public class catalogoPropietarios extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "<html>C.I. ó <br> RIF.</html>", "Nombre", "Teléfono", "<html>Correo <br> Electrónico</html>"
+                "<html>C.I. ó <br> RIF.</html>", "Nombre", "apellido", "Teléfono", "<html>Correo <br> Electrónico</html>"
             }
         ));
         jTable1.setRowHeight(20);

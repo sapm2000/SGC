@@ -122,7 +122,7 @@ public class pagoCuotasEspeciales extends javax.swing.JFrame {
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, 40));
 
         jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Transferencia", "Efectivo", "Cheque", "Deposito" }));
         jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 190, -1));
 
         jTextField1.setBackground(new java.awt.Color(0, 94, 159));
@@ -159,7 +159,6 @@ public class pagoCuotasEspeciales extends javax.swing.JFrame {
         jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, 200, 30));
 
         jComboBox3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel2.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 190, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -179,7 +178,6 @@ public class pagoCuotasEspeciales extends javax.swing.JFrame {
         jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, 200, 30));
 
         jComboBox4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel2.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, 190, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -217,7 +215,7 @@ public class pagoCuotasEspeciales extends javax.swing.JFrame {
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
@@ -232,7 +230,7 @@ public class pagoCuotasEspeciales extends javax.swing.JFrame {
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
