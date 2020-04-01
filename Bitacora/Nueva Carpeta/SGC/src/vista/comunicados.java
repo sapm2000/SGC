@@ -23,7 +23,7 @@ public class comunicados extends javax.swing.JFrame {
      */
     public comunicados() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new tabla.Headercolor());
+        jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         setLocationRelativeTo(null);
     }
 

@@ -19,7 +19,7 @@ public class cuentasPorPagar extends javax.swing.JFrame {
      */
     public cuentasPorPagar() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new tabla.Headercolor());
+        jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         setLocationRelativeTo(null);
     }
 

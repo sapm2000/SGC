@@ -19,7 +19,7 @@ public class pagoCuotasEspeciales extends javax.swing.JFrame {
      */
     public pagoCuotasEspeciales() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new tabla.Headercolor());
+        jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         setLocationRelativeTo(null);
     }
 

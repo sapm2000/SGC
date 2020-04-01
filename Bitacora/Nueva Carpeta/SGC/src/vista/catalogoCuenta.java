@@ -20,7 +20,7 @@ public class catalogoCuenta extends javax.swing.JFrame {
      */
     public catalogoCuenta() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new tabla.Headercolor());
+        jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         setLocationRelativeTo(null);
     }
 

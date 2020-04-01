@@ -22,7 +22,7 @@ public class catalogoTipoUsuario extends javax.swing.JFrame {
      */
     public catalogoTipoUsuario() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new tabla.Headercolor());
+        jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         setLocationRelativeTo(null);
     }
 

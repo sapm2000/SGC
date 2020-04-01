@@ -36,14 +36,6 @@ public class GestionarUsuario extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        btnGuardar = new javax.swing.JButton();
-        btnModificar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         txtCedula = new javax.swing.JTextField();
         txtUsuario = new javax.swing.JTextField();
@@ -66,10 +58,16 @@ public class GestionarUsuario extends javax.swing.JFrame {
         jSeparator8 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
         jSeparator9 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        btnGuardar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
+        jSeparator10 = new javax.swing.JSeparator();
+        jSeparator11 = new javax.swing.JSeparator();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -83,74 +81,6 @@ public class GestionarUsuario extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Registro de Usuario");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
-
-        jPanel3.setBackground(new java.awt.Color(0, 94, 159));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/saveOff.png"))); // NOI18N
-        btnGuardar.setBorder(null);
-        btnGuardar.setBorderPainted(false);
-        btnGuardar.setContentAreaFilled(false);
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/saveOn.png"))); // NOI18N
-        btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/saveOn.png"))); // NOI18N
-        btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/saveOn.png"))); // NOI18N
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 80, 80));
-        //btnGuardar.addActionListener(ctrl);
-
-        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editOff.png"))); // NOI18N
-        btnModificar.setBorder(null);
-        btnModificar.setBorderPainted(false);
-        btnModificar.setContentAreaFilled(false);
-        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnModificar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editOn.png"))); // NOI18N
-        btnModificar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editOn.png"))); // NOI18N
-        btnModificar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editOn.png"))); // NOI18N
-        jPanel3.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, 80, 70));
-        //btnMinimizar.addActionListener(ctrl);
-
-        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/trashOff.png"))); // NOI18N
-        btnEliminar.setBorder(null);
-        btnEliminar.setBorderPainted(false);
-        btnEliminar.setContentAreaFilled(false);
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/trashOn.png"))); // NOI18N
-        btnEliminar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/trashOn.png"))); // NOI18N
-        btnEliminar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/trashOn.png"))); // NOI18N
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, 70, 80));
-        //btnEliminar.addActionListener(ctrl);
-
-        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/clearOff.png"))); // NOI18N
-        btnLimpiar.setBorderPainted(false);
-        btnLimpiar.setContentAreaFilled(false);
-        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnLimpiar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/clearOn.png"))); // NOI18N
-        btnLimpiar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/clearOn.png"))); // NOI18N
-        jPanel3.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 90, -1));
-
-        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 10, 70));
-
-        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel3.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, 10, 70));
-
-        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel3.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 10, 70));
-
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 410, 460, 80));
 
         jPanel2.setBackground(new java.awt.Color(0, 94, 159));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -295,9 +225,6 @@ public class GestionarUsuario extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 770, 240));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondobtn1_1.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 390, -1, -1));
-
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 800, 300));
 
@@ -331,14 +258,62 @@ public class GestionarUsuario extends javax.swing.JFrame {
         });
         jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 10, 40, 30));
 
+        jPanel3.setBackground(new java.awt.Color(0, 94, 159));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salvar.png"))); // NOI18N
+        btnGuardar.setBorder(null);
+        btnGuardar.setBorderPainted(false);
+        btnGuardar.setContentAreaFilled(false);
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
+        btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
+        btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 70, -1));
+        //btnGuardar.addActionListener(ctrl);
+
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato.png"))); // NOI18N
+        btnModificar.setBorder(null);
+        btnModificar.setBorderPainted(false);
+        btnModificar.setContentAreaFilled(false);
+        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnModificar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
+        btnModificar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
+        btnModificar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
+        jPanel3.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 70, 70));
+        //btnMinimizar.addActionListener(ctrl);
+
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo.png"))); // NOI18N
+        btnLimpiar.setBorderPainted(false);
+        btnLimpiar.setContentAreaFilled(false);
+        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnLimpiar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
+        btnLimpiar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
+        btnLimpiar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
+        jPanel3.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 70, 70));
+
+        jSeparator10.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator10.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel3.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 10, 70));
+
+        jSeparator11.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator11.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel3.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, 10, 70));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 410, 360, 80));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondobtn1chiqui.png"))); // NOI18N
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, 360, 90));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
@@ -347,10 +322,6 @@ public class GestionarUsuario extends javax.swing.JFrame {
     private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefonoActionPerformed
-
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
         // TODO add your handling code here:
@@ -383,6 +354,10 @@ public class GestionarUsuario extends javax.swing.JFrame {
     private void cbxTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxTipoActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -423,16 +398,15 @@ public class GestionarUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnBuscar;
-    public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnModificar;
     public javax.swing.JButton btnSalir;
     public javax.swing.JComboBox<String> cbxTipo;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -443,9 +417,8 @@ public class GestionarUsuario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;

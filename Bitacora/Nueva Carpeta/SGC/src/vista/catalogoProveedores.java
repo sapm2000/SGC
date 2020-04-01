@@ -19,7 +19,7 @@ public class catalogoProveedores extends javax.swing.JFrame {
      */
     public catalogoProveedores() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new tabla.Headercolor());
+        jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         setLocationRelativeTo(null);
     }
 
