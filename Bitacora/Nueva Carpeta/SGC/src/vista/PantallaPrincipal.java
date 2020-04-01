@@ -1,6 +1,7 @@
 package vista;
 
 import controlador.CtrlUsuario;
+import controlador.controladorBanco;
 import java.awt.Color;
 import static java.awt.Color.black;
 import static java.awt.Color.gray;
@@ -279,6 +280,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         catalogoBanco cataBan = new catalogoBanco();
+        banco ban= new banco();
+        controladorBanco controb = new controladorBanco(ban, cataBan);
         cataBan.jButton2.setEnabled(false);
         cataBan.jButton2.setForeground(gray);
         cataBan.jButton4.setEnabled(false);
