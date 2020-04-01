@@ -8,6 +8,7 @@ package vista;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import javax.swing.JFrame;
 import javax.swing.JTable;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 import javax.swing.JOptionPane;
@@ -58,7 +59,7 @@ public class catalogoCondominio extends javax.swing.JFrame {
 
         jButton6.setText("jButton6");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -224,7 +225,7 @@ public class catalogoCondominio extends javax.swing.JFrame {
             int result = JOptionPane.showConfirmDialog(null, "DESEA CERRAR LA VENTANA?", "SALIR", botonDialogo);
             if (result == 0) {
 
-                System.exit(0);
+                this.dispose();
 
             }
 

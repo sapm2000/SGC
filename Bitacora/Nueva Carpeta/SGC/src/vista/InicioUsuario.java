@@ -45,7 +45,7 @@ public class InicioUsuario extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         checkViewPass = new javax.swing.JCheckBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(getIconImagine());
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -63,7 +63,7 @@ public class InicioUsuario extends javax.swing.JFrame {
         btnEnviar.setBorder(null);
         btnEnviar.setBorderPainted(false);
         btnEnviar.setContentAreaFilled(false);
-        btnEnviar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEnviar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEnviar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/next (3).png"))); // NOI18N
         btnEnviar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/next (3).png"))); // NOI18N
         btnEnviar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/next (3).png"))); // NOI18N
@@ -82,7 +82,7 @@ public class InicioUsuario extends javax.swing.JFrame {
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
@@ -104,7 +104,7 @@ public class InicioUsuario extends javax.swing.JFrame {
         btnExit.setBorder(null);
         btnExit.setBorderPainted(false);
         btnExit.setContentAreaFilled(false);
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnExit.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnExit.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnExit.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
@@ -124,7 +124,7 @@ public class InicioUsuario extends javax.swing.JFrame {
         txtUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtUsuario.setText("Ingresar Usuario");
         txtUsuario.setBorder(null);
-        txtUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 220, 50));
 
         txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -163,7 +163,7 @@ public class InicioUsuario extends javax.swing.JFrame {
         checkViewPass.setBackground(new java.awt.Color(255, 255, 255));
         checkViewPass.setText("Ver clave");
         checkViewPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)));
-        checkViewPass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        checkViewPass.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         checkViewPass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (2).png"))); // NOI18N
         checkViewPass.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         checkViewPass.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
@@ -195,7 +195,7 @@ public class InicioUsuario extends javax.swing.JFrame {
             int result = JOptionPane.showConfirmDialog(null, "DESEA CERRAR LA VENTANA?", "SALIR", botonDialogo);
             if (result == 0) {
 
-                System.exit(0);
+                this.dispose();
 
             }
 
@@ -212,7 +212,7 @@ public class InicioUsuario extends javax.swing.JFrame {
             int result = JOptionPane.showConfirmDialog(null, "DESEA CERRAR LA VENTANA?", "SALIR", botonDialogo);
             if (result == 0) {
 
-                System.exit(0);
+                this.dispose();
 
             }
 
