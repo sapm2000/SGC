@@ -263,7 +263,7 @@ public class catalogoUnidades extends javax.swing.JFrame {
     public javax.swing.JButton jButton4;
     public javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
+    public javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

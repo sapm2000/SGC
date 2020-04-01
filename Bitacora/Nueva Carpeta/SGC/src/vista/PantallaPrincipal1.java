@@ -399,6 +399,8 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         cataun.jButton5.setForeground(Color.gray);
         cataun.jButton4.setEnabled(false);
         cataun.jButton4.setForeground(Color.gray);
+        cataun.jButton7.setEnabled(false);
+        cataun.jButton7.setForeground(Color.gray);
         cataun.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
@@ -426,7 +428,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         cuentasPorCobrar cuenco = new cuentasPorCobrar();
-        
+
         cuenco.setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
@@ -437,6 +439,10 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         registroVisitas regiv = new registroVisitas();
+        regiv.jButton1.setEnabled(false);
+        regiv.jButton1.setForeground(Color.gray);
+        regiv.jButton3.setEnabled(false);
+        regiv.jButton3.setForeground(Color.gray);
         regiv.setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 

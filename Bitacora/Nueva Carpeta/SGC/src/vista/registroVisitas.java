@@ -333,7 +333,7 @@ public class registroVisitas extends javax.swing.JFrame {
     public javax.swing.JButton btnSalir;
     public javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    public javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

@@ -27,6 +27,7 @@ public class CtrlUsuario implements ActionListener, ItemListener{
         this.vistaGU.btnEliminar.addActionListener(this);
         this.vistaGU.btnModificar.addActionListener(this);
         this.vistaGU.btnLimpiar.addActionListener(this);
+        
     }
     //Fin del constructor
 
