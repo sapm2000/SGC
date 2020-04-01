@@ -25,10 +25,10 @@ public class controladorAsambleas implements ActionListener{
         this.as = as;   
         this.cataa.jButton1.addActionListener(this);
         this.cataa.jButton2.addActionListener(this);
-        this.cataa.jButton8.addActionListener(this);
+        this.cataa.jButton4.addActionListener(this);
         this.cataa.jButton5.addActionListener(this);
         this.as.btnGuardar.addActionListener(this);
-        this.as.btnLimpiar.addActionListener(this);
+        
         this.as.btnModificar.addActionListener(this);
     }
 
@@ -39,19 +39,19 @@ public class controladorAsambleas implements ActionListener{
             int result = JOptionPane.showConfirmDialog(null, "ENCONTRO EL REGISTRO?", "REGISTRO", botonDialogo);
             if (result == 0) {
 
-                this.cataa.jButton8.setEnabled(true);
+                this.cataa.jButton4.setEnabled(true);
                 this.cataa.jButton5.setEnabled(true);
                 this.cataa.jButton2.setEnabled(false);
                 this.cataa.jButton2.setForeground(Color.gray);
-                this.cataa.jButton8.setForeground(new java.awt.Color(0, 94, 159));
+                this.cataa.jButton4.setForeground(new java.awt.Color(0, 94, 159));
                 this.cataa.jButton5.setForeground(new java.awt.Color(0, 94, 159));
 
             } else {
                 this.cataa.jButton2.setEnabled(true);
                 this.cataa.jButton2.setForeground(new java.awt.Color(0, 94, 159));
-                this.cataa.jButton8.setEnabled(false);
+                this.cataa.jButton4.setEnabled(false);
                 this.cataa.jButton5.setEnabled(false);
-                this.cataa.jButton8.setForeground(Color.gray);
+                this.cataa.jButton4.setForeground(Color.gray);
                 this.cataa.jButton5.setForeground(Color.gray);
 
             }
@@ -63,7 +63,7 @@ public class controladorAsambleas implements ActionListener{
 
         }
 
-        if (e.getSource() == cataa.jButton8) {
+        if (e.getSource() == cataa.jButton4) {
             this.as.setVisible(true);
             this.as.btnGuardar.setVisible(false);
 
