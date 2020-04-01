@@ -415,7 +415,8 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         catalogoUnidades cataun = new catalogoUnidades();
         unidades uni = new unidades();
         detallecuenta detacun= new detallecuenta();
-        controladorUnidades controuni = new controladorUnidades(uni, cataun,detacun);
+        detalleRecibo detare = new detalleRecibo();
+        controladorUnidades controuni = new controladorUnidades(uni, cataun,detacun,detare);
         
         cataun.jButton2.setEnabled(false);
         cataun.jButton2.setForeground(Color.gray);

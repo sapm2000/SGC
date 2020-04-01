@@ -16,14 +16,15 @@ import vista.interes;
  *
  * @author rma
  */
-public class controladorInteres implements ActionListener{
-    private interes in; 
+public class controladorInteres implements ActionListener {
+
+    private interes in;
     private catalogoInteres catain;
 
     public controladorInteres(interes in, catalogoInteres catain) {
         this.in = in;
         this.catain = catain;
-       this.catain.jButton1.addActionListener(this);
+        this.catain.jButton1.addActionListener(this);
         this.catain.jButton2.addActionListener(this);
         this.catain.jButton4.addActionListener(this);
         this.catain.jButton5.addActionListener(this);
@@ -90,5 +91,5 @@ public class controladorInteres implements ActionListener{
 
         }
     }
-    
+
 }
