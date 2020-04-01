@@ -20,6 +20,7 @@ public class detallecuenta extends javax.swing.JFrame {
     /**
      * Creates new form detallecuenta1
      */
+   
     public detallecuenta() {
         initComponents();
         jTable1.getTableHeader().setDefaultRenderer(new tabla.Headercolor());
