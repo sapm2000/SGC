@@ -61,12 +61,14 @@ public class controladorSancion implements ActionListener{
         if (e.getSource() == catasan.jButton2) {
             this.san.setVisible(true);
             this.san.btnModificar.setVisible(false);
+            this.san.btnGuardar.setVisible(true);
 
         }
 
         if (e.getSource() == catasan.jButton4) {
             this.san.setVisible(true);
             this.san.btnGuardar.setVisible(false);
+            this.san.btnModificar.setVisible(true);
 
         }
 

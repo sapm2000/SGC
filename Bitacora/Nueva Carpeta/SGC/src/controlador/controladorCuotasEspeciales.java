@@ -61,6 +61,10 @@ public class controladorCuotasEspeciales implements ActionListener {
         if (e.getSource() == catacuoe.jButton2) {
             this.cuotae.setVisible(true);
             this.cuotae.btnModificar.setVisible(false);
+            this.cuotae.btnGuardar.setVisible(true);
+            this.cuotae.jComboBox4.setEnabled(true);
+            this.cuotae.jComboBox1.setEnabled(true);
+            this.cuotae.jTextField3.setEnabled(true);
 
         }
 
@@ -70,6 +74,7 @@ public class controladorCuotasEspeciales implements ActionListener {
             this.cuotae.jComboBox4.setEnabled(false);
             this.cuotae.jComboBox1.setEnabled(false);
             this.cuotae.jTextField3.setEnabled(false);
+             this.cuotae.btnModificar.setVisible(true);
 
         }
 

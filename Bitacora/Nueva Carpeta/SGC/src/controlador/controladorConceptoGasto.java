@@ -16,15 +16,15 @@ import vista.conceptoGasto;
  *
  * @author rma
  */
-public class controladorConceptoGasto implements ActionListener{
-    
+public class controladorConceptoGasto implements ActionListener {
+
     private catalogoConceptoGasto catacga;
     private conceptoGasto cga;
 
     public controladorConceptoGasto(catalogoConceptoGasto catacga, conceptoGasto cga) {
         this.catacga = catacga;
         this.cga = cga;
-         this.catacga.jButton1.addActionListener(this);
+        this.catacga.jButton1.addActionListener(this);
         this.catacga.jButton2.addActionListener(this);
         this.catacga.jButton4.addActionListener(this);
         this.catacga.jButton5.addActionListener(this);
@@ -32,7 +32,7 @@ public class controladorConceptoGasto implements ActionListener{
         this.cga.btnLimpiar.addActionListener(this);
         this.cga.btnModificar.addActionListener(this);
     }
-    
+
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == catacga.jButton1) {
@@ -61,12 +61,14 @@ public class controladorConceptoGasto implements ActionListener{
         if (e.getSource() == catacga.jButton2) {
             this.cga.setVisible(true);
             this.cga.btnModificar.setVisible(false);
+            this.cga.btnGuardar.setVisible(true);
 
         }
 
         if (e.getSource() == catacga.jButton4) {
             this.cga.setVisible(true);
             this.cga.btnGuardar.setVisible(false);
+            this.cga.btnModificar.setVisible(true);
 
         }
 
@@ -91,7 +93,5 @@ public class controladorConceptoGasto implements ActionListener{
 
         }
     }
-    
-    
-    
+
 }

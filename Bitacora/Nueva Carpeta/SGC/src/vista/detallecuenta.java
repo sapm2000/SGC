@@ -70,7 +70,7 @@ public class detallecuenta extends javax.swing.JFrame {
 
         jTextField5.setText("jTextField5");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -257,7 +257,7 @@ public class detallecuenta extends javax.swing.JFrame {
             int result = JOptionPane.showConfirmDialog(null, "DESEA CERRAR LA VENTANA?", "SALIR", botonDialogo);
             if (result == 0) {
 
-                System.exit(0);
+                this.dispose();
 
             }
 

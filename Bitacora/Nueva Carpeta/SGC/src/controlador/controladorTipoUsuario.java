@@ -61,12 +61,14 @@ public class controladorTipoUsuario implements ActionListener {
         if (e.getSource() == catati.jButton2) {
             this.ti.setVisible(true);
             this.ti.btnModificar.setVisible(false);
+            this.ti.btnGuardar.setVisible(true);
 
         }
 
         if (e.getSource() == catati.jButton4) {
             this.ti.setVisible(true);
             this.ti.btnGuardar.setVisible(false);
+            this.ti.btnModificar.setVisible(true);
 
         }
 

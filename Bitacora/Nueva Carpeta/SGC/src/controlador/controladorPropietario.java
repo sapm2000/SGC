@@ -60,6 +60,8 @@ public class controladorPropietario implements  ActionListener{
         if (e.getSource() == catapro.jButton2) {
             this.pro.setVisible(true);
             this.pro.btnModificar.setVisible(false);
+            this.pro.btnGuardar.setVisible(true);
+            this.pro.jTextField2.setEnabled(true);
 
         }
 
@@ -67,6 +69,7 @@ public class controladorPropietario implements  ActionListener{
             this.pro.setVisible(true);
             this.pro.btnGuardar.setVisible(false);
             this.pro.jTextField2.setEnabled(false);
+            this.pro.btnModificar.setVisible(true);
 
         }
 

@@ -62,13 +62,14 @@ public class controladorBanco implements ActionListener {
         if (e.getSource() == cban.jButton2) {
             this.ban.setVisible(true);
             this.ban.btnModificar.setVisible(false);
+            this.ban.btnGuardar.setVisible(true);
 
         }
 
         if (e.getSource() == cban.jButton4) {
             this.ban.setVisible(true);
             this.ban.btnGuardar.setVisible(false);
-
+            this.ban.btnModificar.setVisible(true);
         }
 
         if (e.getSource() == cban.jButton5) {
@@ -92,6 +93,5 @@ public class controladorBanco implements ActionListener {
 
         }
 
-     
     }
 }

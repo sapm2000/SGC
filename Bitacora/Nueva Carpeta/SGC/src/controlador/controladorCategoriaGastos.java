@@ -61,12 +61,14 @@ public class controladorCategoriaGastos implements ActionListener {
         if (e.getSource() == catacg.jButton2) {
             this.cg.setVisible(true);
             this.cg.btnModificar.setVisible(false);
+            this.cg.btnGuardar.setVisible(true);
 
         }
 
         if (e.getSource() == catacg.jButton4) {
             this.cg.setVisible(true);
             this.cg.btnGuardar.setVisible(false);
+            this.cg.btnModificar.setVisible(true);
 
         }
 
