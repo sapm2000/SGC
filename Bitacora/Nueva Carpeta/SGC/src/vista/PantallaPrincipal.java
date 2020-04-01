@@ -2,6 +2,11 @@ package vista;
 
 import controlador.CtrlUsuario;
 import controlador.controladorBanco;
+import controlador.controladorCategoriaGastos;
+import controlador.controladorConceptoGasto;
+import controlador.controladorCuenta;
+import controlador.controladorProveedores;
+import controlador.controladorTipoUsuario;
 import java.awt.Color;
 import static java.awt.Color.black;
 import static java.awt.Color.gray;
@@ -294,6 +299,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         catalogoCategoriaGastos catacg = new catalogoCategoriaGastos();
+        categoriaGastos gas = new categoriaGastos();
+        controladorCategoriaGastos controcg = new controladorCategoriaGastos(catacg, gas);
         catacg.jButton2.setEnabled(false);
         catacg.jButton2.setForeground(gray);
         catacg.jButton4.setEnabled(false);
@@ -306,6 +313,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         catalogoConceptoGasto catacog = new catalogoConceptoGasto();
+        conceptoGasto cga = new conceptoGasto();
+        controladorConceptoGasto controcga = new controladorConceptoGasto(catacog, cga);
         catacog.jButton2.setForeground(gray);
         catacog.jButton2.setEnabled(false);
 
@@ -319,6 +328,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         catalogoCuenta catacu = new catalogoCuenta();
+        cuenta cu = new cuenta();
+       controladorCuenta controcu = new controladorCuenta(catacu, cu);
         catacu.jButton2.setEnabled(false);
 
         catacu.jButton2.setForeground(gray);
@@ -332,6 +343,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         catalogoProveedores cataprov = new catalogoProveedores();
+        proveedores prov = new proveedores();
+        controladorProveedores controProv = new controladorProveedores(cataprov, prov);
         cataprov.jButton2.setForeground(gray);
         cataprov.jButton2.setEnabled(false);
 
@@ -345,6 +358,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         catalogoTipoUsuario catati = new catalogoTipoUsuario();
+        tipoUsuario tipou= new tipoUsuario();
+        controladorTipoUsuario controti = new controladorTipoUsuario(catati, tipou);
         catati.jButton2.setForeground(gray);
         catati.jButton2.setEnabled(false);
 
