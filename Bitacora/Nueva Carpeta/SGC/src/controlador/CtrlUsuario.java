@@ -138,13 +138,15 @@ public class CtrlUsuario implements ActionListener, ItemListener {
         if (e.getSource() == catausu.jButton2) {
             this.vistaGU.setVisible(true);
             this.vistaGU.btnModificar.setVisible(false);
+            this.vistaGU.btnGuardar.setVisible(true);
+            
 
         }
 
         if (e.getSource() == catausu.jButton4) {
             this.vistaGU.setVisible(true);
             this.vistaGU.btnGuardar.setVisible(false);
-
+            this.vistaGU.btnModificar.setVisible(true);
         }
 
         if (e.getSource() == catausu.jButton5) {
