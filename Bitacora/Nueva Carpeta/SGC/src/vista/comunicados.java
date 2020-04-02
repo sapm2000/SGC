@@ -152,6 +152,7 @@ public class comunicados extends javax.swing.JFrame {
 
         jTextField2.setBackground(new java.awt.Color(0, 94, 159));
         jTextField2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
         jTextField2.setBorder(null);
         jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 200, 30));
 

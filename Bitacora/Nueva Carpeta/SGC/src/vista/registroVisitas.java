@@ -93,7 +93,7 @@ public class registroVisitas extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Cédula", "Nombre", "Apellido", "Fecha Entrada", "Hora Entrada", "unidad"
+                "Cédula", "Nombre", "Apellido", "Fecha Entrada", "Hora Entrada", "Unidad"
             }
         ));
         jTable1.setRowHeight(20);
@@ -183,7 +183,7 @@ public class registroVisitas extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, -1, -1));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, -1));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator6.setOpaque(true);
@@ -262,7 +262,7 @@ public class registroVisitas extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Registro de Visitas");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 620));
 
