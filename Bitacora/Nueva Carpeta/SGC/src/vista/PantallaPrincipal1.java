@@ -6,6 +6,7 @@ import controlador.controladorCuotasEspeciales;
 import controlador.controladorFondo;
 import controlador.controladorGastoComun;
 import controlador.controladorInteres;
+import controlador.controladorPropietario;
 import controlador.controladorSancion;
 import controlador.controladorUnidades;
 import controlador.controladorVisita;
@@ -442,6 +443,8 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         catalogoPropietarios cataprop = new catalogoPropietarios();
+        propietarios prop= new propietarios();
+        controladorPropietario contropro = new controladorPropietario(prop, cataprop);
         cataprop.jButton2.setEnabled(false);
         cataprop.jButton2.setForeground(Color.gray);
         cataprop.jButton5.setEnabled(false);
