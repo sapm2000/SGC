@@ -56,7 +56,7 @@ public class controladorComunicados implements ActionListener{
 
 
         if (e.getSource() == com.btnGuardar) {
-            JOptionPane.showMessageDialog(null, "registro guardado");
+            JOptionPane.showMessageDialog(null, "mensaje enviado");
 
         }
 
