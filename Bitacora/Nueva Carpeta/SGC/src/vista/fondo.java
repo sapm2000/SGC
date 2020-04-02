@@ -43,14 +43,14 @@ public class fondo extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane2 = new javax.swing.JTextPane();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         jTextField3 = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
         btnMinimizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
@@ -124,26 +124,6 @@ public class fondo extends javax.swing.JFrame {
         jTextField2.setBorder(null);
         jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 140, 20));
 
-        jScrollPane1.setBackground(new java.awt.Color(0, 94, 159));
-        jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
-
-        jTextPane1.setBackground(new java.awt.Color(0, 94, 159));
-        jTextPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextPane1.setForeground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setViewportView(jTextPane1);
-
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 220, 100));
-
-        jScrollPane2.setBackground(new java.awt.Color(0, 94, 159));
-        jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
-
-        jTextPane2.setBackground(new java.awt.Color(0, 94, 159));
-        jTextPane2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextPane2.setForeground(new java.awt.Color(255, 255, 255));
-        jScrollPane2.setViewportView(jTextPane2);
-
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 42, 220, 100));
-
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 140, 10));
 
@@ -158,6 +138,26 @@ public class fondo extends javax.swing.JFrame {
         jTextField3.setForeground(new java.awt.Color(255, 255, 255));
         jTextField3.setBorder(null);
         jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 140, 20));
+
+        jTextArea1.setBackground(new java.awt.Color(0, 94, 159));
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
+        jTextArea1.setRows(5);
+        jTextArea1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
+        jScrollPane3.setViewportView(jTextArea1);
+
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 240, 100));
+
+        jTextArea2.setBackground(new java.awt.Color(0, 94, 159));
+        jTextArea2.setColumns(20);
+        jTextArea2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextArea2.setForeground(new java.awt.Color(255, 255, 255));
+        jTextArea2.setRows(5);
+        jTextArea2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
+        jScrollPane4.setViewportView(jTextArea2);
+
+        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, 240, 100));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 480, 280));
 
@@ -338,19 +338,19 @@ public class fondo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
     public javax.swing.JTextField jTextField2;
     public javax.swing.JTextField jTextField3;
     public javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JTextPane jTextPane2;
     // End of variables declaration//GEN-END:variables
 }

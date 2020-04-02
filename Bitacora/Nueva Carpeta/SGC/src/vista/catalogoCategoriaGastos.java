@@ -20,7 +20,7 @@ public class catalogoCategoriaGastos extends javax.swing.JFrame {
      */
     public catalogoCategoriaGastos() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
+        jTable2.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         setLocationRelativeTo(null);
     }
 

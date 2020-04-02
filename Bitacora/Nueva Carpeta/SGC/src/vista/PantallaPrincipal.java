@@ -229,7 +229,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenu5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jMenuBar1.add(jMenu5);
 
-        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user.png"))); // NOI18N
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user (1).png"))); // NOI18N
         jMenu6.setText("Perfil");
         jMenu6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenu6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
