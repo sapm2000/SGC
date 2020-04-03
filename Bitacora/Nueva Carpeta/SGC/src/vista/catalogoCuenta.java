@@ -74,6 +74,11 @@ public class catalogoCuenta extends javax.swing.JFrame {
             }
         ));
         jTable1.setRowHeight(20);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 680, 280));
@@ -208,6 +213,13 @@ public class catalogoCuenta extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+         int fila = this.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int columna = this.jTable1.getSelectedColumn(); // luego, obtengo la columna seleccionada
+        String dato = String.valueOf(this.jTable1.getValueAt(fila, columna)); // por ultimo, obtengo el valor de la celda
+        jTextField1.setText(String.valueOf(dato));
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
