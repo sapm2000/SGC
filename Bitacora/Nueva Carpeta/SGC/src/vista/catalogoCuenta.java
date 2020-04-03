@@ -64,8 +64,8 @@ public class catalogoCuenta extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
+                {"mer", "0114", "26943", "jose", null, null},
+                {"ven", "0102", "27320", "luis", null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null}
             },
@@ -217,7 +217,7 @@ public class catalogoCuenta extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
          int fila = this.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
         int columna = this.jTable1.getSelectedColumn(); // luego, obtengo la columna seleccionada
-        String dato = String.valueOf(this.jTable1.getValueAt(fila, columna)); // por ultimo, obtengo el valor de la celda
+        String dato = String.valueOf(this.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
         jTextField1.setText(String.valueOf(dato));
     }//GEN-LAST:event_jTable1MouseClicked
 
