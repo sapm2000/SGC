@@ -8,9 +8,7 @@ package controlador;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.CategoriaGasto;
@@ -39,9 +37,8 @@ public class controladorCategoriaGastos implements ActionListener {
         this.cg.btnGuardar.addActionListener(this);
         this.cg.btnLimpiar.addActionListener(this);
         this.cg.btnModificar.addActionListener(this);
-        this.catacg.jTable2.addMouseListener((MouseListener) this);
-        this.catacg.jTable2.addKeyListener((KeyListener) this);
-        this.catacg.jTextField1.addKeyListener((KeyListener) this);
+        this.catacg.jTable2.addMouseListener(this);
+        
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -119,7 +116,7 @@ public class controladorCategoriaGastos implements ActionListener {
         
         
     }
-    
+    @Override
     public void mouseClicked(MouseEvent e) {
             // primero, obtengo la fila seleccionada
 
