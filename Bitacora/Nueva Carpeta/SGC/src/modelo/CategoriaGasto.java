@@ -7,7 +7,9 @@ package modelo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -70,6 +72,35 @@ public class CategoriaGasto extends ConexionBD {
                 System.err.println(e);
             }
         }
+
+    }
+    
+    public ArrayList<CategoriaGasto> lPerson(CategoriaGasto prs) {
+        ArrayList listaPersona = new ArrayList();
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT id, nombre, descripcion FROM categoriagasto;";
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                //prs = new Persona();
+                prs.setId(rs.getInt(1));
+                prs.setNombre(rs.getString(2));
+                prs.setDescripcion(rs.getString(3));
+                
+                listaPersona.add(prs);
+            }
+
+        } catch (Exception e) {
+        }
+
+        return listaPersona;
 
     }
 

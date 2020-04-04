@@ -47,6 +47,33 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         this.catacg.jTextField1.addKeyListener(this);
 
     }
+    
+    public void Llenartabla(JTable tablaD) {
+
+        DefaultTableModel modeloT = new DefaultTableModel();
+        tablaD.setModel(modeloT);
+
+        
+        modeloT.addColumn("Nombre");
+        modeloT.addColumn("Descripcion");
+       
+
+        Object[] columna = new Object[2];
+
+        int numRegistro = modcg.lPerson(modcg).size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            
+            columna[0] = modcg.lPerson(modcg).get(i).getNombre();
+            columna[1] = modcg.lPerson(modcg).get(i).getDescripcion();
+            
+
+            modeloT.addRow(columna);
+
+        }
+
+    }
 
     public void actionPerformed(ActionEvent e) {
 
@@ -61,6 +88,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
                 this.catacg.jButton2.setForeground(Color.gray);
                 this.catacg.jButton4.setForeground(new java.awt.Color(0, 94, 159));
                 this.catacg.jButton5.setForeground(new java.awt.Color(0, 94, 159));
+                Llenartabla(catacg.jTable2);
 
             } else {
                 this.catacg.jButton2.setEnabled(true);
