@@ -8,6 +8,8 @@ package controlador;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import vista.banco;
 import vista.catalogoBanco;
@@ -16,7 +18,7 @@ import vista.catalogoBanco;
  *
  * @author rma
  */
-public class controladorBanco implements ActionListener {
+public class controladorBanco implements ActionListener, MouseListener{
 
     private banco ban;
     private catalogoBanco cban;
@@ -31,11 +33,12 @@ public class controladorBanco implements ActionListener {
         this.ban.btnGuardar.addActionListener(this);
         this.ban.btnLimpiar.addActionListener(this);
         this.ban.btnModificar.addActionListener(this);
+        this.cban.jTable1.addMouseListener(this);
 
     }
 
     public void actionPerformed(ActionEvent e) {
-
+        
         if (e.getSource() == cban.jButton1) {
             int botonDialogo = JOptionPane.YES_NO_OPTION;
             int result = JOptionPane.showConfirmDialog(null, "ENCONTRO EL REGISTRO?", "REGISTRO", botonDialogo);
@@ -93,5 +96,35 @@ public class controladorBanco implements ActionListener {
 
         }
 
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+            // primero, obtengo la fila seleccionada
+
+        int fila = this.cban.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int columna = this.cban.jTable1.getSelectedColumn(); // luego, obtengo la columna seleccionada
+        String dato = String.valueOf(this.cban.jTable1.getValueAt(fila, columna)); // por ultimo, obtengo el valor de la celda
+        cban.jTextField1.setText(String.valueOf(dato));
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        
     }
 }

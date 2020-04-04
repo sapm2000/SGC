@@ -213,12 +213,7 @@ public class catalogoBanco extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // primero, obtengo la fila seleccionada
-
-        int fila = this.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
-        int columna = this.jTable1.getSelectedColumn(); // luego, obtengo la columna seleccionada
-        String dato = String.valueOf(this.jTable1.getValueAt(fila, columna)); // por ultimo, obtengo el valor de la celda
-        jTextField1.setText(String.valueOf(dato));
+    
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**
@@ -271,7 +266,7 @@ public class catalogoBanco extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     public javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
  static public class Headercolor extends DefaultTableCellHeaderRenderer {
