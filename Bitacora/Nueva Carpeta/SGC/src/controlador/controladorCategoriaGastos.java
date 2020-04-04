@@ -8,7 +8,10 @@ package controlador;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.CategoriaGasto;
@@ -19,7 +22,7 @@ import vista.categoriaGastos;
  *
  * @author rma
  */
-public class controladorCategoriaGastos implements ActionListener {
+public class controladorCategoriaGastos implements ActionListener, MouseListener, KeyListener {
 
     private catalogoCategoriaGastos catacg;
     private categoriaGastos cg;
@@ -124,6 +127,41 @@ public class controladorCategoriaGastos implements ActionListener {
         int columna = this.catacg.jTable2.getSelectedColumn(); // luego, obtengo la columna seleccionada
         String dato = String.valueOf(this.catacg.jTable2.getValueAt(fila, columna)); // por ultimo, obtengo el valor de la celda
         catacg.jTextField1.setText(String.valueOf(dato));
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        
     }
 
 }
