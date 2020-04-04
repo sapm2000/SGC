@@ -8,13 +8,11 @@ import controlador.controladorCondominio;
 import controlador.controladorCuenta;
 import controlador.controladorProveedores;
 import controlador.controladorTipoUsuario;
-import java.awt.Color;
-import static java.awt.Color.black;
 import static java.awt.Color.gray;
-import static java.awt.Color.white;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import modelo.CategoriaGasto;
 import modelo.CrudUsuario;
 import modelo.Usuario;
 
@@ -295,7 +293,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         catalogoCategoriaGastos catacg = new catalogoCategoriaGastos();
         categoriaGastos gas = new categoriaGastos();
-        controladorCategoriaGastos controcg = new controladorCategoriaGastos(catacg, gas);
+        CategoriaGasto modcg = new CategoriaGasto();
+        controladorCategoriaGastos controcg = new controladorCategoriaGastos(catacg, gas, modcg);
         catacg.jButton2.setEnabled(false);
         catacg.jButton2.setForeground(gray);
         catacg.jButton4.setEnabled(false);

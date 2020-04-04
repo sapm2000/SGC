@@ -78,8 +78,8 @@ public class catalogoCategoriaGastos extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
+                {"nombre", "desc"},
+                {"prueba", null},
                 {null, null},
                 {null, null}
             },
@@ -271,7 +271,7 @@ public class catalogoCategoriaGastos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    public javax.swing.JTable jTable2;
     public javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
