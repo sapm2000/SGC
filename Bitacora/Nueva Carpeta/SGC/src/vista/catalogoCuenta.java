@@ -11,6 +11,9 @@ import java.awt.Component;
 import java.awt.Font;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 public class catalogoCuenta extends javax.swing.JFrame {
@@ -22,6 +25,7 @@ public class catalogoCuenta extends javax.swing.JFrame {
         initComponents();
         jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         setLocationRelativeTo(null);
+       
     }
 
     /**
@@ -64,8 +68,8 @@ public class catalogoCuenta extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
+                {"mer", "0114", "26943", "jose", null, null},
+                {"ven", "0102", "27320", "luis", null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null}
             },
@@ -74,6 +78,16 @@ public class catalogoCuenta extends javax.swing.JFrame {
             }
         ));
         jTable1.setRowHeight(20);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable1KeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 680, 280));
@@ -149,6 +163,17 @@ public class catalogoCuenta extends javax.swing.JFrame {
         jTextField1.setForeground(new java.awt.Color(204, 204, 204));
         jTextField1.setText("Buscar...");
         jTextField1.setBorder(null);
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 190, 20));
 
         jSeparator1.setBackground(new java.awt.Color(0, 94, 159));
@@ -208,6 +233,41 @@ public class catalogoCuenta extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    DefaultTableModel dm;
+
+/* Método filtro*/
+private void filtro(String consulta, JTable jtableBuscar){
+        dm = (DefaultTableModel) jtableBuscar.getModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        jtableBuscar.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(consulta));
+}
+
+
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+         int fila = this.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int columna = this.jTable1.getSelectedColumn(); // luego, obtengo la columna seleccionada
+        String dato = String.valueOf(this.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+        jTextField1.setText(String.valueOf(dato));
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1KeyPressed
+
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+         
+    }//GEN-LAST:event_jTextField1KeyPressed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+       
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        filtro(jTextField1.getText(), jTable1);
+    }//GEN-LAST:event_jTextField1KeyReleased
 
     /**
      * @param args the command line arguments

@@ -11,6 +11,7 @@ import java.awt.Font;
 import javax.swing.JTable;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author rma
@@ -68,15 +69,20 @@ public class catalogoBanco extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
+                {"mercantil"},
+                {"venezuela"},
+                {"bancaribe "},
                 {null}
             },
             new String [] {
                 "Banco"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 460, 260));
@@ -206,6 +212,10 @@ public class catalogoBanco extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    
+    }//GEN-LAST:event_jTable1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -256,19 +266,21 @@ public class catalogoBanco extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     public javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
  static public class Headercolor extends DefaultTableCellHeaderRenderer {
-    public Headercolor () {
-        setOpaque(true);
+
+        public Headercolor() {
+            setOpaque(true);
+        }
+
+        public Component getTableCellRendererComponent(JTable jTable1, Object value, boolean selected, boolean focused, int row, int column) {
+            super.getTableCellRendererComponent(jTable1, value, selected, focused, row, column);
+            setBackground(new java.awt.Color(0, 94, 159));
+            setForeground(Color.white);
+            setFont(new Font("Tahoma", Font.BOLD, 14));
+            return this;
+        }
     }
-    public Component getTableCellRendererComponent(JTable jTable1, Object value, boolean selected, boolean focused,int row,int column) {
-        super.getTableCellRendererComponent(jTable1, value, selected, focused, row, column);
-        setBackground(new java.awt.Color(0,94,159));
-        setForeground(Color.white);
-        setFont(new Font("Tahoma", Font.BOLD, 14));
-        return this;
-    }
-}
 }

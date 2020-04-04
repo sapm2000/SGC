@@ -8,7 +8,19 @@ package controlador;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import modelo.CategoriaGasto;
+import static sun.jvm.hotspot.HelloWorld.e;
 import vista.catalogoCategoriaGastos;
 import vista.categoriaGastos;
 
@@ -16,14 +28,17 @@ import vista.categoriaGastos;
  *
  * @author rma
  */
-public class controladorCategoriaGastos implements ActionListener {
+public class controladorCategoriaGastos implements ActionListener, MouseListener, KeyListener, WindowListener {
 
     private catalogoCategoriaGastos catacg;
     private categoriaGastos cg;
+    private CategoriaGasto modcg;
+    DefaultTableModel dm;
 
-    public controladorCategoriaGastos(catalogoCategoriaGastos catacg, categoriaGastos cg) {
+    public controladorCategoriaGastos(catalogoCategoriaGastos catacg, categoriaGastos cg, CategoriaGasto modcg) {
         this.catacg = catacg;
         this.cg = cg;
+        this.modcg = modcg;
         this.catacg.jButton1.addActionListener(this);
         this.catacg.jButton2.addActionListener(this);
         this.catacg.jButton4.addActionListener(this);
@@ -31,6 +46,37 @@ public class controladorCategoriaGastos implements ActionListener {
         this.cg.btnGuardar.addActionListener(this);
         this.cg.btnLimpiar.addActionListener(this);
         this.cg.btnModificar.addActionListener(this);
+        this.catacg.jTable2.addMouseListener(this);
+        this.catacg.jTextField1.addKeyListener(this);
+        this.catacg.addWindowListener(this);
+        
+    }
+    
+    public void Llenartabla(JTable tablaD) {
+
+        DefaultTableModel modeloT = new DefaultTableModel();
+        tablaD.setModel(modeloT);
+
+        
+        modeloT.addColumn("Nombre");
+        modeloT.addColumn("Descripcion");
+       
+
+        Object[] columna = new Object[2];
+
+        int numRegistro = modcg.lPerson(modcg).size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            
+            columna[0] = modcg.lPerson(modcg).get(i).getNombre();
+            columna[1] = modcg.lPerson(modcg).get(i).getDescripcion();
+            
+
+            modeloT.addRow(columna);
+
+        }
+
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -46,6 +92,7 @@ public class controladorCategoriaGastos implements ActionListener {
                 this.catacg.jButton2.setForeground(Color.gray);
                 this.catacg.jButton4.setForeground(new java.awt.Color(0, 94, 159));
                 this.catacg.jButton5.setForeground(new java.awt.Color(0, 94, 159));
+                Llenartabla(catacg.jTable2);
 
             } else {
                 this.catacg.jButton2.setEnabled(true);
@@ -84,7 +131,18 @@ public class controladorCategoriaGastos implements ActionListener {
         }
 
         if (e.getSource() == cg.btnGuardar) {
-            JOptionPane.showMessageDialog(null, "registro guardado");
+            modcg.setNombre(cg.txtnombre.getText());
+            modcg.setDescripcion(cg.txtdescripcion.getText());
+
+            if (modcg.registrar(modcg)) {
+
+                JOptionPane.showMessageDialog(null, "Registro Guardado");
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Error al Guardar");
+
+            }
 
         }
 
@@ -92,6 +150,94 @@ public class controladorCategoriaGastos implements ActionListener {
             JOptionPane.showMessageDialog(null, "registro modificado");
 
         }
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        // primero, obtengo la fila seleccionada
+
+        int fila = this.catacg.jTable2.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int columna = this.catacg.jTable2.getSelectedColumn(); // luego, obtengo la columna seleccionada
+        String dato = String.valueOf(this.catacg.jTable2.getValueAt(fila, columna)); // por ultimo, obtengo el valor de la celda
+        catacg.jTextField1.setText(String.valueOf(dato));
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+    private void filtro(String consulta, JTable jtableBuscar) {
+        dm = (DefaultTableModel) jtableBuscar.getModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        jtableBuscar.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(consulta));
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        filtro(catacg.jTextField1.getText(), catacg.jTable2);
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+       Llenartabla(catacg.jTable2);
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+        
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+        
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+        
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+        
     }
 
 }
