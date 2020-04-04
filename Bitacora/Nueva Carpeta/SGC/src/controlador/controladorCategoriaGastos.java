@@ -13,7 +13,10 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import modelo.CategoriaGasto;
 import vista.catalogoCategoriaGastos;
 import vista.categoriaGastos;
@@ -41,7 +44,8 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         this.cg.btnLimpiar.addActionListener(this);
         this.cg.btnModificar.addActionListener(this);
         this.catacg.jTable2.addMouseListener(this);
-        
+        this.catacg.jTextField1.addKeyListener(this);
+
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -97,16 +101,14 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         if (e.getSource() == cg.btnGuardar) {
             modcg.setNombre(cg.txtnombre.getText());
             modcg.setDescripcion(cg.txtdescripcion.getText());
-            
+
             if (modcg.registrar(modcg)) {
 
                 JOptionPane.showMessageDialog(null, "Registro Guardado");
-                
 
             } else {
 
                 JOptionPane.showMessageDialog(null, "Error al Guardar");
-                
 
             }
 
@@ -116,12 +118,12 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
             JOptionPane.showMessageDialog(null, "registro modificado");
 
         }
-        
-        
+
     }
+
     @Override
     public void mouseClicked(MouseEvent e) {
-            // primero, obtengo la fila seleccionada
+        // primero, obtengo la fila seleccionada
 
         int fila = this.catacg.jTable2.getSelectedRow(); // primero, obtengo la fila seleccionada
         int columna = this.catacg.jTable2.getSelectedColumn(); // luego, obtengo la columna seleccionada
@@ -131,37 +133,44 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
     @Override
     public void mousePressed(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        
+
+    }
+
+    private void filtro(String consulta, JTable jtableBuscar) {
+        dm = (DefaultTableModel) jtableBuscar.getModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        jtableBuscar.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(consulta));
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        
+
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        
+
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        
+        filtro(catacg.jTextField1.getText(), catacg.jTable2);
     }
 
 }
