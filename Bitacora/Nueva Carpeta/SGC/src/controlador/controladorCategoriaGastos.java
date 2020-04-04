@@ -12,12 +12,15 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.CategoriaGasto;
+import static sun.jvm.hotspot.HelloWorld.e;
 import vista.catalogoCategoriaGastos;
 import vista.categoriaGastos;
 
@@ -25,7 +28,7 @@ import vista.categoriaGastos;
  *
  * @author rma
  */
-public class controladorCategoriaGastos implements ActionListener, MouseListener, KeyListener {
+public class controladorCategoriaGastos implements ActionListener, MouseListener, KeyListener, WindowListener {
 
     private catalogoCategoriaGastos catacg;
     private categoriaGastos cg;
@@ -45,7 +48,8 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         this.cg.btnModificar.addActionListener(this);
         this.catacg.jTable2.addMouseListener(this);
         this.catacg.jTextField1.addKeyListener(this);
-
+        this.catacg.addWindowListener(this);
+        
     }
     
     public void Llenartabla(JTable tablaD) {
@@ -199,6 +203,41 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
     @Override
     public void keyReleased(KeyEvent e) {
         filtro(catacg.jTextField1.getText(), catacg.jTable2);
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+       Llenartabla(catacg.jTable2);
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+        
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+        
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+        
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+        
     }
 
 }
