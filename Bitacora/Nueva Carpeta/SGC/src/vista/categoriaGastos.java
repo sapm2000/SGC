@@ -122,6 +122,7 @@ public class categoriaGastos extends javax.swing.JFrame {
         txtdescripcion.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtdescripcion.setForeground(new java.awt.Color(255, 255, 255));
         txtdescripcion.setBorder(null);
+        txtdescripcion.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jPanel2.add(txtdescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 180, 30));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
