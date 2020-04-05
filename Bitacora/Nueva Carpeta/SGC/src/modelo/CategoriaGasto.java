@@ -91,7 +91,6 @@ public class CategoriaGasto extends ConexionBD {
 
             while (rs.next()) {
                 CategoriaGasto = new CategoriaGasto();
-                
 
                 //prs = new Persona();
                 CategoriaGasto.setId(rs.getInt(1));
@@ -108,4 +107,82 @@ public class CategoriaGasto extends ConexionBD {
 
     }
 
+    public boolean Buscar(CategoriaGasto catagc) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+
+        String sql = "SELECT * FROM categoriagasto WHERE nombre=? ";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, catagc.getNombre());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                catagc.setId(rs.getInt("id"));
+                catagc.setNombre(rs.getString("nombre"));
+                catagc.setDescripcion(rs.getString("descripcion"));
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
+
+    public boolean modificar(CategoriaGasto catacg) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE categoriagasto SET descripcion=? WHERE nombre=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+
+            ps.setString(1, catacg.getDescripcion());
+            ps.setString(2, catacg.getNombre());
+
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
 }
