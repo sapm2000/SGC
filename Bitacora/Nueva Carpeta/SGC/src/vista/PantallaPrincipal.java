@@ -284,10 +284,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         controladorBanco controb = new controladorBanco(ban, cataBan);
         cataBan.jButton2.setEnabled(false);
         cataBan.jButton2.setForeground(gray);
-        cataBan.jButton4.setEnabled(false);
-        cataBan.jButton4.setForeground(gray);
-        cataBan.jButton5.setEnabled(false);
-        cataBan.jButton5.setForeground(gray);
+       
         cataBan.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem3ActionPerformed

@@ -153,14 +153,14 @@ public class CategoriaGasto extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE categoriagasto SET descripcion=? WHERE nombre=?";
+        String sql = "UPDATE categoriagasto SET nombre=?, descripcion=? WHERE id=?";
 
         try {
 
             ps = con.prepareStatement(sql);
-
-            ps.setString(1, catacg.getDescripcion());
-            ps.setString(2, catacg.getNombre());
+            ps.setInt(3, catacg.getId());
+            ps.setString(2, catacg.getDescripcion());
+            ps.setString(1, catacg.getNombre());
 
             ps.execute();
 
@@ -182,6 +182,34 @@ public class CategoriaGasto extends ConexionBD {
 
             }
 
+        }
+
+    }
+    
+    public boolean eliminar(CategoriaGasto prs) {
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "DELETE FROM categoriagasto WHERE id=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, prs.getId());
+            ps.execute();
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
 
     }
