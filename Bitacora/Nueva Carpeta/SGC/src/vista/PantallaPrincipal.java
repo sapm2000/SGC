@@ -13,6 +13,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import modelo.CategoriaGasto;
+import modelo.Condominio;
 import modelo.CrudUsuario;
 import modelo.Usuario;
 
@@ -260,8 +261,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         catalogoCondominio cataCon = new catalogoCondominio();
         condominio condo = new condominio();
         PantallaPrincipal1 panta1 = new PantallaPrincipal1();
+        Condominio co = new Condominio();
         
-        controladorCondominio controcon = new controladorCondominio(cataCon, condo, panta1,this);
+        controladorCondominio controcon = new controladorCondominio(cataCon, condo, panta1,this,co);
 
         cataCon.setVisible(true);
         cataCon.jButton2.setEnabled(false);

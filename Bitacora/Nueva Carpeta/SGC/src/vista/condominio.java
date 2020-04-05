@@ -36,10 +36,10 @@ public class condominio extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtRif = new javax.swing.JTextField();
+        txtCorreo = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
+        txtRazonS = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -107,34 +107,35 @@ public class condominio extends javax.swing.JFrame {
         jLabel1.setText("Rif:");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 40, -1));
 
-        jTextField1.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setBorder(null);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtRif.setBackground(new java.awt.Color(0, 94, 159));
+        txtRif.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtRif.setForeground(new java.awt.Color(255, 255, 255));
+        txtRif.setBorder(null);
+        txtRif.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtRif.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtRifActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 200, 30));
+        jPanel2.add(txtRif, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 240, 30));
 
-        jTextField4.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField4.setBorder(null);
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 200, 30));
+        txtCorreo.setBackground(new java.awt.Color(0, 94, 159));
+        txtCorreo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtCorreo.setForeground(new java.awt.Color(255, 255, 255));
+        txtCorreo.setBorder(null);
+        jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 200, 30));
 
-        jTextField3.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField3.setBorder(null);
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 200, 30));
+        txtTelefono.setBackground(new java.awt.Color(0, 94, 159));
+        txtTelefono.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtTelefono.setForeground(new java.awt.Color(255, 255, 255));
+        txtTelefono.setBorder(null);
+        jPanel2.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 200, 30));
 
-        jTextField2.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField2.setBorder(null);
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 200, 30));
+        txtRazonS.setBackground(new java.awt.Color(0, 94, 159));
+        txtRazonS.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtRazonS.setForeground(new java.awt.Color(255, 255, 255));
+        txtRazonS.setBorder(null);
+        jPanel2.add(txtRazonS, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 200, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -224,9 +225,9 @@ public class condominio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtRifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRifActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtRifActionPerformed
 
     private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
         this.setState(vista.InicioUsuario.ICONIFIED);
@@ -310,9 +311,9 @@ public class condominio extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    public javax.swing.JTextField jTextField1;
-    public javax.swing.JTextField jTextField2;
-    public javax.swing.JTextField jTextField3;
-    public javax.swing.JTextField jTextField4;
+    public javax.swing.JTextField txtCorreo;
+    public javax.swing.JTextField txtRazonS;
+    public javax.swing.JTextField txtRif;
+    public javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }
