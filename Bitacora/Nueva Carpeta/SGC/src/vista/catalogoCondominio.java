@@ -47,7 +47,7 @@ public class catalogoCondominio extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
         btnMinimizar = new javax.swing.JButton();
@@ -148,11 +148,11 @@ public class catalogoCondominio extends javax.swing.JFrame {
         jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lupa (1).png"))); // NOI18N
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 90, -1));
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField1.setText("Buscar...");
-        jTextField1.setBorder(null);
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 190, 20));
+        txtBuscar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtBuscar.setForeground(new java.awt.Color(204, 204, 204));
+        txtBuscar.setText("Buscar...");
+        txtBuscar.setBorder(null);
+        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 190, 20));
 
         jSeparator1.setBackground(new java.awt.Color(0, 94, 159));
         jSeparator1.setForeground(new java.awt.Color(0, 94, 159));
@@ -290,8 +290,8 @@ public class catalogoCondominio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
-    public javax.swing.JTextField jTextField1;
+    public javax.swing.JTable jTable1;
+    public javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
     static public class Headercolor extends DefaultTableCellHeaderRenderer {
     public Headercolor () {
