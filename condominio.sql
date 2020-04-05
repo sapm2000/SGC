@@ -5,7 +5,7 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2020-04-04 14:11:00
+-- Started on 2020-04-04 23:56:25
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -53,13 +53,28 @@ CREATE SEQUENCE public."categoriaGasto_id_seq"
 ALTER TABLE public."categoriaGasto_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 2828 (class 0 OID 0)
+-- TOC entry 2836 (class 0 OID 0)
 -- Dependencies: 203
 -- Name: categoriaGasto_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public."categoriaGasto_id_seq" OWNED BY public.categoriagasto.id;
 
+
+--
+-- TOC entry 205 (class 1259 OID 16449)
+-- Name: condominio; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.condominio (
+    rif character varying NOT NULL,
+    razon_social character varying NOT NULL,
+    telefono character varying NOT NULL,
+    correo_electronico character varying NOT NULL
+);
+
+
+ALTER TABLE public.condominio OWNER TO postgres;
 
 --
 -- TOC entry 202 (class 1259 OID 16430)
@@ -80,7 +95,7 @@ CREATE TABLE public.usuario (
 ALTER TABLE public.usuario OWNER TO postgres;
 
 --
--- TOC entry 2691 (class 2604 OID 16444)
+-- TOC entry 2696 (class 2604 OID 16444)
 -- Name: categoriagasto id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -88,18 +103,31 @@ ALTER TABLE ONLY public.categoriagasto ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 2822 (class 0 OID 16441)
+-- TOC entry 2829 (class 0 OID 16441)
 -- Dependencies: 204
 -- Data for Name: categoriagasto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.categoriagasto (id, nombre, descripcion) FROM stdin;
 18	nombre	desc
+19	administrativo	conjunto de gastos administrativos
+21	true	este registro se ha modificado
+20	mantenimiento	conj mantenimiento
 \.
 
 
 --
--- TOC entry 2820 (class 0 OID 16430)
+-- TOC entry 2830 (class 0 OID 16449)
+-- Dependencies: 205
+-- Data for Name: condominio; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.condominio (rif, razon_social, telefono, correo_electronico) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2827 (class 0 OID 16430)
 -- Dependencies: 202
 -- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -114,16 +142,16 @@ COPY public.usuario (cedula, usuario, password, nombre, apellido, tipo, ntelefon
 
 
 --
--- TOC entry 2829 (class 0 OID 0)
+-- TOC entry 2837 (class 0 OID 0)
 -- Dependencies: 203
 -- Name: categoriaGasto_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."categoriaGasto_id_seq"', 18, true);
+SELECT pg_catalog.setval('public."categoriaGasto_id_seq"', 21, true);
 
 
 --
--- TOC entry 2693 (class 2606 OID 16446)
+-- TOC entry 2698 (class 2606 OID 16446)
 -- Name: categoriagasto categoriaGasto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -131,7 +159,16 @@ ALTER TABLE ONLY public.categoriagasto
     ADD CONSTRAINT "categoriaGasto_pkey" PRIMARY KEY (id);
 
 
--- Completed on 2020-04-04 14:11:02
+--
+-- TOC entry 2700 (class 2606 OID 16456)
+-- Name: condominio condominio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.condominio
+    ADD CONSTRAINT condominio_pkey PRIMARY KEY (rif);
+
+
+-- Completed on 2020-04-04 23:56:25
 
 --
 -- PostgreSQL database dump complete

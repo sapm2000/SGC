@@ -48,18 +48,16 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         this.catacg.jTable2.addMouseListener(this);
         this.catacg.jTextField1.addKeyListener(this);
         this.catacg.addWindowListener(this);
-        
+
     }
-    
+
     public void Llenartabla(JTable tablaD) {
 
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
 
-        
         modeloT.addColumn("Nombre");
         modeloT.addColumn("Descripcion");
-       
 
         Object[] columna = new Object[2];
 
@@ -67,11 +65,8 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
         for (int i = 0; i < numRegistro; i++) {
 
-          
-
             columna[0] = modcg.lPerson().get(i).getNombre();
             columna[1] = modcg.lPerson().get(i).getDescripcion();
-            
 
             modeloT.addRow(columna);
 
@@ -92,7 +87,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
                 this.catacg.jButton2.setForeground(Color.gray);
                 this.catacg.jButton4.setForeground(new java.awt.Color(0, 94, 159));
                 this.catacg.jButton5.setForeground(new java.awt.Color(0, 94, 159));
-                Llenartabla(catacg.jTable2);
+                
 
             } else {
                 this.catacg.jButton2.setEnabled(true);
@@ -137,6 +132,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
             if (modcg.registrar(modcg)) {
 
                 JOptionPane.showMessageDialog(null, "Registro Guardado");
+                
 
             } else {
 
@@ -147,9 +143,24 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         }
 
         if (e.getSource() == cg.btnModificar) {
-            JOptionPane.showMessageDialog(null, "registro modificado");
+             modcg.setNombre(cg.txtnombre.getText());
+             modcg.setDescripcion(cg.txtdescripcion.getText());
+             
+             if (modcg.modificar(modcg)) {
 
+                JOptionPane.showMessageDialog(null, "Registro modificado");
+                cg.dispose();
+                Llenartabla(catacg.jTable2);
+                
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Error al Modificar");
+                
+            }
         }
+        
+        
 
     }
 
@@ -159,8 +170,17 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
         int fila = this.catacg.jTable2.getSelectedRow(); // primero, obtengo la fila seleccionada
         int columna = this.catacg.jTable2.getSelectedColumn(); // luego, obtengo la columna seleccionada
-        String dato = String.valueOf(this.catacg.jTable2.getValueAt(fila, columna)); // por ultimo, obtengo el valor de la celda
-        catacg.jTextField1.setText(String.valueOf(dato));
+        String dato = String.valueOf(this.catacg.jTable2.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+
+        modcg.setNombre(String.valueOf(dato));
+
+        modcg.Buscar(modcg);
+
+        cg.setVisible(true);
+        cg.txtnombre.setText(modcg.getNombre());
+        cg.txtdescripcion.setText(modcg.getDescripcion());
+        cg.btnGuardar.setEnabled(false);
+
     }
 
     @Override
@@ -207,37 +227,37 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
     @Override
     public void windowOpened(WindowEvent e) {
-       Llenartabla(catacg.jTable2);
+        Llenartabla(catacg.jTable2);
     }
 
     @Override
     public void windowClosing(WindowEvent e) {
-        
+
     }
 
     @Override
     public void windowClosed(WindowEvent e) {
-        
+
     }
 
     @Override
     public void windowIconified(WindowEvent e) {
-        
+
     }
 
     @Override
     public void windowDeiconified(WindowEvent e) {
-        
+
     }
 
     @Override
     public void windowActivated(WindowEvent e) {
-        
+
     }
 
     @Override
     public void windowDeactivated(WindowEvent e) {
-        
+
     }
 
 }
