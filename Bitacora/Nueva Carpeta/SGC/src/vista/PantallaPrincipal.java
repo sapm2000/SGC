@@ -297,12 +297,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         categoriaGastos gas = new categoriaGastos();
         CategoriaGasto modcg = new CategoriaGasto();
         controladorCategoriaGastos controcg = new controladorCategoriaGastos(catacg, gas, modcg);
-        catacg.jButton2.setEnabled(false);
-        catacg.jButton2.setForeground(gray);
-        catacg.jButton4.setEnabled(false);
-        catacg.jButton4.setForeground(gray);
-        catacg.jButton5.setEnabled(false);
-        catacg.jButton5.setForeground(gray);
+       
+       
         catacg.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem4ActionPerformed

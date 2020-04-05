@@ -16,6 +16,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -38,13 +39,13 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         this.catacg = catacg;
         this.cg = cg;
         this.modcg = modcg;
-        this.catacg.jButton1.addActionListener(this);
+       
         this.catacg.jButton2.addActionListener(this);
-        this.catacg.jButton4.addActionListener(this);
-        this.catacg.jButton5.addActionListener(this);
+        
+        
         this.cg.btnGuardar.addActionListener(this);
         this.cg.btnLimpiar.addActionListener(this);
-        this.cg.btnModificar.addActionListener(this);
+        this.cg.btnEliminar.addActionListener(this);
         this.catacg.jTable2.addMouseListener(this);
         this.catacg.jTextField1.addKeyListener(this);
         this.catacg.addWindowListener(this);
@@ -76,54 +77,19 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == catacg.jButton1) {
-            int botonDialogo = JOptionPane.YES_NO_OPTION;
-            int result = JOptionPane.showConfirmDialog(null, "ENCONTRO EL REGISTRO?", "REGISTRO", botonDialogo);
-            if (result == 0) {
-
-                this.catacg.jButton4.setEnabled(true);
-                this.catacg.jButton5.setEnabled(true);
-                this.catacg.jButton2.setEnabled(false);
-                this.catacg.jButton2.setForeground(Color.gray);
-                this.catacg.jButton4.setForeground(new java.awt.Color(0, 94, 159));
-                this.catacg.jButton5.setForeground(new java.awt.Color(0, 94, 159));
-                
-
-            } else {
-                this.catacg.jButton2.setEnabled(true);
-                this.catacg.jButton2.setForeground(new java.awt.Color(0, 94, 159));
-                this.catacg.jButton4.setEnabled(false);
-                this.catacg.jButton5.setEnabled(false);
-                this.catacg.jButton4.setForeground(Color.gray);
-                this.catacg.jButton5.setForeground(Color.gray);
-
-            }
-        }
+       
 
         if (e.getSource() == catacg.jButton2) {
             this.cg.setVisible(true);
-            this.cg.btnModificar.setVisible(false);
+            this.cg.btnEliminar.setVisible(false);
             this.cg.btnGuardar.setVisible(true);
 
         }
 
-        if (e.getSource() == catacg.jButton4) {
-            this.cg.setVisible(true);
-            this.cg.btnGuardar.setVisible(false);
-            this.cg.btnModificar.setVisible(true);
+      
 
-        }
-
-        if (e.getSource() == catacg.jButton5) {
-            int botonDialogo = JOptionPane.YES_NO_OPTION;
-            int result = JOptionPane.showConfirmDialog(null, "DESEA ELIMINAR EL REGISTRO?", "ELIMINAR", botonDialogo);
-            if (result == 0) {
-                JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
-            } else {
-
-            }
-
-        }
+       
+       
 
         if (e.getSource() == cg.btnGuardar) {
             modcg.setNombre(cg.txtnombre.getText());
@@ -142,9 +108,10 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
         }
 
-        if (e.getSource() == cg.btnModificar) {
+        if (e.getSource() == cg.btnEliminar) {
              modcg.setNombre(cg.txtnombre.getText());
              modcg.setDescripcion(cg.txtdescripcion.getText());
+             
              
              if (modcg.modificar(modcg)) {
 
@@ -178,7 +145,9 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
         cg.setVisible(true);
         cg.txtnombre.setText(modcg.getNombre());
+       
         cg.txtdescripcion.setText(modcg.getDescripcion());
+        
         cg.btnGuardar.setEnabled(false);
 
     }
