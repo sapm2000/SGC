@@ -11,22 +11,27 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import modelo.CrudUsuario;
-import modelo.Usuario;
 import vista.GestionarUsuario;
 import vista.catalogoUsuario;
 import controlador.Validacion;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
-public class CtrlUsuario implements ActionListener, ItemListener, MouseListener, KeyListener {
+public class CtrlUsuario implements ActionListener, ItemListener, MouseListener, KeyListener, WindowListener {
 
-    private Usuario mod;
+
     private CrudUsuario modC;
     private GestionarUsuario vistaGU;
     private catalogoUsuario catausu;
+   
+    DefaultTableModel dm;
 
     //Constructor de inicializacion de variables. Desde la linea 16 a la 26
-    public CtrlUsuario(Usuario mod, CrudUsuario modC, GestionarUsuario vistaGU, catalogoUsuario catausu) {
+    public CtrlUsuario(CrudUsuario modC, GestionarUsuario vistaGU, catalogoUsuario catausu) {
 
-        this.mod = mod;
+        
         this.modC = modC;
         this.vistaGU = vistaGU;
         this.catausu = catausu;
@@ -45,6 +50,9 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
         this.vistaGU.txtNombre.addKeyListener(this);
         this.vistaGU.txtApellido.addKeyListener(this);
         this.vistaGU.txtTelefono.addKeyListener(this);
+        this.catausu.txtBuscar.addKeyListener(this);
+        this.catausu.jtable.addMouseListener(this);
+        this.catausu.addWindowListener(this);
         
 
     }
@@ -52,20 +60,39 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        if (e.getSource() == catausu.btnBuscar) {
+            
+            this.vistaGU.setVisible(true);
+            this.vistaGU.btnEliminar.setEnabled(false);
+            this.vistaGU.btnGuardar.setEnabled(true);
+            this.vistaGU.btnModificar.setEnabled(false);
+            
+            vistaGU.txtCedula.setText("");
+            vistaGU.txtUsuario.setText("");
+            vistaGU.jpPassword.setText("");
+            vistaGU.txtNombre.setText("");
+            vistaGU.txtApellido.setText("");
+            vistaGU.txtTelefono.setText("");
+            vistaGU.cbxTipo.setSelectedItem("");
+
+            
+        }
 
         if (e.getSource() == vistaGU.btnGuardar) {
             if(validar()){
-            mod.setCedula(vistaGU.txtCedula.getText());
-            mod.setUsuario(vistaGU.txtUsuario.getText());
-            mod.setPassword(vistaGU.jpPassword.getText());
-            mod.setNombre(vistaGU.txtNombre.getText());
-            mod.setApellido(vistaGU.txtApellido.getText());
-            mod.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
-            mod.setNtelefono(vistaGU.txtTelefono.getText());
+            modC.setCedula(vistaGU.txtCedula.getText());
+            modC.setUsuario(vistaGU.txtUsuario.getText());
+            modC.setPassword(vistaGU.jpPassword.getText());
+            modC.setNombre(vistaGU.txtNombre.getText());
+            modC.setApellido(vistaGU.txtApellido.getText());
+            modC.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
+            modC.setNtelefono(vistaGU.txtTelefono.getText());
             }
-            if (modC.registrar(mod)) {
+            if (modC.registrar()) {
 
                 JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
+                Llenartabla(catausu.jtable);
                 limpiar();
 
             } else {
@@ -78,17 +105,17 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
 
         if (e.getSource() == vistaGU.btnModificar) {
             if(validar()){
-            mod.setUsuario(vistaGU.txtUsuario.getText());
-            mod.setPassword(vistaGU.jpPassword.getText());
-            mod.setNombre(vistaGU.txtNombre.getText());
-            mod.setApellido(vistaGU.txtApellido.getText());
-            mod.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
-            mod.setNtelefono(vistaGU.txtTelefono.getText());
+            modC.setUsuario(vistaGU.txtUsuario.getText());
+            modC.setPassword(vistaGU.jpPassword.getText());
+            modC.setNombre(vistaGU.txtNombre.getText());
+            modC.setApellido(vistaGU.txtApellido.getText());
+            modC.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
+            modC.setNtelefono(vistaGU.txtTelefono.getText());
             }
-            if (modC.modificar(mod)) {
+            if (modC.modificar()) {
 
                 JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
-
+                
                 limpiar();
 
             } else {
@@ -306,6 +333,70 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
         }
 
         return resultado;
+    }
+     
+         public void Llenartabla(JTable tablaD) {
+
+        DefaultTableModel modeloT = new DefaultTableModel();
+        tablaD.setModel(modeloT);
+
+        modeloT.addColumn("Usuario");
+        modeloT.addColumn("Nombre");
+        modeloT.addColumn("Apellido");
+        modeloT.addColumn("Telefono");
+        modeloT.addColumn("Tipo");
+                
+        Object[] columna = new Object[5];
+
+        int numRegistro = modC.listar().size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = modC.listar().get(i).getUsuario();
+            columna[1] = modC.listar().get(i).getNombre();
+            columna[2] = modC.listar().get(i).getApellido();
+            columna[3] = modC.listar().get(i).getNtelefono();
+            columna[4] = modC.listar().get(i).getTipo();
+
+            modeloT.addRow(columna);
+
+        }
+
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
