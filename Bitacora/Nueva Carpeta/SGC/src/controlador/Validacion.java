@@ -1,5 +1,5 @@
-package controlador;
 
+package controlador;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,14 +9,18 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 
-public class Validaciones implements ActionListener, MouseListener, KeyListener {
+/**
+ *
+ * @author Usuario
+ */
+public abstract class Validacion implements ActionListener, MouseListener, KeyListener {
 
     /*---FUNCIÓN PARA EVITAR EL COPY & PASTE---*/
-    public void evitarPegar(java.awt.event.KeyEvent evt) {
+    public static void evitarPegar(java.awt.event.KeyEvent evt) {
 
         char c = evt.getKeyChar();
 
-        if (evt.isControlDown() || evt.isShiftDown() && (c == 'c' || c == 'v')) {
+        if (evt.isControlDown() && (c == 'c' || c == 'v')) {
 
             JOptionPane.showMessageDialog(null, "No se permite copiar o pegar", "Error", JOptionPane.ERROR_MESSAGE);
             evt.consume();
@@ -26,7 +30,7 @@ public class Validaciones implements ActionListener, MouseListener, KeyListener 
     }
 
     /*---FUNCIÓN PARA PERMITIR SOLO LETRAS---*/
-    public void soloLetras(java.awt.event.KeyEvent evt) {
+    public static void soloLetras(java.awt.event.KeyEvent evt) {
 
         char c = evt.getKeyChar();
 
@@ -38,7 +42,7 @@ public class Validaciones implements ActionListener, MouseListener, KeyListener 
     }
 
     /*---FUNCIÓN PARA PERMITIR SOLO NÚMEROS---*/
-    public void soloNumeros(java.awt.event.KeyEvent evt) {
+    public static void soloNumeros(java.awt.event.KeyEvent evt) {
 
         char c = evt.getKeyChar();
 
@@ -49,7 +53,7 @@ public class Validaciones implements ActionListener, MouseListener, KeyListener 
     }
 
     /*---FUNCIÓN PARA VALIDAR LA CANTIDAD DE CARACTERES INGRESADO A CAJA DE TEXTOS---*/
-    public void limite(java.awt.event.KeyEvent evt, String texto, int limite) {
+    public static void limite(java.awt.event.KeyEvent evt, String texto, int limite) {
 
         if (texto.length() >= limite) {
 
@@ -59,7 +63,7 @@ public class Validaciones implements ActionListener, MouseListener, KeyListener 
     }
 
     /*---FUNCIÓN PARA EVITAR ESPACIOS---*/
-    public void Espacio(java.awt.event.KeyEvent evt) {
+    public static void Espacio(java.awt.event.KeyEvent evt) {
 
         char c = evt.getKeyChar();
 
@@ -106,3 +110,4 @@ public class Validaciones implements ActionListener, MouseListener, KeyListener 
     }
 
 }
+

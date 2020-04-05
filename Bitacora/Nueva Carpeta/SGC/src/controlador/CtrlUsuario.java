@@ -5,13 +5,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import modelo.CrudUsuario;
 import modelo.Usuario;
 import vista.GestionarUsuario;
 import vista.catalogoUsuario;
+import controlador.Validacion;
 
-public class CtrlUsuario implements ActionListener, ItemListener {
+public class CtrlUsuario implements ActionListener, ItemListener, MouseListener, KeyListener {
 
     private Usuario mod;
     private CrudUsuario modC;
@@ -30,10 +35,17 @@ public class CtrlUsuario implements ActionListener, ItemListener {
 
         this.vistaGU.btnModificar.addActionListener(this);
         this.vistaGU.btnLimpiar.addActionListener(this);
-        this.catausu.jButton1.addActionListener(this);
-        this.catausu.jButton2.addActionListener(this);
-        this.catausu.jButton4.addActionListener(this);
-        this.catausu.jButton5.addActionListener(this);
+        this.catausu.btnBuscar.addActionListener(this);
+        this.catausu.btnNuevoUsuario.addActionListener(this);
+        this.catausu.btnEditar.addActionListener(this);
+        this.catausu.btnEliminar.addActionListener(this);
+        this.vistaGU.txtCedula.addKeyListener(this);
+        this.vistaGU.txtUsuario.addKeyListener(this);
+        this.vistaGU.jpPassword.addKeyListener(this);
+        this.vistaGU.txtNombre.addKeyListener(this);
+        this.vistaGU.txtApellido.addKeyListener(this);
+        this.vistaGU.txtTelefono.addKeyListener(this);
+        
 
     }
     //Fin del constructor
@@ -42,7 +54,7 @@ public class CtrlUsuario implements ActionListener, ItemListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == vistaGU.btnGuardar) {
-
+            if(validar()){
             mod.setCedula(vistaGU.txtCedula.getText());
             mod.setUsuario(vistaGU.txtUsuario.getText());
             mod.setPassword(vistaGU.jpPassword.getText());
@@ -50,7 +62,7 @@ public class CtrlUsuario implements ActionListener, ItemListener {
             mod.setApellido(vistaGU.txtApellido.getText());
             mod.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
             mod.setNtelefono(vistaGU.txtTelefono.getText());
-
+            }
             if (modC.registrar(mod)) {
 
                 JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
@@ -65,14 +77,14 @@ public class CtrlUsuario implements ActionListener, ItemListener {
         }
 
         if (e.getSource() == vistaGU.btnModificar) {
-
+            if(validar()){
             mod.setUsuario(vistaGU.txtUsuario.getText());
             mod.setPassword(vistaGU.jpPassword.getText());
             mod.setNombre(vistaGU.txtNombre.getText());
             mod.setApellido(vistaGU.txtApellido.getText());
             mod.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
             mod.setNtelefono(vistaGU.txtTelefono.getText());
-
+            }
             if (modC.modificar(mod)) {
 
                 JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
@@ -112,30 +124,30 @@ public class CtrlUsuario implements ActionListener, ItemListener {
             limpiar();
         }
 
-        if (e.getSource() == catausu.jButton1) {
+        if (e.getSource() == catausu.btnBuscar) {
             int botonDialogo = JOptionPane.YES_NO_OPTION;
             int result = JOptionPane.showConfirmDialog(null, "ENCONTRO EL REGISTRO?", "REGISTRO", botonDialogo);
             if (result == 0) {
 
-                this.catausu.jButton4.setEnabled(true);
-                this.catausu.jButton5.setEnabled(true);
-                this.catausu.jButton2.setEnabled(false);
-                this.catausu.jButton2.setForeground(Color.gray);
-                this.catausu.jButton4.setForeground(new java.awt.Color(0, 94, 159));
-                this.catausu.jButton5.setForeground(new java.awt.Color(0, 94, 159));
+                this.catausu.btnEditar.setEnabled(true);
+                this.catausu.btnEliminar.setEnabled(true);
+                this.catausu.btnNuevoUsuario.setEnabled(false);
+                this.catausu.btnNuevoUsuario.setForeground(Color.gray);
+                this.catausu.btnEditar.setForeground(new java.awt.Color(0, 94, 159));
+                this.catausu.btnEliminar.setForeground(new java.awt.Color(0, 94, 159));
 
             } else {
-                this.catausu.jButton2.setEnabled(true);
-                this.catausu.jButton2.setForeground(new java.awt.Color(0, 94, 159));
-                this.catausu.jButton4.setEnabled(false);
-                this.catausu.jButton5.setEnabled(false);
-                this.catausu.jButton4.setForeground(Color.gray);
-                this.catausu.jButton5.setForeground(Color.gray);
+                this.catausu.btnNuevoUsuario.setEnabled(true);
+                this.catausu.btnNuevoUsuario.setForeground(new java.awt.Color(0, 94, 159));
+                this.catausu.btnEditar.setEnabled(false);
+                this.catausu.btnEliminar.setEnabled(false);
+                this.catausu.btnEditar.setForeground(Color.gray);
+                this.catausu.btnEliminar.setForeground(Color.gray);
 
             }
         }
 
-        if (e.getSource() == catausu.jButton2) {
+        if (e.getSource() == catausu.btnNuevoUsuario) {
             this.vistaGU.setVisible(true);
             this.vistaGU.btnModificar.setVisible(false);
             this.vistaGU.btnGuardar.setVisible(true);
@@ -143,13 +155,13 @@ public class CtrlUsuario implements ActionListener, ItemListener {
 
         }
 
-        if (e.getSource() == catausu.jButton4) {
+        if (e.getSource() == catausu.btnEditar) {
             this.vistaGU.setVisible(true);
             this.vistaGU.btnGuardar.setVisible(false);
             this.vistaGU.btnModificar.setVisible(true);
         }
 
-        if (e.getSource() == catausu.jButton5) {
+        if (e.getSource() == catausu.btnEliminar) {
             int botonDialogo = JOptionPane.YES_NO_OPTION;
             int result = JOptionPane.showConfirmDialog(null, "DESEA ELIMINAR EL REGISTRO?", "ELIMINAR", botonDialogo);
             if (result == 0) {
@@ -176,7 +188,124 @@ public class CtrlUsuario implements ActionListener, ItemListener {
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+     
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
+
+    @Override
+    public void keyTyped(KeyEvent ke) {
+    if (ke.getSource() == vistaGU.txtCedula) {
+            Validacion.soloNumeros(ke);
+            Validacion.Espacio(ke);
+            Validacion.limite(ke, vistaGU.txtCedula.getText(), 8);
+        }
+        if (ke.getSource() == vistaGU.txtUsuario) {
+
+            Validacion.soloLetras(ke);
+            Validacion.Espacio(ke);
+            Validacion.limite(ke, vistaGU.txtUsuario.getText(), 20);
+        }
+        if (ke.getSource() == vistaGU.jpPassword) {
+            Validacion.Espacio(ke);
+            
+            Validacion.limite(ke, vistaGU.jpPassword.getText(), 15);
+        }
+        if (ke.getSource() == vistaGU.txtNombre) {
+            Validacion.soloLetras(ke);
+            Validacion.Espacio(ke);
+            Validacion.limite(ke, vistaGU.txtNombre.getText(), 20);
+
+        }
+        if (ke.getSource() == vistaGU.txtApellido) {
+
+            Validacion.soloLetras(ke);
+            Validacion.Espacio(ke);
+            Validacion.limite(ke, vistaGU.txtApellido.getText(), 20);
+        }
+        if (ke.getSource() == vistaGU.txtTelefono) {
+
+            Validacion.soloNumeros(ke);
+            Validacion.Espacio(ke);
+            Validacion.limite(ke, vistaGU.txtTelefono.getText(), 11);
+        }
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+    }
+    
+     private Boolean validar() {
+
+        Boolean resultado = true;
+        String msj = "";
+
+        if (vistaGU.txtCedula.getText().isEmpty()) {
+
+            msj += "El campo Cédula no puede estar vacío\n";
+            resultado = false;
+        }
+        if (vistaGU.txtUsuario.getText().isEmpty()) {
+
+            msj += "El campo Usuario no puede estar vacío\n";
+            resultado = false;
+        }
+        if (vistaGU.jpPassword.getText().isEmpty()) {
+
+            msj += "El campo Password no puede estar vacío\n";
+            resultado = false;
+        }
+        if (vistaGU.txtNombre.getText().isEmpty()) {
+
+            msj += "El campo Nombre no puede estar vacío\n";
+            resultado = false;
+        }
+        if (vistaGU.txtApellido.getText().isEmpty()) {
+
+            msj += "El campo Apellido no puede estar vacío\n";
+            resultado = false;
+        }
+        if (vistaGU.txtTelefono.getText().isEmpty()) {
+
+            msj += "El campo Password no puede estar vacío\n";
+            resultado = false;
+        }
+        if (vistaGU.cbxTipo.getSelectedItem() == null) {
+
+            msj += "Debe seleccionar Tipo de Usuario";
+            resultado = false;
+        }
+
+        if (!resultado) {
+
+            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+
+        return resultado;
     }
 
 }

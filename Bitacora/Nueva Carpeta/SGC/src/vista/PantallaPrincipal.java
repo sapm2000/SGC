@@ -376,13 +376,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         CtrlUsuario ctrl = new CtrlUsuario(mod, modc, gestusu, catausu);
         catausu.setVisible(true);
 
-        catausu.jButton2.setForeground(gray);
-        catausu.jButton2.setEnabled(false);
+        catausu.btnNuevoUsuario.setForeground(gray);
+        catausu.btnNuevoUsuario.setEnabled(false);
 
-        catausu.jButton4.setEnabled(false);
-        catausu.jButton4.setForeground(gray);
-        catausu.jButton5.setEnabled(false);
-        catausu.jButton5.setForeground(gray);
+        catausu.btnEditar.setEnabled(false);
+        catausu.btnEditar.setForeground(gray);
+        catausu.btnEliminar.setEnabled(false);
+        catausu.btnEliminar.setForeground(gray);
 
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
