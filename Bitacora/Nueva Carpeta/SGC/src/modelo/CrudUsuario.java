@@ -72,7 +72,7 @@ public class CrudUsuario extends ConexionBD {
     
     //Registrar. Desde la linea 11 a la  50  tenemos el metodo para insertar registro a la base de datos.
     
-    public boolean registrar(){
+    public boolean registrar(CrudUsuario modC){
     
             PreparedStatement ps = null;
             Connection con = getConexion();
@@ -116,7 +116,7 @@ public class CrudUsuario extends ConexionBD {
     //Finaliza el metodo de registrar.
     //Modificar. Desde la linea 54 a la 93, Encontramos el Metodo de Modificar  los registro de la base de datos.
     
-    public boolean modificar(){
+    public boolean modificar(CrudUsuario modC){
     
             PreparedStatement ps = null;
             Connection con = getConexion();
@@ -160,7 +160,7 @@ public class CrudUsuario extends ConexionBD {
      //fin de metodo Modificar;
      //Eliminar. Desde la linea 97 a la 131, Encontramos el Metodo de Eliminar registro de la base de datos.
     
-     public boolean eliminar(){
+     public boolean eliminar(CrudUsuario modC){
     
             PreparedStatement ps = null;
             Connection con = getConexion();
@@ -198,7 +198,7 @@ public class CrudUsuario extends ConexionBD {
     //Fin del metodo Eliminar.
      //Buscar. Desde la linea 135 a la 183. Se encuentra el metodo Buscar.
      
-      public boolean buscar(){
+      public boolean buscar(CrudUsuario modC){
     
             PreparedStatement ps = null;
             ResultSet rs = null;

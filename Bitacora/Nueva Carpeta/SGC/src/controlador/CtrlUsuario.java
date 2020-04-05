@@ -17,7 +17,9 @@ import controlador.Validacion;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 public class CtrlUsuario implements ActionListener, ItemListener, MouseListener, KeyListener, WindowListener {
 
@@ -61,23 +63,8 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        if (e.getSource() == catausu.btnBuscar) {
-            
-            this.vistaGU.setVisible(true);
-            this.vistaGU.btnEliminar.setEnabled(false);
-            this.vistaGU.btnGuardar.setEnabled(true);
-            this.vistaGU.btnModificar.setEnabled(false);
-            
-            vistaGU.txtCedula.setText("");
-            vistaGU.txtUsuario.setText("");
-            vistaGU.jpPassword.setText("");
-            vistaGU.txtNombre.setText("");
-            vistaGU.txtApellido.setText("");
-            vistaGU.txtTelefono.setText("");
-            vistaGU.cbxTipo.setSelectedItem("");
 
-            
-        }
+
 
         if (e.getSource() == vistaGU.btnGuardar) {
             if(validar()){
@@ -89,7 +76,7 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
             modC.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
             modC.setNtelefono(vistaGU.txtTelefono.getText());
             }
-            if (modC.registrar()) {
+            if (modC.registrar(modC)) {
 
                 JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
                 Llenartabla(catausu.jtable);
@@ -112,7 +99,7 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
             modC.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
             modC.setNtelefono(vistaGU.txtTelefono.getText());
             }
-            if (modC.modificar()) {
+            if (modC.modificar(modC)) {
 
                 JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
                 
@@ -155,13 +142,25 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
             int botonDialogo = JOptionPane.YES_NO_OPTION;
             int result = JOptionPane.showConfirmDialog(null, "ENCONTRO EL REGISTRO?", "REGISTRO", botonDialogo);
             if (result == 0) {
-
+                 /* this.vistaGU.setVisible(true);
+            this.vistaGU.btnEliminar.setEnabled(false);
+            this.vistaGU.btnGuardar.setEnabled(true);
+            this.vistaGU.btnModificar.setEnabled(false);
+            
+            */
                 this.catausu.btnEditar.setEnabled(true);
                 this.catausu.btnEliminar.setEnabled(true);
                 this.catausu.btnNuevoUsuario.setEnabled(false);
                 this.catausu.btnNuevoUsuario.setForeground(Color.gray);
                 this.catausu.btnEditar.setForeground(new java.awt.Color(0, 94, 159));
                 this.catausu.btnEliminar.setForeground(new java.awt.Color(0, 94, 159));
+                vistaGU.txtCedula.setText("");
+                vistaGU.txtUsuario.setText("");
+                vistaGU.jpPassword.setText("");
+                vistaGU.txtNombre.setText("");
+                vistaGU.txtApellido.setText("");
+                vistaGU.txtTelefono.setText("");
+                vistaGU.cbxTipo.setSelectedItem("");
 
             } else {
                 this.catausu.btnNuevoUsuario.setEnabled(true);
@@ -220,7 +219,25 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
 
     @Override
     public void mouseClicked(MouseEvent e) {
-     
+     int fila = this.catausu.jtable.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int columna = this.catausu.jtable.getSelectedColumn(); // luego, obtengo la columna seleccionada
+        String dato = String.valueOf(this.catausu.jtable.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+
+        modC.setNombre(String.valueOf(dato));
+
+        modC.buscar(modC);
+
+        vistaGU.setVisible(true);
+        vistaGU.txtCedula.setText(modC.getCedula());
+        vistaGU.txtUsuario.setText(modC.getUsuario());
+        vistaGU.txtNombre.setText(modC.getNombre());
+        vistaGU.txtApellido.setText(modC.getApellido());
+        vistaGU.txtTelefono.setText(modC.getNtelefono());
+        vistaGU.cbxTipo.setSelectedItem(modC.getTipo());
+        
+        vistaGU.btnGuardar.setEnabled(false);
+        vistaGU.btnModificar.setEnabled(true);
+        vistaGU.btnEliminar.setEnabled(true);
     }
 
     @Override
@@ -284,6 +301,7 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
 
     @Override
     public void keyReleased(KeyEvent e) {
+        filtro(catausu.txtBuscar.getText(), catausu.jtable);
     }
     
      private Boolean validar() {
@@ -335,6 +353,13 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
         return resultado;
     }
      
+     private void filtro(String consulta, JTable jtableBuscar) {
+        dm = (DefaultTableModel) jtableBuscar.getModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        jtableBuscar.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(consulta));
+    }
+     
          public void Llenartabla(JTable tablaD) {
 
         DefaultTableModel modeloT = new DefaultTableModel();
@@ -366,37 +391,31 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
 
     @Override
     public void windowOpened(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       Llenartabla(catausu.jtable);
     }
 
     @Override
     public void windowClosing(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowClosed(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowIconified(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowDeiconified(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowActivated(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowDeactivated(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
