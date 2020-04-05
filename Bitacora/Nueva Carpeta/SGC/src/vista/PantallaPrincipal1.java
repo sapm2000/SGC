@@ -353,7 +353,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         catalogoCuotasEspeciales catace = new catalogoCuotasEspeciales();
         cuotasEspeciales cuotae = new cuotasEspeciales();
         controladorCuotasEspeciales controce = new controladorCuotasEspeciales(cuotae, catace);
-        
+
         catace.jButton2.setEnabled(false);
         catace.jButton2.setForeground(Color.gray);
         catace.jButton5.setEnabled(false);
@@ -370,10 +370,6 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         controladorAsambleas controa = new controladorAsambleas(cataa, asam);
         cataa.jButton2.setEnabled(false);
         cataa.jButton2.setForeground(Color.gray);
-        cataa.jButton5.setEnabled(false);
-        cataa.jButton5.setForeground(Color.gray);
-        cataa.jButton4.setEnabled(false);
-        cataa.jButton4.setForeground(Color.gray);
         cataa.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -405,7 +401,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         catalogoPropietarios cataprop = new catalogoPropietarios();
-        propietarios prop= new propietarios();
+        propietarios prop = new propietarios();
         controladorPropietario contropro = new controladorPropietario(prop, cataprop);
         cataprop.jButton2.setEnabled(false);
         cataprop.jButton2.setForeground(Color.gray);
@@ -432,10 +428,10 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         catalogoUnidades cataun = new catalogoUnidades();
         unidades uni = new unidades();
-        detallecuenta detacun= new detallecuenta();
+        detallecuenta detacun = new detallecuenta();
         detalleRecibo detare = new detalleRecibo();
-        controladorUnidades controuni = new controladorUnidades(uni, cataun,detacun,detare);
-        
+        controladorUnidades controuni = new controladorUnidades(uni, cataun, detacun, detare);
+
         cataun.jButton2.setEnabled(false);
         cataun.jButton2.setForeground(Color.gray);
         cataun.jButton5.setEnabled(false);
@@ -451,7 +447,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         catalogoFondo catafon = new catalogoFondo();
         fondo fon = new fondo();
         controladorFondo controfon = new controladorFondo(fon, catafon);
-        
+
         catafon.jButton2.setEnabled(false);
         catafon.jButton2.setForeground(Color.gray);
         catafon.jButton6.setEnabled(false);
@@ -467,7 +463,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         controladorComunicados controcom = new controladorComunicados(catacomu, com);
         catacomu.jButton2.setEnabled(false);
         catacomu.jButton2.setForeground(Color.gray);
-      
+
         catacomu.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
