@@ -91,7 +91,7 @@ public class CategoriaGasto extends ConexionBD {
 
             while (rs.next()) {
                 CategoriaGasto = new CategoriaGasto();
-                JOptionPane.showMessageDialog(null, rs.getString(2));
+                
 
                 //prs = new Persona();
                 CategoriaGasto.setId(rs.getInt(1));
