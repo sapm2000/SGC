@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class CrudUsuario extends ConexionBD {
     
@@ -185,5 +186,40 @@ public class CrudUsuario extends ConexionBD {
 
     }
       //Fin del Metodo Buscar.
+      
+          public ArrayList<CrudUsuario> listar() {
+        ArrayList listaPersona = new ArrayList();
+        Usuario modUsu;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT cedula, usuario, password, nombre, apellido, tipo, ntelefono FROM categoriagasto;";
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+               modUsu = new Usuario();
+
+                //prs = new Persona();
+                modUsu.setCedula(rs.getString(1));
+                modUsu.setUsuario(rs.getString(2));
+                modUsu.setPassword(rs.getString(3));
+                modUsu.setNombre(rs.getString(4));
+                modUsu.setApellido(rs.getString(5));
+                modUsu.setNtelefono(rs.getString(6));
+                modUsu.setTipo(rs.getString(7));
+
+                listaPersona.add(modUsu);
+            }
+
+        } catch (Exception e) {
+        }
+
+        return listaPersona;
+
+    }
       
       }
