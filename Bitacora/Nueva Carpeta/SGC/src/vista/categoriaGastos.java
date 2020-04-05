@@ -113,7 +113,7 @@ public class categoriaGastos extends javax.swing.JFrame {
                 txtnombreActionPerformed(evt);
             }
         });
-        jPanel2.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 180, 30));
+        jPanel2.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 180, 20));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -125,7 +125,7 @@ public class categoriaGastos extends javax.swing.JFrame {
         txtdescripcion.setForeground(new java.awt.Color(255, 255, 255));
         txtdescripcion.setBorder(null);
         txtdescripcion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel2.add(txtdescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 180, 30));
+        jPanel2.add(txtdescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 180, 20));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 180, 10));
