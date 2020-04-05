@@ -258,7 +258,7 @@ public class CrudUsuario extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT cedula, usuario, password, nombre, apellido, tipo, ntelefono FROM categoriagasto;";
+        String sql = "SELECT cedula, usuario, password, nombre, apellido, tipo, ntelefono FROM usuario;";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
