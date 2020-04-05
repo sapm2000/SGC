@@ -204,12 +204,12 @@ public class CrudUsuario extends ConexionBD {
             ResultSet rs = null;
             Connection con = getConexion();
             
-            String sql = "SELECT * FROM usuario WHERE cedula=? ";
+            String sql = "SELECT * FROM usuario WHERE usuario=? ";
             
             try {
             
                 ps = con.prepareStatement(sql);
-                ps.setString(1, getCedula());
+                ps.setString(1, getUsuario());
                 
                 rs = ps.executeQuery();
                 

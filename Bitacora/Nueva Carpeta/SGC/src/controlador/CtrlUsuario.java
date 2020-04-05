@@ -223,7 +223,7 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
         int columna = this.catausu.jtable.getSelectedColumn(); // luego, obtengo la columna seleccionada
         String dato = String.valueOf(this.catausu.jtable.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
 
-        modC.setNombre(String.valueOf(dato));
+        modC.setUsuario(String.valueOf(dato));
 
         modC.buscar(modC);
 
