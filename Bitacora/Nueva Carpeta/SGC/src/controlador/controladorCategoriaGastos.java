@@ -45,7 +45,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         
         this.cg.btnGuardar.addActionListener(this);
         this.cg.btnLimpiar.addActionListener(this);
-        this.cg.btnModificar.addActionListener(this);
+        this.cg.btnEliminar.addActionListener(this);
         this.catacg.jTable2.addMouseListener(this);
         this.catacg.jTextField1.addKeyListener(this);
         this.catacg.addWindowListener(this);
@@ -81,7 +81,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
         if (e.getSource() == catacg.jButton2) {
             this.cg.setVisible(true);
-            this.cg.btnModificar.setVisible(false);
+            this.cg.btnEliminar.setVisible(false);
             this.cg.btnGuardar.setVisible(true);
 
         }
@@ -108,7 +108,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
         }
 
-        if (e.getSource() == cg.btnModificar) {
+        if (e.getSource() == cg.btnEliminar) {
              modcg.setNombre(cg.txtnombre.getText());
              modcg.setDescripcion(cg.txtdescripcion.getText());
              
