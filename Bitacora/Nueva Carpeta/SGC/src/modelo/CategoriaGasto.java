@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -50,14 +51,14 @@ public class CategoriaGasto extends ConexionBD {
         Connection con = getConexion();
 
         String sql = "INSERT INTO categoriagasto (nombre, descripcion) VALUES(?,?)";
-        
-         try {
 
-        ps = con.prepareStatement(sql);
-        ps.setString(1, cga.getNombre());
-        ps.setString(2, cga.getDescripcion());
-        
-         ps.execute();
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, cga.getNombre());
+            ps.setString(2, cga.getDescripcion());
+
+            ps.execute();
             return true;
 
         } catch (SQLException e) {
@@ -74,9 +75,10 @@ public class CategoriaGasto extends ConexionBD {
         }
 
     }
-    
-    public ArrayList<CategoriaGasto> lPerson(CategoriaGasto prs) {
+
+    public ArrayList<CategoriaGasto> lPerson() {
         ArrayList listaPersona = new ArrayList();
+        CategoriaGasto CategoriaGasto;
 
         Connection con = getConexion();
         PreparedStatement ps = null;
@@ -88,13 +90,15 @@ public class CategoriaGasto extends ConexionBD {
             rs = ps.executeQuery();
 
             while (rs.next()) {
+                CategoriaGasto = new CategoriaGasto();
+                
 
                 //prs = new Persona();
-                prs.setId(rs.getInt(1));
-                prs.setNombre(rs.getString(2));
-                prs.setDescripcion(rs.getString(3));
-                
-                listaPersona.add(prs);
+                CategoriaGasto.setId(rs.getInt(1));
+                CategoriaGasto.setNombre(rs.getString(2));
+                CategoriaGasto.setDescripcion(rs.getString(3));
+
+                listaPersona.add(CategoriaGasto);
             }
 
         } catch (Exception e) {
