@@ -76,8 +76,9 @@ public class CategoriaGasto extends ConexionBD {
 
     }
 
-    public ArrayList<CategoriaGasto> lPerson(CategoriaGasto prs) {
+    public ArrayList<CategoriaGasto> lPerson() {
         ArrayList listaPersona = new ArrayList();
+        CategoriaGasto CategoriaGasto;
 
         Connection con = getConexion();
         PreparedStatement ps = null;
@@ -89,14 +90,15 @@ public class CategoriaGasto extends ConexionBD {
             rs = ps.executeQuery();
 
             while (rs.next()) {
+                CategoriaGasto = new CategoriaGasto();
                 JOptionPane.showMessageDialog(null, rs.getString(2));
 
                 //prs = new Persona();
-                prs.setId(rs.getInt(1));
-                prs.setNombre(rs.getString(2));
-                prs.setDescripcion(rs.getString(3));
+                CategoriaGasto.setId(rs.getInt(1));
+                CategoriaGasto.setNombre(rs.getString(2));
+                CategoriaGasto.setDescripcion(rs.getString(3));
 
-                listaPersona.add(prs);
+                listaPersona.add(CategoriaGasto);
             }
 
         } catch (Exception e) {

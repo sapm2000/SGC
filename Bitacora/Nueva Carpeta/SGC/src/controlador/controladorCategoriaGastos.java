@@ -63,14 +63,14 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
         Object[] columna = new Object[2];
 
-        int numRegistro = modcg.lPerson(modcg).size();
+        int numRegistro = modcg.lPerson().size();
 
         for (int i = 0; i < numRegistro; i++) {
 
           
 
-            columna[0] = modcg.lPerson(modcg).get(i).getNombre();
-            columna[1] = modcg.lPerson(modcg).get(i).getDescripcion();
+            columna[0] = modcg.lPerson().get(i).getNombre();
+            columna[1] = modcg.lPerson().get(i).getDescripcion();
             
 
             modeloT.addRow(columna);
