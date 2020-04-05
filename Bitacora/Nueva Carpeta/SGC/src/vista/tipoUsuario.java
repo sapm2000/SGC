@@ -85,7 +85,7 @@ public class tipoUsuario extends javax.swing.JFrame {
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
@@ -100,7 +100,7 @@ public class tipoUsuario extends javax.swing.JFrame {
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
@@ -115,7 +115,7 @@ public class tipoUsuario extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jCheckBox4.setBackground(new java.awt.Color(0, 94, 159));
-        jCheckBox4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox4.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox4.setText("Unidades");
         jCheckBox4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -124,10 +124,10 @@ public class tipoUsuario extends javax.swing.JFrame {
         jCheckBox4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         jCheckBox4.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
         jCheckBox4.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
-        jPanel2.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 200, 110, -1));
+        jPanel2.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 230, 110, -1));
 
         jCheckBox9.setBackground(new java.awt.Color(0, 94, 159));
-        jCheckBox9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox9.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox9.setText("Banco");
         jCheckBox9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -136,10 +136,10 @@ public class tipoUsuario extends javax.swing.JFrame {
         jCheckBox9.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         jCheckBox9.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
         jCheckBox9.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
-        jPanel2.add(jCheckBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 110, -1));
+        jPanel2.add(jCheckBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 110, -1));
 
         jCheckBox16.setBackground(new java.awt.Color(0, 94, 159));
-        jCheckBox16.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox16.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox16.setText("Comunicados");
         jCheckBox16.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -148,10 +148,10 @@ public class tipoUsuario extends javax.swing.JFrame {
         jCheckBox16.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         jCheckBox16.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
         jCheckBox16.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
-        jPanel2.add(jCheckBox16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 160, -1));
+        jPanel2.add(jCheckBox16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 160, -1));
 
         jCheckBox6.setBackground(new java.awt.Color(0, 94, 159));
-        jCheckBox6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox6.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox6.setText("<html>\nDetalles <br> de Cuenta\n</html>");
         jCheckBox6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -160,10 +160,10 @@ public class tipoUsuario extends javax.swing.JFrame {
         jCheckBox6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         jCheckBox6.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
         jCheckBox6.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
-        jPanel2.add(jCheckBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 140, -1));
+        jPanel2.add(jCheckBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 140, -1));
 
         jCheckBox7.setBackground(new java.awt.Color(0, 94, 159));
-        jCheckBox7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox7.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox7.setText("Gastos Comunes");
         jCheckBox7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -172,10 +172,10 @@ public class tipoUsuario extends javax.swing.JFrame {
         jCheckBox7.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         jCheckBox7.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
         jCheckBox7.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
-        jPanel2.add(jCheckBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 190, -1));
+        jPanel2.add(jCheckBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, 190, -1));
 
         jCheckBox18.setBackground(new java.awt.Color(0, 94, 159));
-        jCheckBox18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox18.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox18.setText("<html>\nPago de <br> Cuotas Especiales\n</html>");
         jCheckBox18.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -184,10 +184,10 @@ public class tipoUsuario extends javax.swing.JFrame {
         jCheckBox18.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         jCheckBox18.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
         jCheckBox18.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
-        jPanel2.add(jCheckBox18, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 200, -1));
+        jPanel2.add(jCheckBox18, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 200, -1));
 
         jCheckBox5.setBackground(new java.awt.Color(0, 94, 159));
-        jCheckBox5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox5.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox5.setText("Propietarios");
         jCheckBox5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -196,10 +196,10 @@ public class tipoUsuario extends javax.swing.JFrame {
         jCheckBox5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         jCheckBox5.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
         jCheckBox5.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
-        jPanel2.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, 180, -1));
+        jPanel2.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 180, -1));
 
         jCheckBox20.setBackground(new java.awt.Color(0, 94, 159));
-        jCheckBox20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox20.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox20.setText("Registro de Visitas");
         jCheckBox20.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -208,10 +208,10 @@ public class tipoUsuario extends javax.swing.JFrame {
         jCheckBox20.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         jCheckBox20.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
         jCheckBox20.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
-        jPanel2.add(jCheckBox20, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, 200, -1));
+        jPanel2.add(jCheckBox20, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, 200, -1));
 
         jCheckBox22.setBackground(new java.awt.Color(0, 94, 159));
-        jCheckBox22.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox22.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox22.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox22.setText("Tipo de Usuario");
         jCheckBox22.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -220,10 +220,10 @@ public class tipoUsuario extends javax.swing.JFrame {
         jCheckBox22.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         jCheckBox22.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
         jCheckBox22.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
-        jPanel2.add(jCheckBox22, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, 170, -1));
+        jPanel2.add(jCheckBox22, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, 170, -1));
 
         jCheckBox21.setBackground(new java.awt.Color(0, 94, 159));
-        jCheckBox21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox21.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox21.setText("Visitas Autorizadas");
         jCheckBox21.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -232,10 +232,10 @@ public class tipoUsuario extends javax.swing.JFrame {
         jCheckBox21.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         jCheckBox21.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
         jCheckBox21.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
-        jPanel2.add(jCheckBox21, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, 200, -1));
+        jPanel2.add(jCheckBox21, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 280, 200, -1));
 
         jCheckBox2.setBackground(new java.awt.Color(0, 94, 159));
-        jCheckBox2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox2.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox2.setText("Asambleas");
         jCheckBox2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -244,10 +244,10 @@ public class tipoUsuario extends javax.swing.JFrame {
         jCheckBox2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         jCheckBox2.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
         jCheckBox2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
-        jPanel2.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 140, -1));
+        jPanel2.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 140, -1));
 
         jCheckBox11.setBackground(new java.awt.Color(0, 94, 159));
-        jCheckBox11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox11.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox11.setText("Condominio");
         jCheckBox11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -256,10 +256,10 @@ public class tipoUsuario extends javax.swing.JFrame {
         jCheckBox11.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         jCheckBox11.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
         jCheckBox11.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
-        jPanel2.add(jCheckBox11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 140, -1));
+        jPanel2.add(jCheckBox11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 140, -1));
 
         jCheckBox14.setBackground(new java.awt.Color(0, 94, 159));
-        jCheckBox14.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox14.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox14.setText("Cuenta");
         jCheckBox14.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -268,10 +268,10 @@ public class tipoUsuario extends javax.swing.JFrame {
         jCheckBox14.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         jCheckBox14.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
         jCheckBox14.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
-        jPanel2.add(jCheckBox14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 140, -1));
+        jPanel2.add(jCheckBox14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 140, -1));
 
         jCheckBox12.setBackground(new java.awt.Color(0, 94, 159));
-        jCheckBox12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox12.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox12.setText("Interes");
         jCheckBox12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -280,10 +280,10 @@ public class tipoUsuario extends javax.swing.JFrame {
         jCheckBox12.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         jCheckBox12.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
         jCheckBox12.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
-        jPanel2.add(jCheckBox12, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 120, -1));
+        jPanel2.add(jCheckBox12, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 120, -1));
 
         jCheckBox13.setBackground(new java.awt.Color(0, 94, 159));
-        jCheckBox13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox13.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox13.setText("Sanción");
         jCheckBox13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -292,10 +292,10 @@ public class tipoUsuario extends javax.swing.JFrame {
         jCheckBox13.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         jCheckBox13.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
         jCheckBox13.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
-        jPanel2.add(jCheckBox13, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 120, -1));
+        jPanel2.add(jCheckBox13, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, 120, -1));
 
         jCheckBox1.setBackground(new java.awt.Color(0, 94, 159));
-        jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setText("Fondo");
         jCheckBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -304,14 +304,14 @@ public class tipoUsuario extends javax.swing.JFrame {
         jCheckBox1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         jCheckBox1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
         jCheckBox1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
-        jPanel2.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 90, -1));
+        jPanel2.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 90, -1));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, 10, 310));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, 10, 280));
 
         jCheckBox3.setBackground(new java.awt.Color(0, 94, 159));
-        jCheckBox3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox3.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox3.setText("<html>\nCuentas <br> por Cobrar\n</html>");
         jCheckBox3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -320,10 +320,10 @@ public class tipoUsuario extends javax.swing.JFrame {
         jCheckBox3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         jCheckBox3.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
         jCheckBox3.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
-        jPanel2.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 130, -1));
+        jPanel2.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 130, -1));
 
         jCheckBox10.setBackground(new java.awt.Color(0, 94, 159));
-        jCheckBox10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox10.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox10.setText("<html>\nCuentas <br> por Pagar\n</html>");
         jCheckBox10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -332,10 +332,10 @@ public class tipoUsuario extends javax.swing.JFrame {
         jCheckBox10.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         jCheckBox10.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
         jCheckBox10.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
-        jPanel2.add(jCheckBox10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 140, -1));
+        jPanel2.add(jCheckBox10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 140, -1));
 
         jCheckBox15.setBackground(new java.awt.Color(0, 94, 159));
-        jCheckBox15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox15.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox15.setText("<html>\nCuotas <br> Especiales\n</html>");
         jCheckBox15.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -344,18 +344,18 @@ public class tipoUsuario extends javax.swing.JFrame {
         jCheckBox15.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         jCheckBox15.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
         jCheckBox15.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
-        jPanel2.add(jCheckBox15, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 140, -1));
+        jPanel2.add(jCheckBox15, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 140, -1));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 10, 310));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 10, 280));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 10, 310));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 10, 280));
 
         jCheckBox8.setBackground(new java.awt.Color(0, 94, 159));
-        jCheckBox8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox8.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox8.setText("Proveedores");
         jCheckBox8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -364,10 +364,10 @@ public class tipoUsuario extends javax.swing.JFrame {
         jCheckBox8.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         jCheckBox8.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
         jCheckBox8.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
-        jPanel2.add(jCheckBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 240, 170, -1));
+        jPanel2.add(jCheckBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 170, -1));
 
         jCheckBox17.setBackground(new java.awt.Color(0, 94, 159));
-        jCheckBox17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jCheckBox17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCheckBox17.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox17.setText("Recibo");
         jCheckBox17.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -376,21 +376,21 @@ public class tipoUsuario extends javax.swing.JFrame {
         jCheckBox17.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         jCheckBox17.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/3casilla-de-verificacion.png"))); // NOI18N
         jCheckBox17.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
-        jPanel2.add(jCheckBox17, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, 110, -1));
+        jPanel2.add(jCheckBox17, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, 110, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Tipo de Usuario:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, -1, -1));
 
         jTextField1.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setBorder(null);
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 200, 30));
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 230, 20));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 200, 10));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 230, 10));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 760, 410));
 
@@ -400,7 +400,7 @@ public class tipoUsuario extends javax.swing.JFrame {
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 800, 300));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel1.setText("Selección de Pestañas para el Usuario");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
 
@@ -411,7 +411,7 @@ public class tipoUsuario extends javax.swing.JFrame {
         btnGuardar.setBorder(null);
         btnGuardar.setBorderPainted(false);
         btnGuardar.setContentAreaFilled(false);
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
         btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
         btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
@@ -427,7 +427,7 @@ public class tipoUsuario extends javax.swing.JFrame {
         btnModificar.setBorder(null);
         btnModificar.setBorderPainted(false);
         btnModificar.setContentAreaFilled(false);
-        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnModificar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
         btnModificar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
         btnModificar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
