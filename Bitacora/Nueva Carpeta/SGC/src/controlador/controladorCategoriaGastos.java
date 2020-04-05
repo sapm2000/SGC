@@ -42,7 +42,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
        
         this.catacg.jButton2.addActionListener(this);
         
-        
+        this.cg.btnModificar.addActionListener(this);
         this.cg.btnGuardar.addActionListener(this);
         this.cg.btnLimpiar.addActionListener(this);
         this.cg.btnEliminar.addActionListener(this);
@@ -81,8 +81,14 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
         if (e.getSource() == catacg.jButton2) {
             this.cg.setVisible(true);
-            this.cg.btnEliminar.setVisible(false);
-            this.cg.btnGuardar.setVisible(true);
+            this.cg.btnEliminar.setEnabled(false);
+            this.cg.btnGuardar.setEnabled(true);
+            this.cg.txtId.setVisible(false);
+            this.cg.btnModificar.setEnabled(false);
+            cg.txtnombre.setText("");
+             cg.txtdescripcion.setText("");
+             cg.txtId.setText("");
+             
 
         }
 
@@ -94,10 +100,12 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         if (e.getSource() == cg.btnGuardar) {
             modcg.setNombre(cg.txtnombre.getText());
             modcg.setDescripcion(cg.txtdescripcion.getText());
+           
 
             if (modcg.registrar(modcg)) {
 
                 JOptionPane.showMessageDialog(null, "Registro Guardado");
+                Llenartabla(catacg.jTable2);
                 
 
             } else {
@@ -107,10 +115,32 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
             }
 
         }
+        
+         if (e.getSource() == cg.btnEliminar) {
+           
+           
 
-        if (e.getSource() == cg.btnEliminar) {
+            if (modcg.eliminar(modcg)) {
+
+                modcg.setId(Integer.parseInt(cg.txtId.getText()));
+                JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                cg.dispose();
+                Llenartabla(catacg.jTable2);
+                
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Error al Eliminar");
+
+            }
+
+        }
+
+        if (e.getSource() == cg.btnModificar) {
              modcg.setNombre(cg.txtnombre.getText());
              modcg.setDescripcion(cg.txtdescripcion.getText());
+              modcg.setId(Integer.parseInt(cg.txtId.getText()));
+             
              
              
              if (modcg.modificar(modcg)) {
@@ -125,6 +155,16 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
                 JOptionPane.showMessageDialog(null, "Error al Modificar");
                 
             }
+        }
+        
+        if (e.getSource() == cg.btnLimpiar) {
+             
+             cg.txtnombre.setText("");
+             cg.txtdescripcion.setText("");
+             
+             
+             
+            
         }
         
         
@@ -147,8 +187,12 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         cg.txtnombre.setText(modcg.getNombre());
        
         cg.txtdescripcion.setText(modcg.getDescripcion());
+        cg.txtId.setText(Integer.toString(modcg.getId()));
         
         cg.btnGuardar.setEnabled(false);
+        cg.txtId.setVisible(false);
+        cg.btnModificar.setEnabled(true);
+        cg.btnEliminar.setEnabled(true);
 
     }
 
