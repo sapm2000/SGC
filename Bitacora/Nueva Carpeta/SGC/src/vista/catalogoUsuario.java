@@ -24,7 +24,7 @@ public class catalogoUsuario extends javax.swing.JFrame {
      */
     public catalogoUsuario() {
         initComponents();
-        mytable.getTableHeader().setDefaultRenderer(new Headercolor());
+        jtable.getTableHeader().setDefaultRenderer(new Headercolor());
         setLocationRelativeTo(null);
         JButton btn1 =  new JButton ("modificar");
         JButton btn2 = new JButton ("eliminar");
@@ -42,7 +42,7 @@ public class catalogoUsuario extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        mytable = new javax.swing.JTable();
+        jtable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnMinimizar = new javax.swing.JButton();
@@ -67,9 +67,9 @@ public class catalogoUsuario extends javax.swing.JFrame {
 
         jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
-        mytable.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jtable.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        mytable.setModel(new javax.swing.table.DefaultTableModel(
+        jtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {"", null, null, null},
@@ -80,9 +80,9 @@ public class catalogoUsuario extends javax.swing.JFrame {
                 "Usuario", "Nombre", "Apellido", "Tipo de Usuario"
             }
         ));
-        mytable.setGridColor(new java.awt.Color(102, 102, 102));
-        mytable.setRowHeight(20);
-        jScrollPane2.setViewportView(mytable);
+        jtable.setGridColor(new java.awt.Color(102, 102, 102));
+        jtable.setRowHeight(20);
+        jScrollPane2.setViewportView(jtable);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 720, 260));
 
@@ -264,7 +264,7 @@ public class catalogoUsuario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable mytable;
+    public javax.swing.JTable jtable;
     public javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 

@@ -11,22 +11,29 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import modelo.CrudUsuario;
-import modelo.Usuario;
 import vista.GestionarUsuario;
 import vista.catalogoUsuario;
 import controlador.Validacion;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import javax.swing.JTable;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
-public class CtrlUsuario implements ActionListener, ItemListener, MouseListener, KeyListener {
+public class CtrlUsuario implements ActionListener, ItemListener, MouseListener, KeyListener, WindowListener {
 
-    private Usuario mod;
+
     private CrudUsuario modC;
     private GestionarUsuario vistaGU;
     private catalogoUsuario catausu;
+   
+    DefaultTableModel dm;
 
     //Constructor de inicializacion de variables. Desde la linea 16 a la 26
-    public CtrlUsuario(Usuario mod, CrudUsuario modC, GestionarUsuario vistaGU, catalogoUsuario catausu) {
+    public CtrlUsuario(CrudUsuario modC, GestionarUsuario vistaGU, catalogoUsuario catausu) {
 
-        this.mod = mod;
+        
         this.modC = modC;
         this.vistaGU = vistaGU;
         this.catausu = catausu;
@@ -45,6 +52,9 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
         this.vistaGU.txtNombre.addKeyListener(this);
         this.vistaGU.txtApellido.addKeyListener(this);
         this.vistaGU.txtTelefono.addKeyListener(this);
+        this.catausu.txtBuscar.addKeyListener(this);
+        this.catausu.jtable.addMouseListener(this);
+        this.catausu.addWindowListener(this);
         
 
     }
@@ -52,20 +62,24 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+
+
 
         if (e.getSource() == vistaGU.btnGuardar) {
             if(validar()){
-            mod.setCedula(vistaGU.txtCedula.getText());
-            mod.setUsuario(vistaGU.txtUsuario.getText());
-            mod.setPassword(vistaGU.jpPassword.getText());
-            mod.setNombre(vistaGU.txtNombre.getText());
-            mod.setApellido(vistaGU.txtApellido.getText());
-            mod.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
-            mod.setNtelefono(vistaGU.txtTelefono.getText());
+            modC.setCedula(vistaGU.txtCedula.getText());
+            modC.setUsuario(vistaGU.txtUsuario.getText());
+            modC.setPassword(vistaGU.jpPassword.getText());
+            modC.setNombre(vistaGU.txtNombre.getText());
+            modC.setApellido(vistaGU.txtApellido.getText());
+            modC.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
+            modC.setNtelefono(vistaGU.txtTelefono.getText());
             }
-            if (modC.registrar(mod)) {
+            if (modC.registrar(modC)) {
 
                 JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
+                Llenartabla(catausu.jtable);
                 limpiar();
 
             } else {
@@ -78,17 +92,17 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
 
         if (e.getSource() == vistaGU.btnModificar) {
             if(validar()){
-            mod.setUsuario(vistaGU.txtUsuario.getText());
-            mod.setPassword(vistaGU.jpPassword.getText());
-            mod.setNombre(vistaGU.txtNombre.getText());
-            mod.setApellido(vistaGU.txtApellido.getText());
-            mod.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
-            mod.setNtelefono(vistaGU.txtTelefono.getText());
+            modC.setUsuario(vistaGU.txtUsuario.getText());
+            modC.setPassword(vistaGU.jpPassword.getText());
+            modC.setNombre(vistaGU.txtNombre.getText());
+            modC.setApellido(vistaGU.txtApellido.getText());
+            modC.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
+            modC.setNtelefono(vistaGU.txtTelefono.getText());
             }
-            if (modC.modificar(mod)) {
+            if (modC.modificar(modC)) {
 
                 JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
-
+                
                 limpiar();
 
             } else {
@@ -128,13 +142,25 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
             int botonDialogo = JOptionPane.YES_NO_OPTION;
             int result = JOptionPane.showConfirmDialog(null, "ENCONTRO EL REGISTRO?", "REGISTRO", botonDialogo);
             if (result == 0) {
-
+                 /* this.vistaGU.setVisible(true);
+            this.vistaGU.btnEliminar.setEnabled(false);
+            this.vistaGU.btnGuardar.setEnabled(true);
+            this.vistaGU.btnModificar.setEnabled(false);
+            
+            */
                 this.catausu.btnEditar.setEnabled(true);
                 this.catausu.btnEliminar.setEnabled(true);
                 this.catausu.btnNuevoUsuario.setEnabled(false);
                 this.catausu.btnNuevoUsuario.setForeground(Color.gray);
                 this.catausu.btnEditar.setForeground(new java.awt.Color(0, 94, 159));
                 this.catausu.btnEliminar.setForeground(new java.awt.Color(0, 94, 159));
+                vistaGU.txtCedula.setText("");
+                vistaGU.txtUsuario.setText("");
+                vistaGU.jpPassword.setText("");
+                vistaGU.txtNombre.setText("");
+                vistaGU.txtApellido.setText("");
+                vistaGU.txtTelefono.setText("");
+                vistaGU.cbxTipo.setSelectedItem("");
 
             } else {
                 this.catausu.btnNuevoUsuario.setEnabled(true);
@@ -193,7 +219,25 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
 
     @Override
     public void mouseClicked(MouseEvent e) {
-     
+     int fila = this.catausu.jtable.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int columna = this.catausu.jtable.getSelectedColumn(); // luego, obtengo la columna seleccionada
+        String dato = String.valueOf(this.catausu.jtable.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+
+        modC.setUsuario(String.valueOf(dato));
+
+        modC.buscar(modC);
+
+        vistaGU.setVisible(true);
+        vistaGU.txtCedula.setText(modC.getCedula());
+        vistaGU.txtUsuario.setText(modC.getUsuario());
+        vistaGU.txtNombre.setText(modC.getNombre());
+        vistaGU.txtApellido.setText(modC.getApellido());
+        vistaGU.txtTelefono.setText(modC.getNtelefono());
+        vistaGU.cbxTipo.setSelectedItem(modC.getTipo());
+        
+        vistaGU.btnGuardar.setEnabled(false);
+        vistaGU.btnModificar.setEnabled(true);
+        vistaGU.btnEliminar.setEnabled(true);
     }
 
     @Override
@@ -257,6 +301,7 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
 
     @Override
     public void keyReleased(KeyEvent e) {
+        filtro(catausu.txtBuscar.getText(), catausu.jtable);
     }
     
      private Boolean validar() {
@@ -306,6 +351,71 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
         }
 
         return resultado;
+    }
+     
+     private void filtro(String consulta, JTable jtableBuscar) {
+        dm = (DefaultTableModel) jtableBuscar.getModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        jtableBuscar.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(consulta));
+    }
+     
+         public void Llenartabla(JTable tablaD) {
+
+        DefaultTableModel modeloT = new DefaultTableModel();
+        tablaD.setModel(modeloT);
+
+        modeloT.addColumn("Usuario");
+        modeloT.addColumn("Nombre");
+        modeloT.addColumn("Apellido");
+        modeloT.addColumn("Telefono");
+        modeloT.addColumn("Tipo");
+                
+        Object[] columna = new Object[5];
+
+        int numRegistro = modC.listar().size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = modC.listar().get(i).getUsuario();
+            columna[1] = modC.listar().get(i).getNombre();
+            columna[2] = modC.listar().get(i).getApellido();
+            columna[3] = modC.listar().get(i).getNtelefono();
+            columna[4] = modC.listar().get(i).getTipo();
+
+            modeloT.addRow(columna);
+
+        }
+
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+       Llenartabla(catausu.jtable);
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
     }
 
 }

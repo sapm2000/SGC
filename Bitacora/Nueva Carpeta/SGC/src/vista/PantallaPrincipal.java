@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 import modelo.CategoriaGasto;
 import modelo.Condominio;
 import modelo.CrudUsuario;
-import modelo.Usuario;
+
 
 /**
  *
@@ -363,10 +363,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         catalogoUsuario catausu = new catalogoUsuario();
         GestionarUsuario gestusu = new GestionarUsuario();
-        Usuario mod = new Usuario();
+        
         CrudUsuario modc = new CrudUsuario();
 
-        CtrlUsuario ctrl = new CtrlUsuario(mod, modc, gestusu, catausu);
+        CtrlUsuario ctrl = new CtrlUsuario(modc, gestusu, catausu);
         catausu.setVisible(true);
 
         catausu.btnNuevoUsuario.setForeground(gray);
