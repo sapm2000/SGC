@@ -44,14 +44,11 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         this.panta1 = panta1;
         this.panta = panta;
         this.co = co;
-        this.cataco.jButton1.addActionListener(this);
         this.cataco.jButton2.addActionListener(this);
-        this.cataco.jButton4.addActionListener(this);
-        this.cataco.jButton5.addActionListener(this);
-        this.cataco.jButton7.addActionListener(this);
         this.condo.btnGuardar.addActionListener(this);
-
+        this.condo.btnEliminar.addActionListener(this);
         this.condo.btnModificar.addActionListener(this);
+        this.condo.btnLimpiar.addActionListener(this);
         this.cataco.jTable1.addMouseListener(this);
         this.cataco.txtBuscar.addKeyListener(this);
         this.cataco.addWindowListener(this);
@@ -86,63 +83,20 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
 
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == cataco.jButton1) {
-            int botonDialogo = JOptionPane.YES_NO_OPTION;
-            int result = JOptionPane.showConfirmDialog(null, "ENCONTRO EL REGISTRO?", "REGISTRO", botonDialogo);
-            if (result == 0) {
 
-                this.cataco.jButton4.setEnabled(true);
-                this.cataco.jButton5.setEnabled(true);
-                this.cataco.jButton7.setEnabled(true);
-                this.cataco.jButton2.setEnabled(false);
-                this.cataco.jButton2.setForeground(Color.gray);
-                this.cataco.jButton4.setForeground(new java.awt.Color(0, 94, 159));
-                this.cataco.jButton5.setForeground(new java.awt.Color(0, 94, 159));
-                this.cataco.jButton7.setForeground(new java.awt.Color(0, 94, 159));
-
-            } else {
-                this.cataco.jButton2.setEnabled(true);
-                this.cataco.jButton2.setForeground(new java.awt.Color(0, 94, 159));
-                this.cataco.jButton4.setEnabled(false);
-                this.cataco.jButton5.setEnabled(false);
-                this.cataco.jButton7.setEnabled(false);
-                this.cataco.jButton4.setForeground(Color.gray);
-                this.cataco.jButton5.setForeground(Color.gray);
-                this.cataco.jButton7.setForeground(Color.gray);
-
-            }
-        }
 
         if (e.getSource() == cataco.jButton2) {
             this.condo.setVisible(true);
-            this.condo.btnModificar.setVisible(false);
-            this.condo.btnGuardar.setVisible(true);
-
+            this.condo.btnModificar.setEnabled(false);
+            this.condo.btnGuardar.setEnabled(true);
+            this.condo.btnEliminar.setEnabled(false);
+            condo.txtRif.setText("");
+            condo.txtRazonS.setText("");
+            condo.txtTelefono.setText("");
+            condo.txtCorreo.setText("");
         }
 
-        if (e.getSource() == cataco.jButton4) {
-            this.condo.setVisible(true);
-            this.condo.btnGuardar.setVisible(false);
-            this.condo.btnModificar.setVisible(true);
 
-        }
-
-        if (e.getSource() == cataco.jButton7) {
-            this.panta1.setVisible(true);
-            this.panta.dispose();
-            this.cataco.dispose();
-        }
-
-        if (e.getSource() == cataco.jButton5) {
-            int botonDialogo = JOptionPane.YES_NO_OPTION;
-            int result = JOptionPane.showConfirmDialog(null, "DESEA ELIMINAR EL REGISTRO?", "ELIMINAR", botonDialogo);
-            if (result == 0) {
-                JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
-            } else {
-
-            }
-
-        }
 
         if (e.getSource() == condo.btnGuardar) {
             co.setRif(condo.txtRif.getText());
@@ -153,6 +107,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
             if (co.registrar(co)) {
 
                 JOptionPane.showMessageDialog(null, "Registro Guardado");
+                Llenartabla(cataco.jTable1);
 
             } else {
 
@@ -163,20 +118,84 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         }
 
         if (e.getSource() == condo.btnModificar) {
-            JOptionPane.showMessageDialog(null, "registro modificado");
+             co.setRif(condo.txtRif.getText());
+             co.setRazonS(condo.txtRazonS.getText());
+             co.setTelefono(condo.txtTelefono.getText());
+             co.setCorreoElectro(condo.txtCorreo.getText());
+             
+             
+             
+             if (co.modificar(co)) {
 
+                JOptionPane.showMessageDialog(null, "Registro modificado");
+                condo.dispose();
+                Llenartabla(cataco.jTable1);
+                
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Error al Modificar");
+                
+            }
         }
 
+         if (e.getSource() == condo.btnEliminar) {
+           
+           
+
+            if (co.eliminar(co)) {
+
+                co.setRif(condo.txtRif.getText());
+                JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                condo.dispose();
+                Llenartabla(cataco.jTable1);
+                
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Error al Eliminar");
+
+            }
+
+        }
+         
+        if (e.getSource() == condo.btnLimpiar) {
+             
+             condo.txtRif.setText("");
+             condo.txtRazonS.setText("");
+             condo.txtTelefono.setText("");
+             condo.txtCorreo.setText("");
+             
+             
+            
+        }
+        
     }
 
+    
+    
     @Override
     public void mouseClicked(MouseEvent e) {
         // primero, obtengo la fila seleccionada
 
         int fila = this.cataco.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
         int columna = this.cataco.jTable1.getSelectedColumn(); // luego, obtengo la columna seleccionada
-        String dato = String.valueOf(this.cataco.jTable1.getValueAt(fila, columna)); // por ultimo, obtengo el valor de la celda
-        cataco.txtBuscar.setText(String.valueOf(dato));
+        String dato = String.valueOf(this.cataco.jTable1.getValueAt(fila,0)); // por ultimo, obtengo el valor de la celda
+        co.setRif(String.valueOf(dato));
+        
+        co.Buscar(co);
+
+        condo.setVisible(true);
+        condo.txtRif.setText(co.getRif());
+        condo.txtRazonS.setText(co.getRazonS());
+        condo.txtTelefono.setText(co.getTelefono());
+        condo.txtCorreo.setText(co.getCorreoElectro());
+        
+        condo.btnGuardar.setEnabled(false);
+        
+        condo.btnModificar.setEnabled(true);
+        condo.btnEliminar.setEnabled(true);
+        
     }
 
     @Override

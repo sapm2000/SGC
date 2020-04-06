@@ -108,7 +108,50 @@ public class Condominio extends ConexionBD {
 
     }
 
+    public boolean Buscar(Condominio cond) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+
+        String sql = "SELECT * FROM condominio WHERE rif=? ";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, cond.getRif());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                cond.setRif(rs.getString("rif"));
+                cond.setRazonS(rs.getString("razon_social"));
+                cond.setTelefono(rs.getString("telefono"));
+                cond.setCorreoElectro(rs.getString("correo_electronico"));
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
+
     public boolean modificar(Condominio cond) {
+
         PreparedStatement ps = null;
         Connection con = getConexion();
 
@@ -121,8 +164,42 @@ public class Condominio extends ConexionBD {
             ps.setString(1, cond.getRazonS());
             ps.setString(2, cond.getTelefono());
             ps.setString(3, cond.getCorreoElectro());
-
             ps.setString(4, cond.getRif());
+
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
+    public boolean eliminar(Condominio prs) {
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "DELETE FROM condominio WHERE rif=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, prs.getRif());
             ps.execute();
             return true;
 
@@ -140,5 +217,8 @@ public class Condominio extends ConexionBD {
         }
 
     }
+
+
+
 
 }
