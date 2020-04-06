@@ -268,12 +268,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         cataCon.setVisible(true);
         cataCon.jButton2.setEnabled(false);
         cataCon.jButton2.setForeground(gray);
-        cataCon.jButton4.setEnabled(false);
-        cataCon.jButton4.setForeground(gray);
-        cataCon.jButton5.setEnabled(false);
-        cataCon.jButton5.setForeground(gray);
-        cataCon.jButton7.setEnabled(false);
-        cataCon.jButton7.setForeground(gray);
+
 
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
