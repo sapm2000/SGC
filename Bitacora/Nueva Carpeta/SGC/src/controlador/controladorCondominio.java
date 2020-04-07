@@ -24,7 +24,6 @@ import vista.PantallaPrincipal;
 import vista.PantallaPrincipal1;
 import vista.catalogoCondominio;
 import vista.condominio;
-import controlador.Validacion;
 
 /**
  *
@@ -53,10 +52,6 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         this.cataco.jTable1.addMouseListener(this);
         this.cataco.txtBuscar.addKeyListener(this);
         this.cataco.addWindowListener(this);
-        this.condo.txtRif.addKeyListener(this);
-        this.condo.txtRazonS.addKeyListener(this);
-        this.condo.txtTelefono.addKeyListener(this);
-        this.condo.txtCorreo.addKeyListener(this);
     }
 
     public void Llenartabla(JTable tablaD) {
@@ -104,12 +99,11 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
 
 
         if (e.getSource() == condo.btnGuardar) {
-            if(validar()){
             co.setRif(condo.txtRif.getText());
             co.setRazonS(condo.txtRazonS.getText());
             co.setTelefono(condo.txtTelefono.getText());
             co.setCorreoElectro(condo.txtCorreo.getText());
-            }
+
             if (co.registrar(co)) {
 
                 JOptionPane.showMessageDialog(null, "Registro Guardado");
@@ -124,12 +118,11 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         }
 
         if (e.getSource() == condo.btnModificar) {
-            if(validar()){
              co.setRif(condo.txtRif.getText());
              co.setRazonS(condo.txtRazonS.getText());
              co.setTelefono(condo.txtTelefono.getText());
              co.setCorreoElectro(condo.txtCorreo.getText());
-            }
+             
              
              
              if (co.modificar(co)) {
@@ -233,29 +226,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
     }
 
     @Override
-    public void keyTyped(KeyEvent ke) {
-        if (ke.getSource() == condo.txtRif) {
-            Validacion.soloNumeros(ke);
-            Validacion.Espacio(ke);
-            Validacion.limite(ke, condo.txtRif.getText(), 11);
-        }
-        if (ke.getSource() == condo.txtRazonS) {
-
-            Validacion.soloLetras(ke);
-            Validacion.Espacio(ke);
-            Validacion.limite(ke, condo.txtRif.getText(), 20);
-        }
-        if (ke.getSource() == condo.txtTelefono) {
-            Validacion.Espacio(ke);
-            Validacion.soloNumeros(ke);
-            Validacion.limite(ke, condo.txtTelefono.getText(), 11);
-        }
-        if (ke.getSource() == condo.txtCorreo) {
-            
-            Validacion.Espacio(ke);
-            Validacion.limite(ke, condo.txtCorreo.getText(), 50);
-
-        }
+    public void keyTyped(KeyEvent e) {
 
     }
 
@@ -303,40 +274,4 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
     public void windowDeactivated(WindowEvent e) {
 
     }
-    
-         private Boolean validar() {
-
-        Boolean resultado = true;
-        String msj = "";
-
-        if (condo.txtRif.getText().isEmpty()) {
-
-            msj += "El campo Rif no puede estar vacío\n";
-            resultado = false;
-        }
-        if (condo.txtRazonS.getText().isEmpty()) {
-
-            msj += "El campo Razon Social no puede estar vacío\n";
-            resultado = false;
-        }
-        if (condo.txtTelefono.getText().isEmpty()) {
-
-            msj += "El campo Telefono no puede estar vacío\n";
-            resultado = false;
-        }
-        if (condo.txtCorreo.getText().isEmpty()) {
-
-            msj += "El campo Correo no puede estar vacío\n";
-            resultado = false;
-        }
-        
-
-        if (!resultado) {
-
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
-        }
-
-        return resultado;
-    }
-    
 }
