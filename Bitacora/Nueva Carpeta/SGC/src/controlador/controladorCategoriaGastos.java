@@ -250,7 +250,14 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
     @Override
     public void keyReleased(KeyEvent e) {
+        if (e.getSource() == catacg.jTextField1) {
+            
+        
         filtro(catacg.jTextField1.getText(), catacg.jTable2);
+        }
+        else {
+                
+                }
     }
 
     @Override
