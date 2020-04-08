@@ -78,27 +78,36 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
             }
         }
 
-        if (e.getSource() == vistaGU.btnModificar) {
-            if (validar()) {
-                modC.setUsuario(vistaGU.txtUsuario.getText());
-                modC.setPassword(vistaGU.jpPassword.getText());
-                modC.setNombre(vistaGU.txtNombre.getText());
-                modC.setApellido(vistaGU.txtApellido.getText());
-                modC.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
-                modC.setNtelefono(vistaGU.txtTelefono.getText());
+                if (e.getSource() == vistaGU.btnModificar) {
+            if(validar()){
+            modC.setUsuario(vistaGU.txtUsuario.getText());  
+            modC.setNombre(vistaGU.txtNombre.getText());
+            modC.setPassword(vistaGU.jpPassword.getText());
+            modC.setApellido(vistaGU.txtApellido.getText());
+            modC.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
+            modC.setNtelefono(vistaGU.txtTelefono.getText());
+            
+            if(vistaGU.jpPassword.getText().isEmpty()){
+            if (modC.modificar(modC)) {
 
-                if (modC.modificar(modC)) {
+                JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
+                
+                limpiar();
 
-                    JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
-                    this.vistaGU.dispose();
+            } else if(modC.modificarC(modC)) {
+            
+            JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
+                
+                limpiar();
+            
+            }else{
+                JOptionPane.showMessageDialog(null, "El nombre de usuario ya esta siendo utilizado");
+                limpiar();
 
-                } else {
-
-                    JOptionPane.showMessageDialog(null, "El nombre de usuario ya esta siendo utilizado");
-
-                }
+            }
             }
 
+        }
         }
         if (e.getSource() == vistaGU.btnEliminar) {
 
@@ -206,7 +215,7 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
         }
         if (ke.getSource() == vistaGU.txtUsuario) {
 
-            Validacion.soloLetras(ke);
+            Validacion.soloLetras(ke); 
             Validacion.Espacio(ke);
             Validacion.limite(ke, vistaGU.txtUsuario.getText(), 20);
         }

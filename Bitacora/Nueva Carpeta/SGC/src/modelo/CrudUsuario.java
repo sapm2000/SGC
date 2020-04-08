@@ -121,6 +121,46 @@ public class CrudUsuario extends ConexionBD {
             PreparedStatement ps = null;
             Connection con = getConexion();
             
+            String sql = "UPDATE usuario SET usuario=?, nombre=?, apellido=?, tipo=?, ntelefono=? WHERE cedula=? ";
+            
+            try {
+            
+                ps = con.prepareStatement(sql);
+                
+                ps.setString(1, getUsuario());
+                ps.setString(2, getNombre());
+                ps.setString(3, getApellido());
+                ps.setString(4, getTipo());
+                ps.setString(5, getNtelefono());
+                ps.setString(6, getCedula());
+                ps.execute();
+                
+                return true;
+                
+        } catch (SQLException e) {
+            
+                System.err.println(e);
+                return false;
+                
+        } finally{
+                try {
+                    
+                    con.close();
+                    
+                } catch (SQLException e) {
+                
+                    System.err.println(e);
+                
+                }
+                
+            }
+
+    }
+        public boolean modificarC(CrudUsuario modC){
+    
+            PreparedStatement ps = null;
+            Connection con = getConexion();
+            
             String sql = "UPDATE usuario SET usuario=?, password=?, nombre=?, apellido=?, tipo=?, ntelefono=? WHERE cedula=? ";
             
             try {
