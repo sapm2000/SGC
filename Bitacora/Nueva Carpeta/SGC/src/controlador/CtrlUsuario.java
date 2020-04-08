@@ -107,7 +107,7 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
 
             } else {
 
-                JOptionPane.showMessageDialog(null, "ERROR AL MODIFICAR");
+                JOptionPane.showMessageDialog(null, "El nombre de usuario ya esta siendo utilizado");
                 limpiar();
 
             }
@@ -146,6 +146,7 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
             this.vistaGU.btnModificar.setEnabled(false);
             this.vistaGU.btnGuardar.setEnabled(true);
             this.vistaGU.btnEliminar.setEnabled(false);
+            this.vistaGU.txtCedula.setEnabled(true);
             
 
         }
@@ -190,6 +191,7 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
         vistaGU.txtApellido.setText(modC.getApellido());
         vistaGU.txtTelefono.setText(modC.getNtelefono());
         vistaGU.cbxTipo.setSelectedItem(modC.getTipo());
+        vistaGU.txtCedula.setEnabled(false);
         
         vistaGU.btnGuardar.setEnabled(false);
         vistaGU.btnModificar.setEnabled(true);
