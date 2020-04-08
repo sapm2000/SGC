@@ -175,16 +175,10 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
         vistaGU.txtCedula.setText(modC.getCedula());
         vistaGU.txtUsuario.setText(modC.getUsuario());
         vistaGU.txtNombre.setText(modC.getNombre());
-        if (vistaGU.jpPassword.getText().isEmpty()) {
-
-            msj += "El campo Password no puede estar vacío\n";
-            resultado = false;
-        }
         vistaGU.txtApellido.setText(modC.getApellido());
         vistaGU.txtTelefono.setText(modC.getNtelefono());
         vistaGU.cbxTipo.setSelectedItem(modC.getTipo());
         vistaGU.txtCedula.setEnabled(false);
-
         vistaGU.btnGuardar.setEnabled(false);
         vistaGU.btnModificar.setEnabled(true);
         vistaGU.btnEliminar.setEnabled(true);
@@ -215,7 +209,8 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
         }
         if (ke.getSource() == vistaGU.txtUsuario) {
 
-            Validacion.soloLetras(ke); 
+            Validacion.soloLetras(ke);
+ 
             Validacion.Espacio(ke);
             Validacion.limite(ke, vistaGU.txtUsuario.getText(), 20);
         }
@@ -273,11 +268,11 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
             msj += "El campo Usuario no puede estar vacío\n";
             resultado = false;
         }
-        if (vistaGU.jpPassword.getText().isEmpty()) {
+       /* if (vistaGU.jpPassword.getText().isEmpty()) {
 
             msj += "El campo Password no puede estar vacío\n";
             resultado = false;
-        }
+        }*/
         if (vistaGU.txtNombre.getText().isEmpty()) {
 
             msj += "El campo Nombre no puede estar vacío\n";
