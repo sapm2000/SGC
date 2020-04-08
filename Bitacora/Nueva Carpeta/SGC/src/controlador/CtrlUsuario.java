@@ -301,7 +301,11 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
 
     @Override
     public void keyReleased(KeyEvent e) {
+        
+         if (e.getSource() == catausu.txtBuscar){
         filtro(catausu.txtBuscar.getText(), catausu.jtable);
+         }else{
+         }
     }
     
      private Boolean validar() {
