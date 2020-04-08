@@ -5,7 +5,7 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2020-04-04 23:56:25
+-- Started on 2020-04-08 11:07:49
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -53,7 +53,7 @@ CREATE SEQUENCE public."categoriaGasto_id_seq"
 ALTER TABLE public."categoriaGasto_id_seq" OWNER TO postgres;
 
 --
--- TOC entry 2836 (class 0 OID 0)
+-- TOC entry 2848 (class 0 OID 0)
 -- Dependencies: 203
 -- Name: categoriaGasto_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -82,7 +82,7 @@ ALTER TABLE public.condominio OWNER TO postgres;
 --
 
 CREATE TABLE public.usuario (
-    cedula character varying(8),
+    cedula character varying(8) NOT NULL,
     usuario character varying(10),
     password character varying(12),
     nombre character varying(15),
@@ -103,55 +103,54 @@ ALTER TABLE ONLY public.categoriagasto ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 2829 (class 0 OID 16441)
+-- TOC entry 2841 (class 0 OID 16441)
 -- Dependencies: 204
 -- Data for Name: categoriagasto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.categoriagasto (id, nombre, descripcion) FROM stdin;
-18	nombre	desc
-19	administrativo	conjunto de gastos administrativos
 21	true	este registro se ha modificado
-20	mantenimiento	conj mantenimiento
+52	gg	g
+19	administrativo	conjunto de gastos administrativos
+34	ad	asd
 \.
 
 
 --
--- TOC entry 2830 (class 0 OID 16449)
+-- TOC entry 2842 (class 0 OID 16449)
 -- Dependencies: 205
 -- Data for Name: condominio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.condominio (rif, razon_social, telefono, correo_electronico) FROM stdin;
+13131312	sdadad	123132	asdasdasdadsa
+111	ñlkjhgfds	24334324	dasdasfdsf
 \.
 
 
 --
--- TOC entry 2827 (class 0 OID 16430)
+-- TOC entry 2839 (class 0 OID 16430)
 -- Dependencies: 202
 -- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.usuario (cedula, usuario, password, nombre, apellido, tipo, ntelefono) FROM stdin;
-212121	jun	jun	juj	juj	Administrador	\N
-212121	junio	jun	juj	juj	Administrador	\N
-123	ansuaaaa	22	22	22	Propietario	\N
-26943430	samuel	220489	samuel	perez	Administrador	04245222312
-2323	dasdsa	asdadasd	sdasd	asda	Administrador	sad
+26843430	sapm	12345	samuel	perez	Administrador	2312313
+26943430	sa	12345	ada	adasad	Administrador	123
 \.
 
 
 --
--- TOC entry 2837 (class 0 OID 0)
+-- TOC entry 2849 (class 0 OID 0)
 -- Dependencies: 203
 -- Name: categoriaGasto_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."categoriaGasto_id_seq"', 21, true);
+SELECT pg_catalog.setval('public."categoriaGasto_id_seq"', 53, true);
 
 
 --
--- TOC entry 2698 (class 2606 OID 16446)
+-- TOC entry 2706 (class 2606 OID 16446)
 -- Name: categoriagasto categoriaGasto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -160,7 +159,16 @@ ALTER TABLE ONLY public.categoriagasto
 
 
 --
--- TOC entry 2700 (class 2606 OID 16456)
+-- TOC entry 2708 (class 2606 OID 16458)
+-- Name: categoriagasto categoriagasto_nombre_nombre1_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categoriagasto
+    ADD CONSTRAINT categoriagasto_nombre_nombre1_key UNIQUE (nombre) INCLUDE (nombre);
+
+
+--
+-- TOC entry 2710 (class 2606 OID 16456)
 -- Name: condominio condominio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -168,7 +176,52 @@ ALTER TABLE ONLY public.condominio
     ADD CONSTRAINT condominio_pkey PRIMARY KEY (rif);
 
 
--- Completed on 2020-04-04 23:56:25
+--
+-- TOC entry 2712 (class 2606 OID 16460)
+-- Name: condominio condominio_rif_rif1_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.condominio
+    ADD CONSTRAINT condominio_rif_rif1_key UNIQUE (rif) INCLUDE (rif);
+
+
+--
+-- TOC entry 2698 (class 2606 OID 16469)
+-- Name: usuario usuario_cedula_cedula1_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuario
+    ADD CONSTRAINT usuario_cedula_cedula1_key UNIQUE (cedula) INCLUDE (cedula);
+
+
+--
+-- TOC entry 2700 (class 2606 OID 16465)
+-- Name: usuario usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuario
+    ADD CONSTRAINT usuario_pkey PRIMARY KEY (cedula) INCLUDE (cedula);
+
+
+--
+-- TOC entry 2702 (class 2606 OID 16467)
+-- Name: usuario usuario_usuario_usuario1_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuario
+    ADD CONSTRAINT usuario_usuario_usuario1_key UNIQUE (usuario) INCLUDE (usuario);
+
+
+--
+-- TOC entry 2704 (class 2606 OID 16471)
+-- Name: usuario usuario_usuario_usuario1_key1; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuario
+    ADD CONSTRAINT usuario_usuario_usuario1_key1 UNIQUE (usuario) INCLUDE (usuario);
+
+
+-- Completed on 2020-04-08 11:07:49
 
 --
 -- PostgreSQL database dump complete
