@@ -48,6 +48,7 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
         this.catausu.txtBuscar.addKeyListener(this);
         this.catausu.jtable.addMouseListener(this);
         this.catausu.addWindowListener(this);
+        this.vistaGU.btnEliminar.addActionListener(this);
 
     }
     //Fin del constructor
@@ -93,6 +94,12 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
                 JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
                 
                 limpiar();
+            }else{
+                JOptionPane.showMessageDialog(null, "El nombre de usuario ya esta siendo utilizado");
+                limpiar();
+
+            }
+
 
             } else if(modC.modificarC(modC)) {
             
@@ -100,11 +107,6 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
                 
                 limpiar();
             
-            }else{
-                JOptionPane.showMessageDialog(null, "El nombre de usuario ya esta siendo utilizado");
-                limpiar();
-
-            }
             }
 
         }
@@ -175,16 +177,10 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
         vistaGU.txtCedula.setText(modC.getCedula());
         vistaGU.txtUsuario.setText(modC.getUsuario());
         vistaGU.txtNombre.setText(modC.getNombre());
-        if (vistaGU.jpPassword.getText().isEmpty()) {
-
-            msj += "El campo Password no puede estar vacío\n";
-            resultado = false;
-        }
         vistaGU.txtApellido.setText(modC.getApellido());
         vistaGU.txtTelefono.setText(modC.getNtelefono());
         vistaGU.cbxTipo.setSelectedItem(modC.getTipo());
         vistaGU.txtCedula.setEnabled(false);
-
         vistaGU.btnGuardar.setEnabled(false);
         vistaGU.btnModificar.setEnabled(true);
         vistaGU.btnEliminar.setEnabled(true);
@@ -215,11 +211,12 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
         }
         if (ke.getSource() == vistaGU.txtUsuario) {
 
-            Validacion.soloLetras(ke); 
+            Validacion.soloLetras(ke);
+ 
             Validacion.Espacio(ke);
             Validacion.limite(ke, vistaGU.txtUsuario.getText(), 20);
         }
-        if (ke.getSource() == vistaGU.jpPassword) {
+     if (ke.getSource() == vistaGU.jpPassword) {
             Validacion.Espacio(ke);
 
             Validacion.limite(ke, vistaGU.jpPassword.getText(), 15);
@@ -273,11 +270,11 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
             msj += "El campo Usuario no puede estar vacío\n";
             resultado = false;
         }
-        if (vistaGU.jpPassword.getText().isEmpty()) {
+       /* if (vistaGU.jpPassword.getText().isEmpty()) {
 
             msj += "El campo Password no puede estar vacío\n";
             resultado = false;
-        }
+        }*/
         if (vistaGU.txtNombre.getText().isEmpty()) {
 
             msj += "El campo Nombre no puede estar vacío\n";
