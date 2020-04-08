@@ -104,7 +104,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
             if(validar()){
             modcg.setNombre(cg.txtnombre.getText());
             modcg.setDescripcion(cg.txtdescripcion.getText());
-            }
+            
 
             if (modcg.registrar(modcg)) {
 
@@ -114,8 +114,9 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
             } else {
 
-                JOptionPane.showMessageDialog(null, "Error al Guardar");
+                JOptionPane.showMessageDialog(null, "Registro Duplicado");
 
+            }
             }
 
         }
@@ -145,7 +146,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
              modcg.setNombre(cg.txtnombre.getText());
              modcg.setDescripcion(cg.txtdescripcion.getText());
               modcg.setId(Integer.parseInt(cg.txtId.getText()));
-            }
+            
              
              
              if (modcg.modificar(modcg)) {
@@ -157,8 +158,9 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
             } else {
 
-                JOptionPane.showMessageDialog(null, "Error al Modificar");
+                JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
                 
+            }
             }
         }
         

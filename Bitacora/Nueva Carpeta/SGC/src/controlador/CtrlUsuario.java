@@ -42,10 +42,9 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
 
         this.vistaGU.btnModificar.addActionListener(this);
         this.vistaGU.btnLimpiar.addActionListener(this);
-        this.catausu.btnBuscar.addActionListener(this);
+        
         this.catausu.btnNuevoUsuario.addActionListener(this);
-        this.catausu.btnEditar.addActionListener(this);
-        this.catausu.btnEliminar.addActionListener(this);
+       
         this.vistaGU.txtCedula.addKeyListener(this);
         this.vistaGU.txtUsuario.addKeyListener(this);
         this.vistaGU.jpPassword.addKeyListener(this);
@@ -75,7 +74,7 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
             modC.setApellido(vistaGU.txtApellido.getText());
             modC.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
             modC.setNtelefono(vistaGU.txtTelefono.getText());
-            }
+            
             if (modC.registrar(modC)) {
 
                 JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
@@ -84,9 +83,10 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
 
             } else {
 
-                JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR");
+                JOptionPane.showMessageDialog(null, "Registro Duplicado");
                 limpiar();
 
+            }
             }
         }
 
@@ -98,7 +98,7 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
             modC.setApellido(vistaGU.txtApellido.getText());
             modC.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
             modC.setNtelefono(vistaGU.txtTelefono.getText());
-            }
+            
             if (modC.modificar(modC)) {
 
                 JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
@@ -110,6 +110,7 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
                 JOptionPane.showMessageDialog(null, "ERROR AL MODIFICAR");
                 limpiar();
 
+            }
             }
 
         }
@@ -138,65 +139,20 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
             limpiar();
         }
 
-        if (e.getSource() == catausu.btnBuscar) {
-            int botonDialogo = JOptionPane.YES_NO_OPTION;
-            int result = JOptionPane.showConfirmDialog(null, "ENCONTRO EL REGISTRO?", "REGISTRO", botonDialogo);
-            if (result == 0) {
-                 /* this.vistaGU.setVisible(true);
-            this.vistaGU.btnEliminar.setEnabled(false);
-            this.vistaGU.btnGuardar.setEnabled(true);
-            this.vistaGU.btnModificar.setEnabled(false);
-            
-            */
-                this.catausu.btnEditar.setEnabled(true);
-                this.catausu.btnEliminar.setEnabled(true);
-                this.catausu.btnNuevoUsuario.setEnabled(false);
-                this.catausu.btnNuevoUsuario.setForeground(Color.gray);
-                this.catausu.btnEditar.setForeground(new java.awt.Color(0, 94, 159));
-                this.catausu.btnEliminar.setForeground(new java.awt.Color(0, 94, 159));
-                vistaGU.txtCedula.setText("");
-                vistaGU.txtUsuario.setText("");
-                vistaGU.jpPassword.setText("");
-                vistaGU.txtNombre.setText("");
-                vistaGU.txtApellido.setText("");
-                vistaGU.txtTelefono.setText("");
-                vistaGU.cbxTipo.setSelectedItem("");
-
-            } else {
-                this.catausu.btnNuevoUsuario.setEnabled(true);
-                this.catausu.btnNuevoUsuario.setForeground(new java.awt.Color(0, 94, 159));
-                this.catausu.btnEditar.setEnabled(false);
-                this.catausu.btnEliminar.setEnabled(false);
-                this.catausu.btnEditar.setForeground(Color.gray);
-                this.catausu.btnEliminar.setForeground(Color.gray);
-
-            }
-        }
+        
 
         if (e.getSource() == catausu.btnNuevoUsuario) {
             this.vistaGU.setVisible(true);
-            this.vistaGU.btnModificar.setVisible(false);
-            this.vistaGU.btnGuardar.setVisible(true);
+            this.vistaGU.btnModificar.setEnabled(false);
+            this.vistaGU.btnGuardar.setEnabled(true);
+            this.vistaGU.btnEliminar.setEnabled(false);
             
 
         }
 
-        if (e.getSource() == catausu.btnEditar) {
-            this.vistaGU.setVisible(true);
-            this.vistaGU.btnGuardar.setVisible(false);
-            this.vistaGU.btnModificar.setVisible(true);
-        }
+       
 
-        if (e.getSource() == catausu.btnEliminar) {
-            int botonDialogo = JOptionPane.YES_NO_OPTION;
-            int result = JOptionPane.showConfirmDialog(null, "DESEA ELIMINAR EL REGISTRO?", "ELIMINAR", botonDialogo);
-            if (result == 0) {
-                JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
-            } else {
-
-            }
-
-        }
+       
 
     }
 

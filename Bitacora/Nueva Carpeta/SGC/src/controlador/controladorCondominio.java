@@ -95,6 +95,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
             this.condo.btnModificar.setEnabled(false);
             this.condo.btnGuardar.setEnabled(true);
             this.condo.btnEliminar.setEnabled(false);
+            this.condo.txtRif.setEnabled(true);
             condo.txtRif.setText("");
             condo.txtRazonS.setText("");
             condo.txtTelefono.setText("");
@@ -109,7 +110,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
             co.setRazonS(condo.txtRazonS.getText());
             co.setTelefono(condo.txtTelefono.getText());
             co.setCorreoElectro(condo.txtCorreo.getText());
-            }
+            
             if (co.registrar(co)) {
 
                 JOptionPane.showMessageDialog(null, "Registro Guardado");
@@ -117,8 +118,9 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
 
             } else {
 
-                JOptionPane.showMessageDialog(null, "Error al Guardar");
+                JOptionPane.showMessageDialog(null, "Este registro ya existe");
 
+            }
             }
 
         }
@@ -129,7 +131,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
              co.setRazonS(condo.txtRazonS.getText());
              co.setTelefono(condo.txtTelefono.getText());
              co.setCorreoElectro(condo.txtCorreo.getText());
-            }
+            
              
              
              if (co.modificar(co)) {
@@ -143,6 +145,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
 
                 JOptionPane.showMessageDialog(null, "Error al Modificar");
                 
+            }
             }
         }
 
@@ -197,6 +200,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         condo.txtRazonS.setText(co.getRazonS());
         condo.txtTelefono.setText(co.getTelefono());
         condo.txtCorreo.setText(co.getCorreoElectro());
+        condo.txtRif.setEnabled(false);
         
         condo.btnGuardar.setEnabled(false);
         
@@ -266,7 +270,12 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
 
     @Override
     public void keyReleased(KeyEvent e) {
+        if (e.getSource() == cataco.txtBuscar) {
         filtro(cataco.txtBuscar.getText(), cataco.jTable1);
+        }
+        else {
+            
+        }
     }
 
     @Override
