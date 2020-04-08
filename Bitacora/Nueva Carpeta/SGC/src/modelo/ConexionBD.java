@@ -29,5 +29,17 @@ public Connection getConexion(){
         return con;
         
 
-    }     
+    }
+
+    public void cerrar() {
+		
+        try {
+              con.close();
+	} catch (SQLException e) {
+              e.printStackTrace();
+	}
+	}
+	public Connection getCon() {
+		return con;
+	}
 }

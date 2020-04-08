@@ -37,14 +37,10 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
         this.modC = modC;
         this.vistaGU = vistaGU;
         this.catausu = catausu;
-        //this.vistaGU.btnBuscar.addActionListener(this);
         this.vistaGU.btnGuardar.addActionListener(this);
-
         this.vistaGU.btnModificar.addActionListener(this);
         this.vistaGU.btnLimpiar.addActionListener(this);
-        
         this.catausu.btnNuevoUsuario.addActionListener(this);
-       
         this.vistaGU.txtCedula.addKeyListener(this);
         this.vistaGU.txtUsuario.addKeyListener(this);
         this.vistaGU.jpPassword.addKeyListener(this);
@@ -114,27 +110,25 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
             }
 
         }
+            if (e.getSource() == vistaGU.btnEliminar) {
+           
+           
 
-        /* if (e.getSource() == vistaGU.btnBuscar) {
-
-            mod.setCedula(vistaGU.txtCedula.getText());
-
-            if (modC.buscar(mod)) {
-
-                vistaGU.txtCedula.setText(mod.getCedula());
-                vistaGU.txtUsuario.setText(mod.getUsuario());
-                vistaGU.jpPassword.setText(mod.getPassword());
-                vistaGU.txtNombre.setText(mod.getNombre());
-                vistaGU.txtApellido.setText(mod.getApellido());
-                vistaGU.cbxTipo.setSelectedItem(mod.getTipo());
-                vistaGU.txtTelefono.setText(mod.getNtelefono());
+            if (modC.eliminar(modC)) {
+                modC.setUsuario(vistaGU.txtUsuario.getText());
+                JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                vistaGU.dispose();
+                Llenartabla(catausu.jtable);
+                
 
             } else {
 
-                JOptionPane.showMessageDialog(null, "NO SE ENCONTRO REGISTRO");
-        }
+                JOptionPane.showMessageDialog(null, "Error al Eliminar");
+
             }
-         */
+
+        }
+
         if (e.getSource() == vistaGU.btnLimpiar) {
             limpiar();
         }
@@ -142,6 +136,7 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
         
 
         if (e.getSource() == catausu.btnNuevoUsuario) {
+            limpiar();
             this.vistaGU.setVisible(true);
             this.vistaGU.btnModificar.setEnabled(false);
             this.vistaGU.btnGuardar.setEnabled(true);
@@ -150,11 +145,6 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
             
 
         }
-
-       
-
-       
-
     }
 
     public void limpiar() {
@@ -179,7 +169,9 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
      int fila = this.catausu.jtable.getSelectedRow(); // primero, obtengo la fila seleccionada
         int columna = this.catausu.jtable.getSelectedColumn(); // luego, obtengo la columna seleccionada
         String dato = String.valueOf(this.catausu.jtable.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
-
+        Boolean resultado = true;
+        String msj = "";
+        
         modC.setUsuario(String.valueOf(dato));
 
         modC.buscar(modC);
@@ -188,10 +180,16 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
         vistaGU.txtCedula.setText(modC.getCedula());
         vistaGU.txtUsuario.setText(modC.getUsuario());
         vistaGU.txtNombre.setText(modC.getNombre());
+        if (vistaGU.jpPassword.getText().isEmpty()) {
+
+            msj += "El campo Password no puede estar vacío\n";
+            resultado = false;
+        }
         vistaGU.txtApellido.setText(modC.getApellido());
         vistaGU.txtTelefono.setText(modC.getNtelefono());
         vistaGU.cbxTipo.setSelectedItem(modC.getTipo());
         vistaGU.txtCedula.setEnabled(false);
+        
         
         vistaGU.btnGuardar.setEnabled(false);
         vistaGU.btnModificar.setEnabled(true);
