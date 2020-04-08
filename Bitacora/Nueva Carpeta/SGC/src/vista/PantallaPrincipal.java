@@ -266,8 +266,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         controladorCondominio controcon = new controladorCondominio(cataCon, condo, panta1,this,co);
 
         cataCon.setVisible(true);
-        cataCon.jButton2.setEnabled(false);
-        cataCon.jButton2.setForeground(gray);
+        
 
 
 
@@ -364,13 +363,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         CtrlUsuario ctrl = new CtrlUsuario(modc, gestusu, catausu);
         catausu.setVisible(true);
 
-        catausu.btnNuevoUsuario.setForeground(gray);
-        catausu.btnNuevoUsuario.setEnabled(false);
+      
 
-        catausu.btnEditar.setEnabled(false);
-        catausu.btnEditar.setForeground(gray);
-        catausu.btnEliminar.setEnabled(false);
-        catausu.btnEliminar.setForeground(gray);
+        
 
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 

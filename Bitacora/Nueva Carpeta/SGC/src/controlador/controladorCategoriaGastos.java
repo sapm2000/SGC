@@ -23,6 +23,7 @@ import javax.swing.table.TableRowSorter;
 import modelo.CategoriaGasto;
 import vista.catalogoCategoriaGastos;
 import vista.categoriaGastos;
+import controlador.Validacion;
 
 /**
  *
@@ -49,6 +50,8 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         this.catacg.jTable2.addMouseListener(this);
         this.catacg.jTextField1.addKeyListener(this);
         this.catacg.addWindowListener(this);
+        this.cg.txtnombre.addKeyListener(this);
+        this.cg.txtdescripcion.addKeyListener(this);
 
     }
 
@@ -98,9 +101,10 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
        
 
         if (e.getSource() == cg.btnGuardar) {
+            if(validar()){
             modcg.setNombre(cg.txtnombre.getText());
             modcg.setDescripcion(cg.txtdescripcion.getText());
-           
+            
 
             if (modcg.registrar(modcg)) {
 
@@ -110,8 +114,9 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
             } else {
 
-                JOptionPane.showMessageDialog(null, "Error al Guardar");
+                JOptionPane.showMessageDialog(null, "Registro Duplicado");
 
+            }
             }
 
         }
@@ -137,10 +142,11 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         }
 
         if (e.getSource() == cg.btnModificar) {
+            if(validar()){
              modcg.setNombre(cg.txtnombre.getText());
              modcg.setDescripcion(cg.txtdescripcion.getText());
               modcg.setId(Integer.parseInt(cg.txtId.getText()));
-             
+            
              
              
              if (modcg.modificar(modcg)) {
@@ -152,8 +158,9 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
             } else {
 
-                JOptionPane.showMessageDialog(null, "Error al Modificar");
+                JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
                 
+            }
             }
         }
         
@@ -224,8 +231,18 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(KeyEvent ke) {
+            if (ke.getSource() == cg.txtnombre) {
+            Validacion.soloLetras(ke);
+            Validacion.Espacio(ke);
+            Validacion.limite(ke, cg.txtnombre.getText(), 8);
+        }
+        if (ke.getSource() == cg.txtdescripcion) {
 
+            Validacion.soloLetras(ke);
+            Validacion.Espacio(ke);
+            Validacion.limite(ke, cg.txtdescripcion.getText(), 20);
+        }
     }
 
     @Override
@@ -235,7 +252,14 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
     @Override
     public void keyReleased(KeyEvent e) {
+        if (e.getSource() == catacg.jTextField1) {
+            
+        
         filtro(catacg.jTextField1.getText(), catacg.jTable2);
+        }
+        else {
+                
+                }
     }
 
     @Override
@@ -271,6 +295,31 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
     @Override
     public void windowDeactivated(WindowEvent e) {
 
+    }
+         private Boolean validar() {
+
+        Boolean resultado = true;
+        String msj = "";
+
+        if (cg.txtnombre.getText().isEmpty()) {
+
+            msj += "El campo nombre categoria no puede estar vacío\n";
+            resultado = false;
+        }
+        if (cg.txtdescripcion.getText().isEmpty()) {
+
+            msj += "El campo Descripcion no puede estar vacío\n";
+            resultado = false;
+        }
+
+
+
+        if (!resultado) {
+
+            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+
+        return resultado;
     }
 
 }

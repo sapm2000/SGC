@@ -101,6 +101,12 @@ public class CategoriaGasto extends ConexionBD {
             }
 
         } catch (Exception e) {
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
 
         return listaPersona;
