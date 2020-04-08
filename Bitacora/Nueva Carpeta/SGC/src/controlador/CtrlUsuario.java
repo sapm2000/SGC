@@ -48,6 +48,7 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
         this.catausu.txtBuscar.addKeyListener(this);
         this.catausu.jtable.addMouseListener(this);
         this.catausu.addWindowListener(this);
+        this.vistaGU.btnEliminar.addActionListener(this);
 
     }
     //Fin del constructor
