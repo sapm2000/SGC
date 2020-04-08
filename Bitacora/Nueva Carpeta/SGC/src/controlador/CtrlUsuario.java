@@ -94,6 +94,12 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
                 JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
                 
                 limpiar();
+            }else{
+                JOptionPane.showMessageDialog(null, "El nombre de usuario ya esta siendo utilizado");
+                limpiar();
+
+            }
+
 
             } else if(modC.modificarC(modC)) {
             
@@ -101,11 +107,6 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
                 
                 limpiar();
             
-            }else{
-                JOptionPane.showMessageDialog(null, "El nombre de usuario ya esta siendo utilizado");
-                limpiar();
-
-            }
             }
 
         }
@@ -215,7 +216,7 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
             Validacion.Espacio(ke);
             Validacion.limite(ke, vistaGU.txtUsuario.getText(), 20);
         }
-        if (ke.getSource() == vistaGU.jpPassword) {
+     if (ke.getSource() == vistaGU.jpPassword) {
             Validacion.Espacio(ke);
 
             Validacion.limite(ke, vistaGU.jpPassword.getText(), 15);
