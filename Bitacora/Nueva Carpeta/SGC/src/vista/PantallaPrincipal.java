@@ -13,6 +13,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import modelo.CategoriaGasto;
+import modelo.ConceptoGastos;
 import modelo.Condominio;
 import modelo.CrudUsuario;
 
@@ -297,7 +298,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         catalogoConceptoGasto catacog = new catalogoConceptoGasto();
         conceptoGasto cga = new conceptoGasto();
-        controladorConceptoGasto controcga = new controladorConceptoGasto(catacog, cga);
+        ConceptoGastos conce = new ConceptoGastos();
+        controladorConceptoGasto controcga = new controladorConceptoGasto(catacog, cga, conce);
         catacog.jButton2.setForeground(gray);
         catacog.jButton2.setEnabled(false);
 
