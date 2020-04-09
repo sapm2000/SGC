@@ -92,11 +92,12 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
             if (modC.modificar(modC)) {
 
                 JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
-                
+                Llenartabla(catausu.jtable);
+                this.vistaGU.dispose();
                 limpiar();
             }else{
                 JOptionPane.showMessageDialog(null, "El nombre de usuario ya esta siendo utilizado");
-                limpiar();
+               
 
             }
 
@@ -104,8 +105,8 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
             } else if(modC.modificarC(modC)) {
             
             JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
-                
-                limpiar();
+                Llenartabla(catausu.jtable);
+                this.vistaGU.dispose();
             
             }
 
