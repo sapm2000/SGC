@@ -318,7 +318,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         cuenta cu = new cuenta();
         Cuenta modcu = new Cuenta();
         Banco modban = new Banco();
-        controladorCuenta controcu = new controladorCuenta(catacu, cu, modcu, modban);
+        Condominio modcon = new Condominio();
+        controladorCuenta controcu = new controladorCuenta(catacu, cu, modcu, modban, modcon);
        
         catacu.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed

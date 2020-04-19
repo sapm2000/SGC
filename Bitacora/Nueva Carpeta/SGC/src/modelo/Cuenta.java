@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
@@ -16,13 +17,14 @@ import javax.swing.JOptionPane;
  *
  * @author rma
  */
-public class Cuenta extends ConexionBD {
+public class Cuenta extends Banco {
 
     private String cedula;
     private String n_cuenta;
     private String beneficiario;
     private String tipo;
     private int id_banco;
+    private int id_condominio;
 
     public String getCedula() {
         return cedula;
@@ -62,6 +64,14 @@ public class Cuenta extends ConexionBD {
 
     public void setId_banco(int id_banco) {
         this.id_banco = id_banco;
+    }
+
+    public int getId_condominio() {
+        return id_condominio;
+    }
+
+    public void setId_condominio(int id_condominio) {
+        this.id_condominio = id_condominio;
     }
 
     public void llenar_banco(JComboBox banco) {
@@ -159,6 +169,76 @@ public class Cuenta extends ConexionBD {
 
         }
 
+    }
+
+    public boolean registrar_cuenta_condominio(Cuenta modcu) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "INSERT INTO puente_condomino_cuenta(id_condominio, id_cuenta) VALUES (?, ?);";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, getId_condominio());
+            ps.setString(2, getN_cuenta());
+
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
+    public ArrayList<Cuenta> listarcuenta() {
+        ArrayList listaCuenta = new ArrayList();
+        Cuenta modcu;
+        Banco modban;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "select cuenta.cedula, cuenta.n_cuenta, cuenta.beneficiario, cuenta.tipo, banco.nombre_banco from cuenta inner join banco on banco.id=cuenta.id_banco";
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modcu = new Cuenta();
+                modban = new Banco();
+
+                modcu.setCedula(rs.getString(1));
+                modcu.setN_cuenta(rs.getString(2));
+                modcu.setBeneficiario(rs.getString(3));
+                modcu.setTipo(rs.getString(4));
+                modcu.setNombre_banco(rs.getString(5));
+
+                listaCuenta.add(modcu);
+            }
+        } catch (Exception e) {
+        }
+
+        return listaCuenta;
     }
 
 }

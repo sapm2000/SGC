@@ -71,7 +71,7 @@ public class catalogoCuenta extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Banco", "Cuenta", "C.I. / RIF.", "Beneficiario", "Tipo", "Condominio"
+                "Banco", "Cuenta", "C.I. / RIF.", "Beneficiario", "Tipo", "Condominios"
             }
         ));
         jTable1.setRowHeight(20);

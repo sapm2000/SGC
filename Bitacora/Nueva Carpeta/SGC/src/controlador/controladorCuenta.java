@@ -13,8 +13,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import static java.lang.String.valueOf;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import modelo.Banco;
+import modelo.Condominio;
 import modelo.Cuenta;
 import vista.catalogoCuenta;
 import vista.cuenta;
@@ -29,16 +34,73 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     private cuenta cu;
     private Cuenta modcu;
     private Banco modban;
+    private Condominio modcon;
 
-    public controladorCuenta(catalogoCuenta catacu, cuenta cu, Cuenta modcu, Banco modban) {
+    public controladorCuenta(catalogoCuenta catacu, cuenta cu, Cuenta modcu, Banco modban, Condominio modcon) {
         this.catacu = catacu;
         this.cu = cu;
         this.modcu = modcu;
         this.modban = modban;
+        this.modcon = modcon;
         this.catacu.btn_nuevaCuenta.addActionListener(this);
         this.cu.btnGuardar.addActionListener(this);
         this.cu.btnLimpiar.addActionListener(this);
         this.cu.btnModificar.addActionListener(this);
+        this.catacu.addWindowListener(this);
+    }
+
+    public void Llenartabla(JTable tablaD) {
+
+        DefaultTableModel modeloT = new DefaultTableModel();
+        tablaD.setModel(modeloT);
+
+        modeloT.addColumn("Banco");
+        modeloT.addColumn("Cuenta");
+        modeloT.addColumn("CI/RIF");
+        modeloT.addColumn("Beneficiario");
+        modeloT.addColumn("Tipo");
+        modeloT.addColumn("Condominio");
+
+        Object[] columna = new Object[6];
+
+        int numRegistro = modcu.listarcuenta().size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = modcu.listarcuenta().get(i).getNombre_banco();
+            columna[1] = modcu.listarcuenta().get(i).getN_cuenta();
+            columna[2] = modcu.listarcuenta().get(i).getCedula();
+            columna[3] = modcu.listarcuenta().get(i).getBeneficiario();
+            columna[4] = modcu.listarcuenta().get(i).getTipo();
+
+            modeloT.addRow(columna);
+
+        }
+
+    }
+
+    public void Llenartablacondominio(JTable tablaD) {
+
+        DefaultTableModel modeloT = new DefaultTableModel();
+        tablaD.setModel(modeloT);
+
+        modeloT.addColumn("Rif");
+        modeloT.addColumn("Razon social");
+        modeloT.addColumn("Accion");
+
+        Object[] columna = new Object[2];
+
+        int numRegistro = modcon.lPerson().size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = modcon.lPerson().get(i).getRif();
+            columna[1] = modcon.lPerson().get(i).getRazonS();
+
+            modeloT.addRow(columna);
+
+        }
+
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -54,6 +116,8 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
             cu.txtN_cuenta.setText("");
             cu.txtBeneficiario.setText("");
             cu.txtCedula.setText("");
+            Llenartablacondominio(cu.jTable1);
+            addCheckBox(2, cu.jTable1);
 
         }
 
@@ -70,8 +134,17 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
                 if (modcu.registrar(modcu)) {
 
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
-                    
 
+                    for (int i = 0; i < cu.jTable1.getRowCount(); i++) {
+                        if (IsSelected(i, 2, cu.jTable1)) {
+                            String valor = String.valueOf(cu.jTable1.getValueAt(i, 0));
+                            modcu.setId_condominio(Integer.parseInt(valor));
+                            modcu.setN_cuenta(cu.txtN_cuenta.getText());
+                            modcu.registrar_cuenta_condominio(modcu);
+
+                        }
+                    }
+                    cu.dispose();
                 } else {
 
                     JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
@@ -160,7 +233,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
 
     @Override
     public void windowOpened(WindowEvent e) {
-
+         Llenartabla(catacu.jTable1);
     }
 
     @Override
@@ -193,4 +266,13 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
 
     }
 
+    public void addCheckBox(int column, JTable table) {
+        TableColumn tc = table.getColumnModel().getColumn(column);
+        tc.setCellEditor(table.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
+    }
+
+    public boolean IsSelected(int row, int column, JTable table) {
+        return table.getValueAt(row, column) != null;
+    }
 }
