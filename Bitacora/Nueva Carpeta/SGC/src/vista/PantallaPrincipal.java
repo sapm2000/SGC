@@ -300,8 +300,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         catalogoConceptoGasto catacog = new catalogoConceptoGasto();
         conceptoGasto cga = new conceptoGasto();
-        ConceptoGastos conce = new ConceptoGastos();
-        controladorConceptoGasto controcga = new controladorConceptoGasto(catacog, cga, conce);
+       
+        controladorConceptoGasto controcga = new controladorConceptoGasto(catacog, cga);
         catacog.jButton2.setForeground(gray);
         catacog.jButton2.setEnabled(false);
 
