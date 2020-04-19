@@ -92,10 +92,10 @@ public class catalogoCategoriaGastos extends javax.swing.JFrame {
         tabla_categoria_gastos.setRowHeight(20);
         jScrollPane2.setViewportView(tabla_categoria_gastos);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, 257));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, 257));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Listado de Categoria Gastos");
@@ -158,7 +158,7 @@ public class catalogoCategoriaGastos extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(0, 94, 159));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 190, 10));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 470));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
