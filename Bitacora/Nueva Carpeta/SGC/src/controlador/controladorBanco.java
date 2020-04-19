@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import java.awt.event.ActionEvent;
@@ -13,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -37,7 +33,9 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         this.ban = ban;
         this.cban = cban;
         this.modban = modban;
-
+        
+        crearCbxBanco(modban.listar());
+        
         this.cban.btnNuevo_banco.addActionListener(this);
 
         this.ban.btnGuardar.addActionListener(this);
@@ -70,6 +68,19 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
         }
 
+    }
+    
+    private void crearCbxBanco(ArrayList<Banco> datos) {
+        ban.cbxBanco.addItem("Seleccione...");
+
+        if (datos != null) {
+            for (Banco datosX : datos) {
+                modban = datosX;
+                ban.cbxBanco.addItem(modban.getNombre_banco());
+            }
+
+            System.out.println("ComboBox banco creado");
+        }
     }
 
     @Override
