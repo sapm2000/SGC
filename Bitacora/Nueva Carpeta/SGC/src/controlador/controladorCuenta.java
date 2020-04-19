@@ -5,10 +5,17 @@
  */
 package controlador;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import javax.swing.JOptionPane;
+import modelo.Banco;
+import modelo.Cuenta;
 import vista.catalogoCuenta;
 import vista.cuenta;
 
@@ -16,18 +23,19 @@ import vista.cuenta;
  *
  * @author rma
  */
-public class controladorCuenta implements ActionListener {
+public class controladorCuenta implements ActionListener, MouseListener, KeyListener, WindowListener {
 
     private catalogoCuenta catacu;
     private cuenta cu;
+    private Cuenta modcu;
+    private Banco modban;
 
-    public controladorCuenta(catalogoCuenta catacu, cuenta cu) {
+    public controladorCuenta(catalogoCuenta catacu, cuenta cu, Cuenta modcu, Banco modban) {
         this.catacu = catacu;
         this.cu = cu;
-        this.catacu.jButton1.addActionListener(this);
-        this.catacu.jButton2.addActionListener(this);
-        this.catacu.jButton4.addActionListener(this);
-        this.catacu.jButton5.addActionListener(this);
+        this.modcu = modcu;
+        this.modban = modban;
+        this.catacu.btn_nuevaCuenta.addActionListener(this);
         this.cu.btnGuardar.addActionListener(this);
         this.cu.btnLimpiar.addActionListener(this);
         this.cu.btnModificar.addActionListener(this);
@@ -35,56 +43,41 @@ public class controladorCuenta implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == catacu.jButton1) {
-            int botonDialogo = JOptionPane.YES_NO_OPTION;
-            int result = JOptionPane.showConfirmDialog(null, "ENCONTRO EL REGISTRO?", "REGISTRO", botonDialogo);
-            if (result == 0) {
+        if (e.getSource() == catacu.btn_nuevaCuenta) {
 
-                this.catacu.jButton4.setEnabled(true);
-                this.catacu.jButton5.setEnabled(true);
-                this.catacu.jButton2.setEnabled(false);
-                this.catacu.jButton2.setForeground(Color.gray);
-                this.catacu.jButton4.setForeground(new java.awt.Color(0, 94, 159));
-                this.catacu.jButton5.setForeground(new java.awt.Color(0, 94, 159));
-
-            } else {
-                this.catacu.jButton2.setEnabled(true);
-                this.catacu.jButton2.setForeground(new java.awt.Color(0, 94, 159));
-                this.catacu.jButton4.setEnabled(false);
-                this.catacu.jButton5.setEnabled(false);
-                this.catacu.jButton4.setForeground(Color.gray);
-                this.catacu.jButton5.setForeground(Color.gray);
-
-            }
-        }
-
-        if (e.getSource() == catacu.jButton2) {
+            modcu.llenar_banco(cu.jComboBox1);
             this.cu.setVisible(true);
-            this.cu.btnModificar.setVisible(false);
-            this.cu.btnGuardar.setVisible(true);
+            this.cu.btnEliminar.setEnabled(false);
+            this.cu.btnGuardar.setEnabled(true);
 
-        }
-
-        if (e.getSource() == catacu.jButton4) {
-            this.cu.setVisible(true);
-            this.cu.btnGuardar.setVisible(false);
-            this.cu.btnModificar.setVisible(true);
-
-        }
-
-        if (e.getSource() == catacu.jButton5) {
-            int botonDialogo = JOptionPane.YES_NO_OPTION;
-            int result = JOptionPane.showConfirmDialog(null, "DESEA ELIMINAR EL REGISTRO?", "ELIMINAR", botonDialogo);
-            if (result == 0) {
-                JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
-            } else {
-
-            }
+            this.cu.btnModificar.setEnabled(false);
+            cu.txtN_cuenta.setText("");
+            cu.txtBeneficiario.setText("");
+            cu.txtCedula.setText("");
 
         }
 
         if (e.getSource() == cu.btnGuardar) {
-            JOptionPane.showMessageDialog(null, "registro guardado");
+            if (validar()) {
+                modcu.setCedula(cu.txtCedula.getText());
+                modcu.setBeneficiario(cu.txtBeneficiario.getText());
+                modcu.setN_cuenta(cu.txtN_cuenta.getText());
+                modcu.setTipo(cu.jComboBox2.getSelectedItem().toString());
+                modban.setNombre_banco(cu.jComboBox1.getSelectedItem().toString());
+                modban.buscar(modban);
+                modcu.setId_banco(modban.getId());
+
+                if (modcu.registrar(modcu)) {
+
+                    JOptionPane.showMessageDialog(null, "Registro Guardado");
+                    
+
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                }
+            }
 
         }
 
@@ -92,6 +85,112 @@ public class controladorCuenta implements ActionListener {
             JOptionPane.showMessageDialog(null, "registro modificado");
 
         }
+    }
+
+    private Boolean validar() {
+
+        Boolean resultado = true;
+        String msj = "";
+
+        if (cu.txtN_cuenta.getText().isEmpty()) {
+
+            msj += "El campo nombre categoria no puede estar vacío\n";
+            resultado = false;
+        }
+
+        if (cu.txtBeneficiario.getText().isEmpty()) {
+
+            msj += "El campo nombre categoria no puede estar vacío\n";
+            resultado = false;
+        }
+
+        if (cu.txtCedula.getText().isEmpty()) {
+
+            msj += "El campo nombre categoria no puede estar vacío\n";
+            resultado = false;
+        }
+
+        if (!resultado) {
+
+            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+
+        return resultado;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
     }
 
 }
