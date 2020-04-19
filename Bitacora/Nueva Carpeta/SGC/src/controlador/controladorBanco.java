@@ -98,7 +98,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "Registro Duplicado");
+                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
 
                 }
             }
