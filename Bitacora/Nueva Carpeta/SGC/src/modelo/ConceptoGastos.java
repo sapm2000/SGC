@@ -157,8 +157,8 @@ public boolean modificar(ConceptoGastos modCg){
         
      }  
     
-         public boolean buscar(ConceptoGastos modCg){
-        
+        public boolean buscar(ConceptoGastos modCg) {
+
         PreparedStatement ps = null;
              ResultSet rs = null;
         Connection con = getConexion();
