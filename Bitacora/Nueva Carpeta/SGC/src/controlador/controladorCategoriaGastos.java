@@ -41,14 +41,14 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         this.cg = cg;
         this.modcg = modcg;
        
-        this.catacg.jButton2.addActionListener(this);
+        this.catacg.btn_nuevaCategoriaGasto.addActionListener(this);
         
         this.cg.btnModificar.addActionListener(this);
         this.cg.btnGuardar.addActionListener(this);
         this.cg.btnLimpiar.addActionListener(this);
         this.cg.btnEliminar.addActionListener(this);
-        this.catacg.jTable2.addMouseListener(this);
-        this.catacg.jTextField1.addKeyListener(this);
+        this.catacg.tabla_categoria_gastos.addMouseListener(this);
+        this.catacg.txt_buscarCategoriaGasto.addKeyListener(this);
         this.catacg.addWindowListener(this);
         this.cg.txtnombre.addKeyListener(this);
         this.cg.txtdescripcion.addKeyListener(this);
@@ -82,7 +82,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
        
 
-        if (e.getSource() == catacg.jButton2) {
+        if (e.getSource() == catacg.btn_nuevaCategoriaGasto) {
             this.cg.setVisible(true);
             this.cg.btnEliminar.setEnabled(false);
             this.cg.btnGuardar.setEnabled(true);
@@ -109,7 +109,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
             if (modcg.registrar(modcg)) {
 
                 JOptionPane.showMessageDialog(null, "Registro Guardado");
-                Llenartabla(catacg.jTable2);
+                Llenartabla(catacg.tabla_categoria_gastos);
                 
 
             } else {
@@ -130,7 +130,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
                 modcg.setId(Integer.parseInt(cg.txtId.getText()));
                 JOptionPane.showMessageDialog(null, "Registro Eliminado");
                 cg.dispose();
-                Llenartabla(catacg.jTable2);
+                Llenartabla(catacg.tabla_categoria_gastos);
                 
 
             } else {
@@ -142,35 +142,29 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         }
 
         if (e.getSource() == cg.btnModificar) {
-            if(validar()){
-             modcg.setNombre(cg.txtnombre.getText());
-             modcg.setDescripcion(cg.txtdescripcion.getText());
-              modcg.setId(Integer.parseInt(cg.txtId.getText()));
-            
-             
-             
-             if (modcg.modificar(modcg)) {
+            if (validar()) {
+                modcg.setNombre(cg.txtnombre.getText());
+                modcg.setDescripcion(cg.txtdescripcion.getText());
+                modcg.setId(Integer.parseInt(cg.txtId.getText()));
 
-                JOptionPane.showMessageDialog(null, "Registro modificado");
-                cg.dispose();
-                Llenartabla(catacg.jTable2);
-                
+                if (modcg.modificar(modcg)) {
 
-            } else {
+                    JOptionPane.showMessageDialog(null, "Registro modificado");
+                    cg.dispose();
+                    Llenartabla(catacg.tabla_categoria_gastos);
 
-                JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
-                
-            }
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
+
+                }
             }
         }
         
         if (e.getSource() == cg.btnLimpiar) {
              
              cg.txtnombre.setText("");
-             cg.txtdescripcion.setText("");
-             
-             
-             
+             cg.txtdescripcion.setText("");        
             
         }
         
@@ -182,9 +176,9 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
     public void mouseClicked(MouseEvent e) {
         // primero, obtengo la fila seleccionada
 
-        int fila = this.catacg.jTable2.getSelectedRow(); // primero, obtengo la fila seleccionada
-        int columna = this.catacg.jTable2.getSelectedColumn(); // luego, obtengo la columna seleccionada
-        String dato = String.valueOf(this.catacg.jTable2.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+        int fila = this.catacg.tabla_categoria_gastos.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int columna = this.catacg.tabla_categoria_gastos.getSelectedColumn(); // luego, obtengo la columna seleccionada
+        String dato = String.valueOf(this.catacg.tabla_categoria_gastos.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
 
         modcg.setNombre(String.valueOf(dato));
 
@@ -252,10 +246,10 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getSource() == catacg.jTextField1) {
+        if (e.getSource() == catacg.txt_buscarCategoriaGasto) {
             
         
-        filtro(catacg.jTextField1.getText(), catacg.jTable2);
+        filtro(catacg.txt_buscarCategoriaGasto.getText(), catacg.tabla_categoria_gastos);
         }
         else {
                 
@@ -264,7 +258,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
     @Override
     public void windowOpened(WindowEvent e) {
-        Llenartabla(catacg.jTable2);
+        Llenartabla(catacg.tabla_categoria_gastos);
     }
 
     @Override
