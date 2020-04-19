@@ -5,10 +5,10 @@
  */
 package controlador;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import modelo.Cuenta;
 import vista.catalogoCuenta;
 import vista.cuenta;
 
@@ -20,14 +20,13 @@ public class controladorCuenta implements ActionListener {
 
     private catalogoCuenta catacu;
     private cuenta cu;
+    private Cuenta modcu;
 
-    public controladorCuenta(catalogoCuenta catacu, cuenta cu) {
+    public controladorCuenta(catalogoCuenta catacu, cuenta cu, Cuenta modcu) {
         this.catacu = catacu;
         this.cu = cu;
-        this.catacu.jButton1.addActionListener(this);
-        this.catacu.jButton2.addActionListener(this);
-        this.catacu.jButton4.addActionListener(this);
-        this.catacu.jButton5.addActionListener(this);
+        this.modcu = modcu;
+        this.catacu.btn_nuevaCuenta.addActionListener(this);
         this.cu.btnGuardar.addActionListener(this);
         this.cu.btnLimpiar.addActionListener(this);
         this.cu.btnModificar.addActionListener(this);
@@ -35,51 +34,17 @@ public class controladorCuenta implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == catacu.jButton1) {
-            int botonDialogo = JOptionPane.YES_NO_OPTION;
-            int result = JOptionPane.showConfirmDialog(null, "ENCONTRO EL REGISTRO?", "REGISTRO", botonDialogo);
-            if (result == 0) {
+        if (e.getSource() == catacu.btn_nuevaCuenta) {
 
-                this.catacu.jButton4.setEnabled(true);
-                this.catacu.jButton5.setEnabled(true);
-                this.catacu.jButton2.setEnabled(false);
-                this.catacu.jButton2.setForeground(Color.gray);
-                this.catacu.jButton4.setForeground(new java.awt.Color(0, 94, 159));
-                this.catacu.jButton5.setForeground(new java.awt.Color(0, 94, 159));
-
-            } else {
-                this.catacu.jButton2.setEnabled(true);
-                this.catacu.jButton2.setForeground(new java.awt.Color(0, 94, 159));
-                this.catacu.jButton4.setEnabled(false);
-                this.catacu.jButton5.setEnabled(false);
-                this.catacu.jButton4.setForeground(Color.gray);
-                this.catacu.jButton5.setForeground(Color.gray);
-
-            }
-        }
-
-        if (e.getSource() == catacu.jButton2) {
+            modcu.llenar_banco(cu.jComboBox1);
             this.cu.setVisible(true);
-            this.cu.btnModificar.setVisible(false);
-            this.cu.btnGuardar.setVisible(true);
+            this.cu.btnEliminar.setEnabled(false);
+            this.cu.btnGuardar.setEnabled(true);
 
-        }
-
-        if (e.getSource() == catacu.jButton4) {
-            this.cu.setVisible(true);
-            this.cu.btnGuardar.setVisible(false);
-            this.cu.btnModificar.setVisible(true);
-
-        }
-
-        if (e.getSource() == catacu.jButton5) {
-            int botonDialogo = JOptionPane.YES_NO_OPTION;
-            int result = JOptionPane.showConfirmDialog(null, "DESEA ELIMINAR EL REGISTRO?", "ELIMINAR", botonDialogo);
-            if (result == 0) {
-                JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
-            } else {
-
-            }
+            this.cu.btnModificar.setEnabled(false);
+            cu.jTextField1.setText("");
+            cu.jTextField2.setText("");
+            cu.jTextField3.setText("");
 
         }
 

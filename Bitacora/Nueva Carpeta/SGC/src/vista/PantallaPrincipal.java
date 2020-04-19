@@ -17,6 +17,7 @@ import modelo.CategoriaGasto;
 import modelo.ConceptoGastos;
 import modelo.Condominio;
 import modelo.CrudUsuario;
+import modelo.Cuenta;
 
 
 /**
@@ -315,15 +316,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         catalogoCuenta catacu = new catalogoCuenta();
         cuenta cu = new cuenta();
-        controladorCuenta controcu = new controladorCuenta(catacu, cu);
-        catacu.jButton2.setEnabled(false);
-
-        catacu.jButton2.setForeground(gray);
-        catacu.jButton4.setEnabled(false);
-        catacu.jButton4.setForeground(gray);
-        catacu.jButton5.setEnabled(false);
-        catacu.jButton5.setForeground(gray);
-
+        Cuenta modcu = new Cuenta();
+        controladorCuenta controcu = new controladorCuenta(catacu, cu, modcu);
+       
         catacu.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
