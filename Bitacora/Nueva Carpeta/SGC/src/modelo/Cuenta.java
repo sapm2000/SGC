@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -120,6 +121,44 @@ public class Cuenta extends ConexionBD {
 
     }
 
+    public boolean registrar(Cuenta modcu) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "INSERT INTO cuenta (cedula, n_cuenta, beneficiario, tipo, id_banco) VALUES (?, ?, ?, ?, ?);";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getCedula());
+            ps.setString(2, getN_cuenta());
+            ps.setString(3, getBeneficiario());
+            ps.setString(4, getTipo());
+            ps.setInt(5, getId_banco());
+
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
 }
-
-
