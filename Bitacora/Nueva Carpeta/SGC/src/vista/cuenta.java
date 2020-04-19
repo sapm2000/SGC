@@ -4,8 +4,16 @@
  * and open the template in the editor.
  */
 package vista;
-
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import sun.swing.table.DefaultTableCellHeaderRenderer;
+
 
 public class cuenta extends javax.swing.JFrame {
 
@@ -14,6 +22,7 @@ public class cuenta extends javax.swing.JFrame {
      */
     public cuenta() {
         initComponents();
+        jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         setLocationRelativeTo(null);
     }
 
@@ -62,6 +71,7 @@ public class cuenta extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel11 = new javax.swing.JLabel();
 
         jLabel6.setText("jLabel6");
 
@@ -254,15 +264,17 @@ public class cuenta extends javax.swing.JFrame {
         jPanel3.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 70, 70));
         //btnMinimizar.addActionListener(ctrl);
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 500, 360, 90));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 580, 360, 90));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondobtn1chiqui.png"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, -1, 120));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 540, -1, 120));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 94, 159));
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Seleccione los condominios a aplicar esta cuenta");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, -1, -1));
+
+        jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -272,7 +284,7 @@ public class cuenta extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "rif", "razon social", "accion"
+                "Rif.", "Razón Social", "Acción"
             }
         ) {
             Class[] types = new Class [] {
@@ -283,11 +295,15 @@ public class cuenta extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        jTable1.setRowHeight(20);
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, -1, 80));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 460, 140));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 590));
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 500, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 670));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -374,6 +390,7 @@ public class cuenta extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -398,4 +415,16 @@ public class cuenta extends javax.swing.JFrame {
     public javax.swing.JTextField txtCedula;
     public javax.swing.JTextField txtN_cuenta;
     // End of variables declaration//GEN-END:variables
+    static public class Headercolor extends DefaultTableCellHeaderRenderer {
+    public Headercolor () {
+        setOpaque(true);
+    }
+    public Component getTableCellRendererComponent(JTable jTable1, Object value, boolean selected, boolean focused,int row,int column) {
+        super.getTableCellRendererComponent(jTable1, value, selected, focused, row, column);
+        setBackground(new java.awt.Color(0,94,159));
+        setForeground(Color.white);
+        setFont(new Font("Tahoma", Font.BOLD, 14));
+        return this;
+    }
+}
 }
