@@ -47,7 +47,6 @@ public class banco extends javax.swing.JFrame {
         jSeparator10 = new javax.swing.JSeparator();
         jLabel9 = new javax.swing.JLabel();
         txtid = new javax.swing.JTextField();
-        cbxBanco = new javax.swing.JComboBox<>();
 
         jButton4.setText("jButton4");
 
@@ -186,8 +185,6 @@ public class banco extends javax.swing.JFrame {
         txtid.setEnabled(false);
         jPanel1.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
-        jPanel1.add(cbxBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 150, -1));
-
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         pack();
@@ -263,7 +260,6 @@ public class banco extends javax.swing.JFrame {
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnModificar;
     public javax.swing.JButton btnSalir;
-    public javax.swing.JComboBox<String> cbxBanco;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

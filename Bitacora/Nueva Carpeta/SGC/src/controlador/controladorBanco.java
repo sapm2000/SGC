@@ -39,7 +39,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         this.modban = modban;
         
         //crearCbxBanco(modban.listar());
-        CrearCbx(ban.cbxBanco, modban.listar());        
+        //CrearCbx(ban.cbxBanco, modban.listar());        
         this.cban.btnNuevo_banco.addActionListener(this);
 
         this.ban.btnGuardar.addActionListener(this);
@@ -75,7 +75,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
     }
     
-        public void CrearCbx(JComboBox comboD, ArrayList<Banco> dato) {
+        /*public void CrearCbx(JComboBox comboD, ArrayList<Banco> dato) {
         
         
         DefaultComboBoxModel modelot = new DefaultComboBoxModel();
@@ -96,6 +96,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         }
 
     }
+    */
     
     /*private void crearCbxBanco(ArrayList<Banco> datos) {
         ban.cbxBanco.addItem("Seleccione...");

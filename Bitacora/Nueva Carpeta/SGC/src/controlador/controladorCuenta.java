@@ -132,7 +132,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
 
             columna[0] = listaCondo.get(i).getRif();
             columna[1] = listaCondo.get(i).getRazonS();
-            columna[2] = listaCondo.get(i).getId_cuenta();
+           
             if (listaCondo.get(i).getId_cuenta() != null) {
                 columna[2] = Boolean.TRUE;
             } else {
@@ -148,7 +148,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == catacu.btn_nuevaCuenta) {
-
+            cu.jComboBox1.removeAllItems();
             modcu.llenar_banco(cu.jComboBox1);
             this.cu.setVisible(true);
             this.cu.btnEliminar.setEnabled(false);
