@@ -9,6 +9,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -28,14 +30,15 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     private catalogoBanco cban;
     private Banco modban;
     DefaultTableModel dm;
+    DefaultComboBoxModel dmCbx;
 
     public controladorBanco(banco ban, catalogoBanco cban, Banco modban) {
         this.ban = ban;
         this.cban = cban;
         this.modban = modban;
         
-        crearCbxBanco(modban.listar());
-        
+        //crearCbxBanco(modban.listar());
+        CrearCbx(ban.cbxBanco, modban.listar());        
         this.cban.btnNuevo_banco.addActionListener(this);
 
         this.ban.btnGuardar.addActionListener(this);
@@ -70,7 +73,29 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
     }
     
-    private void crearCbxBanco(ArrayList<Banco> datos) {
+        public void CrearCbx(JComboBox comboD, ArrayList<Banco> dato) {
+        
+        
+        DefaultComboBoxModel modelot = new DefaultComboBoxModel();
+        comboD.setModel(modelot);
+
+        modelot.addElement("Nombre ");
+
+        //Object[] columna = new Object[1];
+
+        int numRegistro = dato.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            //columna[0] = modban.listar().get(i).getNombre_banco();
+
+            modelot.addElement(dato.get(i).getNombre_banco());
+
+        }
+
+    }
+    
+    /*private void crearCbxBanco(ArrayList<Banco> datos) {
         ban.cbxBanco.addItem("Seleccione...");
 
         if (datos != null) {
@@ -81,7 +106,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
             System.out.println("ComboBox banco creado");
         }
-    }
+    }*/
 
     @Override
     public void actionPerformed(ActionEvent e) {
