@@ -14,10 +14,10 @@ import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import modelo.Banco;
 import modelo.CategoriaGasto;
-import modelo.ConceptoGastos;
 import modelo.Condominio;
 import modelo.CrudUsuario;
 import modelo.Cuenta;
+import modelo.Proveedores;
 
 
 /**
@@ -327,14 +327,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         catalogoProveedores cataprov = new catalogoProveedores();
         proveedores prov = new proveedores();
-        controladorProveedores controProv = new controladorProveedores(cataprov, prov);
-        cataprov.jButton2.setForeground(gray);
-        cataprov.jButton2.setEnabled(false);
-
-        cataprov.jButton8.setEnabled(false);
-        cataprov.jButton8.setForeground(gray);
-        cataprov.jButton5.setEnabled(false);
-        cataprov.jButton5.setForeground(gray);
+        Proveedores modpro = new Proveedores();
+        controladorProveedores controProv = new controladorProveedores(cataprov, prov,modpro);
+        
 
         cataprov.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
