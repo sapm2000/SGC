@@ -24,7 +24,8 @@ public class Cuenta extends Banco {
     private String beneficiario;
     private String tipo;
     private int id_banco;
-    private int id_condominio;
+    private String id_condominio;
+    private int cantidad;
 
     public String getCedula() {
         return cedula;
@@ -66,12 +67,20 @@ public class Cuenta extends Banco {
         this.id_banco = id_banco;
     }
 
-    public int getId_condominio() {
+    public String getId_condominio() {
         return id_condominio;
     }
 
-    public void setId_condominio(int id_condominio) {
+    public void setId_condominio(String id_condominio) {
         this.id_condominio = id_condominio;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     public void llenar_banco(JComboBox banco) {
@@ -176,12 +185,12 @@ public class Cuenta extends Banco {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO puente_condomino_cuenta(id_condominio, id_cuenta) VALUES (?, ?);";
+        String sql = "INSERT INTO puente_condominio_cuenta(id_condominio, id_cuenta) VALUES (?, ?);";
 
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId_condominio());
+            ps.setString(1, getId_condominio());
             ps.setString(2, getN_cuenta());
 
             ps.execute();
@@ -211,13 +220,13 @@ public class Cuenta extends Banco {
     public ArrayList<Cuenta> listarcuenta() {
         ArrayList listaCuenta = new ArrayList();
         Cuenta modcu;
-        Banco modban;
+        
 
         Connection con = getConexion();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "select cuenta.cedula, cuenta.n_cuenta, cuenta.beneficiario, cuenta.tipo, banco.nombre_banco from cuenta inner join banco on banco.id=cuenta.id_banco";
+        String sql = "select cuenta.cedula, cuenta.n_cuenta, cuenta.beneficiario, cuenta.tipo, banco.nombre_banco, count(puente_condominio_cuenta.id_cuenta) as condominio  from cuenta inner join banco on banco.id=cuenta.id_banco inner join puente_condominio_cuenta on cuenta.n_cuenta=puente_condominio_cuenta.id_cuenta group by cuenta.n_cuenta,banco.nombre_banco";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -225,13 +234,14 @@ public class Cuenta extends Banco {
             while (rs.next()) {
 
                 modcu = new Cuenta();
-                modban = new Banco();
+               
 
                 modcu.setCedula(rs.getString(1));
                 modcu.setN_cuenta(rs.getString(2));
                 modcu.setBeneficiario(rs.getString(3));
                 modcu.setTipo(rs.getString(4));
                 modcu.setNombre_banco(rs.getString(5));
+                modcu.setCantidad(rs.getInt(6));
 
                 listaCuenta.add(modcu);
             }
@@ -240,5 +250,160 @@ public class Cuenta extends Banco {
 
         return listaCuenta;
     }
+
+   public boolean buscarcuenta(Cuenta modcun) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT cuenta.*, banco.* FROM cuenta inner join banco on cuenta.id_banco=banco.id WHERE n_cuenta=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, modcun.getN_cuenta());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                modcun.setCedula(rs.getString("cedula"));
+                modcun.setBeneficiario(rs.getString("beneficiario"));
+                modcun.setTipo(rs.getString("tipo"));
+                modcun.setNombre_banco(rs.getString("nombre_banco"));
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+   
+    public boolean modificarcuenta(Cuenta modcu) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE cuenta SET cedula=?, beneficiario=?, tipo=?, id_banco=? WHERE n_cuenta=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getCedula());
+            ps.setString(2, getBeneficiario());
+            ps.setString(3, getTipo());
+            ps.setInt(4, getId_banco());
+
+            ps.setString(5, getN_cuenta());
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+    
+    public boolean borrarpuente(Cuenta modcun){
+        
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+        
+        String sql = "DELETE FROM puente_condominio_cuenta WHERE id_cuenta=?";
+        
+        try {
+            
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getN_cuenta());
+            ps.execute();
+            
+            return true;
+            
+        } catch (SQLException e) {
+            
+           System.err.println(e);
+           return false;
+            
+        }finally{
+            try {
+                
+                con.close();
+                
+            }catch (SQLException e) {
+            
+           System.err.println(e);
+           
+            }
+        
+        }
+        
+     }  
+    
+    public boolean eliminarcuenta(Cuenta modcun){
+        
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+        
+        String sql = "DELETE FROM cuenta WHERE n_cuenta=?";
+        
+        try {
+            
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getN_cuenta());
+            ps.execute();
+            
+            return true;
+            
+        } catch (SQLException e) {
+            
+           System.err.println(e);
+           return false;
+            
+        }finally{
+            try {
+                
+                con.close();
+                
+            }catch (SQLException e) {
+            
+           System.err.println(e);
+           
+            }
+        
+        }
+        
+     }  
+   
+   
 
 }
