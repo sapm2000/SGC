@@ -16,6 +16,7 @@ import vista.catalogoUsuario;
 import controlador.Validacion;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -26,7 +27,7 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
     private CrudUsuario modC;
     private GestionarUsuario vistaGU;
     private catalogoUsuario catausu;
-
+    ArrayList<CrudUsuario> listaUsu;
     DefaultTableModel dm;
 
     //Constructor de inicializacion de variables. Desde la linea 16 a la 26
@@ -314,6 +315,8 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
 
     public void Llenartabla(JTable tablaD) {
 
+        listaUsu = modC.listar();
+
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
 
@@ -325,15 +328,17 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
 
         Object[] columna = new Object[5];
 
-        int numRegistro = modC.listar().size();
-
+        int numRegistro = listaUsu.size();
+        System.out.println(numRegistro);
+        
         for (int i = 0; i < numRegistro; i++) {
-
-            columna[0] = modC.listar().get(i).getUsuario();
-            columna[1] = modC.listar().get(i).getNombre();
-            columna[2] = modC.listar().get(i).getApellido();
-            columna[3] = modC.listar().get(i).getNtelefono();
-            columna[4] = modC.listar().get(i).getTipo();
+            
+            columna[0] = listaUsu.get(i).getUsuario();
+            columna[1] = listaUsu.get(i).getNombre();
+            System.out.println(listaUsu.get(i).getUsuario());
+            columna[2] = listaUsu.get(i).getApellido();
+            columna[3] = listaUsu.get(i).getNtelefono();
+            columna[4] = listaUsu.get(i).getTipo();
 
             modeloT.addRow(columna);
 

@@ -14,6 +14,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import static java.lang.String.valueOf;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -38,6 +39,9 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     private Banco modban;
     private Condominio modcon;
     DefaultTableModel dm;
+    ArrayList<Banco> listaBanco;
+    ArrayList<Cuenta> listaCuenta;
+    ArrayList<Condominio> listaCondo;
 
     public controladorCuenta(catalogoCuenta catacu, cuenta cu, Cuenta modcu, Banco modban, Condominio modcon) {
         this.catacu = catacu;
@@ -55,7 +59,8 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     }
 
     public void Llenartabla(JTable tablaD) {
-
+        
+        listaCuenta = modcu.listarcuenta();
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
 
@@ -68,16 +73,16 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
 
         Object[] columna = new Object[6];
 
-        int numRegistro = modcu.listarcuenta().size();
+        int numRegistro = listaCuenta.size();
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = modcu.listarcuenta().get(i).getNombre_banco();
-            columna[1] = modcu.listarcuenta().get(i).getN_cuenta();
-            columna[2] = modcu.listarcuenta().get(i).getCedula();
-            columna[3] = modcu.listarcuenta().get(i).getBeneficiario();
-            columna[4] = modcu.listarcuenta().get(i).getTipo();
-            columna[5] = modcu.listarcuenta().get(i).getCantidad();
+            columna[0] = listaCuenta.get(i).getNombre_banco();
+            columna[1] = listaCuenta.get(i).getN_cuenta();
+            columna[2] = listaCuenta.get(i).getCedula();
+            columna[3] = listaCuenta.get(i).getBeneficiario();
+            columna[4] = listaCuenta.get(i).getTipo();
+            columna[5] = listaCuenta.get(i).getCantidad();
 
             modeloT.addRow(columna);
 
@@ -86,7 +91,8 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     }
 
     public void Llenartablacondominio(JTable tablaD) {
-
+        
+        listaCondo = modcon.lPerson();
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
 
@@ -96,12 +102,12 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
 
         Object[] columna = new Object[2];
 
-        int numRegistro = modcon.lPerson().size();
+        int numRegistro = listaCondo.size();
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = modcon.lPerson().get(i).getRif();
-            columna[1] = modcon.lPerson().get(i).getRazonS();
+            columna[0] = listaCondo.get(i).getRif();
+            columna[1] = listaCondo.get(i).getRazonS();
 
             modeloT.addRow(columna);
 
@@ -110,7 +116,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     }
 
     public void Llenartablacondominiomodificar(JTable tablaD) {
-
+        listaCondo = modcon.cuentacondominiomodificar();
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
 
@@ -120,14 +126,14 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
 
         Object[] columna = new Object[3];
 
-        int numRegistro = modcon.cuentacondominiomodificar().size();
+        int numRegistro = listaCondo.size();
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = modcon.cuentacondominiomodificar().get(i).getRif();
-            columna[1] = modcon.cuentacondominiomodificar().get(i).getRazonS();
-            columna[2] = modcon.cuentacondominiomodificar().get(i).getId_cuenta();
-            if (modcon.cuentacondominiomodificar().get(i).getId_cuenta() != null) {
+            columna[0] = listaCondo.get(i).getRif();
+            columna[1] = listaCondo.get(i).getRazonS();
+            columna[2] = listaCondo.get(i).getId_cuenta();
+            if (listaCondo.get(i).getId_cuenta() != null) {
                 columna[2] = Boolean.TRUE;
             } else {
                 columna[2] = Boolean.FALSE;
