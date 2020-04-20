@@ -31,6 +31,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     private Banco modban;
     DefaultTableModel dm;
     DefaultComboBoxModel dmCbx;
+    ArrayList<Banco> listaBanco;
 
     public controladorBanco(banco ban, catalogoBanco cban, Banco modban) {
         this.ban = ban;
@@ -53,7 +54,8 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     }
 
     public void Llenartabla(JTable tablaD) {
-
+        
+        listaBanco = modban.listar();
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
 
@@ -61,11 +63,11 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
         Object[] columna = new Object[1];
 
-        int numRegistro = modban.listar().size();
+        int numRegistro = listaBanco.size();
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = modban.listar().get(i).getNombre_banco();
+            columna[0] = listaBanco.get(i).getNombre_banco();
 
             modeloT.addRow(columna);
 
