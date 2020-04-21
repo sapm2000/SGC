@@ -20,6 +20,7 @@ import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import modelo.Condominio;
 import modelo.Proveedores;
 import vista.catalogoProveedores;
 import vista.proveedores;
@@ -33,6 +34,7 @@ public class controladorProveedores implements ActionListener, WindowListener, K
     private catalogoProveedores cataprov;
     private proveedores prov;
     private Proveedores modpro;
+
     ArrayList<Proveedores> listaProveedores;
     DefaultTableModel dm;
     DefaultComboBoxModel dmCbx;
@@ -41,6 +43,7 @@ public class controladorProveedores implements ActionListener, WindowListener, K
         this.cataprov = cataprov;
         this.prov = prov;
         this.modpro = modpro;
+
         this.cataprov.addWindowListener(this);
         this.cataprov.btn_NuevoProveedor.addActionListener(this);
         this.cataprov.TablaProveedores.addMouseListener(this);

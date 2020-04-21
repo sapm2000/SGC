@@ -180,9 +180,14 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         String[] options = {"Entrar al menu", "Modificar datos"};
         int result = JOptionPane.showOptionDialog(null, "Seleccione si desea entrar al menu o modificar datos", "MENU", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
         if (result == 0) {
+            int fila = this.cataco.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+            int columna = this.cataco.jTable1.getSelectedColumn(); // luego, obtengo la columna seleccionada
+            String dato = String.valueOf(this.cataco.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+            co.setRif(String.valueOf(dato));
             this.cataco.dispose();
             this.panta.dispose();
             this.panta1.setVisible(true);
+            panta1.rif.setText(dato);
 
         } if (result==1) {
 
