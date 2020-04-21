@@ -24,6 +24,7 @@ import modelo.CategoriaGasto;
 import vista.catalogoCategoriaGastos;
 import vista.categoriaGastos;
 import controlador.Validacion;
+import java.util.ArrayList;
 
 /**
  *
@@ -35,6 +36,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
     private categoriaGastos cg;
     private CategoriaGasto modcg;
     DefaultTableModel dm;
+    ArrayList<CategoriaGasto> listaCatGas;
 
     public controladorCategoriaGastos(catalogoCategoriaGastos catacg, categoriaGastos cg, CategoriaGasto modcg) {
         this.catacg = catacg;
@@ -56,7 +58,8 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
     }
 
     public void Llenartabla(JTable tablaD) {
-
+        
+        listaCatGas = modcg.lPerson();
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
 
@@ -65,12 +68,12 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
         Object[] columna = new Object[2];
 
-        int numRegistro = modcg.lPerson().size();
+        int numRegistro = listaCatGas.size();
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = modcg.lPerson().get(i).getNombre();
-            columna[1] = modcg.lPerson().get(i).getDescripcion();
+            columna[0] = listaCatGas.get(i).getNombre();
+            columna[1] = listaCatGas.get(i).getDescripcion();
 
             modeloT.addRow(columna);
 

@@ -16,6 +16,7 @@ import vista.catalogoUsuario;
 import controlador.Validacion;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -26,7 +27,7 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
     private CrudUsuario modC;
     private GestionarUsuario vistaGU;
     private catalogoUsuario catausu;
-
+    ArrayList<CrudUsuario> listaUsu;
     DefaultTableModel dm;
 
     //Constructor de inicializacion de variables. Desde la linea 16 a la 26
@@ -78,39 +79,37 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
                 }
             }
         }
+        
+            if (e.getSource() == vistaGU.btnModificar) {
+                if (validar()) {
+                modC.setUsuario(vistaGU.txtUsuario.getText());
+                modC.setNombre(vistaGU.txtNombre.getText());
+                modC.setPassword(vistaGU.jpPassword.getText());
+                modC.setApellido(vistaGU.txtApellido.getText());
+                modC.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
+                modC.setNtelefono(vistaGU.txtTelefono.getText());
 
-                if (e.getSource() == vistaGU.btnModificar) {
-            if(validar()){
-            modC.setUsuario(vistaGU.txtUsuario.getText());  
-            modC.setNombre(vistaGU.txtNombre.getText());
-            modC.setPassword(vistaGU.jpPassword.getText());
-            modC.setApellido(vistaGU.txtApellido.getText());
-            modC.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
-            modC.setNtelefono(vistaGU.txtTelefono.getText());
-            
-            if(vistaGU.jpPassword.getText().isEmpty()){
-            if (modC.modificar(modC)) {
+                if (vistaGU.jpPassword.getText().isEmpty()) {
+                    if (modC.modificar(modC)) {
 
-                JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
-                Llenartabla(catausu.jtable);
-                this.vistaGU.dispose();
-                limpiar();
-            }else{
-                JOptionPane.showMessageDialog(null, "El nombre de usuario ya esta siendo utilizado");
-               
+                        JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
+                        Llenartabla(catausu.jtable);
+                        this.vistaGU.dispose();
+                        limpiar();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "El nombre de usuario ya esta siendo utilizado");
+
+                    }
+
+                } else if (modC.modificarC(modC)) {
+
+                    JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
+                    Llenartabla(catausu.jtable);
+                    this.vistaGU.dispose();
+                    limpiar();
+                }
 
             }
-
-
-            } else if(modC.modificarC(modC)) {
-            
-            JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
-                Llenartabla(catausu.jtable);
-                this.vistaGU.dispose();
-            
-            }
-
-        }
         }
         if (e.getSource() == vistaGU.btnEliminar) {
 
@@ -172,8 +171,6 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
 
         modC.buscar(modC);
 
-     
-
         vistaGU.setVisible(true);
         vistaGU.txtCedula.setText(modC.getCedula());
         vistaGU.txtUsuario.setText(modC.getUsuario());
@@ -208,16 +205,16 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
         if (ke.getSource() == vistaGU.txtCedula) {
             Validacion.soloNumeros(ke);
             Validacion.Espacio(ke);
-            Validacion.limite(ke, vistaGU.txtCedula.getText(), 8);
+            Validacion.limite(ke, vistaGU.txtCedula.getText(), 12);
         }
         if (ke.getSource() == vistaGU.txtUsuario) {
 
             Validacion.soloLetras(ke);
- 
+
             Validacion.Espacio(ke);
             Validacion.limite(ke, vistaGU.txtUsuario.getText(), 20);
         }
-     if (ke.getSource() == vistaGU.jpPassword) {
+        if (ke.getSource() == vistaGU.jpPassword) {
             Validacion.Espacio(ke);
 
             Validacion.limite(ke, vistaGU.jpPassword.getText(), 15);
@@ -271,11 +268,7 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
             msj += "El campo Usuario no puede estar vacío\n";
             resultado = false;
         }
-       /* if (vistaGU.jpPassword.getText().isEmpty()) {
 
-            msj += "El campo Password no puede estar vacío\n";
-            resultado = false;
-        }*/
         if (vistaGU.txtNombre.getText().isEmpty()) {
 
             msj += "El campo Nombre no puede estar vacío\n";
@@ -314,6 +307,8 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
 
     public void Llenartabla(JTable tablaD) {
 
+        listaUsu = modC.listar();
+
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
 
@@ -325,15 +320,17 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
 
         Object[] columna = new Object[5];
 
-        int numRegistro = modC.listar().size();
+        int numRegistro = listaUsu.size();
+        System.out.println(numRegistro);
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = modC.listar().get(i).getUsuario();
-            columna[1] = modC.listar().get(i).getNombre();
-            columna[2] = modC.listar().get(i).getApellido();
-            columna[3] = modC.listar().get(i).getNtelefono();
-            columna[4] = modC.listar().get(i).getTipo();
+            columna[0] = listaUsu.get(i).getUsuario();
+            columna[1] = listaUsu.get(i).getNombre();
+            System.out.println(listaUsu.get(i).getUsuario());
+            columna[2] = listaUsu.get(i).getApellido();
+            columna[3] = listaUsu.get(i).getNtelefono();
+            columna[4] = listaUsu.get(i).getTipo();
 
             modeloT.addRow(columna);
 

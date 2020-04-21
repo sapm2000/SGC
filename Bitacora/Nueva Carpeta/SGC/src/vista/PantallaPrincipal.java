@@ -14,10 +14,10 @@ import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import modelo.Banco;
 import modelo.CategoriaGasto;
-import modelo.ConceptoGastos;
 import modelo.Condominio;
 import modelo.CrudUsuario;
 import modelo.Cuenta;
+import modelo.Proveedores;
 
 
 /**
@@ -300,8 +300,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         catalogoConceptoGasto catacog = new catalogoConceptoGasto();
         conceptoGasto cga = new conceptoGasto();
-        ConceptoGastos conce = new ConceptoGastos();
-        controladorConceptoGasto controcga = new controladorConceptoGasto(catacog, cga, conce);
+       
+        controladorConceptoGasto controcga = new controladorConceptoGasto(catacog, cga);
         catacog.jButton2.setForeground(gray);
         catacog.jButton2.setEnabled(false);
 
@@ -318,7 +318,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         cuenta cu = new cuenta();
         Cuenta modcu = new Cuenta();
         Banco modban = new Banco();
-        controladorCuenta controcu = new controladorCuenta(catacu, cu, modcu, modban);
+        Condominio modcon = new Condominio();
+        controladorCuenta controcu = new controladorCuenta(catacu, cu, modcu, modban, modcon);
        
         catacu.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
@@ -326,14 +327,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         catalogoProveedores cataprov = new catalogoProveedores();
         proveedores prov = new proveedores();
-        controladorProveedores controProv = new controladorProveedores(cataprov, prov);
-        cataprov.jButton2.setForeground(gray);
-        cataprov.jButton2.setEnabled(false);
-
-        cataprov.jButton8.setEnabled(false);
-        cataprov.jButton8.setForeground(gray);
-        cataprov.jButton5.setEnabled(false);
-        cataprov.jButton5.setForeground(gray);
+        Proveedores modpro = new Proveedores();
+        controladorProveedores controProv = new controladorProveedores(cataprov, prov,modpro);
+        
 
         cataprov.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed

@@ -14,6 +14,7 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import modelo.Propietarios;
 
 /**
  *
@@ -55,6 +56,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         btnMinimizar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        rif = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -136,6 +138,9 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/FPM.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        rif.setEditable(false);
+        getContentPane().add(rif, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 70, 60, -1));
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setBorder(null);
@@ -402,13 +407,9 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         catalogoPropietarios cataprop = new catalogoPropietarios();
         propietarios prop = new propietarios();
-        controladorPropietario contropro = new controladorPropietario(prop, cataprop);
-        cataprop.jButton2.setEnabled(false);
-        cataprop.jButton2.setForeground(Color.gray);
-        cataprop.jButton5.setEnabled(false);
-        cataprop.jButton5.setForeground(Color.gray);
-        cataprop.jButton4.setEnabled(false);
-        cataprop.jButton4.setForeground(Color.gray);
+        Propietarios modpro = new Propietarios();
+        controladorPropietario contropro = new controladorPropietario(prop, cataprop,modpro,this);
+        
         cataprop.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
@@ -588,5 +589,6 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField rif;
     // End of variables declaration//GEN-END:variables
 }

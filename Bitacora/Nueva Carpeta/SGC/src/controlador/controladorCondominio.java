@@ -25,6 +25,7 @@ import vista.PantallaPrincipal1;
 import vista.catalogoCondominio;
 import vista.condominio;
 import controlador.Validacion;
+import java.util.ArrayList;
 
 /**
  *
@@ -38,6 +39,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
     private PantallaPrincipal panta;
     DefaultTableModel dm;
     private Condominio co;
+    ArrayList<Condominio> listaCondo;
 
     public controladorCondominio(catalogoCondominio cataco, condominio condo, PantallaPrincipal1 panta1, PantallaPrincipal panta, Condominio co) {
         this.cataco = cataco;
@@ -60,7 +62,8 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
     }
 
     public void Llenartabla(JTable tablaD) {
-
+        
+        listaCondo = co.lPerson();
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
 
@@ -71,14 +74,14 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
 
         Object[] columna = new Object[4];
 
-        int num = co.lPerson().size();
+        int num = listaCondo.size();
 
         for (int i = 0; i < num; i++) {
 
-            columna[0] = co.lPerson().get(i).getRif();
-            columna[1] = co.lPerson().get(i).getRazonS();
-            columna[2] = co.lPerson().get(i).getTelefono();
-            columna[3] = co.lPerson().get(i).getCorreoElectro();
+            columna[0] = listaCondo.get(i).getRif();
+            columna[1] = listaCondo.get(i).getRazonS();
+            columna[2] = listaCondo.get(i).getTelefono();
+            columna[3] = listaCondo.get(i).getCorreoElectro();
 
             modeloT.addRow(columna);
 
@@ -177,9 +180,14 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         String[] options = {"Entrar al menu", "Modificar datos"};
         int result = JOptionPane.showOptionDialog(null, "Seleccione si desea entrar al menu o modificar datos", "MENU", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
         if (result == 0) {
+            int fila = this.cataco.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+            int columna = this.cataco.jTable1.getSelectedColumn(); // luego, obtengo la columna seleccionada
+            String dato = String.valueOf(this.cataco.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+            co.setRif(String.valueOf(dato));
             this.cataco.dispose();
             this.panta.dispose();
             this.panta1.setVisible(true);
+            panta1.rif.setText(dato);
 
         } if (result==1) {
 

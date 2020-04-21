@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class Condominio extends ConexionBD {
 
@@ -12,6 +13,7 @@ public class Condominio extends ConexionBD {
     private String razonS;
     private String telefono;
     private String correoElectro;
+    private String id_cuenta;
 
     public String getRif() {
         return rif;
@@ -44,6 +46,16 @@ public class Condominio extends ConexionBD {
     public void setCorreoElectro(String correoElectro) {
         this.correoElectro = correoElectro;
     }
+
+    public String getId_cuenta() {
+        return id_cuenta;
+    }
+
+    public void setId_cuenta(String id_cuenta) {
+        this.id_cuenta = id_cuenta;
+    }
+    
+    
 
     public boolean registrar(Condominio cond) {
         PreparedStatement ps = null;
@@ -224,7 +236,47 @@ public class Condominio extends ConexionBD {
 
     }
 
+    public ArrayList<Condominio> cuentacondominiomodificar() {
+        ArrayList listaPersona = new ArrayList();
+        Condominio Condominio = new Condominio();
 
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
 
+        String sql = "SELECT rif , razon_social, puente_condominio_cuenta.id_cuenta as cuenta FROM condominio left join puente_condominio_cuenta on puente_condominio_cuenta.id_condominio=condominio.rif and puente_condominio_cuenta.id_cuenta=?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getRif());
+           
+            rs = ps.executeQuery();
+
+            
+
+            while (rs.next()) {
+                Condominio = new Condominio();
+
+                //prs = new Persona();
+                Condominio.setRif(rs.getString("rif"));
+                Condominio.setRazonS(rs.getString("razon_social"));
+                Condominio.setId_cuenta(rs.getString("cuenta"));
+               
+                
+                
+                listaPersona.add(Condominio);
+            }
+
+        } catch (Exception e) {
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+        return listaPersona;
+
+    }
 
 }

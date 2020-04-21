@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import java.awt.event.ActionEvent;
@@ -13,6 +8,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -32,12 +30,16 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     private catalogoBanco cban;
     private Banco modban;
     DefaultTableModel dm;
+    DefaultComboBoxModel dmCbx;
+    ArrayList<Banco> listaBanco;
 
     public controladorBanco(banco ban, catalogoBanco cban, Banco modban) {
         this.ban = ban;
         this.cban = cban;
         this.modban = modban;
-
+        
+        //crearCbxBanco(modban.listar());
+        //CrearCbx(ban.cbxBanco, modban.listar());        
         this.cban.btnNuevo_banco.addActionListener(this);
 
         this.ban.btnGuardar.addActionListener(this);
@@ -48,11 +50,13 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         this.cban.tabla_bancos.addKeyListener(this);
         this.cban.txtBuscar_banco.addKeyListener(this);
         this.cban.addWindowListener(this);
+        this.ban.txtnombre_banco.addKeyListener(this);
 
     }
 
     public void Llenartabla(JTable tablaD) {
-
+        
+        listaBanco = modban.listar();
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
 
@@ -60,17 +64,53 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
         Object[] columna = new Object[1];
 
-        int numRegistro = modban.listar().size();
+        int numRegistro = listaBanco.size();
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = modban.listar().get(i).getNombre_banco();
+            columna[0] = listaBanco.get(i).getNombre_banco();
 
             modeloT.addRow(columna);
 
         }
 
     }
+    
+        /*public void CrearCbx(JComboBox comboD, ArrayList<Banco> dato) {
+        
+        
+        DefaultComboBoxModel modelot = new DefaultComboBoxModel();
+        comboD.setModel(modelot);
+
+        modelot.addElement("Nombre ");
+
+        //Object[] columna = new Object[1];
+
+        int numRegistro = dato.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            //columna[0] = modban.listar().get(i).getNombre_banco();
+
+            modelot.addElement(dato.get(i).getNombre_banco());
+
+        }
+
+    }
+    */
+    
+    /*private void crearCbxBanco(ArrayList<Banco> datos) {
+        ban.cbxBanco.addItem("Seleccione...");
+
+        if (datos != null) {
+            for (Banco datosX : datos) {
+                modban = datosX;
+                ban.cbxBanco.addItem(modban.getNombre_banco());
+            }
+
+            System.out.println("ComboBox banco creado");
+        }
+    }*/
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -95,6 +135,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
                     Llenartabla(cban.tabla_bancos);
+                    limpiar();
 
                 } else {
 
@@ -137,7 +178,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
                 JOptionPane.showMessageDialog(null, "Registro modificado");
                 ban.dispose();
                 Llenartabla(cban.tabla_bancos);
-                
+                limpiar();
 
             } else {
 
@@ -150,9 +191,16 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         
         if (e.getSource() == ban.btnLimpiar) {
              
-             ban.txtnombre_banco.setText("");
+             limpiar();
             
         }
+
+    }
+    
+        public void limpiar() {
+
+        ban.txtid.setText(null);
+        ban.txtnombre_banco.setText(null);
 
     }
 
@@ -211,8 +259,14 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-
+    public void keyTyped(KeyEvent ke) {
+        
+        if (ke.getSource() == ban.txtnombre_banco) {
+            Validacion.soloLetras(ke);
+            Validacion.Espacio(ke);
+            Validacion.limite(ke, ban.txtnombre_banco.getText(), 120);
+        }
+        
     }
 
     @Override
@@ -274,7 +328,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
         if (ban.txtnombre_banco.getText().isEmpty()) {
 
-            msj += "El campo nombre categoria no puede estar vacío\n";
+            msj += "El campo Banco no puede estar vacío\n";
             resultado = false;
         }
 
