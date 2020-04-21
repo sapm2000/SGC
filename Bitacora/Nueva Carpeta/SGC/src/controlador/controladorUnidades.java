@@ -42,6 +42,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
     private PantallaPrincipal1 panta1;
     private buscarPropietario buscp;
     ArrayList<Unidades> listapropietarios;
+    ArrayList<Unidades> listaunidades;
     DefaultTableModel dm;
 
     public controladorUnidades(unidades uni, catalogoUnidades catauni, detallecuenta detacun, detalleRecibo detare, Unidades moduni, PantallaPrincipal1 panta1, buscarPropietario buscp) {
@@ -52,14 +53,17 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         this.moduni = moduni;
         this.panta1 = panta1;
         this.buscp = buscp;
+        this.catauni.addWindowListener(this);
 
         this.catauni.jButton2.addActionListener(this);
         this.buscp.txtBuscarProp.addKeyListener(this);
         this.buscp.tablaprop.addMouseListener(this);
+        this.catauni.jTable1.addMouseListener(this);
 
         this.uni.btnBuscarpropietarios.addActionListener(this);
         this.uni.btnGuardar.addActionListener(this);
         this.uni.btnLimpiar.addActionListener(this);
+        this.uni.btnEliminar.addActionListener(this);
         this.uni.btnModificar.addActionListener(this);
         this.catauni.jButton7.addActionListener(this);
         this.detacun.jButton1.addActionListener(this);
@@ -94,12 +98,47 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
     }
 
+    public void llenartablaunidades(JTable tablaD) {
+
+        listaunidades = moduni.buscarUnidades();
+        DefaultTableModel modeloT = new DefaultTableModel();
+        tablaD.setModel(modeloT);
+
+        modeloT.addColumn("Numero Unidad");
+        modeloT.addColumn("Propietario o inquilino");
+        modeloT.addColumn("CI/RIF");
+        modeloT.addColumn("Telefono");
+        modeloT.addColumn("Direccion");
+        modeloT.addColumn("Correo");
+        modeloT.addColumn("Area (mts2)");
+
+        Object[] columna = new Object[7];
+
+        int numRegistro = listaunidades.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listaunidades.get(i).getN_unidad();
+            columna[1] = listaunidades.get(i).getNombre();
+            columna[2] = listaunidades.get(i).getCedula();
+            columna[3] = listaunidades.get(i).getTelefono();
+            columna[4] = listaunidades.get(i).getDireccion();
+            columna[5] = listaunidades.get(i).getCorreo();
+            columna[6] = listaunidades.get(i).getArea();
+
+            modeloT.addRow(columna);
+
+        }
+
+    }
+
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == catauni.jButton2) {
             this.uni.setVisible(true);
-            this.uni.btnModificar.setVisible(false);
-            this.uni.btnGuardar.setVisible(true);
+            this.uni.btnModificar.setEnabled(false);
+            this.uni.btnGuardar.setEnabled(true);
+            this.uni.btnEliminar.setEnabled(false);
             this.uni.txtNumeroUnidad.setEnabled(true);
 
             moduni.setId_condominio(panta1.rif.getText());
@@ -128,6 +167,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                 if (moduni.registrarUnidades(moduni)) {
 
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
+                    llenartablaunidades(catauni.jTable1);
 
                 } else {
 
@@ -139,8 +179,34 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         }
 
         if (e.getSource() == uni.btnModificar) {
-            JOptionPane.showMessageDialog(null, "registro modificado");
+            if (validar()) {
+                moduni.setCedula(uni.txtCedula.getText());
+                moduni.setN_unidad(uni.txtNumeroUnidad.getText());
+                moduni.setArea(Integer.parseInt(uni.txtArea.getText()));
+                moduni.setDireccion(uni.txadireccion.getText());
 
+                if (moduni.modificarUnidades(moduni)) {
+
+                    JOptionPane.showMessageDialog(null, "Registro Modificado");
+                    llenartablaunidades(catauni.jTable1);
+                    uni.dispose();
+
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                }
+            }
+
+        }
+
+        if (e.getSource() == uni.btnEliminar) {
+            moduni.setCedula(uni.txtCedula.getText());
+
+            moduni.eliminarUnidad(moduni);
+            JOptionPane.showMessageDialog(null, "registro eliminado");
+            llenartablaunidades(catauni.jTable1);
+            uni.dispose();
         }
 
         if (e.getSource() == detacun.jButton2) {
@@ -166,12 +232,38 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int fila = this.buscp.tablaprop.getSelectedRow(); // primero, obtengo la fila seleccionada
-        uni.txtCedula.setText(String.valueOf(this.buscp.tablaprop.getValueAt(fila, 0)));
-        uni.txtNombrePropietario.setText(String.valueOf(this.buscp.tablaprop.getValueAt(fila, 1)));
-        uni.txtCorreo.setText(String.valueOf(this.buscp.tablaprop.getValueAt(fila, 2)));
-        uni.txtTelefono.setText(String.valueOf(this.buscp.tablaprop.getValueAt(fila, 3)));
-        buscp.dispose();
+
+        if (e.getSource() == buscp.tablaprop) {
+
+            int fila = this.buscp.tablaprop.getSelectedRow(); // primero, obtengo la fila seleccionada
+            uni.txtCedula.setText(String.valueOf(this.buscp.tablaprop.getValueAt(fila, 0)));
+            uni.txtNombrePropietario.setText(String.valueOf(this.buscp.tablaprop.getValueAt(fila, 1)));
+            uni.txtCorreo.setText(String.valueOf(this.buscp.tablaprop.getValueAt(fila, 2)));
+            uni.txtTelefono.setText(String.valueOf(this.buscp.tablaprop.getValueAt(fila, 3)));
+            buscp.dispose();
+        }
+
+        if (e.getSource() == catauni.jTable1) {
+
+            int fila = this.catauni.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+            String dato = String.valueOf(this.catauni.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+
+            moduni.setN_unidad(String.valueOf(dato));
+            uni.setVisible(true);
+            moduni.buscarUnidad(moduni);
+
+            uni.txadireccion.setText(moduni.getDireccion());
+            uni.txtArea.setText(String.valueOf(moduni.getArea()));
+            uni.txtCedula.setText(moduni.getCedula());
+            uni.txtCorreo.setText(moduni.getCorreo());
+            uni.txtNombrePropietario.setText(moduni.getNombre());
+            uni.txtNumeroUnidad.setText(moduni.getN_unidad());
+            uni.txtTelefono.setText(moduni.getTelefono());
+            uni.txtNumeroUnidad.setEnabled(false);
+            uni.btnEliminar.setEnabled(true);
+            uni.btnModificar.setEnabled(true);
+            uni.btnGuardar.setEnabled(false);
+        }
     }
 
     @Override
@@ -217,7 +309,8 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
     @Override
     public void windowOpened(WindowEvent e) {
-
+        moduni.setId_condominio(panta1.rif.getText());
+        llenartablaunidades(catauni.jTable1);
     }
 
     @Override

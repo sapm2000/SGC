@@ -113,6 +113,7 @@ public class unidades extends javax.swing.JFrame {
         txtTelefono.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtTelefono.setForeground(new java.awt.Color(255, 255, 255));
         txtTelefono.setBorder(null);
+        txtTelefono.setEnabled(false);
         jPanel2.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 230, 20));
 
         txtNumeroUnidad.setBackground(new java.awt.Color(0, 94, 159));
@@ -141,6 +142,7 @@ public class unidades extends javax.swing.JFrame {
         txtCorreo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCorreo.setForeground(new java.awt.Color(255, 255, 255));
         txtCorreo.setBorder(null);
+        txtCorreo.setEnabled(false);
         jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, 230, 20));
 
         txtNombrePropietario.setEditable(false);
@@ -148,6 +150,7 @@ public class unidades extends javax.swing.JFrame {
         txtNombrePropietario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtNombrePropietario.setForeground(new java.awt.Color(255, 255, 255));
         txtNombrePropietario.setBorder(null);
+        txtNombrePropietario.setEnabled(false);
         jPanel2.add(txtNombrePropietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, 230, 20));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
@@ -170,6 +173,7 @@ public class unidades extends javax.swing.JFrame {
         txtCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCedula.setForeground(new java.awt.Color(255, 255, 255));
         txtCedula.setBorder(null);
+        txtCedula.setEnabled(false);
         jPanel2.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 230, 20));
 
         jSeparator11.setForeground(new java.awt.Color(255, 255, 255));

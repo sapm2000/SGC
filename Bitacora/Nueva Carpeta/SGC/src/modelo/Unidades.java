@@ -21,9 +21,8 @@ public class Unidades extends Propietarios {
 
     private String N_unidad;
     private String direccion;
-    
+
     private int area;
-   
 
     public String getN_unidad() {
         return N_unidad;
@@ -41,8 +40,6 @@ public class Unidades extends Propietarios {
         this.direccion = direccion;
     }
 
-   
-
     public int getArea() {
         return area;
     }
@@ -50,8 +47,6 @@ public class Unidades extends Propietarios {
     public void setArea(int area) {
         this.area = area;
     }
-
-    
 
     public void llenar_propietarios(JComboBox Propietarios) {
 
@@ -150,7 +145,7 @@ public class Unidades extends Propietarios {
         return listaPropietario;
 
     }
-    
+
     public boolean registrarUnidades(Unidades moduni) {
         PreparedStatement ps = null;
         Connection con = getConexion();
@@ -183,4 +178,165 @@ public class Unidades extends Propietarios {
 
     }
 
+    public ArrayList<Unidades> buscarUnidades() {
+        ArrayList listaUnidades = new ArrayList();
+        Unidades Unidades = new Unidades();
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT unidades.n_unidad, unidades.direccion, unidades.area, propietarios.cedula, propietarios.nombre, propietarios.telefono, propietarios.correo from unidades inner join propietarios on unidades.id_propietario=propietarios.cedula where id_condominio=?;";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getId_condominio());
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Unidades = new Unidades();
+
+                //prs = new Persona();
+                Unidades.setN_unidad(rs.getString("n_unidad"));
+                Unidades.setDireccion(rs.getString("direccion"));
+                Unidades.setCedula(rs.getString("cedula"));
+                Unidades.setNombre(rs.getString("nombre"));
+                Unidades.setTelefono(rs.getString("telefono"));
+                Unidades.setCorreo(rs.getString("correo"));
+                Unidades.setArea(rs.getInt("area"));
+
+                listaUnidades.add(Unidades);
+            }
+
+        } catch (Exception e) {
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+        return listaUnidades;
+
+    }
+
+    public boolean buscarUnidad(Unidades moduni) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT unidades.n_unidad, unidades.direccion, unidades.area, propietarios.cedula, propietarios.nombre, propietarios.telefono, propietarios.correo from unidades inner join propietarios on unidades.id_propietario=propietarios.cedula where n_unidad=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, moduni.getN_unidad());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                moduni.setDireccion(rs.getString("direccion"));
+                moduni.setCedula(rs.getString("cedula"));
+                moduni.setNombre(rs.getString("nombre"));
+                moduni.setTelefono(rs.getString("telefono"));
+                moduni.setCorreo(rs.getString("correo"));
+                moduni.setArea(rs.getInt("area"));
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
+    public boolean modificarUnidades(Unidades moduni) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE unidades SET direccion=?, area=?, id_propietario=? WHERE n_unidad=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getDireccion());
+            ps.setInt(2, getArea());
+            ps.setString(3, getCedula());
+
+            ps.setString(4, getN_unidad());
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+    
+    public boolean eliminarUnidad(Unidades moduni){
+        
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+        
+        String sql = "DELETE FROM unidades WHERE n_unidad=?";
+        
+        try {
+            
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getN_unidad());
+            ps.execute();
+            
+            return true;
+            
+        } catch (SQLException e) {
+            
+           System.err.println(e);
+           return false;
+            
+        }finally{
+            try {
+                
+                con.close();
+                
+            }catch (SQLException e) {
+            
+           System.err.println(e);
+           
+            }
+        
+        }
+        
+     }  
 }
