@@ -93,7 +93,7 @@ public class controladorProveedores implements ActionListener, WindowListener, K
             this.prov.setVisible(true);
             this.prov.btnModificar.setEnabled(false);
             this.prov.btnGuardar.setEnabled(true);
-            this.prov.btnEliminar.setEnabled(true);
+            this.prov.btnEliminar.setEnabled(false);
             this.prov.txtCedula.setEnabled(true);
             prov.txtCedula.setText("");
             prov.txtContacto.setText("");
