@@ -16,7 +16,9 @@ import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import modelo.Propietarios;
 import vista.PantallaPrincipal1;
 import vista.catalogoPropietarios;
@@ -42,10 +44,12 @@ public class controladorPropietario implements ActionListener, MouseListener,Key
         this.panta1 = panta1;
         this.catapro.btn_NuevoPropietario.addActionListener(this);
         this.catapro.addWindowListener(this);
-
+        this.catapro.txtBuscarPropietarios.addKeyListener(this);
+        this.catapro.TablaPropietarios.addMouseListener(this);
         this.pro.btnGuardar.addActionListener(this);
         this.pro.btnLimpiar.addActionListener(this);
         this.pro.btnModificar.addActionListener(this);
+        this.pro.btnEliminar.addActionListener(this);
     }
 
     public void Llenartabla(JTable tablaD) {
@@ -125,7 +129,43 @@ public class controladorPropietario implements ActionListener, MouseListener,Key
         }
 
         if (e.getSource() == pro.btnModificar) {
-            JOptionPane.showMessageDialog(null, "registro modificado");
+            if (validar()) {
+                modpro.setCedula(pro.txtCedula.getText());
+                modpro.setNombre(pro.txtNombre.getText());
+                modpro.setApellido(pro.txtApellido.getText());
+                modpro.setCorreo(pro.txtCorreo.getText());
+                modpro.setTelefono(pro.txtTelefono.getText());
+                
+
+                if (modpro.modificar(modpro)) {
+
+                    JOptionPane.showMessageDialog(null, "Registro Modificado");
+                    Llenartabla(catapro.TablaPropietarios);
+                    pro.dispose();
+
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                }
+            }
+
+        }
+        
+        if (e.getSource() == pro.btnEliminar) {
+
+            if (modpro.eliminar(modpro)) {
+
+                modpro.setCedula(pro.txtCedula.getText());
+                JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                pro.dispose();
+                Llenartabla(catapro.TablaPropietarios);
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Error al Eliminar");
+
+            }
 
         }
     }
@@ -148,10 +188,39 @@ public class controladorPropietario implements ActionListener, MouseListener,Key
 
         return resultado;
     }
+    
+    private void filtro(String consulta, JTable jtableBuscar) {
+        dm = (DefaultTableModel) jtableBuscar.getModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        jtableBuscar.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(consulta));
+
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        int fila = this.catapro.TablaPropietarios.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int columna = this.catapro.TablaPropietarios.getSelectedColumn(); // luego, obtengo la columna seleccionada
+        String dato = String.valueOf(this.catapro.TablaPropietarios.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+        catapro.txtBuscarPropietarios.setText(String.valueOf(dato));
+
+        modpro.setCedula(String.valueOf(dato));
+
+        modpro.buscar(modpro);
         
+        pro.setVisible(true);
+        pro.txtCedula.setText(modpro.getCedula());
+        pro.txtApellido.setText(modpro.getApellido());
+        pro.txtCorreo.setText(modpro.getCorreo());
+        pro.txtNombre.setText(modpro.getNombre());
+        pro.txtTelefono.setText(modpro.getTelefono());
+        
+        pro.txtCedula.setEnabled(false);
+
+        pro.btnGuardar.setEnabled(false);
+
+        pro.btnModificar.setEnabled(true);
+        pro.btnEliminar.setEnabled(true);
     }
 
     @Override
@@ -186,11 +255,17 @@ public class controladorPropietario implements ActionListener, MouseListener,Key
 
     @Override
     public void keyReleased(KeyEvent e) {
-        
+        if (e.getSource() == catapro.txtBuscarPropietarios) {
+
+            filtro(catapro.txtBuscarPropietarios.getText(), catapro.TablaPropietarios);
+        } else {
+
+        }
     }
 
     @Override
     public void windowOpened(WindowEvent e) {
+        modpro.setId_condominio(panta1.rif.getText());
         Llenartabla(catapro.TablaPropietarios);
         
     }
