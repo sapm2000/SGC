@@ -93,7 +93,7 @@ public class controladorPropietario implements ActionListener, MouseListener,Key
             this.pro.setVisible(true);
             this.pro.btnModificar.setEnabled(false);
             this.pro.btnGuardar.setEnabled(true);
-            this.pro.btnEliminar.setEnabled(true);
+            this.pro.btnEliminar.setEnabled(false);
             this.pro.txtCedula.setEnabled(true);
             this.catapro.addWindowListener(this);
             pro.txtCedula.setText("");

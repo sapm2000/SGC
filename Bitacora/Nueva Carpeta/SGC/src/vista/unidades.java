@@ -125,17 +125,17 @@ public class unidades extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("<html>\n<center>Propietario<br>/<br>Inquilino:</center>\n</html>");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("CI/RIF:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 74, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 74, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("<html>\nCorreo <br> Electrónico:\n</hmtl>");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 210, -1, -1));
 
         txtCorreo.setEditable(false);
         txtCorreo.setBackground(new java.awt.Color(0, 94, 159));
@@ -143,7 +143,7 @@ public class unidades extends javax.swing.JFrame {
         txtCorreo.setForeground(new java.awt.Color(255, 255, 255));
         txtCorreo.setBorder(null);
         txtCorreo.setEnabled(false);
-        jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, 230, 20));
+        jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, 230, 20));
 
         txtNombrePropietario.setEditable(false);
         txtNombrePropietario.setBackground(new java.awt.Color(0, 94, 159));
@@ -151,10 +151,10 @@ public class unidades extends javax.swing.JFrame {
         txtNombrePropietario.setForeground(new java.awt.Color(255, 255, 255));
         txtNombrePropietario.setBorder(null);
         txtNombrePropietario.setEnabled(false);
-        jPanel2.add(txtNombrePropietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, 230, 20));
+        jPanel2.add(txtNombrePropietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 230, 20));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, 230, 10));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, 230, 10));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 230, 10));
@@ -166,7 +166,7 @@ public class unidades extends javax.swing.JFrame {
         jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 230, 10));
 
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 230, 10));
+        jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 170, 230, 10));
 
         txtCedula.setEditable(false);
         txtCedula.setBackground(new java.awt.Color(0, 94, 159));
@@ -174,16 +174,17 @@ public class unidades extends javax.swing.JFrame {
         txtCedula.setForeground(new java.awt.Color(255, 255, 255));
         txtCedula.setBorder(null);
         txtCedula.setEnabled(false);
-        jPanel2.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 230, 20));
+        jPanel2.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, 230, 20));
 
         jSeparator11.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, 230, 10));
+        jPanel2.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, 230, 10));
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
         txadireccion.setBackground(new java.awt.Color(0, 94, 159));
         txadireccion.setColumns(20);
         txadireccion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txadireccion.setForeground(new java.awt.Color(255, 255, 255));
         txadireccion.setRows(5);
         jScrollPane1.setViewportView(txadireccion);
 
