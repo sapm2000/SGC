@@ -15,6 +15,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import modelo.Propietarios;
+import modelo.Unidades;
 
 /**
  *
@@ -431,16 +432,10 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         unidades uni = new unidades();
         detallecuenta detacun = new detallecuenta();
         detalleRecibo detare = new detalleRecibo();
-        controladorUnidades controuni = new controladorUnidades(uni, cataun, detacun, detare);
+        Unidades moduni = new Unidades();
+        controladorUnidades controuni = new controladorUnidades(uni, cataun, detacun, detare, moduni,this);
 
-        cataun.jButton2.setEnabled(false);
-        cataun.jButton2.setForeground(Color.gray);
-        cataun.jButton5.setEnabled(false);
-        cataun.jButton5.setForeground(Color.gray);
-        cataun.jButton4.setEnabled(false);
-        cataun.jButton4.setForeground(Color.gray);
-        cataun.jButton7.setEnabled(false);
-        cataun.jButton7.setForeground(Color.gray);
+       
         cataun.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
