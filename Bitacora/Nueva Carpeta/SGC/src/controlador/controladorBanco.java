@@ -50,6 +50,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         this.cban.tabla_bancos.addKeyListener(this);
         this.cban.txtBuscar_banco.addKeyListener(this);
         this.cban.addWindowListener(this);
+        this.ban.txtnombre_banco.addKeyListener(this);
 
     }
 
@@ -134,6 +135,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
                     Llenartabla(cban.tabla_bancos);
+                    limpiar();
 
                 } else {
 
@@ -176,7 +178,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
                 JOptionPane.showMessageDialog(null, "Registro modificado");
                 ban.dispose();
                 Llenartabla(cban.tabla_bancos);
-                
+                limpiar();
 
             } else {
 
@@ -189,9 +191,16 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         
         if (e.getSource() == ban.btnLimpiar) {
              
-             ban.txtnombre_banco.setText("");
+             limpiar();
             
         }
+
+    }
+    
+        public void limpiar() {
+
+        ban.txtid.setText(null);
+        ban.txtnombre_banco.setText(null);
 
     }
 
@@ -250,8 +259,14 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-
+    public void keyTyped(KeyEvent ke) {
+        
+        if (ke.getSource() == ban.txtnombre_banco) {
+            Validacion.soloLetras(ke);
+            Validacion.Espacio(ke);
+            Validacion.limite(ke, ban.txtnombre_banco.getText(), 120);
+        }
+        
     }
 
     @Override
@@ -313,7 +328,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
         if (ban.txtnombre_banco.getText().isEmpty()) {
 
-            msj += "El campo nombre categoria no puede estar vacío\n";
+            msj += "El campo Banco no puede estar vacío\n";
             resultado = false;
         }
 

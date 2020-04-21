@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import java.awt.event.ActionEvent;
@@ -26,11 +21,8 @@ import modelo.Condominio;
 import modelo.Cuenta;
 import vista.catalogoCuenta;
 import vista.cuenta;
+import controlador.Validacion;
 
-/**
- *
- * @author rma
- */
 public class controladorCuenta implements ActionListener, MouseListener, KeyListener, WindowListener {
 
     private catalogoCuenta catacu;
@@ -56,10 +48,13 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
         this.catacu.addWindowListener(this);
         this.catacu.jTable1.addMouseListener(this);
         this.cu.btnEliminar.addActionListener(this);
+        this.cu.txtCedula.addKeyListener(this);
+        this.cu.txtN_cuenta.addKeyListener(this);
+        this.cu.txtBeneficiario.addKeyListener(this);
     }
 
     public void Llenartabla(JTable tablaD) {
-        
+
         listaCuenta = modcu.listarcuenta();
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
@@ -91,7 +86,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     }
 
     public void Llenartablacondominio(JTable tablaD) {
-        
+
         listaCondo = modcon.lPerson();
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
@@ -132,7 +127,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
 
             columna[0] = listaCondo.get(i).getRif();
             columna[1] = listaCondo.get(i).getRazonS();
-           
+
             if (listaCondo.get(i).getId_cuenta() != null) {
                 columna[2] = Boolean.TRUE;
             } else {
@@ -189,6 +184,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
                     }
                     Llenartabla(catacu.jTable1);
                     cu.dispose();
+                    limpiar();
                 } else {
 
                     JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
@@ -211,7 +207,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
                 if (modcu.modificarcuenta(modcu)) {
 
                     JOptionPane.showMessageDialog(null, "Registro modificado");
-
+                    limpiar();
                     modcu.borrarpuente(modcu);
 
                     for (int i = 0; i < cu.jTable1.getRowCount(); i++) {
@@ -236,7 +232,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
             }
 
         }
-        
+
         if (e.getSource() == cu.btnEliminar) {
             modcu.setN_cuenta(cu.txtN_cuenta.getText());
             modcu.borrarpuente(modcu);
@@ -245,6 +241,20 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
             cu.dispose();
             Llenartabla(catacu.jTable1);
         }
+
+        if (e.getSource() == cu.btnLimpiar) {
+            limpiar();
+        }
+    }
+
+    public void limpiar() {
+
+        cu.txtCedula.setText(null);
+        cu.txtN_cuenta.setText(null);
+        cu.txtBeneficiario.setText(null);
+        cu.jComboBox1.setSelectedItem(0);
+        cu.jComboBox2.setSelectedItem(0);
+
     }
 
     private Boolean validar() {
@@ -254,19 +264,19 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
 
         if (cu.txtN_cuenta.getText().isEmpty()) {
 
-            msj += "El campo nombre categoria no puede estar vacío\n";
+            msj += "El campo numero de Cuenta no puede estar vacio\n";
             resultado = false;
         }
 
         if (cu.txtBeneficiario.getText().isEmpty()) {
 
-            msj += "El campo nombre categoria no puede estar vacío\n";
+            msj += "El campo Beneficiario no puede estar vacío\n";
             resultado = false;
         }
 
         if (cu.txtCedula.getText().isEmpty()) {
 
-            msj += "El campo nombre categoria no puede estar vacío\n";
+            msj += "El campo Rif/Cedula no puede estar vacío\n";
             resultado = false;
         }
 
@@ -329,7 +339,24 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(KeyEvent ke) {
+
+        if (ke.getSource() == cu.txtCedula) {
+            Validacion.soloNumeros(ke);
+            Validacion.Espacio(ke);
+            Validacion.limite(ke, cu.txtCedula.getText(), 8);
+        }
+        if (ke.getSource() == cu.txtN_cuenta) {
+
+            Validacion.soloNumeros(ke);
+            Validacion.Espacio(ke);
+            Validacion.limite(ke, cu.txtN_cuenta.getText(), 20);
+        }
+        if (ke.getSource() == cu.txtBeneficiario) {
+            Validacion.Espacio(ke);
+            Validacion.soloLetras(ke);
+            Validacion.limite(ke, cu.txtBeneficiario.getText(), 25);
+        }
 
     }
 
@@ -401,4 +428,5 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
         tr.setRowFilter(RowFilter.regexFilter(consulta));
 
     }
+
 }
