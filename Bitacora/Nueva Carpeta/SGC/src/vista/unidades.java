@@ -37,8 +37,8 @@ public class unidades extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtArea = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
         txtNumeroUnidad = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -53,8 +53,8 @@ public class unidades extends javax.swing.JFrame {
         txtCedula = new javax.swing.JTextField();
         jSeparator11 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        txadireccion = new javax.swing.JTextArea();
+        btnBuscarpropietarios = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         btnMinimizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
@@ -102,17 +102,18 @@ public class unidades extends javax.swing.JFrame {
         jLabel5.setText("Teléfono:");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 90, 30));
 
-        jTextField4.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField4.setBorder(null);
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 230, 20));
+        txtArea.setBackground(new java.awt.Color(0, 94, 159));
+        txtArea.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtArea.setForeground(new java.awt.Color(255, 255, 255));
+        txtArea.setBorder(null);
+        jPanel2.add(txtArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 230, 20));
 
-        jTextField3.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField3.setBorder(null);
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 230, 20));
+        txtTelefono.setEditable(false);
+        txtTelefono.setBackground(new java.awt.Color(0, 94, 159));
+        txtTelefono.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtTelefono.setForeground(new java.awt.Color(255, 255, 255));
+        txtTelefono.setBorder(null);
+        jPanel2.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 230, 20));
 
         txtNumeroUnidad.setBackground(new java.awt.Color(0, 94, 159));
         txtNumeroUnidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -135,12 +136,14 @@ public class unidades extends javax.swing.JFrame {
         jLabel6.setText("<html>\nCorreo <br> Electrónico:\n</hmtl>");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, -1, -1));
 
+        txtCorreo.setEditable(false);
         txtCorreo.setBackground(new java.awt.Color(0, 94, 159));
         txtCorreo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCorreo.setForeground(new java.awt.Color(255, 255, 255));
         txtCorreo.setBorder(null);
         jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, 230, 20));
 
+        txtNombrePropietario.setEditable(false);
         txtNombrePropietario.setBackground(new java.awt.Color(0, 94, 159));
         txtNombrePropietario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtNombrePropietario.setForeground(new java.awt.Color(255, 255, 255));
@@ -162,6 +165,7 @@ public class unidades extends javax.swing.JFrame {
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 230, 10));
 
+        txtCedula.setEditable(false);
         txtCedula.setBackground(new java.awt.Color(0, 94, 159));
         txtCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCedula.setForeground(new java.awt.Color(255, 255, 255));
@@ -173,22 +177,22 @@ public class unidades extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
-        jTextArea1.setBackground(new java.awt.Color(0, 94, 159));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txadireccion.setBackground(new java.awt.Color(0, 94, 159));
+        txadireccion.setColumns(20);
+        txadireccion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txadireccion.setRows(5);
+        jScrollPane1.setViewportView(txadireccion);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 260, 110));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda.png"))); // NOI18N
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
-        jButton1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
-        jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 30, 40, 40));
+        btnBuscarpropietarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda.png"))); // NOI18N
+        btnBuscarpropietarios.setBorderPainted(false);
+        btnBuscarpropietarios.setContentAreaFilled(false);
+        btnBuscarpropietarios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnBuscarpropietarios.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
+        btnBuscarpropietarios.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
+        btnBuscarpropietarios.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
+        jPanel2.add(btnBuscarpropietarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 30, 40, 40));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 770, 280));
 
@@ -362,13 +366,13 @@ public class unidades extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnBuscarpropietarios;
     public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnModificar;
     public javax.swing.JButton btnSalir;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -393,12 +397,12 @@ public class unidades extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JTextArea jTextArea1;
-    public javax.swing.JTextField jTextField3;
-    public javax.swing.JTextField jTextField4;
+    public javax.swing.JTextArea txadireccion;
+    public javax.swing.JTextField txtArea;
     public javax.swing.JTextField txtCedula;
     public javax.swing.JTextField txtCorreo;
     public javax.swing.JTextField txtNombrePropietario;
     public javax.swing.JTextField txtNumeroUnidad;
+    public javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

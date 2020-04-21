@@ -17,7 +17,7 @@ public class buscarPropietario extends javax.swing.JFrame {
      */
     public buscarPropietario() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
+        tablaprop.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         setLocationRelativeTo(null);
     }
 
@@ -35,11 +35,10 @@ public class buscarPropietario extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtBuscarProveedores = new javax.swing.JTextField();
+        txtBuscarProp = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
-        btn_NuevoProveedor = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaprop = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,7 +51,7 @@ public class buscarPropietario extends javax.swing.JFrame {
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
@@ -67,7 +66,7 @@ public class buscarPropietario extends javax.swing.JFrame {
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
@@ -86,37 +85,19 @@ public class buscarPropietario extends javax.swing.JFrame {
         jLabel3.setText("Buscar:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 70, -1));
 
-        txtBuscarProveedores.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txtBuscarProveedores.setForeground(new java.awt.Color(204, 204, 204));
-        txtBuscarProveedores.setText("Buscar...");
-        txtBuscarProveedores.setBorder(null);
-        jPanel1.add(txtBuscarProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 190, 20));
+        txtBuscarProp.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtBuscarProp.setForeground(new java.awt.Color(204, 204, 204));
+        txtBuscarProp.setText("Buscar...");
+        txtBuscarProp.setBorder(null);
+        jPanel1.add(txtBuscarProp, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 190, 20));
 
         jSeparator1.setBackground(new java.awt.Color(0, 94, 159));
         jSeparator1.setForeground(new java.awt.Color(0, 94, 159));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 190, 10));
 
-        btn_NuevoProveedor.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btn_NuevoProveedor.setForeground(new java.awt.Color(0, 94, 159));
-        btn_NuevoProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (2).png"))); // NOI18N
-        btn_NuevoProveedor.setText("Nuevo Propietario");
-        btn_NuevoProveedor.setBorder(null);
-        btn_NuevoProveedor.setBorderPainted(false);
-        btn_NuevoProveedor.setContentAreaFilled(false);
-        btn_NuevoProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btn_NuevoProveedor.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
-        btn_NuevoProveedor.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
-        btn_NuevoProveedor.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
-        btn_NuevoProveedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_NuevoProveedorActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btn_NuevoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, -1, -1));
-
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaprop.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -127,8 +108,8 @@ public class buscarPropietario extends javax.swing.JFrame {
                 "Cédula", "Nombre", "Teléfono", "Correo Electrónico"
             }
         ));
-        jTable1.setRowHeight(20);
-        jScrollPane1.setViewportView(jTable1);
+        tablaprop.setRowHeight(20);
+        jScrollPane1.setViewportView(tablaprop);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 480, 280));
 
@@ -179,10 +160,6 @@ public class buscarPropietario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btn_NuevoProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_NuevoProveedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_NuevoProveedorActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -221,15 +198,14 @@ public class buscarPropietario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnSalir;
-    public javax.swing.JButton btn_NuevoProveedor;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
-    public javax.swing.JTextField txtBuscarProveedores;
+    public javax.swing.JTable tablaprop;
+    public javax.swing.JTextField txtBuscarProp;
     // End of variables declaration//GEN-END:variables
     static public class Headercolor extends DefaultTableCellHeaderRenderer {
     public Headercolor () {

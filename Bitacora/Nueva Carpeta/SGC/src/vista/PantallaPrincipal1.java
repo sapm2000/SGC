@@ -433,7 +433,8 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         detallecuenta detacun = new detallecuenta();
         detalleRecibo detare = new detalleRecibo();
         Unidades moduni = new Unidades();
-        controladorUnidades controuni = new controladorUnidades(uni, cataun, detacun, detare, moduni,this);
+        buscarPropietario buscp = new buscarPropietario();
+        controladorUnidades controuni = new controladorUnidades(uni, cataun, detacun, detare, moduni,this,buscp);
 
        
         cataun.setVisible(true);

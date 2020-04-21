@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
@@ -20,11 +21,10 @@ public class Unidades extends Propietarios {
 
     private String N_unidad;
     private String direccion;
-    private String telefono;
-    private String area;
-    private String id_propietario;
     
-    
+    private int area;
+   
+
     public String getN_unidad() {
         return N_unidad;
     }
@@ -41,36 +41,18 @@ public class Unidades extends Propietarios {
         this.direccion = direccion;
     }
 
-    public String getTelefono() {
-        return telefono;
-    }
+   
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getArea() {
+    public int getArea() {
         return area;
     }
 
-    public void setArea(String area) {
+    public void setArea(int area) {
         this.area = area;
     }
 
-    public String getId_propietario() {
-        return id_propietario;
-    }
+    
 
-    public void setId_propietario(String id_propietario) {
-        this.id_propietario = id_propietario;
-    }
-
-  
-
-    
-    
-    
-    
     public void llenar_propietarios(JComboBox Propietarios) {
 
 //Creamos objeto tipo Connection    
@@ -128,29 +110,63 @@ public class Unidades extends Propietarios {
         }
 
     }
-    
-    public boolean buscarnombre(Unidades moduni) {
 
+    public ArrayList<Unidades> buscarPropietario() {
+        ArrayList listaPropietario = new ArrayList();
+        Unidades Unidades = new Unidades();
+
+        Connection con = getConexion();
         PreparedStatement ps = null;
         ResultSet rs = null;
+
+        String sql = "SELECT cedula, nombre, telefono, correo	FROM propietarios where id_condominio=?;";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getId_condominio());
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Unidades = new Unidades();
+
+                //prs = new Persona();
+                Unidades.setCedula(rs.getString("cedula"));
+                Unidades.setNombre(rs.getString("nombre"));
+                Unidades.setTelefono(rs.getString("telefono"));
+                Unidades.setCorreo(rs.getString("correo"));
+
+                listaPropietario.add(Unidades);
+            }
+
+        } catch (Exception e) {
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+        return listaPropietario;
+
+    }
+    
+    public boolean registrarUnidades(Unidades moduni) {
+        PreparedStatement ps = null;
         Connection con = getConexion();
-        String sql = "SELECT nombre,correo FROM propietarios where cedula=?";
+
+        String sql = "INSERT INTO unidades( n_unidad, direccion, area, id_propietario) VALUES (?, ?, ?, ?);";
 
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, moduni.getId_propietario());
-            rs = ps.executeQuery();
-            if (rs.next()) {
+            ps.setString(1, moduni.getN_unidad());
+            ps.setString(2, moduni.getDireccion());
+            ps.setInt(3, moduni.getArea());
+            ps.setString(4, moduni.getCedula());
 
-                moduni.setNombre(rs.getString("nombre"));
-                moduni.setCorreo(rs.getString("correo"));
-                
-
-                return true;
-            }
-
-            return false;
+            ps.execute();
+            return true;
 
         } catch (SQLException e) {
 
@@ -159,17 +175,12 @@ public class Unidades extends Propietarios {
 
         } finally {
             try {
-
                 con.close();
-
             } catch (SQLException e) {
-
                 System.err.println(e);
-
             }
-
         }
 
     }
-    
+
 }
