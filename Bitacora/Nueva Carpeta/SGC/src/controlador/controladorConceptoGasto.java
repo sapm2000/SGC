@@ -1,6 +1,5 @@
 package controlador;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -15,11 +14,9 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import modelo.CrudUsuario;
 import vista.catalogoConceptoGasto;
 import vista.conceptoGasto;
 import modelo.ModeloConceptoGastos;
-import controlador.Validacion;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
 import modelo.CategoriaGasto;
@@ -94,6 +91,8 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
                 JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
 
             }
+        }
+            
             if (e.getSource() == cga.btnEliminar) {
 
                 if (modCatGas.eliminar(modCatGas)) {
@@ -126,7 +125,7 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
             }
 
         }
-    }
+    
 
     public void limpiar() {
 
