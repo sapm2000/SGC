@@ -14,6 +14,7 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import modelo.Asambleas;
 import modelo.Propietarios;
 import modelo.Unidades;
 
@@ -373,9 +374,10 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         catalogoAsambleas cataa = new catalogoAsambleas();
         asambleas asam = new asambleas();
-        controladorAsambleas controa = new controladorAsambleas(cataa, asam);
-        cataa.jButton2.setEnabled(false);
-        cataa.jButton2.setForeground(Color.gray);
+        Asambleas modasa = new Asambleas();
+        Propietarios modpro = new Propietarios();
+        controladorAsambleas controa = new controladorAsambleas(cataa, asam, modasa, modpro,this);
+        
         cataa.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
