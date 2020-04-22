@@ -305,7 +305,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         CategoriaGasto modCat = new CategoriaGasto(); 
        
         controladorConceptoGasto controcga = new controladorConceptoGasto(catacog, cga, modConGas, modCat);
-        
+        catacog.btnNuevoRegistro.setForeground(gray);
+        catacog.btnNuevoRegistro.setEnabled(true);
         catacog.setVisible(true);
 
 
