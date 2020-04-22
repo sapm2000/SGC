@@ -18,6 +18,7 @@ import modelo.Condominio;
 import modelo.CrudUsuario;
 import modelo.Cuenta;
 import modelo.Proveedores;
+import modelo.ModeloConceptoGastos;
 
 
 /**
@@ -300,15 +301,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         catalogoConceptoGasto catacog = new catalogoConceptoGasto();
         conceptoGasto cga = new conceptoGasto();
+        ModeloConceptoGastos modConGas = new ModeloConceptoGastos();
+        CategoriaGasto modCat = new CategoriaGasto(); 
        
-        controladorConceptoGasto controcga = new controladorConceptoGasto(catacog, cga);
-        catacog.jButton2.setForeground(gray);
-        catacog.jButton2.setEnabled(false);
+        controladorConceptoGasto controcga = new controladorConceptoGasto(catacog, cga, modConGas, modCat);
+        catacog.btnNuevoRegistro.setEnabled(true);
+        catacog.setVisible(true);
 
-        catacog.jButton4.setEnabled(false);
-        catacog.jButton4.setForeground(gray);
-        catacog.jButton5.setEnabled(false);
-        catacog.jButton5.setForeground(gray);
+
 
         catacog.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
