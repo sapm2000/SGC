@@ -37,9 +37,9 @@ public class conceptoGasto extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        txtDescripcion = new javax.swing.JTextField();
+        txtNombreC = new javax.swing.JTextField();
+        cbxCategoria = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -57,6 +57,7 @@ public class conceptoGasto extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         jSeparator10 = new javax.swing.JSeparator();
         jLabel11 = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
 
         jTextField1.setText("jTextField1");
 
@@ -82,21 +83,21 @@ public class conceptoGasto extends javax.swing.JFrame {
         jLabel4.setText("Categoría:");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 80, 30));
 
-        jTextField3.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField3.setBorder(null);
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 320, 20));
+        txtDescripcion.setBackground(new java.awt.Color(0, 94, 159));
+        txtDescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtDescripcion.setForeground(new java.awt.Color(255, 255, 255));
+        txtDescripcion.setBorder(null);
+        jPanel2.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 320, 20));
 
-        jTextField2.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField2.setBorder(null);
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 320, 20));
+        txtNombreC.setBackground(new java.awt.Color(0, 94, 159));
+        txtNombreC.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtNombreC.setForeground(new java.awt.Color(255, 255, 255));
+        txtNombreC.setBorder(null);
+        jPanel2.add(txtNombreC, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 320, 20));
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione la Categoría" }));
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 320, 30));
+        cbxCategoria.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cbxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione la Categoría" }));
+        jPanel2.add(cbxCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 320, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -123,7 +124,7 @@ public class conceptoGasto extends javax.swing.JFrame {
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
@@ -138,7 +139,7 @@ public class conceptoGasto extends javax.swing.JFrame {
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
@@ -160,7 +161,7 @@ public class conceptoGasto extends javax.swing.JFrame {
         btnGuardar.setBorder(null);
         btnGuardar.setBorderPainted(false);
         btnGuardar.setContentAreaFilled(false);
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
         btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
         btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
@@ -176,7 +177,7 @@ public class conceptoGasto extends javax.swing.JFrame {
         btnModificar.setBorder(null);
         btnModificar.setBorderPainted(false);
         btnModificar.setContentAreaFilled(false);
-        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnModificar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
         btnModificar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
         btnModificar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
@@ -186,7 +187,7 @@ public class conceptoGasto extends javax.swing.JFrame {
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo.png"))); // NOI18N
         btnLimpiar.setBorderPainted(false);
         btnLimpiar.setContentAreaFilled(false);
-        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLimpiar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
         btnLimpiar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
         btnLimpiar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
@@ -204,7 +205,7 @@ public class conceptoGasto extends javax.swing.JFrame {
         btnEliminar.setBorder(null);
         btnEliminar.setBorderPainted(false);
         btnEliminar.setContentAreaFilled(false);
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (2).png"))); // NOI18N
         btnEliminar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (2).png"))); // NOI18N
         btnEliminar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (2).png"))); // NOI18N
@@ -219,6 +220,9 @@ public class conceptoGasto extends javax.swing.JFrame {
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondobtn1chiqui.png"))); // NOI18N
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, -1, 120));
+
+        txtId.setText("jTextField2");
+        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 10, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 470));
 
@@ -291,8 +295,8 @@ public class conceptoGasto extends javax.swing.JFrame {
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnModificar;
     public javax.swing.JButton btnSalir;
+    public javax.swing.JComboBox<String> cbxCategoria;
     private javax.swing.JButton jButton5;
-    public javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -309,8 +313,9 @@ public class conceptoGasto extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTextField jTextField1;
-    public javax.swing.JTextField jTextField2;
-    public javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    public javax.swing.JTextField txtDescripcion;
+    public javax.swing.JTextField txtId;
+    public javax.swing.JTextField txtNombreC;
     // End of variables declaration//GEN-END:variables
 }

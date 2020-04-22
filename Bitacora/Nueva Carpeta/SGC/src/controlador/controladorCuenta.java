@@ -35,7 +35,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     ArrayList<Cuenta> listaCuenta;
     ArrayList<Condominio> listaCondo;
 
-    public controladorCuenta(catalogoCuenta catacu, cuenta cu, Cuenta modcu, Banco modban, Condominio modcon) {
+        public controladorCuenta(catalogoCuenta catacu, cuenta cu, Cuenta modcu, Banco modban, Condominio modcon) {
         this.catacu = catacu;
         this.cu = cu;
         this.modcu = modcu;
