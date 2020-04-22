@@ -52,7 +52,7 @@ public class asambleas extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
         btnModificar = new javax.swing.JButton();
-        jTextField5 = new javax.swing.JTextField();
+        txtBuscarPropietarios = new javax.swing.JTextField();
         jSeparator8 = new javax.swing.JSeparator();
         btnGuardar = new javax.swing.JButton();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
@@ -64,6 +64,7 @@ public class asambleas extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
+        txtid = new javax.swing.JTextField();
 
         jLabel4.setText("jLabel4");
 
@@ -156,11 +157,11 @@ public class asambleas extends javax.swing.JFrame {
         });
         jPanel4.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 160, 30));
 
-        jTextField5.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField5.setBorder(null);
-        jPanel4.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 190, 20));
+        txtBuscarPropietarios.setBackground(new java.awt.Color(0, 94, 159));
+        txtBuscarPropietarios.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtBuscarPropietarios.setForeground(new java.awt.Color(255, 255, 255));
+        txtBuscarPropietarios.setBorder(null);
+        jPanel4.add(txtBuscarPropietarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 190, 20));
 
         jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
         jPanel4.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 190, 10));
@@ -256,6 +257,10 @@ public class asambleas extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, 40, 30));
+
+        txtid.setEditable(false);
+        txtid.setEnabled(false);
+        jPanel3.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 20, -1));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 630));
 
@@ -358,9 +363,10 @@ public class asambleas extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator8;
     public javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField4;
-    public javax.swing.JTextField jTextField5;
     public javax.swing.JTextArea txaDescripcion;
+    public javax.swing.JTextField txtBuscarPropietarios;
     public javax.swing.JTextField txtNombreAsamblea;
+    public javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables
     static public class Headercolor extends DefaultTableCellHeaderRenderer {
     public Headercolor () {

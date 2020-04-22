@@ -13,13 +13,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import static java.lang.String.valueOf;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableRowSorter;
 import modelo.Asambleas;
 import modelo.Propietarios;
 import vista.PantallaPrincipal1;
@@ -36,6 +39,8 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
     private asambleas as;
     DefaultTableModel dm;
     ArrayList<Propietarios> listaPropietarios;
+    ArrayList<Asambleas> listaasambleas;
+    ArrayList<Asambleas> listapropmod;
     private Asambleas modasa;
     private Propietarios modpro;
     private PantallaPrincipal1 panta1;
@@ -46,8 +51,11 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         this.modasa = modasa;
         this.modpro = modpro;
         this.panta1 = panta1;
-
+        this.cataa.jTable1.addMouseListener(this);
+        
+        this.cataa.addWindowListener(this);
         this.cataa.jButton2.addActionListener(this);
+        this.as.txtBuscarPropietarios.addKeyListener(this);
 
         this.as.btnGuardar.addActionListener(this);
 
@@ -84,16 +92,90 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         }
 
     }
+    
+    
+    
+    public void Llenartablaasambleas(JTable tablaD) {
+
+        listaasambleas = modasa.listarAsambleas();
+        DefaultTableModel modeloT = new DefaultTableModel();
+        tablaD.setModel(modeloT);
+
+        modeloT.addColumn("Nº Asamblea");
+        modeloT.addColumn("Nombre Asamblea");
+        modeloT.addColumn("Fecha");
+        modeloT.addColumn("Descripcion");
+        modeloT.addColumn("Nº asistentes");
+        
+
+        Object[] columna = new Object[5];
+
+        int numRegistro = listaasambleas.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listaasambleas.get(i).getId();
+            columna[1] = listaasambleas.get(i).getNombre_asamblea();
+            columna[2] = listaasambleas.get(i).getFecha();
+            columna[3] = listaasambleas.get(i).getDescripcion();
+            columna[4] = listaasambleas.get(i).getN_asistentes();
+            
+
+            modeloT.addRow(columna);
+
+        }
+
+    }
+    
+    public void llenartablapropietariomodificar(JTable tablaD) {
+        listapropmod = modasa.listarpropietariosmod();
+        DefaultTableModel modeloT = new DefaultTableModel();
+        tablaD.setModel(modeloT);
+
+        modeloT.addColumn("Cedula");
+        modeloT.addColumn("Nombre");
+        modeloT.addColumn("Apellido");
+        modeloT.addColumn("Telefono");
+        modeloT.addColumn("Correo");
+        modeloT.addColumn("Selecione");
+
+        Object[] columna = new Object[6];
+
+        int numRegistro = listapropmod.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listapropmod.get(i).getCedula();
+            columna[1] = listapropmod.get(i).getNombre();
+            columna[2] = listapropmod.get(i).getNombre();
+            columna[3] = listapropmod.get(i).getTelefono();
+            columna[4] = listapropmod.get(i).getCorreo();
+            
+            if (listapropmod.get(i).getId() != 0) {
+                columna[5] = Boolean.TRUE;
+            } else {
+                columna[5] = Boolean.FALSE;
+            }
+
+            modeloT.addRow(columna);
+
+        }
+
+    }
+
 
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == cataa.jButton2) {
             this.as.setVisible(true);
-            this.as.btnModificar.setVisible(false);
-            this.as.btnGuardar.setVisible(true);
+            this.as.btnModificar.setEnabled(false);
+            this.as.btnGuardar.setEnabled(true);
             modpro.setId_condominio(panta1.rif.getText());
             Llenartabla(as.jTable1);
             addCheckBox(5, as.jTable1);
+            as.txtNombreAsamblea.setText("");
+            as.txaDescripcion.setText("");
+            as.jDateChooser2.setDate(null);
 
         }
 
@@ -102,18 +184,32 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
                 modasa.setNombre_asamblea(as.txtNombreAsamblea.getText());
                 modasa.setDescripcion(as.txaDescripcion.getText());
                 modasa.setId_condominio(panta1.rif.getText());
+                
 
                 java.sql.Date sqlDate = convert(as.jDateChooser2.getDate());
                 modasa.setFecha(sqlDate);
-                JOptionPane.showMessageDialog(null, modasa.getFecha());
                 
-                as.jDateChooser2.setDate(null);
                 
-                as.jDateChooser2.setDate(sqlDate);
+               
 
-                if (modasa.registrar(modasa)) {
+                if (modasa.registrarAsambleas(modasa)) {
 
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
+                    
+                    modasa.buscId(modasa);
+                    
+                    for (int i = 0; i < as.jTable1.getRowCount(); i++) {
+                        if (valueOf(as.jTable1.getValueAt(i, 5)) == "true") {
+
+                            String valor = String.valueOf(as.jTable1.getValueAt(i, 0));
+                            modasa.setId_propietario(valor);
+                            
+                            modasa.registrar_asamblea_propietario(modasa);
+
+                        }
+                    }
+                    Llenartablaasambleas(cataa.jTable1);
+                    as.dispose();
 
                 } else {
 
@@ -125,7 +221,43 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         }
 
         if (e.getSource() == as.btnModificar) {
-            JOptionPane.showMessageDialog(null, "registro modificado");
+            if (validar()) {
+                modasa.setNombre_asamblea(as.txtNombreAsamblea.getText());
+                modasa.setDescripcion(as.txaDescripcion.getText());
+                modasa.setId_condominio(panta1.rif.getText());
+                modasa.setId(Integer.parseInt(as.txtid.getText()));
+
+                java.sql.Date sqlDate = convert(as.jDateChooser2.getDate());
+                modasa.setFecha(sqlDate);
+                
+                
+               
+
+                if (modasa.modificarAsamblea(modasa)) {
+
+                    JOptionPane.showMessageDialog(null, "Registro Guardado");
+                    
+                   modasa.borrarpuenteasamblea(modasa); 
+                    
+                    for (int i = 0; i < as.jTable1.getRowCount(); i++) {
+                        if (valueOf(as.jTable1.getValueAt(i, 5)) == "true") {
+
+                            String valor = String.valueOf(as.jTable1.getValueAt(i, 0));
+                            modasa.setId_propietario(valor);
+                            
+                            modasa.registrar_asamblea_propietario(modasa);
+
+                        }
+                    }
+                    Llenartablaasambleas(cataa.jTable1);
+                    as.dispose();
+
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                }
+            }
 
         }
     }
@@ -142,12 +274,34 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
     @Override
     public void keyReleased(KeyEvent e) {
+        if (e.getSource() == as.txtBuscarPropietarios) {
 
+            filtro(as.txtBuscarPropietarios.getText(), as.jTable1);
+        } if (e.getSource() == cataa.jTextField1) {
+            
+            filtro(cataa.jTextField1.getText(), cataa.jTable1);
+
+        }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        int fila = this.cataa.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int columna = this.cataa.jTable1.getSelectedColumn(); // luego, obtengo la columna seleccionada
+        String dato = String.valueOf(this.cataa.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+        modasa.setId(Integer.parseInt(dato));
+        modasa.setId_condominio(panta1.rif.getText());
+        modasa.buscarAsambleas(modasa);
+        this.as.setVisible(true);
+        as.txtid.setVisible(false);
+        as.txtid.setText(dato);
+        as.txtNombreAsamblea.setText(modasa.getNombre_asamblea());
+        as.txaDescripcion.setText(modasa.getDescripcion());
+        as.jDateChooser2.setDate(modasa.getFecha());
+        llenartablapropietariomodificar(as.jTable1);
+        addCheckBox(5, as.jTable1);;
+        as.btnGuardar.setEnabled(false);
+        as.btnModificar.setEnabled(true);
     }
 
     @Override
@@ -172,7 +326,8 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
     @Override
     public void windowOpened(WindowEvent e) {
-
+        modasa.setId_condominio(panta1.rif.getText());
+        Llenartablaasambleas(cataa.jTable1);
     }
 
     @Override
@@ -211,9 +366,12 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
     }
 
-    public boolean IsSelected(int row, int column, JTable table) {
+    private void filtro(String consulta, JTable jtableBuscar) {
+        dm = (DefaultTableModel) jtableBuscar.getModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        jtableBuscar.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(consulta));
 
-        return table.getValueAt(row, column) != null;
     }
 
     private Boolean validar() {
