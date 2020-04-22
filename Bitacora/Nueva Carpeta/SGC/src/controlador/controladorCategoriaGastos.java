@@ -59,7 +59,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
     public void Llenartabla(JTable tablaD) {
         
-        listaCatGas = modcg.lPerson();
+        listaCatGas = modcg.lCategGas();
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
 

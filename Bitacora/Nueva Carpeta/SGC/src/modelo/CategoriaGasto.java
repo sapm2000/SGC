@@ -67,7 +67,7 @@ public class CategoriaGasto extends ConexionBD {
 
     }
 
-    public ArrayList<CategoriaGasto> lPerson() {
+    public ArrayList<CategoriaGasto> lCategGas() {
         ArrayList listaPersona = new ArrayList();
         CategoriaGasto CategoriaGasto;
 

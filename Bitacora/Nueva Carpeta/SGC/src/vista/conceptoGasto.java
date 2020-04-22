@@ -96,7 +96,6 @@ public class conceptoGasto extends javax.swing.JFrame {
         jPanel2.add(txtNombreC, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 320, 20));
 
         cbxCategoria.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cbxCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione la Categoría" }));
         jPanel2.add(cbxCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 320, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

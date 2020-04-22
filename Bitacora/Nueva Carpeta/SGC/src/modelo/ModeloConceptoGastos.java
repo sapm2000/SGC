@@ -60,6 +60,7 @@ public class ModeloConceptoGastos extends CategoriaGasto {
         Connection con = getConexion();
 
         String sql = "INSERT INTO concepto_Gasto (id, nom_concepto, descripcion, id_Categoria) VALUES (?, ?, ?, ?);";
+        System.out.println(sql);
         try {
 
             ps = con.prepareStatement(sql);
@@ -222,8 +223,7 @@ public class ModeloConceptoGastos extends CategoriaGasto {
         Connection con = getConexion();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        System.out.println("lo que sea");
-        String sql = "SELECT nom_concepto, conceptogasto.descripcion, nombre FROM concepto_gasto "
+        String sql = "SELECT nom_concepto, concepto_gasto.descripcion, nombre FROM concepto_gasto "
                 + "INNER JOIN categoriagasto ON concepto_gasto.id_categoria=categoriagasto.id";
         try {
             ps = con.prepareStatement(sql);

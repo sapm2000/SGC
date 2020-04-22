@@ -35,6 +35,7 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
     private ModeloConceptoGastos modCatGas;
     private CategoriaGasto modCat;
     ArrayList<ModeloConceptoGastos> listaConGas;
+    ArrayList<CategoriaGasto> listaCatGas;
     DefaultTableModel dm;
 
     public controladorConceptoGasto(catalogoConceptoGasto catacga, conceptoGasto cga, ModeloConceptoGastos modCatGas, CategoriaGasto modCat) {
@@ -53,6 +54,7 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
         this.catacga.jTable.addMouseListener(this);
         this.catacga.txtBuscar.addKeyListener(this);
 
+        crearCbxCategoria(modCat.lCategGas());
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -62,7 +64,7 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
                 modCatGas.setDescripcion(cga.txtDescripcion.getText());
                 modCatGas.setNombreCategoria(cga.cbxCategoria.getSelectedItem().toString());
 
-                if (modCatGas.registrar(modCatGas)) {
+                if (modCatGas.registrarConcepto(modCatGas)) {
 
                     JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
                     Llenartabla(catacga.jTable);
@@ -94,38 +96,38 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
                 JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
 
             }
-            if (e.getSource() == cga.btnEliminar) {
+        }
+        if (e.getSource() == cga.btnEliminar) {
 
-                if (modCatGas.eliminar(modCatGas)) {
-                    modCatGas.setId(Integer.parseInt(cga.txtId.getText()));
-                    JOptionPane.showMessageDialog(null, "Registro Eliminado");
-                    cga.dispose();
-                    Llenartabla(catacga.jTable);
+            if (modCatGas.eliminar(modCatGas)) {
+                modCatGas.setId(Integer.parseInt(cga.txtId.getText()));
+                JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                cga.dispose();
+                Llenartabla(catacga.jTable);
 
-                } else {
+            } else {
 
-                    JOptionPane.showMessageDialog(null, "Error al Eliminar");
-
-                }
-
-            }
-
-            if (e.getSource() == cga.btnLimpiar) {
-                limpiar();
-            }
-
-            if (e.getSource() == catacga.btnNuevoRegistro) {
-                limpiar();
-                System.out.println("puto funciona");
-                this.cga.setVisible(true);
-                this.cga.btnModificar.setEnabled(false);
-                this.cga.btnGuardar.setEnabled(true);
-                this.cga.btnEliminar.setEnabled(false);
-                this.cga.txtNombreC.setEnabled(true);
+                JOptionPane.showMessageDialog(null, "Error al Eliminar");
 
             }
 
         }
+
+        if (e.getSource() == cga.btnLimpiar) {
+            limpiar();
+        }
+
+        if (e.getSource() == catacga.btnNuevoRegistro) {
+            limpiar();
+            System.out.println("puto funciona");
+            this.cga.setVisible(true);
+            this.cga.btnModificar.setEnabled(false);
+            this.cga.btnGuardar.setEnabled(true);
+            this.cga.btnEliminar.setEnabled(false);
+            this.cga.txtNombreC.setEnabled(true);
+
+        }
+
     }
 
     public void limpiar() {
@@ -143,17 +145,16 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
 
-        modeloT.addColumn("Conce");
-        modeloT.addColumn("Descripcion");
-        modeloT.addColumn("Categoria");
+        modeloT.addColumn("Concepto");
+        modeloT.addColumn("Descripción");
+        modeloT.addColumn("Categoría");
 
         Object[] columna = new Object[3];
 
         int numRegistro = listaConGas.size();
-        System.out.println(numRegistro);
 
         for (int i = 0; i < numRegistro; i++) {
-
+            
             columna[0] = listaConGas.get(i).getNombre_Concepto();
             columna[1] = listaConGas.get(i).getDescripcion();
             columna[2] = listaConGas.get(i).getNombreCategoria();
@@ -188,6 +189,19 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
         return resultado;
     }
 
+    private void crearCbxCategoria(ArrayList<CategoriaGasto> datos) {
+        cga.cbxCategoria.addItem("Seleccione...");
+
+        if (datos != null) {
+            for (CategoriaGasto datosX : datos) {
+                modCat = datosX;
+                cga.cbxCategoria.addItem(modCat.getNombre());
+            }
+
+            System.out.println("ComboBox Categoría creado");
+        }
+    }
+
     private void filtro(String consulta, JTable jTableBuscar) {
         dm = (DefaultTableModel) jTableBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
@@ -212,8 +226,8 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
         modCatGas.buscarC(modCatGas);
 
         cga.setVisible(true);
-        
-        cga.txtId.setText(modCatGas.getId()+"");
+
+        cga.txtId.setText(modCatGas.getId() + "");
         cga.txtNombreC.setText(modCatGas.getNombre_Concepto());
         cga.txtDescripcion.setText(modCatGas.getDescripcion());
         cga.cbxCategoria.setSelectedItem(modCatGas.getNombreCategoria());
@@ -242,15 +256,12 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
     @Override
     public void keyTyped(KeyEvent ke) {
         if (ke.getSource() == cga.txtNombreC) {
-            Validacion.soloNumeros(ke);
-            Validacion.Espacio(ke);
+            Validacion.soloLetras(ke);
             Validacion.limite(ke, cga.txtNombreC.getText(), 120);
         }
         if (ke.getSource() == cga.txtDescripcion) {
 
             Validacion.soloLetras(ke);
-
-            Validacion.Espacio(ke);
             Validacion.limite(ke, cga.txtDescripcion.getText(), 120);
         }
     }
