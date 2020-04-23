@@ -36,6 +36,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
     private Sancion modsan;
     private PantallaPrincipal1 panta1;
     ArrayList<Unidades> listaunidades;
+    ArrayList<Sancion> listaSancion;
 
     public controladorSancion(sancion san, catalogoSancion catasan, Sancion modsan, PantallaPrincipal1 panta1) {
         this.san = san;
@@ -49,6 +50,41 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         this.san.btnGuardar.addActionListener(this);
         this.san.btnLimpiar.addActionListener(this);
         this.san.btnModificar.addActionListener(this);
+    }
+    
+    public void LlenartablaSancion(JTable tablaD) {
+
+        listaSancion = modsan.listarSanciones();
+        DefaultTableModel modeloT = new DefaultTableModel();
+        tablaD.setModel(modeloT);
+
+        modeloT.addColumn("Nº de sancion");
+        modeloT.addColumn("Descripcion");
+        modeloT.addColumn("Tipo de deuda");
+        modeloT.addColumn("Monto/Porcentaje");
+        modeloT.addColumn("Mes a aplicar");
+        modeloT.addColumn("Nº de unidades");
+        modeloT.addColumn("Estatus");
+
+        Object[] columna = new Object[7];
+
+        int numRegistro = listaSancion.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listaSancion.get(i).getId();
+            columna[1] = listaSancion.get(i).getDescripcion();
+            columna[2] = listaSancion.get(i).getTipo();
+            columna[3] = listaSancion.get(i).getMonto();
+            String fecha = String.valueOf(listaSancion.get(i).getMes())+"-"+String.valueOf(listaSancion.get(i).getAño());
+            columna[4] = fecha;
+            columna[5] = listaSancion.get(i).getCantidad_de_unidades();
+            columna[6] = listaSancion.get(i).getEstado();
+
+            modeloT.addRow(columna);
+
+        }
+
     }
 
     public void llenartablaunidades(JTable tablaD) {
@@ -93,7 +129,9 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                 modsan.setAño(san.jYearChooser1.getYear());
                 modsan.setTipo(san.jComboBox1.getSelectedItem().toString());
                 modsan.setDescripcion(san.txaDescripcion.getText());
+                modsan.setId_condominio(panta1.rif.getText());
                 modsan.setMonto(Double.parseDouble(san.txtmonto.getText()));
+                modsan.setEstado("Pendiente");
                 
                 if (modsan.registrarsancion(modsan)) {
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
@@ -109,6 +147,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
                         }
                     }
+                    LlenartablaSancion(catasan.jTable1);
                 }
              else {
 
@@ -167,7 +206,8 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
     @Override
     public void windowOpened(WindowEvent e) {
-
+        modsan.setId_condominio(panta1.rif.getText());
+        LlenartablaSancion(catasan.jTable1);
     }
 
     @Override
