@@ -420,12 +420,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         catalogoSancion catasan = new catalogoSancion();
         sancion san = new sancion();
         controladorSancion controsan = new controladorSancion(san, catasan);
-        catasan.jButton2.setEnabled(false);
-        catasan.jButton2.setForeground(Color.gray);
-        catasan.jButton5.setEnabled(false);
-        catasan.jButton5.setForeground(Color.gray);
-        catasan.jButton4.setEnabled(false);
-        catasan.jButton4.setForeground(Color.gray);
+        
         catasan.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
