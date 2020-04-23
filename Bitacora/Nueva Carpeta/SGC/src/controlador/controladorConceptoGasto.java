@@ -50,11 +50,12 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
         this.cga.btnModificar.addActionListener(this);
         this.cga.txtNombreC.addKeyListener(this);
         this.cga.txtDescripcion.addKeyListener(this);
+        this.cga.btnEliminar.addActionListener(this);
         this.catacga.addWindowListener(this);
         this.catacga.jTable.addMouseListener(this);
         this.catacga.txtBuscar.addKeyListener(this);
-
-        crearCbxCategoria(modCat.lCategGas());
+        listaCatGas=modCat.lCategGas();
+        crearCbxCategoria(listaCatGas);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -62,7 +63,9 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
             if (validar()) {
                 modCatGas.setNombre_Concepto(cga.txtNombreC.getText());
                 modCatGas.setDescripcion(cga.txtDescripcion.getText());
-                modCatGas.setNombreCategoria(cga.cbxCategoria.getSelectedItem().toString());
+                int ind = cga.cbxCategoria.getSelectedIndex() -1;
+                modCatGas.setId_categoria(listaCatGas.get(ind).getId());
+                
 
                 if (modCatGas.registrarConcepto(modCatGas)) {
 
@@ -79,12 +82,15 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
 
         if (e.getSource() == cga.btnModificar) {
             if (validar()) {
+                modCatGas.setId(Integer.parseInt(cga.txtId.getText()));
                 modCatGas.setNombre_Concepto(cga.txtNombreC.getText());
                 modCatGas.setDescripcion(cga.txtDescripcion.getText());
-                modCatGas.setNombreCategoria(cga.cbxCategoria.getSelectedItem().toString());
+                int ind = cga.cbxCategoria.getSelectedIndex() -1;
+                modCatGas.setId_categoria(listaCatGas.get(ind).getId());
+                
 
             }
-            if (modCatGas.modificar(modCatGas)) {
+            if (modCatGas.modificarConcepto(modCatGas)) {
 
                 JOptionPane.showMessageDialog(null, "Registro modificado");
                 cga.dispose();
@@ -119,7 +125,6 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
 
         if (e.getSource() == catacga.btnNuevoRegistro) {
             limpiar();
-            System.out.println("puto funciona");
             this.cga.setVisible(true);
             this.cga.btnModificar.setEnabled(false);
             this.cga.btnGuardar.setEnabled(true);
@@ -198,7 +203,6 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
                 cga.cbxCategoria.addItem(modCat.getNombre());
             }
 
-            System.out.println("ComboBox Categoría creado");
         }
     }
 
