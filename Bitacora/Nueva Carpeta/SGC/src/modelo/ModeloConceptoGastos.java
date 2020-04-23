@@ -59,15 +59,15 @@ public class ModeloConceptoGastos extends CategoriaGasto {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO concepto_Gasto (id, nom_concepto, descripcion, id_Categoria) VALUES (?, ?, ?, ?);";
+        String sql = "INSERT INTO concepto_Gasto (nom_concepto, descripcion, id_Categoria) VALUES (?, ?, ?);";
         System.out.println(sql);
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
-            ps.setString(2, getNombre_Concepto());
-            ps.setString(3, getDescripcion());
-            ps.setInt(4, getId_categoria());
+            
+            ps.setString(1, getNombre_Concepto());
+            ps.setString(2, getDescripcion());
+            ps.setInt(3, getId_categoria());
 
             ps.execute();
 
@@ -173,12 +173,14 @@ public class ModeloConceptoGastos extends CategoriaGasto {
             ResultSet rs = null;
             Connection con = getConexion();
             
-            String sql = "SELECT * FROM concepto_gasto WHERE id=? ";
+            String sql = "SELECT concepto_gasto.id, concepto_gasto.nom_concepto, concepto_gasto.descripcion, categoriagasto.nombre"
+                    + " FROM concepto_gasto INNER JOIN categoriagasto ON categoriagasto.id=concepto_gasto.id_categoria"
+                    + " WHERE nom_concepto=? ";
             
             try {
             
                 ps = con.prepareStatement(sql);
-                ps.setInt(1, getId());
+                ps.setString(1, getNombre_Concepto());
                 
                 rs = ps.executeQuery();
                 
@@ -223,7 +225,7 @@ public class ModeloConceptoGastos extends CategoriaGasto {
         Connection con = getConexion();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "SELECT nom_concepto, concepto_gasto.descripcion, nombre FROM concepto_gasto "
+        String sql = "SELECT nom_concepto, concepto_gasto.descripcion, categoriagasto.nombre FROM concepto_gasto "
                 + "INNER JOIN categoriagasto ON concepto_gasto.id_categoria=categoriagasto.id";
         try {
             ps = con.prepareStatement(sql);

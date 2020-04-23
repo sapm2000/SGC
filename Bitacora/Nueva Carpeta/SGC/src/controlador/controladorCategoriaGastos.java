@@ -113,7 +113,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
                 JOptionPane.showMessageDialog(null, "Registro Guardado");
                 Llenartabla(catacg.tabla_categoria_gastos);
-                
+                cg.dispose();
 
             } else {
 
