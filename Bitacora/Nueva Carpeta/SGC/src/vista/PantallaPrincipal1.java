@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import modelo.Asambleas;
 import modelo.Fondo;
 import modelo.Propietarios;
+import modelo.Sancion;
 import modelo.Unidades;
 
 /**
@@ -420,7 +421,8 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         catalogoSancion catasan = new catalogoSancion();
         sancion san = new sancion();
-        controladorSancion controsan = new controladorSancion(san, catasan);
+        Sancion modsan = new Sancion();
+        controladorSancion controsan = new controladorSancion(san, catasan, modsan,this);
         
         catasan.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
