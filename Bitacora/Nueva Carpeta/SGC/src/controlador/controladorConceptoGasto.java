@@ -24,10 +24,6 @@ import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
 import modelo.CategoriaGasto;
 
-/**
- *
- * @author rma
- */
 public class controladorConceptoGasto implements ActionListener, ItemListener, MouseListener, KeyListener, WindowListener {
 
     private catalogoConceptoGasto catacga;
@@ -54,7 +50,7 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
         this.catacga.addWindowListener(this);
         this.catacga.jTable.addMouseListener(this);
         this.catacga.txtBuscar.addKeyListener(this);
-        listaCatGas=modCat.lCategGas();
+        listaCatGas = modCat.lCategGas();
         crearCbxCategoria(listaCatGas);
     }
 
@@ -63,9 +59,8 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
             if (validar()) {
                 modCatGas.setNombre_Concepto(cga.txtNombreC.getText());
                 modCatGas.setDescripcion(cga.txtDescripcion.getText());
-                int ind = cga.cbxCategoria.getSelectedIndex() -1;
+                int ind = cga.cbxCategoria.getSelectedIndex() - 1;
                 modCatGas.setId_categoria(listaCatGas.get(ind).getId());
-                
 
                 if (modCatGas.registrarConcepto(modCatGas)) {
 
@@ -85,9 +80,8 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
                 modCatGas.setId(Integer.parseInt(cga.txtId.getText()));
                 modCatGas.setNombre_Concepto(cga.txtNombreC.getText());
                 modCatGas.setDescripcion(cga.txtDescripcion.getText());
-                int ind = cga.cbxCategoria.getSelectedIndex() -1;
+                int ind = cga.cbxCategoria.getSelectedIndex() - 1;
                 modCatGas.setId_categoria(listaCatGas.get(ind).getId());
-                
 
             }
             if (modCatGas.modificarConcepto(modCatGas)) {
@@ -159,7 +153,7 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
         int numRegistro = listaConGas.size();
 
         for (int i = 0; i < numRegistro; i++) {
-            
+
             columna[0] = listaConGas.get(i).getNombre_Concepto();
             columna[1] = listaConGas.get(i).getDescripcion();
             columna[2] = listaConGas.get(i).getNombreCategoria();
