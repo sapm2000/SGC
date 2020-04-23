@@ -62,13 +62,13 @@ public class catalogoSancion extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Unidad", "Fecha", "Descripción", "Tipo de Deuda", "Monto", "Mes a Aplicar", "Estado"
+                "Unidad", "Descripción", "Tipo de Deuda", "Monto/Porcentaje", "Mes a Aplicar", "Estado"
             }
         ));
         jTable1.setRowHeight(20);
