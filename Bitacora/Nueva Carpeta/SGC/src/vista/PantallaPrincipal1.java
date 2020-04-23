@@ -15,6 +15,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import modelo.Asambleas;
+import modelo.Fondo;
 import modelo.Propietarios;
 import modelo.Unidades;
 
@@ -440,14 +441,11 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         catalogoFondo catafon = new catalogoFondo();
         fondo fon = new fondo();
-        controladorFondo controfon = new controladorFondo(fon, catafon);
+        Fondo modfon = new Fondo();
+        controladorFondo controfon = new controladorFondo(fon, catafon, modfon, this);
 
-        catafon.jButton2.setEnabled(false);
-        catafon.jButton2.setForeground(Color.gray);
-        catafon.jButton6.setEnabled(false);
-        catafon.jButton6.setForeground(Color.gray);
-        catafon.jButton4.setEnabled(false);
-        catafon.jButton4.setForeground(Color.gray);
+     
+       
         catafon.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
