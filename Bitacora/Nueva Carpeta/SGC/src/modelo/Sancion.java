@@ -25,6 +25,17 @@ public class Sancion extends Unidades {
     private int id;
     private int cantidad_de_unidades;
     private String estado;
+    private int id_sancion;
+
+    public int getId_sancion() {
+        return id_sancion;
+    }
+
+    public void setId_sancion(int id_sancion) {
+        this.id_sancion = id_sancion;
+    }
+    
+    
 
     public String getEstado() {
         return estado;
@@ -238,5 +249,200 @@ public class Sancion extends Unidades {
 
         return listaSancion;
     }
+
+    public boolean buscarSancion(Sancion modsan) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT * FROM sancion where id=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, modsan.getId());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                modsan.setTipo(rs.getString("tipo"));
+                modsan.setMes(rs.getInt("mes"));
+                modsan.setAño(rs.getInt("anio"));
+                modsan.setMonto(rs.getDouble("monto"));
+                modsan.setDescripcion(rs.getString("descripcion"));
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
+    public ArrayList<Sancion> listarunidadesmod() {
+        ArrayList listaunimod = new ArrayList();
+        Sancion modsan = new Sancion();
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "select unidades.n_unidad, puente_sancion_unidad.id_sancion from unidades left join puente_sancion_unidad on puente_sancion_unidad.id_unidad=unidades.n_unidad and puente_sancion_unidad.id_sancion=?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, getId());
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                modsan = new Sancion();
+
+                //prs = new Persona();
+                modsan.setN_unidad(rs.getString("n_unidad"));
+                modsan.setId_sancion(rs.getInt("id_sancion"));
+                
+
+                listaunimod.add(modsan);
+            }
+
+        } catch (Exception e) {
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+        return listaunimod;
+
+    }
+    
+    public boolean modificarSancion(Sancion modsan) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE sancion SET tipo=?, mes=?, anio=?, monto=?, descripcion=? WHERE id=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getTipo());
+            ps.setInt(2, getMes());
+            ps.setInt(3, getAño());
+            ps.setDouble(4, getMonto());
+            ps.setString(5, getDescripcion());
+            ps.setInt(6, getId());
+
+            
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+    
+    public boolean borrarpuentesancion(Sancion modsan){
+        
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+        
+        String sql = "DELETE FROM puente_sancion_unidad WHERE id_sancion=?";
+        
+        try {
+            
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, getId());
+            ps.execute();
+            
+            return true;
+            
+        } catch (SQLException e) {
+            
+           System.err.println(e);
+           return false;
+            
+        }finally{
+            try {
+                
+                con.close();
+                
+            }catch (SQLException e) {
+            
+           System.err.println(e);
+           
+            }
+        
+        }
+        
+     }
+    
+    public boolean eliminarsancion(Sancion modsan){
+        
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+        
+        String sql = "DELETE FROM sancion WHERE id=?";
+        
+        try {
+            
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, getId());
+            ps.execute();
+            
+            return true;
+            
+        } catch (SQLException e) {
+            
+           System.err.println(e);
+           return false;
+            
+        }finally{
+            try {
+                
+                con.close();
+                
+            }catch (SQLException e) {
+            
+           System.err.println(e);
+           
+            }
+        
+        }
+        
+     }  
 
 }
