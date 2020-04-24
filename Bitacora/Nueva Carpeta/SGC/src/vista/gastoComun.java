@@ -72,6 +72,7 @@ public class gastoComun extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         jSeparator10 = new javax.swing.JSeparator();
         jLabel11 = new javax.swing.JLabel();
+        txtid = new javax.swing.JTextField();
 
         jLabel9.setText("jLabel9");
 
@@ -306,6 +307,9 @@ public class gastoComun extends javax.swing.JFrame {
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondobtn1chiqui.png"))); // NOI18N
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 390, -1, 90));
 
+        txtid.setEditable(false);
+        jPanel1.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 40, 20, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 490));
 
         pack();
@@ -420,6 +424,7 @@ public class gastoComun extends javax.swing.JFrame {
     public javax.swing.JTextArea txaObservaciones;
     public javax.swing.JTextField txtMonto;
     public javax.swing.JTextField txtNumerofactura;
+    public javax.swing.JTextField txtid;
     public javax.swing.JTextField txtnombreprov;
     // End of variables declaration//GEN-END:variables
 }

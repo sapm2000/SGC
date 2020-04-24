@@ -18,7 +18,9 @@ import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import modelo.GastoComun;
 import modelo.ModeloConceptoGastos;
 import modelo.Proveedores;
@@ -39,6 +41,9 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
     private ModeloConceptoGastos modcon;
     private PantallaPrincipal1 panta1;
     ArrayList<GastoComun> listagastocomun;
+    DefaultTableModel dm;
+    double montoi;
+    double saldo;
 
     public controladorGastoComun(gastoComun gc, catalogoGastoComun gatagc, GastoComun modgac, Proveedores modpro, ModeloConceptoGastos modcon, PantallaPrincipal1 panta1) {
         this.gc = gc;
@@ -51,10 +56,13 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
 
         this.catagc.jButton2.addActionListener(this);
         this.gc.jcomboproveedor.addItemListener(this);
+        this.catagc.jTable1.addMouseListener(this);
+        this.catagc.jTextField1.addKeyListener(this);
 
         this.gc.btnGuardar.addActionListener(this);
         this.gc.btnLimpiar.addActionListener(this);
         this.gc.btnModificar.addActionListener(this);
+        this.gc.btnEliminar.addActionListener(this);
     }
 
     public void LlenartablaGastocomun(JTable tablaD) {
@@ -83,7 +91,7 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
 
             columna[0] = listagastocomun.get(i).getId();
             columna[1] = listagastocomun.get(i).getTipo_gasto();
-            String fecha = String.valueOf(listagastocomun.get(i).getMes())+"-"+listagastocomun.get(i).getAño();
+            String fecha = String.valueOf(listagastocomun.get(i).getMes()) + "-" + listagastocomun.get(i).getAño();
             columna[2] = fecha;
             columna[3] = listagastocomun.get(i).getMonto();
             columna[4] = listagastocomun.get(i).getSaldo();
@@ -93,8 +101,6 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
             columna[8] = listagastocomun.get(i).getObservaciones();
             columna[9] = listagastocomun.get(i).getFecha();
             columna[10] = listagastocomun.get(i).getEstado();
-            
-            
 
             modeloT.addRow(columna);
 
@@ -108,6 +114,9 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
             this.gc.setVisible(true);
             this.gc.btnModificar.setEnabled(false);
             this.gc.btnGuardar.setEnabled(true);
+            this.gc.btnEliminar.setEnabled(true);
+            gc.jcomboproveedor.removeAllItems();
+            gc.jcomboconcepto.removeAllItems();
             modpro.llenar_proveedores(gc.jcomboproveedor);
             modcon.llenar_concepto(gc.jcomboconcepto);
 
@@ -135,7 +144,8 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
                 if (modgac.registrar_gasto_comun(modgac)) {
 
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
-
+                    modgac.setId_condominio(panta1.rif.getText());
+                    LlenartablaGastocomun(catagc.jTable1);
                 } else {
 
                     JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
@@ -143,19 +153,82 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
                 }
 
             }
+        }
 
-            if (e.getSource() == gc.btnModificar) {
-                JOptionPane.showMessageDialog(null, "registro modificado");
+        if (e.getSource() == gc.btnModificar) {
+            if (validar()) {
+                modgac.setTipo_gasto(gc.jcombotipo.getSelectedItem().toString());
+                modgac.setMes(gc.jMonthChooser1.getMonth() + 1);
+                modgac.setAño(gc.jYearChooser1.getYear());
+                modgac.setMonto(Double.parseDouble(gc.txtMonto.getText()));
+                modgac.setNumero_factura(gc.txtNumerofactura.getText());
+                modgac.setId_proveedor(gc.jcomboproveedor.getSelectedItem().toString());
+                modcon.setNombre_Concepto(gc.jcomboconcepto.getSelectedItem().toString());
+                modcon.buscarid(modcon);
+                modgac.setId_concepto(modcon.getId());
+                modgac.setObservaciones(gc.txaObservaciones.getText());
+                modgac.setId(Integer.parseInt(gc.txtid.getText()));
+
+                java.sql.Date sqlDate = convert(gc.jDateChooser1.getDate());
+                modgac.setFecha(sqlDate);
+                modgac.setEstado("Pendiente");
+                modgac.setId_condominio(panta1.rif.getText());
+
+                double var1 = Double.parseDouble(gc.txtMonto.getText());
+                double var2 = var1 - montoi;
+                double total = var2 + saldo;
+                modgac.setSaldo(total);
+
+                if (total > 0) {
+                    if (modgac.modificar_gasto_comun(modgac)) {
+
+                        JOptionPane.showMessageDialog(null, "Registro Modificado");
+                        modgac.setId_condominio(panta1.rif.getText());
+                        LlenartablaGastocomun(catagc.jTable1);
+                        this.gc.dispose();
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "El saldo de la deuda no puede ser negativo");
+                }
 
             }
+
+        }
+
+        if (e.getSource() == gc.btnEliminar) {
+
+            modgac.setId_condominio(panta1.rif.getText());
+            modgac.setId(Integer.parseInt(gc.txtid.getText()));
+
+            if (modgac.eliminar_gasto_comun(modgac)) {
+
+                JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                LlenartablaGastocomun(catagc.jTable1);
+                this.gc.dispose();
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Error al Eliminar");
+
+            }
+
         }
     }
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        modpro.setCedula(gc.jcomboproveedor.getSelectedItem().toString());
-        modpro.buscar(modpro);
-        gc.txtnombreprov.setText(modpro.getNombre());
+
+        if (e.getStateChange() == ItemEvent.SELECTED) {
+            modpro.setCedula(gc.jcomboproveedor.getSelectedItem().toString());
+            modpro.buscar(modpro);
+            gc.txtnombreprov.setText(modpro.getNombre());
+        }
+
     }
 
     private Boolean validar() {
@@ -184,42 +257,73 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        
+
+        int fila = this.catagc.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+        String dato = String.valueOf(this.catagc.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+        modgac.setId(Integer.parseInt(dato));
+        modgac.setId_condominio(panta1.rif.getText());
+        modgac.buscargastoComun(modgac);
+        this.gc.setVisible(true);
+        gc.txtid.setVisible(false);
+        gc.txtid.setText(dato);
+        gc.jcomboproveedor.removeAllItems();
+        gc.jcomboconcepto.removeAllItems();
+        modpro.llenar_proveedores(gc.jcomboproveedor);
+        modcon.llenar_concepto(gc.jcomboconcepto);
+        gc.jcomboproveedor.setSelectedItem(modgac.getId_proveedor());
+        gc.jcomboconcepto.setSelectedItem(modgac.getNombre_Concepto());
+        gc.jMonthChooser1.setMonth(modgac.getMes() - 1);
+        gc.jYearChooser1.setYear(modgac.getAño());
+        gc.jDateChooser1.setDate(modgac.getFecha());
+        gc.jcombotipo.setSelectedItem(modgac.getTipo_gasto());
+        gc.txaObservaciones.setText(modgac.getObservaciones());
+        gc.txtMonto.setText(String.valueOf(modgac.getMonto()));
+        gc.txtNumerofactura.setText(modgac.getNumero_factura());
+        modpro.setCedula(gc.jcomboproveedor.getSelectedItem().toString());
+        modpro.buscar(modpro);
+        gc.txtnombreprov.setText(modpro.getNombre());
+        gc.btnEliminar.setEnabled(true);
+        gc.btnModificar.setEnabled(true);
+        gc.btnGuardar.setEnabled(false);
+
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        
+
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        
+
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        
+
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        
+        if (e.getSource() == catagc.jTextField1) {
+
+            filtro(catagc.jTextField1.getText(), catagc.jTable1);
+        }
     }
 
     @Override
@@ -230,31 +334,39 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
 
     @Override
     public void windowClosing(WindowEvent e) {
-        
+
     }
 
     @Override
     public void windowClosed(WindowEvent e) {
-        
+
     }
 
     @Override
     public void windowIconified(WindowEvent e) {
-        
+
     }
 
     @Override
     public void windowDeiconified(WindowEvent e) {
-        
+
     }
 
     @Override
     public void windowActivated(WindowEvent e) {
-        
+
     }
 
     @Override
     public void windowDeactivated(WindowEvent e) {
-        
+
+    }
+
+    private void filtro(String consulta, JTable jtableBuscar) {
+        dm = (DefaultTableModel) jtableBuscar.getModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        jtableBuscar.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(consulta));
+
     }
 }
