@@ -52,7 +52,6 @@ public class gastoComun extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txaObservaciones = new javax.swing.JTextArea();
         jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
@@ -99,12 +98,12 @@ public class gastoComun extends javax.swing.JFrame {
                 jcomboconceptoActionPerformed(evt);
             }
         });
-        jPanel2.add(jcomboconcepto, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, 300, -1));
+        jPanel2.add(jcomboconcepto, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 120, 300, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Monto:");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 50, 30));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 50, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -124,7 +123,7 @@ public class gastoComun extends javax.swing.JFrame {
         txtMonto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtMonto.setForeground(new java.awt.Color(255, 255, 255));
         txtMonto.setBorder(null);
-        jPanel2.add(txtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 230, 20));
+        jPanel2.add(txtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 230, 20));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -139,10 +138,10 @@ public class gastoComun extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Proveedor:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 80, 30));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 80, 30));
 
         jcomboproveedor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel2.add(jcomboproveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 300, -1));
+        jPanel2.add(jcomboproveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 300, -1));
 
         txtNumerofactura.setBackground(new java.awt.Color(0, 94, 159));
         txtNumerofactura.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -163,38 +162,43 @@ public class gastoComun extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Concepto:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 80, 30));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 80, 30));
+
+        jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
         txaObservaciones.setBackground(new java.awt.Color(0, 94, 159));
         txaObservaciones.setColumns(20);
         txaObservaciones.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txaObservaciones.setForeground(new java.awt.Color(255, 255, 255));
         txaObservaciones.setRows(5);
-        txaObservaciones.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
+        txaObservaciones.setBorder(null);
         jScrollPane1.setViewportView(txaObservaciones);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, 300, 110));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 300, 110));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 230, 10));
-
-        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 230, 20));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 290, 10));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 230, 20));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 230, 20));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 230, 20));
         jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 59, 120, 30));
         jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 59, 70, 30));
-        jPanel2.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 200, 30));
+        jPanel2.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 230, 30));
 
-        jLabel13.setText("nombre proveedor");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 90, 110, -1));
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("<html>\nNombre del <br> Proveedor:\n</html>");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, 90, -1));
 
         txtnombreprov.setEditable(false);
-        jPanel2.add(txtnombreprov, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 200, -1));
+        txtnombreprov.setBackground(new java.awt.Color(0, 94, 159));
+        txtnombreprov.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtnombreprov.setForeground(new java.awt.Color(255, 255, 255));
+        txtnombreprov.setBorder(null);
+        jPanel2.add(txtnombreprov, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 290, 20));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 770, 280));
 
@@ -404,7 +408,6 @@ public class gastoComun extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator8;
