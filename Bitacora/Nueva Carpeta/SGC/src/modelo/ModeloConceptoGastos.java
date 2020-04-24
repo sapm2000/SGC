@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 public class ModeloConceptoGastos extends CategoriaGasto {
 
@@ -247,5 +249,107 @@ public class ModeloConceptoGastos extends CategoriaGasto {
         return listaPersona;
 
     }
+    
+    public void llenar_concepto(JComboBox Concepto) {
+
+//Creamos objeto tipo Connection    
+        java.sql.Connection conectar = null;
+        PreparedStatement pst = null;
+        ResultSet result = null;
+
+//Creamos la Consulta SQL
+        String SSQL = "SELECT nom_concepto FROM concepto_gasto;";
+
+//Establecemos bloque try-catch-finally
+        try {
+
+            //Establecemos conexión con la BD 
+            conectar = getConexion();
+            //Preparamos la consulta SQL
+            pst = conectar.prepareStatement(SSQL);
+            //Ejecutamos la consulta
+            result = pst.executeQuery();
+
+            //LLenamos nuestro ComboBox
+            Concepto.addItem("Seleccione el Concepto");
+
+            while (result.next()) {
+
+                Concepto.addItem(result.getString("nom_concepto"));
+                
+
+            }
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, e);
+
+        } finally {
+
+            if (conectar != null) {
+
+                try {
+
+                    conectar.close();
+                    result.close();
+
+                    conectar = null;
+                    result = null;
+
+                } catch (SQLException ex) {
+
+                    JOptionPane.showMessageDialog(null, ex);
+
+                }
+
+            }
+
+        }
+
+    }
+    
+    public boolean buscarid(ModeloConceptoGastos modcon) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT id FROM concepto_gasto where nom_concepto=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, modcon.getNombre_Concepto());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                modcon.setId(rs.getInt("id"));
+               
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
+    
 
 }

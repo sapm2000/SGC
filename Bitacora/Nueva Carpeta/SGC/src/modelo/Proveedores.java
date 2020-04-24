@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -263,5 +265,63 @@ public class Proveedores extends ConexionBD{
         }
         
      }  
+    
+    public void llenar_proveedores(JComboBox Proveedores) {
+
+//Creamos objeto tipo Connection    
+        java.sql.Connection conectar = null;
+        PreparedStatement pst = null;
+        ResultSet result = null;
+
+//Creamos la Consulta SQL
+        String SSQL = "SELECT cedula FROM proveedores;";
+
+//Establecemos bloque try-catch-finally
+        try {
+
+            //Establecemos conexión con la BD 
+            conectar = getConexion();
+            //Preparamos la consulta SQL
+            pst = conectar.prepareStatement(SSQL);
+            //Ejecutamos la consulta
+            result = pst.executeQuery();
+
+            //LLenamos nuestro ComboBox
+            Proveedores.addItem("Seleccione el Proveedor");
+
+            while (result.next()) {
+
+                Proveedores.addItem(result.getString("cedula"));
+                
+
+            }
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, e);
+
+        } finally {
+
+            if (conectar != null) {
+
+                try {
+
+                    conectar.close();
+                    result.close();
+
+                    conectar = null;
+                    result = null;
+
+                } catch (SQLException ex) {
+
+                    JOptionPane.showMessageDialog(null, ex);
+
+                }
+
+            }
+
+        }
+
+    }
     
 }
