@@ -147,8 +147,8 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
                 double total = var2+saldo;
                 modfon.setSaldo(total);
                 
-
-                if (modfon.modificar(modfon)) {
+                if (total>0) {
+                    if (modfon.modificar(modfon)) {
 
                     JOptionPane.showMessageDialog(null, "Registro Modificado");
                     Llenartabla(catafon.jTable1);
@@ -159,6 +159,13 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
                     JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
 
                 }
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "el saldo no puede ser negativo");
+                }
+                
+
+                
             }
 
         }

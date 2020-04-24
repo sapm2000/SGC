@@ -148,7 +148,7 @@ public class GastoComun extends ModeloConceptoGastos {
             ps.setDate(9, getFecha());
             ps.setString(10, getEstado());
             ps.setString(11, getId_condominio());
-             ps.setDouble(12, getSaldo());
+            ps.setDouble(12, getSaldo());
             ps.execute();
 
             return true;
@@ -181,7 +181,7 @@ public class GastoComun extends ModeloConceptoGastos {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT concepto_gasto.id, tipo, mes, anio, monto, n_factura, proveedores.cedula,  concepto_gasto.nom_concepto, observaciones, fecha, estado, saldo FROM gasto_comun inner join proveedores on proveedores.cedula=gasto_comun.id_proveedor INNER join concepto_gasto on concepto_gasto.id = gasto_comun.id_concepto where gasto_comun.id_condominio=?;";
+        String sql = "SELECT gasto_comun.id, tipo, mes, anio, monto, n_factura, proveedores.cedula,  concepto_gasto.nom_concepto, observaciones, fecha, estado, saldo FROM gasto_comun inner join proveedores on proveedores.cedula=gasto_comun.id_proveedor INNER join concepto_gasto on concepto_gasto.id = gasto_comun.id_concepto where gasto_comun.id_condominio=?;";
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_condominio());
@@ -202,7 +202,7 @@ public class GastoComun extends ModeloConceptoGastos {
                 modgac.setObservaciones(rs.getString(9));
                 modgac.setFecha(rs.getDate(10));
                 modgac.setEstado(rs.getString(11));
-                 modgac.setSaldo(rs.getDouble(12));
+                modgac.setSaldo(rs.getDouble(12));
 
                 listagastocomun.add(modgac);
             }
@@ -212,4 +212,140 @@ public class GastoComun extends ModeloConceptoGastos {
         return listagastocomun;
     }
 
-}
+    public boolean buscargastoComun(GastoComun modgac) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT gasto_comun.id, tipo, mes, anio, monto, n_factura, proveedores.cedula,  concepto_gasto.nom_concepto, observaciones, fecha, estado, saldo  FROM gasto_comun inner join proveedores on proveedores.cedula=gasto_comun.id_proveedor INNER join concepto_gasto on concepto_gasto.id = gasto_comun.id_concepto where gasto_comun.id=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, modgac.getId());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                modgac.setTipo_gasto(rs.getString("tipo"));
+                modgac.setMes(rs.getInt("mes"));
+                modgac.setAño(rs.getInt("anio"));
+                modgac.setMonto(rs.getDouble("monto"));
+                modgac.setNumero_factura(rs.getString("n_factura"));
+                modgac.setId_proveedor(rs.getString("cedula"));
+                modgac.setNombre_Concepto(rs.getString("nom_concepto"));
+                modgac.setObservaciones(rs.getString("observaciones"));
+                modgac.setFecha(rs.getDate("fecha"));
+                modgac.setEstado(rs.getString("estado"));
+                modgac.setSaldo(rs.getDouble("saldo"));
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+    }
+        
+        public boolean modificar_gasto_comun(GastoComun modgac) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE gasto_comun SET tipo=?, mes=?, anio=?, monto=?, n_factura=?, id_proveedor=?, id_concepto=?, observaciones=?, fecha=?, saldo=? WHERE id=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getTipo_gasto());
+            ps.setInt(2, getMes());
+            ps.setInt(3, getAño());
+            ps.setDouble(4, getMonto());
+            ps.setString(5, getNumero_factura());
+            ps.setString(6, getId_proveedor());
+            ps.setInt(7, getId_concepto());
+            ps.setString(8, getObservaciones());
+            ps.setDate(9, getFecha());
+            ps.setDouble(10, getSaldo());
+            ps.setInt(11, getId());
+           
+            
+
+            
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+        
+        public boolean eliminar_gasto_comun(GastoComun modgac){
+        
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+        
+        String sql = "DELETE FROM gasto_comun WHERE id=?;";
+        
+        try {
+            
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, getId());
+            
+            ps.execute();
+            
+            return true;
+            
+        } catch (SQLException e) {
+            
+           System.err.println(e);
+           return false;
+            
+        }finally{
+            try {
+                
+                con.close();
+                
+            }catch (SQLException e) {
+            
+           System.err.println(e);
+           
+            }
+        
+        }
+        
+     }  
+
+    }
+
+
