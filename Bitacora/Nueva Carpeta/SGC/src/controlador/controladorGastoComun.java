@@ -63,17 +63,17 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
 
-        modeloT.addColumn("Nº gasto comun");
-        modeloT.addColumn("Tipo Gasto");
+        modeloT.addColumn("<html>Nº de <br> Gasto Común</html>");
+        modeloT.addColumn("<html>Tipo de <br> Gasto</html>");
         modeloT.addColumn("Periodo");
         modeloT.addColumn("Monto");
-        modeloT.addColumn("Saldo Restante");
-        modeloT.addColumn("Nº factura");
+        modeloT.addColumn("<html>Saldo <br> Restante</html>");
+        modeloT.addColumn("<html>Nº de <br> Factura</html>");
         modeloT.addColumn("Proveedor");
         modeloT.addColumn("Concepto");
         modeloT.addColumn("Observaciones");
-        modeloT.addColumn("fecha");
-        modeloT.addColumn("estado");
+        modeloT.addColumn("Fecha");
+        modeloT.addColumn("Estado");
 
         Object[] columna = new Object[12];
 
