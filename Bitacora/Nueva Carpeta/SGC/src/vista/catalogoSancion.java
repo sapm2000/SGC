@@ -68,7 +68,7 @@ public class catalogoSancion extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Unidad", "Descripción", "Tipo de Deuda", "Monto/Porcentaje", "Mes a Aplicar", "Estado"
+                "id", "Descripción", "Tipo de Deuda", "Monto/Porcentaje", "Mes a Aplicar", "Nº de unidades"
             }
         ));
         jTable1.setRowHeight(20);
@@ -202,8 +202,8 @@ public class catalogoSancion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnMinimizar;
-    private javax.swing.JButton btnSalir;
+    public javax.swing.JButton btnMinimizar;
+    public javax.swing.JButton btnSalir;
     public javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
@@ -213,8 +213,8 @@ public class catalogoSancion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    public javax.swing.JTable jTable1;
+    public javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
     static public class Headercolor extends DefaultTableCellHeaderRenderer {

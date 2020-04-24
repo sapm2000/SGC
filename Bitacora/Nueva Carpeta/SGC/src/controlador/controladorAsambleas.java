@@ -14,9 +14,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import static java.lang.String.valueOf;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -52,7 +50,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         this.modpro = modpro;
         this.panta1 = panta1;
         this.cataa.jTable1.addMouseListener(this);
-        
+
         this.cataa.addWindowListener(this);
         this.cataa.jButton2.addActionListener(this);
         this.as.txtBuscarPropietarios.addKeyListener(this);
@@ -92,9 +90,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         }
 
     }
-    
-    
-    
+
     public void Llenartablaasambleas(JTable tablaD) {
 
         listaasambleas = modasa.listarAsambleas();
@@ -106,7 +102,6 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         modeloT.addColumn("Fecha");
         modeloT.addColumn("Descripcion");
         modeloT.addColumn("Nº asistentes");
-        
 
         Object[] columna = new Object[5];
 
@@ -119,14 +114,13 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
             columna[2] = listaasambleas.get(i).getFecha();
             columna[3] = listaasambleas.get(i).getDescripcion();
             columna[4] = listaasambleas.get(i).getN_asistentes();
-            
 
             modeloT.addRow(columna);
 
         }
 
     }
-    
+
     public void llenartablapropietariomodificar(JTable tablaD) {
         listapropmod = modasa.listarpropietariosmod();
         DefaultTableModel modeloT = new DefaultTableModel();
@@ -150,7 +144,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
             columna[2] = listapropmod.get(i).getNombre();
             columna[3] = listapropmod.get(i).getTelefono();
             columna[4] = listapropmod.get(i).getCorreo();
-            
+
             if (listapropmod.get(i).getId() != 0) {
                 columna[5] = Boolean.TRUE;
             } else {
@@ -162,7 +156,6 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         }
 
     }
-
 
     public void actionPerformed(ActionEvent e) {
 
@@ -184,26 +177,22 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
                 modasa.setNombre_asamblea(as.txtNombreAsamblea.getText());
                 modasa.setDescripcion(as.txaDescripcion.getText());
                 modasa.setId_condominio(panta1.rif.getText());
-                
 
                 java.sql.Date sqlDate = convert(as.jDateChooser2.getDate());
                 modasa.setFecha(sqlDate);
-                
-                
-               
 
                 if (modasa.registrarAsambleas(modasa)) {
 
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
-                    
+
                     modasa.buscId(modasa);
-                    
+
                     for (int i = 0; i < as.jTable1.getRowCount(); i++) {
                         if (valueOf(as.jTable1.getValueAt(i, 5)) == "true") {
 
                             String valor = String.valueOf(as.jTable1.getValueAt(i, 0));
                             modasa.setId_propietario(valor);
-                            
+
                             modasa.registrar_asamblea_propietario(modasa);
 
                         }
@@ -229,22 +218,19 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
                 java.sql.Date sqlDate = convert(as.jDateChooser2.getDate());
                 modasa.setFecha(sqlDate);
-                
-                
-               
 
                 if (modasa.modificarAsamblea(modasa)) {
 
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
-                    
-                   modasa.borrarpuenteasamblea(modasa); 
-                    
+
+                    modasa.borrarpuenteasamblea(modasa);
+
                     for (int i = 0; i < as.jTable1.getRowCount(); i++) {
                         if (valueOf(as.jTable1.getValueAt(i, 5)) == "true") {
 
                             String valor = String.valueOf(as.jTable1.getValueAt(i, 0));
                             modasa.setId_propietario(valor);
-                            
+
                             modasa.registrar_asamblea_propietario(modasa);
 
                         }
@@ -277,8 +263,9 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         if (e.getSource() == as.txtBuscarPropietarios) {
 
             filtro(as.txtBuscarPropietarios.getText(), as.jTable1);
-        } if (e.getSource() == cataa.jTextField1) {
-            
+        }
+        if (e.getSource() == cataa.jTextField1) {
+
             filtro(cataa.jTextField1.getText(), cataa.jTable1);
 
         }
@@ -397,5 +384,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         java.sql.Date sDate = new java.sql.Date(uDate.getTime());
         return sDate;
     }
+
+    
 
 }

@@ -15,7 +15,12 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import modelo.Asambleas;
+import modelo.Fondo;
+import modelo.GastoComun;
+import modelo.ModeloConceptoGastos;
 import modelo.Propietarios;
+import modelo.Proveedores;
+import modelo.Sancion;
 import modelo.Unidades;
 
 /**
@@ -384,13 +389,11 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         catalogoGastoComun catagac = new catalogoGastoComun();
         gastoComun gc = new gastoComun();
-        controladorGastoComun controgc = new controladorGastoComun(gc, catagac);
-        catagac.jButton2.setEnabled(false);
-        catagac.jButton2.setForeground(Color.gray);
-        catagac.jButton5.setEnabled(false);
-        catagac.jButton5.setForeground(Color.gray);
-        catagac.jButton4.setEnabled(false);
-        catagac.jButton4.setForeground(Color.gray);
+        GastoComun modgac = new GastoComun();
+        Proveedores modpro = new Proveedores();
+        ModeloConceptoGastos modcon = new ModeloConceptoGastos();
+        controladorGastoComun controgc = new controladorGastoComun(gc, catagac, modgac, modpro,modcon,this);
+        
         catagac.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -419,7 +422,8 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         catalogoSancion catasan = new catalogoSancion();
         sancion san = new sancion();
-        controladorSancion controsan = new controladorSancion(san, catasan);
+        Sancion modsan = new Sancion();
+        controladorSancion controsan = new controladorSancion(san, catasan, modsan,this);
         
         catasan.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
@@ -440,14 +444,11 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         catalogoFondo catafon = new catalogoFondo();
         fondo fon = new fondo();
-        controladorFondo controfon = new controladorFondo(fon, catafon);
+        Fondo modfon = new Fondo();
+        controladorFondo controfon = new controladorFondo(fon, catafon, modfon, this);
 
-        catafon.jButton2.setEnabled(false);
-        catafon.jButton2.setForeground(Color.gray);
-        catafon.jButton6.setEnabled(false);
-        catafon.jButton6.setForeground(Color.gray);
-        catafon.jButton4.setEnabled(false);
-        catafon.jButton4.setForeground(Color.gray);
+     
+       
         catafon.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 

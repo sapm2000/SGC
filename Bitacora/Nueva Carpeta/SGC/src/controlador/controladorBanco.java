@@ -37,7 +37,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         this.ban = ban;
         this.cban = cban;
         this.modban = modban;
-        
+
         //crearCbxBanco(modban.listar());
         //CrearCbx(ban.cbxBanco, modban.listar());        
         this.cban.btnNuevo_banco.addActionListener(this);
@@ -55,7 +55,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     }
 
     public void Llenartabla(JTable tablaD) {
-        
+
         listaBanco = modban.listar();
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
@@ -75,8 +75,8 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         }
 
     }
-    
-        /*public void CrearCbx(JComboBox comboD, ArrayList<Banco> dato) {
+
+    /*public void CrearCbx(JComboBox comboD, ArrayList<Banco> dato) {
         
         
         DefaultComboBoxModel modelot = new DefaultComboBoxModel();
@@ -97,9 +97,8 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         }
 
     }
-    */
-    
-    /*private void crearCbxBanco(ArrayList<Banco> datos) {
+     */
+ /*private void crearCbxBanco(ArrayList<Banco> datos) {
         ban.cbxBanco.addItem("Seleccione...");
 
         if (datos != null) {
@@ -111,7 +110,6 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
             System.out.println("ComboBox banco creado");
         }
     }*/
-
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -145,18 +143,16 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
             }
 
         }
-        
+
         if (e.getSource() == ban.btnEliminar) {
-           
-           
+
+            modban.setId(Integer.parseInt(ban.txtid.getText()));
 
             if (modban.eliminar(modban)) {
 
-                modban.setId(Integer.parseInt(ban.txtid.getText()));
                 JOptionPane.showMessageDialog(null, "Registro Eliminado");
                 ban.dispose();
                 Llenartabla(cban.tabla_bancos);
-                
 
             } else {
 
@@ -167,37 +163,35 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         }
 
         if (e.getSource() == ban.btnModificar) {
-            if(validar()){
-             modban.setNombre_banco(ban.txtnombre_banco.getText());
-              modban.setId(Integer.parseInt(ban.txtid.getText()));
-            
-             
-             
-             if (modban.modificar(modban)) {
+            if (validar()) {
+                modban.setNombre_banco(ban.txtnombre_banco.getText());
+                modban.setId(Integer.parseInt(ban.txtid.getText()));
 
-                JOptionPane.showMessageDialog(null, "Registro modificado");
-                ban.dispose();
-                Llenartabla(cban.tabla_bancos);
-                limpiar();
+                if (modban.modificar(modban)) {
 
-            } else {
+                    JOptionPane.showMessageDialog(null, "Registro modificado");
+                    ban.dispose();
+                    Llenartabla(cban.tabla_bancos);
+                    limpiar();
 
-                JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
-                
-            }
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
+
+                }
             }
 
         }
-        
+
         if (e.getSource() == ban.btnLimpiar) {
-             
-             limpiar();
-            
+
+            limpiar();
+
         }
 
     }
-    
-        public void limpiar() {
+
+    public void limpiar() {
 
         ban.txtid.setText(null);
         ban.txtnombre_banco.setText(null);
@@ -212,17 +206,16 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         int columna = this.cban.tabla_bancos.getSelectedColumn(); // luego, obtengo la columna seleccionada
         String dato = String.valueOf(this.cban.tabla_bancos.getValueAt(fila, columna)); // por ultimo, obtengo el valor de la celda
         cban.txtBuscar_banco.setText(String.valueOf(dato));
-        
-         modban.setNombre_banco(String.valueOf(dato));
+
+        modban.setNombre_banco(String.valueOf(dato));
 
         modban.buscar(modban);
 
         ban.setVisible(true);
         ban.txtnombre_banco.setText(modban.getNombre_banco());
-       
-       
+
         ban.txtid.setText(Integer.toString(modban.getId()));
-        
+
         ban.btnGuardar.setEnabled(false);
         ban.txtid.setVisible(false);
         ban.btnModificar.setEnabled(true);
@@ -254,19 +247,18 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
         jtableBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));
-        
-        
+
     }
 
     @Override
     public void keyTyped(KeyEvent ke) {
-        
+
         if (ke.getSource() == ban.txtnombre_banco) {
             Validacion.soloLetras(ke);
             Validacion.Espacio(ke);
             Validacion.limite(ke, ban.txtnombre_banco.getText(), 120);
         }
-        
+
     }
 
     @Override
@@ -288,7 +280,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     @Override
     public void windowOpened(WindowEvent e) {
         Llenartabla(cban.tabla_bancos);
-        
+
     }
 
     @Override

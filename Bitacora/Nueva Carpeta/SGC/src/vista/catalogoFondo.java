@@ -44,10 +44,7 @@ public class catalogoFondo extends javax.swing.JFrame {
         btnMinimizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
 
         jButton5.setText("jButton5");
 
@@ -128,19 +125,6 @@ public class catalogoFondo extends javax.swing.JFrame {
         jLabel3.setText("Listado de Fondos");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, -1));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 94, 159));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lupa.png"))); // NOI18N
-        jButton1.setText("Buscar");
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lupa (1).png"))); // NOI18N
-        jButton1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lupa (1).png"))); // NOI18N
-        jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lupa (1).png"))); // NOI18N
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 90, -1));
-
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 94, 159));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (2).png"))); // NOI18N
@@ -152,33 +136,7 @@ public class catalogoFondo extends javax.swing.JFrame {
         jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         jButton2.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         jButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, -1, 30));
-
-        jButton6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(0, 94, 159));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar.png"))); // NOI18N
-        jButton6.setText("Eliminar");
-        jButton6.setBorder(null);
-        jButton6.setBorderPainted(false);
-        jButton6.setContentAreaFilled(false);
-        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (1).png"))); // NOI18N
-        jButton6.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (1).png"))); // NOI18N
-        jButton6.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (1).png"))); // NOI18N
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 97, -1, -1));
-
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 94, 159));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png"))); // NOI18N
-        jButton4.setText("Editar");
-        jButton4.setBorder(null);
-        jButton4.setBorderPainted(false);
-        jButton4.setContentAreaFilled(false);
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar (1).png"))); // NOI18N
-        jButton4.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar (1).png"))); // NOI18N
-        jButton4.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar (1).png"))); // NOI18N
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 97, 110, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, -1, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 470));
 
@@ -243,18 +201,15 @@ public class catalogoFondo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnSalir;
-    public javax.swing.JButton jButton1;
     public javax.swing.JButton jButton2;
-    public javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    public javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     public javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
     
