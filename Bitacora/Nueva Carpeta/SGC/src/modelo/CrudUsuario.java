@@ -312,8 +312,8 @@ public class CrudUsuario extends ConexionBD {
                 modUsu.setPassword(rs.getString(3));
                 modUsu.setNombre(rs.getString(4));
                 modUsu.setApellido(rs.getString(5));
-                modUsu.setNtelefono(rs.getString(6));
-                modUsu.setTipo(rs.getString(7));
+                modUsu.setNtelefono(rs.getString(7));
+                modUsu.setTipo(rs.getString(6));
 
                 listaPersona.add(modUsu);
             }
@@ -324,5 +324,8 @@ public class CrudUsuario extends ConexionBD {
         return listaPersona;
 
     }
+          
+          
+          
       
       }
