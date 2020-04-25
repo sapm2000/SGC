@@ -15,6 +15,8 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import modelo.Asambleas;
+import modelo.Comunicados;
+import modelo.CrudUsuario;
 import modelo.Fondo;
 import modelo.GastoComun;
 import modelo.ModeloConceptoGastos;
@@ -453,11 +455,13 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        catalogocomunicados catacomu = new catalogocomunicados();
+        catalogoComunicados catacomu = new catalogoComunicados();
         comunicados com = new comunicados();
-        controladorComunicados controcom = new controladorComunicados(catacomu, com);
-        catacomu.jButton2.setEnabled(false);
-        catacomu.jButton2.setForeground(Color.gray);
+        Comunicados modco = new Comunicados();
+        Propietarios modpro = new Propietarios();
+        CrudUsuario modus = new CrudUsuario();
+        controladorComunicados controcom = new controladorComunicados(catacomu, com, modco,this,modus);
+        
 
         catacomu.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed

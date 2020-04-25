@@ -45,18 +45,18 @@ public class comunicados extends javax.swing.JFrame {
         btnMinimizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        checkViewPass = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtAsunto = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtBuscarPropietarios = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txaMensaje = new javax.swing.JTextArea();
         jSeparator5 = new javax.swing.JSeparator();
-        btnGuardar = new javax.swing.JButton();
+        btnEnviar = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
+        txtid = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -106,7 +106,7 @@ public class comunicados extends javax.swing.JFrame {
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
@@ -121,7 +121,7 @@ public class comunicados extends javax.swing.JFrame {
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
@@ -135,44 +135,27 @@ public class comunicados extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(0, 94, 159));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        checkViewPass.setBackground(new java.awt.Color(0, 94, 159));
-        checkViewPass.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        checkViewPass.setForeground(new java.awt.Color(255, 255, 255));
-        checkViewPass.setText("Enviar el Mensaje a Todos");
-        checkViewPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)));
-        checkViewPass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        checkViewPass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/blank-check-box.png"))); // NOI18N
-        checkViewPass.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/blank-check-box (1).png"))); // NOI18N
-        checkViewPass.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/check-box (1).png"))); // NOI18N
-        checkViewPass.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/check-box.png"))); // NOI18N
-        checkViewPass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkViewPassActionPerformed(evt);
-            }
-        });
-        jPanel2.add(checkViewPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 210, 20));
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Asunto:");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
 
-        jTextField1.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setBorder(null);
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 320, 20));
+        txtAsunto.setBackground(new java.awt.Color(0, 94, 159));
+        txtAsunto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtAsunto.setForeground(new java.awt.Color(255, 255, 255));
+        txtAsunto.setBorder(null);
+        jPanel2.add(txtAsunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 320, 20));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Buscar:");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 70, -1));
 
-        jTextField2.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField2.setBorder(null);
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 220, 20));
+        txtBuscarPropietarios.setBackground(new java.awt.Color(0, 94, 159));
+        txtBuscarPropietarios.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtBuscarPropietarios.setForeground(new java.awt.Color(255, 255, 255));
+        txtBuscarPropietarios.setBorder(null);
+        jPanel2.add(txtBuscarPropietarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 220, 20));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -181,12 +164,12 @@ public class comunicados extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
-        jTextArea1.setBackground(new java.awt.Color(0, 94, 159));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txaMensaje.setBackground(new java.awt.Color(0, 94, 159));
+        txaMensaje.setColumns(20);
+        txaMensaje.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txaMensaje.setForeground(new java.awt.Color(255, 255, 255));
+        txaMensaje.setRows(5);
+        jScrollPane1.setViewportView(txaMensaje);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 320, 120));
 
@@ -194,28 +177,31 @@ public class comunicados extends javax.swing.JFrame {
         jSeparator5.setOpaque(true);
         jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 460, -1));
 
-        btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enviar.png"))); // NOI18N
-        btnGuardar.setText("Enviar el Mensaje");
-        btnGuardar.setBorderPainted(false);
-        btnGuardar.setContentAreaFilled(false);
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enviar (1).png"))); // NOI18N
-        btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enviar (1).png"))); // NOI18N
-        btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enviar (1).png"))); // NOI18N
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+        btnEnviar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEnviar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enviar.png"))); // NOI18N
+        btnEnviar.setText("Enviar el Mensaje");
+        btnEnviar.setBorderPainted(false);
+        btnEnviar.setContentAreaFilled(false);
+        btnEnviar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEnviar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enviar (1).png"))); // NOI18N
+        btnEnviar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enviar (1).png"))); // NOI18N
+        btnEnviar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enviar (1).png"))); // NOI18N
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
+                btnEnviarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, -1, -1));
+        jPanel2.add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, -1, -1));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 220, 10));
 
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 320, 10));
+
+        txtid.setEditable(false);
+        jPanel2.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 480, 280));
 
@@ -231,9 +217,9 @@ public class comunicados extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
         this.setState(vista.InicioUsuario.ICONIFIED);
@@ -254,10 +240,6 @@ public class comunicados extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_btnSalirActionPerformed
-
-    private void checkViewPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkViewPassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkViewPassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,10 +277,9 @@ public class comunicados extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnGuardar;
+    public javax.swing.JButton btnEnviar;
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnSalir;
-    public javax.swing.JCheckBox checkViewPass;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -314,10 +295,11 @@ public class comunicados extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JTable jTable1;
-    public javax.swing.JTextArea jTextArea1;
-    public javax.swing.JTextField jTextField1;
-    public javax.swing.JTextField jTextField2;
+    public javax.swing.JTable jTable1;
+    public javax.swing.JTextArea txaMensaje;
+    public javax.swing.JTextField txtAsunto;
+    public javax.swing.JTextField txtBuscarPropietarios;
+    public javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables
     static public class Headercolor extends DefaultTableCellHeaderRenderer {
     public Headercolor () {
