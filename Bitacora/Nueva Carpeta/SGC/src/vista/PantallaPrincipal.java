@@ -6,6 +6,7 @@ import controlador.controladorCategoriaGastos;
 import controlador.controladorConceptoGasto;
 import controlador.controladorCondominio;
 import controlador.controladorCuenta;
+import controlador.controladorInteres;
 import controlador.controladorProveedores;
 import controlador.controladorTipoUsuario;
 import static java.awt.Color.gray;
@@ -17,6 +18,7 @@ import modelo.CategoriaGasto;
 import modelo.Condominio;
 import modelo.CrudUsuario;
 import modelo.Cuenta;
+import modelo.Interes;
 import modelo.Proveedores;
 import modelo.ModeloConceptoGastos;
 
@@ -72,6 +74,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
@@ -230,6 +233,19 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem10);
 
+        jMenuItem1.setText("interes");
+        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem1MouseClicked(evt);
+            }
+        });
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cogwheel (1).png"))); // NOI18N
@@ -384,6 +400,20 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        catalogoInteres catain = new catalogoInteres();
+        interes in = new interes();
+        Condominio modcon = new Condominio();
+        Interes modin = new Interes();
+        controladorInteres controin = new controladorInteres(in, catain, modcon,modin);
+       
+        catain.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -431,6 +461,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;

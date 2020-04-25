@@ -5,7 +5,6 @@ import controlador.controladorComunicados;
 import controlador.controladorCuotasEspeciales;
 import controlador.controladorFondo;
 import controlador.controladorGastoComun;
-import controlador.controladorInteres;
 import controlador.controladorPropietario;
 import controlador.controladorSancion;
 import controlador.controladorUnidades;
@@ -72,7 +71,6 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -198,17 +196,6 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem2);
-
-        jMenuItem3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caro.png"))); // NOI18N
-        jMenuItem3.setText("Intereses");
-        jMenuItem3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem3);
 
         jMenuItem5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton-cuadrado-de-la-llave-de-la-casa.png"))); // NOI18N
@@ -399,19 +386,6 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         catagac.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        catalogoInteres catain = new catalogoInteres();
-        interes in = new interes();
-        controladorInteres controin = new controladorInteres(in, catain);
-        catain.jButton2.setEnabled(false);
-        catain.jButton2.setForeground(Color.gray);
-        catain.jButton5.setEnabled(false);
-        catain.jButton5.setForeground(Color.gray);
-        catain.jButton4.setEnabled(false);
-        catain.jButton4.setForeground(Color.gray);
-        catain.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         catalogoPropietarios cataprop = new catalogoPropietarios();
         propietarios prop = new propietarios();
@@ -579,7 +553,6 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
