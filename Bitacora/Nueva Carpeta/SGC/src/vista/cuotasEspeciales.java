@@ -31,18 +31,18 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
         jButton4 = new javax.swing.JButton();
+        GrupoBotones = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jCalcular = new javax.swing.JComboBox<>();
+        jConcepto = new javax.swing.JComboBox<>();
+        jProveedor = new javax.swing.JComboBox<>();
+        txtMonto = new javax.swing.JTextField();
+        txtNmeses = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -50,13 +50,15 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel13 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
+        jAsamblea = new javax.swing.JComboBox<>();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        txaObservaciones = new javax.swing.JTextArea();
+        no = new javax.swing.JRadioButton();
         jLabel15 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        si = new javax.swing.JRadioButton();
+        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
+        jYearChooser1 = new com.toedter.calendar.JYearChooser();
         jLabel10 = new javax.swing.JLabel();
         btnMinimizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
@@ -71,6 +73,7 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         jSeparator10 = new javax.swing.JSeparator();
         jLabel11 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        txtid = new javax.swing.JTextField();
 
         jLabel1.setText("jLabel1");
 
@@ -111,45 +114,37 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         jLabel6.setText("<html>\nComienzo de <br> Cobro (Mes):\n</html>");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
 
-        jTextField3.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField3.setBorder(null);
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 250, 20));
+        jCalcular.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jCalcular.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alicuota", "Total de Inmuebles" }));
+        jPanel2.add(jCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 250, -1));
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alicuota", "Total de Inmuebles" }));
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 250, -1));
+        jConcepto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel2.add(jConcepto, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 250, -1));
 
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el Concepto" }));
-        jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 250, -1));
+        jProveedor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel2.add(jProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 250, -1));
 
-        jComboBox4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el Proveedor" }));
-        jPanel2.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 250, -1));
-
-        jTextField1.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setBorder(null);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtMonto.setBackground(new java.awt.Color(0, 94, 159));
+        txtMonto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtMonto.setForeground(new java.awt.Color(255, 255, 255));
+        txtMonto.setBorder(null);
+        txtMonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtMontoActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 250, 20));
+        jPanel2.add(txtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 250, 20));
 
-        jTextField2.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField2.setBorder(null);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtNmeses.setBackground(new java.awt.Color(0, 94, 159));
+        txtNmeses.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtNmeses.setForeground(new java.awt.Color(255, 255, 255));
+        txtNmeses.setBorder(null);
+        txtNmeses.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtNmesesActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 230, 20));
+        jPanel2.add(txtNmeses, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 230, 20));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -182,31 +177,31 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         jLabel13.setText("Asamblea:");
         jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 80, 20));
 
-        jComboBox5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione la Asamblea" }));
-        jPanel2.add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, 230, -1));
+        jAsamblea.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel2.add(jAsamblea, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, 230, -1));
 
         jScrollPane4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
-        jTextArea2.setBackground(new java.awt.Color(0, 94, 159));
-        jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextArea2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextArea2.setRows(5);
-        jScrollPane4.setViewportView(jTextArea2);
+        txaObservaciones.setBackground(new java.awt.Color(0, 94, 159));
+        txaObservaciones.setColumns(20);
+        txaObservaciones.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txaObservaciones.setForeground(new java.awt.Color(255, 255, 255));
+        txaObservaciones.setRows(5);
+        jScrollPane4.setViewportView(txaObservaciones);
 
         jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 360, 110));
 
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton1.setText("No");
-        jRadioButton1.setContentAreaFilled(false);
-        jRadioButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jRadioButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dot.png"))); // NOI18N
-        jRadioButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dot (1).png"))); // NOI18N
-        jRadioButton1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button (1).png"))); // NOI18N
-        jRadioButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button.png"))); // NOI18N
-        jPanel2.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 90, -1, -1));
+        GrupoBotones.add(no);
+        no.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        no.setForeground(new java.awt.Color(255, 255, 255));
+        no.setText("No");
+        no.setContentAreaFilled(false);
+        no.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        no.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dot.png"))); // NOI18N
+        no.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dot (1).png"))); // NOI18N
+        no.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button (1).png"))); // NOI18N
+        no.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button.png"))); // NOI18N
+        jPanel2.add(no, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 90, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
@@ -216,16 +211,19 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 250, 20));
 
-        jRadioButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton3.setText("Si");
-        jRadioButton3.setContentAreaFilled(false);
-        jRadioButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jRadioButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dot.png"))); // NOI18N
-        jRadioButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dot (1).png"))); // NOI18N
-        jRadioButton3.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button (1).png"))); // NOI18N
-        jRadioButton3.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button.png"))); // NOI18N
-        jPanel2.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, -1, -1));
+        GrupoBotones.add(si);
+        si.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        si.setForeground(new java.awt.Color(255, 255, 255));
+        si.setText("Si");
+        si.setContentAreaFilled(false);
+        si.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        si.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dot.png"))); // NOI18N
+        si.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dot (1).png"))); // NOI18N
+        si.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button (1).png"))); // NOI18N
+        si.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button.png"))); // NOI18N
+        jPanel2.add(si, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, -1, -1));
+        jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 179, 130, 30));
+        jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 179, 70, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 770, 310));
 
@@ -236,7 +234,7 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
@@ -251,7 +249,7 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
@@ -273,7 +271,7 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         btnGuardar.setBorder(null);
         btnGuardar.setBorderPainted(false);
         btnGuardar.setContentAreaFilled(false);
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
         btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
         btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
@@ -289,7 +287,7 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         btnModificar.setBorder(null);
         btnModificar.setBorderPainted(false);
         btnModificar.setContentAreaFilled(false);
-        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnModificar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
         btnModificar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
         btnModificar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
@@ -299,7 +297,7 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo.png"))); // NOI18N
         btnLimpiar.setBorderPainted(false);
         btnLimpiar.setContentAreaFilled(false);
-        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLimpiar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
         btnLimpiar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
         btnLimpiar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
@@ -317,7 +315,7 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         btnEliminar.setBorder(null);
         btnEliminar.setBorderPainted(false);
         btnEliminar.setContentAreaFilled(false);
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (2).png"))); // NOI18N
         btnEliminar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (2).png"))); // NOI18N
         btnEliminar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (2).png"))); // NOI18N
@@ -335,6 +333,9 @@ public class cuotasEspeciales extends javax.swing.JFrame {
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 800, 300));
+
+        txtid.setEditable(false);
+        jPanel1.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 430, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 550));
 
@@ -361,13 +362,13 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         this.setState(vista.InicioUsuario.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtNmesesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNmesesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtNmesesActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtMontoActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
@@ -409,18 +410,18 @@ public class cuotasEspeciales extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup GrupoBotones;
     public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnModificar;
     public javax.swing.JButton btnSalir;
+    public javax.swing.JComboBox<String> jAsamblea;
     private javax.swing.JButton jButton4;
-    public javax.swing.JComboBox<String> jComboBox1;
-    public javax.swing.JComboBox<String> jComboBox2;
+    public javax.swing.JComboBox<String> jCalcular;
     private javax.swing.JComboBox<String> jComboBox3;
-    public javax.swing.JComboBox<String> jComboBox4;
-    public javax.swing.JComboBox<String> jComboBox5;
+    public javax.swing.JComboBox<String> jConcepto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -436,11 +437,11 @@ public class cuotasEspeciales extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    public com.toedter.calendar.JMonthChooser jMonthChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton3;
+    public javax.swing.JComboBox<String> jProveedor;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
@@ -449,9 +450,12 @@ public class cuotasEspeciales extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JTextArea jTextArea2;
-    public javax.swing.JTextField jTextField1;
-    public javax.swing.JTextField jTextField2;
-    public javax.swing.JTextField jTextField3;
+    public com.toedter.calendar.JYearChooser jYearChooser1;
+    public javax.swing.JRadioButton no;
+    public javax.swing.JRadioButton si;
+    public javax.swing.JTextArea txaObservaciones;
+    public javax.swing.JTextField txtMonto;
+    public javax.swing.JTextField txtNmeses;
+    public javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables
 }

@@ -115,6 +115,7 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
             this.gc.btnModificar.setEnabled(false);
             this.gc.btnGuardar.setEnabled(true);
             this.gc.btnEliminar.setEnabled(true);
+            this.gc.txtid.setVisible(false);
             gc.jcomboproveedor.removeAllItems();
             gc.jcomboconcepto.removeAllItems();
             modpro.llenar_proveedores(gc.jcomboproveedor);

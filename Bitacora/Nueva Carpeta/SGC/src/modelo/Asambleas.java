@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -376,6 +378,107 @@ public class Asambleas extends Propietarios {
         }
         
      }
+    
+    public void llenar_Asamblea(JComboBox Asamblea) {
+
+//Creamos objeto tipo Connection    
+        java.sql.Connection conectar = null;
+        PreparedStatement pst = null;
+        ResultSet result = null;
+        
+//Creamos la Consulta SQL
+        String SSQL = "SELECT nombre FROM asambleas WHERE id_condominio=?;";
+
+//Establecemos bloque try-catch-finally
+        try {
+
+            //Establecemos conexión con la BD 
+            conectar = getConexion();
+            //Preparamos la consulta SQL
+            pst = conectar.prepareStatement(SSQL);
+            pst.setString(1, getId_condominio());
+            //Ejecutamos la consulta
+            result = pst.executeQuery();
+
+            //LLenamos nuestro ComboBox
+            Asamblea.addItem("Seleccione la Asamblea");
+
+            while (result.next()) {
+
+                Asamblea.addItem(result.getString("nombre"));
+                
+
+            }
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, e);
+
+        } finally {
+
+            if (conectar != null) {
+
+                try {
+
+                    conectar.close();
+                    result.close();
+
+                    conectar = null;
+                    result = null;
+
+                } catch (SQLException ex) {
+
+                    JOptionPane.showMessageDialog(null, ex);
+
+                }
+
+            }
+
+        }
+
+    }
+    
+     public boolean buscarid(Asambleas modasa) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT id FROM asambleas where nombre=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, modasa.getNombre());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                modasa.setId(rs.getInt("id"));
+               
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
 
 }
 
