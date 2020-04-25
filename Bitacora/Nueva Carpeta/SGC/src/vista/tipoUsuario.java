@@ -8,9 +8,15 @@ package vista;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import javax.swing.JComponent;
 import javax.swing.JTable;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.plaf.basic.BasicScrollBarUI;
+import vista.tipoUsuario.scrollbar.MyScrollBarUI;
 
 /**
  *
@@ -24,6 +30,7 @@ public class tipoUsuario extends javax.swing.JFrame {
     public tipoUsuario() {
         initComponents();
         jTable1.getTableHeader().setDefaultRenderer(new catalogoUnidades.Headercolor());
+        jScrollPane1.getVerticalScrollBar().setUI(new tipoUsuario.scrollbar());
         setLocationRelativeTo(null);
     }
 
@@ -277,15 +284,46 @@ public class tipoUsuario extends javax.swing.JFrame {
     public javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
     static public class Headercolor extends DefaultTableCellHeaderRenderer {
-    public Headercolor () {
-        setOpaque(true);
+
+        public Headercolor() {
+            setOpaque(true);
+        }
+
+        public Component getTableCellRendererComponent(JTable mytable, Object value, boolean selected, boolean focused, int row, int column) {
+            super.getTableCellRendererComponent(mytable, value, selected, focused, row, column);
+            setBackground(new java.awt.Color(0, 94, 159));
+            setForeground(Color.white);
+            setFont(new Font("Tahoma", Font.BOLD, 14));
+
+            return this;
+        }
     }
-    public Component getTableCellRendererComponent(JTable mytable, Object value, boolean selected, boolean focused,int row,int column) {
-        super.getTableCellRendererComponent(mytable, value, selected, focused, row, column);
-        setBackground(new java.awt.Color(0,94,159));
-        setForeground(Color.white);
-        setFont(new Font("Tahoma", Font.BOLD, 14));
-        return this;
+
+    static public class scrollbar extends BasicScrollBarUI {
+
+        public scrollbar() {
+            UIManager.put("ScrollBarUI", "my.package.MyScrollBarUI");
+        }
+
+        public class MyScrollBarUI extends BasicScrollBarUI {
+
+            @Override
+            public void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
+                trackBounds.contains(thumbRect);
+                g.setColor(new java.awt.Color(0, 94, 159));
+                g.drawRect(0, 0, 500, 500);
+                g.fillRect(0, 0, 500, 500);
+                
+            }
+
+            @Override
+            public void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+                thumbBounds.contains(thumbRect);
+                g.setColor(new java.awt.Color(0, 94, 159));
+                g.drawRect(0, 0, 500, 500);
+                g.fillRect(0, 0, 500, 500);
+            }
+
+        }
     }
-}
 }
