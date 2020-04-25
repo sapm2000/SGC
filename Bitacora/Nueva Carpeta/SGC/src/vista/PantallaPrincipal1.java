@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import modelo.Asambleas;
 import modelo.Comunicados;
 import modelo.CrudUsuario;
+import modelo.CuotasEspeciales;
 import modelo.Fondo;
 import modelo.GastoComun;
 import modelo.ModeloConceptoGastos;
@@ -366,14 +367,13 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         catalogoCuotasEspeciales catace = new catalogoCuotasEspeciales();
         cuotasEspeciales cuotae = new cuotasEspeciales();
-        controladorCuotasEspeciales controce = new controladorCuotasEspeciales(cuotae, catace);
+        Proveedores modpro = new Proveedores();
+        ModeloConceptoGastos modcon = new ModeloConceptoGastos();
+        Asambleas modasa = new Asambleas();
+        CuotasEspeciales modcuo = new CuotasEspeciales();
+        controladorCuotasEspeciales controce = new controladorCuotasEspeciales(cuotae, catace, modpro, modcon,modasa,this,modcuo);
 
-        catace.jButton2.setEnabled(false);
-        catace.jButton2.setForeground(Color.gray);
-        catace.jButton5.setEnabled(false);
-        catace.jButton5.setForeground(Color.gray);
-        catace.jButton4.setEnabled(false);
-        catace.jButton4.setForeground(Color.gray);
+        
 
         catace.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
