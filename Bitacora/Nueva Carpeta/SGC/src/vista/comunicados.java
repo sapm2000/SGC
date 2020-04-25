@@ -57,6 +57,7 @@ public class comunicados extends javax.swing.JFrame {
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
         txtid = new javax.swing.JTextField();
+        jSeparator8 = new javax.swing.JSeparator();
         jLabel15 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -144,7 +145,7 @@ public class comunicados extends javax.swing.JFrame {
         txtAsunto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtAsunto.setForeground(new java.awt.Color(255, 255, 255));
         txtAsunto.setBorder(null);
-        jPanel2.add(txtAsunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 320, 20));
+        jPanel2.add(txtAsunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 330, 20));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -195,13 +196,16 @@ public class comunicados extends javax.swing.JFrame {
         jPanel2.add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, -1, -1));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 220, 10));
+        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 330, 10));
 
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 320, 10));
 
         txtid.setEditable(false);
         jPanel2.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
+
+        jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 220, 10));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 480, 280));
 
@@ -295,6 +299,7 @@ public class comunicados extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     public javax.swing.JTable jTable1;
     public javax.swing.JTextArea txaMensaje;
     public javax.swing.JTextField txtAsunto;
