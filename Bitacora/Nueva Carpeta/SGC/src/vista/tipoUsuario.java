@@ -40,6 +40,7 @@ public class tipoUsuario extends javax.swing.JFrame {
     //Aquí cambias el color de la barra
     private static final Color THUMB_COLOR = Color.BLUE;
     
+    
     public tipoUsuario() {
         initComponents();
         jTable1.getTableHeader().setDefaultRenderer(new catalogoUnidades.Headercolor());
