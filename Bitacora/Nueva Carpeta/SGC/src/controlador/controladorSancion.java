@@ -66,12 +66,12 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
 
-        modeloT.addColumn("Nº de sancion");
-        modeloT.addColumn("Descripcion");
-        modeloT.addColumn("Tipo de deuda");
-        modeloT.addColumn("Monto/Porcentaje");
+        modeloT.addColumn("<html>Número de <br> Sanción</html>");
+        modeloT.addColumn("Descripción");
+        modeloT.addColumn("<html>Tipo de <br> Deuda</html>");
+        modeloT.addColumn("<html>Monto/ <br> Porcentaje</html>");
         modeloT.addColumn("Mes a aplicar");
-        modeloT.addColumn("Nº de unidades");
+        modeloT.addColumn("Nº de Unidades");
         modeloT.addColumn("Estatus");
 
         Object[] columna = new Object[7];

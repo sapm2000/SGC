@@ -66,11 +66,11 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
 
-        modeloT.addColumn("Cedula/Rif");
-        modeloT.addColumn("Nombre/razon social");
+        modeloT.addColumn("<html>Cédula/ <br>Rif</html>");
+        modeloT.addColumn("<html>Nombre/ <br> Razón Social</html>");
         modeloT.addColumn("Apellido");
-        modeloT.addColumn("Telefono");
-        modeloT.addColumn("Correo");
+        modeloT.addColumn("Teléfono");
+        modeloT.addColumn("<html>Correo <br> Electrónico</html>");
         modeloT.addColumn("Seleccione");
 
         Object[] columna = new Object[5];

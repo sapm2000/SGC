@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Propietarios;
@@ -28,7 +31,7 @@ import vista.propietarios;
  *
  * @author rma
  */
-public class controladorPropietario implements ActionListener, MouseListener,KeyListener,  WindowListener{
+public class controladorPropietario implements ActionListener, MouseListener, KeyListener, WindowListener {
 
     private propietarios pro;
     private catalogoPropietarios catapro;
@@ -58,13 +61,15 @@ public class controladorPropietario implements ActionListener, MouseListener,Key
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
 
-        modeloT.addColumn("Cedula/Rif");
-        modeloT.addColumn("Nombre/razon social");
+        modeloT.addColumn("<html>Cedula/<br>Rif</html>");
+        modeloT.addColumn("<html>Nombre/<br>Razón Social</html>");
         modeloT.addColumn("Apellido");
-        modeloT.addColumn("Telefono");
-        modeloT.addColumn("Correo");
+        modeloT.addColumn("Teléfono");
+        modeloT.addColumn("<html>Correo <br> Electrónico</html>");
+
         
-       
+    
+        
 
         Object[] columna = new Object[5];
 
@@ -77,15 +82,18 @@ public class controladorPropietario implements ActionListener, MouseListener,Key
             columna[2] = listaPropietarios.get(i).getApellido();
             columna[3] = listaPropietarios.get(i).getTelefono();
             columna[4] = listaPropietarios.get(i).getCorreo();
-            
-            
 
             modeloT.addRow(columna);
 
+            
         }
 
-    }
 
+        
+
+        
+        
+    }
 
     public void actionPerformed(ActionEvent e) {
 
@@ -101,7 +109,6 @@ public class controladorPropietario implements ActionListener, MouseListener,Key
             pro.txtCorreo.setText("");
             pro.txtNombre.setText("");
             pro.txtTelefono.setText("");
-            
 
         }
 
@@ -135,7 +142,6 @@ public class controladorPropietario implements ActionListener, MouseListener,Key
                 modpro.setApellido(pro.txtApellido.getText());
                 modpro.setCorreo(pro.txtCorreo.getText());
                 modpro.setTelefono(pro.txtTelefono.getText());
-                
 
                 if (modpro.modificar(modpro)) {
 
@@ -151,7 +157,7 @@ public class controladorPropietario implements ActionListener, MouseListener,Key
             }
 
         }
-        
+
         if (e.getSource() == pro.btnEliminar) {
 
             if (modpro.eliminar(modpro)) {
@@ -188,7 +194,7 @@ public class controladorPropietario implements ActionListener, MouseListener,Key
 
         return resultado;
     }
-    
+
     private void filtro(String consulta, JTable jtableBuscar) {
         dm = (DefaultTableModel) jtableBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
@@ -207,14 +213,14 @@ public class controladorPropietario implements ActionListener, MouseListener,Key
         modpro.setCedula(String.valueOf(dato));
 
         modpro.buscar(modpro);
-        
+
         pro.setVisible(true);
         pro.txtCedula.setText(modpro.getCedula());
         pro.txtApellido.setText(modpro.getApellido());
         pro.txtCorreo.setText(modpro.getCorreo());
         pro.txtNombre.setText(modpro.getNombre());
         pro.txtTelefono.setText(modpro.getTelefono());
-        
+
         pro.txtCedula.setEnabled(false);
 
         pro.btnGuardar.setEnabled(false);
@@ -225,32 +231,32 @@ public class controladorPropietario implements ActionListener, MouseListener,Key
 
     @Override
     public void mousePressed(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        
+
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        
+
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        
+
     }
 
     @Override
@@ -267,37 +273,37 @@ public class controladorPropietario implements ActionListener, MouseListener,Key
     public void windowOpened(WindowEvent e) {
         modpro.setId_condominio(panta1.rif.getText());
         Llenartabla(catapro.TablaPropietarios);
-        
+
     }
 
     @Override
     public void windowClosing(WindowEvent e) {
-        
+
     }
 
     @Override
     public void windowClosed(WindowEvent e) {
-        
+
     }
 
     @Override
     public void windowIconified(WindowEvent e) {
-        
+
     }
 
     @Override
     public void windowDeiconified(WindowEvent e) {
-        
+
     }
 
     @Override
     public void windowActivated(WindowEvent e) {
-        
+
     }
 
     @Override
     public void windowDeactivated(WindowEvent e) {
-        
+
     }
 
 }
