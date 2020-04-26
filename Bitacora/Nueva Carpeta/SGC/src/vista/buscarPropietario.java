@@ -16,7 +16,9 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicScrollBarUI;
+import javax.swing.table.DefaultTableCellRenderer;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 public class buscarPropietario extends javax.swing.JFrame {
@@ -39,6 +41,14 @@ public class buscarPropietario extends javax.swing.JFrame {
         tablaprop.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         setLocationRelativeTo(null);
+        
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        
+        tcr.setVerticalAlignment(SwingConstants.CENTER);
+        tablaprop.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaprop.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaprop.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaprop.getColumnModel().getColumn(3).setCellRenderer(tcr);
     }
 
     /**
