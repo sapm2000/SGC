@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
@@ -65,6 +67,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         listaPropietarios = modpro.listar();
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
+        
 
         modeloT.addColumn("<html>Cédula/ <br>Rif</html>");
         modeloT.addColumn("<html>Nombre/ <br> Razón Social</html>");
@@ -88,7 +91,13 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
     }
 
     public void Llenartablaasambleas(JTable tablaD) {
