@@ -104,12 +104,12 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
 
-        modeloT.addColumn("Numero Unidad");
-        modeloT.addColumn("Propietario o inquilino");
+        modeloT.addColumn("<html>Número de <br> Unidad</html>");
+        modeloT.addColumn("<html>Propietario ó <br> inquilino</html>");
         modeloT.addColumn("CI/RIF");
-        modeloT.addColumn("Telefono");
-        modeloT.addColumn("Direccion");
-        modeloT.addColumn("Correo");
+        modeloT.addColumn("Teléfono");
+        modeloT.addColumn("Dirección");
+        modeloT.addColumn("<html>Correo <br> Electrónico</html>");
         modeloT.addColumn("Area (mts2)");
 
         Object[] columna = new Object[7];

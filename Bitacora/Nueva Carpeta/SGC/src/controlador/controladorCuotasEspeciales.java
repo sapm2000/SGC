@@ -72,16 +72,18 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
         tablaD.setModel(modeloT);
 
         modeloT.addColumn("<html>Nº de <br> Cuota especial</html>");
-        modeloT.addColumn("proveedor");
-        modeloT.addColumn("concepto");
-        modeloT.addColumn("calcular por");
-        modeloT.addColumn("comienzo de cobro");
-        modeloT.addColumn("Monto inicial");
+        modeloT.addColumn("Proveedor");
+        modeloT.addColumn("Concepto");
+        modeloT.addColumn("<html>Calcular <br> Por</html>");
+        modeloT.addColumn("<html>Comienzo de <br> Cobro</html>");
+        modeloT.addColumn("<html>Monto <br> Inicial</html>");
         modeloT.addColumn("Saldo");
         modeloT.addColumn("Asamblea");
+
         modeloT.addColumn("Meses Iniciales");
         modeloT.addColumn("Meses restantes");
         modeloT.addColumn("Observacion");
+
         modeloT.addColumn("Estado");
 
         Object[] columna = new Object[13];

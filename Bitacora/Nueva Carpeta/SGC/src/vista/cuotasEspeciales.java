@@ -55,7 +55,6 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         txaObservaciones = new javax.swing.JTextArea();
         no = new javax.swing.JRadioButton();
         jLabel15 = new javax.swing.JLabel();
-        jSeparator4 = new javax.swing.JSeparator();
         si = new javax.swing.JRadioButton();
         jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
         jYearChooser1 = new com.toedter.calendar.JYearChooser();
@@ -154,7 +153,7 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Monto Total:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 90, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 90, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -208,9 +207,6 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         jLabel15.setText("¿Fué elegido en una asamblea?");
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, -1, -1));
 
-        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 250, 20));
-
         GrupoBotones.add(si);
         si.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         si.setForeground(new java.awt.Color(255, 255, 255));
@@ -222,8 +218,8 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         si.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button (1).png"))); // NOI18N
         si.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button.png"))); // NOI18N
         jPanel2.add(si, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, -1, -1));
-        jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 179, 130, 30));
-        jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 179, 70, 30));
+        jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 130, 30));
+        jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 70, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 770, 310));
 
@@ -447,7 +443,6 @@ public class cuotasEspeciales extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     public com.toedter.calendar.JYearChooser jYearChooser1;

@@ -16,7 +16,9 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicScrollBarUI;
+import javax.swing.table.DefaultTableCellRenderer;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 public class catalogoPropietarios extends javax.swing.JFrame {
 
@@ -54,7 +56,6 @@ public class catalogoPropietarios extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaPropietarios = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
         btnMinimizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -62,6 +63,7 @@ public class catalogoPropietarios extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtBuscarPropietarios = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel5 = new javax.swing.JLabel();
 
         jButton3.setText("jButton3");
 
@@ -91,10 +93,7 @@ public class catalogoPropietarios extends javax.swing.JFrame {
         TablaPropietarios.setRowHeight(20);
         jScrollPane1.setViewportView(TablaPropietarios);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 460, 280));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, 300));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 470, 280));
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
         btnMinimizar.setBorder(null);
@@ -109,7 +108,7 @@ public class catalogoPropietarios extends javax.swing.JFrame {
                 btnMinimizarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 40, 30));
+        jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, 40, 30));
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
         btnSalir.setBorder(null);
@@ -124,7 +123,7 @@ public class catalogoPropietarios extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, 30));
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, -1, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Listado de Propietarios");
@@ -141,23 +140,26 @@ public class catalogoPropietarios extends javax.swing.JFrame {
         btn_NuevoPropietario.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btn_NuevoPropietario.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btn_NuevoPropietario.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
-        jPanel1.add(btn_NuevoPropietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, -1, -1));
+        jPanel1.add(btn_NuevoPropietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Buscar:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 70, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 70, -1));
 
         txtBuscarPropietarios.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtBuscarPropietarios.setForeground(new java.awt.Color(204, 204, 204));
         txtBuscarPropietarios.setText("Buscar...");
         txtBuscarPropietarios.setBorder(null);
-        jPanel1.add(txtBuscarPropietarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 190, 20));
+        jPanel1.add(txtBuscarPropietarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 190, 20));
 
         jSeparator1.setBackground(new java.awt.Color(0, 94, 159));
         jSeparator1.setForeground(new java.awt.Color(0, 94, 159));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 190, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 190, 10));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 440));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, 300));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -225,8 +227,8 @@ public class catalogoPropietarios extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
@@ -243,8 +245,15 @@ public class catalogoPropietarios extends javax.swing.JFrame {
         setForeground(Color.white);
         setFont(new Font("Tahoma", Font.BOLD, 14));
         return this;
-    }
+    }    
 }
+    
+    
+
+
+
+
+    
     
     public class MyScrollBarUI extends BasicScrollBarUI {
 
