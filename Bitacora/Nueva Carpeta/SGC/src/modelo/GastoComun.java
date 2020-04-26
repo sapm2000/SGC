@@ -181,10 +181,51 @@ public class GastoComun extends ModeloConceptoGastos {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT gasto_comun.id, tipo, mes, anio, monto, n_factura, proveedores.cedula,  concepto_gasto.nom_concepto, observaciones, fecha, estado, saldo FROM gasto_comun inner join proveedores on proveedores.cedula=gasto_comun.id_proveedor INNER join concepto_gasto on concepto_gasto.id = gasto_comun.id_concepto where gasto_comun.id_condominio=?;";
+        String sql = "SELECT gasto_comun.id, tipo, mes, anio, monto, n_factura, proveedores.cedula,  concepto_gasto.nom_concepto, observaciones, fecha, estado, saldo FROM gasto_comun inner join proveedores on proveedores.cedula=gasto_comun.id_proveedor INNER join concepto_gasto on concepto_gasto.id = gasto_comun.id_concepto where gasto_comun.id_condominio=?  ORDER by tipo desc, mes, anio;";
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_condominio());
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modgac = new GastoComun();
+
+                modgac.setId(rs.getInt(1));
+                modgac.setTipo_gasto(rs.getString(2));
+                modgac.setMes(rs.getInt(3));
+                modgac.setAño(rs.getInt(4));
+                modgac.setMonto(rs.getDouble(5));
+                modgac.setNumero_factura(rs.getString(6));
+                modgac.setId_proveedor(rs.getString(7));
+                modgac.setNombre_Concepto(rs.getString(8));
+                modgac.setObservaciones(rs.getString(9));
+                modgac.setFecha(rs.getDate(10));
+                modgac.setEstado(rs.getString(11));
+                modgac.setSaldo(rs.getDouble(12));
+
+                listagastocomun.add(modgac);
+            }
+        } catch (Exception e) {
+        }
+
+        return listagastocomun;
+    }
+    
+    public ArrayList<GastoComun> listarGastoComuncierremes() {
+        ArrayList listagastocomun = new ArrayList();
+        GastoComun modgac;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT gasto_comun.id, tipo, mes, anio, monto, n_factura, proveedores.cedula,  concepto_gasto.nom_concepto, observaciones, fecha, estado, saldo FROM gasto_comun inner join proveedores on proveedores.cedula=gasto_comun.id_proveedor INNER join concepto_gasto on concepto_gasto.id = gasto_comun.id_concepto where gasto_comun.id_condominio=? and mes=? and anio=?  ORDER by tipo desc, mes, anio;";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getId_condominio());
+            ps.setInt(2, getMes());
+            ps.setInt(3, getAño());
             rs = ps.executeQuery();
 
             while (rs.next()) {

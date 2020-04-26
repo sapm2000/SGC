@@ -79,11 +79,12 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
         modeloT.addColumn("Monto inicial");
         modeloT.addColumn("Saldo");
         modeloT.addColumn("Asamblea");
+        modeloT.addColumn("Meses Iniciales");
         modeloT.addColumn("Meses restantes");
         modeloT.addColumn("Observacion");
         modeloT.addColumn("Estado");
 
-        Object[] columna = new Object[12];
+        Object[] columna = new Object[13];
 
         int numRegistro = listacuotasEspeciales.size();
 
@@ -100,8 +101,9 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             columna[6] = listacuotasEspeciales.get(i).getSaldo();
             columna[7] = listacuotasEspeciales.get(i).getNombre_asamble();
             columna[8] = listacuotasEspeciales.get(i).getN_meses();
-            columna[9] = listacuotasEspeciales.get(i).getObservacion();
-            columna[10] = listacuotasEspeciales.get(i).getEstado();
+            columna[9] = listacuotasEspeciales.get(i).getN_meses_restantes();
+            columna[10] = listacuotasEspeciales.get(i).getObservacion();
+            columna[11] = listacuotasEspeciales.get(i).getEstado();
 
             modeloT.addRow(columna);
 
@@ -145,6 +147,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                 modcuo.setMonto(Double.parseDouble(cuotae.txtMonto.getText()));
                 modcuo.setSaldo(Double.parseDouble(cuotae.txtMonto.getText()));
                 modcuo.setN_meses(Integer.parseInt(cuotae.txtNmeses.getText()));
+                modcuo.setN_meses_restantes(Integer.parseInt(cuotae.txtNmeses.getText()));
 
                 modcuo.setObservacion(cuotae.txaObservaciones.getText());
                 modcuo.setEstado("Pendiente");
@@ -186,6 +189,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                 modcuo.setMonto(Double.parseDouble(cuotae.txtMonto.getText()));
                 modcuo.setSaldo(Double.parseDouble(cuotae.txtMonto.getText()));
                 modcuo.setN_meses(Integer.parseInt(cuotae.txtNmeses.getText()));
+                modcuo.setN_meses_restantes(Integer.parseInt(cuotae.txtNmeses.getText()));
 
                 modcuo.setObservacion(cuotae.txaObservaciones.getText());
                 modcuo.setEstado("Pendiente");

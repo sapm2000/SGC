@@ -106,6 +106,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         Object[] columna = new Object[2];
 
         int numRegistro = listaunimod.size();
+        
 
         for (int i = 0; i < numRegistro; i++) {
 
@@ -261,6 +262,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         int mes = modsan.getMes() - 1;
         san.jMonthChooser1.setMonth(mes);
         san.jYearChooser1.setYear(modsan.getAño());
+        modsan.setId_condominio(panta1.rif.getText());
         llenartablaunidadesmod(san.jTable1);
         addCheckBox(1, san.jTable1);
     }

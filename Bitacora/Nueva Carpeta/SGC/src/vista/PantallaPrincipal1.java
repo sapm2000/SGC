@@ -1,6 +1,7 @@
 package vista;
 
 import controlador.controladorAsambleas;
+import controlador.controladorCerrarMes;
 import controlador.controladorComunicados;
 import controlador.controladorCuotasEspeciales;
 import controlador.controladorFondo;
@@ -14,11 +15,13 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import modelo.Asambleas;
+import modelo.CerrarMes;
 import modelo.Comunicados;
 import modelo.CrudUsuario;
 import modelo.CuotasEspeciales;
 import modelo.Fondo;
 import modelo.GastoComun;
+import modelo.Interes;
 import modelo.ModeloConceptoGastos;
 import modelo.Propietarios;
 import modelo.Proveedores;
@@ -469,6 +472,13 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         recibo reci = new recibo();
+        CerrarMes modc = new CerrarMes();
+        Unidades moduni = new Unidades();
+        GastoComun modgac = new GastoComun();
+        CuotasEspeciales modcuo = new CuotasEspeciales();
+        Sancion modsan = new Sancion();
+        Interes modin = new Interes();
+        controladorCerrarMes controc= new controladorCerrarMes(reci, modc, moduni, this, modgac, modcuo, modsan,modin);
         reci.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 

@@ -161,7 +161,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             if (validar()) {
                 moduni.setCedula(uni.txtCedula.getText());
                 moduni.setN_unidad(uni.txtNumeroUnidad.getText());
-                moduni.setArea(Integer.parseInt(uni.txtArea.getText()));
+                moduni.setArea(Double.parseDouble(uni.txtArea.getText()));
                 moduni.setDireccion(uni.txadireccion.getText());
 
                 if (moduni.registrarUnidades(moduni)) {
@@ -182,7 +182,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             if (validar()) {
                 moduni.setCedula(uni.txtCedula.getText());
                 moduni.setN_unidad(uni.txtNumeroUnidad.getText());
-                moduni.setArea(Integer.parseInt(uni.txtArea.getText()));
+                moduni.setArea(Double.parseDouble(uni.txtArea.getText()));
                 moduni.setDireccion(uni.txadireccion.getText());
 
                 if (moduni.modificarUnidades(moduni)) {

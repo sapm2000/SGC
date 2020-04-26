@@ -22,7 +22,7 @@ public class Unidades extends Propietarios {
     private String N_unidad;
     private String direccion;
 
-    private int area;
+    private double area;
 
     public String getN_unidad() {
         return N_unidad;
@@ -40,13 +40,16 @@ public class Unidades extends Propietarios {
         this.direccion = direccion;
     }
 
-    public int getArea() {
+    public double getArea() {
         return area;
     }
 
-    public void setArea(int area) {
+    public void setArea(double area) {
         this.area = area;
     }
+
+    
+    
 
     public void llenar_propietarios(JComboBox Propietarios) {
 
@@ -157,7 +160,7 @@ public class Unidades extends Propietarios {
             ps = con.prepareStatement(sql);
             ps.setString(1, moduni.getN_unidad());
             ps.setString(2, moduni.getDireccion());
-            ps.setInt(3, moduni.getArea());
+            ps.setDouble(3, moduni.getArea());
             ps.setString(4, moduni.getCedula());
 
             ps.execute();
@@ -190,6 +193,7 @@ public class Unidades extends Propietarios {
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_condominio());
+            JOptionPane.showMessageDialog(null, getId_condominio());
 
             rs = ps.executeQuery();
 
@@ -278,7 +282,7 @@ public class Unidades extends Propietarios {
 
             ps = con.prepareStatement(sql);
             ps.setString(1, getDireccion());
-            ps.setInt(2, getArea());
+            ps.setDouble(2, getArea());
             ps.setString(3, getCedula());
 
             ps.setString(4, getN_unidad());
