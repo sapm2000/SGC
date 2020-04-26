@@ -5,7 +5,52 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2020-04-25 20:16:57
+-- Started on 2020-04-26 10:16:07
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+DROP DATABASE proyecto;
+--
+-- TOC entry 3045 (class 1262 OID 16407)
+-- Name: proyecto; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE proyecto WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'Spanish_Spain.1252' LC_CTYPE = 'Spanish_Spain.1252';
+
+
+ALTER DATABASE proyecto OWNER TO postgres;
+
+\connect proyecto
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 3046 (class 0 OID 0)
+-- Name: proyecto; Type: DATABASE PROPERTIES; Schema: -; Owner: postgres
+--
+
+ALTER DATABASE proyecto CONNECTION LIMIT = 100;
+
+
+\connect proyecto
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -55,7 +100,7 @@ CREATE SEQUENCE public.asambleas_id_seq
 ALTER TABLE public.asambleas_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3045 (class 0 OID 0)
+-- TOC entry 3047 (class 0 OID 0)
 -- Dependencies: 212
 -- Name: asambleas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -93,7 +138,7 @@ CREATE SEQUENCE public.banco_id_seq
 ALTER TABLE public.banco_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3046 (class 0 OID 0)
+-- TOC entry 3048 (class 0 OID 0)
 -- Dependencies: 204
 -- Name: banco_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -132,7 +177,7 @@ CREATE SEQUENCE public.categoriagasto_id_seq
 ALTER TABLE public.categoriagasto_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3047 (class 0 OID 0)
+-- TOC entry 3049 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: categoriagasto_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -172,7 +217,7 @@ CREATE SEQUENCE public.comunicados_id_seq
 ALTER TABLE public.comunicados_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3048 (class 0 OID 0)
+-- TOC entry 3050 (class 0 OID 0)
 -- Dependencies: 227
 -- Name: comunicados_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -212,7 +257,7 @@ CREATE SEQUENCE public.concepto_gasto_id_seq
 ALTER TABLE public.concepto_gasto_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3049 (class 0 OID 0)
+-- TOC entry 3051 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: concepto_gasto_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -292,7 +337,7 @@ CREATE SEQUENCE public.cuotas_especiales_id_seq
 ALTER TABLE public.cuotas_especiales_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3050 (class 0 OID 0)
+-- TOC entry 3052 (class 0 OID 0)
 -- Dependencies: 231
 -- Name: cuotas_especiales_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -359,7 +404,7 @@ CREATE SEQUENCE public.gasto_comun_id_seq
 ALTER TABLE public.gasto_comun_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3051 (class 0 OID 0)
+-- TOC entry 3053 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: gasto_comun_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -399,7 +444,7 @@ CREATE SEQUENCE public.interes_id_seq
 ALTER TABLE public.interes_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3052 (class 0 OID 0)
+-- TOC entry 3054 (class 0 OID 0)
 -- Dependencies: 233
 -- Name: interes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -472,7 +517,7 @@ CREATE SEQUENCE public.puente_asamblea_propietario_id_seq
 ALTER TABLE public.puente_asamblea_propietario_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3053 (class 0 OID 0)
+-- TOC entry 3055 (class 0 OID 0)
 -- Dependencies: 214
 -- Name: puente_asamblea_propietario_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -512,7 +557,7 @@ CREATE SEQUENCE public.puente_comunicado_usuario_id_seq
 ALTER TABLE public.puente_comunicado_usuario_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3054 (class 0 OID 0)
+-- TOC entry 3056 (class 0 OID 0)
 -- Dependencies: 229
 -- Name: puente_comunicado_usuario_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -551,7 +596,7 @@ CREATE SEQUENCE public.puente_condomino_cuenta_id_seq
 ALTER TABLE public.puente_condomino_cuenta_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3055 (class 0 OID 0)
+-- TOC entry 3057 (class 0 OID 0)
 -- Dependencies: 207
 -- Name: puente_condomino_cuenta_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -590,7 +635,7 @@ CREATE SEQUENCE public.puente_interes_condominio_id_seq
 ALTER TABLE public.puente_interes_condominio_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3056 (class 0 OID 0)
+-- TOC entry 3058 (class 0 OID 0)
 -- Dependencies: 235
 -- Name: puente_interes_condominio_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -628,7 +673,7 @@ CREATE SEQUENCE public.puente_sancion_unidad_id_seq
 ALTER TABLE public.puente_sancion_unidad_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3057 (class 0 OID 0)
+-- TOC entry 3059 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: puente_sancion_unidad_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -672,7 +717,7 @@ CREATE SEQUENCE public.sancion_id_seq
 ALTER TABLE public.sancion_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3058 (class 0 OID 0)
+-- TOC entry 3060 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: sancion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -831,9 +876,7 @@ ALTER TABLE ONLY public.sancion ALTER COLUMN id SET DEFAULT nextval('public.sanc
 -- Data for Name: asambleas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.asambleas (id, nombre, fecha, descripcion, id_condominio) FROM stdin;
-23	da	2020-04-04	d	111
-\.
+INSERT INTO public.asambleas VALUES (23, 'da', '2020-04-04', 'd', '111');
 
 
 --
@@ -842,13 +885,11 @@ COPY public.asambleas (id, nombre, fecha, descripcion, id_condominio) FROM stdin
 -- Data for Name: banco; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.banco (id, nombre_banco) FROM stdin;
-1	sfs
-3	caribe
-5	dsfs
-4	provincial
-6	venezuela
-\.
+INSERT INTO public.banco VALUES (1, 'sfs');
+INSERT INTO public.banco VALUES (3, 'caribe');
+INSERT INTO public.banco VALUES (5, 'dsfs');
+INSERT INTO public.banco VALUES (4, 'provincial');
+INSERT INTO public.banco VALUES (6, 'venezuela');
 
 
 --
@@ -857,9 +898,7 @@ COPY public.banco (id, nombre_banco) FROM stdin;
 -- Data for Name: categoriagasto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.categoriagasto (id, nombre, descripcion) FROM stdin;
-1	dadasd	asda
-\.
+INSERT INTO public.categoriagasto VALUES (1, 'dadasd', 'asda');
 
 
 --
@@ -868,11 +907,9 @@ COPY public.categoriagasto (id, nombre, descripcion) FROM stdin;
 -- Data for Name: comunicados; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.comunicados (id, asunto, mensaje, id_condominio) FROM stdin;
-1	a	s	111
-2	asdaa	asdadad	111
-3	sad	dsd	111
-\.
+INSERT INTO public.comunicados VALUES (1, 'a', 's', '111');
+INSERT INTO public.comunicados VALUES (2, 'asdaa', 'asdadad', '111');
+INSERT INTO public.comunicados VALUES (3, 'sad', 'dsd', '111');
 
 
 --
@@ -881,9 +918,7 @@ COPY public.comunicados (id, asunto, mensaje, id_condominio) FROM stdin;
 -- Data for Name: concepto_gasto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.concepto_gasto (id, nom_concepto, descripcion, id_categoria) FROM stdin;
-1	de	sadds	1
-\.
+INSERT INTO public.concepto_gasto VALUES (1, 'de', 'sadds', 1);
 
 
 --
@@ -892,10 +927,8 @@ COPY public.concepto_gasto (id, nom_concepto, descripcion, id_categoria) FROM st
 -- Data for Name: condominio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.condominio (rif, razon_social, telefono, correo_electronico) FROM stdin;
-13131312	sdadad	123132	asdasdasdadsa
-111	holas	24334324	sa
-\.
+INSERT INTO public.condominio VALUES ('13131312', 'sdadad', '123132', 'asdasdasdadsa');
+INSERT INTO public.condominio VALUES ('111', 'holas', '24334324', 'sa');
 
 
 --
@@ -904,20 +937,18 @@ COPY public.condominio (rif, razon_social, telefono, correo_electronico) FROM st
 -- Data for Name: cuenta; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.cuenta (cedula, n_cuenta, beneficiario, tipo, id_banco) FROM stdin;
-sdsd	dasdasa	dsad	Corriente	4
-dsfdsfsf	fsf	fdf	Ahorro	5
-sfdsfs	sdfsf	f	Ahorro	4
-3213d	ddfsf	f	Corriente	5
-255325f	423424423	sd	Ahorro	4
-31313e	qweq	ee	Ahorro	3
-werr	09876543	dfg	Ahorro	5
-sadd	dsa	d	Ahorro	1
-dsad	dsaddsd	ddd	Ahorro	1
-sdff	fsflkjhgfds	ff	Ahorro	5
-sdada	dsad	ddd	Ahorro	4
-sdd	sdsasdd	dsddsd	Ahorro	5
-\.
+INSERT INTO public.cuenta VALUES ('sdsd', 'dasdasa', 'dsad', 'Corriente', 4);
+INSERT INTO public.cuenta VALUES ('dsfdsfsf', 'fsf', 'fdf', 'Ahorro', 5);
+INSERT INTO public.cuenta VALUES ('sfdsfs', 'sdfsf', 'f', 'Ahorro', 4);
+INSERT INTO public.cuenta VALUES ('3213d', 'ddfsf', 'f', 'Corriente', 5);
+INSERT INTO public.cuenta VALUES ('255325f', '423424423', 'sd', 'Ahorro', 4);
+INSERT INTO public.cuenta VALUES ('31313e', 'qweq', 'ee', 'Ahorro', 3);
+INSERT INTO public.cuenta VALUES ('werr', '09876543', 'dfg', 'Ahorro', 5);
+INSERT INTO public.cuenta VALUES ('sadd', 'dsa', 'd', 'Ahorro', 1);
+INSERT INTO public.cuenta VALUES ('dsad', 'dsaddsd', 'ddd', 'Ahorro', 1);
+INSERT INTO public.cuenta VALUES ('sdff', 'fsflkjhgfds', 'ff', 'Ahorro', 5);
+INSERT INTO public.cuenta VALUES ('sdada', 'dsad', 'ddd', 'Ahorro', 4);
+INSERT INTO public.cuenta VALUES ('sdd', 'sdsasdd', 'dsddsd', 'Ahorro', 5);
 
 
 --
@@ -926,9 +957,12 @@ sdd	sdsasdd	dsddsd	Ahorro	5
 -- Data for Name: cuotas_especiales; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.cuotas_especiales (id, id_proveedor, id_concepto, calcular, mes, anio, monto, saldo, n_meses, id_asamblea, observacion, estado, id_condominio) FROM stdin;
-1	231231	1	Alicuota	5	2021	200000	200000	3	23	dsa	Pendiente	111
-\.
+INSERT INTO public.cuotas_especiales VALUES (1, '231231', 1, 'Alicuota', 5, 2021, 200000, 200000, 3, 23, 'dsa', 'Pendiente', '111');
+INSERT INTO public.cuotas_especiales VALUES (3, '231231', 1, 'Total de Inmuebles', 4, 2020, 2000000, 2000000, 1, 0, '132132', 'Pendiente', '13131312');
+INSERT INTO public.cuotas_especiales VALUES (4, '342', 1, 'Alicuota', 5, 2020, 5000000, 5000000, 2, 0, 'xcccccc', 'Pendiente', '13131312');
+INSERT INTO public.cuotas_especiales VALUES (5, '231231', 1, 'Total de Inmuebles', 7, 2020, 65700000, 65700000, 1, 0, 'dddddd', 'Pendiente', '13131312');
+INSERT INTO public.cuotas_especiales VALUES (6, '342', 1, 'Alicuota', 8, 2020, 120000000, 120000000, 1, 0, 'rrrrrr', 'Pendiente', '13131312');
+INSERT INTO public.cuotas_especiales VALUES (7, '231231', 1, 'Total de Inmuebles', 9, 2020, 300000000, 300000000, 1, 0, 'hhjjhhg', 'Pendiente', '13131312');
 
 
 --
@@ -937,10 +971,8 @@ COPY public.cuotas_especiales (id, id_proveedor, id_concepto, calcular, mes, ani
 -- Data for Name: fondos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.fondos (tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id_condominio) FROM stdin;
-prestaciones	2020-04-15	madsodiadjada		200000	0	111
-ad	2020-04-04	madsodiadjada	yes	200000	1000000	111
-\.
+INSERT INTO public.fondos VALUES ('prestaciones', '2020-04-15', 'madsodiadjada', '', 200000, 0, '111');
+INSERT INTO public.fondos VALUES ('ad', '2020-04-04', 'madsodiadjada', 'yes', 200000, 1000000, '111');
 
 
 --
@@ -949,13 +981,16 @@ ad	2020-04-04	madsodiadjada	yes	200000	1000000	111
 -- Data for Name: gasto_comun; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.gasto_comun (id, tipo, mes, anio, monto, n_factura, id_proveedor, id_concepto, observaciones, fecha, estado, id_condominio, saldo) FROM stdin;
-1	Ordinario	6	2021	100000	52	231231	0	23	2020-04-17	Pendiente	111	\N
-2	Extraordinario	6	2021	213	sd	342	1	d	2020-04-03	Pendiente	111	\N
-4	Ordinario	4	2020	23	sadsa	342	0		2020-04-10	Pendiente	111	23
-6	Ordinario	8	2021	100000	1231	342	1	asdada	2020-04-24	Pendiente	111	100000
-3	Extraordinario	6	2020	1004000	sd1231	231231	1	d	2020-04-03	Pendiente	111	1004000
-\.
+INSERT INTO public.gasto_comun VALUES (1, 'Ordinario', 6, 2021, 100000, '52', '231231', 0, '23', '2020-04-17', 'Pendiente', '111', NULL);
+INSERT INTO public.gasto_comun VALUES (2, 'Extraordinario', 6, 2021, 213, 'sd', '342', 1, 'd', '2020-04-03', 'Pendiente', '111', NULL);
+INSERT INTO public.gasto_comun VALUES (4, 'Ordinario', 4, 2020, 23, 'sadsa', '342', 0, '', '2020-04-10', 'Pendiente', '111', 23);
+INSERT INTO public.gasto_comun VALUES (6, 'Ordinario', 8, 2021, 100000, '1231', '342', 1, 'asdada', '2020-04-24', 'Pendiente', '111', 100000);
+INSERT INTO public.gasto_comun VALUES (3, 'Extraordinario', 6, 2020, 1004000, 'sd1231', '231231', 1, 'd', '2020-04-03', 'Pendiente', '111', 1004000);
+INSERT INTO public.gasto_comun VALUES (7, 'Extraordinario', 4, 2020, 20000, '024596545465', '231231', 1, 'sasasasa', '2020-04-09', 'Pendiente', '13131312', 20000);
+INSERT INTO public.gasto_comun VALUES (10, 'Extraordinario', 6, 2020, 10200000, '654987321524', '342', 1, 'sggggggggg', '2020-06-11', 'Pendiente', '13131312', 10200000);
+INSERT INTO public.gasto_comun VALUES (8, 'Ordinario', 5, 2020, 20000000, '02422', '342', 1, 'sasasasassddddd', '2020-05-13', 'Pendiente', '13131312', 20000000);
+INSERT INTO public.gasto_comun VALUES (11, 'Extraordinario', 9, 2020, 10200000000, '656798765434567', '231231', 1, 'sgggggggggzxxzxzx', '2020-09-09', 'Pendiente', '13131312', 10200000000);
+INSERT INTO public.gasto_comun VALUES (9, 'Ordinario', 7, 2020, 50000000, '02422667543', '231231', 1, 'sggggggggg', '2020-07-14', 'Pendiente', '13131312', 50000000);
 
 
 --
@@ -964,9 +999,11 @@ COPY public.gasto_comun (id, tipo, mes, anio, monto, n_factura, id_proveedor, id
 -- Data for Name: interes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.interes (id, nombre, factor, estado) FROM stdin;
-2	adad	23	Activo
-\.
+INSERT INTO public.interes VALUES (2, 'adad', 23, 'Activo');
+INSERT INTO public.interes VALUES (3, 'No se', 50, 'Activo');
+INSERT INTO public.interes VALUES (4, 'Cosas', 10, 'Activo');
+INSERT INTO public.interes VALUES (5, 'Cositas', 20, 'Activo');
+INSERT INTO public.interes VALUES (6, 'Cosotas', 5, 'Activo');
 
 
 --
@@ -975,11 +1012,13 @@ COPY public.interes (id, nombre, factor, estado) FROM stdin;
 -- Data for Name: propietarios; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.propietarios (cedula, nombre, apellido, telefono, correo, id_condominio) FROM stdin;
-26943430	samuels	perezs	04245222312s	sa@sa.coms	111
-732463	skfhsdjfkdsjfh	kllfkjkgh	ksglkjwl	sdkfsjflsd	13131312
-31212	1312	dfghj	dfghjk	hg	111
-\.
+INSERT INTO public.propietarios VALUES ('26943430', 'samuels', 'perezs', '04245222312s', 'sa@sa.coms', '111');
+INSERT INTO public.propietarios VALUES ('31212', '1312', 'dfghj', 'dfghjk', 'hg', '111');
+INSERT INTO public.propietarios VALUES ('27328852', 'Maryorith', 'Singer', '04125084544', 'maryorith1@hotmail.com', '13131312');
+INSERT INTO public.propietarios VALUES ('2456325', 'Jose', 'Perez', '04245222312', 'sapm2000@hotmail.com', '13131312');
+INSERT INTO public.propietarios VALUES ('8517596', 'Blanca', 'Singer', '04127616516', 'blanca1@hotmail.com', '13131312');
+INSERT INTO public.propietarios VALUES ('732463', 'Juan', 'Lugo', '04125847963', 'jl@hotmail.com', '13131312');
+INSERT INTO public.propietarios VALUES ('24578463', 'Maria', 'Alvarez', '04241578963', 'maria03@hotmail.com', '13131312');
 
 
 --
@@ -988,10 +1027,8 @@ COPY public.propietarios (cedula, nombre, apellido, telefono, correo, id_condomi
 -- Data for Name: proveedores; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.proveedores (cedula, nombre, telefono, correo, contacto, direccion) FROM stdin;
-231231	asdas	234234	asdad	sadasdasd	ffsfsdfsfsfsf
-342	asdassd	234234	asdad	sadasdasdasd	ffsfsdfsfsfsf
-\.
+INSERT INTO public.proveedores VALUES ('231231', 'asdas', '234234', 'asdad', 'sadasdasd', 'ffsfsdfsfsfsf');
+INSERT INTO public.proveedores VALUES ('342', 'asdassd', '234234', 'asdad', 'sadasdasdasd', 'ffsfsdfsfsfsf');
 
 
 --
@@ -1000,10 +1037,8 @@ COPY public.proveedores (cedula, nombre, telefono, correo, contacto, direccion) 
 -- Data for Name: puente_asamblea_propietario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.puente_asamblea_propietario (id, id_asamblea, id_propietario) FROM stdin;
-29	23	26943430
-30	23	31212
-\.
+INSERT INTO public.puente_asamblea_propietario VALUES (29, 23, '26943430');
+INSERT INTO public.puente_asamblea_propietario VALUES (30, 23, '31212');
 
 
 --
@@ -1012,11 +1047,9 @@ COPY public.puente_asamblea_propietario (id, id_asamblea, id_propietario) FROM s
 -- Data for Name: puente_comunicado_usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.puente_comunicado_usuario (id, id_usuario, id_comunicado, leido) FROM stdin;
-1	26843430	2	0
-2	26943430	2	1
-3	26843430	3	0
-\.
+INSERT INTO public.puente_comunicado_usuario VALUES (1, '26843430', 2, 0);
+INSERT INTO public.puente_comunicado_usuario VALUES (2, '26943430', 2, 1);
+INSERT INTO public.puente_comunicado_usuario VALUES (3, '26843430', 3, 0);
 
 
 --
@@ -1025,24 +1058,22 @@ COPY public.puente_comunicado_usuario (id, id_usuario, id_comunicado, leido) FRO
 -- Data for Name: puente_condominio_cuenta; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.puente_condominio_cuenta (id, id_cuenta, id_condominio) FROM stdin;
-10	sdfsf	13131312
-11	sdfsf	111
-21	ddfsf	13131312
-22	ddfsf	111
-24	423424423	13131312
-25	423424423	111
-27	qweq	13131312
-28	qweq	111
-30	09876543	13131312
-31	09876543	111
-42	dsaddsd	13131312
-43	dsaddsd	111
-50	fsflkjhgfds	13131312
-51	fsflkjhgfds	111
-54	dsad	111
-55	sdsasdd	13131312
-\.
+INSERT INTO public.puente_condominio_cuenta VALUES (10, 'sdfsf', '13131312');
+INSERT INTO public.puente_condominio_cuenta VALUES (11, 'sdfsf', '111');
+INSERT INTO public.puente_condominio_cuenta VALUES (21, 'ddfsf', '13131312');
+INSERT INTO public.puente_condominio_cuenta VALUES (22, 'ddfsf', '111');
+INSERT INTO public.puente_condominio_cuenta VALUES (24, '423424423', '13131312');
+INSERT INTO public.puente_condominio_cuenta VALUES (25, '423424423', '111');
+INSERT INTO public.puente_condominio_cuenta VALUES (27, 'qweq', '13131312');
+INSERT INTO public.puente_condominio_cuenta VALUES (28, 'qweq', '111');
+INSERT INTO public.puente_condominio_cuenta VALUES (30, '09876543', '13131312');
+INSERT INTO public.puente_condominio_cuenta VALUES (31, '09876543', '111');
+INSERT INTO public.puente_condominio_cuenta VALUES (42, 'dsaddsd', '13131312');
+INSERT INTO public.puente_condominio_cuenta VALUES (43, 'dsaddsd', '111');
+INSERT INTO public.puente_condominio_cuenta VALUES (50, 'fsflkjhgfds', '13131312');
+INSERT INTO public.puente_condominio_cuenta VALUES (51, 'fsflkjhgfds', '111');
+INSERT INTO public.puente_condominio_cuenta VALUES (54, 'dsad', '111');
+INSERT INTO public.puente_condominio_cuenta VALUES (55, 'sdsasdd', '13131312');
 
 
 --
@@ -1051,9 +1082,11 @@ COPY public.puente_condominio_cuenta (id, id_cuenta, id_condominio) FROM stdin;
 -- Data for Name: puente_interes_condominio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.puente_interes_condominio (id, id_condominio, id_interes) FROM stdin;
-6	13131312	2
-\.
+INSERT INTO public.puente_interes_condominio VALUES (6, '13131312', 2);
+INSERT INTO public.puente_interes_condominio VALUES (7, '13131312', 3);
+INSERT INTO public.puente_interes_condominio VALUES (8, '13131312', 4);
+INSERT INTO public.puente_interes_condominio VALUES (9, '13131312', 5);
+INSERT INTO public.puente_interes_condominio VALUES (10, '13131312', 6);
 
 
 --
@@ -1062,14 +1095,18 @@ COPY public.puente_interes_condominio (id, id_condominio, id_interes) FROM stdin
 -- Data for Name: puente_sancion_unidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.puente_sancion_unidad (id, id_sancion, id_unidad) FROM stdin;
-1	6	2-013
-2	6	123
-3	7	2-013
-4	8	2-013
-5	9	2-013
-6	10	2-013
-\.
+INSERT INTO public.puente_sancion_unidad VALUES (1, 6, '2-013');
+INSERT INTO public.puente_sancion_unidad VALUES (2, 6, '123');
+INSERT INTO public.puente_sancion_unidad VALUES (3, 7, '2-013');
+INSERT INTO public.puente_sancion_unidad VALUES (4, 8, '2-013');
+INSERT INTO public.puente_sancion_unidad VALUES (5, 9, '2-013');
+INSERT INTO public.puente_sancion_unidad VALUES (6, 10, '2-013');
+INSERT INTO public.puente_sancion_unidad VALUES (12, 12, '1');
+INSERT INTO public.puente_sancion_unidad VALUES (15, 14, '2');
+INSERT INTO public.puente_sancion_unidad VALUES (18, 13, '1');
+INSERT INTO public.puente_sancion_unidad VALUES (19, 13, '3');
+INSERT INTO public.puente_sancion_unidad VALUES (20, 15, '4');
+INSERT INTO public.puente_sancion_unidad VALUES (21, 16, '5');
 
 
 --
@@ -1078,18 +1115,21 @@ COPY public.puente_sancion_unidad (id, id_sancion, id_unidad) FROM stdin;
 -- Data for Name: sancion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.sancion (id, tipo, mes, anio, monto, descripcion, id_condominio, estado) FROM stdin;
-1	Multa	7	2021	2000	dsfsfsdfdsf	111	\N
-2	Multa	7	2021	2000	dsfsfsdfdsf	111	\N
-3	Multa	7	2021	2000	dsfsfsdfdsf	111	\N
-4	Multa	7	2021	2000	dsfsfsdfdsf	111	\N
-5	Multa	7	2021	2000	dsfsfsdfdsf	111	\N
-6	Multa	4	2020	2020		111	\N
-7	Multa	4	2020	2020		111	\N
-8	Multa	4	2020	12312312		111	\N
-9	Multa	4	2020	10000	sdf	111	Pendiente
-10	Interes de mora	4	2020	10000	sdf	111	Pendiente
-\.
+INSERT INTO public.sancion VALUES (1, 'Multa', 7, 2021, 2000, 'dsfsfsdfdsf', '111', NULL);
+INSERT INTO public.sancion VALUES (2, 'Multa', 7, 2021, 2000, 'dsfsfsdfdsf', '111', NULL);
+INSERT INTO public.sancion VALUES (3, 'Multa', 7, 2021, 2000, 'dsfsfsdfdsf', '111', NULL);
+INSERT INTO public.sancion VALUES (4, 'Multa', 7, 2021, 2000, 'dsfsfsdfdsf', '111', NULL);
+INSERT INTO public.sancion VALUES (5, 'Multa', 7, 2021, 2000, 'dsfsfsdfdsf', '111', NULL);
+INSERT INTO public.sancion VALUES (6, 'Multa', 4, 2020, 2020, '', '111', NULL);
+INSERT INTO public.sancion VALUES (7, 'Multa', 4, 2020, 2020, '', '111', NULL);
+INSERT INTO public.sancion VALUES (8, 'Multa', 4, 2020, 12312312, '', '111', NULL);
+INSERT INTO public.sancion VALUES (9, 'Multa', 4, 2020, 10000, 'sdf', '111', 'Pendiente');
+INSERT INTO public.sancion VALUES (10, 'Interes de mora', 4, 2020, 10000, 'sdf', '111', 'Pendiente');
+INSERT INTO public.sancion VALUES (12, 'Multa', 4, 2020, 500000, 'El niño rompio las tuberias de agua', '13131312', 'Pendiente');
+INSERT INTO public.sancion VALUES (14, 'Multa', 5, 2020, 455000, 'El señor de la casa dejo el fogon encendido e incendio los cables', '13131312', 'Pendiente');
+INSERT INTO public.sancion VALUES (13, 'Interes de mora', 4, 2020, 5, 'interes', '13131312', 'Pendiente');
+INSERT INTO public.sancion VALUES (15, 'Multa', 7, 2020, 30000, 'no se', '13131312', 'Pendiente');
+INSERT INTO public.sancion VALUES (16, 'Interes de mora', 7, 2020, 10, 'no se', '13131312', 'Pendiente');
 
 
 --
@@ -1098,10 +1138,13 @@ COPY public.sancion (id, tipo, mes, anio, monto, descripcion, id_condominio, est
 -- Data for Name: unidades; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.unidades (n_unidad, direccion, area, id_propietario) FROM stdin;
-2-013	adasd	323	26943430
-123	sadsad	213	31212
-\.
+INSERT INTO public.unidades VALUES ('2-013', 'adasd', 323, '26943430');
+INSERT INTO public.unidades VALUES ('123', 'sadsad', 213, '31212');
+INSERT INTO public.unidades VALUES ('1', 'no se', 300, '27328852');
+INSERT INTO public.unidades VALUES ('2', 'no se', 300, '2456325');
+INSERT INTO public.unidades VALUES ('3', 'no se', 300, '8517596');
+INSERT INTO public.unidades VALUES ('4', 'no se', 300, '732463');
+INSERT INTO public.unidades VALUES ('5', 'no se', 300, '24578463');
 
 
 --
@@ -1110,14 +1153,12 @@ COPY public.unidades (n_unidad, direccion, area, id_propietario) FROM stdin;
 -- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.usuario (cedula, usuario, password, nombre, apellido, tipo, ntelefono) FROM stdin;
-26843430	sapm	12345	samuel	perez	Administrador	2312313
-26943430	sapmmm	1234	adag	adasad	Propietario	123
-\.
+INSERT INTO public.usuario VALUES ('26843430', 'sapm', '12345', 'samuel', 'perez', 'Administrador', '2312313');
+INSERT INTO public.usuario VALUES ('26943430', 'sapmmm', '1234', 'adag', 'adasad', 'Propietario', '123');
 
 
 --
--- TOC entry 3059 (class 0 OID 0)
+-- TOC entry 3061 (class 0 OID 0)
 -- Dependencies: 212
 -- Name: asambleas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1126,7 +1167,7 @@ SELECT pg_catalog.setval('public.asambleas_id_seq', 23, true);
 
 
 --
--- TOC entry 3060 (class 0 OID 0)
+-- TOC entry 3062 (class 0 OID 0)
 -- Dependencies: 204
 -- Name: banco_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1135,7 +1176,7 @@ SELECT pg_catalog.setval('public.banco_id_seq', 6, true);
 
 
 --
--- TOC entry 3061 (class 0 OID 0)
+-- TOC entry 3063 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: categoriagasto_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1144,7 +1185,7 @@ SELECT pg_catalog.setval('public.categoriagasto_id_seq', 1, true);
 
 
 --
--- TOC entry 3062 (class 0 OID 0)
+-- TOC entry 3064 (class 0 OID 0)
 -- Dependencies: 227
 -- Name: comunicados_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1153,7 +1194,7 @@ SELECT pg_catalog.setval('public.comunicados_id_seq', 3, true);
 
 
 --
--- TOC entry 3063 (class 0 OID 0)
+-- TOC entry 3065 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: concepto_gasto_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1162,34 +1203,34 @@ SELECT pg_catalog.setval('public.concepto_gasto_id_seq', 1, true);
 
 
 --
--- TOC entry 3064 (class 0 OID 0)
+-- TOC entry 3066 (class 0 OID 0)
 -- Dependencies: 231
 -- Name: cuotas_especiales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.cuotas_especiales_id_seq', 2, true);
-
-
---
--- TOC entry 3065 (class 0 OID 0)
--- Dependencies: 225
--- Name: gasto_comun_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.gasto_comun_id_seq', 6, true);
-
-
---
--- TOC entry 3066 (class 0 OID 0)
--- Dependencies: 233
--- Name: interes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.interes_id_seq', 2, true);
+SELECT pg_catalog.setval('public.cuotas_especiales_id_seq', 7, true);
 
 
 --
 -- TOC entry 3067 (class 0 OID 0)
+-- Dependencies: 225
+-- Name: gasto_comun_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.gasto_comun_id_seq', 11, true);
+
+
+--
+-- TOC entry 3068 (class 0 OID 0)
+-- Dependencies: 233
+-- Name: interes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.interes_id_seq', 6, true);
+
+
+--
+-- TOC entry 3069 (class 0 OID 0)
 -- Dependencies: 214
 -- Name: puente_asamblea_propietario_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1198,7 +1239,7 @@ SELECT pg_catalog.setval('public.puente_asamblea_propietario_id_seq', 30, true);
 
 
 --
--- TOC entry 3068 (class 0 OID 0)
+-- TOC entry 3070 (class 0 OID 0)
 -- Dependencies: 229
 -- Name: puente_comunicado_usuario_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1207,7 +1248,7 @@ SELECT pg_catalog.setval('public.puente_comunicado_usuario_id_seq', 3, true);
 
 
 --
--- TOC entry 3069 (class 0 OID 0)
+-- TOC entry 3071 (class 0 OID 0)
 -- Dependencies: 207
 -- Name: puente_condomino_cuenta_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -1216,30 +1257,30 @@ SELECT pg_catalog.setval('public.puente_condomino_cuenta_id_seq', 55, true);
 
 
 --
--- TOC entry 3070 (class 0 OID 0)
+-- TOC entry 3072 (class 0 OID 0)
 -- Dependencies: 235
 -- Name: puente_interes_condominio_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.puente_interes_condominio_id_seq', 6, true);
+SELECT pg_catalog.setval('public.puente_interes_condominio_id_seq', 10, true);
 
 
 --
--- TOC entry 3071 (class 0 OID 0)
+-- TOC entry 3073 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: puente_sancion_unidad_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.puente_sancion_unidad_id_seq', 11, true);
+SELECT pg_catalog.setval('public.puente_sancion_unidad_id_seq', 21, true);
 
 
 --
--- TOC entry 3072 (class 0 OID 0)
+-- TOC entry 3074 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: sancion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sancion_id_seq', 11, true);
+SELECT pg_catalog.setval('public.sancion_id_seq', 16, true);
 
 
 --
@@ -1539,7 +1580,7 @@ ALTER TABLE ONLY public.concepto_gasto
     ADD CONSTRAINT concepto_gasto_id_categoria_fkey FOREIGN KEY (id_categoria) REFERENCES public.categoriagasto(id);
 
 
--- Completed on 2020-04-25 20:16:59
+-- Completed on 2020-04-26 10:16:08
 
 --
 -- PostgreSQL database dump complete
