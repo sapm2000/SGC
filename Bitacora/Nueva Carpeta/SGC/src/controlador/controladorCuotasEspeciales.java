@@ -115,6 +115,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             this.cuotae.setVisible(true);
             this.cuotae.btnModificar.setEnabled(false);
             this.cuotae.btnGuardar.setEnabled(true);
+            this.cuotae.btnEliminar.setEnabled(false);
             this.cuotae.jProveedor.setEnabled(true);
             this.cuotae.jCalcular.setEnabled(true);
             modasa.setId_condominio(panta1.rif.getText());
