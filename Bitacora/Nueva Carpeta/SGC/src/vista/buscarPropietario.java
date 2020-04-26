@@ -4,20 +4,40 @@
  * and open the template in the editor.
  */
 package vista;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollBar;
 import javax.swing.JTable;
+import javax.swing.plaf.basic.BasicScrollBarUI;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
+
 public class buscarPropietario extends javax.swing.JFrame {
 
     /**
      * Creates new form buscarPropietario
      */
+    //Aquí cambias la trasparencia de la barra mientras el cursor está encima. Mientras mál alto el valor, menos transparente
+    private static final int SCROLL_BAR_ALPHA_ROLLOVER = 150;
+    //Aquí cambias la trasparencia de la barra. Mientras mál alto el valor, menos transparente
+    private static final int SCROLL_BAR_ALPHA = 100;
+    private static final int THUMB_BORDER_SIZE = 5;
+    //Aquí cambias el grosor de la barra
+    private static final int THUMB_SIZE = 8;
+    //Aquí cambias el color de la barra
+    private static final Color THUMB_COLOR = Color.BLUE;
+
     public buscarPropietario() {
         initComponents();
         tablaprop.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
+        jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         setLocationRelativeTo(null);
     }
 
@@ -196,16 +216,55 @@ public class buscarPropietario extends javax.swing.JFrame {
     public javax.swing.JTextField txtBuscarProp;
     // End of variables declaration//GEN-END:variables
     static public class Headercolor extends DefaultTableCellHeaderRenderer {
-    public Headercolor () {
-        setOpaque(true);
-    }
-    public Component getTableCellRendererComponent(JTable jTable1, Object value, boolean selected, boolean focused,int row,int column) {
-        super.getTableCellRendererComponent(jTable1, value, selected, focused, row, column);
-        setBackground(new java.awt.Color(0,94,159));
-        setForeground(Color.white);
-        setFont(new Font("Tahoma", Font.BOLD, 14));
-        return this;
-    }
-}
 
+        public Headercolor() {
+            setOpaque(true);
+        }
+
+        public Component getTableCellRendererComponent(JTable jTable1, Object value, boolean selected, boolean focused, int row, int column) {
+            super.getTableCellRendererComponent(jTable1, value, selected, focused, row, column);
+            setBackground(new java.awt.Color(0, 94, 159));
+            setForeground(Color.white);
+            setFont(new Font("Tahoma", Font.BOLD, 14));
+            return this;
+        }
+    }
+
+    public class MyScrollBarUI extends BasicScrollBarUI {
+
+        @Override
+        public void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
+            trackBounds.contains(thumbRect);
+            g.setColor(new java.awt.Color(255, 255, 255));
+            g.drawRect(0, 0, 500, 500);
+            g.fillRect(0, 0, 500, 500);
+
+        }
+
+        @Override
+        public void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+            int alpha = isThumbRollover() ? SCROLL_BAR_ALPHA_ROLLOVER : SCROLL_BAR_ALPHA;
+            int orientation = scrollbar.getOrientation();
+            int arc = THUMB_SIZE;
+            int x = thumbBounds.x + THUMB_BORDER_SIZE;
+            int y = thumbBounds.y + THUMB_BORDER_SIZE;
+
+            int width = orientation == JScrollBar.VERTICAL
+                    ? THUMB_SIZE : thumbBounds.width - (THUMB_BORDER_SIZE * 2);
+            width = Math.max(width, THUMB_SIZE);
+
+            int height = orientation == JScrollBar.VERTICAL
+                    ? thumbBounds.height - (THUMB_BORDER_SIZE * 2) : THUMB_SIZE;
+            height = Math.max(height, THUMB_SIZE);
+
+            Graphics2D graphics2D = (Graphics2D) g.create();
+            graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON);
+            graphics2D.setColor(new Color(THUMB_COLOR.getRed(),
+                    THUMB_COLOR.getGreen(), THUMB_COLOR.getBlue(), alpha));
+            graphics2D.fillRoundRect(x, y, width, height, arc, arc);
+            graphics2D.dispose();
+        }
+
+    }
 }

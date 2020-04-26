@@ -8,8 +8,15 @@ package vista;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollBar;
 import javax.swing.JTable;
+import javax.swing.plaf.basic.BasicScrollBarUI;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 /**
@@ -21,9 +28,20 @@ public class catalogoGastoComun extends javax.swing.JFrame {
     /**
      * Creates new form catalogoGastoComun
      */
+    //Aquí cambias la trasparencia de la barra mientras el cursor está encima. Mientras mál alto el valor, menos transparente
+    private static final int SCROLL_BAR_ALPHA_ROLLOVER = 150;
+    //Aquí cambias la trasparencia de la barra. Mientras mál alto el valor, menos transparente
+    private static final int SCROLL_BAR_ALPHA = 100;
+    private static final int THUMB_BORDER_SIZE = 5;
+    //Aquí cambias el grosor de la barra
+    private static final int THUMB_SIZE = 8;
+    //Aquí cambias el color de la barra
+    private static final Color THUMB_COLOR = Color.BLUE;
+    
     public catalogoGastoComun() {
         initComponents();
         jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
+        jScrollPane1.getVerticalScrollBar().setUI(new catalogoGastoComun.MyScrollBarUI());
         setLocationRelativeTo(null);
     }
 
@@ -79,10 +97,10 @@ public class catalogoGastoComun extends javax.swing.JFrame {
         jTable1.setRowHeight(20);
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 1130, 260));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 1130, 260));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 800, 300));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 800, 300));
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
         btnMinimizar.setBorder(null);
@@ -146,9 +164,9 @@ public class catalogoGastoComun extends javax.swing.JFrame {
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 190, 10));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, 800, 300));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 800, 300));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1230, 460));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1230, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -236,4 +254,43 @@ public class catalogoGastoComun extends javax.swing.JFrame {
         return this;
     }
 }
+    
+    public class MyScrollBarUI extends BasicScrollBarUI {
+
+        @Override
+        public void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
+            trackBounds.contains(thumbRect);
+            g.setColor(new java.awt.Color(255, 255, 255));
+            g.drawRect(0, 0, 500, 500);
+            g.fillRect(0, 0, 500, 500);
+
+        }
+
+        @Override
+        public void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+            int alpha = isThumbRollover() ? SCROLL_BAR_ALPHA_ROLLOVER : SCROLL_BAR_ALPHA;
+            int orientation = scrollbar.getOrientation();
+            int arc = THUMB_SIZE;
+            int x = thumbBounds.x + THUMB_BORDER_SIZE;
+            int y = thumbBounds.y + THUMB_BORDER_SIZE;
+
+            int width = orientation == JScrollBar.VERTICAL
+                    ? THUMB_SIZE : thumbBounds.width - (THUMB_BORDER_SIZE * 2);
+            width = Math.max(width, THUMB_SIZE);
+
+            int height = orientation == JScrollBar.VERTICAL
+                    ? thumbBounds.height - (THUMB_BORDER_SIZE * 2) : THUMB_SIZE;
+            height = Math.max(height, THUMB_SIZE);
+
+            Graphics2D graphics2D = (Graphics2D) g.create();
+            graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON);
+            graphics2D.setColor(new Color(THUMB_COLOR.getRed(),
+                    THUMB_COLOR.getGreen(), THUMB_COLOR.getBlue(), alpha));
+            graphics2D.fillRoundRect(x, y, width, height, arc, arc);
+            graphics2D.dispose();
+        }
+
+    }
+    
 }
