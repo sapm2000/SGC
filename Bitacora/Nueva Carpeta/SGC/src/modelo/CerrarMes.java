@@ -651,5 +651,49 @@ public class CerrarMes extends ConexionBD {
 
         return listaCierremes;
     }
+    
+     public boolean buscarfechas(CerrarMes modc) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT id_condominio FROM cierre_de_mes where mes=? and anio=? and id_condominio=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+          
+            ps.setInt(1, modc.getMes_cierre());
+            ps.setInt(2, modc.getAño_cierre());
+            ps.setString(3, modc.getId_condominio());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                modc.setId_condominio(rs.getString("id_condominio"));
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
 
 }
