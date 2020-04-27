@@ -46,6 +46,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
     ArrayList<Unidades> listapropietarios;
     ArrayList<Unidades> listaunidades;
     ArrayList<CerrarMes> listapagos;
+    ArrayList<CerrarMes> listadetallegasto;
     DefaultTableModel dm;
 
     public controladorUnidades(unidades uni, catalogoUnidades catauni, detallecuenta detacun, detalleRecibo detare, Unidades moduni, PantallaPrincipal1 panta1, buscarPropietario buscp, CerrarMes modc) {
@@ -56,7 +57,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         this.moduni = moduni;
         this.panta1 = panta1;
         this.buscp = buscp;
-        this.modc=modc;
+        this.modc = modc;
         this.catauni.addWindowListener(this);
 
         this.catauni.jButton2.addActionListener(this);
@@ -71,6 +72,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         this.uni.btnModificar.addActionListener(this);
         this.catauni.jButton7.addActionListener(this);
         this.detacun.txtBuscar.addKeyListener(this);
+        this.detacun.jTable1.addMouseListener(this);
     }
 
     public void llenartablapropietarios(JTable tablaD) {
@@ -100,7 +102,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         }
 
     }
-    
+
     public void llenartablapagos(JTable tablaD) {
 
         listapagos = modc.listarpagos();
@@ -124,8 +126,8 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             columna[1] = listapagos.get(i).getMes_cierre();
             columna[2] = listapagos.get(i).getAño_cierre();
             columna[3] = listapagos.get(i).getMonto();
-            double var4=  listapagos.get(i).getAlicuota()*100;
-            String var5= var4+"%";
+            double var4 = listapagos.get(i).getAlicuota() * 100;
+            String var5 = var4 + "%";
             columna[4] = var5;
             columna[5] = listapagos.get(i).getEstado();
 
@@ -134,6 +136,39 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         }
 
     }
+    
+     public void llenardetallegasto(JTable tablaD) {
+
+        listadetallegasto = modc.listardetallesgastos();
+        DefaultTableModel modeloT = new DefaultTableModel();
+        tablaD.setModel(modeloT);
+
+        modeloT.addColumn("Tipo ");
+        modeloT.addColumn("RIF ");
+        modeloT.addColumn("Razon social");
+        modeloT.addColumn("Concepto");
+        modeloT.addColumn("Monto");
+        
+
+        Object[] columna = new Object[5];
+
+        int numRegistro = listadetallegasto.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listadetallegasto.get(i).getTipo();
+            columna[1] = listadetallegasto.get(i).getCedula();
+            columna[2] = listadetallegasto.get(i).getNom_proveedor();
+            columna[3] = listadetallegasto.get(i).getNom_concepto();
+            columna[4] = listadetallegasto.get(i).getMonto();
+          
+
+            modeloT.addRow(columna);
+
+        }
+
+    }
+    
 
     public void llenartablaunidades(JTable tablaD) {
 
@@ -189,7 +224,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
         if (e.getSource() == catauni.jButton7) {
             this.detacun.setVisible(true);
-           
 
         }
 
@@ -245,7 +279,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             uni.dispose();
         }
 
-      
     }
 
     @Override
@@ -298,6 +331,20 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                 uni.btnModificar.setEnabled(true);
                 uni.btnGuardar.setEnabled(false);
             }
+        }
+
+        if (e.getSource() == detacun.jTable1) {
+            modc.setId_unidad(detacun.txtUnidad.getText());
+            int fila = this.detacun.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+            String datos = String.valueOf(this.detacun.jTable1.getValueAt(fila, 1)); // por ultimo, obtengo el valor de la celda
+            int fila2 = this.detacun.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+            String dato2 = String.valueOf(this.detacun.jTable1.getValueAt(fila2, 2)); // por ultimo, obtengo el valor de la celda
+            this.detare.setVisible(true);
+           
+            modc.setMes_cierre(Integer.parseInt(datos));
+            modc.setAño_cierre(Integer.parseInt(dato2));
+            modc.setId_condominio(panta1.rif.getText());
+            llenardetallegasto(detare.tablagastos);
         }
     }
 

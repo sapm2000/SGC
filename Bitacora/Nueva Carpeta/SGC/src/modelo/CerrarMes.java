@@ -28,6 +28,10 @@ public class CerrarMes extends ConexionBD {
     private String estado;
     private int meses_res;
     private int meses_deuda;
+    private String nom_concepto;
+    private String cedula;
+    private String nom_proveedor;
+    private String tipo;
 
     public int getMeses_deuda() {
         return meses_deuda;
@@ -36,9 +40,16 @@ public class CerrarMes extends ConexionBD {
     public void setMeses_deuda(int meses_deuda) {
         this.meses_deuda = meses_deuda;
     }
-    
-    
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    
     public int getMeses_res() {
         return meses_res;
     }
@@ -111,6 +122,30 @@ public class CerrarMes extends ConexionBD {
         this.estado = estado;
     }
 
+    public String getNom_concepto() {
+        return nom_concepto;
+    }
+
+    public void setNom_concepto(String nom_concepto) {
+        this.nom_concepto = nom_concepto;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public String getNom_proveedor() {
+        return nom_proveedor;
+    }
+
+    public void setNom_proveedor(String nom_proveedor) {
+        this.nom_proveedor = nom_proveedor;
+    }
+
     public boolean registrarGasto(CerrarMes modc) {
 
         PreparedStatement ps = null;
@@ -161,11 +196,11 @@ public class CerrarMes extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-            
+
             ps.setInt(1, getMes_cierre());
             ps.setInt(2, getAño_cierre());
             ps.setString(3, getId_condominio());
-           
+
             ps.execute();
 
             return true;
@@ -189,6 +224,7 @@ public class CerrarMes extends ConexionBD {
         }
 
     }
+
     public boolean registrar_cuota(CerrarMes modc) {
 
         PreparedStatement ps = null;
@@ -634,7 +670,7 @@ public class CerrarMes extends ConexionBD {
         }
 
     }
-    
+
     public ArrayList<CerrarMes> listar() {
         ArrayList listaCierremes = new ArrayList();
         CerrarMes modc;
@@ -659,13 +695,13 @@ public class CerrarMes extends ConexionBD {
 
                 listaCierremes.add(modc);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
 
         return listaCierremes;
     }
-    
-     public boolean buscarfechas(CerrarMes modc) {
+
+    public boolean buscarfechas(CerrarMes modc) {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -675,7 +711,7 @@ public class CerrarMes extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-          
+
             ps.setInt(1, modc.getMes_cierre());
             ps.setInt(2, modc.getAño_cierre());
             ps.setString(3, modc.getId_condominio());
@@ -708,8 +744,8 @@ public class CerrarMes extends ConexionBD {
         }
 
     }
-     
-     public ArrayList<CerrarMes> listarpagos() {
+
+    public ArrayList<CerrarMes> listarpagos() {
         ArrayList listaCierremes = new ArrayList();
         CerrarMes modc;
 
@@ -722,7 +758,7 @@ public class CerrarMes extends ConexionBD {
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_unidad());
             ps.setString(2, getId_condominio());
-           
+
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -743,8 +779,8 @@ public class CerrarMes extends ConexionBD {
 
         return listaCierremes;
     }
-     
-     public boolean buscarmesesdedeuda(CerrarMes modc) {
+
+    public boolean buscarmesesdedeuda(CerrarMes modc) {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -754,8 +790,8 @@ public class CerrarMes extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-          
-           ps.setString(1, getId_unidad());
+
+            ps.setString(1, getId_unidad());
             ps.setString(2, getId_condominio());
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -786,7 +822,83 @@ public class CerrarMes extends ConexionBD {
         }
 
     }
-     
-     
+
+    public ArrayList<CerrarMes> listardetallesgastos() {
+        ArrayList listadetallegasto = new ArrayList();
+        CerrarMes modc;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT concepto_gasto.nom_concepto, detalle_pagos.monto, proveedores.cedula, proveedores.nombre, gasto_comun.tipo  FROM detalle_pagos INNER join gasto_comun on detalle_pagos.id_gasto = gasto_comun.id INNER join concepto_gasto on concepto_gasto.id = gasto_comun.id_concepto INNER join proveedores on gasto_comun.id_proveedor=proveedores.cedula where id_unidad=? and detalle_pagos.mes=? and detalle_pagos.anio=? and detalle_pagos.id_condominio=? order by gasto_comun.tipo;";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getId_unidad());
+            ps.setInt(2, getMes_cierre());
+            ps.setInt(3, getAño_cierre());
+            ps.setString(4, getId_condominio());
+           
+            
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modc = new CerrarMes();
+
+                modc.setNom_concepto(rs.getString(1));
+                modc.setMonto(rs.getDouble(2));
+                modc.setCedula(rs.getString(3));
+                modc.setNom_proveedor(rs.getString(4));
+                modc.setTipo(rs.getString(5));
+                
+
+                listadetallegasto.add(modc);
+            }
+        } catch (Exception e) {
+        }
+
+        return listadetallegasto;
+    }
+
+     public ArrayList<CerrarMes> listardetallescuotas() {
+        ArrayList listadetallecuotas = new ArrayList();
+        CerrarMes modc;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT concepto_gasto.nom_concepto, detalle_cuotas.monto, proveedores.cedula, proveedores.nombre, cuotas_especiales.n_mese_restante FROM detalle_cuotas inner join cuotas_especiales on detalle_cuotas.id_cuota=cuotas_especiales.id inner join concepto_gasto on cuotas_especiales.id_concepto=concepto_gasto.id inner join proveedores on proveedores.cedula=cuotas_especiales.id_proveedor where id_unidad=?  and detalle_cuotas.mes=? and detalle_cuotas.anio=? and detalle_cuotas.id_condominio=?;";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getId_unidad());
+            ps.setInt(2, getMes_cierre());
+            ps.setInt(3, getAño_cierre());
+            ps.setString(4, getId_condominio());
+           
+            
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modc = new CerrarMes();
+
+                modc.setNom_concepto(rs.getString(1));
+                modc.setMonto(rs.getDouble(2));
+                modc.setCedula(rs.getString(3));
+                modc.setNom_proveedor(rs.getString(4));
+                modc.setMeses_res(rs.getInt(5));
+                
+
+                listadetallegasto.add(modc);
+            }
+        } catch (Exception e) {
+        }
+
+        return listadetallegasto;
+    }
 
 }
