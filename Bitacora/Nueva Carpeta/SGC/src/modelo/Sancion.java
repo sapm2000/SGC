@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,8 +35,6 @@ public class Sancion extends Unidades {
     public void setId_sancion(int id_sancion) {
         this.id_sancion = id_sancion;
     }
-    
-    
 
     public String getEstado() {
         return estado;
@@ -222,10 +221,11 @@ public class Sancion extends Unidades {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT sancion.id, tipo, mes, anio, monto, descripcion, id_condominio, count(id_sancion) as total, estado FROM sancion inner join puente_sancion_unidad on puente_sancion_unidad.id_sancion=sancion.id where sancion.id_condominio=? group by sancion.id ";
+        String sql = "SELECT sancion.id, tipo, mes, anio, monto, descripcion, id_condominio, count(id_sancion) as total, estado FROM sancion inner join puente_sancion_unidad on puente_sancion_unidad.id_sancion=sancion.id where sancion.id_condominio=? group by sancion.id";
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_condominio());
+            
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -241,6 +241,41 @@ public class Sancion extends Unidades {
                 modsan.setId_condominio(rs.getString(7));
                 modsan.setCantidad_de_unidades(rs.getInt(8));
                 modsan.setEstado(rs.getString(9));
+                
+
+                listaSancion.add(modsan);
+            }
+        } catch (Exception e) {
+        }
+
+        return listaSancion;
+    }
+
+    public ArrayList<Sancion> listarSancionesCerrarmes() {
+        ArrayList listaSancion = new ArrayList();
+        Sancion modsan;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT id_sancion, id_unidad, tipo, monto FROM puente_sancion_unidad inner join sancion on puente_sancion_unidad.id_sancion=sancion.id where sancion.id_condominio=? and mes=? and anio=?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getId_condominio());
+            ps.setInt(2, getMes());
+            ps.setInt(3, getAño());
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modsan = new Sancion();
+
+                modsan.setId(rs.getInt(1));
+                modsan.setN_unidad(rs.getString(2));
+                modsan.setTipo(rs.getString(3));
+                modsan.setMonto(rs.getDouble(4));
+                
 
                 listaSancion.add(modsan);
             }
@@ -303,10 +338,12 @@ public class Sancion extends Unidades {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "select unidades.n_unidad, puente_sancion_unidad.id_sancion from unidades left join puente_sancion_unidad on puente_sancion_unidad.id_unidad=unidades.n_unidad and puente_sancion_unidad.id_sancion=?";
+        String sql = "select unidades.n_unidad, puente_sancion_unidad.id_sancion from unidades left join puente_sancion_unidad on puente_sancion_unidad.id_unidad=unidades.n_unidad and puente_sancion_unidad.id_sancion=? left join propietarios on propietarios.cedula=unidades.id_propietario where propietarios.id_condominio=?";
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
+
+            ps.setString(2, getId_condominio());
 
             rs = ps.executeQuery();
 
@@ -315,8 +352,8 @@ public class Sancion extends Unidades {
 
                 //prs = new Persona();
                 modsan.setN_unidad(rs.getString("n_unidad"));
+
                 modsan.setId_sancion(rs.getInt("id_sancion"));
-                
 
                 listaunimod.add(modsan);
             }
@@ -333,7 +370,7 @@ public class Sancion extends Unidades {
         return listaunimod;
 
     }
-    
+
     public boolean modificarSancion(Sancion modsan) {
 
         PreparedStatement ps = null;
@@ -351,7 +388,6 @@ public class Sancion extends Unidades {
             ps.setString(5, getDescripcion());
             ps.setInt(6, getId());
 
-            
             ps.execute();
 
             return true;
@@ -374,75 +410,75 @@ public class Sancion extends Unidades {
         }
 
     }
-    
-    public boolean borrarpuentesancion(Sancion modsan){
-        
+
+    public boolean borrarpuentesancion(Sancion modsan) {
+
         PreparedStatement ps = null;
         Connection con = getConexion();
-        
+
         String sql = "DELETE FROM puente_sancion_unidad WHERE id_sancion=?";
-        
+
         try {
-            
+
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
             ps.execute();
-            
+
             return true;
-            
+
         } catch (SQLException e) {
-            
-           System.err.println(e);
-           return false;
-            
-        }finally{
+
+            System.err.println(e);
+            return false;
+
+        } finally {
             try {
-                
+
                 con.close();
-                
-            }catch (SQLException e) {
-            
-           System.err.println(e);
-           
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
             }
-        
+
         }
-        
-     }
-    
-    public boolean eliminarsancion(Sancion modsan){
-        
+
+    }
+
+    public boolean eliminarsancion(Sancion modsan) {
+
         PreparedStatement ps = null;
         Connection con = getConexion();
-        
+
         String sql = "DELETE FROM sancion WHERE id=?";
-        
+
         try {
-            
+
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
             ps.execute();
-            
+
             return true;
-            
+
         } catch (SQLException e) {
-            
-           System.err.println(e);
-           return false;
-            
-        }finally{
+
+            System.err.println(e);
+            return false;
+
+        } finally {
             try {
-                
+
                 con.close();
-                
-            }catch (SQLException e) {
-            
-           System.err.println(e);
-           
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
             }
-        
+
         }
-        
-     }  
+
+    }
 
 }

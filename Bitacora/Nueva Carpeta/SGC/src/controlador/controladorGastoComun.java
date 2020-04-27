@@ -93,7 +93,7 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
             columna[1] = listagastocomun.get(i).getTipo_gasto();
             String fecha = String.valueOf(listagastocomun.get(i).getMes()) + "-" + listagastocomun.get(i).getAño();
             columna[2] = fecha;
-            columna[3] = listagastocomun.get(i).getMonto();
+            columna[3] = String.format("%.1f", listagastocomun.get(i).getMonto());
             columna[4] = listagastocomun.get(i).getSaldo();
             columna[5] = listagastocomun.get(i).getNumero_factura();
             columna[6] = listagastocomun.get(i).getId_proveedor();

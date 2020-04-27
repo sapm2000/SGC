@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,6 +33,17 @@ public class CuotasEspeciales extends ConexionBD {
     private String id_condominio;
     private String nombre_Concepto;
     private String nombre_asamble;
+    private int n_meses_restantes;
+
+    public int getN_meses_restantes() {
+        return n_meses_restantes;
+    }
+
+    public void setN_meses_restantes(int n_meses_restantes) {
+        this.n_meses_restantes = n_meses_restantes;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -162,23 +174,24 @@ public class CuotasEspeciales extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO cuotas_especiales(id_proveedor, id_concepto, calcular, mes, anio, monto, saldo, n_meses, id_asamblea, observacion, estado, id_condominio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO cuotas_especiales(id_proveedor, n_mese_restante, id_concepto, calcular, mes, anio, monto, saldo, n_meses, id_asamblea, observacion, estado, id_condominio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         try {
 
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_proveedor());
-            ps.setInt(2, getId_concepto());
-            ps.setString(3, getCalcular());
-            ps.setDouble(4, getMes());
-            ps.setInt(5, getAño());
-            ps.setDouble(6, getMonto());
-            ps.setDouble(7, getSaldo());
-            ps.setInt(8, getN_meses());
-            ps.setInt(9, getId_asamblea());
-            ps.setString(10, getObservacion());
-            ps.setString(11, getEstado());
-            ps.setString(12, getId_condominio());
+            ps.setInt(2, getN_meses_restantes());
+            ps.setInt(3, getId_concepto());
+            ps.setString(4, getCalcular());
+            ps.setDouble(5, getMes());
+            ps.setInt(6, getAño());
+            ps.setDouble(7, getMonto());
+            ps.setDouble(8, getSaldo());
+            ps.setInt(9, getN_meses());
+            ps.setInt(10, getId_asamblea());
+            ps.setString(11, getObservacion());
+            ps.setString(12, getEstado());
+            ps.setString(13, getId_condominio());
             ps.execute();
 
             return true;
@@ -211,7 +224,7 @@ public class CuotasEspeciales extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT cuotas_especiales.id, id_proveedor, concepto_gasto.nom_concepto, calcular, mes, anio, monto, saldo, n_meses, asambleas.nombre, observacion, estado FROM cuotas_especiales inner join proveedores on proveedores.cedula=cuotas_especiales.id_proveedor inner join concepto_gasto on concepto_gasto.id=cuotas_especiales.id_concepto left join asambleas on asambleas.id = cuotas_especiales.id_asamblea where cuotas_especiales.id_condominio=?";
+        String sql = "SELECT cuotas_especiales.id, id_proveedor, concepto_gasto.nom_concepto, calcular, mes, anio, monto, saldo, n_meses, asambleas.nombre, observacion, estado, n_mese_restante FROM cuotas_especiales inner join proveedores on proveedores.cedula=cuotas_especiales.id_proveedor inner join concepto_gasto on concepto_gasto.id=cuotas_especiales.id_concepto left join asambleas on asambleas.id = cuotas_especiales.id_asamblea where cuotas_especiales.id_condominio=?";
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_condominio());
@@ -233,6 +246,48 @@ public class CuotasEspeciales extends ConexionBD {
                 modcuo.setNombre_asamble(rs.getString(10));
                 modcuo.setObservacion(rs.getString(11));
                 modcuo.setEstado(rs.getString(12));
+                modcuo.setN_meses_restantes(rs.getInt(13));
+
+                listacuotasEspeciales.add(modcuo);
+            }
+        } catch (Exception e) {
+        }
+
+        return listacuotasEspeciales;
+    }
+      
+      public ArrayList<CuotasEspeciales> listarCuotasEspecialescerrarmes() {
+        ArrayList listacuotasEspeciales = new ArrayList();
+        CuotasEspeciales modcuo;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT cuotas_especiales.id, id_proveedor, concepto_gasto.nom_concepto, calcular, mes, anio, monto, saldo, n_meses, asambleas.nombre, observacion, estado, n_mese_restante FROM cuotas_especiales inner join proveedores on proveedores.cedula=cuotas_especiales.id_proveedor inner join concepto_gasto on concepto_gasto.id=cuotas_especiales.id_concepto left join asambleas on asambleas.id = cuotas_especiales.id_asamblea where cuotas_especiales.id_condominio=?";
+        try {
+            ps = con.prepareStatement(sql);
+            
+            ps.setString(1, getId_condominio());
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modcuo = new CuotasEspeciales();
+
+                modcuo.setId(rs.getInt(1));
+                modcuo.setId_proveedor(rs.getString(2));
+                modcuo.setNombre_Concepto(rs.getString(3));
+                modcuo.setCalcular(rs.getString(4));
+                modcuo.setMes(rs.getInt(5));
+                modcuo.setAño(rs.getInt(6));
+                modcuo.setMonto(rs.getDouble(7));
+                modcuo.setSaldo(rs.getDouble(8));
+                modcuo.setN_meses(rs.getInt(9));
+                modcuo.setNombre_asamble(rs.getString(10));
+                modcuo.setObservacion(rs.getString(11));
+                modcuo.setEstado(rs.getString(12));
+                modcuo.setN_meses_restantes(rs.getInt(13));
 
                 listacuotasEspeciales.add(modcuo);
             }
@@ -297,22 +352,23 @@ public class CuotasEspeciales extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE cuotas_especiales SET id_proveedor=?, id_concepto=?, calcular=?, mes=?, anio=?, monto=?, saldo=?, n_meses=?, id_asamblea=?, observacion=? WHERE id=?;";
+        String sql = "UPDATE cuotas_especiales SET id_proveedor=?, n_mese_restante=?, id_concepto=?, calcular=?, mes=?, anio=?, monto=?, saldo=?, n_meses=?, id_asamblea=?, observacion=? WHERE id=?;";
 
         try {
 
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_proveedor());
-            ps.setInt(2, getId_concepto());
-            ps.setString(3, getCalcular());
-            ps.setInt(4, getMes());
-            ps.setInt(5, getAño());
-            ps.setDouble(6, getMonto());
-            ps.setDouble(7, getSaldo());
-            ps.setInt(8, getN_meses());
-            ps.setInt(9, getId_asamblea());
-            ps.setString(10, getObservacion());
-            ps.setInt(11, getId());
+            ps.setInt(2, getN_meses_restantes());
+            ps.setInt(3, getId_concepto());
+            ps.setString(4, getCalcular());
+            ps.setInt(5, getMes());
+            ps.setInt(6, getAño());
+            ps.setDouble(7, getMonto());
+            ps.setDouble(8, getSaldo());
+            ps.setInt(9, getN_meses());
+            ps.setInt(10, getId_asamblea());
+            ps.setString(11, getObservacion());
+            ps.setInt(12, getId());
            
             
 

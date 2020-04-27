@@ -16,7 +16,8 @@ import javax.swing.JOptionPane;
  *
  * @author rma
  */
-public class Interes extends Condominio{
+public class Interes extends Condominio {
+
     private int id;
     private String nombre;
     private double factor;
@@ -48,8 +49,6 @@ public class Interes extends Condominio{
         this.factor = factor;
     }
 
-    
-
     public String getEstado() {
         return estado;
     }
@@ -73,15 +72,8 @@ public class Interes extends Condominio{
     public void setN_condominios(int n_condominios) {
         this.n_condominios = n_condominios;
     }
-    
-    
 
-    
-    
-
-   
-    
-     public boolean registrarinteres(Interes modin) {
+    public boolean registrarinteres(Interes modin) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
@@ -93,7 +85,7 @@ public class Interes extends Condominio{
             ps = con.prepareStatement(sql);
             ps.setString(1, getNombre());
             ps.setDouble(2, getFactor());
-          
+
             ps.setString(3, getEstado());
 
             ps.execute();
@@ -119,8 +111,8 @@ public class Interes extends Condominio{
         }
 
     }
-     
-      public boolean buscId(Interes modin) {
+
+    public boolean buscId(Interes modin) {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -160,8 +152,8 @@ public class Interes extends Condominio{
         }
 
     }
-      
-      public boolean registrar_interes_condominio(Interes modin) {
+
+    public boolean registrar_interes_condominio(Interes modin) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
@@ -197,11 +189,10 @@ public class Interes extends Condominio{
         }
 
     }
-      
-      public ArrayList<Interes> listarInteres() {
+
+    public ArrayList<Interes> listarInteres() {
         ArrayList listainteres = new ArrayList();
         Interes modin;
-        
 
         Connection con = getConexion();
         PreparedStatement ps = null;
@@ -215,14 +206,12 @@ public class Interes extends Condominio{
             while (rs.next()) {
 
                 modin = new Interes();
-               
 
                 modin.setId(rs.getInt(1));
                 modin.setNombre(rs.getString(2));
                 modin.setFactor(rs.getDouble(3));
                 modin.setEstado(rs.getString(4));
                 modin.setN_condominios(rs.getInt(5));
-                
 
                 listainteres.add(modin);
             }
@@ -232,7 +221,39 @@ public class Interes extends Condominio{
         return listainteres;
     }
     
-      public boolean buscarInteres(Interes modin) {
+    public ArrayList<Interes> listarInteresCerrames() {
+        ArrayList listainteres = new ArrayList();
+        Interes modin;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "select interes.id, interes.nombre, interes.factor, interes.estado from interes inner join puente_interes_condominio on interes.id=puente_interes_condominio.id_interes where puente_interes_condominio.id_condominio=? group by interes.id,puente_interes_condominio.id_condominio";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getId_condominio());
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modin = new Interes();
+
+                modin.setId(rs.getInt(1));
+                modin.setNombre(rs.getString(2));
+                modin.setFactor(rs.getDouble(3));
+                modin.setEstado(rs.getString(4));
+              
+
+                listainteres.add(modin);
+            }
+        } catch (Exception e) {
+        }
+
+        return listainteres;
+    }
+
+    public boolean buscarInteres(Interes modin) {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -249,7 +270,6 @@ public class Interes extends Condominio{
                 modin.setNombre(rs.getString("nombre"));
                 modin.setFactor(rs.getInt("factor"));
                 modin.setEstado(rs.getString("estado"));
-                
 
                 return true;
             }
@@ -275,34 +295,31 @@ public class Interes extends Condominio{
         }
 
     }
-      public ArrayList<Interes> interescondominiomodificar() {
+
+    public ArrayList<Interes> interescondominiomodificar() {
         ArrayList listainteresmod = new ArrayList();
         Interes modin;
 
         Connection con = getConexion();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        
+
         String sql = "SELECT rif , razon_social, puente_interes_condominio.id_interes as cuenta FROM condominio left join puente_interes_condominio on puente_interes_condominio.id_condominio=condominio.rif and puente_interes_condominio.id_interes=?";
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
-            
-            rs = ps.executeQuery();
 
-            
+            rs = ps.executeQuery();
 
             while (rs.next()) {
                 modin = new Interes();
 
                 //prs = new Persona();
                 modin.setRif(rs.getString("rif"));
-                
+
                 modin.setRazonS(rs.getString("razon_social"));
                 modin.setN_condominios(rs.getInt("cuenta"));
-               
-                
-                
+
                 listainteresmod.add(modin);
             }
 
@@ -318,8 +335,8 @@ public class Interes extends Condominio{
         return listainteresmod;
 
     }
-      
-      public boolean modificar_Interes(Interes modin) {
+
+    public boolean modificar_Interes(Interes modin) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
@@ -334,7 +351,6 @@ public class Interes extends Condominio{
             ps.setString(3, getEstado());
             ps.setInt(4, getId());
 
-            
             ps.execute();
 
             return true;
@@ -357,74 +373,74 @@ public class Interes extends Condominio{
         }
 
     }
-      
-      public boolean borrarpuente(Interes modin){
-        
+
+    public boolean borrarpuente(Interes modin) {
+
         PreparedStatement ps = null;
         Connection con = getConexion();
-        
+
         String sql = "DELETE FROM puente_interes_condominio WHERE id_interes=?";
-        
+
         try {
-            
+
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
             ps.execute();
-            
+
             return true;
-            
+
         } catch (SQLException e) {
-            
-           System.err.println(e);
-           return false;
-            
-        }finally{
+
+            System.err.println(e);
+            return false;
+
+        } finally {
             try {
-                
+
                 con.close();
-                
-            }catch (SQLException e) {
-            
-           System.err.println(e);
-           
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
             }
-        
+
         }
-        
-     }  
-      
-       public boolean eliminarInteres(Interes modin){
-        
+
+    }
+
+    public boolean eliminarInteres(Interes modin) {
+
         PreparedStatement ps = null;
         Connection con = getConexion();
-        
+
         String sql = "DELETE FROM interes WHERE id=?";
-        
+
         try {
-            
+
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
             ps.execute();
-            
+
             return true;
-            
+
         } catch (SQLException e) {
-            
-           System.err.println(e);
-           return false;
-            
-        }finally{
+
+            System.err.println(e);
+            return false;
+
+        } finally {
             try {
-                
+
                 con.close();
-                
-            }catch (SQLException e) {
-            
-           System.err.println(e);
-           
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
             }
-        
+
         }
-        
-     }  
+
+    }
 }
