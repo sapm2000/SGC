@@ -43,16 +43,9 @@ public class asambleas extends javax.swing.JFrame {
         jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         jScrollPane4.getVerticalScrollBar().setUI(new MyScrollBarUI());
-        jScrollPane4.getHorizontalScrollBar().setUI(new MyScrollBarUI());
+        txaDescripcion.setLineWrap(true);
         setLocationRelativeTo(null);
         
-        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-        tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        jTable1.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        jTable1.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        jTable1.getColumnModel().getColumn(2).setCellRenderer(tcr);
-        jTable1.getColumnModel().getColumn(3).setCellRenderer(tcr);
-        jTable1.getColumnModel().getColumn(4).setCellRenderer(tcr);
         
     }
 
