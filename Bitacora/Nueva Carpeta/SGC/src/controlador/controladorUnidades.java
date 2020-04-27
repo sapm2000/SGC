@@ -20,6 +20,7 @@ import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import modelo.CerrarMes;
 import modelo.Unidades;
 import vista.PantallaPrincipal1;
 import vista.buscarPropietario;
@@ -41,11 +42,13 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
     private Unidades moduni;
     private PantallaPrincipal1 panta1;
     private buscarPropietario buscp;
+    private CerrarMes modc;
     ArrayList<Unidades> listapropietarios;
     ArrayList<Unidades> listaunidades;
+    ArrayList<CerrarMes> listapagos;
     DefaultTableModel dm;
 
-    public controladorUnidades(unidades uni, catalogoUnidades catauni, detallecuenta detacun, detalleRecibo detare, Unidades moduni, PantallaPrincipal1 panta1, buscarPropietario buscp) {
+    public controladorUnidades(unidades uni, catalogoUnidades catauni, detallecuenta detacun, detalleRecibo detare, Unidades moduni, PantallaPrincipal1 panta1, buscarPropietario buscp, CerrarMes modc) {
         this.uni = uni;
         this.catauni = catauni;
         this.detacun = detacun;
@@ -53,6 +56,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         this.moduni = moduni;
         this.panta1 = panta1;
         this.buscp = buscp;
+        this.modc=modc;
         this.catauni.addWindowListener(this);
 
         this.catauni.jButton2.addActionListener(this);
@@ -66,8 +70,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         this.uni.btnEliminar.addActionListener(this);
         this.uni.btnModificar.addActionListener(this);
         this.catauni.jButton7.addActionListener(this);
-        this.detacun.jButton1.addActionListener(this);
-        this.detacun.jButton2.addActionListener(this);
+        this.detacun.txtBuscar.addKeyListener(this);
     }
 
     public void llenartablapropietarios(JTable tablaD) {
@@ -91,6 +94,40 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             columna[1] = listapropietarios.get(i).getNombre();
             columna[2] = listapropietarios.get(i).getTelefono();
             columna[3] = listapropietarios.get(i).getCorreo();
+
+            modeloT.addRow(columna);
+
+        }
+
+    }
+    
+    public void llenartablapagos(JTable tablaD) {
+
+        listapagos = modc.listarpagos();
+        DefaultTableModel modeloT = new DefaultTableModel();
+        tablaD.setModel(modeloT);
+
+        modeloT.addColumn("Nº recibo");
+        modeloT.addColumn("Mes");
+        modeloT.addColumn("Año");
+        modeloT.addColumn("Monto");
+        modeloT.addColumn("Alicuota");
+        modeloT.addColumn("Estado");
+
+        Object[] columna = new Object[6];
+
+        int numRegistro = listapagos.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listapagos.get(i).getId_gasto();
+            columna[1] = listapagos.get(i).getMes_cierre();
+            columna[2] = listapagos.get(i).getAño_cierre();
+            columna[3] = listapagos.get(i).getMonto();
+            double var4=  listapagos.get(i).getAlicuota()*100;
+            String var5= var4+"%";
+            columna[4] = var5;
+            columna[5] = listapagos.get(i).getEstado();
 
             modeloT.addRow(columna);
 
@@ -152,8 +189,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
         if (e.getSource() == catauni.jButton7) {
             this.detacun.setVisible(true);
-            this.detacun.jButton1.setEnabled(false);
-            this.detacun.jButton1.setForeground(Color.gray);
+           
 
         }
 
@@ -209,25 +245,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             uni.dispose();
         }
 
-        if (e.getSource() == detacun.jButton2) {
-            int botonDialogo = JOptionPane.YES_NO_OPTION;
-            int result = JOptionPane.showConfirmDialog(null, "ENCONTRO EL REGISTRO?", "REGISTRO", botonDialogo);
-            if (result == 0) {
-
-                this.detacun.jButton1.setEnabled(true);
-
-                this.detacun.jButton1.setForeground(Color.WHITE);
-
-            } else {
-
-            }
-        }
-
-        if (e.getSource() == detacun.jButton1) {
-            this.detare.setVisible(true);
-
-        }
-
+      
     }
 
     @Override
@@ -244,25 +262,42 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         }
 
         if (e.getSource() == catauni.jTable1) {
+            String[] options = {"Ver detalles de pago", "Modificar datos"};
+            int result = JOptionPane.showOptionDialog(null, "Seleccione si desea ver detalles de pagp o modificar datos", "MENU", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+            if (result == 0) {
+                int fila = this.catauni.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+                String dato = String.valueOf(this.catauni.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+                int fila2 = this.catauni.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+                String dato2 = String.valueOf(this.catauni.jTable1.getValueAt(fila2, 2)); // por ultimo, obtengo el valor de la celda
+                detacun.setVisible(true);
+                modc.setId_unidad(dato);
+                modc.setId_condominio(panta1.rif.getText());
+                detacun.txtPropietarios.setText(dato2);
+                llenartablapagos(detacun.jTable1);
+                detacun.txtUnidad.setText(dato);
+                modc.buscarmesesdedeuda(modc);
+                detacun.txtMesesdeuda.setText(String.valueOf(modc.getMeses_deuda()));
+            }
+            if (result == 1) {
+                int fila = this.catauni.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+                String dato = String.valueOf(this.catauni.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
 
-            int fila = this.catauni.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
-            String dato = String.valueOf(this.catauni.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+                moduni.setN_unidad(String.valueOf(dato));
+                uni.setVisible(true);
+                moduni.buscarUnidad(moduni);
 
-            moduni.setN_unidad(String.valueOf(dato));
-            uni.setVisible(true);
-            moduni.buscarUnidad(moduni);
-
-            uni.txadireccion.setText(moduni.getDireccion());
-            uni.txtArea.setText(String.valueOf(moduni.getArea()));
-            uni.txtCedula.setText(moduni.getCedula());
-            uni.txtCorreo.setText(moduni.getCorreo());
-            uni.txtNombrePropietario.setText(moduni.getNombre());
-            uni.txtNumeroUnidad.setText(moduni.getN_unidad());
-            uni.txtTelefono.setText(moduni.getTelefono());
-            uni.txtNumeroUnidad.setEnabled(false);
-            uni.btnEliminar.setEnabled(true);
-            uni.btnModificar.setEnabled(true);
-            uni.btnGuardar.setEnabled(false);
+                uni.txadireccion.setText(moduni.getDireccion());
+                uni.txtArea.setText(String.valueOf(moduni.getArea()));
+                uni.txtCedula.setText(moduni.getCedula());
+                uni.txtCorreo.setText(moduni.getCorreo());
+                uni.txtNombrePropietario.setText(moduni.getNombre());
+                uni.txtNumeroUnidad.setText(moduni.getN_unidad());
+                uni.txtTelefono.setText(moduni.getTelefono());
+                uni.txtNumeroUnidad.setEnabled(false);
+                uni.btnEliminar.setEnabled(true);
+                uni.btnModificar.setEnabled(true);
+                uni.btnGuardar.setEnabled(false);
+            }
         }
     }
 
@@ -304,6 +339,9 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         }
         if (e.getSource() == buscp.txtBuscarProp) {
             filtro(buscp.txtBuscarProp.getText(), buscp.tablaprop);
+        }
+        if (e.getSource() == detacun.txtBuscar) {
+            filtro(detacun.txtBuscar.getText(), detacun.jTable1);
         }
     }
 

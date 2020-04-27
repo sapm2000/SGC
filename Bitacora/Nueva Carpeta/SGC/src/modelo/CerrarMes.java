@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,6 +27,17 @@ public class CerrarMes extends ConexionBD {
     private double alicuota;
     private String estado;
     private int meses_res;
+    private int meses_deuda;
+
+    public int getMeses_deuda() {
+        return meses_deuda;
+    }
+
+    public void setMeses_deuda(int meses_deuda) {
+        this.meses_deuda = meses_deuda;
+    }
+    
+    
 
     public int getMeses_res() {
         return meses_res;
@@ -477,7 +489,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO detalle_total(id_unidad, monto, mes, anio, alicuota, estado) VALUES (?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO detalle_total(id_unidad, monto, mes, anio, alicuota, estado, id_condominio) VALUES (?, ?, ?, ?, ?, ?, ?);";
 
         try {
 
@@ -488,6 +500,7 @@ public class CerrarMes extends ConexionBD {
             ps.setInt(4, getAño_cierre());
             ps.setDouble(5, getAlicuota());
             ps.setString(6, getEstado());
+            ps.setString(7, getId_condominio());
 
             ps.execute();
 
@@ -695,5 +708,85 @@ public class CerrarMes extends ConexionBD {
         }
 
     }
+     
+     public ArrayList<CerrarMes> listarpagos() {
+        ArrayList listaCierremes = new ArrayList();
+        CerrarMes modc;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT id, monto, mes, anio, alicuota, estado FROM detalle_total where id_unidad=? and id_condominio=?;";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getId_unidad());
+            ps.setString(2, getId_condominio());
+           
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modc = new CerrarMes();
+
+                modc.setId_gasto(rs.getInt(1));
+                modc.setMonto(rs.getDouble(2));
+                modc.setMes_cierre(rs.getInt(3));
+                modc.setAño_cierre(rs.getInt(4));
+                modc.setAlicuota(rs.getDouble(5));
+                modc.setEstado(rs.getString(6));
+
+                listaCierremes.add(modc);
+            }
+        } catch (Exception e) {
+        }
+
+        return listaCierremes;
+    }
+     
+     public boolean buscarmesesdedeuda(CerrarMes modc) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT count(estado) as estado FROM public.detalle_total where estado='Pendiente de pago' and id_unidad=? and id_condominio=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+          
+           ps.setString(1, getId_unidad());
+            ps.setString(2, getId_condominio());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                modc.setMeses_deuda(rs.getInt("estado"));
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+     
+     
 
 }

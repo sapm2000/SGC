@@ -371,6 +371,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                 modc.setMonto(totalfinal);
                                 modc.setAlicuota(Double.parseDouble(String.valueOf(alicuota[m])));
                                 modc.setEstado("Pendiente de pago");
+                                modc.setId_condominio(panta1.rif.getText());
 
                                 modc.guardartotal(modc);
 
