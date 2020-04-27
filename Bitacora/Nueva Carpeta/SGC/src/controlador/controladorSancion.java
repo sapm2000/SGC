@@ -170,8 +170,12 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                 modsan.setId_condominio(panta1.rif.getText());
                 modsan.setMonto(Double.parseDouble(san.txtmonto.getText()));
                 modsan.setEstado("Pendiente");
-
-                if (modsan.registrarsancion(modsan)) {
+                
+                modsan.buscarSancionRepetido(modsan);
+                int x = modsan.getId_sancion();
+                
+                if (x==0) {
+                   if (modsan.registrarsancion(modsan)) {
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
                     modsan.buscId(modsan);
 
@@ -190,7 +194,13 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
                     JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
 
+                } 
                 }
+                else {
+                     JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                }
+
+                
 
             }
         }
@@ -203,9 +213,17 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                 modsan.setDescripcion(san.txaDescripcion.getText());
                 modsan.setId(Integer.parseInt(san.txtId.getText()));
                 modsan.setMonto(Double.parseDouble(san.txtmonto.getText()));
+                modsan.setId_condominio(panta1.rif.getText());
+               
                 
-
-                if (modsan.modificarSancion(modsan)) {
+                int x = 0;
+               if (modsan.buscarSancionRepetido(modsan)) {
+                    x = modsan.getId_sancion();
+                
+               }
+                
+                if(x==0||x==modsan.getId()) {
+                    if (modsan.modificarSancion(modsan)) {
                     JOptionPane.showMessageDialog(null, "Registro Modificado");
                     
                     modsan.borrarpuentesancion(modsan);
@@ -227,6 +245,13 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                     JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
 
                 }
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                }
+                
+
+                
 
             }
 

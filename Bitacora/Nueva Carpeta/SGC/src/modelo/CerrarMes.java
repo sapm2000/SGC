@@ -9,21 +9,32 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
  * @author rma
  */
-public class CerrarMes extends ConexionBD{
-    
+public class CerrarMes extends ConexionBD {
+
     private int mes_cierre;
     private int año_cierre;
     private double monto;
     private String id_unidad;
     private int id_gasto;
     private String id_condominio;
-    
-    
+    private double alicuota;
+    private String estado;
+    private int meses_res;
+
+    public int getMeses_res() {
+        return meses_res;
+    }
+
+    public void setMeses_res(int meses_res) {
+        this.meses_res = meses_res;
+    }
+
     public int getMes_cierre() {
         return mes_cierre;
     }
@@ -71,9 +82,23 @@ public class CerrarMes extends ConexionBD{
     public void setId_condominio(String id_condominio) {
         this.id_condominio = id_condominio;
     }
-    
-    
-    
+
+    public double getAlicuota() {
+        return alicuota;
+    }
+
+    public void setAlicuota(double alicuota) {
+        this.alicuota = alicuota;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     public boolean registrarGasto(CerrarMes modc) {
 
         PreparedStatement ps = null;
@@ -113,25 +138,22 @@ public class CerrarMes extends ConexionBD{
         }
 
     }
-    
-    public boolean registrar_cuota(CerrarMes modc) {
+
+    public boolean cerrar_mes(CerrarMes modc) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO detalle_cuotas(id_unidad, id_cuota, mes, anio, id_condominio, monto) VALUES (?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO cierre_de_mes(mes, anio,id_condominio) VALUES (?, ?,?);";
 
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_unidad());
-            ps.setInt(2, getId_gasto());
-            ps.setInt(3, getMes_cierre());
-            ps.setInt(4, getAño_cierre());
-            ps.setString(5, getId_condominio());
-            ps.setDouble(6, getMonto());
             
-            
+            ps.setInt(1, getMes_cierre());
+            ps.setInt(2, getAño_cierre());
+            ps.setString(3, getId_condominio());
+           
             ps.execute();
 
             return true;
@@ -155,7 +177,47 @@ public class CerrarMes extends ConexionBD{
         }
 
     }
-    
+    public boolean registrar_cuota(CerrarMes modc) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "INSERT INTO detalle_cuotas(id_unidad, id_cuota, mes, anio, id_condominio, monto) VALUES (?, ?, ?, ?, ?, ?);";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getId_unidad());
+            ps.setInt(2, getId_gasto());
+            ps.setInt(3, getMes_cierre());
+            ps.setInt(4, getAño_cierre());
+            ps.setString(5, getId_condominio());
+            ps.setDouble(6, getMonto());
+
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
     public boolean buscartotal(CerrarMes modc) {
 
         PreparedStatement ps = null;
@@ -173,7 +235,6 @@ public class CerrarMes extends ConexionBD{
             if (rs.next()) {
 
                 modc.setMonto(rs.getDouble("total"));
-                
 
                 return true;
             }
@@ -199,8 +260,51 @@ public class CerrarMes extends ConexionBD{
         }
 
     }
-    
-     public boolean buscartotal2(CerrarMes modc) {
+
+    public boolean buscartotal1(CerrarMes modc) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT id_unidad, sum(monto) as total FROM detalle_sancion where id_unidad=? and mes=? and anio=? group by id_unidad;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, modc.getId_unidad());
+            ps.setInt(2, modc.getMes_cierre());
+            ps.setInt(3, modc.getAño_cierre());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                modc.setMonto(rs.getDouble("total"));
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
+    public boolean buscartotal2(CerrarMes modc) {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -217,7 +321,6 @@ public class CerrarMes extends ConexionBD{
             if (rs.next()) {
 
                 modc.setMonto(rs.getDouble("total"));
-                
 
                 return true;
             }
@@ -243,8 +346,51 @@ public class CerrarMes extends ConexionBD{
         }
 
     }
-     
-     public boolean guardarsancionpro(CerrarMes modc) {
+
+    public boolean buscartotal3(CerrarMes modc) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT id_unidad, sum(monto) as total FROM detalle_interes where id_unidad=? and mes=? and anio=? group by id_unidad;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, modc.getId_unidad());
+            ps.setInt(2, modc.getMes_cierre());
+            ps.setInt(3, modc.getAño_cierre());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                modc.setMonto(rs.getDouble("total"));
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
+    public boolean guardarsancionpro(CerrarMes modc) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
@@ -260,8 +406,7 @@ public class CerrarMes extends ConexionBD{
             ps.setInt(4, getAño_cierre());
             ps.setString(5, getId_condominio());
             ps.setDouble(6, getMonto());
-            
-            
+
             ps.execute();
 
             return true;
@@ -285,8 +430,8 @@ public class CerrarMes extends ConexionBD{
         }
 
     }
-     
-     public boolean registrar_interes(CerrarMes modc) {
+
+    public boolean registrar_interes(CerrarMes modc) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
@@ -302,8 +447,7 @@ public class CerrarMes extends ConexionBD{
             ps.setInt(4, getAño_cierre());
             ps.setString(5, getId_condominio());
             ps.setDouble(6, getMonto());
-            
-            
+
             ps.execute();
 
             return true;
@@ -327,6 +471,185 @@ public class CerrarMes extends ConexionBD{
         }
 
     }
+
+    public boolean guardartotal(CerrarMes modc) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "INSERT INTO detalle_total(id_unidad, monto, mes, anio, alicuota, estado) VALUES (?, ?, ?, ?, ?, ?);";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getId_unidad());
+            ps.setDouble(2, getMonto());
+            ps.setInt(3, getMes_cierre());
+            ps.setInt(4, getAño_cierre());
+            ps.setDouble(5, getAlicuota());
+            ps.setString(6, getEstado());
+
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
+    public boolean actualizarGasto(CerrarMes modc) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE gasto_comun SET estado=?	WHERE id=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getEstado());
+
+            ps.setInt(2, getId_gasto());
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
+    public boolean actualizar_cuota(CerrarMes modc) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE cuotas_especiales SET estado=?, n_mese_restante=? WHERE id=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getEstado());
+
+            ps.setInt(2, getMeses_res());
+            ps.setInt(3, getId_gasto());
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
+    public boolean actualizarSancion(CerrarMes modc) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE sancion SET estado=? WHERE id=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getEstado());
+
+            ps.setInt(2, getId_gasto());
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
     
-    
+    public ArrayList<CerrarMes> listar() {
+        ArrayList listaCierremes = new ArrayList();
+        CerrarMes modc;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT id, mes, anio FROM cierre_de_mes where id_condominio=?;";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getId_condominio());
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modc = new CerrarMes();
+
+                modc.setId_gasto(rs.getInt(1));
+                modc.setMes_cierre(rs.getInt(2));
+                modc.setAño_cierre(rs.getInt(3));
+
+                listaCierremes.add(modc);
+            }
+        } catch (Exception e) {
+        }
+
+        return listaCierremes;
+    }
+
 }
