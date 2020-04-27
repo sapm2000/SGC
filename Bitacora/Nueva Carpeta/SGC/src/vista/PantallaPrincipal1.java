@@ -471,6 +471,8 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        catalogoCierreMes catac = new catalogoCierreMes();
+        
         recibo reci = new recibo();
         CerrarMes modc = new CerrarMes();
         Unidades moduni = new Unidades();
@@ -478,8 +480,10 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         CuotasEspeciales modcuo = new CuotasEspeciales();
         Sancion modsan = new Sancion();
         Interes modin = new Interes();
-        controladorCerrarMes controc= new controladorCerrarMes(reci, modc, moduni, this, modgac, modcuo, modsan,modin);
-        reci.setVisible(true);
+        catac.setVisible(true);
+        
+        controladorCerrarMes controc= new controladorCerrarMes(reci, modc, moduni, this, modgac, modcuo, modsan,modin, catac);
+        
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed

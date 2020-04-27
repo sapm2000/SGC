@@ -193,8 +193,7 @@ public class Unidades extends Propietarios {
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_condominio());
-            JOptionPane.showMessageDialog(null, getId_condominio());
-
+            
             rs = ps.executeQuery();
 
             while (rs.next()) {

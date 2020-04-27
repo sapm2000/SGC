@@ -329,6 +329,55 @@ public class Sancion extends Unidades {
         }
 
     }
+    
+    public boolean buscarSancionRepetido(Sancion modsan) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT * FROM sancion where tipo=? and mes=? and anio=? and id_condominio=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, modsan.getTipo());
+            ps.setInt(2, modsan.getMes());
+            ps.setInt(3, modsan.getAño());
+            ps.setString(4, modsan.getId_condominio());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                
+                modsan.setId_sancion(rs.getInt("id"));
+                 
+                
+                
+               
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
 
     public ArrayList<Sancion> listarunidadesmod() {
         ArrayList listaunimod = new ArrayList();
