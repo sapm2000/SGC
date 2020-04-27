@@ -10,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -49,7 +48,6 @@ public class CerrarMes extends ConexionBD {
         this.tipo = tipo;
     }
 
-    
     public int getMeses_res() {
         return meses_res;
     }
@@ -696,6 +694,17 @@ public class CerrarMes extends ConexionBD {
                 listaCierremes.add(modc);
             }
         } catch (SQLException e) {
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
         }
 
         return listaCierremes;
@@ -775,6 +784,17 @@ public class CerrarMes extends ConexionBD {
                 listaCierremes.add(modc);
             }
         } catch (Exception e) {
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
         }
 
         return listaCierremes;
@@ -838,8 +858,6 @@ public class CerrarMes extends ConexionBD {
             ps.setInt(2, getMes_cierre());
             ps.setInt(3, getAño_cierre());
             ps.setString(4, getId_condominio());
-           
-            
 
             rs = ps.executeQuery();
 
@@ -852,17 +870,27 @@ public class CerrarMes extends ConexionBD {
                 modc.setCedula(rs.getString(3));
                 modc.setNom_proveedor(rs.getString(4));
                 modc.setTipo(rs.getString(5));
-                
 
                 listadetallegasto.add(modc);
             }
         } catch (Exception e) {
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
         }
 
         return listadetallegasto;
     }
 
-     public ArrayList<CerrarMes> listardetallescuotas() {
+    public ArrayList<CerrarMes> listardetallescuotas() {
         ArrayList listadetallecuotas = new ArrayList();
         CerrarMes modc;
 
@@ -877,8 +905,6 @@ public class CerrarMes extends ConexionBD {
             ps.setInt(2, getMes_cierre());
             ps.setInt(3, getAño_cierre());
             ps.setString(4, getId_condominio());
-           
-            
 
             rs = ps.executeQuery();
 
@@ -891,14 +917,160 @@ public class CerrarMes extends ConexionBD {
                 modc.setCedula(rs.getString(3));
                 modc.setNom_proveedor(rs.getString(4));
                 modc.setMeses_res(rs.getInt(5));
-                
 
-                listadetallegasto.add(modc);
+                listadetallecuotas.add(modc);
             }
         } catch (Exception e) {
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
         }
 
-        return listadetallegasto;
+        return listadetallecuotas;
     }
 
+    public ArrayList<CerrarMes> listardetallessancion() {
+        ArrayList listadetallesancion = new ArrayList();
+        CerrarMes modc;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT detalle_sancion.monto, sancion.monto, sancion.tipo, sancion.descripcion FROM detalle_sancion inner join sancion on detalle_sancion.id_sancion=sancion.id where detalle_sancion.id_unidad=? and detalle_sancion.mes=? and detalle_sancion.anio=? and detalle_sancion.id_condominio=?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getId_unidad());
+            ps.setInt(2, getMes_cierre());
+            ps.setInt(3, getAño_cierre());
+            ps.setString(4, getId_condominio());
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modc = new CerrarMes();
+
+                modc.setMonto(rs.getDouble(1));
+                modc.setAlicuota(rs.getDouble(2));
+                modc.setTipo(rs.getString(3));
+                modc.setEstado(rs.getString(4));
+
+                listadetallesancion.add(modc);
+            }
+        } catch (Exception e) {
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+        return listadetallesancion;
+    }
+
+    public ArrayList<CerrarMes> listardetallesinteres() {
+        ArrayList listadetalleinteres = new ArrayList();
+        CerrarMes modc;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT  detalle_interes.monto, interes.factor, interes.nombre FROM public.detalle_interes INNER join interes on detalle_interes.id_interes = interes.id where detalle_interes.id_unidad=? and detalle_interes.mes=? and detalle_interes.anio=? and detalle_interes.id_condominio=?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getId_unidad());
+            ps.setInt(2, getMes_cierre());
+            ps.setInt(3, getAño_cierre());
+            ps.setString(4, getId_condominio());
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modc = new CerrarMes();
+
+                modc.setMonto(rs.getDouble(1));
+                modc.setAlicuota(rs.getDouble(2));
+                modc.setEstado(rs.getString(3));
+
+                listadetalleinteres.add(modc);
+            }
+        } catch (Exception e) {
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+        return listadetalleinteres;
+    }
+    
+    public boolean bucartotal(CerrarMes modc) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT monto, alicuota FROM detalle_total where id_unidad=? and mes=? and anio=? and id_condominio=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+
+            ps.setString(1, getId_unidad());
+            ps.setInt(2, getMes_cierre());
+            ps.setInt(3, getAño_cierre());
+            ps.setString(4, getId_condominio());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                modc.setMonto(rs.getInt("monto"));
+                modc.setAlicuota(rs.getDouble("alicuota"));
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
 }

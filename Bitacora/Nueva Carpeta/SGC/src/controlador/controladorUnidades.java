@@ -47,6 +47,9 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
     ArrayList<Unidades> listaunidades;
     ArrayList<CerrarMes> listapagos;
     ArrayList<CerrarMes> listadetallegasto;
+    ArrayList<CerrarMes> listadetallecuotas;
+    ArrayList<CerrarMes> listadetallesancion;
+    ArrayList<CerrarMes> listadetalleinteres;
     DefaultTableModel dm;
 
     public controladorUnidades(unidades uni, catalogoUnidades catauni, detallecuenta detacun, detalleRecibo detare, Unidades moduni, PantallaPrincipal1 panta1, buscarPropietario buscp, CerrarMes modc) {
@@ -136,8 +139,8 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         }
 
     }
-    
-     public void llenardetallegasto(JTable tablaD) {
+
+    public void llenardetallegasto(JTable tablaD) {
 
         listadetallegasto = modc.listardetallesgastos();
         DefaultTableModel modeloT = new DefaultTableModel();
@@ -148,7 +151,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         modeloT.addColumn("Razon social");
         modeloT.addColumn("Concepto");
         modeloT.addColumn("Monto");
-        
 
         Object[] columna = new Object[5];
 
@@ -161,7 +163,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             columna[2] = listadetallegasto.get(i).getNom_proveedor();
             columna[3] = listadetallegasto.get(i).getNom_concepto();
             columna[4] = listadetallegasto.get(i).getMonto();
-          
 
             modeloT.addRow(columna);
 
@@ -169,6 +170,103 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
     }
     
+    public void llenardetalleinteres(JTable tablaD) {
+
+        listadetalleinteres = modc.listardetallesinteres();
+        DefaultTableModel modeloT = new DefaultTableModel();
+        tablaD.setModel(modeloT);
+
+        modeloT.addColumn("Tipo de Interes ");
+        modeloT.addColumn("Factor");       
+        modeloT.addColumn("Monto");
+
+        Object[] columna = new Object[5];
+
+        int numRegistro = listadetalleinteres.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listadetalleinteres.get(i).getEstado();
+            String var6 = String.valueOf(listadetalleinteres.get(i).getAlicuota())+"%";
+            columna[1] = var6;
+            columna[2] = listadetalleinteres.get(i).getMonto();
+           
+           
+
+            modeloT.addRow(columna);
+
+        }
+
+    }
+
+    public void llenardetallecuotas(JTable tablaD) {
+
+        listadetallecuotas = modc.listardetallescuotas();
+        DefaultTableModel modeloT = new DefaultTableModel();
+        tablaD.setModel(modeloT);
+
+        
+        modeloT.addColumn("RIF ");
+        modeloT.addColumn("Razon social");
+        modeloT.addColumn("Concepto");
+        modeloT.addColumn("Monto");
+        modeloT.addColumn("Meses restantes ");
+
+        Object[] columna = new Object[5];
+
+        int numRegistro = listadetallecuotas.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listadetallecuotas.get(i).getCedula();
+            columna[1] = listadetallecuotas.get(i).getNom_proveedor();
+            columna[2] = listadetallecuotas.get(i).getNom_concepto();
+            columna[3] = listadetallecuotas.get(i).getMonto();
+            columna[4] = listadetallecuotas.get(i).getMeses_res();
+
+            modeloT.addRow(columna);
+
+        }
+
+    }
+    
+    public void llenardetallesancion(JTable tablaD) {
+
+        listadetallesancion = modc.listardetallessancion();
+        DefaultTableModel modeloT = new DefaultTableModel();
+        tablaD.setModel(modeloT);
+
+        
+        modeloT.addColumn("Tipo ");
+        modeloT.addColumn("Descripcion");
+        modeloT.addColumn("Factor");
+        modeloT.addColumn("Monto");
+       
+
+        Object[] columna = new Object[4];
+
+        int numRegistro = listadetallesancion.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listadetallesancion.get(i).getTipo();
+            columna[1] = listadetallesancion.get(i).getEstado();
+            if (listadetallesancion.get(i).getTipo().equals("Interes de mora")) {
+                String var4= listadetallesancion.get(i).getAlicuota()+"%";
+                 columna[2] = var4;
+            }
+            else {
+                columna[2] = "";
+            }
+           
+            columna[3] = listadetallesancion.get(i).getMonto();
+           
+
+            modeloT.addRow(columna);
+
+        }
+
+    }
 
     public void llenartablaunidades(JTable tablaD) {
 
@@ -339,12 +437,25 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             String datos = String.valueOf(this.detacun.jTable1.getValueAt(fila, 1)); // por ultimo, obtengo el valor de la celda
             int fila2 = this.detacun.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
             String dato2 = String.valueOf(this.detacun.jTable1.getValueAt(fila2, 2)); // por ultimo, obtengo el valor de la celda
+            int fila3 = this.detacun.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+            String dato3 = String.valueOf(this.detacun.jTable1.getValueAt(fila3, 0)); // por ultimo, obtengo el valor de la celda
             this.detare.setVisible(true);
-           
+
             modc.setMes_cierre(Integer.parseInt(datos));
             modc.setAño_cierre(Integer.parseInt(dato2));
             modc.setId_condominio(panta1.rif.getText());
             llenardetallegasto(detare.tablagastos);
+            llenardetallecuotas(detare.tablacuotas);
+            llenardetallesancion(detare.tablasancion);
+            llenardetalleinteres(detare.tablainteres);
+            detare.txtMes.setText(datos);
+            detare.txtUnidad.setText(detacun.txtUnidad.getText());
+            detare.txtPropietarios.setText(detacun.txtPropietarios.getText());
+            detare.txtId.setText(dato3);
+            modc.bucartotal(modc);
+            double var10 = modc.getAlicuota()*100;
+            detare.txtAlicuota.setText(String.valueOf(var10)+"%");
+            detare.txtTotal.setText(String.valueOf(modc.getMonto()));
         }
     }
 

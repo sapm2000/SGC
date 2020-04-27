@@ -107,14 +107,20 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
 
             modc.setMes_cierre(rec.jMonthChooser1.getMonth() + 1);
             modc.setAño_cierre(rec.jYearChooser1.getYear());
+            int mm = modc.getMes_cierre();
             if (modc.getAño_cierre() <= anniosis) {
-                if (modc.getMes_cierre() <= messis) {
+                if (modc.getAño_cierre() < anniosis) {
+                    mm = mm - 13;
+                }
+                if (mm <= messis) {
                     if (modc.buscarfechas(modc)) {
                         JOptionPane.showMessageDialog(null, "este mes ya se ha cerrado");
                     } else {
 
                         modc.setId_condominio(panta1.rif.getText());
                         moduni.setId_condominio(panta1.rif.getText());
+                        modc.setMes_cierre(rec.jMonthChooser1.getMonth() + 1);
+                        modc.setAño_cierre(rec.jYearChooser1.getYear());
                         listaunidades = moduni.buscarUnidades();
 
                         int numRegistro = listaunidades.size();
@@ -187,6 +193,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                         Object[] tipo_cuota = new Object[numCuotas];
                         Object[] id_cuota = new Object[numCuotas];
                         Object[] año_cuota = new Object[numCuotas];
+                        int numReales = 0;
 
                         int mes = modc.getMes_cierre();
                         int año = modc.getAño_cierre();
@@ -250,6 +257,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                                         modc.setMonto(parte_cuota);
                                                         modc.setId_gasto(Integer.parseInt(String.valueOf(id_cuota[z])));
                                                         modc.registrar_cuota(modc);
+                                                        numReales = numReales + 1;
 
                                                     }
                                                 } else {
@@ -261,6 +269,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                                         modc.setId_gasto(Integer.parseInt(String.valueOf(id_cuota[z])));
                                                         modc.registrar_cuota(modc);
                                                         modc.actualizar_cuota(modc);
+                                                        numReales = numReales + 1;
 
                                                     }
                                                 }
@@ -279,7 +288,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                         Object[] tipo_sancion = new Object[numSanciones];
                         Object[] factor_sancion = new Object[numSanciones];
                         Object[] id_sancion = new Object[numSanciones];
-                        if (numGastos == 0 && numCuotas==0) {
+                        if (numGastos == 0 && numReales == 0) {
 
                         } else {
                             for (int j = 0; j < numSanciones; j++) {
@@ -316,8 +325,8 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                     modc.setId_gasto(Integer.parseInt(String.valueOf(id_sancion[j])));
                                     modc.guardarsancionpro(modc);
                                     modc.setEstado("Procesado");
+                                    modc.actualizarSancion(modc);
 
-                                    modc.guardarsancionpro(modc);
                                 }
                             }
                         }
@@ -326,7 +335,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                         int numInteres = listainteres.size();
                         Object[] id_interes = new Object[numInteres];
                         Object[] factor = new Object[numInteres];
-                        if (numCuotas > 0 || numGastos > 0) {
+                        if (numGastos == 0 && numReales == 0) {
 
                         } else {
                             for (int l = 0; l < numInteres; l++) {
@@ -335,13 +344,19 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
 
                                 for (int w = 0; w < numRegistro; w++) {
                                     modc.setId_unidad(String.valueOf(num_casa[w]));
-                                    modc.buscartotal(modc);
+                                    if (modc.buscartotal(modc)) {
+
+                                    } else {
+                                        modc.setMonto(0);
+                                    }
+
                                     double var6 = modc.getMonto();
                                     modc.buscartotal2(modc);
                                     double var7 = modc.getMonto();
                                     double var9 = Double.parseDouble(String.valueOf(factor[l])) / 100;
                                     double total = var6 + var7;
                                     double parte_cuota = total * var9;
+
                                     modc.setId_unidad(String.valueOf(num_casa[w]));
                                     modc.setMonto(parte_cuota);
                                     modc.setId_gasto(Integer.parseInt(String.valueOf(id_interes[l])));
@@ -355,17 +370,45 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
 
                         for (int m = 0; m < numRegistro; m++) {
                             modc.setId_unidad(String.valueOf(num_casa[m]));
-                            modc.buscartotal(modc);
+                           
+                            if (modc.buscartotal(modc))
+                            {
+
+                            } else {
+                                modc.setMonto(0);
+                                }
                             double var6 = modc.getMonto();
-                            modc.buscartotal1(modc);
+                             JOptionPane.showMessageDialog(null, var6);
+
+                            if (modc.buscartotal1(modc))
+                            {
+
+                            }else {
+                                modc.setMonto(0);
+                                }
                             double var7 = modc.getMonto();
-                            modc.buscartotal2(modc);
+                             JOptionPane.showMessageDialog(null, var7);
+
+                            if (modc.buscartotal2(modc))
+                            {
+
+                            }else {
+                                modc.setMonto(0);
+                                }
                             double var8 = modc.getMonto();
-                            modc.buscartotal3(modc);
+                             JOptionPane.showMessageDialog(null, var8);
+
+                            if (modc.buscartotal3(modc))
+                            {
+
+                            }else {
+                                modc.setMonto(0);
+                                }
                             double var9 = modc.getMonto();
-                            double totalfinal = var6 + var7 + var8 + var9;
-                            if (totalfinal == 0) {
-                                
+                             JOptionPane.showMessageDialog(null, var9);
+                             double totalfinal=0;
+                            totalfinal = var6 + var7 + var8 + var9;
+                            if (numReales == 0 && numReales == 0) {
 
                             } else {
                                 modc.setMonto(totalfinal);
@@ -377,9 +420,10 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
 
                             }
                         }
-                        if (numCuotas > 0 || numGastos > 0) {
+                        if (numReales > 0 || numReales > 0) {
                             modc.setId_condominio(panta1.rif.getText());
                             modc.cerrar_mes(modc);
+
                             JOptionPane.showMessageDialog(null, "Cierre satisfactorio");
                             Llenartabla(catac.jTable1);
                             this.rec.dispose();
