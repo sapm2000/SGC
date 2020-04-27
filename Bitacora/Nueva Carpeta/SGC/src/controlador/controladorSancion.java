@@ -21,6 +21,7 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
+import modelo.CerrarMes;
 import modelo.Sancion;
 import modelo.Unidades;
 import vista.PantallaPrincipal1;
@@ -37,16 +38,18 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
     private catalogoSancion catasan;
     private Sancion modsan;
     private PantallaPrincipal1 panta1;
+    private CerrarMes modc;
     ArrayList<Unidades> listaunidades;
     ArrayList<Sancion> listaSancion;
     ArrayList<Sancion> listaunimod;
     DefaultTableModel dm;
 
-    public controladorSancion(sancion san, catalogoSancion catasan, Sancion modsan, PantallaPrincipal1 panta1) {
+    public controladorSancion(sancion san, catalogoSancion catasan, Sancion modsan, PantallaPrincipal1 panta1, CerrarMes modc) {
         this.san = san;
         this.catasan = catasan;
         this.modsan = modsan;
         this.panta1 = panta1;
+        this.modc = modc;
 
         this.catasan.jButton2.addActionListener(this);
         this.catasan.addWindowListener(this);
@@ -106,7 +109,6 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         Object[] columna = new Object[2];
 
         int numRegistro = listaunimod.size();
-        
 
         for (int i = 0; i < numRegistro; i++) {
 
@@ -170,37 +172,42 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                 modsan.setId_condominio(panta1.rif.getText());
                 modsan.setMonto(Double.parseDouble(san.txtmonto.getText()));
                 modsan.setEstado("Pendiente");
-                
-                modsan.buscarSancionRepetido(modsan);
-                int x = modsan.getId_sancion();
-                
-                if (x==0) {
-                   if (modsan.registrarsancion(modsan)) {
-                    JOptionPane.showMessageDialog(null, "Registro Guardado");
-                    modsan.buscId(modsan);
+                modc.setMes_cierre(san.jMonthChooser1.getMonth() + 1);
+                modc.setAño_cierre(san.jYearChooser1.getYear());
+                modc.setId_condominio(panta1.rif.getText());
 
-                    for (int i = 0; i < san.jTable1.getRowCount(); i++) {
-                        if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
-
-                            String valor = String.valueOf(san.jTable1.getValueAt(i, 0));
-                            modsan.setN_unidad(valor);
-
-                            modsan.registrar_sancion_unidad(modsan);
-
-                        }
-                    }
-                    LlenartablaSancion(catasan.jTable1);
+                if (modc.buscarfechas(modc)) {
+                    JOptionPane.showMessageDialog(null, "no puede registrar Sanciones a un periodo ya cerrado");
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                    modsan.buscarSancionRepetido(modsan);
+                    int x = modsan.getId_sancion();
 
-                } 
-                }
-                else {
-                     JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
-                }
+                    if (x == 0) {
+                        if (modsan.registrarsancion(modsan)) {
+                            JOptionPane.showMessageDialog(null, "Registro Guardado");
+                            modsan.buscId(modsan);
 
-                
+                            for (int i = 0; i < san.jTable1.getRowCount(); i++) {
+                                if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
+
+                                    String valor = String.valueOf(san.jTable1.getValueAt(i, 0));
+                                    modsan.setN_unidad(valor);
+
+                                    modsan.registrar_sancion_unidad(modsan);
+
+                                }
+                            }
+                            LlenartablaSancion(catasan.jTable1);
+                        } else {
+
+                            JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                    }
+                }
 
             }
         }
@@ -214,49 +221,53 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                 modsan.setId(Integer.parseInt(san.txtId.getText()));
                 modsan.setMonto(Double.parseDouble(san.txtmonto.getText()));
                 modsan.setId_condominio(panta1.rif.getText());
-               
-                
+
                 int x = 0;
-               if (modsan.buscarSancionRepetido(modsan)) {
+                if (modsan.buscarSancionRepetido(modsan)) {
                     x = modsan.getId_sancion();
-                
-               }
-                
-                if(x==0||x==modsan.getId()) {
-                    if (modsan.modificarSancion(modsan)) {
-                    JOptionPane.showMessageDialog(null, "Registro Modificado");
-                    
-                    modsan.borrarpuentesancion(modsan);
 
-                    for (int i = 0; i < san.jTable1.getRowCount(); i++) {
-                        if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
+                }
 
-                            String valor = String.valueOf(san.jTable1.getValueAt(i, 0));
-                            modsan.setN_unidad(valor);
+                modc.setMes_cierre(san.jMonthChooser1.getMonth() + 1);
+                modc.setAño_cierre(san.jYearChooser1.getYear());
+                modc.setId_condominio(panta1.rif.getText());
 
-                            modsan.registrar_sancion_unidad(modsan);
-
-                        }
-                    }
-                    LlenartablaSancion(catasan.jTable1);
-                    this.san.dispose();
+                if (modc.buscarfechas(modc)) {
+                    JOptionPane.showMessageDialog(null, "no puede registrar Sanciones a un periodo ya cerrado");
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                    if (x == 0 || x == modsan.getId()) {
+                        if (modsan.modificarSancion(modsan)) {
+                            JOptionPane.showMessageDialog(null, "Registro Modificado");
 
-                }
-                }
-                else {
-                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
-                }
-                
+                            modsan.borrarpuentesancion(modsan);
 
-                
+                            for (int i = 0; i < san.jTable1.getRowCount(); i++) {
+                                if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
+
+                                    String valor = String.valueOf(san.jTable1.getValueAt(i, 0));
+                                    modsan.setN_unidad(valor);
+
+                                    modsan.registrar_sancion_unidad(modsan);
+
+                                }
+                            }
+                            LlenartablaSancion(catasan.jTable1);
+                            this.san.dispose();
+                        } else {
+
+                            JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                    }
+                }
 
             }
 
         }
-        
+
         if (e.getSource() == san.btnEliminar) {
             modsan.setId(Integer.parseInt(san.txtId.getText()));
             modsan.borrarpuentesancion(modsan);
@@ -268,16 +279,15 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(MouseEvent e
+    ) {
         int fila = this.catasan.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
 
         String dato = String.valueOf(this.catasan.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
         modsan.setId(Integer.parseInt(dato));
 
         modsan.buscarSancion(modsan);
-        san.btnEliminar.setEnabled(true);
-        san.btnGuardar.setEnabled(false);
-        san.btnModificar.setEnabled(true);
+        
         this.san.setVisible(true);
         san.txtId.setVisible(false);
         san.txtId.setText(dato);
@@ -290,40 +300,58 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         modsan.setId_condominio(panta1.rif.getText());
         llenartablaunidadesmod(san.jTable1);
         addCheckBox(1, san.jTable1);
+         if (modsan.getEstado().equals("Procesado")) {
+            san.btnEliminar.setEnabled(false);
+            san.btnModificar.setEnabled(false);
+            san.btnGuardar.setEnabled(false);
+            JOptionPane.showMessageDialog(null, "las sanciones procesadas no pueden ser modificados ni eliminados");
+        } else {
+            san.btnEliminar.setEnabled(true);
+            san.btnModificar.setEnabled(true);
+            san.btnGuardar.setEnabled(false);
+        }
+        
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
+    public void mousePressed(MouseEvent e
+    ) {
 
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void mouseReleased(MouseEvent e
+    ) {
 
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void mouseEntered(MouseEvent e
+    ) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e
+    ) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e
+    ) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e
+    ) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e
+    ) {
         if (e.getSource() == catasan.jTextField1) {
 
             filtro(catasan.jTextField1.getText(), catasan.jTable1);
@@ -332,38 +360,45 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
     }
 
     @Override
-    public void windowOpened(WindowEvent e) {
+    public void windowOpened(WindowEvent e
+    ) {
         modsan.setId_condominio(panta1.rif.getText());
         LlenartablaSancion(catasan.jTable1);
     }
 
     @Override
-    public void windowClosing(WindowEvent e) {
+    public void windowClosing(WindowEvent e
+    ) {
 
     }
 
     @Override
-    public void windowClosed(WindowEvent e) {
+    public void windowClosed(WindowEvent e
+    ) {
 
     }
 
     @Override
-    public void windowIconified(WindowEvent e) {
+    public void windowIconified(WindowEvent e
+    ) {
 
     }
 
     @Override
-    public void windowDeiconified(WindowEvent e) {
+    public void windowDeiconified(WindowEvent e
+    ) {
 
     }
 
     @Override
-    public void windowActivated(WindowEvent e) {
+    public void windowActivated(WindowEvent e
+    ) {
 
     }
 
     @Override
-    public void windowDeactivated(WindowEvent e) {
+    public void windowDeactivated(WindowEvent e
+    ) {
 
     }
 

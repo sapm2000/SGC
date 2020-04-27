@@ -5,7 +5,7 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2020-04-26 22:35:18
+-- Started on 2020-04-26 22:45:05
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1365,6 +1365,7 @@ INSERT INTO public.propietarios VALUES ('2456325', 'Jose', 'Perez', '04245222312
 INSERT INTO public.propietarios VALUES ('8517596', 'Blanca', 'Singer', '04127616516', 'blanca1@hotmail.com', '13131312');
 INSERT INTO public.propietarios VALUES ('732463', 'Juan', 'Lugo', '04125847963', 'jl@hotmail.com', '13131312');
 INSERT INTO public.propietarios VALUES ('24578463', 'Maria', 'Alvarez', '04241578963', 'maria03@hotmail.com', '13131312');
+INSERT INTO public.propietarios VALUES ('24332', 'dsfsfs', 'fsd', '6546', 'sads', '111');
 
 
 --
@@ -1787,12 +1788,12 @@ ALTER TABLE ONLY public.cuenta
 
 
 --
--- TOC entry 2873 (class 2606 OID 24641)
+-- TOC entry 2873 (class 2606 OID 25040)
 -- Name: cuenta cuenta_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.cuenta
-    ADD CONSTRAINT cuenta_pkey PRIMARY KEY (n_cuenta) INCLUDE (n_cuenta);
+    ADD CONSTRAINT cuenta_pkey PRIMARY KEY (n_cuenta);
 
 
 --
@@ -1904,12 +1905,12 @@ ALTER TABLE ONLY public.proveedores
 
 
 --
--- TOC entry 2879 (class 2606 OID 24661)
+-- TOC entry 2879 (class 2606 OID 25036)
 -- Name: proveedores proveedores_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.proveedores
-    ADD CONSTRAINT proveedores_pkey PRIMARY KEY (cedula) INCLUDE (cedula);
+    ADD CONSTRAINT proveedores_pkey PRIMARY KEY (cedula);
 
 
 --
@@ -1985,12 +1986,12 @@ ALTER TABLE ONLY public.usuario
 
 
 --
--- TOC entry 2859 (class 2606 OID 16465)
+-- TOC entry 2859 (class 2606 OID 25038)
 -- Name: usuario usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.usuario
-    ADD CONSTRAINT usuario_pkey PRIMARY KEY (cedula) INCLUDE (cedula);
+    ADD CONSTRAINT usuario_pkey PRIMARY KEY (cedula);
 
 
 --
@@ -2011,7 +2012,7 @@ ALTER TABLE ONLY public.concepto_gasto
     ADD CONSTRAINT concepto_gasto_id_categoria_fkey FOREIGN KEY (id_categoria) REFERENCES public.categoriagasto(id);
 
 
--- Completed on 2020-04-26 22:35:20
+-- Completed on 2020-04-26 22:45:06
 
 --
 -- PostgreSQL database dump complete

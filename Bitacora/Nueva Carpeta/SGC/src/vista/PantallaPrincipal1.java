@@ -361,9 +361,8 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         ModeloConceptoGastos modcon = new ModeloConceptoGastos();
         Asambleas modasa = new Asambleas();
         CuotasEspeciales modcuo = new CuotasEspeciales();
-        controladorCuotasEspeciales controce = new controladorCuotasEspeciales(cuotae, catace, modpro, modcon,modasa,this,modcuo);
-
-        
+        CerrarMes modc = new CerrarMes();
+        controladorCuotasEspeciales controce = new controladorCuotasEspeciales(cuotae, catace, modpro, modcon, modasa, this, modcuo,modc);
 
         catace.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
@@ -373,8 +372,8 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         asambleas asam = new asambleas();
         Asambleas modasa = new Asambleas();
         Propietarios modpro = new Propietarios();
-        controladorAsambleas controa = new controladorAsambleas(cataa, asam, modasa, modpro,this);
-        
+        controladorAsambleas controa = new controladorAsambleas(cataa, asam, modasa, modpro, this);
+
         cataa.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -384,8 +383,10 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         GastoComun modgac = new GastoComun();
         Proveedores modpro = new Proveedores();
         ModeloConceptoGastos modcon = new ModeloConceptoGastos();
-        controladorGastoComun controgc = new controladorGastoComun(gc, catagac, modgac, modpro,modcon,this);
-        
+        CerrarMes modc = new CerrarMes();
+
+        controladorGastoComun controgc = new controladorGastoComun(gc, catagac, modgac, modpro, modcon, this, modc);
+
         catagac.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -393,8 +394,8 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         catalogoPropietarios cataprop = new catalogoPropietarios();
         propietarios prop = new propietarios();
         Propietarios modpro = new Propietarios();
-        controladorPropietario contropro = new controladorPropietario(prop, cataprop,modpro,this);
-        
+        controladorPropietario contropro = new controladorPropietario(prop, cataprop, modpro, this);
+
         cataprop.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
@@ -402,8 +403,9 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         catalogoSancion catasan = new catalogoSancion();
         sancion san = new sancion();
         Sancion modsan = new Sancion();
-        controladorSancion controsan = new controladorSancion(san, catasan, modsan,this);
-        
+        CerrarMes modc = new CerrarMes();
+        controladorSancion controsan = new controladorSancion(san, catasan, modsan, this, modc);
+
         catasan.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
@@ -414,9 +416,8 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         detalleRecibo detare = new detalleRecibo();
         Unidades moduni = new Unidades();
         buscarPropietario buscp = new buscarPropietario();
-        controladorUnidades controuni = new controladorUnidades(uni, cataun, detacun, detare, moduni,this,buscp);
+        controladorUnidades controuni = new controladorUnidades(uni, cataun, detacun, detare, moduni, this, buscp);
 
-       
         cataun.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
@@ -426,8 +427,6 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         Fondo modfon = new Fondo();
         controladorFondo controfon = new controladorFondo(fon, catafon, modfon, this);
 
-     
-       
         catafon.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
@@ -437,8 +436,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         Comunicados modco = new Comunicados();
         Propietarios modpro = new Propietarios();
         CrudUsuario modus = new CrudUsuario();
-        controladorComunicados controcom = new controladorComunicados(catacomu, com, modco,this,modus);
-        
+        controladorComunicados controcom = new controladorComunicados(catacomu, com, modco, this, modus);
 
         catacomu.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
@@ -472,7 +470,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         catalogoCierreMes catac = new catalogoCierreMes();
-        
+
         recibo reci = new recibo();
         CerrarMes modc = new CerrarMes();
         Unidades moduni = new Unidades();
@@ -481,9 +479,9 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         Sancion modsan = new Sancion();
         Interes modin = new Interes();
         catac.setVisible(true);
-        
-        controladorCerrarMes controc= new controladorCerrarMes(reci, modc, moduni, this, modgac, modcuo, modsan,modin, catac);
-        
+
+        controladorCerrarMes controc = new controladorCerrarMes(reci, modc, moduni, this, modgac, modcuo, modsan, modin, catac);
+
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed

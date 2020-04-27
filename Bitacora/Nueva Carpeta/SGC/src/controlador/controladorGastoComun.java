@@ -21,6 +21,7 @@ import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import modelo.CerrarMes;
 import modelo.GastoComun;
 import modelo.ModeloConceptoGastos;
 import modelo.Proveedores;
@@ -40,18 +41,20 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
     private Proveedores modpro;
     private ModeloConceptoGastos modcon;
     private PantallaPrincipal1 panta1;
+    private CerrarMes modc;
     ArrayList<GastoComun> listagastocomun;
     DefaultTableModel dm;
     double montoi;
     double saldo;
 
-    public controladorGastoComun(gastoComun gc, catalogoGastoComun gatagc, GastoComun modgac, Proveedores modpro, ModeloConceptoGastos modcon, PantallaPrincipal1 panta1) {
+    public controladorGastoComun(gastoComun gc, catalogoGastoComun gatagc, GastoComun modgac, Proveedores modpro, ModeloConceptoGastos modcon, PantallaPrincipal1 panta1, CerrarMes modc) {
         this.gc = gc;
         this.catagc = gatagc;
         this.modgac = modgac;
         this.modpro = modpro;
         this.modcon = modcon;
         this.panta1 = panta1;
+        this.modc = modc;
         this.catagc.addWindowListener(this);
 
         this.catagc.jButton2.addActionListener(this);
@@ -114,7 +117,7 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
             this.gc.setVisible(true);
             this.gc.btnModificar.setEnabled(false);
             this.gc.btnGuardar.setEnabled(true);
-            this.gc.btnEliminar.setEnabled(true);
+            this.gc.btnEliminar.setEnabled(false);
             this.gc.txtid.setVisible(false);
             gc.jcomboproveedor.removeAllItems();
             gc.jcomboconcepto.removeAllItems();
@@ -141,16 +144,24 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
                 modgac.setFecha(sqlDate);
                 modgac.setEstado("Pendiente");
                 modgac.setId_condominio(panta1.rif.getText());
+                modc.setMes_cierre(gc.jMonthChooser1.getMonth() + 1);
+                modc.setAño_cierre(gc.jYearChooser1.getYear());
+                modc.setId_condominio(panta1.rif.getText());
 
-                if (modgac.registrar_gasto_comun(modgac)) {
-
-                    JOptionPane.showMessageDialog(null, "Registro Guardado");
-                    modgac.setId_condominio(panta1.rif.getText());
-                    LlenartablaGastocomun(catagc.jTable1);
+                if (modc.buscarfechas(modc)) {
+                    JOptionPane.showMessageDialog(null, "no puede registrar gastos a un periodo ya cerrado");
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                    if (modgac.registrar_gasto_comun(modgac)) {
 
+                        JOptionPane.showMessageDialog(null, "Registro Guardado");
+                        modgac.setId_condominio(panta1.rif.getText());
+                        LlenartablaGastocomun(catagc.jTable1);
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                    }
                 }
 
             }
@@ -169,34 +180,42 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
                 modgac.setId_concepto(modcon.getId());
                 modgac.setObservaciones(gc.txaObservaciones.getText());
                 modgac.setId(Integer.parseInt(gc.txtid.getText()));
+                modc.setMes_cierre(gc.jMonthChooser1.getMonth() + 1);
+                modc.setAño_cierre(gc.jYearChooser1.getYear());
+                modc.setId_condominio(panta1.rif.getText());
 
-                java.sql.Date sqlDate = convert(gc.jDateChooser1.getDate());
-                modgac.setFecha(sqlDate);
-                modgac.setEstado("Pendiente");
-                modgac.setId_condominio(panta1.rif.getText());
-
-                double var1 = Double.parseDouble(gc.txtMonto.getText());
-                double var2 = var1 - montoi;
-                double total = var2 + saldo;
-                modgac.setSaldo(total);
-
-                if (total > 0) {
-                    if (modgac.modificar_gasto_comun(modgac)) {
-
-                        JOptionPane.showMessageDialog(null, "Registro Modificado");
-                        modgac.setId_condominio(panta1.rif.getText());
-                        LlenartablaGastocomun(catagc.jTable1);
-                        this.gc.dispose();
-
-                    } else {
-
-                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
-
-                    }
+                if (modc.buscarfechas(modc)) {
+                    JOptionPane.showMessageDialog(null, "no puede registrar gastos a un periodo ya cerrado");
                 } else {
-                    JOptionPane.showMessageDialog(null, "El saldo de la deuda no puede ser negativo");
-                }
 
+                    java.sql.Date sqlDate = convert(gc.jDateChooser1.getDate());
+                    modgac.setFecha(sqlDate);
+                    modgac.setEstado("Pendiente");
+                    modgac.setId_condominio(panta1.rif.getText());
+
+                    double var1 = Double.parseDouble(gc.txtMonto.getText());
+                    double var2 = var1 - montoi;
+                    double total = var2 + saldo;
+                    modgac.setSaldo(total);
+
+                    if (total > 0) {
+                        if (modgac.modificar_gasto_comun(modgac)) {
+
+                            JOptionPane.showMessageDialog(null, "Registro Modificado");
+                            modgac.setId_condominio(panta1.rif.getText());
+                            LlenartablaGastocomun(catagc.jTable1);
+                            this.gc.dispose();
+
+                        } else {
+
+                            JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "El saldo de la deuda no puede ser negativo");
+                    }
+
+                }
             }
 
         }
@@ -264,6 +283,7 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
         modgac.setId(Integer.parseInt(dato));
         modgac.setId_condominio(panta1.rif.getText());
         modgac.buscargastoComun(modgac);
+
         this.gc.setVisible(true);
         gc.txtid.setVisible(false);
         gc.txtid.setText(dato);
@@ -283,9 +303,16 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
         modpro.setCedula(gc.jcomboproveedor.getSelectedItem().toString());
         modpro.buscar(modpro);
         gc.txtnombreprov.setText(modpro.getNombre());
-        gc.btnEliminar.setEnabled(true);
-        gc.btnModificar.setEnabled(true);
-        gc.btnGuardar.setEnabled(false);
+        if (modgac.getEstado().equals("Procesado")) {
+            gc.btnEliminar.setEnabled(false);
+            gc.btnModificar.setEnabled(false);
+            gc.btnGuardar.setEnabled(false);
+            JOptionPane.showMessageDialog(null, "los gastos procesados no pueden ser modificados ni eliminados");
+        } else {
+            gc.btnEliminar.setEnabled(true);
+            gc.btnModificar.setEnabled(true);
+            gc.btnGuardar.setEnabled(false);
+        }
 
     }
 

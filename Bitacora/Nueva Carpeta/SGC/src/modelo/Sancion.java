@@ -304,6 +304,7 @@ public class Sancion extends Unidades {
                 modsan.setAño(rs.getInt("anio"));
                 modsan.setMonto(rs.getDouble("monto"));
                 modsan.setDescripcion(rs.getString("descripcion"));
+                modsan.setEstado(rs.getString("estado"));
 
                 return true;
             }
