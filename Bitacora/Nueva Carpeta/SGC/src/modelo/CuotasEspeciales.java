@@ -251,6 +251,17 @@ public class CuotasEspeciales extends ConexionBD {
                 listacuotasEspeciales.add(modcuo);
             }
         } catch (Exception e) {
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
         }
 
         return listacuotasEspeciales;
@@ -292,6 +303,17 @@ public class CuotasEspeciales extends ConexionBD {
                 listacuotasEspeciales.add(modcuo);
             }
         } catch (Exception e) {
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
         }
 
         return listacuotasEspeciales;

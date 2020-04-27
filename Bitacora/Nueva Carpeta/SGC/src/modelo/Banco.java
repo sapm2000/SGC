@@ -87,8 +87,19 @@ public class Banco extends ConexionBD {
             }
         } catch (Exception e) {
         }
+        finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
 
         return listaBanco;
+    }
     }
 
     public boolean buscar(Banco modban) {

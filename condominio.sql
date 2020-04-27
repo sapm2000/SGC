@@ -5,7 +5,7 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2020-04-26 22:45:05
+-- Started on 2020-04-27 18:50:50
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -525,7 +525,8 @@ CREATE TABLE public.detalle_total (
     mes bigint NOT NULL,
     anio bigint NOT NULL,
     alicuota double precision NOT NULL,
-    estado character varying(50)
+    estado character varying(50),
+    id_condominio character varying(15)
 );
 
 
@@ -1166,7 +1167,7 @@ INSERT INTO public.categoriagasto VALUES (1, 'dadasd', 'asda');
 -- Data for Name: cierre_de_mes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.cierre_de_mes VALUES (6, 4, 2020, '111');
+INSERT INTO public.cierre_de_mes VALUES (36, 3, 2020, '111');
 
 
 --
@@ -1225,13 +1226,13 @@ INSERT INTO public.cuenta VALUES ('sdd', 'sdsasdd', 'dsddsd', 'Ahorro', 5);
 -- Data for Name: cuotas_especiales; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public.cuotas_especiales VALUES (1, '231231', 1, 'Alicuota', 2, 2020, 1000, 1000, 2, 23, 'dsa', 'Mensualidad en proceso', '111', 1);
 INSERT INTO public.cuotas_especiales VALUES (3, '231231', 1, 'Total de Inmuebles', 4, 2020, 2000000, 2000000, 1, 0, '132132', 'Pendiente', '13131312', NULL);
 INSERT INTO public.cuotas_especiales VALUES (4, '342', 1, 'Alicuota', 5, 2020, 5000000, 5000000, 2, 0, 'xcccccc', 'Pendiente', '13131312', NULL);
 INSERT INTO public.cuotas_especiales VALUES (5, '231231', 1, 'Total de Inmuebles', 7, 2020, 65700000, 65700000, 1, 0, 'dddddd', 'Pendiente', '13131312', NULL);
 INSERT INTO public.cuotas_especiales VALUES (6, '342', 1, 'Alicuota', 8, 2020, 120000000, 120000000, 1, 0, 'rrrrrr', 'Pendiente', '13131312', NULL);
-INSERT INTO public.cuotas_especiales VALUES (7, '231231', 1, 'Total de Inmuebles', 9, 2020, 300000000, 300000000, 1, 0, 'hhjjhhg', 'Mensualidad en proceso', '13131312', 2);
-INSERT INTO public.cuotas_especiales VALUES (8, '342', 1, 'Total de Inmuebles', 4, 2020, 2000, 2000, 2, 23, 'nt', 'Mensualidad completada', '111', 0);
-INSERT INTO public.cuotas_especiales VALUES (1, '231231', 1, 'Alicuota', 4, 2020, 3000, 3000, 3, 23, 'dsa', 'Mensualidad completada', '111', 0);
+INSERT INTO public.cuotas_especiales VALUES (7, '231231', 1, 'Total de Inmuebles', 9, 2020, 300000000, 300000000, 3, 0, 'hhjjhhg', 'Pendiente', '13131312', 3);
+INSERT INTO public.cuotas_especiales VALUES (8, '342', 1, 'Total de Inmuebles', 3, 2020, 100, 100, 2, 23, 'nt', 'Mensualidad en proceso', '111', 1);
 
 
 --
@@ -1240,6 +1241,10 @@ INSERT INTO public.cuotas_especiales VALUES (1, '231231', 1, 'Alicuota', 4, 2020
 -- Data for Name: detalle_cuotas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public.detalle_cuotas VALUES (189, '2-013', 8, 3, 2020, '111', 25);
+INSERT INTO public.detalle_cuotas VALUES (190, '123', 8, 3, 2020, '111', 25);
+INSERT INTO public.detalle_cuotas VALUES (191, '2-013', 1, 3, 2020, '111', 250);
+INSERT INTO public.detalle_cuotas VALUES (192, '123', 1, 3, 2020, '111', 250);
 
 
 --
@@ -1248,6 +1253,10 @@ INSERT INTO public.cuotas_especiales VALUES (1, '231231', 1, 'Alicuota', 4, 2020
 -- Data for Name: detalle_interes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public.detalle_interes VALUES (139, '2-013', 3, 2020, 52.5, 4, '111');
+INSERT INTO public.detalle_interes VALUES (140, '123', 3, 2020, 52.5, 4, '111');
+INSERT INTO public.detalle_interes VALUES (141, '2-013', 3, 2020, 105, 5, '111');
+INSERT INTO public.detalle_interes VALUES (142, '123', 3, 2020, 105, 5, '111');
 
 
 --
@@ -1256,34 +1265,16 @@ INSERT INTO public.cuotas_especiales VALUES (1, '231231', 1, 'Alicuota', 4, 2020
 -- Data for Name: detalle_pagos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.detalle_pagos VALUES (617, '123', 4, 2020, 300, 9, '111');
-INSERT INTO public.detalle_pagos VALUES (618, '2-013', 4, 2020, 200, 9, '111');
-INSERT INTO public.detalle_pagos VALUES (619, '123', 4, 2020, 60, 6, '111');
-INSERT INTO public.detalle_pagos VALUES (620, '2-013', 4, 2020, 40, 6, '111');
-INSERT INTO public.detalle_pagos VALUES (621, '123', 4, 2020, 120, 8, '111');
-INSERT INTO public.detalle_pagos VALUES (622, '2-013', 4, 2020, 80, 8, '111');
-INSERT INTO public.detalle_pagos VALUES (623, '123', 4, 2020, 12, 7, '111');
-INSERT INTO public.detalle_pagos VALUES (624, '2-013', 4, 2020, 8, 7, '111');
-INSERT INTO public.detalle_pagos VALUES (625, '123', 4, 2020, 127.8, 2, '111');
-INSERT INTO public.detalle_pagos VALUES (626, '2-013', 4, 2020, 85.2, 2, '111');
-INSERT INTO public.detalle_pagos VALUES (627, '123', 4, 2020, 300, 10, '111');
-INSERT INTO public.detalle_pagos VALUES (628, '2-013', 4, 2020, 200, 10, '111');
-INSERT INTO public.detalle_pagos VALUES (629, '123', 4, 2020, 390, 11, '111');
-INSERT INTO public.detalle_pagos VALUES (630, '2-013', 4, 2020, 260, 11, '111');
-INSERT INTO public.detalle_pagos VALUES (631, '123', 4, 2020, 60, 6, '111');
-INSERT INTO public.detalle_pagos VALUES (632, '2-013', 4, 2020, 40, 6, '111');
-INSERT INTO public.detalle_pagos VALUES (633, '123', 4, 2020, 120, 8, '111');
-INSERT INTO public.detalle_pagos VALUES (634, '2-013', 4, 2020, 80, 8, '111');
-INSERT INTO public.detalle_pagos VALUES (635, '123', 4, 2020, 300, 9, '111');
-INSERT INTO public.detalle_pagos VALUES (636, '2-013', 4, 2020, 200, 9, '111');
-INSERT INTO public.detalle_pagos VALUES (637, '123', 4, 2020, 390, 11, '111');
-INSERT INTO public.detalle_pagos VALUES (638, '2-013', 4, 2020, 260, 11, '111');
-INSERT INTO public.detalle_pagos VALUES (639, '123', 4, 2020, 12, 7, '111');
-INSERT INTO public.detalle_pagos VALUES (640, '2-013', 4, 2020, 8, 7, '111');
-INSERT INTO public.detalle_pagos VALUES (641, '123', 4, 2020, 127.8, 2, '111');
-INSERT INTO public.detalle_pagos VALUES (642, '2-013', 4, 2020, 85.2, 2, '111');
-INSERT INTO public.detalle_pagos VALUES (643, '123', 4, 2020, 300, 10, '111');
-INSERT INTO public.detalle_pagos VALUES (644, '2-013', 4, 2020, 200, 10, '111');
+INSERT INTO public.detalle_pagos VALUES (791, '2-013', 3, 2020, 50, 12, '111');
+INSERT INTO public.detalle_pagos VALUES (792, '123', 3, 2020, 50, 12, '111');
+INSERT INTO public.detalle_pagos VALUES (793, '2-013', 3, 2020, 50, 8, '111');
+INSERT INTO public.detalle_pagos VALUES (794, '123', 3, 2020, 50, 8, '111');
+INSERT INTO public.detalle_pagos VALUES (795, '2-013', 3, 2020, 50, 10, '111');
+INSERT INTO public.detalle_pagos VALUES (796, '123', 3, 2020, 50, 10, '111');
+INSERT INTO public.detalle_pagos VALUES (797, '2-013', 3, 2020, 50, 2, '111');
+INSERT INTO public.detalle_pagos VALUES (798, '123', 3, 2020, 50, 2, '111');
+INSERT INTO public.detalle_pagos VALUES (799, '2-013', 3, 2020, 50, 11, '111');
+INSERT INTO public.detalle_pagos VALUES (800, '123', 3, 2020, 50, 11, '111');
 
 
 --
@@ -1292,14 +1283,10 @@ INSERT INTO public.detalle_pagos VALUES (644, '2-013', 4, 2020, 200, 10, '111');
 -- Data for Name: detalle_sancion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.detalle_sancion VALUES (80, '2-013', 18, 4, 2020, '111', 873.2);
-INSERT INTO public.detalle_sancion VALUES (81, '123', 18, 4, 2020, '111', 1309.8);
-INSERT INTO public.detalle_sancion VALUES (82, '2-013', 19, 4, 2020, '111', 1000);
-INSERT INTO public.detalle_sancion VALUES (83, '2-013', 19, 4, 2020, '111', 1000);
-INSERT INTO public.detalle_sancion VALUES (84, '2-013', 18, 4, 2020, '111', 1746.4);
-INSERT INTO public.detalle_sancion VALUES (85, '123', 18, 4, 2020, '111', 2619.6000000000004);
-INSERT INTO public.detalle_sancion VALUES (86, '2-013', 19, 4, 2020, '111', 1000);
-INSERT INTO public.detalle_sancion VALUES (87, '2-013', 19, 4, 2020, '111', 1000);
+INSERT INTO public.detalle_sancion VALUES (134, '123', 21, 3, 2020, '111', 1000);
+INSERT INTO public.detalle_sancion VALUES (135, '2-013', 21, 3, 2020, '111', 1000);
+INSERT INTO public.detalle_sancion VALUES (136, '123', 18, 3, 2020, '111', 105);
+INSERT INTO public.detalle_sancion VALUES (137, '2-013', 18, 3, 2020, '111', 105);
 
 
 --
@@ -1308,10 +1295,8 @@ INSERT INTO public.detalle_sancion VALUES (87, '2-013', 19, 4, 2020, '111', 1000
 -- Data for Name: detalle_total; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.detalle_total VALUES (19, '123', 5239.2, 4, 2020, 0.6, 'Pendiente de pago');
-INSERT INTO public.detalle_total VALUES (20, '2-013', 9492.8, 4, 2020, 0.4, 'Pendiente de pago');
-INSERT INTO public.detalle_total VALUES (21, '123', 14407.800000000003, 4, 2020, 0.6, 'Pendiente de pago');
-INSERT INTO public.detalle_total VALUES (22, '2-013', 21605.2, 4, 2020, 0.4, 'Pendiente de pago');
+INSERT INTO public.detalle_total VALUES (79, '2-013', 1787.5, 3, 2020, 0.5, 'Pendiente de pago', '111');
+INSERT INTO public.detalle_total VALUES (80, '123', 1787.5, 3, 2020, 0.5, 'Pendiente de pago', '111');
 
 
 --
@@ -1330,16 +1315,13 @@ INSERT INTO public.fondos VALUES ('ad', '2020-04-04', 'madsodiadjada', 'yes', 20
 -- Data for Name: gasto_comun; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.gasto_comun VALUES (4, 'Ordinario', 4, 2020, 23, 'sadsa', '342', 0, '', '2020-04-10', 'Pendiente', '111', 23);
-INSERT INTO public.gasto_comun VALUES (1, 'Ordinario', 4, 2020, 100000, '52', '231231', 0, '23', '2020-04-17', 'Pendiente', '111', NULL);
-INSERT INTO public.gasto_comun VALUES (6, 'Ordinario', 4, 2020, 100, '1231', '342', 1, 'asdada', '2020-04-24', 'Procesado', '111', 100);
-INSERT INTO public.gasto_comun VALUES (8, 'Ordinario', 4, 2020, 200, '02422', '342', 1, 'sasasasassddddd', '2020-05-13', 'Procesado', '111', 200);
-INSERT INTO public.gasto_comun VALUES (9, 'Ordinario', 4, 2020, 500, '02422667543', '231231', 1, 'sggggggggg', '2020-07-14', 'Procesado', '111', 500);
-INSERT INTO public.gasto_comun VALUES (11, 'Extraordinario', 4, 2020, 650, '656798765434567', '231231', 1, 'sgggggggggzxxzxzx', '2020-09-09', 'Procesado', '111', 650);
-INSERT INTO public.gasto_comun VALUES (7, 'Extraordinario', 4, 2020, 20, '024596545465', '231231', 1, 'sasasasa', '2020-04-09', 'Procesado', '111', 20);
-INSERT INTO public.gasto_comun VALUES (2, 'Extraordinario', 4, 2020, 213, 'sd', '342', 1, 'd', '2020-04-03', 'Procesado', '111', NULL);
-INSERT INTO public.gasto_comun VALUES (10, 'Extraordinario', 4, 2020, 500, '654987321524', '342', 1, 'sggggggggg', '2020-06-11', 'Procesado', '111', 500);
-INSERT INTO public.gasto_comun VALUES (3, 'Extraordinario', 5, 2020, 10, 'sd1231', '231231', 1, 'd', '2020-04-03', 'Pendiente', '111', 10);
+INSERT INTO public.gasto_comun VALUES (4, 'Ordinario', 3, 2020, 23, 'sadsa', '342', 0, '', '2020-04-10', 'Pendiente', '111', 23);
+INSERT INTO public.gasto_comun VALUES (1, 'Ordinario', 3, 2020, 100000, '52', '231231', 0, '23', '2020-04-17', 'Pendiente', '111', NULL);
+INSERT INTO public.gasto_comun VALUES (12, 'Ordinario', 3, 2020, 100, 'sdf', '231231', 1, 'fdsf', '2020-04-09', 'Procesado', '111', 100);
+INSERT INTO public.gasto_comun VALUES (8, 'Ordinario', 3, 2020, 100, '02422', '342', 1, 'sasasasassddddd', '2020-05-13', 'Procesado', '111', 100);
+INSERT INTO public.gasto_comun VALUES (10, 'Extraordinario', 3, 2020, 100, '654987321524', '342', 1, 'sggggggggg', '2020-06-11', 'Procesado', '111', 100);
+INSERT INTO public.gasto_comun VALUES (2, 'Extraordinario', 3, 2020, 100, 'sd', '342', 1, 'd', '2020-04-03', 'Procesado', '111', 100);
+INSERT INTO public.gasto_comun VALUES (11, 'Extraordinario', 3, 2020, 100, '656798765434567', '231231', 1, 'sgggggggggzxxzxzx', '2020-09-09', 'Procesado', '111', 100);
 
 
 --
@@ -1439,10 +1421,10 @@ INSERT INTO public.puente_interes_condominio VALUES (12, '111', 5);
 -- Data for Name: puente_sancion_unidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.puente_sancion_unidad VALUES (26, 18, '2-013');
-INSERT INTO public.puente_sancion_unidad VALUES (27, 18, '123');
-INSERT INTO public.puente_sancion_unidad VALUES (28, 19, '2-013');
-INSERT INTO public.puente_sancion_unidad VALUES (37, 20, '123');
+INSERT INTO public.puente_sancion_unidad VALUES (38, 18, '123');
+INSERT INTO public.puente_sancion_unidad VALUES (39, 18, '2-013');
+INSERT INTO public.puente_sancion_unidad VALUES (40, 21, '123');
+INSERT INTO public.puente_sancion_unidad VALUES (41, 21, '2-013');
 
 
 --
@@ -1451,9 +1433,8 @@ INSERT INTO public.puente_sancion_unidad VALUES (37, 20, '123');
 -- Data for Name: sancion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.sancion VALUES (19, 'Multa', 4, 2020, 1000, '', '111', 'Pendiente');
-INSERT INTO public.sancion VALUES (20, 'Interes de mora', 5, 2020, 20, '', '111', 'Pendiente');
-INSERT INTO public.sancion VALUES (18, 'Interes de mora', 4, 2020, 50, '', '111', 'Procesado');
+INSERT INTO public.sancion VALUES (21, 'Multa', 3, 2020, 1000, '', '111', 'Procesado');
+INSERT INTO public.sancion VALUES (18, 'Interes de mora', 3, 2020, 20, '', '111', 'Procesado');
 
 
 --
@@ -1467,8 +1448,8 @@ INSERT INTO public.unidades VALUES ('2', 'no se', 300, '2456325');
 INSERT INTO public.unidades VALUES ('3', 'no se', 300, '8517596');
 INSERT INTO public.unidades VALUES ('4', 'no se', 300, '732463');
 INSERT INTO public.unidades VALUES ('5', 'no se', 300, '24578463');
-INSERT INTO public.unidades VALUES ('123', 'sadsad', 60, '31212');
-INSERT INTO public.unidades VALUES ('2-013', 'adasd', 40, '26943430');
+INSERT INTO public.unidades VALUES ('2-013', 'adasd', 50, '26943430');
+INSERT INTO public.unidades VALUES ('123', 'sadsad', 50, '31212');
 
 
 --
@@ -1514,7 +1495,7 @@ SELECT pg_catalog.setval('public.categoriagasto_id_seq', 1, true);
 -- Name: cierre_de_mes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.cierre_de_mes_id_seq', 6, true);
+SELECT pg_catalog.setval('public.cierre_de_mes_id_seq', 36, true);
 
 
 --
@@ -1541,7 +1522,7 @@ SELECT pg_catalog.setval('public.concepto_gasto_id_seq', 1, true);
 -- Name: cuotas_especiales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.cuotas_especiales_id_seq', 8, true);
+SELECT pg_catalog.setval('public.cuotas_especiales_id_seq', 14, true);
 
 
 --
@@ -1550,7 +1531,7 @@ SELECT pg_catalog.setval('public.cuotas_especiales_id_seq', 8, true);
 -- Name: detalle_cuotas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.detalle_cuotas_id_seq', 130, true);
+SELECT pg_catalog.setval('public.detalle_cuotas_id_seq', 192, true);
 
 
 --
@@ -1559,7 +1540,7 @@ SELECT pg_catalog.setval('public.detalle_cuotas_id_seq', 130, true);
 -- Name: detalle_interes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.detalle_interes_id_seq', 50, true);
+SELECT pg_catalog.setval('public.detalle_interes_id_seq', 142, true);
 
 
 --
@@ -1568,7 +1549,7 @@ SELECT pg_catalog.setval('public.detalle_interes_id_seq', 50, true);
 -- Name: detalle_pagos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.detalle_pagos_id_seq', 644, true);
+SELECT pg_catalog.setval('public.detalle_pagos_id_seq', 800, true);
 
 
 --
@@ -1577,7 +1558,7 @@ SELECT pg_catalog.setval('public.detalle_pagos_id_seq', 644, true);
 -- Name: detalle_sancion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.detalle_sancion_id_seq', 87, true);
+SELECT pg_catalog.setval('public.detalle_sancion_id_seq', 137, true);
 
 
 --
@@ -1586,7 +1567,7 @@ SELECT pg_catalog.setval('public.detalle_sancion_id_seq', 87, true);
 -- Name: detalle_total_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.detalle_total_id_seq', 22, true);
+SELECT pg_catalog.setval('public.detalle_total_id_seq', 80, true);
 
 
 --
@@ -1595,7 +1576,7 @@ SELECT pg_catalog.setval('public.detalle_total_id_seq', 22, true);
 -- Name: gasto_comun_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.gasto_comun_id_seq', 11, true);
+SELECT pg_catalog.setval('public.gasto_comun_id_seq', 12, true);
 
 
 --
@@ -1649,7 +1630,7 @@ SELECT pg_catalog.setval('public.puente_interes_condominio_id_seq', 12, true);
 -- Name: puente_sancion_unidad_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.puente_sancion_unidad_id_seq', 37, true);
+SELECT pg_catalog.setval('public.puente_sancion_unidad_id_seq', 41, true);
 
 
 --
@@ -1658,7 +1639,7 @@ SELECT pg_catalog.setval('public.puente_sancion_unidad_id_seq', 37, true);
 -- Name: sancion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sancion_id_seq', 20, true);
+SELECT pg_catalog.setval('public.sancion_id_seq', 21, true);
 
 
 --
@@ -2012,7 +1993,7 @@ ALTER TABLE ONLY public.concepto_gasto
     ADD CONSTRAINT concepto_gasto_id_categoria_fkey FOREIGN KEY (id_categoria) REFERENCES public.categoriagasto(id);
 
 
--- Completed on 2020-04-26 22:45:06
+-- Completed on 2020-04-27 18:50:52
 
 --
 -- PostgreSQL database dump complete

@@ -38,13 +38,13 @@ public class detalleRecibo extends javax.swing.JFrame {
     
     public detalleRecibo() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
+        tablagastos.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
-        jTable2.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
+        tablacuotas.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         jScrollPane2.getVerticalScrollBar().setUI(new MyScrollBarUI());
-        jTable3.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
+        tablasancion.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         jScrollPane3.getVerticalScrollBar().setUI(new MyScrollBarUI());
-        jTable4.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
+        tablainteres.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         jScrollPane4.getVerticalScrollBar().setUI(new MyScrollBarUI());
         setLocationRelativeTo(null);
     }
@@ -62,20 +62,20 @@ public class detalleRecibo extends javax.swing.JFrame {
         jTextField7 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablagastos = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtUnidad = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtAlicuota = new javax.swing.JTextField();
+        txtPropietarios = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txtTotal = new javax.swing.JTextField();
+        txtMes = new javax.swing.JTextField();
+        txtId = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
@@ -83,11 +83,11 @@ public class detalleRecibo extends javax.swing.JFrame {
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tablacuotas = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tablasancion = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        tablainteres = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator8 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
@@ -113,7 +113,7 @@ public class detalleRecibo extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablagastos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -124,10 +124,10 @@ public class detalleRecibo extends javax.swing.JFrame {
                 "Descripción", "Monto", "Cuota"
             }
         ));
-        jTable1.setRowHeight(20);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        tablagastos.setRowHeight(20);
+        jScrollPane1.setViewportView(tablagastos);
+        if (tablagastos.getColumnModel().getColumnCount() > 0) {
+            tablagastos.getColumnModel().getColumn(2).setResizable(false);
         }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, 460, 200));
@@ -140,11 +140,11 @@ public class detalleRecibo extends javax.swing.JFrame {
         jLabel1.setText("Unidad:");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 60, -1));
 
-        jTextField1.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setBorder(null);
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 240, 20));
+        txtUnidad.setBackground(new java.awt.Color(0, 94, 159));
+        txtUnidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtUnidad.setForeground(new java.awt.Color(255, 255, 255));
+        txtUnidad.setBorder(null);
+        jPanel2.add(txtUnidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 240, 20));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -156,17 +156,17 @@ public class detalleRecibo extends javax.swing.JFrame {
         jLabel5.setText("Alicuota:");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 60, 30));
 
-        jTextField3.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField3.setBorder(null);
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 240, 20));
+        txtAlicuota.setBackground(new java.awt.Color(0, 94, 159));
+        txtAlicuota.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtAlicuota.setForeground(new java.awt.Color(255, 255, 255));
+        txtAlicuota.setBorder(null);
+        jPanel2.add(txtAlicuota, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 240, 20));
 
-        jTextField2.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField2.setBorder(null);
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 240, 20));
+        txtPropietarios.setBackground(new java.awt.Color(0, 94, 159));
+        txtPropietarios.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtPropietarios.setForeground(new java.awt.Color(255, 255, 255));
+        txtPropietarios.setBorder(null);
+        jPanel2.add(txtPropietarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 240, 20));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -183,23 +183,23 @@ public class detalleRecibo extends javax.swing.JFrame {
         jLabel7.setText("Total a Pagar:");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, 100, -1));
 
-        jTextField6.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField6.setBorder(null);
-        jPanel2.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, 230, 20));
+        txtTotal.setBackground(new java.awt.Color(0, 94, 159));
+        txtTotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtTotal.setForeground(new java.awt.Color(255, 255, 255));
+        txtTotal.setBorder(null);
+        jPanel2.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, 230, 20));
 
-        jTextField5.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField5.setBorder(null);
-        jPanel2.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 230, 20));
+        txtMes.setBackground(new java.awt.Color(0, 94, 159));
+        txtMes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtMes.setForeground(new java.awt.Color(255, 255, 255));
+        txtMes.setBorder(null);
+        jPanel2.add(txtMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 230, 20));
 
-        jTextField4.setBackground(new java.awt.Color(0, 94, 159));
-        jTextField4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField4.setBorder(null);
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 230, 20));
+        txtId.setBackground(new java.awt.Color(0, 94, 159));
+        txtId.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtId.setForeground(new java.awt.Color(255, 255, 255));
+        txtId.setBorder(null);
+        jPanel2.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 230, 20));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 240, 20));
@@ -223,7 +223,7 @@ public class detalleRecibo extends javax.swing.JFrame {
 
         jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tablacuotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -234,14 +234,14 @@ public class detalleRecibo extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable2.setRowHeight(20);
-        jScrollPane2.setViewportView(jTable2);
+        tablacuotas.setRowHeight(20);
+        jScrollPane2.setViewportView(tablacuotas);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(552, 460, 430, 200));
 
         jScrollPane3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tablasancion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -252,14 +252,14 @@ public class detalleRecibo extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable3.setRowHeight(20);
-        jScrollPane3.setViewportView(jTable3);
+        tablasancion.setRowHeight(20);
+        jScrollPane3.setViewportView(tablasancion);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 720, 460, 210));
 
         jScrollPane4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        tablainteres.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -270,8 +270,8 @@ public class detalleRecibo extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable4.setRowHeight(20);
-        jScrollPane4.setViewportView(jTable4);
+        tablainteres.setRowHeight(20);
+        jScrollPane4.setViewportView(tablainteres);
 
         jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 720, 430, 210));
 
@@ -289,7 +289,7 @@ public class detalleRecibo extends javax.swing.JFrame {
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
@@ -304,7 +304,7 @@ public class detalleRecibo extends javax.swing.JFrame {
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
@@ -419,17 +419,17 @@ public class detalleRecibo extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
-    public javax.swing.JTextField jTextField1;
-    public javax.swing.JTextField jTextField2;
-    public javax.swing.JTextField jTextField3;
-    public javax.swing.JTextField jTextField4;
-    public javax.swing.JTextField jTextField5;
-    public javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    public javax.swing.JTable tablacuotas;
+    public javax.swing.JTable tablagastos;
+    public javax.swing.JTable tablainteres;
+    public javax.swing.JTable tablasancion;
+    public javax.swing.JTextField txtAlicuota;
+    public javax.swing.JTextField txtId;
+    public javax.swing.JTextField txtMes;
+    public javax.swing.JTextField txtPropietarios;
+    public javax.swing.JTextField txtTotal;
+    public javax.swing.JTextField txtUnidad;
     // End of variables declaration//GEN-END:variables
     static public class Headercolor extends DefaultTableCellHeaderRenderer {
     public Headercolor () {
