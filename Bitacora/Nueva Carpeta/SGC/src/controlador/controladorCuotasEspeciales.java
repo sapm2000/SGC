@@ -170,11 +170,11 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                 modcon.setNombre_Concepto(cuotae.jConcepto.getSelectedItem().toString());
                 modcon.buscarid(modcon);
                 modcuo.setId_concepto(modcon.getId());
-                String var1 = cuotae.jCalcular.getSelectedItem().toString();
-                if (var1.equals("Total de Inmuebles")) {
-                    var1 = "Total de Inmuebles";
+                String var10 = cuotae.jCalcular.getSelectedItem().toString();
+                if (var10.equals("Total de Inmuebles")) {
+                    var10 = "Total de Inmuebles";
                 }
-                modcuo.setCalcular(var1);
+                modcuo.setCalcular(var10);
                 modcuo.setMes(cuotae.jMonthChooser1.getMonth() + 1);
                 modcuo.setAño(cuotae.jYearChooser1.getYear());
                 modcuo.setMonto(Double.parseDouble(cuotae.txtMonto.getText()));
