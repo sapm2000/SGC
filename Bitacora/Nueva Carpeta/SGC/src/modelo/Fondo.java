@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,12 +21,23 @@ import java.util.ArrayList;
 public class Fondo extends ConexionBD {
 
     private String tipo;
+    private int id;
     private java.sql.Date fecha;
     private double monto_inicial;
     private String observacion;
     private String descripcion;
     private double saldo;
     private String id_condominio;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
 
     public String getTipo() {
         return tipo;
@@ -151,6 +164,17 @@ public class Fondo extends ConexionBD {
                 listaFondo.add(modfon);
             }
         } catch (Exception e) {
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
         }
 
         return listaFondo;
@@ -161,7 +185,7 @@ public class Fondo extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT fecha, descripcion, observaciones, monto_inicial, saldo FROM fondos where id_condominio=? and tipo=?;";
+        String sql = "SELECT id, fecha, descripcion, observaciones, monto_inicial, saldo FROM fondos where id_condominio=? and tipo=?;";
 
         try {
 
@@ -170,7 +194,7 @@ public class Fondo extends ConexionBD {
             ps.setString(2, modfon.getTipo());
             rs = ps.executeQuery();
             if (rs.next()) {
-
+                modfon.setId(rs.getInt("id"));
                 modfon.setFecha(rs.getDate("fecha"));
                 modfon.setDescripcion(rs.getString("descripcion"));
                 modfon.setObservacion(rs.getString("observaciones"));
@@ -202,12 +226,54 @@ public class Fondo extends ConexionBD {
 
     }
     
+     public boolean buscar1(Fondo modfon) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT id, fecha, descripcion, observaciones, monto_inicial, saldo FROM fondos where id_condominio=? and tipo=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, modfon.getId_condominio());
+            ps.setString(2, modfon.getTipo());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                modfon.setId(rs.getInt("id"));
+               
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+    
     public boolean modificar(Fondo modfon) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE fondos SET  fecha=?, descripcion=?, observaciones=?, monto_inicial=?, saldo=? WHERE tipo=? and id_condominio=?";
+        String sql = "UPDATE fondos SET  fecha=?, descripcion=?, observaciones=?, monto_inicial=?, saldo=?, tipo=? WHERE id=?";
 
         try {
 
@@ -219,7 +285,7 @@ public class Fondo extends ConexionBD {
             ps.setDouble(5, getSaldo());
             
             ps.setString(6, getTipo());
-            ps.setString(7, getId_condominio());
+            ps.setInt(7, getId());
             ps.execute();
 
             return true;
@@ -248,13 +314,13 @@ public class Fondo extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
         
-        String sql = "DELETE FROM fondos WHERE tipo=? and id_condominio=?";
+        String sql = "DELETE FROM fondos WHERE id=?";
         
         try {
             
             ps = con.prepareStatement(sql);
-            ps.setString(1, getTipo());
-            ps.setString(2, getId_condominio());
+            ps.setInt(1, getId());
+           
             ps.execute();
             
             return true;
@@ -278,5 +344,63 @@ public class Fondo extends ConexionBD {
         }
         
      }  
+    
+    public void llenar_fondo(JComboBox Fondo) {
+
+//Creamos objeto tipo Connection    
+        java.sql.Connection conectar = null;
+        PreparedStatement pst = null;
+        ResultSet result = null;
+
+//Creamos la Consulta SQL
+        String SSQL = "SELECT tipo FROM public.fondos where id_condominio=?;";
+
+//Establecemos bloque try-catch-finally
+        try {
+
+            //Establecemos conexión con la BD 
+            conectar = getConexion();
+            //Preparamos la consulta SQL
+            pst = conectar.prepareStatement(SSQL);
+            pst.setString(1, getId_condominio());
+            //Ejecutamos la consulta
+            result = pst.executeQuery();
+
+            //LLenamos nuestro ComboBox
+            Fondo.addItem("Seleccione el fondo a depositar");
+
+            while (result.next()) {
+
+                Fondo.addItem(result.getString("tipo"));
+
+            }
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, e);
+
+        } finally {
+
+            if (conectar != null) {
+
+                try {
+
+                    conectar.close();
+                    result.close();
+
+                    conectar = null;
+                    result = null;
+
+                } catch (SQLException ex) {
+
+                    JOptionPane.showMessageDialog(null, ex);
+
+                }
+
+            }
+
+        }
+
+    }
 
 }

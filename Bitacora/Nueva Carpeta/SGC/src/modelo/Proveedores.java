@@ -141,7 +141,19 @@ public class Proveedores extends ConexionBD{
                 listaProveedores.add(modpro);
             }
         } catch (Exception e) {
-        }
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        
+    }
 
         return listaProveedores;
     }

@@ -141,7 +141,19 @@ public class Propietarios extends ConexionBD {
                 listaPropietarios.add(modpro);
             }
         } catch (Exception e) {
-        }
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        
+    }
 
         return listaPropietarios;
     }

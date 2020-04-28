@@ -246,7 +246,19 @@ public class Sancion extends Unidades {
                 listaSancion.add(modsan);
             }
         } catch (Exception e) {
-        }
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        
+    }
 
         return listaSancion;
     }

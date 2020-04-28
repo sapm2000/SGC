@@ -67,7 +67,6 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
 
                 return false;
             }
-            
 
         };
         tablaD.setModel(modeloT);
@@ -119,7 +118,6 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
             fon.txtMontoInicial.setText("");
             fon.txtTipo.setText("");
             fon.jDateChooser1.setDate(null);
-            
 
         }
 
@@ -132,20 +130,22 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
                 modfon.setObservacion(fon.txaObservaciones.getText());
                 modfon.setMonto_inicial(Double.parseDouble(fon.txtMontoInicial.getText()));
                 modfon.setId_condominio(panta1.rif.getText());
-
-                if (modfon.registrar(modfon)) {
-
-                    JOptionPane.showMessageDialog(null, "Registro Guardado");
-                    Llenartabla(catafon.jTable1);
-    
-
+                if (modfon.buscar(modfon)) {
+                    JOptionPane.showMessageDialog(null, "este fondo ya esta registrado");
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                    if (modfon.registrar(modfon)) {
 
+                        JOptionPane.showMessageDialog(null, "Registro Guardado");
+                        Llenartabla(catafon.jTable1);
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                    }
                 }
             }
-            
 
         }
 
@@ -158,58 +158,84 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
                 modfon.setObservacion(fon.txaObservaciones.getText());
                 modfon.setMonto_inicial(Double.parseDouble(fon.txtMontoInicial.getText()));
                 modfon.setId_condominio(panta1.rif.getText());
-                
-               
-                double var1 = Double.parseDouble(fon.txtMontoInicial.getText());
-                double var2 = var1-montoi;
-                double total = var2+saldo;
-                modfon.setSaldo(total);
-                
-                if (total>0) {
-                    if (modfon.modificar(modfon)) {
+                modfon.setId(Integer.parseInt(fon.txtId.getText()));
+                int var7 = 0;
+                var7 = modfon.getId();
 
-                    JOptionPane.showMessageDialog(null, "Registro Modificado");
-                    Llenartabla(catafon.jTable1);
-                    fon.dispose();
+                if (modfon.buscar1(modfon)) {
+                    if (var7 == modfon.getId()) {
+                        double var1 = Double.parseDouble(fon.txtMontoInicial.getText());
+                        double var2 = var1 - montoi;
+                        double total = var2 + saldo;
+                        modfon.setSaldo(total);
+
+                        if (total > 0) {
+                            if (modfon.modificar(modfon)) {
+
+                                JOptionPane.showMessageDialog(null, "Registro Modificado");
+                                Llenartabla(catafon.jTable1);
+                                fon.dispose();
+
+                            } else {
+
+                                JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "el saldo no puede ser negativo");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "este registro ya existe");
+                    }
 
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                double var1 = Double.parseDouble(fon.txtMontoInicial.getText());
+                double var2 = var1 - montoi;
+                double total = var2 + saldo;
+                modfon.setSaldo(total);
 
-                }
-                }
-                else {
+                if (total > 0) {
+                    if (modfon.modificar(modfon)) {
+
+                        JOptionPane.showMessageDialog(null, "Registro Modificado");
+                        Llenartabla(catafon.jTable1);
+                        fon.dispose();
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                    }
+                } else {
                     JOptionPane.showMessageDialog(null, "el saldo no puede ser negativo");
                 }
-                
+                }
 
-                
             }
 
         }
-        
+
         if (e.getSource() == fon.btnEliminar) {
 
             modfon.setId_condominio(panta1.rif.getText());
             modfon.setTipo(fon.txtTipo.getText());
-            
-            if (saldo==0) {
-                 if (modfon.eliminar(modfon)) {
 
-                JOptionPane.showMessageDialog(null, "Registro Eliminado");
-                fon.dispose();
-                 Llenartabla(catafon.jTable1);
+            if (saldo == 0) {
+                if (modfon.eliminar(modfon)) {
 
-            } else {
+                    JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                    fon.dispose();
+                    Llenartabla(catafon.jTable1);
 
-                JOptionPane.showMessageDialog(null, "Error al Eliminar");
+                } else {
 
-            }
+                    JOptionPane.showMessageDialog(null, "Error al Eliminar");
+
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "No se puede eliminar un fondo con saldo mayor a 0");
             }
-
-           
 
         }
     }
@@ -251,12 +277,12 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
         fon.btnGuardar.setEnabled(false);
         fon.btnEliminar.setEnabled(true);
         fon.btnModificar.setEnabled(true);
-        fon.txtTipo.setEnabled(false);
 
         modfon.buscar(modfon);
 
         fon.txaDescripcion.setText(modfon.getDescripcion());
         fon.txaObservaciones.setText(modfon.getObservacion());
+        fon.txtId.setText(String.valueOf(modfon.getId()));
         fon.txtTipo.setText(modfon.getTipo());
         fon.jDateChooser1.setDate(modfon.getFecha());
         fon.txtMontoInicial.setText(String.valueOf(modfon.getMonto_inicial()));

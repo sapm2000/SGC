@@ -215,7 +215,19 @@ public class Asambleas extends Propietarios {
                 listaasambleas.add(modasa);
             }
         } catch (Exception e) {
-        }
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        
+    }
 
         return listaasambleas;
     }

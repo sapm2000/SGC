@@ -246,7 +246,19 @@ public class Cuenta extends Banco {
                 listaCuenta.add(modcu);
             }
         } catch (Exception e) {
-        }
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        
+    }
 
         return listaCuenta;
     }
@@ -402,7 +414,65 @@ public class Cuenta extends Banco {
         
         }
         
-     }  
+     }
+    
+    public void llenar_cuentas(JComboBox Cuentas) {
+
+//Creamos objeto tipo Connection    
+        java.sql.Connection conectar = null;
+        PreparedStatement pst = null;
+        ResultSet result = null;
+
+//Creamos la Consulta SQL
+        String SSQL = "SELECT id_cuenta FROM public.puente_condominio_cuenta inner join cuenta on cuenta.n_cuenta=puente_condominio_cuenta.id_cuenta where id_condominio=?;";
+
+//Establecemos bloque try-catch-finally
+        try {
+
+            //Establecemos conexión con la BD 
+            conectar = getConexion();
+            //Preparamos la consulta SQL
+            pst = conectar.prepareStatement(SSQL);
+            pst.setString(1, getId_condominio());
+            //Ejecutamos la consulta
+            result = pst.executeQuery();
+
+            //LLenamos nuestro ComboBox
+            Cuentas.addItem("Seleccione la cuenta depositada");
+
+            while (result.next()) {
+
+                Cuentas.addItem(result.getString("id_cuenta"));
+
+            }
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, e);
+
+        } finally {
+
+            if (conectar != null) {
+
+                try {
+
+                    conectar.close();
+                    result.close();
+
+                    conectar = null;
+                    result = null;
+
+                } catch (SQLException ex) {
+
+                    JOptionPane.showMessageDialog(null, ex);
+
+                }
+
+            }
+
+        }
+
+    }
    
    
 
