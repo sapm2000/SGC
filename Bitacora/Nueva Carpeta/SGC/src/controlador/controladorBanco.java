@@ -65,7 +65,6 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
                 return false;
             }
-            
 
         };
         tablaD.setModel(modeloT);
@@ -82,11 +81,20 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
             columna[0] = listaBanco.get(i).getNombre_banco();
 
             modeloT.addRow(columna);
+            System.getProperty("line.separator");
+
 
         }
-        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-        tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        
+        
+        
+    DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+
+    tcr.setHorizontalAlignment (SwingConstants.CENTER);
+
+    tablaD.getColumnModel ()
+
+.getColumn(0).setCellRenderer(tcr);
     }
 
     /*public void CrearCbx(JComboBox comboD, ArrayList<Banco> dato) {
@@ -124,7 +132,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         }
     }*/
     @Override
-    public void actionPerformed(ActionEvent e) {
+        public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == cban.btnNuevo_banco) {
 
@@ -212,7 +220,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+        public void mouseClicked(MouseEvent e) {
         // primero, obtengo la fila seleccionada
 
         int fila = this.cban.tabla_bancos.getSelectedRow(); // primero, obtengo la fila seleccionada
@@ -236,22 +244,22 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
+        public void mousePressed(MouseEvent e) {
 
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+        public void mouseReleased(MouseEvent e) {
 
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
+        public void mouseEntered(MouseEvent e) {
 
     }
 
     @Override
-    public void mouseExited(MouseEvent e) {
+        public void mouseExited(MouseEvent e) {
 
     }
 
@@ -264,23 +272,22 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     }
 
     @Override
-    public void keyTyped(KeyEvent ke) {
+        public void keyTyped(KeyEvent ke) {
 
         if (ke.getSource() == ban.txtnombre_banco) {
             Validacion.soloLetras(ke);
-            Validacion.Espacio(ke);
             Validacion.limite(ke, ban.txtnombre_banco.getText(), 120);
         }
 
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+        public void keyPressed(KeyEvent e) {
 
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
+        public void keyReleased(KeyEvent e) {
 
         if (e.getSource() == cban.txtBuscar_banco) {
 
@@ -291,38 +298,38 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     }
 
     @Override
-    public void windowOpened(WindowEvent e) {
+        public void windowOpened(WindowEvent e) {
         Llenartabla(cban.tabla_bancos);
 
     }
 
     @Override
-    public void windowClosing(WindowEvent e) {
+        public void windowClosing(WindowEvent e) {
 
     }
 
     @Override
-    public void windowClosed(WindowEvent e) {
+        public void windowClosed(WindowEvent e) {
 
     }
 
     @Override
-    public void windowIconified(WindowEvent e) {
+        public void windowIconified(WindowEvent e) {
 
     }
 
     @Override
-    public void windowDeiconified(WindowEvent e) {
+        public void windowDeiconified(WindowEvent e) {
 
     }
 
     @Override
-    public void windowActivated(WindowEvent e) {
+        public void windowActivated(WindowEvent e) {
 
     }
 
     @Override
-    public void windowDeactivated(WindowEvent e) {
+        public void windowDeactivated(WindowEvent e) {
 
     }
 
