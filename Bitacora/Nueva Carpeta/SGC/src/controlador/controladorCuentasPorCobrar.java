@@ -11,6 +11,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -145,8 +146,23 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
             modcuen.setReferencia(cuenco.txtReferencia.getText());
             java.sql.Date sqlDate = convert(cuenco.jDateChooser1.getDate());
             modcuen.setFecha(sqlDate);
-            if (modcuen.registrarCobro(modcuen)) {
-                JOptionPane.showMessageDialog(null, "registro guardado");
+            double total = 0;
+            for (int i = 0; i < cuenco.jTable1.getRowCount(); i++) {
+                if (valueOf(cuenco.jTable1.getValueAt(i, 7)) == "true") {
+                    
+                    double dato = Double.parseDouble(String.valueOf(this.cuenco.jTable1.getValueAt(i, 5)));
+                    total = total + dato;
+
+                }
+            }
+            
+            if (modcuen.getMonto() > total) {
+                JOptionPane.showMessageDialog(null, "No puede ingresar mas dinero de lo que debe");
+            } else {
+                if (modcuen.registrarCobro(modcuen)) {
+                    JOptionPane.showMessageDialog(null, "registro guardado");
+
+                }
             }
         }
     }
