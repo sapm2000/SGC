@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
@@ -61,12 +63,29 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
     public void Llenartablacondominio(JTable tablaD) {
 
         listaCondo = modcon.lPerson();
-        DefaultTableModel modeloT = new DefaultTableModel();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+                if (column == 2) {
+                    resu = true;
+                }
+                return resu;
+            }
+        };
         tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
 
         modeloT.addColumn("Rif");
-        modeloT.addColumn("Razon social");
-        modeloT.addColumn("Accion");
+        modeloT.addColumn("Razónn Social");
+        modeloT.addColumn("Seleccione");
 
         Object[] columna = new Object[2];
 
@@ -80,19 +99,32 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
     }
     
     public void Llenartablainteres(JTable tablaD) {
 
         listainteres = modin.listarInteres();
-        DefaultTableModel modeloT = new DefaultTableModel();
-        tablaD.setModel(modeloT);
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
 
-        modeloT.addColumn("Nº Interes");
-        modeloT.addColumn("Nombre Interes");
-        modeloT.addColumn("factor");
-        modeloT.addColumn("Nº condominios");
+                return false;
+            }
+            
+
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+
+        modeloT.addColumn("<html>Nº de <br> Interes</html>");
+        modeloT.addColumn("<html>Nombre de<br> Interes</html>");
+        modeloT.addColumn("Factor");
+        modeloT.addColumn("<html>Nº de <br> Condominios</html>");
         modeloT.addColumn("Estatus");
 
         Object[] columna = new Object[5];
@@ -110,17 +142,40 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
     }
     
      public void llenartablacondominiomod(JTable tablaD) {
         listainteresmod = modin.interescondominiomodificar();
-        DefaultTableModel modeloT = new DefaultTableModel();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+                if (column == 2) {
+                    resu = true;
+                }
+                return resu;
+            }
+        };
         tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
 
         modeloT.addColumn("Rif");
-        modeloT.addColumn("Razon social");
-        modeloT.addColumn("Accion");
+        modeloT.addColumn("Razónn Social");
+        modeloT.addColumn("Selecione");
 
         Object[] columna = new Object[3];
 
@@ -142,7 +197,11 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
     }
 
     public void actionPerformed(ActionEvent e) {

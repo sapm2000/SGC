@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.CerrarMes;
@@ -81,12 +83,21 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
     public void llenartablapropietarios(JTable tablaD) {
 
         listapropietarios = moduni.buscarPropietario();
-        DefaultTableModel modeloT = new DefaultTableModel();
-        tablaD.setModel(modeloT);
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
 
-        modeloT.addColumn("Cedula");
+                return false;
+            }
+            
+
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+
+        modeloT.addColumn("Cédula");
         modeloT.addColumn("Nombre");
-        modeloT.addColumn("Telefoo");
+        modeloT.addColumn("Teléfono");
         modeloT.addColumn("Correo");
 
         Object[] columna = new Object[4];
@@ -103,14 +114,28 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        
     }
 
     public void llenartablapagos(JTable tablaD) {
 
         listapagos = modc.listarpagos();
-        DefaultTableModel modeloT = new DefaultTableModel();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                return false;
+            }
+            
+
+        };
         tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
 
         modeloT.addColumn("Nº recibo");
         modeloT.addColumn("Mes");
@@ -137,18 +162,34 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
     }
 
     public void llenardetallegasto(JTable tablaD) {
 
         listadetallegasto = modc.listardetallesgastos();
-        DefaultTableModel modeloT = new DefaultTableModel();
-        tablaD.setModel(modeloT);
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
 
-        modeloT.addColumn("Tipo ");
-        modeloT.addColumn("RIF ");
-        modeloT.addColumn("Razon social");
+                return false;
+            }
+            
+
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+
+        modeloT.addColumn("Tipo");
+        modeloT.addColumn("Rif");
+        modeloT.addColumn("Razón Social");
         modeloT.addColumn("Concepto");
         modeloT.addColumn("Monto");
 
@@ -167,14 +208,29 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
     }
     
     public void llenardetalleinteres(JTable tablaD) {
 
         listadetalleinteres = modc.listardetallesinteres();
-        DefaultTableModel modeloT = new DefaultTableModel();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                return false;
+            }
+            
+
+        };
         tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
 
         modeloT.addColumn("Tipo de Interes ");
         modeloT.addColumn("Factor");       
@@ -196,21 +252,34 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
     }
 
     public void llenardetallecuotas(JTable tablaD) {
 
         listadetallecuotas = modc.listardetallescuotas();
-        DefaultTableModel modeloT = new DefaultTableModel();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                return false;
+            }
+            
+
+        };
         tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
 
         
-        modeloT.addColumn("RIF ");
-        modeloT.addColumn("Razon social");
+        modeloT.addColumn("Rif");
+        modeloT.addColumn("Razón Social");
         modeloT.addColumn("Concepto");
         modeloT.addColumn("Monto");
-        modeloT.addColumn("Meses restantes ");
+        modeloT.addColumn("Meses Restantes");
 
         Object[] columna = new Object[5];
 
@@ -227,18 +296,33 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
     }
     
     public void llenardetallesancion(JTable tablaD) {
 
         listadetallesancion = modc.listardetallessancion();
-        DefaultTableModel modeloT = new DefaultTableModel();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                return false;
+            }
+            
+
+        };
         tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
 
         
         modeloT.addColumn("Tipo ");
-        modeloT.addColumn("Descripcion");
+        modeloT.addColumn("Descripción");
         modeloT.addColumn("Factor");
         modeloT.addColumn("Monto");
        
@@ -265,14 +349,28 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
     }
 
     public void llenartablaunidades(JTable tablaD) {
 
         listaunidades = moduni.buscarUnidades();
-        DefaultTableModel modeloT = new DefaultTableModel();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                return false;
+            }
+            
+
+        };
         tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
 
         modeloT.addColumn("<html>Número de <br> Unidad</html>");
         modeloT.addColumn("<html>Propietario ó <br> inquilino</html>");
@@ -299,7 +397,15 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(6).setCellRenderer(tcr);
     }
 
     public void actionPerformed(ActionEvent e) {

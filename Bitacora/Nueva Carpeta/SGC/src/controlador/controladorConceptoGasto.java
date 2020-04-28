@@ -21,6 +21,8 @@ import vista.conceptoGasto;
 import modelo.ModeloConceptoGastos;
 import controlador.Validacion;
 import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableRowSorter;
 import modelo.CategoriaGasto;
 
@@ -120,6 +122,7 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
         if (e.getSource() == catacga.btnNuevoRegistro) {
             limpiar();
             this.cga.setVisible(true);
+            cga.txtId.setVisible(false);
             this.cga.btnModificar.setEnabled(false);
             this.cga.btnGuardar.setEnabled(true);
             this.cga.btnEliminar.setEnabled(false);
@@ -141,8 +144,16 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
 
         listaConGas = modCatGas.listarConcepto();
 
-        DefaultTableModel modeloT = new DefaultTableModel();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                return false;
+            }
+
+        };
         tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
 
         modeloT.addColumn("Concepto");
         modeloT.addColumn("Descripción");
@@ -161,7 +172,11 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
     }
 
     private Boolean validar() {
@@ -230,6 +245,7 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
         cga.txtDescripcion.setText(modCatGas.getDescripcion());
         cga.cbxCategoria.setSelectedItem(modCatGas.getNombreCategoria());
         cga.txtId.setEnabled(false);
+        cga.txtId.setVisible(false);
         cga.btnGuardar.setEnabled(false);
         cga.btnModificar.setEnabled(true);
         cga.btnEliminar.setEnabled(true);

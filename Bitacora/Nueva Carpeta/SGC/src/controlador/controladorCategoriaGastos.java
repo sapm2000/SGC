@@ -25,6 +25,8 @@ import vista.catalogoCategoriaGastos;
 import vista.categoriaGastos;
 import controlador.Validacion;
 import java.util.ArrayList;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -56,6 +58,8 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         this.cg.txtdescripcion.addKeyListener(this);
 
     }
+    
+
 
     public void Llenartabla(JTable tablaD) {
         
@@ -64,14 +68,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
             @Override
             public boolean isCellEditable(int row, int column) {
 
-                boolean resu = false;
-                if (column == 0) {
-                    resu = false;
-                }
-                if (column == 1) {
-                    resu = true;
-                }
-                return resu;
+                return false;
             }
             
 
@@ -95,6 +92,11 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
         }
 
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        
     }
 
     public void actionPerformed(ActionEvent e) {

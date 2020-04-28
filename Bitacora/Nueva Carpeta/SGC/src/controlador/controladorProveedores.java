@@ -18,6 +18,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Condominio;
@@ -58,15 +60,24 @@ public class controladorProveedores implements ActionListener, WindowListener, K
     public void Llenartabla(JTable tablaD) {
 
         listaProveedores = modpro.listar();
-        DefaultTableModel modeloT = new DefaultTableModel();
-        tablaD.setModel(modeloT);
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
 
-        modeloT.addColumn("Cedula/Rif");
-        modeloT.addColumn("Nombre/razon social");
-        modeloT.addColumn("Telefono");
-        modeloT.addColumn("Correo");
+                return false;
+            }
+            
+
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+
+        modeloT.addColumn("Cédula/Rif");
+        modeloT.addColumn("Nombre/Razón Social");
+        modeloT.addColumn("Teléfono");
+        modeloT.addColumn("Correo Electrónico");
         modeloT.addColumn("Contacto");
-        modeloT.addColumn("Direccion");
+        modeloT.addColumn("Dirección");
 
         Object[] columna = new Object[6];
 
@@ -84,7 +95,14 @@ public class controladorProveedores implements ActionListener, WindowListener, K
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
     }
 
     public void actionPerformed(ActionEvent e) {

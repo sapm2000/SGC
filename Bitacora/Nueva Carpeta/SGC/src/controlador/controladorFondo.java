@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Fondo;
@@ -59,13 +61,22 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
     public void Llenartabla(JTable tablaD) {
 
         listafondo = modfon.listar();
-        DefaultTableModel modeloT = new DefaultTableModel();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                return false;
+            }
+            
+
+        };
         tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
 
         modeloT.addColumn("Fecha");
         modeloT.addColumn("Tipo");
-        modeloT.addColumn("Descripcion");
-        modeloT.addColumn("Observacion");
+        modeloT.addColumn("Descripción");
+        modeloT.addColumn("Observación");
         modeloT.addColumn("Monto Inicial");
         modeloT.addColumn("Saldo Actual");
 
@@ -85,7 +96,14 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
     }
 
     public void actionPerformed(ActionEvent e) {

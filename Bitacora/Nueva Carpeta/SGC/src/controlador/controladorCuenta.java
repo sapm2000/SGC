@@ -22,6 +22,8 @@ import modelo.Cuenta;
 import vista.catalogoCuenta;
 import vista.cuenta;
 import controlador.Validacion;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class controladorCuenta implements ActionListener, MouseListener, KeyListener, WindowListener {
 
@@ -56,8 +58,17 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     public void Llenartabla(JTable tablaD) {
 
         listaCuenta = modcu.listarcuenta();
-        DefaultTableModel modeloT = new DefaultTableModel();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                return false;
+            }
+            
+
+        };
         tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
 
         modeloT.addColumn("Banco");
         modeloT.addColumn("Cuenta");
@@ -82,18 +93,42 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
     }
 
     public void Llenartablacondominio(JTable tablaD) {
 
         listaCondo = modcon.lPerson();
-        DefaultTableModel modeloT = new DefaultTableModel();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+                if (column == 2) {
+                    resu = true;
+                }
+                return resu;
+            }
+        };
         tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
 
         modeloT.addColumn("Rif");
-        modeloT.addColumn("Razon social");
-        modeloT.addColumn("Accion");
+        modeloT.addColumn("Razón social");
+        modeloT.addColumn("Seleccione");
 
         Object[] columna = new Object[2];
 
@@ -107,17 +142,38 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
     }
 
     public void Llenartablacondominiomodificar(JTable tablaD) {
         listaCondo = modcon.cuentacondominiomodificar();
-        DefaultTableModel modeloT = new DefaultTableModel();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+                if (column == 2) {
+                    resu = true;
+                }
+                return resu;
+            }
+        };
         tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
 
         modeloT.addColumn("Rif");
-        modeloT.addColumn("Razon social");
-        modeloT.addColumn("Accion");
+        modeloT.addColumn("Razón social");
+        modeloT.addColumn("Seleccione");
 
         Object[] columna = new Object[3];
 
@@ -137,7 +193,11 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
     }
 
     public void actionPerformed(ActionEvent e) {
