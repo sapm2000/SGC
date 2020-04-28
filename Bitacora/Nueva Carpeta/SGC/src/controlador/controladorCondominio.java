@@ -79,7 +79,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         tablaD.getTableHeader().setReorderingAllowed(false);
 
         modeloT.addColumn("Rif");
-        modeloT.addColumn("Razónn Social");
+        modeloT.addColumn("Razón Social");
         modeloT.addColumn("Teléfono");
         modeloT.addColumn("Correo Electrónico");
 
