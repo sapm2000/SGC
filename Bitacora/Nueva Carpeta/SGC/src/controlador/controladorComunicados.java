@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
@@ -63,13 +65,39 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
     public void Llenartabla(JTable tablaD) {
 
         listausuarios = modus.listar();
-        DefaultTableModel modeloT = new DefaultTableModel();
-        tablaD.setModel(modeloT);
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
 
-        modeloT.addColumn("Cedula/Rif");
-        modeloT.addColumn("Nombre/razon social");
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+                if (column == 2) {
+                    resu = false;
+                }
+                if (column == 3) {
+                    resu = false;
+                }
+                if (column == 4) {
+                    resu = false;
+                }
+                if (column == 5) {
+                    resu = true;
+                }
+                return resu;
+            }
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+
+        modeloT.addColumn("<html>Cédula/<br>Rif</html>");
+        modeloT.addColumn("<html>Nombre/<br>Razón Social</html>");
         modeloT.addColumn("Apellido");
-        modeloT.addColumn("Telefono");
+        modeloT.addColumn("Teléfono");
         modeloT.addColumn("Tipo");
         modeloT.addColumn("Seleccione");
 
@@ -88,19 +116,51 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
     }
 
     public void Llenartablamod(JTable tablaD) {
 
         listausuariosmod = modco.listarmod();
-        DefaultTableModel modeloT = new DefaultTableModel();
-        tablaD.setModel(modeloT);
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
 
-        modeloT.addColumn("Cedula/Rif");
-        modeloT.addColumn("Nombre/razon social");
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+                if (column == 2) {
+                    resu = false;
+                }
+                if (column == 3) {
+                    resu = false;
+                }
+                if (column == 4) {
+                    resu = false;
+                }
+                if (column == 5) {
+                    resu = true;
+                }
+                return resu;
+            }
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+
+        modeloT.addColumn("<html>Cédula/<br>Rif</html>");
+        modeloT.addColumn("<html>Nombre/<br>Razón Social</html>");
         modeloT.addColumn("Apellido");
-        modeloT.addColumn("Telefono");
+        modeloT.addColumn("Teléfono");
         modeloT.addColumn("Tipo");
         modeloT.addColumn("Seleccione");
 
@@ -127,16 +187,32 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        
     }
 
     public void llenartablaComunicado(JTable tablaD) {
 
         listacomunicados = modco.listarComunicado();
-        DefaultTableModel modeloT = new DefaultTableModel();
-        tablaD.setModel(modeloT);
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
 
-        modeloT.addColumn("Nº Comunicado");
+                return false;
+            }
+            
+
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+
+        modeloT.addColumn("<html>Nº de <br> Comunicado</html>");
         modeloT.addColumn("Asunto");
         modeloT.addColumn("Enviado");
         modeloT.addColumn("Leido");
@@ -155,7 +231,12 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
     }
 
     public void actionPerformed(ActionEvent e) {

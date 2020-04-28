@@ -14,6 +14,8 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Banco;
@@ -61,21 +63,15 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
             @Override
             public boolean isCellEditable(int row, int column) {
 
-                boolean resu = false;
-                if (column == 0) {
-                    resu = false;
-                }
-                if (column == 1) {
-                    resu = true;
-                }
-                return resu;
+                return false;
             }
             
 
         };
         tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
 
-        modeloT.addColumn("Nombre Banco");
+        modeloT.addColumn("Nombre del Banco");
 
         Object[] columna = new Object[1];
 
@@ -88,7 +84,9 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
     }
 
     /*public void CrearCbx(JComboBox comboD, ArrayList<Banco> dato) {

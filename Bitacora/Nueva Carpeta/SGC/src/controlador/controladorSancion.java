@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
@@ -66,8 +68,17 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
     public void LlenartablaSancion(JTable tablaD) {
 
         listaSancion = modsan.listarSanciones();
-        DefaultTableModel modeloT = new DefaultTableModel();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                return false;
+            }
+            
+
+        };
         tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
 
         modeloT.addColumn("<html>Número de <br> Sanción</html>");
         modeloT.addColumn("Descripción");
@@ -95,15 +106,36 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
     }
 
     public void llenartablaunidadesmod(JTable tablaD) {
         listaunimod = modsan.listarunidadesmod();
-        DefaultTableModel modeloT = new DefaultTableModel();
-        tablaD.setModel(modeloT);
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
 
-        modeloT.addColumn("Nº unidad");
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = true;
+                }
+                return resu;
+            }
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+
+        modeloT.addColumn("Número de Unidad");
         modeloT.addColumn("seleccione");
 
         Object[] columna = new Object[2];
@@ -123,16 +155,33 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
     }
 
     public void llenartablaunidades(JTable tablaD) {
 
         listaunidades = modsan.buscarUnidades();
-        DefaultTableModel modeloT = new DefaultTableModel();
-        tablaD.setModel(modeloT);
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
 
-        modeloT.addColumn("Numero Unidad");
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = true;
+                }
+                return resu;
+            }
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+
+        modeloT.addColumn("Número Unidad");
         modeloT.addColumn("Seleccione");
 
         Object[] columna = new Object[2];
@@ -146,7 +195,10 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
     }
 
     public void actionPerformed(ActionEvent e) {

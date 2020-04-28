@@ -17,6 +17,8 @@ import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.CerrarMes;
@@ -72,8 +74,17 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
     public void Llenartabla(JTable tablaD) {
 
         listaCierremes = modc.listar();
-        DefaultTableModel modeloT = new DefaultTableModel();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                return false;
+            }
+            
+
+        };
         tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
 
         modeloT.addColumn("Nº de Cierre");
         modeloT.addColumn("Mes");
@@ -92,7 +103,11 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
     }
 
     @Override
@@ -378,7 +393,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                 modc.setMonto(0);
                                 }
                             double var6 = modc.getMonto();
-                             JOptionPane.showMessageDialog(null, var6);
+                            
 
                             if (modc.buscartotal1(modc))
                             {
@@ -387,7 +402,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                 modc.setMonto(0);
                                 }
                             double var7 = modc.getMonto();
-                             JOptionPane.showMessageDialog(null, var7);
+                            
 
                             if (modc.buscartotal2(modc))
                             {
@@ -396,7 +411,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                 modc.setMonto(0);
                                 }
                             double var8 = modc.getMonto();
-                             JOptionPane.showMessageDialog(null, var8);
+                             
 
                             if (modc.buscartotal3(modc))
                             {
@@ -405,7 +420,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                 modc.setMonto(0);
                                 }
                             double var9 = modc.getMonto();
-                             JOptionPane.showMessageDialog(null, var9);
+                             
                              double totalfinal=0;
                             totalfinal = var6 + var7 + var8 + var9;
                             if (numReales == 0 && numReales == 0) {

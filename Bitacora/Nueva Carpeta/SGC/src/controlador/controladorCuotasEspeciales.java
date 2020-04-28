@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Asambleas;
@@ -71,10 +73,19 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
     public void llenartablaCuotasEspeciales(JTable tablaD) {
 
         listacuotasEspeciales = modcuo.listarCuotasEspeciales();
-        DefaultTableModel modeloT = new DefaultTableModel();
-        tablaD.setModel(modeloT);
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
 
-        modeloT.addColumn("<html>Nº de <br> Cuota especial</html>");
+                return false;
+            }
+            
+
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+
+        modeloT.addColumn("<html>Nº de <br> Cuota Especial</html>");
         modeloT.addColumn("Proveedor");
         modeloT.addColumn("Concepto");
         modeloT.addColumn("<html>Calcular <br> Por</html>");
@@ -83,9 +94,9 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
         modeloT.addColumn("Saldo");
         modeloT.addColumn("Asamblea");
 
-        modeloT.addColumn("Meses Iniciales");
-        modeloT.addColumn("Meses restantes");
-        modeloT.addColumn("Observacion");
+        modeloT.addColumn("<html>Meses <br> Iniciales</html>");
+        modeloT.addColumn("<html>Meses <br> Restantes</html>");
+        modeloT.addColumn("Observación");
 
         modeloT.addColumn("Estado");
 
@@ -113,7 +124,20 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(6).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(7).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(8).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(9).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(10).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(11).setCellRenderer(tcr);
     }
 
     public void actionPerformed(ActionEvent e) {

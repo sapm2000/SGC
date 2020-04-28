@@ -65,9 +65,34 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
     public void Llenartabla(JTable tablaD) {
 
         listaPropietarios = modpro.listar();
-        DefaultTableModel modeloT = new DefaultTableModel();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+                if (column == 2) {
+                    resu = false;
+                }
+                if (column == 3) {
+                    resu = false;
+                }
+                if (column == 4) {
+                    resu = false;
+                }
+                if (column == 5) {
+                    resu = true;
+                }
+                return resu;
+            }
+        };
         tablaD.setModel(modeloT);
-        
+        tablaD.getTableHeader().setReorderingAllowed(false);
 
         modeloT.addColumn("<html>Cédula/ <br>Rif</html>");
         modeloT.addColumn("<html>Nombre/ <br> Razón Social</html>");
@@ -103,14 +128,37 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
     public void Llenartablaasambleas(JTable tablaD) {
 
         listaasambleas = modasa.listarAsambleas();
-        DefaultTableModel modeloT = new DefaultTableModel();
-        tablaD.setModel(modeloT);
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
 
-        modeloT.addColumn("Nº Asamblea");
-        modeloT.addColumn("Nombre Asamblea");
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+                if (column == 2) {
+                    resu = false;
+                }
+                if (column == 3) {
+                    resu = false;
+                }
+                if (column == 4) {
+                    resu = false;
+                }
+                return resu;
+            }
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+
+        modeloT.addColumn("<html>Nº de<br> Asamblea</html>");
+        modeloT.addColumn("<html>Nombre de <br> Asamblea</html>");
         modeloT.addColumn("Fecha");
-        modeloT.addColumn("Descripcion");
-        modeloT.addColumn("Nº asistentes");
+        modeloT.addColumn("Descripción");
+        modeloT.addColumn("<html>Nº de <br> Asistentes</html>");
 
         Object[] columna = new Object[5];
 
@@ -127,19 +175,51 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
     }
 
     public void llenartablapropietariomodificar(JTable tablaD) {
         listapropmod = modasa.listarpropietariosmod();
-        DefaultTableModel modeloT = new DefaultTableModel();
-        tablaD.setModel(modeloT);
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
 
-        modeloT.addColumn("Cedula");
-        modeloT.addColumn("Nombre");
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+                if (column == 2) {
+                    resu = false;
+                }
+                if (column == 3) {
+                    resu = false;
+                }
+                if (column == 4) {
+                    resu = false;
+                }
+                if (column == 5) {
+                    resu = true;
+                }
+                return resu;
+            }
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+
+        modeloT.addColumn("<html>Cédula/<br>Rif</html>");
+        modeloT.addColumn("<html>Nombre/<br>Razón Social</html>");
         modeloT.addColumn("Apellido");
-        modeloT.addColumn("Telefono");
-        modeloT.addColumn("Correo");
+        modeloT.addColumn("Teléfono");
+        modeloT.addColumn("<html>Correo<br>Electrónico</html>");
         modeloT.addColumn("Selecione");
 
         Object[] columna = new Object[6];
@@ -163,7 +243,14 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -393,7 +480,5 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         java.sql.Date sDate = new java.sql.Date(uDate.getTime());
         return sDate;
     }
-
-    
 
 }

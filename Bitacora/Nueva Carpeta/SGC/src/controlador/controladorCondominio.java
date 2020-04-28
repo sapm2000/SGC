@@ -26,6 +26,8 @@ import vista.catalogoCondominio;
 import vista.condominio;
 import controlador.Validacion;
 import java.util.ArrayList;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -64,11 +66,20 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
     public void Llenartabla(JTable tablaD) {
         
         listaCondo = co.lPerson();
-        DefaultTableModel modeloT = new DefaultTableModel();
-        tablaD.setModel(modeloT);
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
 
-        modeloT.addColumn("Rif.");
-        modeloT.addColumn("Razon Social");
+                return false;
+            }
+            
+
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+
+        modeloT.addColumn("Rif");
+        modeloT.addColumn("Razónn Social");
         modeloT.addColumn("Teléfono");
         modeloT.addColumn("Correo Electrónico");
 
@@ -86,7 +97,12 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
             modeloT.addRow(columna);
 
         }
-
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
     }
 
     public void actionPerformed(ActionEvent e) {
