@@ -847,6 +847,100 @@ public class CerrarMes extends ConexionBD {
 
         return listaCierremes;
     }
+    
+    public ArrayList<CerrarMes> listarpagospendientes() {
+        ArrayList listaCierremes = new ArrayList();
+        CerrarMes modc;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT id, monto, mes, anio, alicuota, estado, saldo_restante FROM detalle_total where id_unidad=? and id_condominio=? and estado='Pendiente de pago' order by anio,mes";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getId_unidad());
+            ps.setString(2, getId_condominio());
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modc = new CerrarMes();
+
+                modc.setId_gasto(rs.getInt(1));
+                modc.setMonto(rs.getDouble(2));
+                modc.setMes_cierre(rs.getInt(3));
+                modc.setAño_cierre(rs.getInt(4));
+                modc.setAlicuota(rs.getDouble(5));
+                modc.setEstado(rs.getString(6));
+                modc.setSaldo_restante(rs.getDouble(7));
+
+                listaCierremes.add(modc);
+            }
+        } catch (Exception e) {
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+        return listaCierremes;
+    }
+    
+    public ArrayList<CerrarMes> listarpagospagados() {
+        ArrayList listaCierremes = new ArrayList();
+        CerrarMes modc;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT id, monto, mes, anio, alicuota, estado, saldo_restante FROM detalle_total where id_unidad=? and id_condominio=? and estado='Pagado' order by anio,mes";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getId_unidad());
+            ps.setString(2, getId_condominio());
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modc = new CerrarMes();
+
+                modc.setId_gasto(rs.getInt(1));
+                modc.setMonto(rs.getDouble(2));
+                modc.setMes_cierre(rs.getInt(3));
+                modc.setAño_cierre(rs.getInt(4));
+                modc.setAlicuota(rs.getDouble(5));
+                modc.setEstado(rs.getString(6));
+                modc.setSaldo_restante(rs.getDouble(7));
+
+                listaCierremes.add(modc);
+            }
+        } catch (Exception e) {
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+        return listaCierremes;
+    }
 
     public boolean buscarmesesdedeuda(CerrarMes modc) {
 
@@ -1101,6 +1195,87 @@ public class CerrarMes extends ConexionBD {
             }
 
             return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+    
+     public boolean buscId(CerrarMes modc) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT MAX(id) as id from cobro";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                modc.setMes_cierre(rs.getInt("id"));
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+     
+      public boolean guardarpuentepagos(CerrarMes modc) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "INSERT INTO puente_cobro_factura(id_total, id_cobro, parte_monto) VALUES (?, ?, ?);";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setDouble(1, getId_gasto());
+            ps.setInt(2, getMes_cierre());
+            ps.setDouble(3, getSaldo_restante());
+          
+            
+            
+            ps.execute();
+
+            return true;
 
         } catch (SQLException e) {
 

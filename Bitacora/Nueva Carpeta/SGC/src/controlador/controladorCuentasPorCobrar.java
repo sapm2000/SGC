@@ -57,15 +57,13 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
 
     public void Llenartabla(JTable tablaD) {
 
-        listaCierremes = modc.listarpagos();
+        listaCierremes = modc.listarpagospendientes();
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
 
                 boolean resu = false;
 
-                
-                   
                 if (column == 0) {
                     resu = false;
                 }
@@ -90,7 +88,6 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                 if (column == 7) {
                     resu = true;
                 }
-                
 
                 return resu;
             }
@@ -109,6 +106,84 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
         modeloT.addColumn("Seleccione");
 
         Object[] columna = new Object[8];
+
+        int numRegistro = listaCierremes.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listaCierremes.get(i).getId_gasto();
+            columna[1] = listaCierremes.get(i).getMes_cierre();
+            columna[2] = listaCierremes.get(i).getAño_cierre();
+            double var4 = listaCierremes.get(i).getAlicuota() * 100;
+            String var5 = var4 + "%";
+            columna[3] = var5;
+            columna[4] = listaCierremes.get(i).getMonto();
+            columna[5] = listaCierremes.get(i).getSaldo_restante();
+            columna[6] = listaCierremes.get(i).getEstado();
+
+            modeloT.addRow(columna);
+
+        }
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
+    }
+
+    public void Llenartablapagados(JTable tablaD) {
+
+        listaCierremes = modc.listarpagospagados();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                boolean resu = false;
+
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+                if (column == 2) {
+                    resu = false;
+                }
+                if (column == 3) {
+                    resu = false;
+                }
+                if (column == 4) {
+                    resu = false;
+                }
+                if (column == 5) {
+                    resu = false;
+                }
+                if (column == 6) {
+                    resu = false;
+                }
+                if (column == 7) {
+                    resu = true;
+                }
+
+                return resu;
+            }
+
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+
+        modeloT.addColumn("Nº de recibo");
+        modeloT.addColumn("Mes");
+        modeloT.addColumn("Año");
+        modeloT.addColumn("Alicuota");
+        modeloT.addColumn("Monto");
+        modeloT.addColumn("Saldo restante");
+        modeloT.addColumn("Estado");
+
+        Object[] columna = new Object[7];
 
         int numRegistro = listaCierremes.size();
 
@@ -172,14 +247,21 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                 JOptionPane.showMessageDialog(null, "No puede ingresar mas dinero de lo que debe");
             } else {
                 if (modcuen.registrarCobro(modcuen)) {
+                    double var4= modfon.getSaldo()+modcuen.getMonto();
+                    modfon.setSaldo(var4);
+                    modfon.fondear(modfon);
+
                     JOptionPane.showMessageDialog(null, "registro guardado");
+                    modc.buscId(modc);
                     for (int i = 0; i < cuenco.jTable1.getRowCount(); i++) {
                         if (valueOf(cuenco.jTable1.getValueAt(i, 7)) == "true") {
 
                             double dato = Double.parseDouble(String.valueOf(this.cuenco.jTable1.getValueAt(i, 5)));
                             double parte = dato - monto;
+                            double va1 = dato - parte;
                             if (parte <= 0) {
                                 parte = 0;
+                                va1 = dato;
                             }
 
                             if (monto <= 0) {
@@ -195,6 +277,9 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
 
                                 modc.setId_gasto(Integer.parseInt(String.valueOf(this.cuenco.jTable1.getValueAt(i, 0))));
                                 modc.actualizartotal(modc);
+                                modc.setSaldo_restante(va1);
+                                modc.guardarpuentepagos(modc);
+                                modc.setSaldo_restante(0);
                             }
                             monto = monto - dato;
 
@@ -204,6 +289,7 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                     modc.setId_unidad(cuenco.jComboUnidad.getSelectedItem().toString());
                     Llenartabla(cuenco.jTable1);
                     addCheckBox(7, cuenco.jTable1);
+                    Llenartablapagados(cuenco.jTable2);
 
                 }
             }
@@ -261,6 +347,7 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                 modc.setId_unidad(cuenco.jComboUnidad.getSelectedItem().toString());
                 Llenartabla(cuenco.jTable1);
                 addCheckBox(7, cuenco.jTable1);
+                Llenartablapagados(cuenco.jTable2);
             }
         }
 

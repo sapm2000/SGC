@@ -3,7 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/A%20Jhen/Documents/GitHub/SGC/Bitacora/Nueva%20Carpeta/SGC/src/controlador/CtrlUsuario.java</file>
+            <file>file:/C:/Users/rma/Documents/NetBeansProjects/SGC/Bitacora/Nueva%20Carpeta/SGC/src/modelo/Unidades.java</file>
+            <file>file:/C:/Users/rma/Documents/NetBeansProjects/SGC/Bitacora/Nueva%20Carpeta/SGC/src/vista/cuentasPorCobrar.java</file>
+            <file>file:/C:/Users/rma/Documents/NetBeansProjects/SGC/Bitacora/Nueva%20Carpeta/SGC/src/modelo/CerrarMes.java</file>
+            <file>file:/C:/Users/rma/Documents/NetBeansProjects/SGC/Bitacora/Nueva%20Carpeta/SGC/src/controlador/controladorUnidades.java</file>
+            <file>file:/C:/Users/rma/Documents/NetBeansProjects/SGC/Bitacora/Nueva%20Carpeta/SGC/src/modelo/Fondo.java</file>
+            <file>file:/C:/Users/rma/Documents/NetBeansProjects/SGC/Bitacora/Nueva%20Carpeta/SGC/src/modelo/Asambleas.java</file>
+            <file>file:/C:/Users/rma/Documents/NetBeansProjects/SGC/Bitacora/Nueva%20Carpeta/SGC/src/controlador/controladorCuentasPorCobrar.java</file>
+            <file>file:/C:/Users/rma/Documents/NetBeansProjects/SGC/Bitacora/Nueva%20Carpeta/SGC/src/modelo/CuentasPorCobrar.java</file>
+            <file>file:/C:/Users/rma/Documents/NetBeansProjects/SGC/Bitacora/Nueva%20Carpeta/SGC/src/vista/cuotasEspeciales.java</file>
+            <file>file:/C:/Users/rma/Documents/NetBeansProjects/SGC/Bitacora/Nueva%20Carpeta/SGC/src/controlador/controladorAsambleas.java</file>
         </group>
     </open-files>
 </project-private>
