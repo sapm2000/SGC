@@ -342,22 +342,22 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
 
         if (condo.txtRif.getText().isEmpty()) {
 
-            msj += "El campo Rif no puede estar vacío\n";
+            msj += "El campo rif no puede estar vacío\n";
             resultado = false;
         }
         if (condo.txtRazonS.getText().isEmpty()) {
 
-            msj += "El campo Razon Social no puede estar vacío\n";
+            msj += "El campo razón social no puede estar vacío\n";
             resultado = false;
         }
         if (condo.txtTelefono.getText().isEmpty()) {
 
-            msj += "El campo Telefono no puede estar vacío\n";
+            msj += "El campo teléfono no puede estar vacío\n";
             resultado = false;
         }
         if (condo.txtCorreo.getText().isEmpty()) {
 
-            msj += "El campo Correo no puede estar vacío\n";
+            msj += "El campo correo electrónico no puede estar vacío\n";
             resultado = false;
         }
 

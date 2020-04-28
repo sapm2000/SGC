@@ -464,7 +464,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
         if (as.txtNombreAsamblea.getText().isEmpty()) {
 
-            msj += "El campo numero de Cuenta no puede estar vacio\n";
+            msj += "El campo nombre de la asamblea no puede estar vacio\n";
             resultado = false;
         }
 

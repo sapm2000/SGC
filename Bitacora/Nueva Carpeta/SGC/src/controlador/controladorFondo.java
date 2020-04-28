@@ -247,10 +247,28 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
 
         if (fon.txaDescripcion.getText().isEmpty()) {
 
-            msj += "El campo Banco no puede estar vacío\n";
+            msj += "El campo descripción no puede estar vacío\n";
+            resultado = false;
+        }
+        
+        if (fon.txtMontoInicial.getText().isEmpty()) {
+
+            msj += "El campo monto inicial no puede estar vacío\n";
+            resultado = false;
+        }
+        
+        if (fon.txtTipo.getText().isEmpty()) {
+
+            msj += "El campo tipo no puede estar vacío\n";
             resultado = false;
         }
 
+        if (fon.txaObservaciones.getText().isEmpty()) {
+
+            msj += "El campo observaciones no puede estar vacío\n";
+            resultado = false;
+        }
+        
         if (!resultado) {
 
             JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);

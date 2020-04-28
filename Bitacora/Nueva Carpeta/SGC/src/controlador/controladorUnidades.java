@@ -658,9 +658,45 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         Boolean resultado = true;
         String msj = "";
 
+        if (uni.txtNumeroUnidad.getText().isEmpty()) {
+
+            msj += "El campo numero de unidad no puede estar vacio\n";
+            resultado = false;
+        }
+        
         if (uni.txtCedula.getText().isEmpty()) {
 
-            msj += "El campo numero de Cuenta no puede estar vacio\n";
+            msj += "El campo CI/RIF no puede estar vacio\n";
+            resultado = false;
+        }
+        
+        if (uni.txtTelefono.getText().isEmpty()) {
+
+            msj += "El campo teléfono no puede estar vacio\n";
+            resultado = false;
+        }
+        
+        if (uni.txtArea.getText().isEmpty()) {
+
+            msj += "El campo área no puede estar vacio\n";
+            resultado = false;
+        }
+        
+        if (uni.txtCorreo.getText().isEmpty()) {
+
+            msj += "El campo correo electrónico no puede estar vacio\n";
+            resultado = false;
+        }
+        
+        if (uni.txadireccion.getText().isEmpty()) {
+
+            msj += "El campo dirección no puede estar vacio\n";
+            resultado = false;
+        }
+        
+        if (uni.txtNombrePropietario.getText().isEmpty()) {
+
+            msj += "El campo propietario/inquilino no puede estar vacio\n";
             resultado = false;
         }
 

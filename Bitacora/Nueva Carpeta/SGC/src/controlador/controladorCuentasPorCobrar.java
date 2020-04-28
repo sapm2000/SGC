@@ -220,6 +220,7 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == cuenco.btnGuardar) {
+            if (validar()) {
             modcuen.setDescripcion(cuenco.txtDescripcion.getText());
             modcuen.setForma_pago(cuenco.jComboForma.getSelectedItem().toString());
             modcuen.setId_cuenta(cuenco.jComboCuenta.getSelectedItem().toString());
@@ -295,6 +296,7 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
             }
         }
     }
+    }
 
     @Override
     public void windowOpened(WindowEvent e) {
@@ -351,6 +353,36 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
             }
         }
 
+    }
+    private Boolean validar() {
+
+        Boolean resultado = true;
+        String msj = "";
+
+        if (cuenco.txtMonto.getText().isEmpty()) {
+
+            msj += "El campo monto no puede estar vacio\n";
+            resultado = false;
+        }
+
+        if (cuenco.txtReferencia.getText().isEmpty()) {
+
+            msj += "El campo de número de referencia no puede estar vacío\n";
+            resultado = false;
+        }
+
+        if (cuenco.txtDescripcion.getText().isEmpty()) {
+
+            msj += "El campo descripción no puede estar vacío\n";
+            resultado = false;
+        }
+
+        if (!resultado) {
+
+            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+
+        return resultado;
     }
 
     public void addCheckBox(int column, JTable table) {

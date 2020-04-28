@@ -324,19 +324,19 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
 
         if (cu.txtN_cuenta.getText().isEmpty()) {
 
-            msj += "El campo numero de Cuenta no puede estar vacio\n";
+            msj += "El campo número de cuenta no puede estar vacio\n";
             resultado = false;
         }
 
         if (cu.txtBeneficiario.getText().isEmpty()) {
 
-            msj += "El campo Beneficiario no puede estar vacío\n";
+            msj += "El campo beneficiario no puede estar vacío\n";
             resultado = false;
         }
 
         if (cu.txtCedula.getText().isEmpty()) {
 
-            msj += "El campo Rif/Cedula no puede estar vacío\n";
+            msj += "El campo rif/cédula no puede estar vacío\n";
             resultado = false;
         }
 

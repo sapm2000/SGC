@@ -340,7 +340,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
         if (ban.txtnombre_banco.getText().isEmpty()) {
 
-            msj += "El campo Banco no puede estar vacío\n";
+            msj += "El campo nombre del banco no puede estar vacío\n";
             resultado = false;
         }
 

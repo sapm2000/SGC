@@ -7,7 +7,15 @@ package vista;
 
 
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollBar;
+import javax.swing.plaf.basic.BasicScrollBarUI;
 
 
 public class categoriaGastos extends javax.swing.JFrame {
@@ -15,8 +23,20 @@ public class categoriaGastos extends javax.swing.JFrame {
     /**
      * Creates new form categoriaGastos
      */
+    //Aquí cambias la trasparencia de la barra mientras el cursor está encima. Mientras mál alto el valor, menos transparente
+    private static final int SCROLL_BAR_ALPHA_ROLLOVER = 150;
+    //Aquí cambias la trasparencia de la barra. Mientras mál alto el valor, menos transparente
+    private static final int SCROLL_BAR_ALPHA = 100;
+    private static final int THUMB_BORDER_SIZE = 5;
+    //Aquí cambias el grosor de la barra
+    private static final int THUMB_SIZE = 8;
+    //Aquí cambias el color de la barra
+    private static final Color THUMB_COLOR = Color.BLUE;
+    
     public categoriaGastos() {
         initComponents();
+        jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
+        txtdescripcion.setLineWrap(true);
         
         setLocationRelativeTo(null);
     }
@@ -39,9 +59,9 @@ public class categoriaGastos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtnombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtdescripcion = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtdescripcion = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -103,7 +123,7 @@ public class categoriaGastos extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("<html>\nNombre de <br> Categoría:\n</html>");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
 
         txtnombre.setBackground(new java.awt.Color(0, 94, 159));
         txtnombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -114,27 +134,29 @@ public class categoriaGastos extends javax.swing.JFrame {
                 txtnombreActionPerformed(evt);
             }
         });
-        jPanel2.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 180, 20));
+        jPanel2.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 200, 20));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Descripción:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 90, -1));
-
-        txtdescripcion.setBackground(new java.awt.Color(0, 94, 159));
-        txtdescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtdescripcion.setForeground(new java.awt.Color(255, 255, 255));
-        txtdescripcion.setBorder(null);
-        txtdescripcion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel2.add(txtdescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 180, 20));
-
-        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 180, 10));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 90, -1));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 180, 10));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 200, 10));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 320, 110));
+        jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        txtdescripcion.setBackground(new java.awt.Color(0, 94, 159));
+        txtdescripcion.setColumns(20);
+        txtdescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtdescripcion.setForeground(new java.awt.Color(255, 255, 255));
+        txtdescripcion.setRows(5);
+        jScrollPane1.setViewportView(txtdescripcion);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 46, 210, 70));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 320, 120));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondofomu340-130.png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 350, 140));
@@ -298,15 +320,51 @@ public class categoriaGastos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     public javax.swing.JTextField txtId;
-    public javax.swing.JTextField txtdescripcion;
+    public javax.swing.JTextArea txtdescripcion;
     public javax.swing.JTextField txtnombre;
     // End of variables declaration//GEN-END:variables
+public class MyScrollBarUI extends BasicScrollBarUI {
 
+        @Override
+        public void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
+            trackBounds.contains(thumbRect);
+            g.setColor(new java.awt.Color(255, 255, 255));
+            g.drawRect(0, 0, 500, 500);
+            g.fillRect(0, 0, 500, 500);
+
+        }
+
+        @Override
+        public void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+            int alpha = isThumbRollover() ? SCROLL_BAR_ALPHA_ROLLOVER : SCROLL_BAR_ALPHA;
+            int orientation = scrollbar.getOrientation();
+            int arc = THUMB_SIZE;
+            int x = thumbBounds.x + THUMB_BORDER_SIZE;
+            int y = thumbBounds.y + THUMB_BORDER_SIZE;
+
+            int width = orientation == JScrollBar.VERTICAL
+                    ? THUMB_SIZE : thumbBounds.width - (THUMB_BORDER_SIZE * 2);
+            width = Math.max(width, THUMB_SIZE);
+
+            int height = orientation == JScrollBar.VERTICAL
+                    ? thumbBounds.height - (THUMB_BORDER_SIZE * 2) : THUMB_SIZE;
+            height = Math.max(height, THUMB_SIZE);
+
+            Graphics2D graphics2D = (Graphics2D) g.create();
+            graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON);
+            graphics2D.setColor(new Color(THUMB_COLOR.getRed(),
+                    THUMB_COLOR.getGreen(), THUMB_COLOR.getBlue(), alpha));
+            graphics2D.fillRoundRect(x, y, width, height, arc, arc);
+            graphics2D.dispose();
+        }
+
+    }
 
 }
