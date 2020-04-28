@@ -63,6 +63,9 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
             public boolean isCellEditable(int row, int column) {
 
                 boolean resu = false;
+
+                
+                   
                 if (column == 0) {
                     resu = false;
                 }
@@ -87,6 +90,7 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                 if (column == 7) {
                     resu = true;
                 }
+                
 
                 return resu;
             }
@@ -113,7 +117,9 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
             columna[0] = listaCierremes.get(i).getId_gasto();
             columna[1] = listaCierremes.get(i).getMes_cierre();
             columna[2] = listaCierremes.get(i).getAño_cierre();
-            columna[3] = listaCierremes.get(i).getAlicuota();
+            double var4 = listaCierremes.get(i).getAlicuota() * 100;
+            String var5 = var4 + "%";
+            columna[3] = var5;
             columna[4] = listaCierremes.get(i).getMonto();
             columna[5] = listaCierremes.get(i).getSaldo_restante();
             columna[6] = listaCierremes.get(i).getEstado();
@@ -146,21 +152,53 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
             modcuen.setReferencia(cuenco.txtReferencia.getText());
             java.sql.Date sqlDate = convert(cuenco.jDateChooser1.getDate());
             modcuen.setFecha(sqlDate);
+            double monto = modcuen.getMonto();
             double total = 0;
             for (int i = 0; i < cuenco.jTable1.getRowCount(); i++) {
                 if (valueOf(cuenco.jTable1.getValueAt(i, 7)) == "true") {
-                    
+
                     double dato = Double.parseDouble(String.valueOf(this.cuenco.jTable1.getValueAt(i, 5)));
                     total = total + dato;
 
                 }
             }
-            
+
             if (modcuen.getMonto() > total) {
                 JOptionPane.showMessageDialog(null, "No puede ingresar mas dinero de lo que debe");
             } else {
                 if (modcuen.registrarCobro(modcuen)) {
                     JOptionPane.showMessageDialog(null, "registro guardado");
+                    for (int i = 0; i < cuenco.jTable1.getRowCount(); i++) {
+                        if (valueOf(cuenco.jTable1.getValueAt(i, 7)) == "true") {
+
+                            double dato = Double.parseDouble(String.valueOf(this.cuenco.jTable1.getValueAt(i, 5)));
+                            double parte = dato - monto;
+                            if (parte <= 0) {
+                                parte = 0;
+                            }
+
+                            if (monto <= 0) {
+
+                            } else {
+                                if (parte == 0) {
+                                    modc.setEstado("Pagado");
+
+                                } else {
+                                    modc.setEstado("Pendiente de pago");
+                                }
+                                modc.setSaldo_restante(parte);
+
+                                modc.setId_gasto(Integer.parseInt(String.valueOf(this.cuenco.jTable1.getValueAt(i, 0))));
+                                modc.actualizartotal(modc);
+                            }
+                            monto = monto - dato;
+
+                        }
+                    }
+                    modc.setId_condominio(panta1.rif.getText());
+                    modc.setId_unidad(cuenco.jComboUnidad.getSelectedItem().toString());
+                    Llenartabla(cuenco.jTable1);
+                    addCheckBox(7, cuenco.jTable1);
 
                 }
             }
@@ -210,10 +248,15 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getStateChange() == ItemEvent.SELECTED) {
-            modc.setId_condominio(panta1.rif.getText());
-            modc.setId_unidad(cuenco.jComboUnidad.getSelectedItem().toString());
-            Llenartabla(cuenco.jTable1);
-            addCheckBox(7, cuenco.jTable1);
+            if (cuenco.jComboUnidad.getSelectedItem().toString().equals("Seleccione el numero de la unidad")) {
+
+            } else {
+
+                modc.setId_condominio(panta1.rif.getText());
+                modc.setId_unidad(cuenco.jComboUnidad.getSelectedItem().toString());
+                Llenartabla(cuenco.jTable1);
+                addCheckBox(7, cuenco.jTable1);
+            }
         }
 
     }

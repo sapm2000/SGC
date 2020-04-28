@@ -346,30 +346,28 @@ public class Unidades extends Propietarios {
      public void llenar_unidades(JComboBox Unidades) {
 
 //Creamos objeto tipo Connection    
-        java.sql.Connection conectar = null;
-        PreparedStatement pst = null;
-        ResultSet result = null;
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
 
 //Creamos la Consulta SQL
-        String SSQL = "SELECT n_unidad FROM unidades inner join propietarios on unidades.id_propietario=propietarios.cedula where id_condominio=?;";
+        String sql = "SELECT n_unidad FROM unidades inner join propietarios on unidades.id_propietario=propietarios.cedula where id_condominio=?;";
 
 //Establecemos bloque try-catch-finally
         try {
 
             //Establecemos conexión con la BD 
-            conectar = getConexion();
-            //Preparamos la consulta SQL
-            pst = conectar.prepareStatement(SSQL);
-            pst.setString(1, getId_condominio());
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getId_condominio());
             //Ejecutamos la consulta
-            result = pst.executeQuery();
+            rs = ps.executeQuery();
 
             //LLenamos nuestro ComboBox
             Unidades.addItem("Seleccione el numero de la unidad");
 
-            while (result.next()) {
+            while (rs.next()) {
 
-                Unidades.addItem(result.getString("n_unidad"));
+                Unidades.addItem(rs.getString("n_unidad"));
 
             }
 
@@ -378,25 +376,11 @@ public class Unidades extends Propietarios {
             JOptionPane.showMessageDialog(null, e);
 
         } finally {
-
-            if (conectar != null) {
-
-                try {
-
-                    conectar.close();
-                    result.close();
-
-                    conectar = null;
-                    result = null;
-
-                } catch (SQLException ex) {
-
-                    JOptionPane.showMessageDialog(null, ex);
-
-                }
-
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
             }
-
         }
 
     }
