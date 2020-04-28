@@ -3,6 +3,7 @@ package vista;
 import controlador.controladorAsambleas;
 import controlador.controladorCerrarMes;
 import controlador.controladorComunicados;
+import controlador.controladorCuentasPorCobrar;
 import controlador.controladorCuotasEspeciales;
 import controlador.controladorFondo;
 import controlador.controladorGastoComun;
@@ -18,6 +19,8 @@ import modelo.Asambleas;
 import modelo.CerrarMes;
 import modelo.Comunicados;
 import modelo.CrudUsuario;
+import modelo.Cuenta;
+import modelo.CuentasPorCobrar;
 import modelo.CuotasEspeciales;
 import modelo.Fondo;
 import modelo.GastoComun;
@@ -362,7 +365,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         Asambleas modasa = new Asambleas();
         CuotasEspeciales modcuo = new CuotasEspeciales();
         CerrarMes modc = new CerrarMes();
-        controladorCuotasEspeciales controce = new controladorCuotasEspeciales(cuotae, catace, modpro, modcon, modasa, this, modcuo,modc);
+        controladorCuotasEspeciales controce = new controladorCuotasEspeciales(cuotae, catace, modpro, modcon, modasa, this, modcuo, modc);
 
         catace.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
@@ -444,6 +447,12 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         cuentasPorCobrar cuenco = new cuentasPorCobrar();
+        CuentasPorCobrar modcuen = new CuentasPorCobrar();
+        Unidades moduni = new Unidades();
+        Fondo modfon = new Fondo();
+        Cuenta modcu = new Cuenta();
+        CerrarMes modc = new CerrarMes();
+        controladorCuentasPorCobrar controcpc = new controladorCuentasPorCobrar(cuenco,modcuen,moduni,modfon,modcu,modc,this);
 
         cuenco.setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed

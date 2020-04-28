@@ -31,6 +31,15 @@ public class CerrarMes extends ConexionBD {
     private String cedula;
     private String nom_proveedor;
     private String tipo;
+    private double saldo_restante;
+
+    public double getSaldo_restante() {
+        return saldo_restante;
+    }
+
+    public void setSaldo_restante(double saldo_restante) {
+        this.saldo_restante = saldo_restante;
+    }
 
     public int getMeses_deuda() {
         return meses_deuda;
@@ -523,7 +532,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO detalle_total(id_unidad, monto, mes, anio, alicuota, estado, id_condominio) VALUES (?, ?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO detalle_total(id_unidad, monto, mes, anio, alicuota, estado, id_condominio, saldo_restante) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 
         try {
 
@@ -535,6 +544,7 @@ public class CerrarMes extends ConexionBD {
             ps.setDouble(5, getAlicuota());
             ps.setString(6, getEstado());
             ps.setString(7, getId_condominio());
+            ps.setDouble(8, getMonto());
 
             ps.execute();
 
@@ -669,6 +679,43 @@ public class CerrarMes extends ConexionBD {
 
     }
 
+    public boolean actualizartotal(CerrarMes modc) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE detalle_total SET saldo_restante=?, estado=? WHERE id=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setDouble(1, getSaldo_restante());
+            ps.setString(2, getEstado());
+
+            ps.setInt(3, getId_gasto());
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
     public ArrayList<CerrarMes> listar() {
         ArrayList listaCierremes = new ArrayList();
         CerrarMes modc;
@@ -762,7 +809,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT id, monto, mes, anio, alicuota, estado FROM detalle_total where id_unidad=? and id_condominio=?;";
+        String sql = "SELECT id, monto, mes, anio, alicuota, estado, saldo_restante FROM detalle_total where id_unidad=? and id_condominio=? order by anio,mes";
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_unidad());
@@ -780,6 +827,7 @@ public class CerrarMes extends ConexionBD {
                 modc.setAño_cierre(rs.getInt(4));
                 modc.setAlicuota(rs.getDouble(5));
                 modc.setEstado(rs.getString(6));
+                modc.setSaldo_restante(rs.getDouble(7));
 
                 listaCierremes.add(modc);
             }
@@ -1027,7 +1075,7 @@ public class CerrarMes extends ConexionBD {
 
         return listadetalleinteres;
     }
-    
+
     public boolean bucartotal(CerrarMes modc) {
 
         PreparedStatement ps = null;

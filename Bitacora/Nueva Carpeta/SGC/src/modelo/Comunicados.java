@@ -225,7 +225,19 @@ public class Comunicados extends CrudUsuario {
                 listacomunicados.add(modco);
             }
         } catch (Exception e) {
-        }
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        
+    }
 
         return listacomunicados;
     }
@@ -304,7 +316,19 @@ public class Comunicados extends CrudUsuario {
             }
 
         } catch (Exception e) {
-        }
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        
+    }
 
         return listausuariosmod;
 

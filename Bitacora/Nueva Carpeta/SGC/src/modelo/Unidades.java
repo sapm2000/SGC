@@ -343,5 +343,47 @@ public class Unidades extends Propietarios {
         
      }  
     
+     public void llenar_unidades(JComboBox Unidades) {
+
+//Creamos objeto tipo Connection    
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+//Creamos la Consulta SQL
+        String sql = "SELECT n_unidad FROM unidades inner join propietarios on unidades.id_propietario=propietarios.cedula where id_condominio=?;";
+
+//Establecemos bloque try-catch-finally
+        try {
+
+            //Establecemos conexión con la BD 
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getId_condominio());
+            //Ejecutamos la consulta
+            rs = ps.executeQuery();
+
+            //LLenamos nuestro ComboBox
+            Unidades.addItem("Seleccione el numero de la unidad");
+
+            while (rs.next()) {
+
+                Unidades.addItem(rs.getString("n_unidad"));
+
+            }
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, e);
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
+    
      
 }

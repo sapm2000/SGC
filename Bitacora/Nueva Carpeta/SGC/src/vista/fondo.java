@@ -89,6 +89,7 @@ public class fondo extends javax.swing.JFrame {
         jSeparator10 = new javax.swing.JSeparator();
         btnEliminar = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
 
         jLabel7.setText("jLabel7");
 
@@ -289,6 +290,7 @@ public class fondo extends javax.swing.JFrame {
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondobtn1chiqui.png"))); // NOI18N
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, -1, 120));
+        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 370, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 470));
 
@@ -391,6 +393,7 @@ public class fondo extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     public javax.swing.JTextArea txaDescripcion;
     public javax.swing.JTextArea txaObservaciones;
+    public javax.swing.JTextField txtId;
     public javax.swing.JTextField txtMontoInicial;
     public javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
