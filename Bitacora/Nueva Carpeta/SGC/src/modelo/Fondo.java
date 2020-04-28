@@ -241,6 +241,7 @@ public class Fondo extends ConexionBD {
             rs = ps.executeQuery();
             if (rs.next()) {
                 modfon.setId(rs.getInt("id"));
+                modfon.setSaldo(rs.getDouble("saldo"));
                
 
                 return true;
@@ -286,6 +287,44 @@ public class Fondo extends ConexionBD {
             
             ps.setString(6, getTipo());
             ps.setInt(7, getId());
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+    
+    public boolean fondear(Fondo modfon) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE fondos SET  saldo=? WHERE id=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+           
+            ps.setDouble(1, getSaldo());
+            
+            
+            ps.setInt(2, getId());
             ps.execute();
 
             return true;
