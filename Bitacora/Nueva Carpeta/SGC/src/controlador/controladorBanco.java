@@ -57,7 +57,22 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     public void Llenartabla(JTable tablaD) {
 
         listaBanco = modban.listar();
-        DefaultTableModel modeloT = new DefaultTableModel();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = true;
+                }
+                return resu;
+            }
+            
+
+        };
         tablaD.setModel(modeloT);
 
         modeloT.addColumn("Nombre Banco");
