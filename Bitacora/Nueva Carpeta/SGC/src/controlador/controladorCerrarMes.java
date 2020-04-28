@@ -108,6 +108,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
         tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        
     }
 
     @Override
@@ -129,7 +130,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                 }
                 if (mm <= messis) {
                     if (modc.buscarfechas(modc)) {
-                        JOptionPane.showMessageDialog(null, "este mes ya se ha cerrado");
+                        JOptionPane.showMessageDialog(null, "Este mes ya se ha cerrado");
                     } else {
 
                         modc.setId_condominio(panta1.rif.getText());
@@ -255,11 +256,13 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                                     modc.setId_gasto(Integer.parseInt(String.valueOf(id_cuota[z])));
 
                                                     if (modc.getMeses_res() == 0) {
-                                                        modc.setEstado("Mensualidad completada");
+                                                        modc.setEstado("<html>Mensualidad <br> Completada</html>");
                                                         modc.actualizar_cuota(modc);
+                                                        
                                                     } else {
-                                                        modc.setEstado("Mensualidad en proceso");
+                                                        modc.setEstado("<html>Mensualidad <br> en Proceso</html>");
                                                         modc.actualizar_cuota(modc);
+                                                        
                                                     }
                                                 }
 
@@ -312,7 +315,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                 id_sancion[j] = listasanciones.get(j).getId();
                                 String var = String.valueOf(tipo_sancion[j]);
 
-                                if (var.equals("Interes de mora")) {
+                                if (var.equals("<html>Interes <br> de Mora</html>")) {
                                     String ncasa = listasanciones.get(j).getN_unidad();
                                     modc.setId_unidad(ncasa);
                                     modc.buscartotal(modc);
@@ -330,7 +333,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
 
                                     modc.guardarsancionpro(modc);
                                     modc.actualizarSancion(modc);
-
+                                    
                                 }
 
                                 if (var.equals("Multa")) {
@@ -428,11 +431,11 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                             } else {
                                 modc.setMonto(totalfinal);
                                 modc.setAlicuota(Double.parseDouble(String.valueOf(alicuota[m])));
-                                modc.setEstado("Pendiente de pago");
+                                modc.setEstado("<html>Pendiente <br> de Pago</html>");
                                 modc.setId_condominio(panta1.rif.getText());
 
                                 modc.guardartotal(modc);
-
+                                
                             }
                         }
                         if (numReales > 0 || numReales > 0) {
@@ -443,14 +446,14 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                             Llenartabla(catac.jTable1);
                             this.rec.dispose();
                         } else {
-                            JOptionPane.showMessageDialog(null, "no hay gastos por cerrar");
+                            JOptionPane.showMessageDialog(null, "No hay gastos por cerrar");
                         }
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "no puede cerrar un mes que no ha concluido");
+                    JOptionPane.showMessageDialog(null, "No puede cerrar un mes que no ha concluido");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "no puede cerrar un mes que no ha concluido");
+                JOptionPane.showMessageDialog(null, "No puede cerrar un mes que no ha concluido");
             }
         }
     }
