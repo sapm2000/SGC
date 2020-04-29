@@ -1,5 +1,5 @@
-
 package controlador;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,6 +15,7 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public abstract class Validacion implements ActionListener, MouseListener, KeyListener {
+    public static DecimalFormat formato1 = new DecimalFormat("#.00");
 
     /*---FUNCIÓN PARA EVITAR EL COPY & PASTE---*/
     public static void evitarPegar(java.awt.event.KeyEvent evt) {
@@ -72,6 +74,38 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
             evt.consume();
         }
     }
+    
+        public static int contarCaracteres(String cadena, char caracter) {
+        int posicion, contador = 0;
+        //se busca la primera vez que aparece
+        posicion = cadena.indexOf(caracter);
+        while (posicion != -1) { //mientras se encuentre el caracter
+            contador++;           //se cuenta
+            //se sigue buscando a partir de la posición siguiente a la encontrada
+            posicion = cadena.indexOf(caracter, posicion + 1);
+        }
+        return contador;
+    }
+
+    public static void soloUnPunto(java.awt.event.KeyEvent e, String cadena) {
+
+        char punto = '.';
+        int contador = contarCaracteres(cadena, punto);
+        if (contador < 1) {
+
+            char car = e.getKeyChar();
+            if ((car < '0' || car > '9') && (car <= ',' || car > '.')) {
+                e.consume();
+            }
+        } else {
+            char car = e.getKeyChar();
+            if ((car < '0' || car > '9')) {
+                e.consume();
+            }
+
+        }
+
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -110,4 +144,3 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
     }
 
 }
-
