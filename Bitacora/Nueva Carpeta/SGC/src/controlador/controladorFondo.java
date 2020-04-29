@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -56,6 +57,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
         this.fon.btnLimpiar.addActionListener(this);
         this.fon.btnModificar.addActionListener(this);
         this.fon.btnEliminar.addActionListener(this);
+        this.fon.txtMontoInicial.addKeyListener(this);
     }
 
     public void Llenartabla(JTable tablaD) {
@@ -78,6 +80,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
         modeloT.addColumn("Observación");
         modeloT.addColumn("Monto Inicial");
         modeloT.addColumn("Saldo Actual");
+        DecimalFormat formato1 = new DecimalFormat("#.00");
 
         Object[] columna = new Object[6];
 
@@ -89,7 +92,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
             columna[1] = listafondo.get(i).getTipo();
             columna[2] = listafondo.get(i).getDescripcion();
             columna[3] = listafondo.get(i).getObservacion();
-            columna[4] = listafondo.get(i).getMonto_inicial();
+            columna[4] = formato1.format(listafondo.get(i).getMonto_inicial());
             columna[5] = listafondo.get(i).getSaldo();
 
             modeloT.addRow(columna);
@@ -190,26 +193,26 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
 
                 } else {
 
-                double var1 = Double.parseDouble(fon.txtMontoInicial.getText());
-                double var2 = var1 - montoi;
-                double total = var2 + saldo;
-                modfon.setSaldo(total);
+                    double var1 = Double.parseDouble(fon.txtMontoInicial.getText());
+                    double var2 = var1 - montoi;
+                    double total = var2 + saldo;
+                    modfon.setSaldo(total);
 
-                if (total > 0) {
-                    if (modfon.modificar(modfon)) {
+                    if (total > 0) {
+                        if (modfon.modificar(modfon)) {
 
-                        JOptionPane.showMessageDialog(null, "Registro Modificado");
-                        Llenartabla(catafon.jTable1);
-                        fon.dispose();
+                            JOptionPane.showMessageDialog(null, "Registro Modificado");
+                            Llenartabla(catafon.jTable1);
+                            fon.dispose();
 
+                        } else {
+
+                            JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                        }
                     } else {
-
-                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
-
+                        JOptionPane.showMessageDialog(null, "el saldo no puede ser negativo");
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "el saldo no puede ser negativo");
-                }
                 }
 
             }
@@ -250,13 +253,13 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
             msj += "El campo descripción no puede estar vacío\n";
             resultado = false;
         }
-        
+
         if (fon.txtMontoInicial.getText().isEmpty()) {
 
             msj += "El campo monto inicial no puede estar vacío\n";
             resultado = false;
         }
-        
+
         if (fon.txtTipo.getText().isEmpty()) {
 
             msj += "El campo tipo no puede estar vacío\n";
@@ -268,7 +271,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
             msj += "El campo observaciones no puede estar vacío\n";
             resultado = false;
         }
-        
+
         if (!resultado) {
 
             JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -331,12 +334,42 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
 
     @Override
     public void keyTyped(KeyEvent e) {
+        if (e.getSource() == fon.txtMontoInicial) {
+            String cadena = fon.txtMontoInicial.getText();
+            char punto = '.';
+            int contador = contarCaracteres(cadena, punto);
+            if (contador < 1) {
 
+                char car = e.getKeyChar();
+                if ((car < '0' || car > '9') && (car <= ',' || car > '.')) {
+                    e.consume();
+                }
+            } else {
+                char car = e.getKeyChar();
+                if ((car < '0' || car > '9')) {
+                    e.consume();
+                }
+
+            }
+
+        }
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
 
+    }
+
+    public static int contarCaracteres(String cadena, char caracter) {
+        int posicion, contador = 0;
+        //se busca la primera vez que aparece
+        posicion = cadena.indexOf(caracter);
+        while (posicion != -1) { //mientras se encuentre el caracter
+            contador++;           //se cuenta
+            //se sigue buscando a partir de la posición siguiente a la encontrada
+            posicion = cadena.indexOf(caracter, posicion + 1);
+        }
+        return contador;
     }
 
     @Override
