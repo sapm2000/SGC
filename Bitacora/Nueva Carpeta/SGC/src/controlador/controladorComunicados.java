@@ -93,6 +93,7 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("<html>Cédula/<br>Rif</html>");
         modeloT.addColumn("<html>Nombre/<br>Razón Social</html>");
@@ -156,6 +157,7 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("<html>Cédula/<br>Rif</html>");
         modeloT.addColumn("<html>Nombre/<br>Razón Social</html>");
@@ -211,11 +213,12 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("<html>Nº de <br> Comunicado</html>");
         modeloT.addColumn("Asunto");
         modeloT.addColumn("Enviado");
-        modeloT.addColumn("Leido");
+        modeloT.addColumn("Leído");
 
         Object[] columna = new Object[4];
 

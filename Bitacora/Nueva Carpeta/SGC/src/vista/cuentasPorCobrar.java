@@ -121,6 +121,8 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
         });
         jTable1.setRowHeight(35);
         jScrollPane1.setViewportView(jTable1);
+        jTable1.getTableHeader().setResizingAllowed(false);
+        jTable1.getTableHeader().setReorderingAllowed(false);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 690, 159));
 
@@ -276,6 +278,8 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
         ));
         jTable2.setRowHeight(35);
         jScrollPane2.setViewportView(jTable2);
+        jTable2.getTableHeader().setResizingAllowed(false);
+        jTable2.getTableHeader().setReorderingAllowed(false);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 460, 480, 160));
 

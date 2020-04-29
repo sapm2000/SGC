@@ -69,6 +69,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("Banco");
         modeloT.addColumn("Cuenta");
@@ -125,6 +126,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("Rif");
         modeloT.addColumn("Razón social");
@@ -170,9 +172,10 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("Rif");
-        modeloT.addColumn("Razón social");
+        modeloT.addColumn("Razón Social");
         modeloT.addColumn("Seleccione");
 
         Object[] columna = new Object[3];

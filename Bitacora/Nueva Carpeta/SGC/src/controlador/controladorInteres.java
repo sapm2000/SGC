@@ -82,9 +82,10 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("Rif");
-        modeloT.addColumn("Razónn Social");
+        modeloT.addColumn("Razón Social");
         modeloT.addColumn("Seleccione");
 
         Object[] columna = new Object[2];
@@ -120,6 +121,7 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("<html>Nº de <br> Interes</html>");
         modeloT.addColumn("<html>Nombre de<br> Interes</html>");
@@ -172,9 +174,10 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("Rif");
-        modeloT.addColumn("Razónn Social");
+        modeloT.addColumn("Razón Social");
         modeloT.addColumn("Selecione");
 
         Object[] columna = new Object[3];

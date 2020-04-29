@@ -94,6 +94,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("Cédula");
         modeloT.addColumn("Nombre");
@@ -136,12 +137,13 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
-        modeloT.addColumn("Nº recibo");
+        modeloT.addColumn("<html>Nº <br>de Recibo<html>");
         modeloT.addColumn("Mes");
         modeloT.addColumn("Año");
         modeloT.addColumn("Monto");
-        modeloT.addColumn("Alicuota");
+        modeloT.addColumn("Alícuota");
         modeloT.addColumn("Estado");
 
         Object[] columna = new Object[6];
@@ -186,6 +188,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("Tipo");
         modeloT.addColumn("Rif");
@@ -231,6 +234,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("Tipo de Interes ");
         modeloT.addColumn("Factor");       
@@ -273,7 +277,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
-
+        tablaD.getTableHeader().setResizingAllowed(false);
         
         modeloT.addColumn("Rif");
         modeloT.addColumn("Razón Social");
@@ -319,7 +323,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
-
+        tablaD.getTableHeader().setResizingAllowed(false);
         
         modeloT.addColumn("Tipo ");
         modeloT.addColumn("Descripción");
@@ -371,6 +375,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("<html>Número de <br> Unidad</html>");
         modeloT.addColumn("<html>Propietario ó <br> inquilino</html>");

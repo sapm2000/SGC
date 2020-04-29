@@ -85,7 +85,8 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
-
+        tablaD.getTableHeader().setResizingAllowed(false);
+        
         modeloT.addColumn("Nº de Cierre");
         modeloT.addColumn("Mes");
         modeloT.addColumn("Año");
@@ -256,11 +257,11 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                                     modc.setId_gasto(Integer.parseInt(String.valueOf(id_cuota[z])));
 
                                                     if (modc.getMeses_res() == 0) {
-                                                        modc.setEstado("<html>Mensualidad <br> Completada</html>");
+                                                        modc.setEstado("Mensualidad Completada");
                                                         modc.actualizar_cuota(modc);
                                                         
                                                     } else {
-                                                        modc.setEstado("<html>Mensualidad <br> en Proceso</html>");
+                                                        modc.setEstado("Mensualidad en Proceso");
                                                         modc.actualizar_cuota(modc);
                                                         
                                                     }
@@ -315,7 +316,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                 id_sancion[j] = listasanciones.get(j).getId();
                                 String var = String.valueOf(tipo_sancion[j]);
 
-                                if (var.equals("<html>Interes <br> de Mora</html>")) {
+                                if (var.equals("Interes de Mora")) {
                                     String ncasa = listasanciones.get(j).getN_unidad();
                                     modc.setId_unidad(ncasa);
                                     modc.buscartotal(modc);
@@ -431,7 +432,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                             } else {
                                 modc.setMonto(totalfinal);
                                 modc.setAlicuota(Double.parseDouble(String.valueOf(alicuota[m])));
-                                modc.setEstado("<html>Pendiente <br> de Pago</html>");
+                                modc.setEstado("Pendiente de Pago");
                                 modc.setId_condominio(panta1.rif.getText());
 
                                 modc.guardartotal(modc);

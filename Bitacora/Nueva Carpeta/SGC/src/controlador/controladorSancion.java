@@ -79,6 +79,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("<html>Número de <br> Sanción</html>");
         modeloT.addColumn("Descripción");
@@ -134,6 +135,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("Número de Unidad");
         modeloT.addColumn("seleccione");
@@ -180,6 +182,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("Número Unidad");
         modeloT.addColumn("Seleccione");

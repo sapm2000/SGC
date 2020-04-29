@@ -69,6 +69,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("Nombre del Banco");
 
@@ -81,7 +82,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
             columna[0] = listaBanco.get(i).getNombre_banco();
 
             modeloT.addRow(columna);
-            System.getProperty("line.separator");
+           
 
 
         }
