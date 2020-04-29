@@ -86,10 +86,10 @@ public class catalogoConceptoGasto extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Nombre", "Descripción", "Categoría"
+                "Concepto", "Descripción", "Categoría"
             }
         ));
-        jTable.setRowHeight(20);
+        jTable.setRowHeight(35);
         jScrollPane1.setViewportView(jTable);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 460, 270));

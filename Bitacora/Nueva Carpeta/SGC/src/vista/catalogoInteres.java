@@ -89,10 +89,10 @@ public class catalogoInteres extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Tipo de Interes", "Factor de Interes", "Vigencia Hasta", "Condominios", "Estatus"
+                "<html>N° de <br> Interes</html>", "<html>Nombre de <br> Interes</html>", "Factor", "<html>N° de <br> Condominios</html>", "Estatus"
             }
         ));
-        jTable1.setRowHeight(20);
+        jTable1.setRowHeight(35);
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 770, 275));

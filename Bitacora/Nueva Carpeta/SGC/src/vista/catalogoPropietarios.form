@@ -86,9 +86,9 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="5" rowCount="4">
-                    <Column editable="true" title="&lt;html&gt;C.I. &#xf3; &lt;br&gt; RIF.&lt;/html&gt;" type="java.lang.Object"/>
-                    <Column editable="true" title="Nombre" type="java.lang.Object"/>
-                    <Column editable="true" title="apellido" type="java.lang.Object"/>
+                    <Column editable="true" title="&lt;html&gt;C&#xe9;dula/&lt;br&gt; Rif&lt;/html&gt;" type="java.lang.Object"/>
+                    <Column editable="true" title="&lt;html&gt;Nombre/&lt;br&gt;Raz&#xf3;n Social&lt;/html&gt;" type="java.lang.Object"/>
+                    <Column editable="true" title="Apellido" type="java.lang.Object"/>
                     <Column editable="true" title="Tel&#xe9;fono" type="java.lang.Object"/>
                     <Column editable="true" title="&lt;html&gt;Correo &lt;br&gt; Electr&#xf3;nico&lt;/html&gt;" type="java.lang.Object"/>
                   </Table>
@@ -122,7 +122,7 @@
                     </Column>
                   </TableColumnModel>
                 </Property>
-                <Property name="rowHeight" type="int" value="20"/>
+                <Property name="rowHeight" type="int" value="35"/>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>

@@ -95,7 +95,7 @@ public class catalogoCondominio extends javax.swing.JFrame {
                 "RIF.", "Razón Social", "Teléfono", "Correo Electrónico"
             }
         ));
-        jTable1.setRowHeight(20);
+        jTable1.setRowHeight(35);
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 660, 260));

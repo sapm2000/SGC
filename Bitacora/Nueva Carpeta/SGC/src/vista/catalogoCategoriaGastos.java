@@ -107,7 +107,7 @@ public class catalogoCategoriaGastos extends javax.swing.JFrame {
                 "Nombre", "Descripción"
             }
         ));
-        tabla_categoria_gastos.setRowHeight(20);
+        tabla_categoria_gastos.setRowHeight(35);
         jScrollPane2.setViewportView(tabla_categoria_gastos);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, 257));

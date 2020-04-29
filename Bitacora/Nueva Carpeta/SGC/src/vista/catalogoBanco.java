@@ -90,9 +90,10 @@ public class catalogoBanco extends javax.swing.JFrame {
                 {null}
             },
             new String [] {
-                "Banco"
+                "Nombre del Banco"
             }
         ));
+        tabla_bancos.setRowHeight(35);
         tabla_bancos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabla_bancosMouseClicked(evt);

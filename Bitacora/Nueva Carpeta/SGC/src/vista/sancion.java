@@ -42,6 +42,8 @@ public class sancion extends javax.swing.JFrame {
         initComponents();
         jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
+        jScrollPane2.getVerticalScrollBar().setUI(new MyScrollBarUI());
+        txaDescripcion.setLineWrap(true);
         setLocationRelativeTo(null);
     }
 
@@ -171,6 +173,7 @@ public class sancion extends javax.swing.JFrame {
         jPanel2.add(txtmonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 160, 20));
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         txaDescripcion.setBackground(new java.awt.Color(0, 94, 159));
         txaDescripcion.setColumns(10);
@@ -213,7 +216,7 @@ public class sancion extends javax.swing.JFrame {
                 "Número de la unidad", "Seleccione"
             }
         ));
-        jTable1.setRowHeight(20);
+        jTable1.setRowHeight(35);
         jScrollPane2.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 450, 160));

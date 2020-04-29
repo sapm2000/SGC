@@ -90,9 +90,10 @@ public class catalogoProveedores extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "C.I. / RIF.", "Correo Electrónico", "Contacto", "Teléfono", "Dirección"
+                "Cédula/Rif", "Nombre/Razón Social ", "Teléfono", "Correo Electrónico", "Contacto", "Dirección"
             }
         ));
+        TablaProveedores.setRowHeight(35);
         jScrollPane1.setViewportView(TablaProveedores);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 940, 280));

@@ -88,10 +88,10 @@ public class catalogoPropietarios extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "<html>C.I. ó <br> RIF.</html>", "Nombre", "apellido", "Teléfono", "<html>Correo <br> Electrónico</html>"
+                "<html>Cédula/<br> Rif</html>", "<html>Nombre/<br>Razón Social</html>", "Apellido", "Teléfono", "<html>Correo <br> Electrónico</html>"
             }
         ));
-        TablaPropietarios.setRowHeight(20);
+        TablaPropietarios.setRowHeight(35);
         jScrollPane1.setViewportView(TablaPropietarios);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 500, 280));

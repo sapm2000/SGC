@@ -102,23 +102,15 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Seleccione", "Fecha", "Descripción", "Monto", "Saldo", "Estado", "Tipo"
+                "<html>N° de <br> Recibo</html>", "Mes", "Año", "Alícuota", "Monto", "<html>Saldo<br>Restante</html>", "Estado", "Seleccione"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         jTable1.setRowHeight(35);
         jScrollPane1.setViewportView(jTable1);
         jTable1.getTableHeader().setResizingAllowed(false);
@@ -268,13 +260,13 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "<html>N° de <br> Recibo</html>", "Mes", "Año", "Alícuota", "Monto", "<html>Saldo <br> Restante</html>", "Estado"
             }
         ));
         jTable2.setRowHeight(35);

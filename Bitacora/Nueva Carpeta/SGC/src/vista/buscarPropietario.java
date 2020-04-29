@@ -141,7 +141,7 @@ public class buscarPropietario extends javax.swing.JFrame {
                 "Cédula", "Nombre", "Teléfono", "Correo Electrónico"
             }
         ));
-        tablaprop.setRowHeight(20);
+        tablaprop.setRowHeight(35);
         jScrollPane1.setViewportView(tablaprop);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 620, 280));

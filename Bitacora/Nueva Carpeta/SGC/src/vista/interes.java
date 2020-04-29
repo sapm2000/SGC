@@ -251,6 +251,7 @@ public class interes extends javax.swing.JFrame {
                 "Rif.", "Razón Social", "Seleccione"
             }
         ));
+        jTable1.setRowHeight(35);
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 440, 160));

@@ -80,16 +80,16 @@ public class catalogoSancion extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Descripción", "Tipo de Deuda", "Monto/Porcentaje", "Mes a Aplicar", "Nº de unidades"
+                "<html>Número de <br> Sanción</html>", "Descripción", "Tipo de Deuda", "Monto/Porcentaje", "Mes a Aplicar", "Nº de unidades", "Estado"
             }
         ));
-        jTable1.setRowHeight(20);
+        jTable1.setRowHeight(35);
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 760, 260));

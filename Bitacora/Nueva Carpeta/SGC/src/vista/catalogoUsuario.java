@@ -82,21 +82,21 @@ public class catalogoUsuario extends javax.swing.JFrame {
 
         jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
-        jtable.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jtable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {"", null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {"", null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Usuario", "Nombre", "Apellido", "Tipo de Usuario"
+                "Usuario", "Nombre", "Apellido", "Teléfono", "Tipo de Usuario"
             }
         ));
         jtable.setGridColor(new java.awt.Color(102, 102, 102));
-        jtable.setRowHeight(20);
+        jtable.setRowHeight(35);
         jScrollPane2.setViewportView(jtable);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 760, 260));

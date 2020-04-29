@@ -94,6 +94,7 @@ public class detalleRecibo extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator8 = new javax.swing.JSeparator();
+        jLabel19 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -120,16 +121,16 @@ public class detalleRecibo extends javax.swing.JFrame {
 
         tablagastos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Descripción", "Monto", "Cuota"
+                "Tipo", "Rif", "Razón Social", "Concepto", "Monto"
             }
         ));
-        tablagastos.setRowHeight(20);
+        tablagastos.setRowHeight(35);
         jScrollPane1.setViewportView(tablagastos);
         if (tablagastos.getColumnModel().getColumnCount() > 0) {
             tablagastos.getColumnModel().getColumn(2).setResizable(false);
@@ -230,19 +231,19 @@ public class detalleRecibo extends javax.swing.JFrame {
 
         tablacuotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "<html>Cédula/<br>Rif</html>", "Razón Social", "Concepto", "Monto", "<html>Meses <br>Restantes"
             }
         ));
-        tablacuotas.setRowHeight(20);
+        tablacuotas.setRowHeight(35);
         jScrollPane2.setViewportView(tablacuotas);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 310, 430, 120));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 310, 440, 120));
 
         jScrollPane3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
@@ -254,10 +255,10 @@ public class detalleRecibo extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Tipo", "Descipción", "Factor", "Monto"
             }
         ));
-        tablasancion.setRowHeight(20);
+        tablasancion.setRowHeight(35);
         jScrollPane3.setViewportView(tablasancion);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, 460, 120));
@@ -266,19 +267,19 @@ public class detalleRecibo extends javax.swing.JFrame {
 
         tablainteres.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Tipo de Interes", "Factor", "Monto"
             }
         ));
-        tablainteres.setRowHeight(20);
+        tablainteres.setRowHeight(35);
         jScrollPane4.setViewportView(tablainteres);
 
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 490, 430, 120));
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 490, 440, 120));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondofomu340-130.png"))); // NOI18N
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, -1, -1));
@@ -320,6 +321,11 @@ public class detalleRecibo extends javax.swing.JFrame {
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 280, 10, 350));
         jPanel1.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 930, 20));
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setText("Cuotas Especiales");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 280, -1, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
@@ -422,6 +428,7 @@ public class detalleRecibo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
