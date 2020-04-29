@@ -282,7 +282,19 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
 
         if (gc.txtMonto.getText().isEmpty()) {
 
-            msj += "El campo numero de Cuenta no puede estar vacio\n";
+            msj += "El campo monto no puede estar vacio\n";
+            resultado = false;
+        }
+        
+        if (gc.txtNumerofactura.getText().isEmpty()) {
+
+            msj += "El campo número de factura no puede estar vacio\n";
+            resultado = false;
+        }
+        
+        if (gc.txtnombreprov.getText().isEmpty()) {
+
+            msj += "El campo nombre del proveedor no puede estar vacio\n";
             resultado = false;
         }
 

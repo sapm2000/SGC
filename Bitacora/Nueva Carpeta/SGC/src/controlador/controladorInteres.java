@@ -295,7 +295,13 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
 
         if (in.txtFactor.getText().isEmpty()) {
 
-            msj += "El campo numero de Cuenta no puede estar vacio\n";
+            msj += "El campo factor de interes no puede estar vacio\n";
+            resultado = false;
+        }
+        
+        if (in.txtNombreinteres.getText().isEmpty()) {
+
+            msj += "El campo nombre de interes no puede estar vacio\n";
             resultado = false;
         }
 

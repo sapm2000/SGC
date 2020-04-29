@@ -327,8 +327,6 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
             resultado = false;
         }
 
-
-
         if (!resultado) {
 
             JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);

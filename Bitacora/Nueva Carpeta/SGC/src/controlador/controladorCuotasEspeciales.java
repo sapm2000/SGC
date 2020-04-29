@@ -337,6 +337,12 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             msj += "El campo numero de Cuenta no puede estar vacio\n";
             resultado = false;
         }
+        
+        if (cuotae.txtNmeses.getText().isEmpty()) {
+
+            msj += "El campo numero de N° de meses no puede estar vacio\n";
+            resultado = false;
+        }
 
         if (!resultado) {
 

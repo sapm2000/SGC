@@ -293,7 +293,13 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
 
         if (com.txtAsunto.getText().isEmpty()) {
 
-            msj += "El campo Banco no puede estar vacío\n";
+            msj += "El campo de asunto no puede estar vacío\n";
+            resultado = false;
+        }
+        
+        if (com.txaMensaje.getText().isEmpty()) {
+
+            msj += "El campo de mensaje no puede estar vacío\n";
             resultado = false;
         }
 

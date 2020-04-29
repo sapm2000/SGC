@@ -467,7 +467,13 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
         if (san.txtmonto.getText().isEmpty()) {
 
-            msj += "El campo numero de Cuenta no puede estar vacio\n";
+            msj += "El campo monto no puede estar vacio\n";
+            resultado = false;
+        }
+        
+        if (san.txaDescripcion.getText().isEmpty()) {
+
+            msj += "El campo descripción no puede estar vacio\n";
             resultado = false;
         }
 

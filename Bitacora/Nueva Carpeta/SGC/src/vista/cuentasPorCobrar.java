@@ -40,6 +40,8 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
         jScrollPane1.getVerticalScrollBar().setUI(new cuentasPorCobrar.MyScrollBarUI());
         jTable2.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         jScrollPane2.getVerticalScrollBar().setUI(new cuentasPorCobrar.MyScrollBarUI());
+        jScrollPane3.getVerticalScrollBar().setUI(new cuentasPorCobrar.MyScrollBarUI());
+        txtDescripcion.setLineWrap(true);
         setLocationRelativeTo(null);
     }
 
@@ -57,7 +59,6 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        txtDescripcion = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtReferencia = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -74,8 +75,9 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
         txtMonto = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtDescripcion = new javax.swing.JTextArea();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
@@ -129,12 +131,6 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 94, 159));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        txtDescripcion.setBackground(new java.awt.Color(0, 94, 159));
-        txtDescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtDescripcion.setForeground(new java.awt.Color(255, 255, 255));
-        txtDescripcion.setBorder(null);
-        jPanel2.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 230, 20));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -211,10 +207,20 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 230, 20));
-
-        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 230, 20));
         jPanel2.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 229, 230, 30));
+
+        jScrollPane3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
+        jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        txtDescripcion.setBackground(new java.awt.Color(0, 94, 159));
+        txtDescripcion.setColumns(20);
+        txtDescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtDescripcion.setForeground(new java.awt.Color(255, 255, 255));
+        txtDescripcion.setLineWrap(true);
+        txtDescripcion.setRows(5);
+        jScrollPane3.setViewportView(txtDescripcion);
+
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 220, 80));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 760, 280));
 
@@ -393,13 +399,13 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator5;
     public javax.swing.JTable jTable1;
     public javax.swing.JTable jTable2;
-    public javax.swing.JTextField txtDescripcion;
+    public javax.swing.JTextArea txtDescripcion;
     public javax.swing.JTextField txtMonto;
     public javax.swing.JTextField txtReferencia;
     // End of variables declaration//GEN-END:variables

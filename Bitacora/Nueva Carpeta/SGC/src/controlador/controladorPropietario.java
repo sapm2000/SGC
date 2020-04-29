@@ -195,10 +195,34 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
 
         if (pro.txtCedula.getText().isEmpty()) {
 
-            msj += "El campo nombre categoria no puede estar vacío\n";
+            msj += "El campo C.I./RIF. no puede estar vacío\n";
             resultado = false;
         }
 
+        if (pro.txtNombre.getText().isEmpty()) {
+
+            msj += "El campo nombre no puede estar vacío\n";
+            resultado = false;
+        }
+        
+        if (pro.txtApellido.getText().isEmpty()) {
+
+            msj += "El campo apellido no puede estar vacío\n";
+            resultado = false;
+        }
+        
+        if (pro.txtTelefono.getText().isEmpty()) {
+
+            msj += "El campo teléfono no puede estar vacío\n";
+            resultado = false;
+        }
+        
+        if (pro.txtCorreo.getText().isEmpty()) {
+
+            msj += "El campo correo electrónico no puede estar vacío\n";
+            resultado = false;
+        }
+        
         if (!resultado) {
 
             JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);

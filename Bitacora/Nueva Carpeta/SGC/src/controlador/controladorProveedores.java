@@ -194,10 +194,40 @@ public class controladorProveedores implements ActionListener, WindowListener, K
 
         if (prov.txtCedula.getText().isEmpty()) {
 
-            msj += "El campo nombre categoria no puede estar vacío\n";
+            msj += "El campo C.I./RIF. no puede estar vacío\n";
             resultado = false;
         }
 
+        if (prov.txtNombre.getText().isEmpty()) {
+
+            msj += "El campo nombre no puede estar vacío\n";
+            resultado = false;
+        }
+        
+        if (prov.txtTelefono.getText().isEmpty()) {
+
+            msj += "El campo teléfono no puede estar vacío\n";
+            resultado = false;
+        }
+        
+        if (prov.txtCorreo.getText().isEmpty()) {
+
+            msj += "El campo correo electrónico no puede estar vacío\n";
+            resultado = false;
+        }
+        
+        if (prov.txtContacto.getText().isEmpty()) {
+
+            msj += "El campo contanto no puede estar vacío\n";
+            resultado = false;
+        }
+        
+        if (prov.txaDireccion.getText().isEmpty()) {
+
+            msj += "El campo dirección no puede estar vacío\n";
+            resultado = false;
+        }
+        
         if (!resultado) {
 
             JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);

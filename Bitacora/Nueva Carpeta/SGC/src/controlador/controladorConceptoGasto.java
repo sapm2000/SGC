@@ -186,15 +186,15 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
 
         if (cga.txtNombreC.getText().isEmpty()) {
 
-            msj += "El campo Nombre no puede estar vacío\n";
+            msj += "El campo nombre del concepto no puede estar vacío\n";
             resultado = false;
         }
         if (cga.txtDescripcion.getText().isEmpty()) {
 
-            msj += "El campo Descripción no puede estar vacío\n";
+            msj += "El campo descripción no puede estar vacío\n";
             resultado = false;
         }
-
+        
         if (!resultado) {
 
             JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
