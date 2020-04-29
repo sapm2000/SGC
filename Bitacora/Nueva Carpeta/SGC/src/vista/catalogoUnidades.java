@@ -89,7 +89,7 @@ public class catalogoUnidades extends javax.swing.JFrame {
                 "<html>Número de <br> la Unidad</html>", "<html>Propietario ó <br> Inquilino</html>", "CI / Rif.", "Teléfono", "Dirección", "<html>Correo <br> Electrónico</html>", "Área (mts 2)"
             }
         ));
-        jTable1.setRowHeight(20);
+        jTable1.setRowHeight(35);
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 780, 260));

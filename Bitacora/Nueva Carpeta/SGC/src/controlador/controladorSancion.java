@@ -87,7 +87,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         modeloT.addColumn("<html>Monto/ <br> Porcentaje</html>");
         modeloT.addColumn("Mes a aplicar");
         modeloT.addColumn("Nº de Unidades");
-        modeloT.addColumn("Estatus");
+        modeloT.addColumn("Estado");
 
         Object[] columna = new Object[7];
 

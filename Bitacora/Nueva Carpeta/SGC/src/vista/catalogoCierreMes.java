@@ -99,10 +99,10 @@ public class catalogoCierreMes extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Mes", "Año", "Estatus"
+                "N° de Cierre", "Mes", "Año"
             }
         ));
-        jTable1.setRowHeight(20);
+        jTable1.setRowHeight(35);
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 440, 275));

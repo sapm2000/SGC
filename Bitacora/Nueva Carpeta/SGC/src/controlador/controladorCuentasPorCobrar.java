@@ -97,12 +97,12 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
 
-        modeloT.addColumn("Nº de Recibo");
+        modeloT.addColumn("<html>Nº de<br> Recibo</html>");
         modeloT.addColumn("Mes");
         modeloT.addColumn("Año");
         modeloT.addColumn("Alícuota");
         modeloT.addColumn("Monto");
-        modeloT.addColumn("Saldo Restante");
+        modeloT.addColumn("<html>Saldo <br> Restante</html>");
         modeloT.addColumn("Estado");
         modeloT.addColumn("Seleccione");
 
@@ -177,12 +177,12 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
 
-        modeloT.addColumn("Nº de Recibo");
+        modeloT.addColumn("<html>Nº de<br> Recibo</html>");
         modeloT.addColumn("Mes");
         modeloT.addColumn("Año");
         modeloT.addColumn("Alícuota");
         modeloT.addColumn("Monto");
-        modeloT.addColumn("Saldo restante");
+        modeloT.addColumn("<html>Saldo <br> Restante</html>");
         modeloT.addColumn("Estado");
 
         Object[] columna = new Object[7];

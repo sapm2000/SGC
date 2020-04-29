@@ -302,7 +302,7 @@ public class cuenta extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Rif.", "Razón Social", "Acción"
+                "Rif", "Razón Social", "Seleccione"
             }
         ) {
             Class[] types = new Class [] {
@@ -313,7 +313,7 @@ public class cuenta extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable1.setRowHeight(20);
+        jTable1.setRowHeight(35);
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 460, 140));

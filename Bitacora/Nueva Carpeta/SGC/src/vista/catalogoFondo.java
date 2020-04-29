@@ -84,10 +84,10 @@ public class catalogoFondo extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Fecha", "Descripción", "Tipo de Fondo", "Observaciones", "Monto Inicial", "Saldo"
+                "Fecha", "Tipo", "Descripción", "Observación", "Monto Inicial", "Saldo Actual"
             }
         ));
-        jTable1.setRowHeight(20);
+        jTable1.setRowHeight(35);
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 760, 260));

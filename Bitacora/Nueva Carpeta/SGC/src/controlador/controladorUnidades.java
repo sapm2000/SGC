@@ -279,11 +279,11 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
         
-        modeloT.addColumn("Rif");
-        modeloT.addColumn("Razón Social");
+        modeloT.addColumn("<html>Cédula/<br>Rif</html>");
+        modeloT.addColumn("<html>Razón <br> Social</html>");
         modeloT.addColumn("Concepto");
         modeloT.addColumn("Monto");
-        modeloT.addColumn("Meses Restantes");
+        modeloT.addColumn("<html>Meses <br> Restantes</html>");
 
         Object[] columna = new Object[5];
 

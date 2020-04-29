@@ -85,16 +85,16 @@ public class catalogoGastoComun extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "<html>Número del <br> Documento</html>", "<html>Fecha del <br> Documento</html>", "<html>Tipo<br></html>", "Proveedor", "Concepto", "Periodo", "Monto", "Observaciones", "Estatus"
+                "<html>N° de <br> Gasto Común</html>", "<html>Tipo de <br> Gasto</html>", "Período", "Monto", "<html>Saldo<br>Restante</html>", "<html>N° de <br> Factura</html>", "Proveedor", "Concepto", "Observaciones", "Fecha", "Estatus"
             }
         ));
-        jTable1.setRowHeight(20);
+        jTable1.setRowHeight(35);
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 1170, 260));
