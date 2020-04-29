@@ -75,6 +75,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("Nombre");
         modeloT.addColumn("Descripcion");

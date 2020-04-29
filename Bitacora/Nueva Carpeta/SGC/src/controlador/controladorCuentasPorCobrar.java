@@ -95,13 +95,14 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
-        modeloT.addColumn("Nº de recibo");
+        modeloT.addColumn("Nº de Recibo");
         modeloT.addColumn("Mes");
         modeloT.addColumn("Año");
-        modeloT.addColumn("Alicuota");
+        modeloT.addColumn("Alícuota");
         modeloT.addColumn("Monto");
-        modeloT.addColumn("Saldo restante");
+        modeloT.addColumn("Saldo Restante");
         modeloT.addColumn("Estado");
         modeloT.addColumn("Seleccione");
 
@@ -174,11 +175,12 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
-        modeloT.addColumn("Nº de recibo");
+        modeloT.addColumn("Nº de Recibo");
         modeloT.addColumn("Mes");
         modeloT.addColumn("Año");
-        modeloT.addColumn("Alicuota");
+        modeloT.addColumn("Alícuota");
         modeloT.addColumn("Monto");
         modeloT.addColumn("Saldo restante");
         modeloT.addColumn("Estado");

@@ -84,10 +84,11 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("<html>Nº de <br> Gasto Común</html>");
         modeloT.addColumn("<html>Tipo de <br> Gasto</html>");
-        modeloT.addColumn("Periodo");
+        modeloT.addColumn("Período");
         modeloT.addColumn("Monto");
         modeloT.addColumn("<html>Saldo <br> Restante</html>");
         modeloT.addColumn("<html>Nº de <br> Factura</html>");

@@ -68,6 +68,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("<html>Cédula/<br>Rif</html>");
         modeloT.addColumn("<html>Nombre/<br>Razón Social</html>");

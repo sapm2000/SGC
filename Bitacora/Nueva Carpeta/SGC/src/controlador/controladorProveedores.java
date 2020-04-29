@@ -71,6 +71,7 @@ public class controladorProveedores implements ActionListener, WindowListener, K
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("Cédula/Rif");
         modeloT.addColumn("Nombre/Razón Social");

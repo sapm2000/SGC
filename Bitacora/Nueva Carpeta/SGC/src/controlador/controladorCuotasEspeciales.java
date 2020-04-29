@@ -84,6 +84,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("<html>Nº de <br> Cuota Especial</html>");
         modeloT.addColumn("Proveedor");

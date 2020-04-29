@@ -93,6 +93,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("<html>Cédula/ <br>Rif</html>");
         modeloT.addColumn("<html>Nombre/ <br> Razón Social</html>");
@@ -153,6 +154,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("<html>Nº de<br> Asamblea</html>");
         modeloT.addColumn("<html>Nombre de <br> Asamblea</html>");
@@ -214,6 +216,9 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
+        
+        
 
         modeloT.addColumn("<html>Cédula/<br>Rif</html>");
         modeloT.addColumn("<html>Nombre/<br>Razón Social</html>");
@@ -243,6 +248,8 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
             modeloT.addRow(columna);
 
         }
+        
+        
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
@@ -465,6 +472,11 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         if (as.txtNombreAsamblea.getText().isEmpty()) {
 
             msj += "El campo nombre de la asamblea no puede estar vacio\n";
+            resultado = false;
+        }
+        if (as.txaDescripcion.getText().isEmpty()) {
+
+            msj += "El campo descripción no puede estar vacio\n";
             resultado = false;
         }
 

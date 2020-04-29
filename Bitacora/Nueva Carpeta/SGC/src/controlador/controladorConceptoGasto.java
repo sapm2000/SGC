@@ -154,6 +154,7 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("Concepto");
         modeloT.addColumn("Descripción");
