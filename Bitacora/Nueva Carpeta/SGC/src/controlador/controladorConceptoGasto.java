@@ -85,7 +85,7 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
                 int ind = cga.cbxCategoria.getSelectedIndex() - 1;
                 modCatGas.setId_categoria(listaCatGas.get(ind).getId());
 
-            }
+            
             if (modCatGas.modificarConcepto(modCatGas)) {
 
                 JOptionPane.showMessageDialog(null, "Registro modificado");
@@ -98,6 +98,7 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
                 JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
 
             }
+        }
         }
         if (e.getSource() == cga.btnEliminar) {
 
