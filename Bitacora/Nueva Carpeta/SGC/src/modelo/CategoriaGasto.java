@@ -182,7 +182,7 @@ public class CategoriaGasto extends ConexionBD {
         }
 
     }
-    
+
     public boolean eliminar(CategoriaGasto prs) {
         PreparedStatement ps = null;
         Connection con = getConexion();

@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public abstract class Validacion implements ActionListener, MouseListener, KeyListener {
+
     public static DecimalFormat formato1 = new DecimalFormat("#.00");
 
     /*---FUNCIÓN PARA EVITAR EL COPY & PASTE---*/
@@ -74,8 +75,8 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
             evt.consume();
         }
     }
-    
-        public static int contarCaracteres(String cadena, char caracter) {
+
+    public static int contarCaracteres(String cadena, char caracter) {
         int posicion, contador = 0;
         //se busca la primera vez que aparece
         posicion = cadena.indexOf(caracter);

@@ -85,20 +85,19 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
                 int ind = cga.cbxCategoria.getSelectedIndex() - 1;
                 modCatGas.setId_categoria(listaCatGas.get(ind).getId());
 
-            
-            if (modCatGas.modificarConcepto(modCatGas)) {
+                if (modCatGas.modificarConcepto(modCatGas)) {
 
-                JOptionPane.showMessageDialog(null, "Registro modificado");
-                cga.dispose();
-                Llenartabla(catacga.jTable);
-                limpiar();
+                    JOptionPane.showMessageDialog(null, "Registro modificado");
+                    cga.dispose();
+                    Llenartabla(catacga.jTable);
+                    limpiar();
 
-            } else {
+                } else {
 
-                JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
+                    JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
 
+                }
             }
-        }
         }
         if (e.getSource() == cga.btnEliminar) {
 
@@ -196,7 +195,7 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
             msj += "El campo descripción no puede estar vacío\n";
             resultado = false;
         }
-        
+
         if (!resultado) {
 
             JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);

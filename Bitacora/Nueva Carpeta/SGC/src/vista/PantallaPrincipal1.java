@@ -481,7 +481,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         catalogoCierreMes catac = new catalogoCierreMes();
 
-        recibo reci = new recibo();
+        cerrarMes reci = new cerrarMes();
         CerrarMes modc = new CerrarMes();
         Unidades moduni = new Unidades();
         GastoComun modgac = new GastoComun();

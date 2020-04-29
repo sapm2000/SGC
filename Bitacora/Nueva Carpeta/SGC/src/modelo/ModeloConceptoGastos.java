@@ -66,7 +66,7 @@ public class ModeloConceptoGastos extends CategoriaGasto {
         try {
 
             ps = con.prepareStatement(sql);
-            
+
             ps.setString(1, getNombre_Concepto());
             ps.setString(2, getDescripcion());
             ps.setInt(3, getId_categoria());
@@ -168,55 +168,54 @@ public class ModeloConceptoGastos extends CategoriaGasto {
         }
 
     }
-    
-    public boolean buscarC(ModeloConceptoGastos modC){
-    
-            PreparedStatement ps = null;
-            ResultSet rs = null;
-            Connection con = getConexion();
-            
-            String sql = "SELECT concepto_gasto.id, concepto_gasto.nom_concepto, concepto_gasto.descripcion, categoriagasto.nombre"
-                    + " FROM concepto_gasto INNER JOIN categoriagasto ON categoriagasto.id=concepto_gasto.id_categoria"
-                    + " WHERE nom_concepto=? ";
-            
-            try {
-            
-                ps = con.prepareStatement(sql);
-                ps.setString(1, getNombre_Concepto());
-                
-                rs = ps.executeQuery();
-                
-                if (rs.next()) {
-                    
-                    setId(rs.getInt("id"));
-                    setNombre_Concepto(rs.getString("nom_concepto"));
-                    setDescripcion(rs.getString("descripcion"));
-                    setNombreCategoria(rs.getString("nombre"));
 
-                    
-                    return true;
-                    
-                }
-                
-                return false;
-                
-        } catch (SQLException e) {
-            
-                System.err.println(e);
-                return false;
-                
-        } finally{
-                try {
-                    
-                    con.close();
-                    
-                } catch (SQLException e) {
-                
-                    System.err.println(e);
-                
-                }
-                
+    public boolean buscarC(ModeloConceptoGastos modC) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+
+        String sql = "SELECT concepto_gasto.id, concepto_gasto.nom_concepto, concepto_gasto.descripcion, categoriagasto.nombre"
+                + " FROM concepto_gasto INNER JOIN categoriagasto ON categoriagasto.id=concepto_gasto.id_categoria"
+                + " WHERE nom_concepto=? ";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getNombre_Concepto());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                setId(rs.getInt("id"));
+                setNombre_Concepto(rs.getString("nom_concepto"));
+                setDescripcion(rs.getString("descripcion"));
+                setNombreCategoria(rs.getString("nombre"));
+
+                return true;
+
             }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
 
     }
 
@@ -255,13 +254,12 @@ public class ModeloConceptoGastos extends CategoriaGasto {
 
             }
 
-        
-    }
+        }
 
         return listaPersona;
 
     }
-    
+
     public void llenar_concepto(JComboBox Concepto) {
 
 //Creamos objeto tipo Connection    
@@ -288,7 +286,6 @@ public class ModeloConceptoGastos extends CategoriaGasto {
             while (result.next()) {
 
                 Concepto.addItem(result.getString("nom_concepto"));
-                
 
             }
 
@@ -319,7 +316,7 @@ public class ModeloConceptoGastos extends CategoriaGasto {
         }
 
     }
-    
+
     public boolean buscarid(ModeloConceptoGastos modcon) {
 
         PreparedStatement ps = null;
@@ -335,7 +332,6 @@ public class ModeloConceptoGastos extends CategoriaGasto {
             if (rs.next()) {
 
                 modcon.setId(rs.getInt("id"));
-               
 
                 return true;
             }
@@ -361,9 +357,5 @@ public class ModeloConceptoGastos extends CategoriaGasto {
         }
 
     }
-    
-    
-
-    
 
 }

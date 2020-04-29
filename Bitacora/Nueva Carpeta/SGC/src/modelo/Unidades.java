@@ -48,9 +48,6 @@ public class Unidades extends Propietarios {
         this.area = area;
     }
 
-    
-    
-
     public void llenar_propietarios(JComboBox Propietarios) {
 
 //Creamos objeto tipo Connection    
@@ -193,7 +190,7 @@ public class Unidades extends Propietarios {
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_condominio());
-            
+
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -307,43 +304,43 @@ public class Unidades extends Propietarios {
         }
 
     }
-    
-    public boolean eliminarUnidad(Unidades moduni){
-        
+
+    public boolean eliminarUnidad(Unidades moduni) {
+
         PreparedStatement ps = null;
         Connection con = getConexion();
-        
+
         String sql = "DELETE FROM unidades WHERE n_unidad=?";
-        
+
         try {
-            
+
             ps = con.prepareStatement(sql);
             ps.setString(1, getN_unidad());
             ps.execute();
-            
+
             return true;
-            
+
         } catch (SQLException e) {
-            
-           System.err.println(e);
-           return false;
-            
-        }finally{
+
+            System.err.println(e);
+            return false;
+
+        } finally {
             try {
-                
+
                 con.close();
-                
-            }catch (SQLException e) {
-            
-           System.err.println(e);
-           
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
             }
-        
+
         }
-        
-     }  
-    
-     public void llenar_unidades(JComboBox Unidades) {
+
+    }
+
+    public void llenar_unidades(JComboBox Unidades) {
 
 //Creamos objeto tipo Connection    
         Connection con = getConexion();
@@ -384,6 +381,5 @@ public class Unidades extends Propietarios {
         }
 
     }
-    
-     
+
 }

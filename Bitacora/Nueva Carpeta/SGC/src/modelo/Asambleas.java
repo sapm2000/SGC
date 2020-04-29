@@ -24,7 +24,7 @@ public class Asambleas extends Propietarios {
     private String nombre_asamblea;
     private java.sql.Date fecha;
     private String descripcion;
-    
+
     private String id_propietario;
     private int n_asistentes;
 
@@ -51,8 +51,6 @@ public class Asambleas extends Propietarios {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-    
 
     public java.sql.Date getFecha() {
         return fecha;
@@ -226,8 +224,7 @@ public class Asambleas extends Propietarios {
 
             }
 
-        
-    }
+        }
 
         return listaasambleas;
     }
@@ -287,7 +284,7 @@ public class Asambleas extends Propietarios {
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
-            ps.setString(2,getId_condominio());
+            ps.setString(2, getId_condominio());
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -316,7 +313,7 @@ public class Asambleas extends Propietarios {
         return listapropmod;
 
     }
-    
+
     public boolean modificarAsamblea(Asambleas modasa) {
 
         PreparedStatement ps = null;
@@ -332,7 +329,6 @@ public class Asambleas extends Propietarios {
             ps.setString(3, getDescripcion());
             ps.setInt(4, getId());
 
-            
             ps.execute();
 
             return true;
@@ -355,49 +351,49 @@ public class Asambleas extends Propietarios {
         }
 
     }
-    
-    public boolean borrarpuenteasamblea(Asambleas modasa){
-        
+
+    public boolean borrarpuenteasamblea(Asambleas modasa) {
+
         PreparedStatement ps = null;
         Connection con = getConexion();
-        
+
         String sql = "DELETE FROM puente_asamblea_propietario WHERE id_asamblea=?";
-        
+
         try {
-            
+
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
             ps.execute();
-            
+
             return true;
-            
+
         } catch (SQLException e) {
-            
-           System.err.println(e);
-           return false;
-            
-        }finally{
+
+            System.err.println(e);
+            return false;
+
+        } finally {
             try {
-                
+
                 con.close();
-                
-            }catch (SQLException e) {
-            
-           System.err.println(e);
-           
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
             }
-        
+
         }
-        
-     }
-    
+
+    }
+
     public void llenar_Asamblea(JComboBox Asamblea) {
 
 //Creamos objeto tipo Connection    
         java.sql.Connection conectar = null;
         PreparedStatement pst = null;
         ResultSet result = null;
-        
+
 //Creamos la Consulta SQL
         String SSQL = "SELECT nombre FROM asambleas WHERE id_condominio=?;";
 
@@ -418,7 +414,6 @@ public class Asambleas extends Propietarios {
             while (result.next()) {
 
                 Asamblea.addItem(result.getString("nombre"));
-                
 
             }
 
@@ -449,8 +444,8 @@ public class Asambleas extends Propietarios {
         }
 
     }
-    
-     public boolean buscarid(Asambleas modasa) {
+
+    public boolean buscarid(Asambleas modasa) {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -465,7 +460,6 @@ public class Asambleas extends Propietarios {
             if (rs.next()) {
 
                 modasa.setId(rs.getInt("id"));
-               
 
                 return true;
             }
@@ -493,4 +487,3 @@ public class Asambleas extends Propietarios {
     }
 
 }
-

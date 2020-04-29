@@ -333,8 +333,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
     @Override
     public void keyTyped(KeyEvent ke) {
         if (ke.getSource() == fon.txtMontoInicial) {
-            
-            
+
             Validacion.Espacio(ke);
             Validacion.soloUnPunto(ke, fon.txtMontoInicial.getText());
             Validacion.limite(ke, fon.txtMontoInicial.getText(), 12);
