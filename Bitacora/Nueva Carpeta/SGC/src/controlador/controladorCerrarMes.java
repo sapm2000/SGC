@@ -29,7 +29,7 @@ import modelo.Sancion;
 import modelo.Unidades;
 import vista.PantallaPrincipal1;
 import vista.catalogoCierreMes;
-import vista.recibo;
+import vista.cerrarMes;
 
 /**
  *
@@ -37,7 +37,7 @@ import vista.recibo;
  */
 public class controladorCerrarMes implements ActionListener, KeyListener, WindowListener {
 
-    private recibo rec;
+    private cerrarMes rec;
     private CerrarMes modc;
     private Unidades moduni;
     ArrayList<Unidades> listaunidades;
@@ -54,7 +54,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
     private catalogoCierreMes catac;
     DefaultTableModel dm;
 
-    public controladorCerrarMes(recibo rec, CerrarMes modc, Unidades moduni, PantallaPrincipal1 panta1, GastoComun modgac, CuotasEspeciales modcuo, Sancion modsan, Interes modin, catalogoCierreMes catac) {
+    public controladorCerrarMes(cerrarMes rec, CerrarMes modc, Unidades moduni, PantallaPrincipal1 panta1, GastoComun modgac, CuotasEspeciales modcuo, Sancion modsan, Interes modin, catalogoCierreMes catac) {
         this.rec = rec;
         this.modc = modc;
         this.moduni = moduni;
@@ -80,13 +80,12 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
 
                 return false;
             }
-            
 
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
-        
+
         modeloT.addColumn("Nº de Cierre");
         modeloT.addColumn("Mes");
         modeloT.addColumn("Año");
@@ -109,7 +108,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
         tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-        
+
     }
 
     @Override
@@ -259,11 +258,11 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                                     if (modc.getMeses_res() == 0) {
                                                         modc.setEstado("Mensualidad Completada");
                                                         modc.actualizar_cuota(modc);
-                                                        
+
                                                     } else {
                                                         modc.setEstado("Mensualidad en Proceso");
                                                         modc.actualizar_cuota(modc);
-                                                        
+
                                                     }
                                                 }
 
@@ -334,7 +333,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
 
                                     modc.guardarsancionpro(modc);
                                     modc.actualizarSancion(modc);
-                                    
+
                                 }
 
                                 if (var.equals("Multa")) {
@@ -389,43 +388,36 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
 
                         for (int m = 0; m < numRegistro; m++) {
                             modc.setId_unidad(String.valueOf(num_casa[m]));
-                           
-                            if (modc.buscartotal(modc))
-                            {
+
+                            if (modc.buscartotal(modc)) {
 
                             } else {
                                 modc.setMonto(0);
-                                }
+                            }
                             double var6 = modc.getMonto();
-                            
 
-                            if (modc.buscartotal1(modc))
-                            {
+                            if (modc.buscartotal1(modc)) {
 
-                            }else {
+                            } else {
                                 modc.setMonto(0);
-                                }
+                            }
                             double var7 = modc.getMonto();
-                            
 
-                            if (modc.buscartotal2(modc))
-                            {
+                            if (modc.buscartotal2(modc)) {
 
-                            }else {
+                            } else {
                                 modc.setMonto(0);
-                                }
+                            }
                             double var8 = modc.getMonto();
-                             
 
-                            if (modc.buscartotal3(modc))
-                            {
+                            if (modc.buscartotal3(modc)) {
 
-                            }else {
+                            } else {
                                 modc.setMonto(0);
-                                }
+                            }
                             double var9 = modc.getMonto();
-                             
-                             double totalfinal=0;
+
+                            double totalfinal = 0;
                             totalfinal = var6 + var7 + var8 + var9;
                             if (numReales == 0 && numReales == 0) {
 
@@ -436,7 +428,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                 modc.setId_condominio(panta1.rif.getText());
 
                                 modc.guardartotal(modc);
-                                
+
                             }
                         }
                         if (numReales > 0 || numReales > 0) {

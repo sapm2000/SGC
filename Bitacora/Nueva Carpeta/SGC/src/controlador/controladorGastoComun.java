@@ -79,7 +79,6 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
 
                 return false;
             }
-            
 
         };
         tablaD.setModel(modeloT);
@@ -164,31 +163,38 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
                 modgac.setId_concepto(modcon.getId());
                 modgac.setObservaciones(gc.txaObservaciones.getText());
                 modgac.setSaldo(Double.parseDouble(gc.txtMonto.getText()));
-
-                java.sql.Date sqlDate = convert(gc.jDateChooser1.getDate());
-                modgac.setFecha(sqlDate);
-                modgac.setEstado("Pendiente");
-                modgac.setId_condominio(panta1.rif.getText());
-                modc.setMes_cierre(gc.jMonthChooser1.getMonth() + 1);
-                modc.setAño_cierre(gc.jYearChooser1.getYear());
-                modc.setId_condominio(panta1.rif.getText());
-
-                if (modc.buscarfechas(modc)) {
-                    JOptionPane.showMessageDialog(null, "no puede registrar gastos a un periodo ya cerrado");
+                if (modgac.getId_proveedor().equals("Seleccione el Proveedor")) {
+                    JOptionPane.showMessageDialog(null, "seleccione un proveedor");
                 } else {
-
-                    if (modgac.registrar_gasto_comun(modgac)) {
-
-                        JOptionPane.showMessageDialog(null, "Registro Guardado");
-                        modgac.setId_condominio(panta1.rif.getText());
-                        LlenartablaGastocomun(catagc.jTable1);
+                    if (modcon.getNombre_Concepto().equals("Seleccione el Concepto")) {
+                        JOptionPane.showMessageDialog(null, "seleccione un concepto");
                     } else {
+                        java.sql.Date sqlDate = convert(gc.jDateChooser1.getDate());
+                        modgac.setFecha(sqlDate);
+                        modgac.setEstado("Pendiente");
+                        modgac.setId_condominio(panta1.rif.getText());
+                        modc.setMes_cierre(gc.jMonthChooser1.getMonth() + 1);
+                        modc.setAño_cierre(gc.jYearChooser1.getYear());
+                        modc.setId_condominio(panta1.rif.getText());
 
-                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                        if (modc.buscarfechas(modc)) {
+                            JOptionPane.showMessageDialog(null, "no puede registrar gastos a un periodo ya cerrado");
+                        } else {
+
+                            if (modgac.registrar_gasto_comun(modgac)) {
+
+                                JOptionPane.showMessageDialog(null, "Registro Guardado");
+                                modgac.setId_condominio(panta1.rif.getText());
+                                LlenartablaGastocomun(catagc.jTable1);
+                            } else {
+
+                                JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                            }
+                        }
 
                     }
                 }
-
             }
         }
 
@@ -202,44 +208,52 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
                 modgac.setId_proveedor(gc.jcomboproveedor.getSelectedItem().toString());
                 modcon.setNombre_Concepto(gc.jcomboconcepto.getSelectedItem().toString());
                 modcon.buscarid(modcon);
-                modgac.setId_concepto(modcon.getId());
-                modgac.setObservaciones(gc.txaObservaciones.getText());
-                modgac.setId(Integer.parseInt(gc.txtid.getText()));
-                modc.setMes_cierre(gc.jMonthChooser1.getMonth() + 1);
-                modc.setAño_cierre(gc.jYearChooser1.getYear());
-                modc.setId_condominio(panta1.rif.getText());
-
-                if (modc.buscarfechas(modc)) {
-                    JOptionPane.showMessageDialog(null, "no puede registrar gastos a un periodo ya cerrado");
+                if (modgac.getId_proveedor().equals("Seleccione el Proveedor")) {
+                    JOptionPane.showMessageDialog(null, "seleccione un proveedor");
                 } else {
+                    if (modcon.getNombre_Concepto().equals("Seleccione el Concepto")) {
+                        JOptionPane.showMessageDialog(null, "seleccione un concepto");
+                    } else {
+                        modgac.setId_concepto(modcon.getId());
+                        modgac.setObservaciones(gc.txaObservaciones.getText());
+                        modgac.setId(Integer.parseInt(gc.txtid.getText()));
+                        modc.setMes_cierre(gc.jMonthChooser1.getMonth() + 1);
+                        modc.setAño_cierre(gc.jYearChooser1.getYear());
+                        modc.setId_condominio(panta1.rif.getText());
 
-                    java.sql.Date sqlDate = convert(gc.jDateChooser1.getDate());
-                    modgac.setFecha(sqlDate);
-                    modgac.setEstado("Pendiente");
-                    modgac.setId_condominio(panta1.rif.getText());
-
-                    double var1 = Double.parseDouble(gc.txtMonto.getText());
-                    double var2 = var1 - montoi;
-                    double total = var2 + saldo;
-                    modgac.setSaldo(total);
-
-                    if (total > 0) {
-                        if (modgac.modificar_gasto_comun(modgac)) {
-
-                            JOptionPane.showMessageDialog(null, "Registro Modificado");
-                            modgac.setId_condominio(panta1.rif.getText());
-                            LlenartablaGastocomun(catagc.jTable1);
-                            this.gc.dispose();
-
+                        if (modc.buscarfechas(modc)) {
+                            JOptionPane.showMessageDialog(null, "no puede registrar gastos a un periodo ya cerrado");
                         } else {
 
-                            JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                            java.sql.Date sqlDate = convert(gc.jDateChooser1.getDate());
+                            modgac.setFecha(sqlDate);
+                            modgac.setEstado("Pendiente");
+                            modgac.setId_condominio(panta1.rif.getText());
+
+                            double var1 = Double.parseDouble(gc.txtMonto.getText());
+                            double var2 = var1 - montoi;
+                            double total = var2 + saldo;
+                            modgac.setSaldo(total);
+
+                            if (total > 0) {
+                                if (modgac.modificar_gasto_comun(modgac)) {
+
+                                    JOptionPane.showMessageDialog(null, "Registro Modificado");
+                                    modgac.setId_condominio(panta1.rif.getText());
+                                    LlenartablaGastocomun(catagc.jTable1);
+                                    this.gc.dispose();
+
+                                } else {
+
+                                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "El saldo de la deuda no puede ser negativo");
+                            }
 
                         }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "El saldo de la deuda no puede ser negativo");
                     }
-
                 }
             }
 
@@ -286,13 +300,13 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
             msj += "El campo monto no puede estar vacio\n";
             resultado = false;
         }
-        
+
         if (gc.txtNumerofactura.getText().isEmpty()) {
 
             msj += "El campo número de factura no puede estar vacio\n";
             resultado = false;
         }
-        
+
         if (gc.txtnombreprov.getText().isEmpty()) {
 
             msj += "El campo nombre del proveedor no puede estar vacio\n";

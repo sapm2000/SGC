@@ -203,7 +203,10 @@ public class asambleas extends javax.swing.JFrame {
             }
         });
         jPanel4.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 170, 30));
+
+        jDateChooser2.setMinSelectableDate(new java.util.Date(-62135751509000L));
         jPanel4.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 150, 30));
+        jDateChooser2.getDateEditor().setEnabled(false);
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 480, 280));
 

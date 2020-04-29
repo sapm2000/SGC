@@ -211,6 +211,7 @@ public class gastoComun extends javax.swing.JFrame {
         jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 59, 120, 30));
         jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 59, 70, 30));
         jPanel2.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 230, 30));
+        jDateChooser1.getDateEditor().setEnabled(false);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));

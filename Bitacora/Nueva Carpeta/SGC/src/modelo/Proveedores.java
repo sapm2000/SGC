@@ -17,8 +17,8 @@ import javax.swing.JOptionPane;
  *
  * @author rma
  */
-public class Proveedores extends ConexionBD{
-    
+public class Proveedores extends ConexionBD {
+
     private String cedula;
     private String nombre;
     private String telefono;
@@ -73,7 +73,7 @@ public class Proveedores extends ConexionBD{
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-    
+
     public boolean registrar(Proveedores modpro) {
 
         PreparedStatement ps = null;
@@ -113,7 +113,7 @@ public class Proveedores extends ConexionBD{
         }
 
     }
-    
+
     public ArrayList<Proveedores> listar() {
         ArrayList listaProveedores = new ArrayList();
         Proveedores modpro;
@@ -152,12 +152,11 @@ public class Proveedores extends ConexionBD{
 
             }
 
-        
-    }
+        }
 
         return listaProveedores;
     }
-    
+
     public boolean buscar(Proveedores modpro) {
 
         PreparedStatement ps = null;
@@ -202,7 +201,7 @@ public class Proveedores extends ConexionBD{
         }
 
     }
-    
+
     public boolean modificar(Proveedores modpro) {
 
         PreparedStatement ps = null;
@@ -241,43 +240,43 @@ public class Proveedores extends ConexionBD{
 
         }
 
-    } 
-    
-    public boolean eliminar(Proveedores modpro){
-        
+    }
+
+    public boolean eliminar(Proveedores modpro) {
+
         PreparedStatement ps = null;
         Connection con = getConexion();
-        
+
         String sql = "DELETE FROM proveedores WHERE cedula=?";
-        
+
         try {
-            
+
             ps = con.prepareStatement(sql);
             ps.setString(1, getCedula());
             ps.execute();
-            
+
             return true;
-            
+
         } catch (SQLException e) {
-            
-           System.err.println(e);
-           return false;
-            
-        }finally{
+
+            System.err.println(e);
+            return false;
+
+        } finally {
             try {
-                
+
                 con.close();
-                
-            }catch (SQLException e) {
-            
-           System.err.println(e);
-           
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
             }
-        
+
         }
-        
-     }  
-    
+
+    }
+
     public void llenar_proveedores(JComboBox Proveedores) {
 
 //Creamos objeto tipo Connection    
@@ -304,7 +303,6 @@ public class Proveedores extends ConexionBD{
             while (result.next()) {
 
                 Proveedores.addItem(result.getString("cedula"));
-                
 
             }
 
@@ -335,5 +333,5 @@ public class Proveedores extends ConexionBD{
         }
 
     }
-    
+
 }

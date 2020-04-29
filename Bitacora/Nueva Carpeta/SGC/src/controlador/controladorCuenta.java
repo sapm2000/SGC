@@ -229,6 +229,8 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
                 modcu.setN_cuenta(cu.txtN_cuenta.getText());
                 modcu.setTipo(cu.jComboBox2.getSelectedItem().toString());
                 modban.setNombre_banco(cu.jComboBox1.getSelectedItem().toString());
+                if (modban.getNombre_banco().equals("Seleccione el Banco")) JOptionPane.showMessageDialog(null, "seleccione un banco");
+                else {
                 modban.buscar(modban);
                 modcu.setId_banco(modban.getId());
 
@@ -253,6 +255,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
                     JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
 
                 }
+                }
             }
 
         }
@@ -264,6 +267,8 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
                 modcu.setN_cuenta(cu.txtN_cuenta.getText());
                 modcu.setTipo(cu.jComboBox2.getSelectedItem().toString());
                 modban.setNombre_banco(cu.jComboBox1.getSelectedItem().toString());
+                if (modban.getNombre_banco().equals("Seleccione el Banco")) JOptionPane.showMessageDialog(null, "seleccione un banco");
+                else {
                 modban.buscar(modban);
                 modcu.setId_banco(modban.getId());
 
@@ -291,6 +296,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
 
                     JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
 
+                }
                 }
             }
 

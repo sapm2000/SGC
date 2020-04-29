@@ -223,6 +223,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                 modsan.setMes(san.jMonthChooser1.getMonth() + 1);
                 modsan.setAño(san.jYearChooser1.getYear());
                 modsan.setTipo(san.jComboBox1.getSelectedItem().toString());
+                if (modsan.getTipo().equals("Seleccione el Tipo de Deuda")) JOptionPane.showMessageDialog(null, "seleccione un tipo de deuda"); else {
                 modsan.setDescripcion(san.txaDescripcion.getText());
                 modsan.setId_condominio(panta1.rif.getText());
                 modsan.setMonto(Double.parseDouble(san.txtmonto.getText()));
@@ -263,6 +264,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                         JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
                     }
                 }
+                }
 
             }
         }
@@ -272,6 +274,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                 modsan.setMes(san.jMonthChooser1.getMonth() + 1);
                 modsan.setAño(san.jYearChooser1.getYear());
                 modsan.setTipo(san.jComboBox1.getSelectedItem().toString());
+                 if (modsan.getTipo().equals("Seleccione el Tipo de Deuda")) JOptionPane.showMessageDialog(null, "seleccione un tipo de deuda"); else {
                 modsan.setDescripcion(san.txaDescripcion.getText());
                 modsan.setId(Integer.parseInt(san.txtId.getText()));
                 modsan.setMonto(Double.parseDouble(san.txtmonto.getText()));
@@ -321,6 +324,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
             }
 
+        }
         }
 
         if (e.getSource() == san.btnEliminar) {

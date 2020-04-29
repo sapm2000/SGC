@@ -217,8 +217,6 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
-        
-        
 
         modeloT.addColumn("<html>Cédula/<br>Rif</html>");
         modeloT.addColumn("<html>Nombre/<br>Razón Social</html>");
@@ -248,8 +246,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
             modeloT.addRow(columna);
 
         }
-        
-        
+
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);

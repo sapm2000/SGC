@@ -220,7 +220,6 @@ public class Cuenta extends Banco {
     public ArrayList<Cuenta> listarcuenta() {
         ArrayList listaCuenta = new ArrayList();
         Cuenta modcu;
-        
 
         Connection con = getConexion();
         PreparedStatement ps = null;
@@ -234,7 +233,6 @@ public class Cuenta extends Banco {
             while (rs.next()) {
 
                 modcu = new Cuenta();
-               
 
                 modcu.setCedula(rs.getString(1));
                 modcu.setN_cuenta(rs.getString(2));
@@ -257,13 +255,12 @@ public class Cuenta extends Banco {
 
             }
 
-        
-    }
+        }
 
         return listaCuenta;
     }
 
-   public boolean buscarcuenta(Cuenta modcun) {
+    public boolean buscarcuenta(Cuenta modcun) {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -306,7 +303,7 @@ public class Cuenta extends Banco {
         }
 
     }
-   
+
     public boolean modificarcuenta(Cuenta modcu) {
 
         PreparedStatement ps = null;
@@ -345,77 +342,77 @@ public class Cuenta extends Banco {
         }
 
     }
-    
-    public boolean borrarpuente(Cuenta modcun){
-        
+
+    public boolean borrarpuente(Cuenta modcun) {
+
         PreparedStatement ps = null;
         Connection con = getConexion();
-        
+
         String sql = "DELETE FROM puente_condominio_cuenta WHERE id_cuenta=?";
-        
+
         try {
-            
+
             ps = con.prepareStatement(sql);
             ps.setString(1, getN_cuenta());
             ps.execute();
-            
+
             return true;
-            
+
         } catch (SQLException e) {
-            
-           System.err.println(e);
-           return false;
-            
-        }finally{
+
+            System.err.println(e);
+            return false;
+
+        } finally {
             try {
-                
+
                 con.close();
-                
-            }catch (SQLException e) {
-            
-           System.err.println(e);
-           
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
             }
-        
+
         }
-        
-     }  
-    
-    public boolean eliminarcuenta(Cuenta modcun){
-        
+
+    }
+
+    public boolean eliminarcuenta(Cuenta modcun) {
+
         PreparedStatement ps = null;
         Connection con = getConexion();
-        
+
         String sql = "DELETE FROM cuenta WHERE n_cuenta=?";
-        
+
         try {
-            
+
             ps = con.prepareStatement(sql);
             ps.setString(1, getN_cuenta());
             ps.execute();
-            
+
             return true;
-            
+
         } catch (SQLException e) {
-            
-           System.err.println(e);
-           return false;
-            
-        }finally{
+
+            System.err.println(e);
+            return false;
+
+        } finally {
             try {
-                
+
                 con.close();
-                
-            }catch (SQLException e) {
-            
-           System.err.println(e);
-           
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
             }
-        
+
         }
-        
-     }
-    
+
+    }
+
     public void llenar_cuentas(JComboBox Cuentas) {
 
 //Creamos objeto tipo Connection    
@@ -473,7 +470,5 @@ public class Cuenta extends Banco {
         }
 
     }
-   
-   
 
 }

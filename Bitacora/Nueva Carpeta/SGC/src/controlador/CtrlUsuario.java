@@ -65,6 +65,8 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
                 modC.setNombre(vistaGU.txtNombre.getText());
                 modC.setApellido(vistaGU.txtApellido.getText());
                 modC.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
+                if (modC.getTipo().equals("Seleccione un tipo de usuario"))JOptionPane.showMessageDialog(null, "seleccione un tipo de usuario");
+                else {
                 modC.setNtelefono(vistaGU.txtTelefono.getText());
 
                 if (modC.registrar(modC)) {
@@ -77,7 +79,9 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
                     JOptionPane.showMessageDialog(null, "Registro Duplicado");
 
                 }
+                
             }
+        }
         }
         
             if (e.getSource() == vistaGU.btnModificar) {
@@ -87,6 +91,8 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
                 modC.setPassword(vistaGU.jpPassword.getText());
                 modC.setApellido(vistaGU.txtApellido.getText());
                 modC.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
+                if (modC.getTipo().equals("Seleccione un tipo de usuario"))JOptionPane.showMessageDialog(null, "seleccione un tipo de usuario");
+                else {
                 modC.setNtelefono(vistaGU.txtTelefono.getText());
 
                 if (vistaGU.jpPassword.getText().isEmpty()) {
@@ -107,6 +113,7 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
                     Llenartabla(catausu.jtable);
                     this.vistaGU.dispose();
                     limpiar();
+                }
                 }
 
             }

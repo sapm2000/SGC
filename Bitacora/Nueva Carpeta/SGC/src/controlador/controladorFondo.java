@@ -13,7 +13,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -80,7 +79,6 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
         modeloT.addColumn("Observación");
         modeloT.addColumn("Monto Inicial");
         modeloT.addColumn("Saldo Actual");
-        DecimalFormat formato1 = new DecimalFormat("#.00");
 
         Object[] columna = new Object[6];
 
@@ -92,7 +90,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
             columna[1] = listafondo.get(i).getTipo();
             columna[2] = listafondo.get(i).getDescripcion();
             columna[3] = listafondo.get(i).getObservacion();
-            columna[4] = formato1.format(listafondo.get(i).getMonto_inicial());
+            columna[4] = Validacion.formato1.format(listafondo.get(i).getMonto_inicial());
             columna[5] = listafondo.get(i).getSaldo();
 
             modeloT.addRow(columna);
@@ -333,25 +331,12 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-        if (e.getSource() == fon.txtMontoInicial) {
-            String cadena = fon.txtMontoInicial.getText();
-            char punto = '.';
-            int contador = contarCaracteres(cadena, punto);
-            if (contador < 1) {
+    public void keyTyped(KeyEvent ke) {
+        if (ke.getSource() == fon.txtMontoInicial) {
 
-                char car = e.getKeyChar();
-                if ((car < '0' || car > '9') && (car <= ',' || car > '.')) {
-                    e.consume();
-                }
-            } else {
-                char car = e.getKeyChar();
-                if ((car < '0' || car > '9')) {
-                    e.consume();
-                }
-
-            }
-
+            Validacion.Espacio(ke);
+            Validacion.soloUnPunto(ke, fon.txtMontoInicial.getText());
+            Validacion.limite(ke, fon.txtMontoInicial.getText(), 12);
         }
     }
 

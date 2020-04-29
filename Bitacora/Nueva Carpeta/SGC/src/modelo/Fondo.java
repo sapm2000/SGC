@@ -36,8 +36,6 @@ public class Fondo extends ConexionBD {
     public void setId(int id) {
         this.id = id;
     }
-    
-    
 
     public String getTipo() {
         return tipo;
@@ -179,7 +177,7 @@ public class Fondo extends ConexionBD {
 
         return listaFondo;
     }
-    
+
     public boolean buscar(Fondo modfon) {
 
         PreparedStatement ps = null;
@@ -225,8 +223,8 @@ public class Fondo extends ConexionBD {
         }
 
     }
-    
-     public boolean buscar1(Fondo modfon) {
+
+    public boolean buscar1(Fondo modfon) {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -242,7 +240,6 @@ public class Fondo extends ConexionBD {
             if (rs.next()) {
                 modfon.setId(rs.getInt("id"));
                 modfon.setSaldo(rs.getDouble("saldo"));
-               
 
                 return true;
             }
@@ -268,7 +265,7 @@ public class Fondo extends ConexionBD {
         }
 
     }
-    
+
     public boolean modificar(Fondo modfon) {
 
         PreparedStatement ps = null;
@@ -284,7 +281,7 @@ public class Fondo extends ConexionBD {
             ps.setString(3, getObservacion());
             ps.setDouble(4, getMonto_inicial());
             ps.setDouble(5, getSaldo());
-            
+
             ps.setString(6, getTipo());
             ps.setInt(7, getId());
             ps.execute();
@@ -309,7 +306,7 @@ public class Fondo extends ConexionBD {
         }
 
     }
-    
+
     public boolean fondear(Fondo modfon) {
 
         PreparedStatement ps = null;
@@ -320,10 +317,9 @@ public class Fondo extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-           
+
             ps.setDouble(1, getSaldo());
-            
-            
+
             ps.setInt(2, getId());
             ps.execute();
 
@@ -347,43 +343,43 @@ public class Fondo extends ConexionBD {
         }
 
     }
-    
-    public boolean eliminar(Fondo modfon){
-        
+
+    public boolean eliminar(Fondo modfon) {
+
         PreparedStatement ps = null;
         Connection con = getConexion();
-        
+
         String sql = "DELETE FROM fondos WHERE id=?";
-        
+
         try {
-            
+
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
-           
+
             ps.execute();
-            
+
             return true;
-            
+
         } catch (SQLException e) {
-            
-           System.err.println(e);
-           return false;
-            
-        }finally{
+
+            System.err.println(e);
+            return false;
+
+        } finally {
             try {
-                
+
                 con.close();
-                
-            }catch (SQLException e) {
-            
-           System.err.println(e);
-           
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
             }
-        
+
         }
-        
-     }  
-    
+
+    }
+
     public void llenar_fondo(JComboBox Fondo) {
 
 //Creamos objeto tipo Connection    

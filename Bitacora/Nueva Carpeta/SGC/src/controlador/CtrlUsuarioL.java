@@ -5,14 +5,14 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.UsuarioL;
-import modelo.metodosUsuario;
+import modelo.MetodosUsuario;
 import vista.InicioUsuario;
 import vista.PantallaPrincipal;
 
 public class CtrlUsuarioL implements ActionListener {
 
     private InicioUsuario vistaU;
-    private metodosUsuario modelo = new metodosUsuario();
+    private MetodosUsuario modelo = new MetodosUsuario();
 
     PantallaPrincipal pp = new PantallaPrincipal();
 
