@@ -29,7 +29,6 @@ public class controladorVisita implements ActionListener {
         this.regv.jButton3.addActionListener(this);
 
         this.visi.jButton1.addActionListener(this);
-        
 
     }
 
@@ -55,17 +54,14 @@ public class controladorVisita implements ActionListener {
         }
 
         if (e.getSource() == regv.jButton1) {
-             JOptionPane.showMessageDialog(null,"registro guardado");
+            JOptionPane.showMessageDialog(null, "registro guardado");
 
         }
 
         if (e.getSource() == regv.jButton3) {
             this.visi.setVisible(true);
-           
 
         }
-
-       
 
         if (e.getSource() == visi.jButton1) {
             JOptionPane.showMessageDialog(null, "registro guardado");

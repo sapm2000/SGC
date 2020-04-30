@@ -285,7 +285,7 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
             limpiar();
         }
     }
-    
+
     public void limpiar() {
 
         gc.txtnombreprov.setText(null);
@@ -299,9 +299,7 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
         gc.txtNumerofactura.setText(null);
         gc.jDateChooser1.setDate(null);
 
-
     }
-
 
     @Override
     public void itemStateChanged(ItemEvent e) {
@@ -414,7 +412,7 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
     @Override
     public void keyTyped(KeyEvent e) {
         if (e.getSource() == gc.txaObservaciones) {
-            
+
             Validacion.limite(e, gc.txaObservaciones.getText(), 500);
         }
         if (e.getSource() == gc.txtnombreprov) {

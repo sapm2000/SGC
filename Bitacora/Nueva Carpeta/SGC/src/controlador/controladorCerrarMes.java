@@ -419,7 +419,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
 
                             double totalfinal = 0;
                             totalfinal = var6 + var7 + var8 + var9;
-                            if (numReales == 0 && numReales == 0) {
+                            if (numGastos == 0 && numReales == 0) {
 
                             } else {
                                 modc.setMonto(totalfinal);
@@ -431,7 +431,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
 
                             }
                         }
-                        if (numReales > 0 || numReales > 0) {
+                        if (numGastos > 0 || numReales > 0) {
                             modc.setId_condominio(panta1.rif.getText());
                             modc.cerrar_mes(modc);
 

@@ -5,7 +5,6 @@
  */
 package controlador;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -16,14 +15,12 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.CategoriaGasto;
 import vista.catalogoCategoriaGastos;
 import vista.categoriaGastos;
-import controlador.Validacion;
 import java.util.ArrayList;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -176,7 +173,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         }
 
     }
-    
+
     public void limpiar() {
 
         cg.txtnombre.setText(null);

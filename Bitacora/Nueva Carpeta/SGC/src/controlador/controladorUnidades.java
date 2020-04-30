@@ -5,7 +5,6 @@
  */
 package controlador;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -92,7 +91,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
                 return false;
             }
-            
 
         };
         tablaD.setModel(modeloT);
@@ -123,7 +121,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-        
+
     }
 
     public void llenartablapagos(JTable tablaD) {
@@ -135,7 +133,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
                 return false;
             }
-            
 
         };
         tablaD.setModel(modeloT);
@@ -186,7 +183,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
                 return false;
             }
-            
 
         };
         tablaD.setModel(modeloT);
@@ -222,7 +218,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
     }
-    
+
     public void llenardetalleinteres(JTable tablaD) {
 
         listadetalleinteres = modc.listardetallesinteres();
@@ -232,7 +228,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
                 return false;
             }
-            
 
         };
         tablaD.setModel(modeloT);
@@ -240,7 +235,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("Tipo de Interes ");
-        modeloT.addColumn("Factor");       
+        modeloT.addColumn("Factor");
         modeloT.addColumn("Monto");
 
         Object[] columna = new Object[5];
@@ -250,11 +245,9 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         for (int i = 0; i < numRegistro; i++) {
 
             columna[0] = listadetalleinteres.get(i).getEstado();
-            String var6 = String.valueOf(listadetalleinteres.get(i).getAlicuota())+"%";
+            String var6 = String.valueOf(listadetalleinteres.get(i).getAlicuota()) + "%";
             columna[1] = var6;
             columna[2] = listadetalleinteres.get(i).getMonto();
-           
-           
 
             modeloT.addRow(columna);
 
@@ -275,13 +268,12 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
                 return false;
             }
-            
 
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
-        
+
         modeloT.addColumn("<html>Cédula/<br>Rif</html>");
         modeloT.addColumn("<html>Razón <br> Social</html>");
         modeloT.addColumn("Concepto");
@@ -311,7 +303,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
     }
-    
+
     public void llenardetallesancion(JTable tablaD) {
 
         listadetallesancion = modc.listardetallessancion();
@@ -321,18 +313,16 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
                 return false;
             }
-            
 
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
-        
+
         modeloT.addColumn("Tipo ");
         modeloT.addColumn("Descripción");
         modeloT.addColumn("Factor");
         modeloT.addColumn("Monto");
-       
 
         Object[] columna = new Object[4];
 
@@ -343,15 +333,13 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             columna[0] = listadetallesancion.get(i).getTipo();
             columna[1] = listadetallesancion.get(i).getEstado();
             if (listadetallesancion.get(i).getTipo().equals("Interes de mora")) {
-                String var4= listadetallesancion.get(i).getAlicuota()+"%";
-                 columna[2] = var4;
-            }
-            else {
+                String var4 = listadetallesancion.get(i).getAlicuota() + "%";
+                columna[2] = var4;
+            } else {
                 columna[2] = "";
             }
-           
+
             columna[3] = listadetallesancion.get(i).getMonto();
-           
 
             modeloT.addRow(columna);
 
@@ -373,7 +361,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
                 return false;
             }
-            
 
         };
         tablaD.setModel(modeloT);
@@ -497,7 +484,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
         }
     }
-    
+
     public void limpiar() {
 
         uni.txtNumeroUnidad.setText(null);
@@ -583,8 +570,8 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             detare.txtPropietarios.setText(detacun.txtPropietarios.getText());
             detare.txtId.setText(dato3);
             modc.bucartotal(modc);
-            double var10 = modc.getAlicuota()*100;
-            detare.txtAlicuota.setText(String.valueOf(var10)+"%");
+            double var10 = modc.getAlicuota() * 100;
+            detare.txtAlicuota.setText(String.valueOf(var10) + "%");
             detare.txtTotal.setText(String.valueOf(modc.getMonto()));
         }
     }
@@ -612,7 +599,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
     @Override
     public void keyTyped(KeyEvent ke) {
         if (ke.getSource() == uni.txtNumeroUnidad) {
-            
+
             Validacion.Espacio(ke);
             Validacion.limite(ke, uni.txtNumeroUnidad.getText(), 10);
         }
@@ -624,7 +611,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         }
         if (ke.getSource() == uni.txadireccion) {
 
-         
             Validacion.limite(ke, uni.txadireccion.getText(), 200);
         }
     }
@@ -702,37 +688,37 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             msj += "El campo numero de unidad no puede estar vacio\n";
             resultado = false;
         }
-        
+
         if (uni.txtCedula.getText().isEmpty()) {
 
             msj += "El campo CI/RIF no puede estar vacio\n";
             resultado = false;
         }
-        
+
         if (uni.txtTelefono.getText().isEmpty()) {
 
             msj += "El campo teléfono no puede estar vacio\n";
             resultado = false;
         }
-        
+
         if (uni.txtArea.getText().isEmpty()) {
 
             msj += "El campo área no puede estar vacio\n";
             resultado = false;
         }
-        
+
         if (uni.txtCorreo.getText().isEmpty()) {
 
             msj += "El campo correo electrónico no puede estar vacio\n";
             resultado = false;
         }
-        
+
         if (uni.txadireccion.getText().isEmpty()) {
 
             msj += "El campo dirección no puede estar vacio\n";
             resultado = false;
         }
-        
+
         if (uni.txtNombrePropietario.getText().isEmpty()) {
 
             msj += "El campo propietario/inquilino no puede estar vacio\n";
