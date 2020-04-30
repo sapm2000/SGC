@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
 public class Banco extends ConexionBD {
 
     private int id;
@@ -86,8 +85,7 @@ public class Banco extends ConexionBD {
                 listaBanco.add(modban);
             }
         } catch (Exception e) {
-        }
-        finally {
+        } finally {
             try {
 
                 con.close();
@@ -98,8 +96,8 @@ public class Banco extends ConexionBD {
 
             }
 
-        return listaBanco;
-    }
+            return listaBanco;
+        }
     }
 
     public boolean buscar(Banco modban) {
@@ -179,40 +177,40 @@ public class Banco extends ConexionBD {
         }
 
     }
-    
-    public boolean eliminar(Banco modban){
-        
+
+    public boolean eliminar(Banco modban) {
+
         PreparedStatement ps = null;
         Connection con = getConexion();
-        
+
         String sql = "DELETE FROM banco WHERE id=?";
-        
+
         try {
-            
+
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
             ps.execute();
-            
+
             return true;
-            
+
         } catch (SQLException e) {
-            
-           System.err.println(e);
-           return false;
-            
-        }finally{
+
+            System.err.println(e);
+            return false;
+
+        } finally {
             try {
-                
+
                 con.close();
-                
-            }catch (SQLException e) {
-            
-           System.err.println(e);
-           
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
             }
-        
+
         }
-        
-     }  
+
+    }
 
 }

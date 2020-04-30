@@ -54,8 +54,6 @@ public class Condominio extends ConexionBD {
     public void setId_cuenta(String id_cuenta) {
         this.id_cuenta = id_cuenta;
     }
-    
-    
 
     public boolean registrar(Condominio cond) {
         PreparedStatement ps = null;
@@ -248,10 +246,8 @@ public class Condominio extends ConexionBD {
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, getRif());
-           
-            rs = ps.executeQuery();
 
-            
+            rs = ps.executeQuery();
 
             while (rs.next()) {
                 Condominio = new Condominio();
@@ -260,9 +256,7 @@ public class Condominio extends ConexionBD {
                 Condominio.setRif(rs.getString("rif"));
                 Condominio.setRazonS(rs.getString("razon_social"));
                 Condominio.setId_cuenta(rs.getString("cuenta"));
-               
-                
-                
+
                 listaPersona.add(Condominio);
             }
 

@@ -152,12 +152,11 @@ public class Propietarios extends ConexionBD {
 
             }
 
-        
-    }
+        }
 
         return listaPropietarios;
     }
-    
+
     public boolean buscar(Propietarios modpro) {
 
         PreparedStatement ps = null;
@@ -175,7 +174,7 @@ public class Propietarios extends ConexionBD {
                 modpro.setNombre(rs.getString("nombre"));
                 modpro.setCorreo(rs.getString("correo"));
                 modpro.setApellido(rs.getString("apellido"));
-                
+
                 modpro.setTelefono(rs.getString("telefono"));
 
                 return true;
@@ -202,7 +201,7 @@ public class Propietarios extends ConexionBD {
         }
 
     }
-    
+
     public boolean modificar(Propietarios modpro) {
 
         PreparedStatement ps = null;
@@ -217,8 +216,6 @@ public class Propietarios extends ConexionBD {
             ps.setString(2, getApellido());
             ps.setString(3, getTelefono());
             ps.setString(4, getCorreo());
-            
-            
 
             ps.setString(5, getCedula());
             ps.execute();
@@ -242,41 +239,41 @@ public class Propietarios extends ConexionBD {
 
         }
 
-    } 
-    
-    public boolean eliminar(Propietarios modpro){
-        
+    }
+
+    public boolean eliminar(Propietarios modpro) {
+
         PreparedStatement ps = null;
         Connection con = getConexion();
-        
+
         String sql = "DELETE FROM propietarios WHERE cedula=?";
-        
+
         try {
-            
+
             ps = con.prepareStatement(sql);
             ps.setString(1, getCedula());
             ps.execute();
-            
+
             return true;
-            
+
         } catch (SQLException e) {
-            
-           System.err.println(e);
-           return false;
-            
-        }finally{
+
+            System.err.println(e);
+            return false;
+
+        } finally {
             try {
-                
+
                 con.close();
-                
-            }catch (SQLException e) {
-            
-           System.err.println(e);
-           
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
             }
-        
+
         }
-        
-     }  
+
+    }
 
 }

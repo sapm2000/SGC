@@ -18,16 +18,16 @@ import javax.swing.JOptionPane;
  */
 public class CuotasEspeciales extends ConexionBD {
 
-    private int id; 
+    private int id;
     private String id_proveedor;
-    private int id_concepto; 
+    private int id_concepto;
     private String Calcular;
-    private int mes; 
-    private int año; 
-    private double monto; 
-    private double saldo; 
-    private int n_meses;                                                                               
-    private int id_asamblea; 
+    private int mes;
+    private int año;
+    private double monto;
+    private double saldo;
+    private int n_meses;
+    private int id_asamblea;
     private String observacion;
     private String estado;
     private String id_condominio;
@@ -42,8 +42,6 @@ public class CuotasEspeciales extends ConexionBD {
     public void setN_meses_restantes(int n_meses_restantes) {
         this.n_meses_restantes = n_meses_restantes;
     }
-    
-    
 
     public int getId() {
         return id;
@@ -164,12 +162,8 @@ public class CuotasEspeciales extends ConexionBD {
     public void setNombre_asamble(String nombre_asamble) {
         this.nombre_asamble = nombre_asamble;
     }
-    
-    
-    
-    
-    
-     public boolean registrar_cuota_especial(CuotasEspeciales modcuo) {
+
+    public boolean registrar_cuota_especial(CuotasEspeciales modcuo) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
@@ -215,8 +209,8 @@ public class CuotasEspeciales extends ConexionBD {
         }
 
     }
-     
-      public ArrayList<CuotasEspeciales> listarCuotasEspeciales() {
+
+    public ArrayList<CuotasEspeciales> listarCuotasEspeciales() {
         ArrayList listacuotasEspeciales = new ArrayList();
         CuotasEspeciales modcuo;
 
@@ -266,8 +260,8 @@ public class CuotasEspeciales extends ConexionBD {
 
         return listacuotasEspeciales;
     }
-      
-      public ArrayList<CuotasEspeciales> listarCuotasEspecialescerrarmes() {
+
+    public ArrayList<CuotasEspeciales> listarCuotasEspecialescerrarmes() {
         ArrayList listacuotasEspeciales = new ArrayList();
         CuotasEspeciales modcuo;
 
@@ -278,7 +272,7 @@ public class CuotasEspeciales extends ConexionBD {
         String sql = "SELECT cuotas_especiales.id, id_proveedor, concepto_gasto.nom_concepto, calcular, mes, anio, monto, saldo, n_meses, asambleas.nombre, observacion, estado, n_mese_restante FROM cuotas_especiales inner join proveedores on proveedores.cedula=cuotas_especiales.id_proveedor inner join concepto_gasto on concepto_gasto.id=cuotas_especiales.id_concepto left join asambleas on asambleas.id = cuotas_especiales.id_asamblea where cuotas_especiales.id_condominio=? and cuotas_especiales.n_mese_restante !=0";
         try {
             ps = con.prepareStatement(sql);
-            
+
             ps.setString(1, getId_condominio());
             rs = ps.executeQuery();
 
@@ -318,8 +312,8 @@ public class CuotasEspeciales extends ConexionBD {
 
         return listacuotasEspeciales;
     }
-      
-      public boolean buscarCuotaEspecial(CuotasEspeciales modcuo) {
+
+    public boolean buscarCuotaEspecial(CuotasEspeciales modcuo) {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -368,8 +362,8 @@ public class CuotasEspeciales extends ConexionBD {
 
         }
     }
-      
-       public boolean modificar_cuota_especial(CuotasEspeciales modcuo) {
+
+    public boolean modificar_cuota_especial(CuotasEspeciales modcuo) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
@@ -391,10 +385,7 @@ public class CuotasEspeciales extends ConexionBD {
             ps.setInt(10, getId_asamblea());
             ps.setString(11, getObservacion());
             ps.setInt(12, getId());
-           
-            
 
-            
             ps.execute();
 
             return true;
@@ -417,56 +408,40 @@ public class CuotasEspeciales extends ConexionBD {
         }
 
     }
-       
-       public boolean eliminar_cuotas_especiales(CuotasEspeciales modcuo){
-        
+
+    public boolean eliminar_cuotas_especiales(CuotasEspeciales modcuo) {
+
         PreparedStatement ps = null;
         Connection con = getConexion();
-        
+
         String sql = "DELETE FROM cuotas_especiales WHERE id=?;";
-        
+
         try {
-            
+
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
-            
-            ps.execute();
-            
-            return true;
-            
-        } catch (SQLException e) {
-            
-           System.err.println(e);
-           return false;
-            
-        }finally{
-            try {
-                
-                con.close();
-                
-            }catch (SQLException e) {
-            
-           System.err.println(e);
-           
-            }
-        
-        }
-        
-     }  
-}
-     
-     
-   
-                                                                                                                    
-                                                                                                                    
-                                                                                                                    
-                                                                                                            
-                                                                                                            
-                                                                                                            
-                                                                                                            
-                                                                                                    
-                                                                                    
-                                                                            
-                                            
-                                    
 
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+}

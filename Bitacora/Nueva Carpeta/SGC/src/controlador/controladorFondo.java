@@ -335,10 +335,10 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
     @Override
     public void keyTyped(KeyEvent ke) {
         if (ke.getSource() == fon.txtMontoInicial) {
-            
+
             Validacion.Espacio(ke);
             Validacion.soloUnPunto(ke, fon.txtMontoInicial.getText());
-            
+
         }
     }
 
@@ -346,8 +346,6 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
     public void keyPressed(KeyEvent e) {
 
     }
-
-    
 
     @Override
     public void keyReleased(KeyEvent e) {
