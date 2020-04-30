@@ -491,6 +491,22 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             uni.dispose();
         }
 
+        if (e.getSource() == uni.btnLimpiar) {
+
+            limpiar();
+
+        }
+    }
+    
+    public void limpiar() {
+
+        uni.txtNumeroUnidad.setText(null);
+        uni.txtArea.setText(null);
+        uni.txtCedula.setText(null);
+        uni.txtTelefono.setText(null);
+        uni.txtCorreo.setText(null);
+        uni.txadireccion.setText(null);
+        uni.txtNombrePropietario.setText(null);
     }
 
     @Override

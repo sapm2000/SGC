@@ -46,8 +46,8 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
     public controladorInteres(interes in, catalogoInteres catain, Condominio modcon, Interes modin) {
         this.in = in;
         this.catain = catain;
-        this.modcon=modcon;
-        this.modin=modin;
+        this.modcon = modcon;
+        this.modin = modin;
 
         this.catain.jButton2.addActionListener(this);
         this.catain.jTable1.addMouseListener(this);
@@ -95,7 +95,7 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
         int numRegistro = listaCondo.size();
 
         for (int i = 0; i < numRegistro; i++) {
-            
+
             columna[0] = listaCondo.get(i).getRif();
             columna[1] = listaCondo.get(i).getRazonS();
 
@@ -108,7 +108,7 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
         tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
     }
-    
+
     public void Llenartablainteres(JTable tablaD) {
 
         listainteres = modin.listarInteres();
@@ -118,7 +118,6 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
 
                 return false;
             }
-            
 
         };
         tablaD.setModel(modeloT);
@@ -154,8 +153,8 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
         tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
     }
-    
-     public void llenartablacondominiomod(JTable tablaD) {
+
+    public void llenartablacondominiomod(JTable tablaD) {
         listainteresmod = modin.interescondominiomodificar();
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
@@ -185,15 +184,13 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
         Object[] columna = new Object[3];
 
         int numRegistro = listainteresmod.size();
-       
 
         for (int i = 0; i < numRegistro; i++) {
 
             columna[0] = listainteresmod.get(i).getRif();
             columna[1] = listainteresmod.get(i).getRazonS();
-            
 
-            if (listainteresmod.get(i).getN_condominios()!= 0) {
+            if (listainteresmod.get(i).getN_condominios() != 0) {
                 columna[2] = Boolean.TRUE;
             } else {
                 columna[2] = Boolean.FALSE;
@@ -227,25 +224,23 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
             modin.setNombre(in.txtNombreinteres.getText());
             modin.setFactor(Integer.parseInt(in.txtFactor.getText()));
             modin.setEstado("Activo");
-            
-            
+
             if (modin.registrarinteres(modin)) {
-                    modin.buscId(modin);
-                    JOptionPane.showMessageDialog(null, "Registro Guardado");
+                modin.buscId(modin);
+                JOptionPane.showMessageDialog(null, "Registro Guardado");
 
-                    for (int i = 0; i < in.jTable1.getRowCount(); i++) {
-                       if (valueOf(in.jTable1.getValueAt(i, 2)) == "true") {
+                for (int i = 0; i < in.jTable1.getRowCount(); i++) {
+                    if (valueOf(in.jTable1.getValueAt(i, 2)) == "true") {
 
-                            String valor = String.valueOf(in.jTable1.getValueAt(i, 0));
-                            modin.setId_condominio(valor);
+                        String valor = String.valueOf(in.jTable1.getValueAt(i, 0));
+                        modin.setId_condominio(valor);
 
-                            modin.registrar_interes_condominio(modin);
+                        modin.registrar_interes_condominio(modin);
 
-                        }
                     }
-                    Llenartablainteres(catain.jTable1);
+                }
+                Llenartablainteres(catain.jTable1);
             }
-                   
 
         }
 
@@ -254,30 +249,29 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
             modin.setFactor(Double.parseDouble(in.txtFactor.getText()));
             modin.setEstado("Activo");
             modin.setId(Integer.parseInt(in.txtId.getText()));
-            
-            
+
             if (modin.modificar_Interes(modin)) {
-                    
-                    JOptionPane.showMessageDialog(null, "Registro Modificado");
-                    modin.borrarpuente(modin);
 
-                    for (int i = 0; i < in.jTable1.getRowCount(); i++) {
-                       if (valueOf(in.jTable1.getValueAt(i, 2)) == "true") {
+                JOptionPane.showMessageDialog(null, "Registro Modificado");
+                modin.borrarpuente(modin);
 
-                            String valor = String.valueOf(in.jTable1.getValueAt(i, 0));
-                            modin.setId_condominio(valor);
+                for (int i = 0; i < in.jTable1.getRowCount(); i++) {
+                    if (valueOf(in.jTable1.getValueAt(i, 2)) == "true") {
 
-                            modin.registrar_interes_condominio(modin);
+                        String valor = String.valueOf(in.jTable1.getValueAt(i, 0));
+                        modin.setId_condominio(valor);
 
-                        }
+                        modin.registrar_interes_condominio(modin);
+
                     }
-                    Llenartablainteres(catain.jTable1);
-                    in.dispose();
+                }
+                Llenartablainteres(catain.jTable1);
+                in.dispose();
             }
 
         }
-        
-         if (e.getSource() == in.btnEliminar) {
+
+        if (e.getSource() == in.btnEliminar) {
             modin.setId(Integer.parseInt(in.txtId.getText()));
             modin.borrarpuente(modin);
             modin.eliminarInteres(modin);
@@ -285,14 +279,28 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
             in.dispose();
             Llenartablainteres(catain.jTable1);
         }
+        if (e.getSource() == in.btnLimpiar) {
+
+            limpiar();
+
+        }
     }
-    
+
+    public void limpiar() {
+
+        in.txtNombreinteres.setText(null);
+        in.txtFactor.setText(null);
+        llenartablacondominiomod(in.jTable1);
+        addCheckBox(2, in.jTable1);
+
+    }
+
     public void addCheckBox(int column, JTable table) {
         TableColumn tc = table.getColumnModel().getColumn(column);
         tc.setCellEditor(table.getDefaultEditor(Boolean.class));
         tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
     }
-    
+
     private Boolean validar() {
 
         Boolean resultado = true;
@@ -303,14 +311,12 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
             msj += "El campo factor de interes no puede estar vacio\n";
             resultado = false;
         }
-        
+
         if (in.txtNombreinteres.getText().isEmpty()) {
 
             msj += "El campo nombre de interes no puede estar vacio\n";
             resultado = false;
         }
-
-        
 
         if (!resultado) {
 
@@ -319,7 +325,7 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
 
         return resultado;
     }
-    
+
     private void filtro(String consulta, JTable jtableBuscar) {
         dm = (DefaultTableModel) jtableBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
@@ -331,7 +337,7 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
     @Override
     public void mouseClicked(MouseEvent e) {
         int fila = this.catain.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
-        
+
         String dato = String.valueOf(this.catain.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
 
         modin.setId(Integer.parseInt(String.valueOf(dato)));
@@ -342,7 +348,7 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
         in.btnEliminar.setEnabled(true);
         in.btnGuardar.setEnabled(false);
         in.btnModificar.setEnabled(true);
-        
+
         in.txtFactor.setText(String.valueOf(modin.getFactor()));
         in.txtNombreinteres.setText(modin.getNombre());
         in.txtId.setText(dato);
@@ -353,22 +359,22 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
 
     @Override
     public void mousePressed(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        
+
     }
 
     @Override
@@ -385,12 +391,12 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
 
     @Override
     public void keyPressed(KeyEvent e) {
-        
+
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-         if (e.getSource() == catain.jTextField1 ){
+        if (e.getSource() == catain.jTextField1) {
 
             filtro(catain.jTextField1.getText(), catain.jTable1);
         } else {
@@ -405,32 +411,32 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
 
     @Override
     public void windowClosing(WindowEvent e) {
-        
+
     }
 
     @Override
     public void windowClosed(WindowEvent e) {
-        
+
     }
 
     @Override
     public void windowIconified(WindowEvent e) {
-        
+
     }
 
     @Override
     public void windowDeiconified(WindowEvent e) {
-        
+
     }
 
     @Override
     public void windowActivated(WindowEvent e) {
-        
+
     }
 
     @Override
     public void windowDeactivated(WindowEvent e) {
-        
+
     }
 
 }

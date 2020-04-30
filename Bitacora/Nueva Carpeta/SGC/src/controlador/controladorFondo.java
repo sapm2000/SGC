@@ -240,8 +240,22 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
             }
 
         }
+        if (e.getSource() == fon.btnLimpiar) {
+
+            limpiar();
+
+        }
     }
 
+    public void limpiar() {
+
+        fon.txtMontoInicial.setText(null);
+        fon.txtTipo.setText(null);
+        fon.txaDescripcion.setText(null);
+        fon.txaObservaciones.setText(null);
+        fon.jDateChooser1.setDate(null);
+    }
+    
     private Boolean validar() {
 
         Boolean resultado = true;
