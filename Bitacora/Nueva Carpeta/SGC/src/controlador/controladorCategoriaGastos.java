@@ -176,6 +176,13 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         }
 
     }
+    
+    public void limpiar() {
+
+        cg.txtnombre.setText(null);
+        cg.txtdescripcion.setText(null);
+
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {

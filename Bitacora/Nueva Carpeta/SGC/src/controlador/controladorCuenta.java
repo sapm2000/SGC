@@ -37,7 +37,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     ArrayList<Cuenta> listaCuenta;
     ArrayList<Condominio> listaCondo;
 
-        public controladorCuenta(catalogoCuenta catacu, cuenta cu, Cuenta modcu, Banco modban, Condominio modcon) {
+    public controladorCuenta(catalogoCuenta catacu, cuenta cu, Cuenta modcu, Banco modban, Condominio modcon) {
         this.catacu = catacu;
         this.cu = cu;
         this.modcu = modcu;
@@ -64,7 +64,6 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
 
                 return false;
             }
-            
 
         };
         tablaD.setModel(modeloT);
@@ -229,32 +228,33 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
                 modcu.setN_cuenta(cu.txtN_cuenta.getText());
                 modcu.setTipo(cu.jComboBox2.getSelectedItem().toString());
                 modban.setNombre_banco(cu.jComboBox1.getSelectedItem().toString());
-                if (modban.getNombre_banco().equals("Seleccione el Banco")) JOptionPane.showMessageDialog(null, "seleccione un banco");
-                else {
-                modban.buscar(modban);
-                modcu.setId_banco(modban.getId());
-
-                if (modcu.registrar(modcu)) {
-
-                    JOptionPane.showMessageDialog(null, "Registro Guardado");
-
-                    for (int i = 0; i < cu.jTable1.getRowCount(); i++) {
-                        if (IsSelected(i, 2, cu.jTable1)) {
-                            String valor = String.valueOf(cu.jTable1.getValueAt(i, 0));
-                            modcu.setId_condominio(valor);
-                            modcu.setN_cuenta(cu.txtN_cuenta.getText());
-                            modcu.registrar_cuenta_condominio(modcu);
-
-                        }
-                    }
-                    Llenartabla(catacu.jTable1);
-                    cu.dispose();
-                    limpiar();
+                if (modban.getNombre_banco().equals("Seleccione el Banco")) {
+                    JOptionPane.showMessageDialog(null, "seleccione un banco");
                 } else {
+                    modban.buscar(modban);
+                    modcu.setId_banco(modban.getId());
 
-                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                    if (modcu.registrar(modcu)) {
 
-                }
+                        JOptionPane.showMessageDialog(null, "Registro Guardado");
+
+                        for (int i = 0; i < cu.jTable1.getRowCount(); i++) {
+                            if (IsSelected(i, 2, cu.jTable1)) {
+                                String valor = String.valueOf(cu.jTable1.getValueAt(i, 0));
+                                modcu.setId_condominio(valor);
+                                modcu.setN_cuenta(cu.txtN_cuenta.getText());
+                                modcu.registrar_cuenta_condominio(modcu);
+
+                            }
+                        }
+                        Llenartabla(catacu.jTable1);
+                        cu.dispose();
+                        limpiar();
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                    }
                 }
             }
 
@@ -267,36 +267,37 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
                 modcu.setN_cuenta(cu.txtN_cuenta.getText());
                 modcu.setTipo(cu.jComboBox2.getSelectedItem().toString());
                 modban.setNombre_banco(cu.jComboBox1.getSelectedItem().toString());
-                if (modban.getNombre_banco().equals("Seleccione el Banco")) JOptionPane.showMessageDialog(null, "seleccione un banco");
-                else {
-                modban.buscar(modban);
-                modcu.setId_banco(modban.getId());
-
-                if (modcu.modificarcuenta(modcu)) {
-
-                    JOptionPane.showMessageDialog(null, "Registro modificado");
-                    limpiar();
-                    modcu.borrarpuente(modcu);
-
-                    for (int i = 0; i < cu.jTable1.getRowCount(); i++) {
-
-                        if (valueOf(cu.jTable1.getValueAt(i, 2)) == "true") {
-                            String valor = String.valueOf(cu.jTable1.getValueAt(i, 0));
-                            modcu.setId_condominio(valor);
-                            modcu.setN_cuenta(cu.txtN_cuenta.getText());
-                            modcu.registrar_cuenta_condominio(modcu);
-                        } else {
-                        }
-                    }
-                    Llenartablacondominiomodificar(cu.jTable1);
-                    addCheckBox(2, cu.jTable1);
-                    Llenartabla(catacu.jTable1);
-                    cu.dispose();
+                if (modban.getNombre_banco().equals("Seleccione el Banco")) {
+                    JOptionPane.showMessageDialog(null, "seleccione un banco");
                 } else {
+                    modban.buscar(modban);
+                    modcu.setId_banco(modban.getId());
 
-                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                    if (modcu.modificarcuenta(modcu)) {
 
-                }
+                        JOptionPane.showMessageDialog(null, "Registro modificado");
+                        limpiar();
+                        modcu.borrarpuente(modcu);
+
+                        for (int i = 0; i < cu.jTable1.getRowCount(); i++) {
+
+                            if (valueOf(cu.jTable1.getValueAt(i, 2)) == "true") {
+                                String valor = String.valueOf(cu.jTable1.getValueAt(i, 0));
+                                modcu.setId_condominio(valor);
+                                modcu.setN_cuenta(cu.txtN_cuenta.getText());
+                                modcu.registrar_cuenta_condominio(modcu);
+                            } else {
+                            }
+                        }
+                        Llenartablacondominiomodificar(cu.jTable1);
+                        addCheckBox(2, cu.jTable1);
+                        Llenartabla(catacu.jTable1);
+                        cu.dispose();
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                    }
                 }
             }
 
@@ -323,6 +324,8 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
         cu.txtBeneficiario.setText(null);
         cu.jComboBox1.setSelectedItem(0);
         cu.jComboBox2.setSelectedItem(0);
+        Llenartablacondominiomodificar(cu.jTable1);
+        addCheckBox(2, cu.jTable1);
 
     }
 
@@ -422,7 +425,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
             Validacion.limite(ke, cu.txtN_cuenta.getText(), 20);
         }
         if (ke.getSource() == cu.txtBeneficiario) {
-            
+
             Validacion.soloLetras(ke);
             Validacion.limite(ke, cu.txtBeneficiario.getText(), 50);
         }
