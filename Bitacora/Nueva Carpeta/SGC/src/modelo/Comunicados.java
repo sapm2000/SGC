@@ -220,7 +220,6 @@ public class Comunicados extends CrudUsuario {
                 modco.setAsunto(rs.getString(2));
                 modco.setEnviado(rs.getInt(3));
                 modco.setLeido(rs.getInt(4));
-               
 
                 listacomunicados.add(modco);
             }
@@ -236,12 +235,11 @@ public class Comunicados extends CrudUsuario {
 
             }
 
-        
-    }
+        }
 
         return listacomunicados;
     }
-    
+
     public boolean buscarComunicado(Comunicados modco) {
 
         PreparedStatement ps = null;
@@ -258,7 +256,6 @@ public class Comunicados extends CrudUsuario {
 
                 modco.setAsunto(rs.getString("asunto"));
                 modco.setMensaje(rs.getString("mensaje"));
-                
 
                 return true;
             }
@@ -284,7 +281,7 @@ public class Comunicados extends CrudUsuario {
         }
 
     }
-    
+
     public ArrayList<Comunicados> listarmod() {
         ArrayList listausuariosmod = new ArrayList();
         Comunicados modco;
@@ -296,15 +293,15 @@ public class Comunicados extends CrudUsuario {
         String sql = "select usuario.cedula, usuario.usuario, usuario.nombre, usuario.apellido, usuario.ntelefono, id_comunicado, tipo from usuario left join puente_comunicado_usuario on puente_comunicado_usuario.id_usuario=usuario.cedula and puente_comunicado_usuario.id_comunicado=?";
         try {
             ps = con.prepareStatement(sql);
-             ps.setInt(1, getId());
+            ps.setInt(1, getId());
             rs = ps.executeQuery();
 
             while (rs.next()) {
-               modco = new Comunicados();
+                modco = new Comunicados();
 
                 //prs = new Persona();
                 modco.setCedula(rs.getString(1));
-                
+
                 modco.setUsuario(rs.getString(2));
                 modco.setNombre(rs.getString(3));
                 modco.setApellido(rs.getString(4));
@@ -327,11 +324,10 @@ public class Comunicados extends CrudUsuario {
 
             }
 
-        
-    }
+        }
 
         return listausuariosmod;
 
     }
-          
+
 }

@@ -15,8 +15,8 @@ import java.sql.SQLException;
  *
  * @author rma
  */
-public class CuentasPorCobrar extends ConexionBD{
-    
+public class CuentasPorCobrar extends ConexionBD {
+
     private int id;
     private String id_unidad;
     private double monto;
@@ -98,7 +98,7 @@ public class CuentasPorCobrar extends ConexionBD{
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    
+
     public boolean registrarCobro(CuentasPorCobrar modcuen) {
 
         PreparedStatement ps = null;
@@ -117,8 +117,7 @@ public class CuentasPorCobrar extends ConexionBD{
             ps.setString(6, getReferencia());
             ps.setDate(7, getFecha());
             ps.setInt(8, getId_fondo());
-            
-            
+
             ps.execute();
 
             return true;
@@ -142,13 +141,5 @@ public class CuentasPorCobrar extends ConexionBD{
         }
 
     }
-    
-    
-    
-    
-    
-    
-   
-    
-    
+
 }

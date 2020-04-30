@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class ConexionBD {
+
     /*Aqui Declaramoslas variables y las inicializamos.*/
     private final String base = "proyecto";
     private final String user = "postgres";
@@ -16,8 +16,8 @@ public class ConexionBD {
     private Connection con = null;
 
     /*constructor para  obtener la conexion de la base de datos*/
-public Connection getConexion(){
-        
+    public Connection getConexion() {
+
         try {
             Class.forName("org.postgresql.Driver");
             con = DriverManager.getConnection(this.url, this.user, this.clave);
@@ -27,19 +27,19 @@ public Connection getConexion(){
             Logger.getLogger(ConexionBD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return con;
-        
 
     }
 
     public void cerrar() {
-		
+
         try {
-              con.close();
-	} catch (SQLException e) {
-              e.printStackTrace();
-	}
-	}
-	public Connection getCon() {
-		return con;
-	}
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Connection getCon() {
+        return con;
+    }
 }

@@ -1,4 +1,5 @@
 package modelo;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CrudUsuario extends ConexionBD {
+
     private String cedula;
     private String usuario;
     private String password;
@@ -69,228 +71,228 @@ public class CrudUsuario extends ConexionBD {
     public void setNtelefono(String ntelefono) {
         this.ntelefono = ntelefono;
     }
-    
+
     //Registrar. Desde la linea 11 a la  50  tenemos el metodo para insertar registro a la base de datos.
-    
-    public boolean registrar(CrudUsuario modC){
-    
-            PreparedStatement ps = null;
-            Connection con = getConexion();
-            
-            String sql = "INSERT INTO usuario (cedula, usuario, password, nombre, apellido, tipo, ntelefono) VALUES(?,?,?,?,?,?,?)";
-            
-            try {
-            
-                ps = con.prepareStatement(sql);
-                ps.setString(1, getCedula());
-                ps.setString(2, getUsuario());
-                ps.setString(3, getPassword());
-                ps.setString(4, getNombre());
-                ps.setString(5, getApellido());
-                ps.setString(6, getTipo());
-                ps.setString(7, getNtelefono());
-                
-                ps.execute();
-                
-                return true;
-                
+    public boolean registrar(CrudUsuario modC) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "INSERT INTO usuario (cedula, usuario, password, nombre, apellido, tipo, ntelefono) VALUES(?,?,?,?,?,?,?)";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getCedula());
+            ps.setString(2, getUsuario());
+            ps.setString(3, getPassword());
+            ps.setString(4, getNombre());
+            ps.setString(5, getApellido());
+            ps.setString(6, getTipo());
+            ps.setString(7, getNtelefono());
+
+            ps.execute();
+
+            return true;
+
         } catch (SQLException e) {
-            
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
                 System.err.println(e);
-                return false;
-                
-        } finally{
-                try {
-                    
-                    con.close();
-                    
-                } catch (SQLException e) {
-                
-                    System.err.println(e);
-                
-                }
-                
+
             }
+
+        }
 
     }
     //Finaliza el metodo de registrar.
     //Modificar. Desde la linea 54 a la 93, Encontramos el Metodo de Modificar  los registro de la base de datos.
-    
-    public boolean modificar(CrudUsuario modC){
-    
-            PreparedStatement ps = null;
-            Connection con = getConexion();
-            
-            String sql = "UPDATE usuario SET usuario=?, nombre=?, apellido=?, tipo=?, ntelefono=? WHERE cedula=? ";
-            
-            try {
-            
-                ps = con.prepareStatement(sql);
-                
-                ps.setString(1, getUsuario());
-                ps.setString(2, getNombre());
-                ps.setString(3, getApellido());
-                ps.setString(4, getTipo());
-                ps.setString(5, getNtelefono());
-                ps.setString(6, getCedula());
-                ps.execute();
-                
-                return true;
-                
+
+    public boolean modificar(CrudUsuario modC) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE usuario SET usuario=?, nombre=?, apellido=?, tipo=?, ntelefono=? WHERE cedula=? ";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+
+            ps.setString(1, getUsuario());
+            ps.setString(2, getNombre());
+            ps.setString(3, getApellido());
+            ps.setString(4, getTipo());
+            ps.setString(5, getNtelefono());
+            ps.setString(6, getCedula());
+            ps.execute();
+
+            return true;
+
         } catch (SQLException e) {
-            
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
                 System.err.println(e);
-                return false;
-                
-        } finally{
-                try {
-                    
-                    con.close();
-                    
-                } catch (SQLException e) {
-                
-                    System.err.println(e);
-                
-                }
-                
+
             }
 
-    }
-        public boolean modificarC(CrudUsuario modC){
-    
-            PreparedStatement ps = null;
-            Connection con = getConexion();
-            
-            String sql = "UPDATE usuario SET usuario=?, password=?, nombre=?, apellido=?, tipo=?, ntelefono=? WHERE cedula=? ";
-            
-            try {
-            
-                ps = con.prepareStatement(sql);
-                
-                ps.setString(1, getUsuario());
-                ps.setString(2, getPassword());
-                ps.setString(3, getNombre());
-                ps.setString(4, getApellido());
-                ps.setString(5, getTipo());
-                ps.setString(6, getNtelefono());
-                ps.setString(7, getCedula());
-                ps.execute();
-                
-                return true;
-                
-        } catch (SQLException e) {
-            
-                System.err.println(e);
-                return false;
-                
-        } finally{
-                try {
-                    
-                    con.close();
-                    
-                } catch (SQLException e) {
-                
-                    System.err.println(e);
-                
-                }
-                
-            }
+        }
 
     }
-     //fin de metodo Modificar;
-     //Eliminar. Desde la linea 97 a la 131, Encontramos el Metodo de Eliminar registro de la base de datos.
-    
-     public boolean eliminar(CrudUsuario modC){
-    
-            PreparedStatement ps = null;
-            Connection con = getConexion();
-            
-            String sql = "DELETE FROM usuario WHERE cedula=? ";
-            
-            try {
-            
-                ps = con.prepareStatement(sql);
-                ps.setString(1, getCedula());
-                                
-                ps.execute();
-                
-                return true;
-                
+
+    public boolean modificarC(CrudUsuario modC) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE usuario SET usuario=?, password=?, nombre=?, apellido=?, tipo=?, ntelefono=? WHERE cedula=? ";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+
+            ps.setString(1, getUsuario());
+            ps.setString(2, getPassword());
+            ps.setString(3, getNombre());
+            ps.setString(4, getApellido());
+            ps.setString(5, getTipo());
+            ps.setString(6, getNtelefono());
+            ps.setString(7, getCedula());
+            ps.execute();
+
+            return true;
+
         } catch (SQLException e) {
-            
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
                 System.err.println(e);
-                return false;
-                
-        } finally{
-                try {
-                    
-                    con.close();
-                    
-                } catch (SQLException e) {
-                
-                    System.err.println(e);
-                
-                }
-                
+
             }
+
+        }
+
+    }
+    //fin de metodo Modificar;
+    //Eliminar. Desde la linea 97 a la 131, Encontramos el Metodo de Eliminar registro de la base de datos.
+
+    public boolean eliminar(CrudUsuario modC) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "DELETE FROM usuario WHERE cedula=? ";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getCedula());
+
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
 
     }
     //Fin del metodo Eliminar.
-     //Buscar. Desde la linea 135 a la 183. Se encuentra el metodo Buscar.
-     
-      public boolean buscar(CrudUsuario modC){
-    
-            PreparedStatement ps = null;
-            ResultSet rs = null;
-            Connection con = getConexion();
-            
-            String sql = "SELECT * FROM usuario WHERE usuario=? ";
-            
-            try {
-            
-                ps = con.prepareStatement(sql);
-                ps.setString(1, getUsuario());
-                
-                rs = ps.executeQuery();
-                
-                if (rs.next()) {
-                    
-                    setCedula(rs.getString("cedula"));
-                    setUsuario(rs.getString("usuario"));
-                    setPassword(rs.getString("password"));
-                    setNombre(rs.getString("nombre"));
-                    setApellido(rs.getString("apellido"));
-                    setTipo(rs.getString("tipo"));
-                    setNtelefono(rs.getString("ntelefono"));
-                    
-                    return true;
-                    
-                }
-                
-                return false;
-                
-        } catch (SQLException e) {
-            
-                System.err.println(e);
-                return false;
-                
-        } finally{
-                try {
-                    
-                    con.close();
-                    
-                } catch (SQLException e) {
-                
-                    System.err.println(e);
-                
-                }
-                
+    //Buscar. Desde la linea 135 a la 183. Se encuentra el metodo Buscar.
+
+    public boolean buscar(CrudUsuario modC) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+
+        String sql = "SELECT * FROM usuario WHERE usuario=? ";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getUsuario());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                setCedula(rs.getString("cedula"));
+                setUsuario(rs.getString("usuario"));
+                setPassword(rs.getString("password"));
+                setNombre(rs.getString("nombre"));
+                setApellido(rs.getString("apellido"));
+                setTipo(rs.getString("tipo"));
+                setNtelefono(rs.getString("ntelefono"));
+
+                return true;
+
             }
 
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
     }
-      //Fin del Metodo Buscar.
-      
-          public ArrayList<CrudUsuario> listar() {
+    //Fin del Metodo Buscar.
+
+    public ArrayList<CrudUsuario> listar() {
         ArrayList listaPersona = new ArrayList();
         CrudUsuario modUsu;
 
@@ -304,7 +306,7 @@ public class CrudUsuario extends ConexionBD {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-               modUsu = new CrudUsuario();
+                modUsu = new CrudUsuario();
 
                 //prs = new Persona();
                 modUsu.setCedula(rs.getString(1));
@@ -330,14 +332,10 @@ public class CrudUsuario extends ConexionBD {
 
             }
 
-        
-    }
+        }
 
         return listaPersona;
 
     }
-          
-          
-          
-      
-      }
+
+}

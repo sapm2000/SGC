@@ -847,7 +847,7 @@ public class CerrarMes extends ConexionBD {
 
         return listaCierremes;
     }
-    
+
     public ArrayList<CerrarMes> listarpagospendientes() {
         ArrayList listaCierremes = new ArrayList();
         CerrarMes modc;
@@ -894,7 +894,7 @@ public class CerrarMes extends ConexionBD {
 
         return listaCierremes;
     }
-    
+
     public ArrayList<CerrarMes> listarpagospagados() {
         ArrayList listaCierremes = new ArrayList();
         CerrarMes modc;
@@ -1215,8 +1215,8 @@ public class CerrarMes extends ConexionBD {
         }
 
     }
-    
-     public boolean buscId(CerrarMes modc) {
+
+    public boolean buscId(CerrarMes modc) {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -1256,8 +1256,8 @@ public class CerrarMes extends ConexionBD {
         }
 
     }
-     
-      public boolean guardarpuentepagos(CerrarMes modc) {
+
+    public boolean guardarpuentepagos(CerrarMes modc) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
@@ -1270,9 +1270,7 @@ public class CerrarMes extends ConexionBD {
             ps.setDouble(1, getId_gasto());
             ps.setInt(2, getMes_cierre());
             ps.setDouble(3, getSaldo_restante());
-          
-            
-            
+
             ps.execute();
 
             return true;

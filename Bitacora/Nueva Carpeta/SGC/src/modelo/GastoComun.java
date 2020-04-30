@@ -218,12 +218,11 @@ public class GastoComun extends ModeloConceptoGastos {
 
             }
 
-        
-    }
+        }
 
         return listagastocomun;
     }
-    
+
     public ArrayList<GastoComun> listarGastoComuncierremes() {
         ArrayList listagastocomun = new ArrayList();
         GastoComun modgac;
@@ -325,8 +324,8 @@ public class GastoComun extends ModeloConceptoGastos {
 
         }
     }
-        
-        public boolean modificar_gasto_comun(GastoComun modgac) {
+
+    public boolean modificar_gasto_comun(GastoComun modgac) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
@@ -347,10 +346,7 @@ public class GastoComun extends ModeloConceptoGastos {
             ps.setDate(9, getFecha());
             ps.setDouble(10, getSaldo());
             ps.setInt(11, getId());
-           
-            
 
-            
             ps.execute();
 
             return true;
@@ -373,43 +369,41 @@ public class GastoComun extends ModeloConceptoGastos {
         }
 
     }
-        
-        public boolean eliminar_gasto_comun(GastoComun modgac){
-        
+
+    public boolean eliminar_gasto_comun(GastoComun modgac) {
+
         PreparedStatement ps = null;
         Connection con = getConexion();
-        
+
         String sql = "DELETE FROM gasto_comun WHERE id=?;";
-        
+
         try {
-            
+
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
-            
+
             ps.execute();
-            
+
             return true;
-            
+
         } catch (SQLException e) {
-            
-           System.err.println(e);
-           return false;
-            
-        }finally{
+
+            System.err.println(e);
+            return false;
+
+        } finally {
             try {
-                
+
                 con.close();
-                
-            }catch (SQLException e) {
-            
-           System.err.println(e);
-           
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
             }
-        
+
         }
-        
-     }  
 
     }
 
-
+}
