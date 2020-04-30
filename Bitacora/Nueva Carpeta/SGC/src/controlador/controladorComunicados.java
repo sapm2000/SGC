@@ -169,18 +169,17 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
         Object[] columna = new Object[6];
 
         int numRegistro = listausuariosmod.size();
-        
 
         for (int i = 0; i < numRegistro; i++) {
 
             columna[0] = listausuariosmod.get(i).getCedula();
-            
+
             columna[1] = listausuariosmod.get(i).getNombre();
             columna[2] = listausuariosmod.get(i).getApellido();
             columna[3] = listausuariosmod.get(i).getNtelefono();
             columna[4] = listausuariosmod.get(i).getTipo();
-            
-            if (listausuariosmod.get(i).getId()!= 0) {
+
+            if (listausuariosmod.get(i).getId() != 0) {
                 columna[5] = Boolean.TRUE;
             } else {
                 columna[5] = Boolean.FALSE;
@@ -196,7 +195,7 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
-        
+
     }
 
     public void llenartablaComunicado(JTable tablaD) {
@@ -208,7 +207,6 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
 
                 return false;
             }
-            
 
         };
         tablaD.setModel(modeloT);
@@ -299,7 +297,7 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
             msj += "El campo de asunto no puede estar vacío\n";
             resultado = false;
         }
-        
+
         if (com.txaMensaje.getText().isEmpty()) {
 
             msj += "El campo de mensaje no puede estar vacío\n";
@@ -322,16 +320,16 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
 
     @Override
     public void keyTyped(KeyEvent e) {
+        
+}
+
+@Override
+        public void keyPressed(KeyEvent e) {
 
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
+        public void keyReleased(KeyEvent e) {
         if (e.getSource() == catacom.jTextField1) {
 
             filtro(catacom.jTextField1.getText(), catacom.jTable1);
@@ -344,43 +342,43 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
     }
 
     @Override
-    public void windowOpened(WindowEvent e) {
+        public void windowOpened(WindowEvent e) {
         modco.setId_condominio(panta1.rif.getText());
         llenartablaComunicado(catacom.jTable1);
     }
 
     @Override
-    public void windowClosing(WindowEvent e) {
+        public void windowClosing(WindowEvent e) {
 
     }
 
     @Override
-    public void windowClosed(WindowEvent e) {
+        public void windowClosed(WindowEvent e) {
 
     }
 
     @Override
-    public void windowIconified(WindowEvent e) {
+        public void windowIconified(WindowEvent e) {
 
     }
 
     @Override
-    public void windowDeiconified(WindowEvent e) {
+        public void windowDeiconified(WindowEvent e) {
 
     }
 
     @Override
-    public void windowActivated(WindowEvent e) {
+        public void windowActivated(WindowEvent e) {
 
     }
 
     @Override
-    public void windowDeactivated(WindowEvent e) {
+        public void windowDeactivated(WindowEvent e) {
 
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+        public void mouseClicked(MouseEvent e) {
         int fila = this.catacom.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
 
         String dato = String.valueOf(this.catacom.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
@@ -398,22 +396,22 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
+        public void mousePressed(MouseEvent e) {
 
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+        public void mouseReleased(MouseEvent e) {
 
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
+        public void mouseEntered(MouseEvent e) {
 
     }
 
     @Override
-    public void mouseExited(MouseEvent e) {
+        public void mouseExited(MouseEvent e) {
 
     }
 

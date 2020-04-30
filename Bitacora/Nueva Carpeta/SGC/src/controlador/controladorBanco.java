@@ -274,10 +274,11 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
     @Override
         public void keyTyped(KeyEvent ke) {
-
+            
         if (ke.getSource() == ban.txtnombre_banco) {
             Validacion.soloLetras(ke);
-            Validacion.limite(ke, ban.txtnombre_banco.getText(), 120);
+            Validacion.limite(ke, ban.txtnombre_banco.getText(), 30);
+            Validacion.evitarPegar(ke);
         }
 
     }

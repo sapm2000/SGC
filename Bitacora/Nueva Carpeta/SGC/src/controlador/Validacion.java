@@ -8,6 +8,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,7 +18,10 @@ import javax.swing.JOptionPane;
  */
 public abstract class Validacion implements ActionListener, MouseListener, KeyListener {
 
-    public static DecimalFormat formato1 = new DecimalFormat("#.00");
+    public static DecimalFormatSymbols simbolos = DecimalFormatSymbols.getInstance(Locale.ENGLISH);
+
+   
+    public static DecimalFormat formato1 = new DecimalFormat("#.##", simbolos);
 
     /*---FUNCIÓN PARA EVITAR EL COPY & PASTE---*/
     public static void evitarPegar(java.awt.event.KeyEvent evt) {

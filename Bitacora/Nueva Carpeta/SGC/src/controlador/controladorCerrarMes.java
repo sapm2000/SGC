@@ -260,7 +260,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                                         modc.actualizar_cuota(modc);
 
                                                     } else {
-                                                        modc.setEstado("Mensualidad en Proceso");
+                                                        modc.setEstado("Mensualidaden Proceso");
                                                         modc.actualizar_cuota(modc);
 
                                                     }

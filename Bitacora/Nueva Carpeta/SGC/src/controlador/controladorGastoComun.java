@@ -68,6 +68,10 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
         this.gc.btnLimpiar.addActionListener(this);
         this.gc.btnModificar.addActionListener(this);
         this.gc.btnEliminar.addActionListener(this);
+        gc.txtnombreprov.addKeyListener(this);
+        gc.txtNumerofactura.addKeyListener(this);
+        gc.txtMonto.addKeyListener(this);
+        gc.txaObservaciones.addKeyListener(this);
     }
 
     public void LlenartablaGastocomun(JTable tablaD) {
@@ -108,7 +112,7 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
             String fecha = String.valueOf(listagastocomun.get(i).getMes()) + "-" + listagastocomun.get(i).getAño();
             columna[2] = fecha;
             columna[3] = String.format("%.1f", listagastocomun.get(i).getMonto());
-            columna[4] = listagastocomun.get(i).getSaldo();
+            columna[4] = Validacion.formato1.format(listagastocomun.get(i).getSaldo());
             columna[5] = listagastocomun.get(i).getNumero_factura();
             columna[6] = listagastocomun.get(i).getId_proveedor();
             columna[7] = listagastocomun.get(i).getNombre_Concepto();
@@ -349,7 +353,7 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
         gc.jDateChooser1.setDate(modgac.getFecha());
         gc.jcombotipo.setSelectedItem(modgac.getTipo_gasto());
         gc.txaObservaciones.setText(modgac.getObservaciones());
-        gc.txtMonto.setText(String.valueOf(modgac.getMonto()));
+        gc.txtMonto.setText(String.valueOf(Validacion.formato1.format(modgac.getMonto())));
         gc.txtNumerofactura.setText(modgac.getNumero_factura());
         modpro.setCedula(gc.jcomboproveedor.getSelectedItem().toString());
         modpro.buscar(modpro);
@@ -389,7 +393,25 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
 
     @Override
     public void keyTyped(KeyEvent e) {
+        if (e.getSource() == gc.txaObservaciones) {
+            
+            Validacion.limite(e, gc.txaObservaciones.getText(), 500);
+        }
+        if (e.getSource() == gc.txtnombreprov) {
+            Validacion.soloNumeros(e);
+            Validacion.Espacio(e);
+            Validacion.limite(e, gc.txtnombreprov.getText(), 15);
+        }
+        if (e.getSource() == gc.txtNumerofactura) {
+            Validacion.soloNumeros(e);
+            Validacion.Espacio(e);
+            Validacion.limite(e, gc.txtNumerofactura.getText(), 50);
+        }
+        if (e.getSource() == gc.txtMonto) {
 
+            Validacion.Espacio(e);
+            Validacion.soloUnPunto(e, gc.txtMonto.getText());
+        }
     }
 
     @Override
