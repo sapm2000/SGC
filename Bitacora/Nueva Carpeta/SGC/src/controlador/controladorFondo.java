@@ -91,7 +91,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
             columna[2] = listafondo.get(i).getDescripcion();
             columna[3] = listafondo.get(i).getObservacion();
             columna[4] = Validacion.formato1.format(listafondo.get(i).getMonto_inicial());
-            columna[5] = listafondo.get(i).getSaldo();
+            columna[5] = Validacion.formato1.format(listafondo.get(i).getSaldo());
 
             modeloT.addRow(columna);
 
@@ -110,6 +110,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
 
         if (e.getSource() == catafon.jButton2) {
             this.fon.setVisible(true);
+            fon.txtId.setVisible(false);
             this.fon.btnModificar.setEnabled(false);
             this.fon.btnGuardar.setEnabled(true);
             this.fon.btnEliminar.setEnabled(false);
@@ -302,9 +303,10 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
         fon.txaDescripcion.setText(modfon.getDescripcion());
         fon.txaObservaciones.setText(modfon.getObservacion());
         fon.txtId.setText(String.valueOf(modfon.getId()));
+        fon.txtId.setVisible(false);
         fon.txtTipo.setText(modfon.getTipo());
         fon.jDateChooser1.setDate(modfon.getFecha());
-        fon.txtMontoInicial.setText(String.valueOf(modfon.getMonto_inicial()));
+        fon.txtMontoInicial.setText(String.valueOf(Validacion.formato1.format(modfon.getMonto_inicial())));
         saldo = modfon.getSaldo();
         montoi = modfon.getMonto_inicial();
 
@@ -333,10 +335,10 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
     @Override
     public void keyTyped(KeyEvent ke) {
         if (ke.getSource() == fon.txtMontoInicial) {
-
+            
             Validacion.Espacio(ke);
             Validacion.soloUnPunto(ke, fon.txtMontoInicial.getText());
-            Validacion.limite(ke, fon.txtMontoInicial.getText(), 12);
+            
         }
     }
 
@@ -345,17 +347,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
 
     }
 
-    public static int contarCaracteres(String cadena, char caracter) {
-        int posicion, contador = 0;
-        //se busca la primera vez que aparece
-        posicion = cadena.indexOf(caracter);
-        while (posicion != -1) { //mientras se encuentre el caracter
-            contador++;           //se cuenta
-            //se sigue buscando a partir de la posición siguiente a la encontrada
-            posicion = cadena.indexOf(caracter, posicion + 1);
-        }
-        return contador;
-    }
+    
 
     @Override
     public void keyReleased(KeyEvent e) {

@@ -67,6 +67,9 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
         this.catauni.jButton2.addActionListener(this);
         this.buscp.txtBuscarProp.addKeyListener(this);
+        this.uni.txtArea.addKeyListener(this);
+        this.uni.txtCedula.addKeyListener(this);
+        this.uni.txtNumeroUnidad.addKeyListener(this);
         this.buscp.tablaprop.addMouseListener(this);
         this.catauni.jTable1.addMouseListener(this);
 
@@ -591,8 +594,23 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(KeyEvent ke) {
+        if (ke.getSource() == uni.txtNumeroUnidad) {
+            
+            Validacion.Espacio(ke);
+            Validacion.limite(ke, uni.txtNumeroUnidad.getText(), 10);
+        }
+        if (ke.getSource() == uni.txtArea) {
 
+            Validacion.soloUnPunto(ke, uni.txtArea.getText());
+            Validacion.Espacio(ke);
+            Validacion.limite(ke, uni.txtArea.getText(), 6);
+        }
+        if (ke.getSource() == uni.txadireccion) {
+
+         
+            Validacion.limite(ke, uni.txadireccion.getText(), 200);
+        }
     }
 
     @Override

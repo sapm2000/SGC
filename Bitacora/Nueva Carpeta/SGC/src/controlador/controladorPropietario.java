@@ -52,6 +52,11 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         this.pro.btnLimpiar.addActionListener(this);
         this.pro.btnModificar.addActionListener(this);
         this.pro.btnEliminar.addActionListener(this);
+        pro.txtCedula.addKeyListener(this);
+        pro.txtNombre.addKeyListener(this);
+        pro.txtApellido.addKeyListener(this);
+        pro.txtTelefono.addKeyListener(this);
+        pro.txtCorreo.addKeyListener(this);
     }
 
     public void Llenartabla(JTable tablaD) {
@@ -287,8 +292,35 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(KeyEvent ke) {
+        if (ke.getSource() == pro.txtCedula) {
+            Validacion.soloNumeros(ke);
+            Validacion.Espacio(ke);
+            Validacion.limite(ke, pro.txtCedula.getText(), 8);
+        }
+        if (ke.getSource() == pro.txtNombre) {
 
+            Validacion.soloLetras(ke);
+            Validacion.Espacio(ke);
+            Validacion.limite(ke, pro.txtNombre.getText(), 30);
+        }
+        if (ke.getSource() == pro.txtApellido) {
+
+            Validacion.soloLetras(ke);
+            Validacion.Espacio(ke);
+            Validacion.limite(ke, pro.txtApellido.getText(), 30);
+        }
+        if (ke.getSource() == pro.txtTelefono) {
+            Validacion.Espacio(ke);
+            Validacion.soloNumeros(ke);
+            Validacion.limite(ke, pro.txtTelefono.getText(), 11);
+        }
+        if (ke.getSource() == pro.txtCorreo) {
+
+            Validacion.Espacio(ke);
+            Validacion.limite(ke, pro.txtCorreo.getText(), 100);
+
+        }
     }
 
     @Override

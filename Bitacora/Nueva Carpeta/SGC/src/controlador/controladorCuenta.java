@@ -422,9 +422,9 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
             Validacion.limite(ke, cu.txtN_cuenta.getText(), 20);
         }
         if (ke.getSource() == cu.txtBeneficiario) {
-            Validacion.Espacio(ke);
+            
             Validacion.soloLetras(ke);
-            Validacion.limite(ke, cu.txtBeneficiario.getText(), 25);
+            Validacion.limite(ke, cu.txtBeneficiario.getText(), 50);
         }
 
     }

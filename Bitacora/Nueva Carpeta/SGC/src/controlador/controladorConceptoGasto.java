@@ -276,7 +276,7 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
         }
         if (ke.getSource() == cga.txtDescripcion) {
 
-            Validacion.soloLetras(ke);
+            
             Validacion.limite(ke, cga.txtDescripcion.getText(), 120);
         }
     }

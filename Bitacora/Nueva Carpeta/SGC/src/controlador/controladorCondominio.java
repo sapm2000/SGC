@@ -265,13 +265,13 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         if (ke.getSource() == condo.txtRif) {
             Validacion.soloNumeros(ke);
             Validacion.Espacio(ke);
-            Validacion.limite(ke, condo.txtRif.getText(), 11);
+            Validacion.limite(ke, condo.txtRif.getText(), 15);
         }
         if (ke.getSource() == condo.txtRazonS) {
 
             Validacion.soloLetras(ke);
             Validacion.Espacio(ke);
-            Validacion.limite(ke, condo.txtRif.getText(), 20);
+            Validacion.limite(ke, condo.txtRazonS.getText(), 25);
         }
         if (ke.getSource() == condo.txtTelefono) {
             Validacion.Espacio(ke);
@@ -281,7 +281,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         if (ke.getSource() == condo.txtCorreo) {
 
             Validacion.Espacio(ke);
-            Validacion.limite(ke, condo.txtCorreo.getText(), 50);
+            Validacion.limite(ke, condo.txtCorreo.getText(), 70);
 
         }
 

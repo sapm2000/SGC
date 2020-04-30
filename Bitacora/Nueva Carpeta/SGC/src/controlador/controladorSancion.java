@@ -62,6 +62,8 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         this.san.btnGuardar.addActionListener(this);
         this.san.btnLimpiar.addActionListener(this);
         this.san.btnModificar.addActionListener(this);
+        san.txtmonto.addKeyListener(this);
+        san.txaDescripcion.addKeyListener(this);
 
     }
 
@@ -98,7 +100,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
             columna[0] = listaSancion.get(i).getId();
             columna[1] = listaSancion.get(i).getDescripcion();
             columna[2] = listaSancion.get(i).getTipo();
-            columna[3] = listaSancion.get(i).getMonto();
+            columna[3] = Validacion.formato1.format(listaSancion.get(i).getMonto());
             String fecha = String.valueOf(listaSancion.get(i).getMes()) + "-" + String.valueOf(listaSancion.get(i).getAño());
             columna[4] = fecha;
             columna[5] = listaSancion.get(i).getCantidad_de_unidades();
@@ -351,7 +353,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         san.txtId.setVisible(false);
         san.txtId.setText(dato);
         san.txaDescripcion.setText(modsan.getDescripcion());
-        san.txtmonto.setText(String.valueOf(modsan.getMonto()));
+        san.txtmonto.setText(String.valueOf(Validacion.formato1.format(modsan.getMonto())));
         san.jComboBox1.setSelectedItem(modsan.getTipo());
         int mes = modsan.getMes() - 1;
         san.jMonthChooser1.setMonth(mes);
@@ -397,9 +399,15 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
     }
 
     @Override
-    public void keyTyped(KeyEvent e
-    ) {
-
+    public void keyTyped(KeyEvent e) {
+        if (e.getSource() == san.txtmonto) {
+            Validacion.limite(e, san.txtmonto.getText(), 20);
+            Validacion.Espacio(e);
+            Validacion.soloUnPunto(e, san.txtmonto.getText());
+        }
+        if (e.getSource() == san.txaDescripcion) {
+            Validacion.limite(e, san.txaDescripcion.getText(), 200);
+        }
     }
 
     @Override

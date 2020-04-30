@@ -58,6 +58,8 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
         this.in.btnLimpiar.addActionListener(this);
         this.in.btnModificar.addActionListener(this);
         this.in.btnEliminar.addActionListener(this);
+        in.txtNombreinteres.addKeyListener(this);
+        in.txtFactor.addKeyListener(this);
     }
 
     public void Llenartablacondominio(JTable tablaD) {
@@ -371,7 +373,14 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
 
     @Override
     public void keyTyped(KeyEvent e) {
-        
+        if (e.getSource() == in.txtFactor) {
+            Validacion.limite(e, in.txtFactor.getText(), 6);
+            Validacion.Espacio(e);
+            Validacion.soloUnPunto(e, in.txtFactor.getText());
+        }
+        if (e.getSource() == in.txtNombreinteres) {
+            Validacion.limite(e, in.txtNombreinteres.getText(), 100);
+        }
     }
 
     @Override

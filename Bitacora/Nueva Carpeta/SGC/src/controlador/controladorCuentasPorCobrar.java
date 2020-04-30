@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import static java.lang.String.valueOf;
@@ -31,7 +33,7 @@ import vista.cuentasPorCobrar;
  *
  * @author rma
  */
-public class controladorCuentasPorCobrar implements ActionListener, WindowListener, ItemListener {
+public class controladorCuentasPorCobrar implements ActionListener, WindowListener, ItemListener, KeyListener {
 
     private cuentasPorCobrar cuenco;
     private CuentasPorCobrar modcuen;
@@ -53,6 +55,9 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
         cuenco.addWindowListener(this);
         cuenco.jComboUnidad.addItemListener(this);
         cuenco.btnGuardar.addActionListener(this);
+        cuenco.txtMonto.addKeyListener(this);
+        cuenco.txtDescripcion.addKeyListener(this);
+        cuenco.txtReferencia.addKeyListener(this);
     }
 
     public void Llenartabla(JTable tablaD) {
@@ -118,8 +123,8 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
             double var4 = listaCierremes.get(i).getAlicuota() * 100;
             String var5 = var4 + "%";
             columna[3] = var5;
-            columna[4] = listaCierremes.get(i).getMonto();
-            columna[5] = listaCierremes.get(i).getSaldo_restante();
+            columna[4] = Validacion.formato1.format(listaCierremes.get(i).getMonto());
+            columna[5] = Validacion.formato1.format(listaCierremes.get(i).getSaldo_restante());
             columna[6] = listaCierremes.get(i).getEstado();
 
             modeloT.addRow(columna);
@@ -197,8 +202,8 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
             double var4 = listaCierremes.get(i).getAlicuota() * 100;
             String var5 = var4 + "%";
             columna[3] = var5;
-            columna[4] = listaCierremes.get(i).getMonto();
-            columna[5] = listaCierremes.get(i).getSaldo_restante();
+            columna[4] = Validacion.formato1.format(listaCierremes.get(i).getMonto());
+            columna[5] = Validacion.formato1.format(listaCierremes.get(i).getSaldo_restante());
             columna[6] = listaCierremes.get(i).getEstado();
 
             modeloT.addRow(columna);
@@ -404,6 +409,36 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
         TableColumn tc = table.getColumnModel().getColumn(column);
         tc.setCellEditor(table.getDefaultEditor(Boolean.class));
         tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        if (e.getSource() == cuenco.txtReferencia) {
+            
+            Validacion.Espacio(e);
+            Validacion.limite(e, cuenco.txtReferencia.getText(), 50);
+        }
+        
+        if (e.getSource() == cuenco.txtDescripcion) {
+            
+            
+            Validacion.limite(e, cuenco.txtDescripcion.getText(), 500);
+        }
+        if (e.getSource() == cuenco.txtMonto) {
+            
+            Validacion.Espacio(e);
+            Validacion.soloUnPunto(e, cuenco.txtMonto.getText());
+        }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        
     }
 
 }
