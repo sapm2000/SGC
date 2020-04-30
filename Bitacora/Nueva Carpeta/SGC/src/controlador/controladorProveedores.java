@@ -22,7 +22,6 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import modelo.Condominio;
 import modelo.Proveedores;
 import vista.catalogoProveedores;
 import vista.proveedores;
@@ -72,7 +71,6 @@ public class controladorProveedores implements ActionListener, WindowListener, K
 
                 return false;
             }
-            
 
         };
         tablaD.setModel(modeloT);
@@ -198,7 +196,7 @@ public class controladorProveedores implements ActionListener, WindowListener, K
 
         }
     }
-    
+
     public void limpiar() {
 
         prov.txtCedula.setText(null);
@@ -225,31 +223,31 @@ public class controladorProveedores implements ActionListener, WindowListener, K
             msj += "El campo nombre no puede estar vacío\n";
             resultado = false;
         }
-        
+
         if (prov.txtTelefono.getText().isEmpty()) {
 
             msj += "El campo teléfono no puede estar vacío\n";
             resultado = false;
         }
-        
+
         if (prov.txtCorreo.getText().isEmpty()) {
 
             msj += "El campo correo electrónico no puede estar vacío\n";
             resultado = false;
         }
-        
+
         if (prov.txtContacto.getText().isEmpty()) {
 
             msj += "El campo contanto no puede estar vacío\n";
             resultado = false;
         }
-        
+
         if (prov.txaDireccion.getText().isEmpty()) {
 
             msj += "El campo dirección no puede estar vacío\n";
             resultado = false;
         }
-        
+
         if (!resultado) {
 
             JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -295,7 +293,7 @@ public class controladorProveedores implements ActionListener, WindowListener, K
 
     @Override
     public void keyTyped(KeyEvent ke) {
-        
+
         if (ke.getSource() == prov.txtCedula) {
             Validacion.soloNumeros(ke);
             Validacion.Espacio(ke);
@@ -309,12 +307,10 @@ public class controladorProveedores implements ActionListener, WindowListener, K
         }
         if (ke.getSource() == prov.txtContacto) {
 
-         
             Validacion.limite(ke, prov.txtContacto.getText(), 60);
         }
         if (ke.getSource() == prov.txaDireccion) {
 
-         
             Validacion.limite(ke, prov.txaDireccion.getText(), 60);
         }
         if (ke.getSource() == prov.txtTelefono) {

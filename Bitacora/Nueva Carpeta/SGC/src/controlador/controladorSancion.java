@@ -58,6 +58,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         this.catasan.jTextField1.addKeyListener(this);
         this.catasan.jTable1.addMouseListener(this);
         this.san.btnEliminar.addActionListener(this);
+        this.san.jYearChooser1.addKeyListener(this);
 
         this.san.btnGuardar.addActionListener(this);
         this.san.btnLimpiar.addActionListener(this);
@@ -76,7 +77,6 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
                 return false;
             }
-            
 
         };
         tablaD.setModel(modeloT);
@@ -222,50 +222,68 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
         if (e.getSource() == san.btnGuardar) {
             if (validar()) {
+                int j = 0;
                 modsan.setMes(san.jMonthChooser1.getMonth() + 1);
                 modsan.setAño(san.jYearChooser1.getYear());
-                modsan.setTipo(san.jComboBox1.getSelectedItem().toString());
-                if (modsan.getTipo().equals("Seleccione el Tipo de Deuda")) JOptionPane.showMessageDialog(null, "seleccione un tipo de deuda"); else {
-                modsan.setDescripcion(san.txaDescripcion.getText());
-                modsan.setId_condominio(panta1.rif.getText());
-                modsan.setMonto(Double.parseDouble(san.txtmonto.getText()));
-                modsan.setEstado("Pendiente");
-                modc.setMes_cierre(san.jMonthChooser1.getMonth() + 1);
-                modc.setAño_cierre(san.jYearChooser1.getYear());
-                modc.setId_condominio(panta1.rif.getText());
-
-                if (modc.buscarfechas(modc)) {
-                    JOptionPane.showMessageDialog(null, "no puede registrar Sanciones a un periodo ya cerrado");
+                if (modsan.getAño() < 2000 || modsan.getAño() > 2100) {
+                    JOptionPane.showMessageDialog(null, "seleccione un año valido");
                 } else {
+                    modsan.setTipo(san.jComboBox1.getSelectedItem().toString());
+                    if (modsan.getTipo().equals("Seleccione el Tipo de Deuda")) {
+                        JOptionPane.showMessageDialog(null, "seleccione un tipo de deuda");
+                    } else {
+                        modsan.setDescripcion(san.txaDescripcion.getText());
+                        modsan.setId_condominio(panta1.rif.getText());
+                        modsan.setMonto(Double.parseDouble(san.txtmonto.getText()));
+                        modsan.setEstado("Pendiente");
+                        modc.setMes_cierre(san.jMonthChooser1.getMonth() + 1);
+                        modc.setAño_cierre(san.jYearChooser1.getYear());
+                        modc.setId_condominio(panta1.rif.getText());
+                        for (int i = 0; i < san.jTable1.getRowCount(); i++) {
+                            if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
 
-                    modsan.buscarSancionRepetido(modsan);
-                    int x = modsan.getId_sancion();
+                                j = j + 1;
 
-                    if (x == 0) {
-                        if (modsan.registrarsancion(modsan)) {
-                            JOptionPane.showMessageDialog(null, "Registro Guardado");
-                            modsan.buscId(modsan);
-
-                            for (int i = 0; i < san.jTable1.getRowCount(); i++) {
-                                if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
-
-                                    String valor = String.valueOf(san.jTable1.getValueAt(i, 0));
-                                    modsan.setN_unidad(valor);
-
-                                    modsan.registrar_sancion_unidad(modsan);
-
-                                }
                             }
-                            LlenartablaSancion(catasan.jTable1);
+                        }
+                        if (j == 0) {
+                            JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
                         } else {
 
-                            JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                            if (modc.buscarfechas(modc)) {
+                                JOptionPane.showMessageDialog(null, "no puede registrar Sanciones a un periodo ya cerrado");
+                            } else {
 
+                                modsan.buscarSancionRepetido(modsan);
+                                int x = modsan.getId_sancion();
+
+                                if (modsan.buscarSancionRepetido(modsan)) {
+                                    JOptionPane.showMessageDialog(null, "No puede guardar mas de un interes de mora al mes");
+                                } else {
+                                    if (modsan.registrarsancion(modsan)) {
+                                        JOptionPane.showMessageDialog(null, "Registro Guardado");
+                                        modsan.buscId(modsan);
+
+                                        for (int i = 0; i < san.jTable1.getRowCount(); i++) {
+                                            if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
+
+                                                String valor = String.valueOf(san.jTable1.getValueAt(i, 0));
+                                                modsan.setN_unidad(valor);
+
+                                                modsan.registrar_sancion_unidad(modsan);
+
+                                            }
+                                        }
+                                        LlenartablaSancion(catasan.jTable1);
+                                    } else {
+
+                                        JOptionPane.showMessageDialog(null, "error al guardar");
+
+                                    }
+                                }
+                            }
                         }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
                     }
-                }
                 }
 
             }
@@ -273,60 +291,78 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
         if (e.getSource() == san.btnModificar) {
             if (validar()) {
+                int j = 0;
                 modsan.setMes(san.jMonthChooser1.getMonth() + 1);
                 modsan.setAño(san.jYearChooser1.getYear());
-                modsan.setTipo(san.jComboBox1.getSelectedItem().toString());
-                 if (modsan.getTipo().equals("Seleccione el Tipo de Deuda")) JOptionPane.showMessageDialog(null, "seleccione un tipo de deuda"); else {
-                modsan.setDescripcion(san.txaDescripcion.getText());
-                modsan.setId(Integer.parseInt(san.txtId.getText()));
-                modsan.setMonto(Double.parseDouble(san.txtmonto.getText()));
-                modsan.setId_condominio(panta1.rif.getText());
-
-                int x = 0;
-                if (modsan.buscarSancionRepetido(modsan)) {
-                    x = modsan.getId_sancion();
-
-                }
-
-                modc.setMes_cierre(san.jMonthChooser1.getMonth() + 1);
-                modc.setAño_cierre(san.jYearChooser1.getYear());
-                modc.setId_condominio(panta1.rif.getText());
-
-                if (modc.buscarfechas(modc)) {
-                    JOptionPane.showMessageDialog(null, "no puede registrar Sanciones a un periodo ya cerrado");
+                if (modsan.getAño() < 2000 || modsan.getAño() > 2100) {
+                    JOptionPane.showMessageDialog(null, "seleccione un año valido");
                 } else {
+                    modsan.setTipo(san.jComboBox1.getSelectedItem().toString());
+                    if (modsan.getTipo().equals("Seleccione el Tipo de Deuda")) {
+                        JOptionPane.showMessageDialog(null, "seleccione un tipo de deuda");
+                    } else {
+                        modsan.setDescripcion(san.txaDescripcion.getText());
+                        modsan.setId(Integer.parseInt(san.txtId.getText()));
+                        modsan.setMonto(Double.parseDouble(san.txtmonto.getText()));
+                        modsan.setId_condominio(panta1.rif.getText());
 
-                    if (x == 0 || x == modsan.getId()) {
-                        if (modsan.modificarSancion(modsan)) {
-                            JOptionPane.showMessageDialog(null, "Registro Modificado");
-
-                            modsan.borrarpuentesancion(modsan);
-
-                            for (int i = 0; i < san.jTable1.getRowCount(); i++) {
-                                if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
-
-                                    String valor = String.valueOf(san.jTable1.getValueAt(i, 0));
-                                    modsan.setN_unidad(valor);
-
-                                    modsan.registrar_sancion_unidad(modsan);
-
-                                }
-                            }
-                            LlenartablaSancion(catasan.jTable1);
-                            this.san.dispose();
-                        } else {
-
-                            JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                        int x = 0;
+                        if (modsan.buscarSancionRepetido(modsan)) {
+                            x = modsan.getId_sancion();
 
                         }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                        modc.setMes_cierre(san.jMonthChooser1.getMonth() + 1);
+                        modc.setAño_cierre(san.jYearChooser1.getYear());
+                        modc.setId_condominio(panta1.rif.getText());
+                        for (int i = 0; i < san.jTable1.getRowCount(); i++) {
+                            if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
+
+                                j = j + 1;
+
+                            }
+                        }
+                        if (j == 0) {
+                            JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
+                        } else {
+
+                            if (modc.buscarfechas(modc)) {
+                                JOptionPane.showMessageDialog(null, "no puede registrar Sanciones a un periodo ya cerrado");
+                            } else {
+
+                                if (x == 0 || x == modsan.getId()) {
+                                    if (modsan.modificarSancion(modsan)) {
+                                        JOptionPane.showMessageDialog(null, "Registro Modificado");
+
+                                        modsan.borrarpuentesancion(modsan);
+
+                                        for (int i = 0; i < san.jTable1.getRowCount(); i++) {
+                                            if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
+
+                                                String valor = String.valueOf(san.jTable1.getValueAt(i, 0));
+                                                modsan.setN_unidad(valor);
+
+                                                modsan.registrar_sancion_unidad(modsan);
+
+                                            }
+                                        }
+                                        LlenartablaSancion(catasan.jTable1);
+                                        this.san.dispose();
+                                    } else {
+
+                                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                                    }
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                                }
+                            }
+
+                        }
                     }
                 }
 
             }
-
-        }
         }
 
         if (e.getSource() == san.btnEliminar) {
@@ -337,7 +373,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
             san.dispose();
             LlenartablaSancion(catasan.jTable1);
         }
-         if (e.getSource() == san.btnLimpiar) {
+        if (e.getSource() == san.btnLimpiar) {
 
             limpiar();
 
@@ -355,7 +391,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         addCheckBox(1, san.jTable1);
 
     }
-    
+
     @Override
     public void mouseClicked(MouseEvent e
     ) {
@@ -365,7 +401,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         modsan.setId(Integer.parseInt(dato));
 
         modsan.buscarSancion(modsan);
-        
+
         this.san.setVisible(true);
         san.txtId.setVisible(false);
         san.txtId.setText(dato);
@@ -378,7 +414,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         modsan.setId_condominio(panta1.rif.getText());
         llenartablaunidadesmod(san.jTable1);
         addCheckBox(1, san.jTable1);
-         if (modsan.getEstado().equals("Procesado")) {
+        if (modsan.getEstado().equals("Procesado")) {
             san.btnEliminar.setEnabled(false);
             san.btnModificar.setEnabled(false);
             san.btnGuardar.setEnabled(false);
@@ -388,7 +424,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
             san.btnModificar.setEnabled(true);
             san.btnGuardar.setEnabled(false);
         }
-        
+
     }
 
     @Override
@@ -424,6 +460,10 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         }
         if (e.getSource() == san.txaDescripcion) {
             Validacion.limite(e, san.txaDescripcion.getText(), 200);
+        }
+        if (e.getSource() == san.jYearChooser1) {
+            Validacion.limite(e, String.valueOf(san.jYearChooser1.getYear()), 4);
+            Validacion.soloNumeros(e);
         }
     }
 
@@ -502,7 +542,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
             msj += "El campo monto no puede estar vacio\n";
             resultado = false;
         }
-        
+
         if (san.txaDescripcion.getText().isEmpty()) {
 
             msj += "El campo descripción no puede estar vacio\n";

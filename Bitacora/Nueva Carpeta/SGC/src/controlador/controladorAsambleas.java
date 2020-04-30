@@ -274,36 +274,48 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
         if (e.getSource() == as.btnGuardar) {
             if (validar()) {
+                int j = 0;
                 modasa.setNombre_asamblea(as.txtNombreAsamblea.getText());
                 modasa.setDescripcion(as.txaDescripcion.getText());
                 modasa.setId_condominio(panta1.rif.getText());
 
                 java.sql.Date sqlDate = convert(as.jDateChooser2.getDate());
                 modasa.setFecha(sqlDate);
+                for (int i = 0; i < as.jTable1.getRowCount(); i++) {
+                    if (valueOf(as.jTable1.getValueAt(i, 5)) == "true") {
 
-                if (modasa.registrarAsambleas(modasa)) {
+                        j = j + 1;
 
-                    JOptionPane.showMessageDialog(null, "Registro Guardado");
-
-                    modasa.buscId(modasa);
-
-                    for (int i = 0; i < as.jTable1.getRowCount(); i++) {
-                        if (valueOf(as.jTable1.getValueAt(i, 5)) == "true") {
-
-                            String valor = String.valueOf(as.jTable1.getValueAt(i, 0));
-                            modasa.setId_propietario(valor);
-
-                            modasa.registrar_asamblea_propietario(modasa);
-
-                        }
                     }
-                    Llenartablaasambleas(cataa.jTable1);
-                    as.dispose();
-
+                }
+                if (j == 0) {
+                    JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                    if (modasa.registrarAsambleas(modasa)) {
 
+                        JOptionPane.showMessageDialog(null, "Registro Guardado");
+
+                        modasa.buscId(modasa);
+
+                        for (int i = 0; i < as.jTable1.getRowCount(); i++) {
+                            if (valueOf(as.jTable1.getValueAt(i, 5)) == "true") {
+
+                                String valor = String.valueOf(as.jTable1.getValueAt(i, 0));
+                                modasa.setId_propietario(valor);
+
+                                modasa.registrar_asamblea_propietario(modasa);
+
+                            }
+                        }
+                        Llenartablaasambleas(cataa.jTable1);
+                        as.dispose();
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                    }
                 }
             }
 
@@ -311,6 +323,8 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
         if (e.getSource() == as.btnModificar) {
             if (validar()) {
+                int j = 0;
+
                 modasa.setNombre_asamblea(as.txtNombreAsamblea.getText());
                 modasa.setDescripcion(as.txaDescripcion.getText());
                 modasa.setId_condominio(panta1.rif.getText());
@@ -318,33 +332,43 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
                 java.sql.Date sqlDate = convert(as.jDateChooser2.getDate());
                 modasa.setFecha(sqlDate);
+                for (int i = 0; i < as.jTable1.getRowCount(); i++) {
+                    if (valueOf(as.jTable1.getValueAt(i, 5)) == "true") {
 
-                if (modasa.modificarAsamblea(modasa)) {
+                        j = j + 1;
 
-                    JOptionPane.showMessageDialog(null, "Registro Guardado");
-
-                    modasa.borrarpuenteasamblea(modasa);
-
-                    for (int i = 0; i < as.jTable1.getRowCount(); i++) {
-                        if (valueOf(as.jTable1.getValueAt(i, 5)) == "true") {
-
-                            String valor = String.valueOf(as.jTable1.getValueAt(i, 0));
-                            modasa.setId_propietario(valor);
-
-                            modasa.registrar_asamblea_propietario(modasa);
-
-                        }
                     }
-                    Llenartablaasambleas(cataa.jTable1);
-                    as.dispose();
-
+                }
+                if (j == 0) {
+                    JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                    if (modasa.modificarAsamblea(modasa)) {
 
+                        JOptionPane.showMessageDialog(null, "Registro Guardado");
+
+                        modasa.borrarpuenteasamblea(modasa);
+
+                        for (int i = 0; i < as.jTable1.getRowCount(); i++) {
+                            if (valueOf(as.jTable1.getValueAt(i, 5)) == "true") {
+
+                                String valor = String.valueOf(as.jTable1.getValueAt(i, 0));
+                                modasa.setId_propietario(valor);
+
+                                modasa.registrar_asamblea_propietario(modasa);
+
+                            }
+                        }
+                        Llenartablaasambleas(cataa.jTable1);
+                        as.dispose();
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                    }
                 }
             }
-
         }
     }
 

@@ -225,7 +225,7 @@ public class Sancion extends Unidades {
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_condominio());
-            
+
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -241,7 +241,6 @@ public class Sancion extends Unidades {
                 modsan.setId_condominio(rs.getString(7));
                 modsan.setCantidad_de_unidades(rs.getInt(8));
                 modsan.setEstado(rs.getString(9));
-                
 
                 listaSancion.add(modsan);
             }
@@ -257,8 +256,7 @@ public class Sancion extends Unidades {
 
             }
 
-        
-    }
+        }
 
         return listaSancion;
     }
@@ -287,7 +285,6 @@ public class Sancion extends Unidades {
                 modsan.setN_unidad(rs.getString(2));
                 modsan.setTipo(rs.getString(3));
                 modsan.setMonto(rs.getDouble(4));
-                
 
                 listaSancion.add(modsan);
             }
@@ -353,30 +350,25 @@ public class Sancion extends Unidades {
         }
 
     }
-    
+
     public boolean buscarSancionRepetido(Sancion modsan) {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT * FROM sancion where tipo=? and mes=? and anio=? and id_condominio=?;";
+        String sql = "SELECT * FROM sancion where tipo='Interes de mora' and mes=? and anio=? and id_condominio=?;";
 
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, modsan.getTipo());
-            ps.setInt(2, modsan.getMes());
-            ps.setInt(3, modsan.getAño());
-            ps.setString(4, modsan.getId_condominio());
+
+            ps.setInt(1, modsan.getMes());
+            ps.setInt(2, modsan.getAño());
+            ps.setString(3, modsan.getId_condominio());
             rs = ps.executeQuery();
             if (rs.next()) {
 
-                
                 modsan.setId_sancion(rs.getInt("id"));
-                 
-                
-                
-               
 
                 return true;
             }

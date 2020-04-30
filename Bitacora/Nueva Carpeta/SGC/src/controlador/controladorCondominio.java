@@ -5,7 +5,6 @@
  */
 package controlador;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -24,7 +23,6 @@ import vista.PantallaPrincipal;
 import vista.PantallaPrincipal1;
 import vista.catalogoCondominio;
 import vista.condominio;
-import controlador.Validacion;
 import java.util.ArrayList;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -64,7 +62,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
     }
 
     public void Llenartabla(JTable tablaD) {
-        
+
         listaCondo = co.lPerson();
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
@@ -72,7 +70,6 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
 
                 return false;
             }
-            
 
         };
         tablaD.setModel(modeloT);
@@ -189,7 +186,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         }
 
     }
-    
+
     public void limpiar() {
 
         condo.txtRif.setText(null);
@@ -215,7 +212,8 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
             this.panta1.setVisible(true);
             panta1.rif.setText(dato);
 
-        } if (result==1) {
+        }
+        if (result == 1) {
 
             int fila = this.cataco.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
             int columna = this.cataco.jTable1.getSelectedColumn(); // luego, obtengo la columna seleccionada
@@ -235,9 +233,8 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
 
             condo.btnModificar.setEnabled(true);
             condo.btnEliminar.setEnabled(true);
-        }
-        else {
-            
+        } else {
+
         }
 
     }

@@ -367,7 +367,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             limpiar();
         }
     }
-    
+
     public void limpiar() {
 
         cuotae.txtNmeses.setText(null);
@@ -378,8 +378,6 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
         cuotae.jMonthChooser1.setMonth(0);
         cuotae.jProveedor.setSelectedItem("Seleccione el Proveedor");
         cuotae.jYearChooser1.setYear(0);
-        
-
 
     }
 
@@ -493,7 +491,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
     @Override
     public void keyTyped(KeyEvent e) {
         if (e.getSource() == cuotae.txaObservaciones) {
-            
+
             Validacion.limite(e, cuotae.txaObservaciones.getText(), 500);
         }
         if (e.getSource() == cuotae.txtNmeses) {
@@ -505,7 +503,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
             Validacion.Espacio(e);
             Validacion.soloUnPunto(e, cuotae.txtMonto.getText());
-           
+
         }
     }
 

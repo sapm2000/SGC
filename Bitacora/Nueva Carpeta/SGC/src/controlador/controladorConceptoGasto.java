@@ -1,6 +1,5 @@
 package controlador;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -15,11 +14,9 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import modelo.CrudUsuario;
 import vista.catalogoConceptoGasto;
 import vista.conceptoGasto;
 import modelo.ModeloConceptoGastos;
-import controlador.Validacion;
 import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -276,7 +273,6 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
         }
         if (ke.getSource() == cga.txtDescripcion) {
 
-            
             Validacion.limite(ke, cga.txtDescripcion.getText(), 120);
         }
     }

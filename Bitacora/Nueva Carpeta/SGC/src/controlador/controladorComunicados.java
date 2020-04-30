@@ -254,32 +254,44 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
         if (e.getSource() == com.btnEnviar) {
 
             if (validar()) {
+                int j = 0;
                 modco.setAsunto(com.txtAsunto.getText());
                 modco.setMensaje(com.txaMensaje.getText());
                 modco.setId_condominio(panta1.rif.getText());
+                for (int i = 0; i < com.jTable1.getRowCount(); i++) {
+                    if (valueOf(com.jTable1.getValueAt(i, 5)) == "true") {
 
-                if (modco.registrarcomunicados(modco)) {
+                        j = j + 1;
 
-                    JOptionPane.showMessageDialog(null, "Mensaje Enviado");
-
-                    modco.buscId(modco);
-
-                    for (int i = 0; i < com.jTable1.getRowCount(); i++) {
-                        if (valueOf(com.jTable1.getValueAt(i, 5)) == "true") {
-
-                            String valor = String.valueOf(com.jTable1.getValueAt(i, 0));
-                            modco.setId_usuario(valor);
-                            modco.setLeido(0);
-
-                            modco.registrar_comunicados_usuarios(modco);
-
-                        }
                     }
-
+                }
+                if (j == 0) {
+                    JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                    if (modco.registrarcomunicados(modco)) {
 
+                        JOptionPane.showMessageDialog(null, "Mensaje Enviado");
+
+                        modco.buscId(modco);
+
+                        for (int i = 0; i < com.jTable1.getRowCount(); i++) {
+                            if (valueOf(com.jTable1.getValueAt(i, 5)) == "true") {
+
+                                String valor = String.valueOf(com.jTable1.getValueAt(i, 0));
+                                modco.setId_usuario(valor);
+                                modco.setLeido(0);
+
+                                modco.registrar_comunicados_usuarios(modco);
+
+                            }
+                        }
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                    }
                 }
             }
 
@@ -320,16 +332,16 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
 
     @Override
     public void keyTyped(KeyEvent e) {
-        
-}
-
-@Override
-        public void keyPressed(KeyEvent e) {
 
     }
 
     @Override
-        public void keyReleased(KeyEvent e) {
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
         if (e.getSource() == catacom.jTextField1) {
 
             filtro(catacom.jTextField1.getText(), catacom.jTable1);
@@ -342,43 +354,43 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
     }
 
     @Override
-        public void windowOpened(WindowEvent e) {
+    public void windowOpened(WindowEvent e) {
         modco.setId_condominio(panta1.rif.getText());
         llenartablaComunicado(catacom.jTable1);
     }
 
     @Override
-        public void windowClosing(WindowEvent e) {
+    public void windowClosing(WindowEvent e) {
 
     }
 
     @Override
-        public void windowClosed(WindowEvent e) {
+    public void windowClosed(WindowEvent e) {
 
     }
 
     @Override
-        public void windowIconified(WindowEvent e) {
+    public void windowIconified(WindowEvent e) {
 
     }
 
     @Override
-        public void windowDeiconified(WindowEvent e) {
+    public void windowDeiconified(WindowEvent e) {
 
     }
 
     @Override
-        public void windowActivated(WindowEvent e) {
+    public void windowActivated(WindowEvent e) {
 
     }
 
     @Override
-        public void windowDeactivated(WindowEvent e) {
+    public void windowDeactivated(WindowEvent e) {
 
     }
 
     @Override
-        public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(MouseEvent e) {
         int fila = this.catacom.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
 
         String dato = String.valueOf(this.catacom.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
@@ -396,22 +408,22 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
     }
 
     @Override
-        public void mousePressed(MouseEvent e) {
+    public void mousePressed(MouseEvent e) {
 
     }
 
     @Override
-        public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(MouseEvent e) {
 
     }
 
     @Override
-        public void mouseEntered(MouseEvent e) {
+    public void mouseEntered(MouseEvent e) {
 
     }
 
     @Override
-        public void mouseExited(MouseEvent e) {
+    public void mouseExited(MouseEvent e) {
 
     }
 

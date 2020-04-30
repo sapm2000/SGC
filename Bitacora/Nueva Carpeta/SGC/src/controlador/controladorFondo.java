@@ -255,7 +255,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
         fon.txaObservaciones.setText(null);
         fon.jDateChooser1.setDate(null);
     }
-    
+
     private Boolean validar() {
 
         Boolean resultado = true;

@@ -221,54 +221,83 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
         }
 
         if (e.getSource() == in.btnGuardar) {
-            modin.setNombre(in.txtNombreinteres.getText());
-            modin.setFactor(Integer.parseInt(in.txtFactor.getText()));
-            modin.setEstado("Activo");
-
-            if (modin.registrarinteres(modin)) {
-                modin.buscId(modin);
-                JOptionPane.showMessageDialog(null, "Registro Guardado");
+            if (validar()) {
+                int j = 0;
+                modin.setNombre(in.txtNombreinteres.getText());
+                modin.setFactor(Integer.parseInt(in.txtFactor.getText()));
+                modin.setEstado("Activo");
 
                 for (int i = 0; i < in.jTable1.getRowCount(); i++) {
                     if (valueOf(in.jTable1.getValueAt(i, 2)) == "true") {
 
-                        String valor = String.valueOf(in.jTable1.getValueAt(i, 0));
-                        modin.setId_condominio(valor);
-
-                        modin.registrar_interes_condominio(modin);
+                        j = j + 1;
 
                     }
                 }
-                Llenartablainteres(catain.jTable1);
-            }
+                if (j == 0) {
+                    JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
+                } else {
 
+                    if (modin.registrarinteres(modin)) {
+                        modin.buscId(modin);
+                        JOptionPane.showMessageDialog(null, "Registro Guardado");
+
+                        for (int i = 0; i < in.jTable1.getRowCount(); i++) {
+                            if (valueOf(in.jTable1.getValueAt(i, 2)) == "true") {
+
+                                String valor = String.valueOf(in.jTable1.getValueAt(i, 0));
+                                modin.setId_condominio(valor);
+
+                                modin.registrar_interes_condominio(modin);
+
+                            }
+                        }
+                        Llenartablainteres(catain.jTable1);
+                    }
+
+                }
+            }
         }
 
         if (e.getSource() == in.btnModificar) {
-            modin.setNombre(in.txtNombreinteres.getText());
-            modin.setFactor(Double.parseDouble(in.txtFactor.getText()));
-            modin.setEstado("Activo");
-            modin.setId(Integer.parseInt(in.txtId.getText()));
-
-            if (modin.modificar_Interes(modin)) {
-
-                JOptionPane.showMessageDialog(null, "Registro Modificado");
-                modin.borrarpuente(modin);
-
+            if (validar()) {
+                int j = 0;
+                modin.setNombre(in.txtNombreinteres.getText());
+                modin.setFactor(Double.parseDouble(in.txtFactor.getText()));
+                modin.setEstado("Activo");
+                modin.setId(Integer.parseInt(in.txtId.getText()));
                 for (int i = 0; i < in.jTable1.getRowCount(); i++) {
                     if (valueOf(in.jTable1.getValueAt(i, 2)) == "true") {
 
-                        String valor = String.valueOf(in.jTable1.getValueAt(i, 0));
-                        modin.setId_condominio(valor);
-
-                        modin.registrar_interes_condominio(modin);
+                        j = j + 1;
 
                     }
                 }
-                Llenartablainteres(catain.jTable1);
-                in.dispose();
-            }
+                if (j == 0) {
+                    JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
+                } else {
 
+                    if (modin.modificar_Interes(modin)) {
+
+                        JOptionPane.showMessageDialog(null, "Registro Modificado");
+                        modin.borrarpuente(modin);
+
+                        for (int i = 0; i < in.jTable1.getRowCount(); i++) {
+                            if (valueOf(in.jTable1.getValueAt(i, 2)) == "true") {
+
+                                String valor = String.valueOf(in.jTable1.getValueAt(i, 0));
+                                modin.setId_condominio(valor);
+
+                                modin.registrar_interes_condominio(modin);
+
+                            }
+                        }
+                        Llenartablainteres(catain.jTable1);
+                        in.dispose();
+                    }
+
+                }
+            }
         }
 
         if (e.getSource() == in.btnEliminar) {

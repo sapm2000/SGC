@@ -228,86 +228,98 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == cuenco.btnGuardar) {
             if (validar()) {
+                int j = 0;
                 modcuen.setDescripcion(cuenco.txtDescripcion.getText());
                 modcuen.setForma_pago(cuenco.jComboForma.getSelectedItem().toString());
                 modcuen.setId_cuenta(cuenco.jComboCuenta.getSelectedItem().toString());
-                if (modcuen.getId_cuenta().equals("Seleccione la cuenta depositada")) {
-                    JOptionPane.showMessageDialog(null, "seleccione una cuenta");
+                for (int i = 0; i < cuenco.jTable1.getRowCount(); i++) {
+                    if (valueOf(cuenco.jTable1.getValueAt(i, 7)) == "true") {
+
+                        j = j + 1;
+
+                    }
+                }
+                if (j == 0) {
+                    JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
                 } else {
-                    modfon.setTipo(cuenco.jComboFondo.getSelectedItem().toString());
-                    if (modfon.getTipo().equals("Seleccione el fondo a depositar")) {
-                        JOptionPane.showMessageDialog(null, "seleccione el fondo a depositar");
+                    if (modcuen.getId_cuenta().equals("Seleccione la cuenta depositada")) {
+                        JOptionPane.showMessageDialog(null, "seleccione una cuenta");
                     } else {
-                        modfon.setId_condominio(panta1.rif.getText());
-                        modfon.buscar1(modfon);
-                        modcuen.setId_fondo(modfon.getId());
-                        modcuen.setId_unidad(cuenco.jComboUnidad.getSelectedItem().toString());
-                        if (modcuen.getId_unidad().equals("Seleccione el numero de la unidad")) {
-                            JOptionPane.showMessageDialog(null, "seleccione el numero de la unidad");
+                        modfon.setTipo(cuenco.jComboFondo.getSelectedItem().toString());
+                        if (modfon.getTipo().equals("Seleccione el fondo a depositar")) {
+                            JOptionPane.showMessageDialog(null, "seleccione el fondo a depositar");
                         } else {
-                            modcuen.setMonto(Double.parseDouble(cuenco.txtMonto.getText()));
-                            modcuen.setReferencia(cuenco.txtReferencia.getText());
-                            java.sql.Date sqlDate = convert(cuenco.jDateChooser1.getDate());
-                            modcuen.setFecha(sqlDate);
-                            double monto = modcuen.getMonto();
-                            double total = 0;
-                            for (int i = 0; i < cuenco.jTable1.getRowCount(); i++) {
-                                if (valueOf(cuenco.jTable1.getValueAt(i, 7)) == "true") {
-
-                                    double dato = Double.parseDouble(String.valueOf(this.cuenco.jTable1.getValueAt(i, 5)));
-                                    total = total + dato;
-
-                                }
-                            }
-
-                            if (modcuen.getMonto() > total) {
-                                JOptionPane.showMessageDialog(null, "No puede ingresar mas dinero de lo que debe");
+                            modfon.setId_condominio(panta1.rif.getText());
+                            modfon.buscar1(modfon);
+                            modcuen.setId_fondo(modfon.getId());
+                            modcuen.setId_unidad(cuenco.jComboUnidad.getSelectedItem().toString());
+                            if (modcuen.getId_unidad().equals("Seleccione el numero de la unidad")) {
+                                JOptionPane.showMessageDialog(null, "seleccione el numero de la unidad");
                             } else {
-                                if (modcuen.registrarCobro(modcuen)) {
-                                    double var4 = modfon.getSaldo() + modcuen.getMonto();
-                                    modfon.setSaldo(var4);
-                                    modfon.fondear(modfon);
+                                modcuen.setMonto(Double.parseDouble(cuenco.txtMonto.getText()));
+                                modcuen.setReferencia(cuenco.txtReferencia.getText());
+                                java.sql.Date sqlDate = convert(cuenco.jDateChooser1.getDate());
+                                modcuen.setFecha(sqlDate);
+                                double monto = modcuen.getMonto();
+                                double total = 0;
+                                for (int i = 0; i < cuenco.jTable1.getRowCount(); i++) {
+                                    if (valueOf(cuenco.jTable1.getValueAt(i, 7)) == "true") {
 
-                                    JOptionPane.showMessageDialog(null, "registro guardado");
-                                    modc.buscId(modc);
-                                    for (int i = 0; i < cuenco.jTable1.getRowCount(); i++) {
-                                        if (valueOf(cuenco.jTable1.getValueAt(i, 7)) == "true") {
+                                        double dato = Double.parseDouble(String.valueOf(this.cuenco.jTable1.getValueAt(i, 5)));
+                                        total = total + dato;
 
-                                            double dato = Double.parseDouble(String.valueOf(this.cuenco.jTable1.getValueAt(i, 5)));
-                                            double parte = dato - monto;
-                                            double va1 = dato - parte;
-                                            if (parte <= 0) {
-                                                parte = 0;
-                                                va1 = dato;
-                                            }
+                                    }
+                                }
 
-                                            if (monto <= 0) {
+                                if (modcuen.getMonto() > total) {
+                                    JOptionPane.showMessageDialog(null, "No puede ingresar mas dinero de lo que debe");
+                                } else {
+                                    if (modcuen.registrarCobro(modcuen)) {
+                                        double var4 = modfon.getSaldo() + modcuen.getMonto();
+                                        modfon.setSaldo(var4);
+                                        modfon.fondear(modfon);
 
-                                            } else {
-                                                if (parte == 0) {
-                                                    modc.setEstado("Pagado");
+                                        JOptionPane.showMessageDialog(null, "registro guardado");
+                                        modc.buscId(modc);
+                                        for (int i = 0; i < cuenco.jTable1.getRowCount(); i++) {
+                                            if (valueOf(cuenco.jTable1.getValueAt(i, 7)) == "true") {
+
+                                                double dato = Double.parseDouble(String.valueOf(this.cuenco.jTable1.getValueAt(i, 5)));
+                                                double parte = dato - monto;
+                                                double va1 = dato - parte;
+                                                if (parte <= 0) {
+                                                    parte = 0;
+                                                    va1 = dato;
+                                                }
+
+                                                if (monto <= 0) {
 
                                                 } else {
-                                                    modc.setEstado("Pendiente de pago");
+                                                    if (parte == 0) {
+                                                        modc.setEstado("Pagado");
+
+                                                    } else {
+                                                        modc.setEstado("Pendiente de pago");
+                                                    }
+                                                    modc.setSaldo_restante(parte);
+
+                                                    modc.setId_gasto(Integer.parseInt(String.valueOf(this.cuenco.jTable1.getValueAt(i, 0))));
+                                                    modc.actualizartotal(modc);
+                                                    modc.setSaldo_restante(va1);
+                                                    modc.guardarpuentepagos(modc);
+                                                    modc.setSaldo_restante(0);
                                                 }
-                                                modc.setSaldo_restante(parte);
+                                                monto = monto - dato;
 
-                                                modc.setId_gasto(Integer.parseInt(String.valueOf(this.cuenco.jTable1.getValueAt(i, 0))));
-                                                modc.actualizartotal(modc);
-                                                modc.setSaldo_restante(va1);
-                                                modc.guardarpuentepagos(modc);
-                                                modc.setSaldo_restante(0);
                                             }
-                                            monto = monto - dato;
-
                                         }
-                                    }
-                                    modc.setId_condominio(panta1.rif.getText());
-                                    modc.setId_unidad(cuenco.jComboUnidad.getSelectedItem().toString());
-                                    Llenartabla(cuenco.jTable1);
-                                    addCheckBox(7, cuenco.jTable1);
-                                    Llenartablapagados(cuenco.jTable2);
+                                        modc.setId_condominio(panta1.rif.getText());
+                                        modc.setId_unidad(cuenco.jComboUnidad.getSelectedItem().toString());
+                                        Llenartabla(cuenco.jTable1);
+                                        addCheckBox(7, cuenco.jTable1);
+                                        Llenartablapagados(cuenco.jTable2);
 
+                                    }
                                 }
                             }
                         }
@@ -414,18 +426,17 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
     @Override
     public void keyTyped(KeyEvent e) {
         if (e.getSource() == cuenco.txtReferencia) {
-            
+
             Validacion.Espacio(e);
             Validacion.limite(e, cuenco.txtReferencia.getText(), 50);
         }
-        
+
         if (e.getSource() == cuenco.txtDescripcion) {
-            
-            
+
             Validacion.limite(e, cuenco.txtDescripcion.getText(), 500);
         }
         if (e.getSource() == cuenco.txtMonto) {
-            
+
             Validacion.Espacio(e);
             Validacion.soloUnPunto(e, cuenco.txtMonto.getText());
         }
@@ -433,12 +444,12 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
 
     @Override
     public void keyPressed(KeyEvent e) {
-        
+
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        
+
     }
 
 }
