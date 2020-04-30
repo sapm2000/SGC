@@ -155,7 +155,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             columna[0] = listapagos.get(i).getId_gasto();
             columna[1] = listapagos.get(i).getMes_cierre();
             columna[2] = listapagos.get(i).getAño_cierre();
-            columna[3] = listapagos.get(i).getMonto();
+            columna[3] = Validacion.formato1.format(listapagos.get(i).getMonto());
             double var4 = listapagos.get(i).getAlicuota() * 100;
             String var5 = var4 + "%";
             columna[4] = var5;
@@ -205,7 +205,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             columna[1] = listadetallegasto.get(i).getCedula();
             columna[2] = listadetallegasto.get(i).getNom_proveedor();
             columna[3] = listadetallegasto.get(i).getNom_concepto();
-            columna[4] = listadetallegasto.get(i).getMonto();
+            columna[4] = Validacion.formato1.format(listadetallegasto.get(i).getMonto());
 
             modeloT.addRow(columna);
 
@@ -247,7 +247,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             columna[0] = listadetalleinteres.get(i).getEstado();
             String var6 = String.valueOf(listadetalleinteres.get(i).getAlicuota()) + "%";
             columna[1] = var6;
-            columna[2] = listadetalleinteres.get(i).getMonto();
+            columna[2] = Validacion.formato1.format(listadetalleinteres.get(i).getMonto());
 
             modeloT.addRow(columna);
 
@@ -289,7 +289,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             columna[0] = listadetallecuotas.get(i).getCedula();
             columna[1] = listadetallecuotas.get(i).getNom_proveedor();
             columna[2] = listadetallecuotas.get(i).getNom_concepto();
-            columna[3] = listadetallecuotas.get(i).getMonto();
+            columna[3] = Validacion.formato1.format(listadetallecuotas.get(i).getMonto());
             columna[4] = listadetallecuotas.get(i).getMeses_res();
 
             modeloT.addRow(columna);
@@ -339,7 +339,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                 columna[2] = "";
             }
 
-            columna[3] = listadetallesancion.get(i).getMonto();
+            columna[3] = Validacion.formato1.format(listadetallesancion.get(i).getMonto());
 
             modeloT.addRow(columna);
 
@@ -572,7 +572,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             modc.bucartotal(modc);
             double var10 = modc.getAlicuota() * 100;
             detare.txtAlicuota.setText(String.valueOf(var10) + "%");
-            detare.txtTotal.setText(String.valueOf(modc.getMonto()));
+            detare.txtTotal.setText(String.valueOf(Validacion.formato1.format(modc.getMonto())));
         }
     }
 
