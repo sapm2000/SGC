@@ -192,6 +192,21 @@ public class controladorProveedores implements ActionListener, WindowListener, K
             }
 
         }
+        if (e.getSource() == prov.btnLimpiar) {
+
+            limpiar();
+
+        }
+    }
+    
+    public void limpiar() {
+
+        prov.txtCedula.setText(null);
+        prov.txtNombre.setText(null);
+        prov.txtContacto.setText(null);
+        prov.txtTelefono.setText(null);
+        prov.txtCorreo.setText(null);
+        prov.txaDireccion.setText(null);
     }
 
     private Boolean validar() {

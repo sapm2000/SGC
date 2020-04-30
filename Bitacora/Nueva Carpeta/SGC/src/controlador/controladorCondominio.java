@@ -189,6 +189,15 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         }
 
     }
+    
+    public void limpiar() {
+
+        condo.txtRif.setText(null);
+        condo.txtRazonS.setText(null);
+        condo.txtTelefono.setText(null);
+        condo.txtCorreo.setText(null);
+
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {

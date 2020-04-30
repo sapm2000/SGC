@@ -68,7 +68,6 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
 
                 return false;
             }
-            
 
         };
         tablaD.setModel(modeloT);
@@ -80,10 +79,6 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         modeloT.addColumn("Apellido");
         modeloT.addColumn("Teléfono");
         modeloT.addColumn("<html>Correo <br> Electrónico</html>");
-
-        
-    
-        
 
         Object[] columna = new Object[5];
 
@@ -99,9 +94,8 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
 
             modeloT.addRow(columna);
 
-            
         }
-        
+
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
@@ -109,8 +103,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
-        
-        
+
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -192,6 +185,20 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
             }
 
         }
+        if (e.getSource() == pro.btnLimpiar) {
+
+            limpiar();
+
+        }
+    }
+
+    public void limpiar() {
+
+        pro.txtCedula.setText(null);
+        pro.txtNombre.setText(null);
+        pro.txtApellido.setText(null);
+        pro.txtTelefono.setText(null);
+        pro.txtCorreo.setText(null);
     }
 
     private Boolean validar() {
@@ -210,25 +217,25 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
             msj += "El campo nombre no puede estar vacío\n";
             resultado = false;
         }
-        
+
         if (pro.txtApellido.getText().isEmpty()) {
 
             msj += "El campo apellido no puede estar vacío\n";
             resultado = false;
         }
-        
+
         if (pro.txtTelefono.getText().isEmpty()) {
 
             msj += "El campo teléfono no puede estar vacío\n";
             resultado = false;
         }
-        
+
         if (pro.txtCorreo.getText().isEmpty()) {
 
             msj += "El campo correo electrónico no puede estar vacío\n";
             resultado = false;
         }
-        
+
         if (!resultado) {
 
             JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);

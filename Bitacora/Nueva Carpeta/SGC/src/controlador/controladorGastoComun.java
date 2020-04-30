@@ -281,7 +281,27 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
             }
 
         }
+        if (e.getSource() == gc.btnLimpiar) {
+            limpiar();
+        }
     }
+    
+    public void limpiar() {
+
+        gc.txtnombreprov.setText(null);
+        gc.txtMonto.setText(null);
+        gc.txaObservaciones.setText(null);
+        gc.jcomboconcepto.setSelectedItem("Seleccione el Concepto");
+        gc.jcomboproveedor.setSelectedItem("Seleccione el Proveedor");
+        gc.jMonthChooser1.setMonth(0);
+        gc.jcombotipo.setSelectedItem("Ordinario");
+        gc.jYearChooser1.setYear(0);
+        gc.txtNumerofactura.setText(null);
+        gc.jDateChooser1.setDate(null);
+
+
+    }
+
 
     @Override
     public void itemStateChanged(ItemEvent e) {

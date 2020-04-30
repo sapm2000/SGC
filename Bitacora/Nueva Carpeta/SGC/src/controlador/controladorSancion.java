@@ -337,8 +337,25 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
             san.dispose();
             LlenartablaSancion(catasan.jTable1);
         }
+         if (e.getSource() == san.btnLimpiar) {
+
+            limpiar();
+
+        }
     }
 
+    public void limpiar() {
+
+        san.txtmonto.setText(null);
+        san.txaDescripcion.setText(null);
+        san.jComboBox1.setSelectedItem("Seleccione el Tipo de Deuda");
+        san.jMonthChooser1.setMonth(0);
+        san.jYearChooser1.setYear(0);
+        llenartablaunidadesmod(san.jTable1);
+        addCheckBox(1, san.jTable1);
+
+    }
+    
     @Override
     public void mouseClicked(MouseEvent e
     ) {

@@ -363,6 +363,24 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             }
 
         }
+        if (e.getSource() == cuotae.btnLimpiar) {
+            limpiar();
+        }
+    }
+    
+    public void limpiar() {
+
+        cuotae.txtNmeses.setText(null);
+        cuotae.txtMonto.setText(null);
+        cuotae.txaObservaciones.setText(null);
+        cuotae.jAsamblea.setSelectedItem("Seleccione la Asamblea");
+        cuotae.jConcepto.setSelectedItem("Seleccione el Concepto");
+        cuotae.jMonthChooser1.setMonth(0);
+        cuotae.jProveedor.setSelectedItem("Seleccione el Proveedor");
+        cuotae.jYearChooser1.setYear(0);
+        
+
+
     }
 
     private Boolean validar() {
@@ -475,7 +493,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
     @Override
     public void keyTyped(KeyEvent e) {
         if (e.getSource() == cuotae.txaObservaciones) {
-            Validacion.soloNumeros(e);
+            
             Validacion.limite(e, cuotae.txaObservaciones.getText(), 500);
         }
         if (e.getSource() == cuotae.txtNmeses) {
