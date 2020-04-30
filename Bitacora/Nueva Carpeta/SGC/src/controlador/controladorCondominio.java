@@ -276,8 +276,8 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         if (ke.getSource() == condo.txtRazonS) {
 
             Validacion.soloLetras(ke);
-            Validacion.Espacio(ke);
-            Validacion.limite(ke, condo.txtRazonS.getText(), 25);
+            
+            Validacion.limite(ke, condo.txtRazonS.getText(), 150);
         }
         if (ke.getSource() == condo.txtTelefono) {
             Validacion.Espacio(ke);

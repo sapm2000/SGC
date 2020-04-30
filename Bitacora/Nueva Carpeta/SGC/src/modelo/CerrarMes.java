@@ -947,7 +947,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT count(estado) as estado FROM public.detalle_total where estado='Pendiente de pago' and id_unidad=? and id_condominio=?";
+        String sql = "SELECT count(estado) as estado FROM public.detalle_total where estado='Pendiente de Pago' and id_unidad=? and id_condominio=?";
 
         try {
 
