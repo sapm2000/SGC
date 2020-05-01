@@ -101,7 +101,7 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
             listaFondo = modFondo.listar();
             crearCbxFondo(listaFondo);
         }
-        if(e.getSource()==vistaCuentaP.btnMostrar){
+        if (e.getSource() == vistaCuentaP.btnMostrar) {
             catCuenPro.addWindowListener(this);
             this.catCuenPro.setVisible(true);
         }
@@ -109,23 +109,23 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
 
     @Override
     public void windowOpened(WindowEvent e) {
-        if (e.getSource()==vistaCuentaP) {
-            
-        listaFondo = modFondo.listar();
-        crearCbxFondo(listaFondo);
-        listaCuenta = modCuenta.listarcuenta();
-        crearCbxCuenta(listaCuenta);
-        modGastoC = new GastoComun();
-        //listaGastoC = modGastoC.listarGastoComun();
-        Llenartabla(vistaCuentaP.jTable, 2);
-        //addCheckBox(0, vistaCuentaP.jTable);
-        }else if (e.getSource()==catCuenPro) {
-        Llenartabla(catCuenPro.jTable1, 1);
-            
+        if (e.getSource() == vistaCuentaP) {
+
+            listaFondo = modFondo.listar();
+            crearCbxFondo(listaFondo);
+            listaCuenta = modCuenta.listarcuenta();
+            crearCbxCuenta(listaCuenta);
+            modGastoC = new GastoComun();
+            //listaGastoC = modGastoC.listarGastoComun();
+            Llenartabla(vistaCuentaP.jTable, 2);
+            //addCheckBox(0, vistaCuentaP.jTable);
+        } else if (e.getSource() == catCuenPro) {
+            Llenartabla(catCuenPro.jTable1, 1);
+
         }
-        
-        Component[] components =vistaCuentaP.jPanel.getComponents();
-        JComponent[] com = {vistaCuentaP.jDate,vistaCuentaP.txtDescripcion, vistaCuentaP.txtMonto,vistaCuentaP.txtProveedor, vistaCuentaP.txtReferencia};
+
+        Component[] components = vistaCuentaP.jPanel.getComponents();
+        JComponent[] com = {vistaCuentaP.jDate, vistaCuentaP.txtDescripcion, vistaCuentaP.txtMonto, vistaCuentaP.txtProveedor, vistaCuentaP.txtReferencia};
         Validacion.copiar(components);
         Validacion.pegar(com);
 
@@ -173,10 +173,12 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        fila = 0;
         fila = this.vistaCuentaP.jTable.getSelectedRow(); // primero, obtengo la fila seleccionada
         Boolean resultado = true;
         String msj = "";
 
+        
         modCuentaP.cargarProveedor(listaGastoC.get(fila).getId());
 
         vistaCuentaP.setVisible(true);
