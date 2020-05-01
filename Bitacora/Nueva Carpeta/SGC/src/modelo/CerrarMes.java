@@ -1188,7 +1188,7 @@ public class CerrarMes extends ConexionBD {
             rs = ps.executeQuery();
             if (rs.next()) {
 
-                modc.setMonto(rs.getInt("monto"));
+                modc.setMonto(rs.getDouble("monto"));
                 modc.setAlicuota(rs.getDouble("alicuota"));
 
                 return true;
