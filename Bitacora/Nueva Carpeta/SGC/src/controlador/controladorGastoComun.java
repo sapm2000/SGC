@@ -76,7 +76,7 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
 
     public void LlenartablaGastocomun(JTable tablaD) {
 
-        listagastocomun = modgac.listarGastoComun();
+        listagastocomun = modgac.listarGastoComun(3);
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {

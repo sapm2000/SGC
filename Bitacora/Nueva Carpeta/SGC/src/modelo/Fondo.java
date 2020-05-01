@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import sgc.SGC;
 
 /**
  *
@@ -142,12 +143,12 @@ public class Fondo extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT tipo, fecha, descripcion, observaciones, monto_inicial, saldo FROM fondos where id_condominio=?;";
+        String sql = "SELECT tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id FROM fondos where id_condominio=?;";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_condominio());
+            ps.setString(1, SGC.condominioActual.getRif());
             rs = ps.executeQuery();
-
+             
             while (rs.next()) {
 
                 modfon = new Fondo();
@@ -158,6 +159,7 @@ public class Fondo extends ConexionBD {
                 modfon.setObservacion(rs.getString(4));
                 modfon.setMonto_inicial(rs.getDouble(5));
                 modfon.setSaldo(rs.getDouble(6));
+                modfon.setId(rs.getInt(7));
 
                 listaFondo.add(modfon);
             }
@@ -436,6 +438,31 @@ public class Fondo extends ConexionBD {
 
         }
 
+    }
+    
+    public boolean restarFondo(Float saldoNuevo){
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+        
+        String sql = "UPDATE fondos SET saldo = saldo - ? WHERE id = ?;";
+        
+        try {
+            ps=con.prepareStatement(sql);
+            ps.setDouble(1, saldoNuevo);
+            ps.setInt(2, getId());
+            ps.execute();
+            return true;
+        } catch (Exception e) {
+            System.err.println(e);
+            return false;
+        }finally{
+            try {
+                con.close();
+            } catch (Exception e) {
+                System.err.println(e);
+            }
+        }
+        
     }
 
 }
