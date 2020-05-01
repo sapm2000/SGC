@@ -21,7 +21,6 @@ import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 public class catalogoFondo extends javax.swing.JFrame {
 
-
     /**
      * Creates new form catalogoFondo
      */
@@ -34,7 +33,7 @@ public class catalogoFondo extends javax.swing.JFrame {
     private static final int THUMB_SIZE = 8;
     //Aquí cambias el color de la barra
     private static final Color THUMB_COLOR = Color.BLUE;
-    
+
     public catalogoFondo() {
         initComponents();
         jTable1.getTableHeader().setDefaultRenderer(new Headercolor());
@@ -230,20 +229,22 @@ public class catalogoFondo extends javax.swing.JFrame {
     public javax.swing.JTable jTable1;
     public javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
-    
+
     static public class Headercolor extends DefaultTableCellHeaderRenderer {
-    public Headercolor () {
-        setOpaque(true);
+
+        public Headercolor() {
+            setOpaque(true);
+        }
+
+        public Component getTableCellRendererComponent(JTable mytable, Object value, boolean selected, boolean focused, int row, int column) {
+            super.getTableCellRendererComponent(mytable, value, selected, focused, row, column);
+            setBackground(new java.awt.Color(0, 94, 159));
+            setForeground(Color.white);
+            setFont(new Font("Tahoma", Font.BOLD, 14));
+            return this;
+        }
     }
-    public Component getTableCellRendererComponent(JTable mytable, Object value, boolean selected, boolean focused,int row,int column) {
-        super.getTableCellRendererComponent(mytable, value, selected, focused, row, column);
-        setBackground(new java.awt.Color(0,94,159));
-        setForeground(Color.white);
-        setFont(new Font("Tahoma", Font.BOLD, 14));
-        return this;
-    }
-}
-    
+
     public class MyScrollBarUI extends BasicScrollBarUI {
 
         @Override
@@ -281,5 +282,5 @@ public class catalogoFondo extends javax.swing.JFrame {
         }
 
     }
-    
+
 }

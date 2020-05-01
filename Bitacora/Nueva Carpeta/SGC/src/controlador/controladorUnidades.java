@@ -139,7 +139,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
 
-        modeloT.addColumn("<html>Nº <br>de Recibo<html>");
+        modeloT.addColumn("<html>Nº <br>de Recibo</html>");
         modeloT.addColumn("Mes");
         modeloT.addColumn("Año");
         modeloT.addColumn("Monto");
@@ -155,7 +155,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             columna[0] = listapagos.get(i).getId_gasto();
             columna[1] = listapagos.get(i).getMes_cierre();
             columna[2] = listapagos.get(i).getAño_cierre();
-            columna[3] = Validacion.formato1.format(listapagos.get(i).getMonto());        
+            columna[3] = Validacion.formato1.format(listapagos.get(i).getMonto());
             columna[4] = Validacion.formatoalicuota.format(listapagos.get(i).getAlicuota());
             columna[5] = listapagos.get(i).getEstado();
 

@@ -454,7 +454,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         Fondo modfon = new Fondo();
         Cuenta modcu = new Cuenta();
         CerrarMes modc = new CerrarMes();
-        controladorCuentasPorCobrar controcpc = new controladorCuentasPorCobrar(cuenco,modcuen,moduni,modfon,modcu,modc,this);
+        controladorCuentasPorCobrar controcpc = new controladorCuentasPorCobrar(cuenco, modcuen, moduni, modfon, modcu, modc, this);
 
         cuenco.setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
