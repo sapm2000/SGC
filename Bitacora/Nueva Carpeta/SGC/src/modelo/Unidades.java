@@ -381,5 +381,43 @@ public class Unidades extends Propietarios {
         }
 
     }
+        public ArrayList<Unidades> listarCbxUnidad() {
+        ArrayList listaUnidad = new ArrayList();
+        Unidades uni;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT n_unidad FROM unidades;";
+        
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                uni = new Unidades();
+
+                //prs = new Persona();
+                uni.setN_unidad(rs.getString("n_unidad"));
+
+                listaUnidad.add(uni);
+            }
+
+        } catch (Exception e) {
+            
+        } finally {
+            try {
+                con.close();
+                
+            } catch (SQLException e) {
+                System.err.println(e);
+                
+            }
+        }
+
+        return listaUnidad;
+
+    }
 
 }
