@@ -1,5 +1,6 @@
 package controlador;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -11,6 +12,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -122,6 +124,10 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
             
         }
         
+        Component[] components =vistaCuentaP.jPanel.getComponents();
+        JComponent[] com = {vistaCuentaP.jDate,vistaCuentaP.txtDescripcion, vistaCuentaP.txtMonto,vistaCuentaP.txtProveedor, vistaCuentaP.txtReferencia};
+        Validacion.copiar(components);
+        Validacion.pegar(com);
 
     }
 
@@ -175,7 +181,6 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
 
         vistaCuentaP.setVisible(true);
         vistaCuentaP.txtProveedor.setText(modCuentaP.getNom_proveedor());
-        System.out.println(modCuentaP.getNom_proveedor());
 
     }
 

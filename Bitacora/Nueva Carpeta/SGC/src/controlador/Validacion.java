@@ -1,5 +1,7 @@
 package controlador;
 
+import java.awt.Component;
+import java.awt.Event;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +12,10 @@ import java.awt.event.MouseListener;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 /**
  *
@@ -111,6 +116,26 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
 
         }
 
+    }
+     public static void pegar(JComponent[] components){
+
+        for (JComponent campo : components){
+            InputMap map = campo.getInputMap();
+            map.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
+            map.put(KeyStroke.getKeyStroke(KeyEvent.VK_INSERT, Event.SHIFT_MASK), "null");
+        }
+
+    }
+
+    public static void copiar(Component[] components){
+
+        for (Component campo : components){
+
+            if(campo instanceof JComponent){
+                InputMap map = ((JComponent)campo).getInputMap();
+                map.put(KeyStroke.getKeyStroke(KeyEvent.VK_C, Event.CTRL_MASK), "null");
+            }
+        }
     }
 
     @Override

@@ -56,7 +56,7 @@ public class cuentasPorPagar extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
+        jPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         cbxFormaP = new javax.swing.JComboBox<>();
@@ -127,100 +127,101 @@ public class cuentasPorPagar extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 750, 170));
 
-        jPanel2.setBackground(new java.awt.Color(0, 94, 159));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel.setBackground(new java.awt.Color(0, 94, 159));
+        jPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Proveedor:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
+        jPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("<html>\nForma <br> de Pago:\n</html>");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, 40));
+        jPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, 40));
 
         cbxFormaP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxFormaP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Transferencia", "Deposito", "Cheque", "Efectivo" }));
-        jPanel2.add(cbxFormaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 240, -1));
+        jPanel.add(cbxFormaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 240, -1));
 
         txtDescripcion.setBackground(new java.awt.Color(0, 94, 159));
         txtDescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtDescripcion.setForeground(new java.awt.Color(255, 255, 255));
         txtDescripcion.setBorder(null);
-        jPanel2.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 240, 20));
+        jPanel.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 240, 20));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Descripción:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 90, 30));
+        jPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 90, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("<html>\nFecha <br> de Pago:\n</html>");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, 40));
+        jPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, 40));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("<html>\nNúmero de <br> Referencia:\n</html>");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, 40));
+        jPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, 40));
 
         txtReferencia.setBackground(new java.awt.Color(0, 94, 159));
         txtReferencia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtReferencia.setForeground(new java.awt.Color(255, 255, 255));
         txtReferencia.setBorder(null);
-        jPanel2.add(txtReferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 260, 20));
+        jPanel.add(txtReferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 260, 20));
 
         cbxCuentaT.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel2.add(cbxCuentaT, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 260, -1));
+        jPanel.add(cbxCuentaT, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 260, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("<html>\nCuenta <br> Transferida:\n</html>");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, -1));
+        jPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Monto:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, -1, 20));
+        jPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, -1, 20));
 
         txtMonto.setBackground(new java.awt.Color(0, 94, 159));
         txtMonto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtMonto.setForeground(new java.awt.Color(255, 255, 255));
         txtMonto.setBorder(null);
-        jPanel2.add(txtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 260, 20));
+        jPanel.add(txtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 260, 20));
 
         cbxFondo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel2.add(cbxFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 230, 260, -1));
+        jPanel.add(cbxFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 230, 260, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("<html>\nFondo <br> Retirado:\n</html>");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, -1, -1));
+        jPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, -1, -1));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 240, 20));
+        jPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 240, 20));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 190, 260, 20));
+        jPanel.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 190, 260, 20));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 240, 20));
+        jPanel.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 240, 20));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, 260, 20));
-        jPanel2.add(jDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 240, -1));
+        jPanel.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, 260, 20));
+        jPanel.add(jDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 240, -1));
 
         txtProveedor.setBackground(new java.awt.Color(0, 94, 159));
         txtProveedor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtProveedor.setForeground(new java.awt.Color(255, 255, 255));
         txtProveedor.setBorder(null);
-        jPanel2.add(txtProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 260, 20));
+        txtProveedor.setEnabled(false);
+        jPanel.add(txtProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 260, 20));
 
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 240, 20));
+        jPanel.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 240, 20));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 750, 280));
+        jPanel1.add(jPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 750, 280));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 800, 300));
@@ -390,8 +391,8 @@ public class cuentasPorPagar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    public javax.swing.JPanel jPanel;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
