@@ -1,5 +1,6 @@
 package controlador;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -10,6 +11,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import static java.lang.String.valueOf;
 import java.util.ArrayList;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -278,6 +280,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
                 modcu.setCedula(cu.txtCedula.getText());
                 modcu.setBeneficiario(cu.txtBeneficiario.getText());
                 modcu.setN_cuenta(cu.txtN_cuenta.getText());
+               
                 modcu.setTipo(cu.jComboBox2.getSelectedItem().toString());
                 modban.setNombre_banco(cu.jComboBox1.getSelectedItem().toString());
                 if (modban.getNombre_banco().equals("Seleccione el Banco")) {
@@ -298,7 +301,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
                         if (modcu.modificarcuenta(modcu)) {
 
                             JOptionPane.showMessageDialog(null, "Registro modificado");
-                            limpiar();
+                            
                             modcu.borrarpuente(modcu);
 
                             for (int i = 0; i < cu.jTable1.getRowCount(); i++) {
@@ -438,7 +441,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     public void keyTyped(KeyEvent ke) {
 
         if (ke.getSource() == cu.txtCedula) {
-            Validacion.soloNumeros(ke);
+            
             Validacion.Espacio(ke);
             Validacion.limite(ke, cu.txtCedula.getText(), 8);
         }
@@ -474,6 +477,13 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     @Override
     public void windowOpened(WindowEvent e) {
         Llenartabla(catacu.jTable1);
+        
+        Component[] components =cu.jPanel2.getComponents();
+        JComponent[] com = {
+            cu.txtCedula,cu.txtN_cuenta, cu.txtBeneficiario
+        };
+        Validacion.copiar(components);
+        Validacion.pegar(com);
     }
 
     @Override

@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -14,6 +15,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -524,6 +526,13 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
     public void windowOpened(WindowEvent e) {
         modcuo.setId_condominio(panta1.rif.getText());
         llenartablaCuotasEspeciales(catacuoe.jTable1);
+        
+        Component[] components =cuotae.jPanel2.getComponents();
+        JComponent[] com = {
+            cuotae.txtNmeses,cuotae.txaObservaciones, cuotae.txtMonto
+        };
+        Validacion.copiar(components);
+        Validacion.pegar(com);
     }
 
     @Override

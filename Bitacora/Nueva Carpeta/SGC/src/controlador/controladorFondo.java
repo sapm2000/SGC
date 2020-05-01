@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -14,6 +15,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -261,11 +263,6 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
         Boolean resultado = true;
         String msj = "";
 
-        if (fon.txaDescripcion.getText().isEmpty()) {
-
-            msj += "El campo descripción no puede estar vacío\n";
-            resultado = false;
-        }
 
         if (fon.txtMontoInicial.getText().isEmpty()) {
 
@@ -279,11 +276,6 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
             resultado = false;
         }
 
-        if (fon.txaObservaciones.getText().isEmpty()) {
-
-            msj += "El campo observaciones no puede estar vacío\n";
-            resultado = false;
-        }
 
         if (!resultado) {
 
@@ -375,6 +367,13 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
     public void windowOpened(WindowEvent e) {
         modfon.setId_condominio(panta1.rif.getText());
         Llenartabla(catafon.jTable1);
+        
+        Component[] components =fon.jPanel2.getComponents();
+        JComponent[] com = {
+            fon.txtTipo, fon.txtMontoInicial
+        };
+        Validacion.copiar(components);
+        Validacion.pegar(com);
     }
 
     @Override

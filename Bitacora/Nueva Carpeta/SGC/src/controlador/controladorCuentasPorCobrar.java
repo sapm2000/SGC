@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -15,6 +16,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import static java.lang.String.valueOf;
 import java.util.ArrayList;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -335,6 +337,13 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
         moduni.llenar_unidades(cuenco.jComboUnidad);
         modcu.llenar_cuentas(cuenco.jComboCuenta);
         modfon.llenar_fondo(cuenco.jComboFondo);
+        
+        Component[] components =cuenco.jPanel2.getComponents();
+        JComponent[] com = {
+            cuenco.txtReferencia,cuenco.txtDescripcion, cuenco.txtMonto
+        };
+        Validacion.copiar(components);
+        Validacion.pegar(com);
     }
 
     @Override

@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -15,6 +16,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import static java.lang.String.valueOf;
 import java.util.ArrayList;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -436,6 +438,13 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
     @Override
     public void windowOpened(WindowEvent e) {
         Llenartablainteres(catain.jTable1);
+        
+        Component[] components =in.jPanel2.getComponents();
+        JComponent[] com = {
+            in.txtFactor,in.txtNombreinteres
+        };
+        Validacion.copiar(components);
+        Validacion.pegar(com);
     }
 
     @Override

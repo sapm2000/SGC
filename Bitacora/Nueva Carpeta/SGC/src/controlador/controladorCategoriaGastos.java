@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -22,6 +23,7 @@ import modelo.CategoriaGasto;
 import vista.catalogoCategoriaGastos;
 import vista.categoriaGastos;
 import java.util.ArrayList;
+import javax.swing.JComponent;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -262,6 +264,13 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
     @Override
     public void windowOpened(WindowEvent e) {
         Llenartabla(catacg.tabla_categoria_gastos);
+        
+        Component[] components =cg.jPanel2.getComponents();
+        JComponent[] com = {
+            cg.txtnombre
+        };
+        Validacion.copiar(components);
+        Validacion.pegar(com);
     }
 
     @Override

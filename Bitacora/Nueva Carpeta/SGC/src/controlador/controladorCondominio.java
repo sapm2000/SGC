@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -24,6 +25,7 @@ import vista.PantallaPrincipal1;
 import vista.catalogoCondominio;
 import vista.condominio;
 import java.util.ArrayList;
+import javax.swing.JComponent;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import sgc.SGC;
@@ -76,6 +78,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
+        
 
         modeloT.addColumn("Rif");
         modeloT.addColumn("Razón Social");
@@ -271,13 +274,13 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
     @Override
     public void keyTyped(KeyEvent ke) {
         if (ke.getSource() == condo.txtRif) {
-            Validacion.soloNumeros(ke);
+            
             Validacion.Espacio(ke);
             Validacion.limite(ke, condo.txtRif.getText(), 15);
         }
         if (ke.getSource() == condo.txtRazonS) {
 
-            Validacion.soloLetras(ke);
+            
 
             Validacion.limite(ke, condo.txtRazonS.getText(), 150);
         }
@@ -312,6 +315,13 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
     @Override
     public void windowOpened(WindowEvent e) {
         Llenartabla(cataco.jTable1);
+        
+        Component[] components =condo.jPanel2.getComponents();
+        JComponent[] com = {
+            condo.txtRif,condo.txtRazonS, condo.txtTelefono, condo.txtCorreo
+        };
+        Validacion.copiar(components);
+        Validacion.pegar(com);
     }
 
     @Override

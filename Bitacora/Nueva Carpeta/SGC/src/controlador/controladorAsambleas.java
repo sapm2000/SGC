@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -15,6 +16,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import static java.lang.String.valueOf;
 import java.util.ArrayList;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -439,6 +441,13 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
     public void windowOpened(WindowEvent e) {
         modasa.setId_condominio(panta1.rif.getText());
         Llenartablaasambleas(cataa.jTable1);
+        
+        Component[] components =as.jPanel4.getComponents();
+        JComponent[] com = {
+            as.txtNombreAsamblea, as.jDateChooser2
+        };
+        Validacion.copiar(components);
+        Validacion.pegar(com);
     }
 
     @Override

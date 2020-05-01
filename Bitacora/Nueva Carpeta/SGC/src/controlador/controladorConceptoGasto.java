@@ -1,5 +1,6 @@
 package controlador;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -11,6 +12,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -292,6 +294,13 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
     @Override
     public void windowOpened(WindowEvent e) {
         Llenartabla(catacga.jTable);
+        
+        Component[] components =cga.jPanel2.getComponents();
+        JComponent[] com = {
+            cga.txtNombreC
+        };
+        Validacion.copiar(components);
+        Validacion.pegar(com);
     }
 
     @Override
