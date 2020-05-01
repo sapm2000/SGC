@@ -41,9 +41,9 @@ public class buscarPropietario extends javax.swing.JFrame {
         tablaprop.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         setLocationRelativeTo(null);
-        
+
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-        
+
         tcr.setVerticalAlignment(SwingConstants.CENTER);
         tablaprop.getColumnModel().getColumn(0).setCellRenderer(tcr);
         tablaprop.getColumnModel().getColumn(1).setCellRenderer(tcr);

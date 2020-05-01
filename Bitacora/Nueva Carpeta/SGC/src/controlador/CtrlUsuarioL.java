@@ -21,10 +21,8 @@ public class CtrlUsuarioL implements ActionListener {
         vistaU.btnEnviar.addActionListener(this);
         vistaU.txtUsuario.addActionListener(this);
         vistaU.txtPassword.addActionListener(this);
-        
+
         vistaU.checkViewPass.addActionListener(this);
-        
-       
 
     }
 

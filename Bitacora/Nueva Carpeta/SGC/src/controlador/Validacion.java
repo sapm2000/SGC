@@ -21,6 +21,7 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
     public static DecimalFormatSymbols simbolos = DecimalFormatSymbols.getInstance(Locale.ENGLISH);
 
     public static DecimalFormat formato1 = new DecimalFormat("#.##", simbolos);
+    public static DecimalFormat formatoalicuota = new DecimalFormat("#.##%", simbolos);
 
     /*---FUNCIÓN PARA EVITAR EL COPY & PASTE---*/
     public static void evitarPegar(java.awt.event.KeyEvent evt) {

@@ -6,8 +6,6 @@
 package vista;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -15,7 +13,6 @@ import java.awt.RenderingHints;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
-import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 
 /**
@@ -36,7 +33,7 @@ public class proveedores extends javax.swing.JFrame {
     private static final int THUMB_SIZE = 8;
     //Aquí cambias el color de la barra
     private static final Color THUMB_COLOR = Color.BLUE;
-    
+
     public proveedores() {
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
@@ -404,7 +401,7 @@ public class MyScrollBarUI extends BasicScrollBarUI {
         @Override
         public void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
             trackBounds.contains(thumbRect);
-            g.setColor(new java.awt.Color(255,255,255));
+            g.setColor(new java.awt.Color(255, 255, 255));
             g.drawRect(0, 0, 500, 500);
             g.fillRect(0, 0, 500, 500);
 

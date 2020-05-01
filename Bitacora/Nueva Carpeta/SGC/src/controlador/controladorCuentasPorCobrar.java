@@ -120,9 +120,7 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
             columna[0] = listaCierremes.get(i).getId_gasto();
             columna[1] = listaCierremes.get(i).getMes_cierre();
             columna[2] = listaCierremes.get(i).getAño_cierre();
-            double var4 = listaCierremes.get(i).getAlicuota() * 100;
-            String var5 = var4 + "%";
-            columna[3] = var5;
+            columna[3] = Validacion.formatoalicuota.format(listaCierremes.get(i).getAlicuota());
             columna[4] = Validacion.formato1.format(listaCierremes.get(i).getMonto());
             columna[5] = Validacion.formato1.format(listaCierremes.get(i).getSaldo_restante());
             columna[6] = listaCierremes.get(i).getEstado();

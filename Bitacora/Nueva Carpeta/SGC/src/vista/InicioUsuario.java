@@ -1,4 +1,5 @@
 package vista;
+
 import controlador.CtrlUsuarioL;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -7,25 +8,23 @@ import javax.swing.JOptionPane;
 public class InicioUsuario extends javax.swing.JFrame {
 
     CtrlUsuarioL ctrlU;
-    
+
     public InicioUsuario() {
         initComponents();
-        
+
         this.setLocationRelativeTo(null);
-        
+
         ctrlU = new CtrlUsuarioL(this);
-        
+
     }
-    
-    
-    public Image getIconImagine(){
-        
+
+    public Image getIconImagine() {
+
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("img/LogoSistema.png"));
-        
+
         return retValue;
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -233,7 +232,6 @@ public class InicioUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_checkViewPassActionPerformed
 //le damos la accion al boton de cerrar. y mostrar una ventana de confirmacion
-   
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

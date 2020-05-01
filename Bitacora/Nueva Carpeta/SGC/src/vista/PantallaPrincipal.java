@@ -22,7 +22,6 @@ import modelo.Interes;
 import modelo.Proveedores;
 import modelo.ModeloConceptoGastos;
 
-
 /**
  *
  * @author Anthony
@@ -283,12 +282,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         condominio condo = new condominio();
         PantallaPrincipal1 panta1 = new PantallaPrincipal1();
         Condominio co = new Condominio();
-        
-        controladorCondominio controcon = new controladorCondominio(cataCon, condo, panta1,this,co);
+
+        controladorCondominio controcon = new controladorCondominio(cataCon, condo, panta1, this, co);
 
         cataCon.setVisible(true);
-        
-
 
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -297,9 +294,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         catalogoBanco cataBan = new catalogoBanco();
         banco ban = new banco();
         Banco modban = new Banco();
-        controladorBanco controb = new controladorBanco(ban, cataBan,modban);
-       
-       
+        controladorBanco controb = new controladorBanco(ban, cataBan, modban);
+
         cataBan.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem3ActionPerformed
@@ -309,8 +305,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         categoriaGastos gas = new categoriaGastos();
         CategoriaGasto modcg = new CategoriaGasto();
         controladorCategoriaGastos controcg = new controladorCategoriaGastos(catacg, gas, modcg);
-       
-       
+
         catacg.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem4ActionPerformed
@@ -319,13 +314,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         catalogoConceptoGasto catacog = new catalogoConceptoGasto();
         conceptoGasto cga = new conceptoGasto();
         ModeloConceptoGastos modConGas = new ModeloConceptoGastos();
-        CategoriaGasto modCat = new CategoriaGasto(); 
-       
+        CategoriaGasto modCat = new CategoriaGasto();
+
         controladorConceptoGasto controcga = new controladorConceptoGasto(catacog, cga, modConGas, modCat);
         catacog.btnNuevoRegistro.setEnabled(true);
         catacog.setVisible(true);
-
-
 
         catacog.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
@@ -337,7 +330,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         Banco modban = new Banco();
         Condominio modcon = new Condominio();
         controladorCuenta controcu = new controladorCuenta(catacu, cu, modcu, modban, modcon);
-       
+
         catacu.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
@@ -345,8 +338,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         catalogoProveedores cataprov = new catalogoProveedores();
         proveedores prov = new proveedores();
         Proveedores modpro = new Proveedores();
-        controladorProveedores controProv = new controladorProveedores(cataprov, prov,modpro);
-        
+        controladorProveedores controProv = new controladorProveedores(cataprov, prov, modpro);
 
         cataprov.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
@@ -369,15 +361,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         catalogoUsuario catausu = new catalogoUsuario();
         GestionarUsuario gestusu = new GestionarUsuario();
-        
+
         CrudUsuario modc = new CrudUsuario();
 
         CtrlUsuario ctrl = new CtrlUsuario(modc, gestusu, catausu);
         catausu.setVisible(true);
 
-      
-
-        
 
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
@@ -406,8 +395,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         interes in = new interes();
         Condominio modcon = new Condominio();
         Interes modin = new Interes();
-        controladorInteres controin = new controladorInteres(in, catain, modcon,modin);
-       
+        controladorInteres controin = new controladorInteres(in, catain, modcon, modin);
+
         catain.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 

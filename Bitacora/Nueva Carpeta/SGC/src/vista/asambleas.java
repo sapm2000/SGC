@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package vista;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -15,10 +16,9 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicScrollBarUI;
-import javax.swing.table.DefaultTableCellRenderer;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
+
 /**
  *
  * @author rma
@@ -28,7 +28,7 @@ public class asambleas extends javax.swing.JFrame {
     /**
      * Creates new form Asambleas
      */
-        //Aquí cambias la trasparencia de la barra mientras el cursor está encima. Mientras mál alto el valor, menos transparente
+    //Aquí cambias la trasparencia de la barra mientras el cursor está encima. Mientras mál alto el valor, menos transparente
     private static final int SCROLL_BAR_ALPHA_ROLLOVER = 150;
     //Aquí cambias la trasparencia de la barra. Mientras mál alto el valor, menos transparente
     private static final int SCROLL_BAR_ALPHA = 100;
@@ -37,7 +37,7 @@ public class asambleas extends javax.swing.JFrame {
     private static final int THUMB_SIZE = 8;
     //Aquí cambias el color de la barra
     private static final Color THUMB_COLOR = Color.BLUE;
-    
+
     public asambleas() {
         initComponents();
         jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
@@ -45,8 +45,7 @@ public class asambleas extends javax.swing.JFrame {
         jScrollPane4.getVerticalScrollBar().setUI(new MyScrollBarUI());
         txaDescripcion.setLineWrap(true);
         setLocationRelativeTo(null);
-        
-        
+
     }
 
     /**
@@ -389,23 +388,26 @@ public class asambleas extends javax.swing.JFrame {
     public javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables
     static public class Headercolor extends DefaultTableCellHeaderRenderer {
-    public Headercolor () {
-        setOpaque(true);
+
+        public Headercolor() {
+            setOpaque(true);
+        }
+
+        public Component getTableCellRendererComponent(JTable jTable1, Object value, boolean selected, boolean focused, int row, int column) {
+            super.getTableCellRendererComponent(jTable1, value, selected, focused, row, column);
+            setBackground(new java.awt.Color(0, 94, 159));
+            setForeground(Color.white);
+            setFont(new Font("Tahoma", Font.BOLD, 14));
+            return this;
+        }
     }
-    public Component getTableCellRendererComponent(JTable jTable1, Object value, boolean selected, boolean focused,int row,int column) {
-        super.getTableCellRendererComponent(jTable1, value, selected, focused, row, column);
-        setBackground(new java.awt.Color(0,94,159));
-        setForeground(Color.white);
-        setFont(new Font("Tahoma", Font.BOLD, 14));
-        return this;
-    }
-}
+
     public class MyScrollBarUI extends BasicScrollBarUI {
 
         @Override
         public void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
             trackBounds.contains(thumbRect);
-            g.setColor(new java.awt.Color(255,255,255));
+            g.setColor(new java.awt.Color(255, 255, 255));
             g.drawRect(0, 0, 500, 500);
             g.fillRect(0, 0, 500, 500);
 

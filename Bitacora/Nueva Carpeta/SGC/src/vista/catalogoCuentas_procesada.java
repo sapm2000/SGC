@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vista;
 
 import java.awt.Color;
@@ -19,14 +14,10 @@ import javax.swing.JTable;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 
-/**
- *
- * @author rma
- */
-public class catalogoCierreMes extends javax.swing.JFrame {
+public class catalogoCuentas_procesada extends javax.swing.JFrame {
 
     /**
-     * Creates new form catalogoCierreMes
+     * Creates new form catalogoGastoComun
      */
     //Aquí cambias la trasparencia de la barra mientras el cursor está encima. Mientras mál alto el valor, menos transparente
     private static final int SCROLL_BAR_ALPHA_ROLLOVER = 150;
@@ -37,11 +28,11 @@ public class catalogoCierreMes extends javax.swing.JFrame {
     private static final int THUMB_SIZE = 8;
     //Aquí cambias el color de la barra
     private static final Color THUMB_COLOR = Color.BLUE;
-
-    public catalogoCierreMes() {
+    
+    public catalogoCuentas_procesada() {
         initComponents();
         jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
-        jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
+        jScrollPane1.getVerticalScrollBar().setUI(new catalogoCuentas_procesada.MyScrollBarUI());
         setLocationRelativeTo(null);
     }
 
@@ -54,68 +45,53 @@ public class catalogoCierreMes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton3 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        txtBuscar = new javax.swing.JTextField();
-        btnNuevo = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
+        jLabel8 = new javax.swing.JLabel();
         btnMinimizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel9 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jButton3.setText("jButton3");
+
+        jButton6.setText("jButton6");
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 54, 159), 5, true));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 94, 159), 5, true));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        txtBuscar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txtBuscar.setForeground(new java.awt.Color(204, 204, 204));
-        txtBuscar.setText("Buscar...");
-        txtBuscar.setBorder(null);
-        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 190, 30));
-
-        btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnNuevo.setForeground(new java.awt.Color(0, 94, 159));
-        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (2).png"))); // NOI18N
-        btnNuevo.setText("Nuevo Cierre de Mes");
-        btnNuevo.setBorderPainted(false);
-        btnNuevo.setContentAreaFilled(false);
-        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 210, 40));
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "N° de Cierre", "Mes", "Año"
+                "<html>N° de <br> Gasto Común</html>", "<html>Tipo de <br> Gasto</html>", "Período", "Monto", "<html>Saldo<br>Restante</html>", "<html>N° de <br> Factura</html>", "Proveedor", "Concepto", "Observaciones", "Fecha", "Estatus"
             }
         ));
         jTable1.setRowHeight(35);
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 440, 275));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 1170, 260));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("Buscar:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, -1, -1));
-
-        jSeparator1.setBackground(new java.awt.Color(0, 94, 159));
-        jSeparator1.setForeground(new java.awt.Color(0, 94, 159));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 190, 10));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 800, 300));
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
         btnMinimizar.setBorder(null);
@@ -130,7 +106,7 @@ public class catalogoCierreMes extends javax.swing.JFrame {
                 btnMinimizarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 40, 30));
+        jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 10, 40, 30));
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
         btnSalir.setBorder(null);
@@ -145,13 +121,43 @@ public class catalogoCierreMes extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, 30));
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 10, -1, 30));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Listado de Gastos Comunes");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 94, 159));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (2).png"))); // NOI18N
+        jButton2.setText("Nuevo Gasto Común");
+        jButton2.setBorder(null);
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
+        jButton2.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
+        jButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 70, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Listado de Recibos");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
+        jLabel3.setText("Buscar:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 70, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 470));
+        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
+        jTextField1.setText("Buscar...");
+        jTextField1.setBorder(null);
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 190, 20));
+
+        jSeparator1.setBackground(new java.awt.Color(0, 94, 159));
+        jSeparator1.setForeground(new java.awt.Color(0, 94, 159));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 190, 10));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, 800, 300));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1230, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -193,52 +199,54 @@ public class catalogoCierreMes extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(catalogoCierreMes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(catalogoCuentas_procesada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(catalogoCierreMes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(catalogoCuentas_procesada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(catalogoCierreMes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(catalogoCuentas_procesada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(catalogoCierreMes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(catalogoCuentas_procesada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new catalogoCierreMes().setVisible(true);
+                new catalogoCuentas_procesada().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnMinimizar;
-    public javax.swing.JButton btnNuevo;
     public javax.swing.JButton btnSalir;
+    public javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     public javax.swing.JTable jTable1;
-    public javax.swing.JTextField txtBuscar;
+    public javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
-static public class Headercolor extends DefaultTableCellHeaderRenderer {
-
-        public Headercolor() {
-            setOpaque(true);
-        }
-
-        public Component getTableCellRendererComponent(JTable jTable1, Object value, boolean selected, boolean focused, int row, int column) {
-            super.getTableCellRendererComponent(jTable1, value, selected, focused, row, column);
-            setBackground(new java.awt.Color(0, 94, 159));
-            setForeground(Color.white);
-            setFont(new Font("Tahoma", Font.BOLD, 14));
-            return this;
-        }
+    static public class Headercolor extends DefaultTableCellHeaderRenderer {
+    public Headercolor () {
+        setOpaque(true);
     }
-
+    public Component getTableCellRendererComponent(JTable jTable1, Object value, boolean selected, boolean focused,int row,int column) {
+        super.getTableCellRendererComponent(jTable1, value, selected, focused, row, column);
+        setBackground(new java.awt.Color(0,94,159));
+        setForeground(Color.white);
+        setFont(new Font("Tahoma", Font.BOLD, 14));
+        return this;
+    }
+}
+    
     public class MyScrollBarUI extends BasicScrollBarUI {
 
         @Override
@@ -276,5 +284,5 @@ static public class Headercolor extends DefaultTableCellHeaderRenderer {
         }
 
     }
-
+    
 }

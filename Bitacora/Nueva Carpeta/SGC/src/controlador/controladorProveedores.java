@@ -301,8 +301,6 @@ public class controladorProveedores implements ActionListener, WindowListener, K
         }
         if (ke.getSource() == prov.txtNombre) {
 
-            
-            
             Validacion.limite(ke, prov.txtNombre.getText(), 100);
         }
         if (ke.getSource() == prov.txtContacto) {

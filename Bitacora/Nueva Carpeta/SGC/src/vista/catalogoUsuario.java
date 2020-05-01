@@ -38,14 +38,14 @@ public class catalogoUsuario extends javax.swing.JFrame {
     private static final int THUMB_SIZE = 8;
     //Aquí cambias el color de la barra
     private static final Color THUMB_COLOR = Color.BLUE;
-    
+
     public catalogoUsuario() {
         initComponents();
         jtable.getTableHeader().setDefaultRenderer(new Headercolor());
         jScrollPane2.getVerticalScrollBar().setUI(new MyScrollBarUI());
         setLocationRelativeTo(null);
-        JButton btn1 =  new JButton ("modificar");
-        JButton btn2 = new JButton ("eliminar");
+        JButton btn1 = new JButton("modificar");
+        JButton btn2 = new JButton("eliminar");
     }
 
     /**
@@ -241,25 +241,27 @@ public class catalogoUsuario extends javax.swing.JFrame {
     public javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 
-static public class Headercolor extends DefaultTableCellHeaderRenderer {
-    public Headercolor () {
-        setOpaque(true);
-    }
-    public Component getTableCellRendererComponent(JTable mytable, Object value, boolean selected, boolean focused,int row,int column) {
-        super.getTableCellRendererComponent(mytable, value, selected, focused, row, column);
-        
-        if (value instanceof JButton) {
-            JButton btn = (JButton)value;
-            return btn;
-        }
-        setBackground(new java.awt.Color(0,94,159));
-        setForeground(Color.white);
-        setFont(new Font("Tahoma", Font.BOLD, 14));
-        return this;
-    }
-}
+    static public class Headercolor extends DefaultTableCellHeaderRenderer {
 
-public class MyScrollBarUI extends BasicScrollBarUI {
+        public Headercolor() {
+            setOpaque(true);
+        }
+
+        public Component getTableCellRendererComponent(JTable mytable, Object value, boolean selected, boolean focused, int row, int column) {
+            super.getTableCellRendererComponent(mytable, value, selected, focused, row, column);
+
+            if (value instanceof JButton) {
+                JButton btn = (JButton) value;
+                return btn;
+            }
+            setBackground(new java.awt.Color(0, 94, 159));
+            setForeground(Color.white);
+            setFont(new Font("Tahoma", Font.BOLD, 14));
+            return this;
+        }
+    }
+
+    public class MyScrollBarUI extends BasicScrollBarUI {
 
         @Override
         public void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
@@ -298,4 +300,3 @@ public class MyScrollBarUI extends BasicScrollBarUI {
     }
 
 }
-

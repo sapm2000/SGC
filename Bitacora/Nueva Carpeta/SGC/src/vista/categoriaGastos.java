@@ -5,8 +5,6 @@
  */
 package vista;
 
-
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -16,7 +14,6 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 import javax.swing.plaf.basic.BasicScrollBarUI;
-
 
 public class categoriaGastos extends javax.swing.JFrame {
 
@@ -32,12 +29,12 @@ public class categoriaGastos extends javax.swing.JFrame {
     private static final int THUMB_SIZE = 8;
     //Aquí cambias el color de la barra
     private static final Color THUMB_COLOR = Color.BLUE;
-    
+
     public categoriaGastos() {
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         txtdescripcion.setLineWrap(true);
-        
+
         setLocationRelativeTo(null);
     }
 
