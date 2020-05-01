@@ -1,5 +1,6 @@
 package vista;
 
+import controlador.controladoRegistroVisita;
 import controlador.controladorAsambleas;
 import controlador.controladorCerrarMes;
 import controlador.controladorComunicados;
@@ -11,8 +12,6 @@ import controlador.controladorGastoComun;
 import controlador.controladorPropietario;
 import controlador.controladorSancion;
 import controlador.controladorUnidades;
-import controlador.controladorVisita;
-import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
@@ -30,6 +29,7 @@ import modelo.Interes;
 import modelo.ModeloConceptoGastos;
 import modelo.Propietarios;
 import modelo.Proveedores;
+import modelo.Registro_visitas;
 import modelo.Sancion;
 import modelo.Unidades;
 
@@ -468,18 +468,15 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         catalogoCuentas_procesada catCuenPro = new catalogoCuentas_procesada();
         controladorCuenta_Pagar ctrlCuentaP = new controladorCuenta_Pagar(modCuentaP, vistaCuentaP, modFon, modCuenta, modGastoC, catCuenPro);
         vistaCuentaP.setVisible(true);
-        
+
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        registroVisitas regiv = new registroVisitas();
-        visitasAutorizadas vis = new visitasAutorizadas();
-        controladorVisita controvi = new controladorVisita(regiv, vis);
-        regiv.jButton1.setEnabled(false);
-        regiv.jButton1.setForeground(Color.gray);
-        regiv.jButton3.setEnabled(false);
-        regiv.jButton3.setForeground(Color.gray);
-        regiv.setVisible(true);
+        registroVisitas regvi = new registroVisitas();
+        Registro_visitas modRvtas = new Registro_visitas();
+        controladoRegistroVisita contVisita = new controladoRegistroVisita(regvi, modRvtas);
+
+        regvi.setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
