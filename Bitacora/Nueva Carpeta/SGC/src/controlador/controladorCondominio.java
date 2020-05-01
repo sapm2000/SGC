@@ -271,7 +271,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
     @Override
     public void keyTyped(KeyEvent ke) {
         if (ke.getSource() == condo.txtRif) {
-            Validacion.soloNumeros(ke);
+            
             Validacion.Espacio(ke);
             Validacion.limite(ke, condo.txtRif.getText(), 15);
         }
