@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -15,6 +16,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import static java.lang.String.valueOf;
 import java.util.ArrayList;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -488,6 +490,13 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
     ) {
         modsan.setId_condominio(panta1.rif.getText());
         LlenartablaSancion(catasan.jTable1);
+        
+        Component[] components =san.jPanel2.getComponents();
+        JComponent[] com = {
+            san.txtmonto
+        };
+        Validacion.copiar(components);
+        Validacion.pegar(com);
     }
 
     @Override

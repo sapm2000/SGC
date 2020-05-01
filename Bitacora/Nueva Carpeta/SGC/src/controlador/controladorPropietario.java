@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -14,6 +15,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -308,7 +310,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         if (ke.getSource() == pro.txtNombre) {
 
             Validacion.soloLetras(ke);
-            Validacion.Espacio(ke);
+            
             Validacion.limite(ke, pro.txtNombre.getText(), 30);
         }
         if (ke.getSource() == pro.txtApellido) {
@@ -350,6 +352,12 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         modpro.setId_condominio(panta1.rif.getText());
         Llenartabla(catapro.TablaPropietarios);
 
+        Component[] components =pro.jPanel2.getComponents();
+        JComponent[] com = {
+            pro.txtCedula,pro.txtNombre, pro.txtApellido, pro.txtTelefono, pro.txtCorreo
+        };
+        Validacion.copiar(components);
+        Validacion.pegar(com);
     }
 
     @Override

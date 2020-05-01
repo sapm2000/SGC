@@ -99,6 +99,7 @@ public class detallecuenta extends javax.swing.JFrame {
         txtUnidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtUnidad.setForeground(new java.awt.Color(255, 255, 255));
         txtUnidad.setBorder(null);
+        txtUnidad.setEnabled(false);
         jPanel2.add(txtUnidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 180, 20));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -131,12 +132,14 @@ public class detallecuenta extends javax.swing.JFrame {
         txtMesesdeuda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtMesesdeuda.setForeground(new java.awt.Color(255, 255, 255));
         txtMesesdeuda.setBorder(null);
+        txtMesesdeuda.setEnabled(false);
         jPanel2.add(txtMesesdeuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 180, 20));
 
         txtPropietarios.setBackground(new java.awt.Color(0, 94, 159));
         txtPropietarios.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPropietarios.setForeground(new java.awt.Color(255, 255, 255));
         txtPropietarios.setBorder(null);
+        txtPropietarios.setEnabled(false);
         jPanel2.add(txtPropietarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 180, 20));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
@@ -292,7 +295,7 @@ public class detallecuenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    public javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

@@ -85,6 +85,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
+        
 
         modeloT.addColumn("Nº de Cierre");
         modeloT.addColumn("Mes");
@@ -260,7 +261,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                                         modc.actualizar_cuota(modc);
 
                                                     } else {
-                                                        modc.setEstado("Mensualidaden Proceso");
+                                                        modc.setEstado("Mensualidad en Proceso");
                                                         modc.actualizar_cuota(modc);
 
                                                     }

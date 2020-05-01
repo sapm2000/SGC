@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -14,6 +15,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -636,6 +638,13 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
     public void windowOpened(WindowEvent e) {
         moduni.setId_condominio(panta1.rif.getText());
         llenartablaunidades(catauni.jTable1);
+        
+        Component[] components =uni.jPanel2.getComponents();
+        JComponent[] com = {
+            uni.txtCedula,uni.txtNumeroUnidad, uni.txtArea, uni.txtTelefono, uni.txtCorreo, uni.txadireccion, uni.txtNombrePropietario
+        };
+        Validacion.copiar(components);
+        Validacion.pegar(com);
     }
 
     @Override

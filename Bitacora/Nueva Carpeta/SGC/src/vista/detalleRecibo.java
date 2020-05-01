@@ -152,6 +152,7 @@ public class detalleRecibo extends javax.swing.JFrame {
         txtUnidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtUnidad.setForeground(new java.awt.Color(255, 255, 255));
         txtUnidad.setBorder(null);
+        txtUnidad.setEnabled(false);
         jPanel2.add(txtUnidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 240, 20));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -168,12 +169,14 @@ public class detalleRecibo extends javax.swing.JFrame {
         txtAlicuota.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtAlicuota.setForeground(new java.awt.Color(255, 255, 255));
         txtAlicuota.setBorder(null);
+        txtAlicuota.setEnabled(false);
         jPanel2.add(txtAlicuota, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 240, 20));
 
         txtPropietarios.setBackground(new java.awt.Color(0, 94, 159));
         txtPropietarios.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPropietarios.setForeground(new java.awt.Color(255, 255, 255));
         txtPropietarios.setBorder(null);
+        txtPropietarios.setEnabled(false);
         jPanel2.add(txtPropietarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 240, 20));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -195,18 +198,21 @@ public class detalleRecibo extends javax.swing.JFrame {
         txtTotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtTotal.setForeground(new java.awt.Color(255, 255, 255));
         txtTotal.setBorder(null);
+        txtTotal.setEnabled(false);
         jPanel2.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 230, 20));
 
         txtMes.setBackground(new java.awt.Color(0, 94, 159));
         txtMes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtMes.setForeground(new java.awt.Color(255, 255, 255));
         txtMes.setBorder(null);
+        txtMes.setEnabled(false);
         jPanel2.add(txtMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 230, 20));
 
         txtId.setBackground(new java.awt.Color(0, 94, 159));
         txtId.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtId.setForeground(new java.awt.Color(255, 255, 255));
         txtId.setBorder(null);
+        txtId.setEnabled(false);
         jPanel2.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 230, 20));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
@@ -440,7 +446,7 @@ public class detalleRecibo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    public javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

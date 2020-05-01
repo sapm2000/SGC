@@ -1,5 +1,6 @@
 package controlador;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -10,6 +11,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -272,7 +274,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         if (ke.getSource() == ban.txtnombre_banco) {
             Validacion.soloLetras(ke);
             Validacion.limite(ke, ban.txtnombre_banco.getText(), 30);
-            Validacion.evitarPegar(ke);
+            
         }
 
     }
@@ -297,6 +299,12 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     public void windowOpened(WindowEvent e) {
         Llenartabla(cban.tabla_bancos);
 
+        Component[] components =ban.jPanel2.getComponents();
+        JComponent[] com = {
+            ban.txtnombre_banco
+        };
+        Validacion.copiar(components);
+        Validacion.pegar(com);
     }
 
     @Override

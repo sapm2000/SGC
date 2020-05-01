@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -15,6 +16,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -259,6 +261,13 @@ public class controladorProveedores implements ActionListener, WindowListener, K
     @Override
     public void windowOpened(WindowEvent e) {
         Llenartabla(cataprov.TablaProveedores);
+        
+        Component[] components =prov.jPanel2.getComponents();
+        JComponent[] com = {
+            prov.txtCedula,prov.txtNombre, prov.txtContacto, prov.txtTelefono, prov.txtCorreo
+        };
+        Validacion.copiar(components);
+        Validacion.pegar(com);
     }
 
     @Override
@@ -295,7 +304,7 @@ public class controladorProveedores implements ActionListener, WindowListener, K
     public void keyTyped(KeyEvent ke) {
 
         if (ke.getSource() == prov.txtCedula) {
-            Validacion.soloNumeros(ke);
+            
             Validacion.Espacio(ke);
             Validacion.limite(ke, prov.txtCedula.getText(), 15);
         }

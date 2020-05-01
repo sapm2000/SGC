@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -16,6 +17,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -416,7 +418,7 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
             Validacion.limite(e, gc.txaObservaciones.getText(), 500);
         }
         if (e.getSource() == gc.txtnombreprov) {
-            Validacion.soloNumeros(e);
+            
             Validacion.Espacio(e);
             Validacion.limite(e, gc.txtnombreprov.getText(), 15);
         }
@@ -449,6 +451,13 @@ public class controladorGastoComun implements ActionListener, ItemListener, Mous
     public void windowOpened(WindowEvent e) {
         modgac.setId_condominio(panta1.rif.getText());
         LlenartablaGastocomun(catagc.jTable1);
+        
+        Component[] components =gc.jPanel2.getComponents();
+        JComponent[] com = {
+            gc.txtNumerofactura,gc.txaObservaciones, gc.txtMonto, gc.txtnombreprov
+        };
+        Validacion.copiar(components);
+        Validacion.pegar(com);
     }
 
     @Override
