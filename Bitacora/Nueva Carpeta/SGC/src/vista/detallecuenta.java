@@ -18,6 +18,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JTable;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
+
 /**
  *
  * @author rma
@@ -27,7 +28,7 @@ public class detallecuenta extends javax.swing.JFrame {
     /**
      * Creates new form detallecuenta1
      */
-   //Aquí cambias la trasparencia de la barra mientras el cursor está encima. Mientras mál alto el valor, menos transparente
+    //Aquí cambias la trasparencia de la barra mientras el cursor está encima. Mientras mál alto el valor, menos transparente
     private static final int SCROLL_BAR_ALPHA_ROLLOVER = 150;
     //Aquí cambias la trasparencia de la barra. Mientras mál alto el valor, menos transparente
     private static final int SCROLL_BAR_ALPHA = 100;
@@ -36,7 +37,7 @@ public class detallecuenta extends javax.swing.JFrame {
     private static final int THUMB_SIZE = 8;
     //Aquí cambias el color de la barra
     private static final Color THUMB_COLOR = Color.BLUE;
-    
+
     public detallecuenta() {
         initComponents();
         jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
@@ -307,18 +308,20 @@ public class detallecuenta extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     static public class Headercolor extends DefaultTableCellHeaderRenderer {
-    public Headercolor () {
-        setOpaque(true);
+
+        public Headercolor() {
+            setOpaque(true);
+        }
+
+        public Component getTableCellRendererComponent(JTable jTable1, Object value, boolean selected, boolean focused, int row, int column) {
+            super.getTableCellRendererComponent(jTable1, value, selected, focused, row, column);
+            setBackground(new java.awt.Color(0, 94, 159));
+            setForeground(Color.white);
+            setFont(new Font("Tahoma", Font.BOLD, 14));
+            return this;
+        }
     }
-    public Component getTableCellRendererComponent(JTable jTable1, Object value, boolean selected, boolean focused,int row,int column) {
-        super.getTableCellRendererComponent(jTable1, value, selected, focused, row, column);
-        setBackground(new java.awt.Color(0,94,159));
-        setForeground(Color.white);
-        setFont(new Font("Tahoma", Font.BOLD, 14));
-        return this;
-    }
-}
-    
+
     public class MyScrollBarUI extends BasicScrollBarUI {
 
         @Override
@@ -356,5 +359,5 @@ public class detallecuenta extends javax.swing.JFrame {
         }
 
     }
-    
+
 }

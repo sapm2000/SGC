@@ -6,24 +6,22 @@
 package vista;
 
 import javax.swing.JOptionPane;
-import controlador.CtrlUsuario;
-import javax.swing.JButton;
 
 /**
  *
  * @author Anthony
  */
 public class GestionarUsuario extends javax.swing.JFrame {
-     //CtrlUsuario ctrl = new CtrlUsuario(this);
+    //CtrlUsuario ctrl = new CtrlUsuario(this);
+
     /**
      * Creates new form GestionarUsuario
      */
     public GestionarUsuario() {
         initComponents();
         this.setLocationRelativeTo(null);
-       
+
     }
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -473,8 +471,7 @@ public class GestionarUsuario extends javax.swing.JFrame {
             }
         });
     }
-    
-   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnEliminar;

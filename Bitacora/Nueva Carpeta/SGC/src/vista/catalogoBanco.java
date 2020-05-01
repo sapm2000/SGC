@@ -37,7 +37,7 @@ public class catalogoBanco extends javax.swing.JFrame {
     private static final int THUMB_SIZE = 8;
     //Aquí cambias el color de la barra
     private static final Color THUMB_COLOR = Color.BLUE;
-    
+
     public catalogoBanco() {
         initComponents();
         tabla_bancos.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
@@ -190,7 +190,7 @@ public class catalogoBanco extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void tabla_bancosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_bancosMouseClicked
-    
+
     }//GEN-LAST:event_tabla_bancosMouseClicked
 
     /**
@@ -257,13 +257,13 @@ public class catalogoBanco extends javax.swing.JFrame {
             return this;
         }
     }
- 
-public class MyScrollBarUI extends BasicScrollBarUI {
+
+    public class MyScrollBarUI extends BasicScrollBarUI {
 
         @Override
         public void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
             trackBounds.contains(thumbRect);
-            g.setColor(new java.awt.Color(255,255,255));
+            g.setColor(new java.awt.Color(255, 255, 255));
             g.drawRect(0, 0, 500, 500);
             g.fillRect(0, 0, 500, 500);
 
@@ -295,5 +295,5 @@ public class MyScrollBarUI extends BasicScrollBarUI {
         }
 
     }
- 
+
 }

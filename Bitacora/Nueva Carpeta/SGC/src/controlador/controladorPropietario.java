@@ -314,7 +314,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         if (ke.getSource() == pro.txtApellido) {
 
             Validacion.soloLetras(ke);
-           
+
             Validacion.limite(ke, pro.txtApellido.getText(), 100);
         }
         if (ke.getSource() == pro.txtTelefono) {

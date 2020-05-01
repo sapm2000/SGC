@@ -18,11 +18,8 @@ import sun.swing.table.DefaultTableCellHeaderRenderer;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-
 
 /**
  *
@@ -42,14 +39,13 @@ public class tipoUsuario extends javax.swing.JFrame {
     private static final int THUMB_SIZE = 8;
     //Aquí cambias el color de la barra
     private static final Color THUMB_COLOR = Color.BLUE;
-    
-    
+
     public tipoUsuario() {
         initComponents();
         jTable1.getTableHeader().setDefaultRenderer(new catalogoUnidades.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         setLocationRelativeTo(null);
-        
+
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         jTable1.getColumnModel().getColumn(0).setCellRenderer(tcr);
@@ -334,7 +330,7 @@ public class tipoUsuario extends javax.swing.JFrame {
         @Override
         public void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
             trackBounds.contains(thumbRect);
-            g.setColor(new java.awt.Color(255,255,255));
+            g.setColor(new java.awt.Color(255, 255, 255));
             g.drawRect(0, 0, 500, 500);
             g.fillRect(0, 0, 500, 500);
 
@@ -366,6 +362,5 @@ public class tipoUsuario extends javax.swing.JFrame {
         }
 
     }
-    
-    
+
 }

@@ -10,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -227,12 +226,11 @@ public class Interes extends Condominio {
 
             }
 
-        
-    }
+        }
 
         return listainteres;
     }
-    
+
     public ArrayList<Interes> listarInteresCerrames() {
         ArrayList listainteres = new ArrayList();
         Interes modin;
@@ -255,7 +253,6 @@ public class Interes extends Condominio {
                 modin.setNombre(rs.getString(2));
                 modin.setFactor(rs.getDouble(3));
                 modin.setEstado(rs.getString(4));
-              
 
                 listainteres.add(modin);
             }

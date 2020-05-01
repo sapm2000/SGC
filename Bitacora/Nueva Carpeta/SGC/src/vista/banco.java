@@ -7,8 +7,6 @@ package vista;
 
 import javax.swing.JOptionPane;
 
-
-
 public class banco extends javax.swing.JFrame {
 
     /**

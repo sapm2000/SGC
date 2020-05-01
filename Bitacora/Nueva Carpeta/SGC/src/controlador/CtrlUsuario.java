@@ -1,6 +1,5 @@
 package controlador;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -13,7 +12,6 @@ import javax.swing.JOptionPane;
 import modelo.CrudUsuario;
 import vista.GestionarUsuario;
 import vista.catalogoUsuario;
-import controlador.Validacion;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
@@ -65,55 +63,57 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
                 modC.setNombre(vistaGU.txtNombre.getText());
                 modC.setApellido(vistaGU.txtApellido.getText());
                 modC.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
-                if (modC.getTipo().equals("Seleccione un tipo de usuario"))JOptionPane.showMessageDialog(null, "seleccione un tipo de usuario");
-                else {
-                modC.setNtelefono(vistaGU.txtTelefono.getText());
-
-                if (modC.registrar(modC)) {
-
-                    JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
-                    Llenartabla(catausu.jtable);
-
+                if (modC.getTipo().equals("Seleccione un tipo de usuario")) {
+                    JOptionPane.showMessageDialog(null, "seleccione un tipo de usuario");
                 } else {
+                    modC.setNtelefono(vistaGU.txtTelefono.getText());
 
-                    JOptionPane.showMessageDialog(null, "Registro Duplicado");
+                    if (modC.registrar(modC)) {
+
+                        JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
+                        Llenartabla(catausu.jtable);
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Registro Duplicado");
+
+                    }
 
                 }
-                
             }
         }
-        }
-        
-            if (e.getSource() == vistaGU.btnModificar) {
-                if (validar()) {
+
+        if (e.getSource() == vistaGU.btnModificar) {
+            if (validar()) {
                 modC.setUsuario(vistaGU.txtUsuario.getText());
                 modC.setNombre(vistaGU.txtNombre.getText());
                 modC.setPassword(vistaGU.jpPassword.getText());
                 modC.setApellido(vistaGU.txtApellido.getText());
                 modC.setTipo(vistaGU.cbxTipo.getSelectedItem().toString());
-                if (modC.getTipo().equals("Seleccione un tipo de usuario"))JOptionPane.showMessageDialog(null, "seleccione un tipo de usuario");
-                else {
-                modC.setNtelefono(vistaGU.txtTelefono.getText());
+                if (modC.getTipo().equals("Seleccione un tipo de usuario")) {
+                    JOptionPane.showMessageDialog(null, "seleccione un tipo de usuario");
+                } else {
+                    modC.setNtelefono(vistaGU.txtTelefono.getText());
 
-                if (vistaGU.jpPassword.getText().isEmpty()) {
-                    if (modC.modificar(modC)) {
+                    if (vistaGU.jpPassword.getText().isEmpty()) {
+                        if (modC.modificar(modC)) {
+
+                            JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
+                            Llenartabla(catausu.jtable);
+                            this.vistaGU.dispose();
+                            limpiar();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "El nombre de usuario ya esta siendo utilizado");
+
+                        }
+
+                    } else if (modC.modificarC(modC)) {
 
                         JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
                         Llenartabla(catausu.jtable);
                         this.vistaGU.dispose();
                         limpiar();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "El nombre de usuario ya esta siendo utilizado");
-
                     }
-
-                } else if (modC.modificarC(modC)) {
-
-                    JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
-                    Llenartabla(catausu.jtable);
-                    this.vistaGU.dispose();
-                    limpiar();
-                }
                 }
 
             }

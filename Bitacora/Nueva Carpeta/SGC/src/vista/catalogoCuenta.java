@@ -5,7 +5,6 @@
  */
 package vista;
 
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -37,13 +36,13 @@ public class catalogoCuenta extends javax.swing.JFrame {
     private static final int THUMB_SIZE = 8;
     //Aquí cambias el color de la barra
     private static final Color THUMB_COLOR = Color.BLUE;
-    
+
     public catalogoCuenta() {
         initComponents();
         jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         setLocationRelativeTo(null);
-       
+
     }
 
     /**
@@ -212,18 +211,17 @@ public class catalogoCuenta extends javax.swing.JFrame {
 
     DefaultTableModel dm;
 
-/* Método filtro*/
-private void filtro(String consulta, JTable jtableBuscar){
+    /* Método filtro*/
+    private void filtro(String consulta, JTable jtableBuscar) {
         dm = (DefaultTableModel) jtableBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
         jtableBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));
-}
-
+    }
 
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-         int fila = this.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int fila = this.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
         int columna = this.jTable1.getSelectedColumn(); // luego, obtengo la columna seleccionada
         String dato = String.valueOf(this.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
         txtBuscarCuenta.setText(String.valueOf(dato));
@@ -234,11 +232,11 @@ private void filtro(String consulta, JTable jtableBuscar){
     }//GEN-LAST:event_jTable1KeyPressed
 
     private void txtBuscarCuentaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCuentaKeyPressed
-         
+
     }//GEN-LAST:event_txtBuscarCuentaKeyPressed
 
     private void txtBuscarCuentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCuentaKeyTyped
-       
+
     }//GEN-LAST:event_txtBuscarCuentaKeyTyped
 
     private void txtBuscarCuentaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCuentaKeyReleased
@@ -296,18 +294,20 @@ private void filtro(String consulta, JTable jtableBuscar){
     public javax.swing.JTextField txtBuscarCuenta;
     // End of variables declaration//GEN-END:variables
     static public class Headercolor extends DefaultTableCellHeaderRenderer {
-    public Headercolor () {
-        setOpaque(true);
+
+        public Headercolor() {
+            setOpaque(true);
+        }
+
+        public Component getTableCellRendererComponent(JTable jTable1, Object value, boolean selected, boolean focused, int row, int column) {
+            super.getTableCellRendererComponent(jTable1, value, selected, focused, row, column);
+            setBackground(new java.awt.Color(0, 94, 159));
+            setForeground(Color.white);
+            setFont(new Font("Tahoma", Font.BOLD, 14));
+            return this;
+        }
     }
-    public Component getTableCellRendererComponent(JTable jTable1, Object value, boolean selected, boolean focused,int row,int column) {
-        super.getTableCellRendererComponent(jTable1, value, selected, focused, row, column);
-        setBackground(new java.awt.Color(0,94,159));
-        setForeground(Color.white);
-        setFont(new Font("Tahoma", Font.BOLD, 14));
-        return this;
-    }
-}
-    
+
     public class MyScrollBarUI extends BasicScrollBarUI {
 
         @Override
@@ -345,5 +345,5 @@ private void filtro(String consulta, JTable jtableBuscar){
         }
 
     }
-    
+
 }

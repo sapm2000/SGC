@@ -13,13 +13,12 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JTable;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
-import javax.swing.UIManager;
 import javax.swing.plaf.basic.BasicScrollBarUI;
+
 /**
  *
  * @author rma
@@ -38,7 +37,7 @@ public class catalogoCondominio extends javax.swing.JFrame {
     private static final int THUMB_SIZE = 8;
     //Aquí cambias el color de la barra
     private static final Color THUMB_COLOR = Color.BLUE;
-    
+
     public catalogoCondominio() {
         initComponents();
         jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
@@ -253,18 +252,20 @@ public class catalogoCondominio extends javax.swing.JFrame {
     public javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
     static public class Headercolor extends DefaultTableCellHeaderRenderer {
-    public Headercolor () {
-        setOpaque(true);
+
+        public Headercolor() {
+            setOpaque(true);
+        }
+
+        public Component getTableCellRendererComponent(JTable jTable1, Object value, boolean selected, boolean focused, int row, int column) {
+            super.getTableCellRendererComponent(jTable1, value, selected, focused, row, column);
+            setBackground(new java.awt.Color(0, 94, 159));
+            setForeground(Color.white);
+            setFont(new Font("Tahoma", Font.BOLD, 14));
+            return this;
+        }
     }
-    public Component getTableCellRendererComponent(JTable jTable1, Object value, boolean selected, boolean focused,int row,int column) {
-        super.getTableCellRendererComponent(jTable1, value, selected, focused, row, column);
-        setBackground(new java.awt.Color(0,94,159));
-        setForeground(Color.white);
-        setFont(new Font("Tahoma", Font.BOLD, 14));
-        return this;
-    }
-}
-    
+
     public class MyScrollBarUI extends BasicScrollBarUI {
 
         @Override
@@ -302,5 +303,5 @@ public class catalogoCondominio extends javax.swing.JFrame {
         }
 
     }
-    
+
 }

@@ -5,7 +5,6 @@
  */
 package vista;
 
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -34,7 +33,7 @@ public class catalogoCategoriaGastos extends javax.swing.JFrame {
     private static final int THUMB_SIZE = 8;
     //Aquí cambias el color de la barra
     private static final Color THUMB_COLOR = Color.BLUE;
-    
+
     public catalogoCategoriaGastos() {
         initComponents();
         tabla_categoria_gastos.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
@@ -258,24 +257,26 @@ public class catalogoCategoriaGastos extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     static public class Headercolor extends DefaultTableCellHeaderRenderer {
-    public Headercolor () {
-        setOpaque(true);
+
+        public Headercolor() {
+            setOpaque(true);
+        }
+
+        public Component getTableCellRendererComponent(JTable jTable1, Object value, boolean selected, boolean focused, int row, int column) {
+            super.getTableCellRendererComponent(jTable1, value, selected, focused, row, column);
+            setBackground(new java.awt.Color(0, 94, 159));
+            setForeground(Color.white);
+            setFont(new Font("Tahoma", Font.BOLD, 14));
+            return this;
+        }
     }
-    public Component getTableCellRendererComponent(JTable jTable1, Object value, boolean selected, boolean focused,int row,int column) {
-        super.getTableCellRendererComponent(jTable1, value, selected, focused, row, column);
-        setBackground(new java.awt.Color(0,94,159));
-        setForeground(Color.white);
-        setFont(new Font("Tahoma", Font.BOLD, 14));
-        return this;
-    }
-}
-    
+
     public class MyScrollBarUI extends BasicScrollBarUI {
 
         @Override
         public void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
             trackBounds.contains(thumbRect);
-            g.setColor(new java.awt.Color(255,255,255));
+            g.setColor(new java.awt.Color(255, 255, 255));
             g.drawRect(0, 0, 500, 500);
             g.fillRect(0, 0, 500, 500);
 
@@ -307,5 +308,5 @@ public class catalogoCategoriaGastos extends javax.swing.JFrame {
         }
 
     }
-    
+
 }

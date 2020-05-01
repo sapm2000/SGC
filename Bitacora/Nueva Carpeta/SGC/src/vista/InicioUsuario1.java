@@ -1,4 +1,5 @@
 package vista;
+
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
@@ -12,15 +13,14 @@ public class InicioUsuario1 extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-    
-    public Image getIconImagine(){
-        
+
+    public Image getIconImagine() {
+
         Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("img/LogoSistema.png"));
-        
+
         return retValue;
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -122,8 +122,8 @@ public class InicioUsuario1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-      try {
-            
+        try {
+
             int botonDialogo = JOptionPane.YES_NO_OPTION;
             int result = JOptionPane.showConfirmDialog(null, "DESEA CERRAR LA VENTANA?", "SALIR", botonDialogo);
             if (result == 0) {
@@ -131,7 +131,7 @@ public class InicioUsuario1 extends javax.swing.JFrame {
                 System.exit(0);
 
             }
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
         }
@@ -141,9 +141,9 @@ public class InicioUsuario1 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 //le damos la accion al boton de cerrar. y mostrar una ventana de confirmacion
-   
+
     private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
-     /*   try {
+        /*   try {
             
             int botonDialogo = JOptionPane.YES_NO_OPTION;
             int result = JOptionPane.showConfirmDialog(null, "DESEA CERRAR LA VENTANA?", "SALIR", botonDialogo);
@@ -156,8 +156,8 @@ public class InicioUsuario1 extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
         }*/
-        
-        
+
+
     }//GEN-LAST:event_btnExitMouseClicked
 
     private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
@@ -167,7 +167,6 @@ public class InicioUsuario1 extends javax.swing.JFrame {
     private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
         this.setState(vista.InicioUsuario1.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarActionPerformed
-
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
