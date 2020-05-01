@@ -3,6 +3,7 @@ package vista;
 import controlador.controladorAsambleas;
 import controlador.controladorCerrarMes;
 import controlador.controladorComunicados;
+import controlador.controladorCuenta_Pagar;
 import controlador.controladorCuentasPorCobrar;
 import controlador.controladorCuotasEspeciales;
 import controlador.controladorFondo;
@@ -20,6 +21,7 @@ import modelo.CerrarMes;
 import modelo.Comunicados;
 import modelo.CrudUsuario;
 import modelo.Cuenta;
+import modelo.Cuenta_Pagar;
 import modelo.CuentasPorCobrar;
 import modelo.CuotasEspeciales;
 import modelo.Fondo;
@@ -458,8 +460,15 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        cuentasPorPagar cuenpa = new cuentasPorPagar();
-        cuenpa.setVisible(true);
+        cuentasPorPagar vistaCuentaP = new cuentasPorPagar();
+        Cuenta_Pagar modCuentaP = new Cuenta_Pagar();
+        Fondo modFon = new Fondo();
+        GastoComun modGastoC = new GastoComun();
+        Cuenta modCuenta = new Cuenta();
+        catalogoCuentas_procesada catCuenPro = new catalogoCuentas_procesada();
+        controladorCuenta_Pagar ctrlCuentaP = new controladorCuenta_Pagar(modCuentaP, vistaCuentaP, modFon, modCuenta, modGastoC, catCuenPro);
+        vistaCuentaP.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed

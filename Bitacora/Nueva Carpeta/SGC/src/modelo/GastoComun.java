@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import sgc.SGC;
 
 /**
  *
@@ -173,18 +174,26 @@ public class GastoComun extends ModeloConceptoGastos {
 
     }
 
-    public ArrayList<GastoComun> listarGastoComun() {
+    public ArrayList<GastoComun> listarGastoComun(int status) {
         ArrayList listagastocomun = new ArrayList();
         GastoComun modgac;
 
         Connection con = getConexion();
         PreparedStatement ps = null;
         ResultSet rs = null;
-
-        String sql = "SELECT gasto_comun.id, tipo, mes, anio, monto, n_factura, proveedores.cedula,  concepto_gasto.nom_concepto, observaciones, fecha, estado, saldo FROM gasto_comun inner join proveedores on proveedores.cedula=gasto_comun.id_proveedor INNER join concepto_gasto on concepto_gasto.id = gasto_comun.id_concepto where gasto_comun.id_condominio=?  ORDER by tipo desc, mes, anio;";
+        String sql = "";
+        
+        if (status == 1) {
+            sql = "SELECT gasto_comun.id, tipo, mes, anio, monto, n_factura, proveedores.cedula,  concepto_gasto.nom_concepto, observaciones, fecha, estado, saldo FROM gasto_comun inner join proveedores on proveedores.cedula=gasto_comun.id_proveedor INNER join concepto_gasto on concepto_gasto.id = gasto_comun.id_concepto where gasto_comun.id_condominio=? AND estado = 'Procesado' ORDER by tipo desc, mes, anio;";
+        } else if (status == 2) {
+            sql = "SELECT gasto_comun.id, tipo, mes, anio, monto, n_factura, proveedores.cedula,  concepto_gasto.nom_concepto, observaciones, fecha, estado, saldo FROM gasto_comun inner join proveedores on proveedores.cedula=gasto_comun.id_proveedor INNER join concepto_gasto on concepto_gasto.id = gasto_comun.id_concepto where gasto_comun.id_condominio=? AND estado != 'Procesado' ORDER by tipo desc, mes, anio;";
+        }
+        else if(status==3){
+            sql = "SELECT gasto_comun.id, tipo, mes, anio, monto, n_factura, proveedores.cedula,  concepto_gasto.nom_concepto, observaciones, fecha, estado, saldo FROM gasto_comun inner join proveedores on proveedores.cedula=gasto_comun.id_proveedor INNER join concepto_gasto on concepto_gasto.id = gasto_comun.id_concepto where gasto_comun.id_condominio=? ORDER by tipo desc, mes, anio;";
+        }
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_condominio());
+            ps.setString(1, SGC.condominioActual.getRif());
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -402,6 +411,37 @@ public class GastoComun extends ModeloConceptoGastos {
 
             }
 
+        }
+
+    }
+
+    public boolean restarSaldo(Float saldoNuevo) {
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE gasto_comun SET saldo = saldo - ? WHERE id = ?;";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setDouble(1, saldoNuevo);
+            ps.setInt(2, getId());
+            ps.execute();
+
+            sql = "SELECT actualizar_status(?)";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, getId());
+            ps.execute();
+
+            return true;
+        } catch (Exception e) {
+            System.err.println(e);
+            return false;
+        } finally {
+            try {
+                con.close();
+            } catch (Exception e) {
+                System.err.println(e);
+            }
         }
 
     }

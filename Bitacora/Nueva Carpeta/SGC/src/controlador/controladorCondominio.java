@@ -26,6 +26,7 @@ import vista.condominio;
 import java.util.ArrayList;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import sgc.SGC;
 
 /**
  *
@@ -207,6 +208,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
             int columna = this.cataco.jTable1.getSelectedColumn(); // luego, obtengo la columna seleccionada
             String dato = String.valueOf(this.cataco.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
             co.setRif(String.valueOf(dato));
+            SGC.condominioActual = co;
             this.cataco.dispose();
             this.panta.dispose();
             this.panta1.setVisible(true);
