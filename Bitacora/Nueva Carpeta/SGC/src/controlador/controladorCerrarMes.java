@@ -177,6 +177,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                             Object[] monto_gasto = new Object[numGastos];
                             Object[][] gastodes = new Object[numGastos][numRegistro];
                             Object[][] id_unidad_gasto = new Object[numGastos][numRegistro];
+                            Object[] estado = new Object[numGastos];
                             DecimalFormat formato1 = new DecimalFormat("#.00");
 
                             for (int f = 0; f < numGastos; f++) {
@@ -195,7 +196,13 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                     modc.setId_gasto(Integer.parseInt(String.valueOf(id_gasto[f])));
 
                                     modc.setId_unidad(String.valueOf(num_casa[x]));
-                                    modc.setEstado("Procesado");
+                                    if (listagastocomun.get(f).getEstado().equals("Pendiente")) {
+                                         modc.setEstado("Procesado");
+                                    }
+                                    if (listagastocomun.get(f).getEstado().equals("Pagado")) {
+                                        modc.setEstado("Procesado y pagado");
+                                    }
+                                    
                                     modc.registrarGasto(modc);
                                     modc.actualizarGasto(modc);
 
