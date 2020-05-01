@@ -37,6 +37,7 @@ public class conceptoGasto extends javax.swing.JFrame {
     public conceptoGasto() {
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
+        
         txtDescripcion.setLineWrap(true);
         setLocationRelativeTo(null);
     }
