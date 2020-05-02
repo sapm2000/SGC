@@ -323,7 +323,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                 id_sancion[j] = listasanciones.get(j).getId();
                                 String var = String.valueOf(tipo_sancion[j]);
 
-                                if (var.equals("Interes de Mora")) {
+                                if (var.equals("Interes de mora")) {
                                     String ncasa = listasanciones.get(j).getN_unidad();
                                     modc.setId_unidad(ncasa);
                                     modc.buscartotal(modc);
