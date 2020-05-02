@@ -401,7 +401,7 @@ public class Unidades extends Propietarios {
         ResultSet rs = null;
 
 //Creamos la Consulta SQL
-        String sql = "SELECT n_unidad FROM unidades inner join propietarios on unidades.id_propietario=propietarios.cedula where id_condominio=?;";
+        String sql = "SELECT n_unidad FROM unidades where id_condominio=?;";
 
 //Establecemos bloque try-catch-finally
         try {
