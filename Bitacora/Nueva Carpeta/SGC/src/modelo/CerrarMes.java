@@ -278,7 +278,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT id_unidad, sum(monto) as total FROM detalle_pagos where id_unidad=? and mes=? and anio=? group by id_unidad;";
+        String sql = "SELECT id_unidad, sum(monto) as total FROM detalle_pagos where id_unidad=? and mes=? and anio=? and id_condominio=? group by id_unidad;";
 
         try {
 
@@ -286,6 +286,7 @@ public class CerrarMes extends ConexionBD {
             ps.setString(1, modc.getId_unidad());
             ps.setInt(2, modc.getMes_cierre());
             ps.setInt(3, modc.getAño_cierre());
+            ps.setString(4, modc.getId_condominio());
             rs = ps.executeQuery();
             if (rs.next()) {
 
@@ -321,7 +322,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT id_unidad, sum(monto) as total FROM detalle_sancion where id_unidad=? and mes=? and anio=? group by id_unidad;";
+        String sql = "SELECT id_unidad, sum(monto) as total FROM detalle_sancion where id_unidad=? and mes=? and anio=? and id_condominio=? group by id_unidad;";
 
         try {
 
@@ -329,6 +330,7 @@ public class CerrarMes extends ConexionBD {
             ps.setString(1, modc.getId_unidad());
             ps.setInt(2, modc.getMes_cierre());
             ps.setInt(3, modc.getAño_cierre());
+             ps.setString(4, modc.getId_condominio());
             rs = ps.executeQuery();
             if (rs.next()) {
 
@@ -364,7 +366,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT id_unidad, sum(monto) as total FROM detalle_cuotas where id_unidad=? and mes=? and anio=? group by id_unidad;";
+        String sql = "SELECT id_unidad, sum(monto) as total FROM detalle_cuotas where id_unidad=? and mes=? and anio=? and id_condominio=? group by id_unidad;";
 
         try {
 
@@ -372,6 +374,7 @@ public class CerrarMes extends ConexionBD {
             ps.setString(1, modc.getId_unidad());
             ps.setInt(2, modc.getMes_cierre());
             ps.setInt(3, modc.getAño_cierre());
+            ps.setString(4, modc.getId_condominio());
             rs = ps.executeQuery();
             if (rs.next()) {
 
@@ -407,7 +410,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT id_unidad, sum(monto) as total FROM detalle_interes where id_unidad=? and mes=? and anio=? group by id_unidad;";
+        String sql = "SELECT id_unidad, sum(monto) as total FROM detalle_interes where id_unidad=? and mes=? and anio=? and id_condominio=? group by id_unidad;";
 
         try {
 
@@ -415,6 +418,7 @@ public class CerrarMes extends ConexionBD {
             ps.setString(1, modc.getId_unidad());
             ps.setInt(2, modc.getMes_cierre());
             ps.setInt(3, modc.getAño_cierre());
+            ps.setString(4, modc.getId_condominio());
             rs = ps.executeQuery();
             if (rs.next()) {
 

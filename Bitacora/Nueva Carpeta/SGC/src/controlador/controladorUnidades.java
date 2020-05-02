@@ -575,7 +575,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             detare.txtPropietarios.setText(detacun.txtPropietarios.getText());
             detare.txtId.setText(dato3);
             modc.bucartotal(modc);
-            double var10 = modc.getAlicuota() * 100;
+            
             detare.txtAlicuota.setText(String.valueOf(Validacion.formatoalicuota.format(modc.getAlicuota())));
             detare.txtTotal.setText(String.valueOf(Validacion.formato1.format(modc.getMonto())));
         }
