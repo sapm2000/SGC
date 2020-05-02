@@ -256,10 +256,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                                 JOptionPane.showMessageDialog(null, "no puede registrar Sanciones a un periodo ya cerrado");
                             } else {
 
-                                modsan.buscarSancionRepetido(modsan);
-                                int x = modsan.getId_sancion();
-
-                                if (modsan.buscarSancionRepetido(modsan)) {
+                                if (modsan.buscarSancionRepetido(modsan) && modsan.getTipo().equals("Interes de mora")) {
                                     JOptionPane.showMessageDialog(null, "No puede guardar mas de un interes de mora al mes");
                                 } else {
                                     if (modsan.registrarsancion(modsan)) {
@@ -490,8 +487,8 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
     ) {
         modsan.setId_condominio(panta1.rif.getText());
         LlenartablaSancion(catasan.jTable1);
-        
-        Component[] components =san.jPanel2.getComponents();
+
+        Component[] components = san.jPanel2.getComponents();
         JComponent[] com = {
             san.txtmonto
         };
