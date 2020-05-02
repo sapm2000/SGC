@@ -133,6 +133,11 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
                 modpro.setCorreo(pro.txtCorreo.getText());
                 modpro.setTelefono(pro.txtTelefono.getText());
                 modpro.setId_condominio(panta1.rif.getText());
+                
+
+                if (modpro.buscarepeprop(modpro)) {
+                    JOptionPane.showMessageDialog(null, "Este condiminio ya tiene esta cedula asignada");
+                } else {
 
                 if (modpro.registrar(modpro)) {
 
@@ -144,6 +149,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
                     JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
 
                 }
+            }
             }
 
         }

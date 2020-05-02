@@ -368,26 +368,22 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("<html>Número de <br> Unidad</html>");
-        modeloT.addColumn("<html>Propietario ó <br> inquilino</html>");
-        modeloT.addColumn("CI/RIF");
-        modeloT.addColumn("Teléfono");
+      
         modeloT.addColumn("Dirección");
-        modeloT.addColumn("<html>Correo <br> Electrónico</html>");
+        
         modeloT.addColumn("Area (mts2)");
 
-        Object[] columna = new Object[7];
+        Object[] columna = new Object[3];
 
         int numRegistro = listaunidades.size();
 
         for (int i = 0; i < numRegistro; i++) {
 
             columna[0] = listaunidades.get(i).getN_unidad();
-            columna[1] = listaunidades.get(i).getNombre();
-            columna[2] = listaunidades.get(i).getCedula();
-            columna[3] = listaunidades.get(i).getTelefono();
-            columna[4] = listaunidades.get(i).getDireccion();
-            columna[5] = listaunidades.get(i).getCorreo();
-            columna[6] = listaunidades.get(i).getArea();
+           
+            columna[1] = listaunidades.get(i).getDireccion();
+          
+            columna[2] = listaunidades.get(i).getArea();
 
             modeloT.addRow(columna);
 
@@ -397,10 +393,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(6).setCellRenderer(tcr);
+        
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -411,6 +404,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             this.uni.btnGuardar.setEnabled(true);
             this.uni.btnEliminar.setEnabled(false);
             this.uni.txtNumeroUnidad.setEnabled(true);
+            limpiar();
 
             moduni.setId_condominio(panta1.rif.getText());
 
@@ -432,19 +426,25 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                 moduni.setN_unidad(uni.txtNumeroUnidad.getText());
                 moduni.setArea(Double.parseDouble(uni.txtArea.getText()));
                 moduni.setDireccion(uni.txadireccion.getText());
+                moduni.setId_condominio(panta1.rif.getText());
 
-                if (moduni.registrarUnidades(moduni)) {
-
-                    JOptionPane.showMessageDialog(null, "Registro Guardado");
-                    llenartablaunidades(catauni.jTable1);
-
+                if (moduni.buscarepe(moduni)) {
+                    JOptionPane.showMessageDialog(null, "Este condiminio ya tiene este numero de unidad asignada");
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                    if (moduni.registrarUnidades(moduni)) {
 
+                        JOptionPane.showMessageDialog(null, "Registro Guardado");
+                        llenartablaunidades(catauni.jTable1);
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                    }
                 }
-            }
 
+            }
         }
 
         if (e.getSource() == uni.btnModificar) {
@@ -453,20 +453,25 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                 moduni.setN_unidad(uni.txtNumeroUnidad.getText());
                 moduni.setArea(Double.parseDouble(uni.txtArea.getText()));
                 moduni.setDireccion(uni.txadireccion.getText());
+                moduni.setId_condominio(panta1.rif.getText());
 
-                if (moduni.modificarUnidades(moduni)) {
-
-                    JOptionPane.showMessageDialog(null, "Registro Modificado");
-                    llenartablaunidades(catauni.jTable1);
-                    uni.dispose();
-
+                if (moduni.buscarepe(moduni) && !moduni.getN_unidad().equals(uni.txtNumeroUnidad.getText())) {
+                    JOptionPane.showMessageDialog(null, "Este condiminio ya tiene este numero de unidad asignada");
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                    if (moduni.modificarUnidades(moduni)) {
 
+                        JOptionPane.showMessageDialog(null, "Registro Modificado");
+                        llenartablaunidades(catauni.jTable1);
+                        uni.dispose();
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                    }
                 }
             }
-
         }
 
         if (e.getSource() == uni.btnEliminar) {
@@ -638,10 +643,10 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
     public void windowOpened(WindowEvent e) {
         moduni.setId_condominio(panta1.rif.getText());
         llenartablaunidades(catauni.jTable1);
-        
-        Component[] components =uni.jPanel2.getComponents();
+
+        Component[] components = uni.jPanel2.getComponents();
         JComponent[] com = {
-            uni.txtCedula,uni.txtNumeroUnidad, uni.txtArea, uni.txtTelefono, uni.txtCorreo, uni.txadireccion, uni.txtNombrePropietario
+            uni.txtCedula, uni.txtNumeroUnidad, uni.txtArea, uni.txtTelefono, uni.txtCorreo, uni.txadireccion, uni.txtNombrePropietario
         };
         Validacion.copiar(components);
         Validacion.pegar(com);

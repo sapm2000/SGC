@@ -21,8 +21,19 @@ public class Unidades extends Propietarios {
 
     private String N_unidad;
     private String direccion;
+    private int id;
 
     private double area;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
 
     public String getN_unidad() {
         return N_unidad;
@@ -150,7 +161,7 @@ public class Unidades extends Propietarios {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO unidades( n_unidad, direccion, area, id_propietario) VALUES (?, ?, ?, ?);";
+        String sql = "INSERT INTO unidades( n_unidad, direccion, area, id_propietario, id_condominio) VALUES (?, ?, ?, ?, ?);";
 
         try {
 
@@ -159,6 +170,7 @@ public class Unidades extends Propietarios {
             ps.setString(2, moduni.getDireccion());
             ps.setDouble(3, moduni.getArea());
             ps.setString(4, moduni.getCedula());
+            ps.setString(5, moduni.getId_condominio());
 
             ps.execute();
             return true;
@@ -186,7 +198,7 @@ public class Unidades extends Propietarios {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT unidades.n_unidad, unidades.direccion, unidades.area, propietarios.cedula, propietarios.nombre, propietarios.telefono, propietarios.correo from unidades inner join propietarios on unidades.id_propietario=propietarios.cedula where id_condominio=?;";
+        String sql = "SELECT unidades.n_unidad, unidades.direccion, unidades.area  from unidades  where unidades.id_condominio=?;";
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_condominio());
@@ -199,10 +211,7 @@ public class Unidades extends Propietarios {
                 //prs = new Persona();
                 Unidades.setN_unidad(rs.getString("n_unidad"));
                 Unidades.setDireccion(rs.getString("direccion"));
-                Unidades.setCedula(rs.getString("cedula"));
-                Unidades.setNombre(rs.getString("nombre"));
-                Unidades.setTelefono(rs.getString("telefono"));
-                Unidades.setCorreo(rs.getString("correo"));
+                
                 Unidades.setArea(rs.getInt("area"));
 
                 listaUnidades.add(Unidades);
@@ -266,13 +275,56 @@ public class Unidades extends Propietarios {
         }
 
     }
+    
+    public boolean buscarepe(Unidades moduni) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT unidades.n_unidad, unidades.direccion, unidades.area, propietarios.cedula, propietarios.nombre, propietarios.telefono, propietarios.correo from unidades inner join propietarios on unidades.id_propietario=propietarios.cedula where n_unidad=? and unidades.id_condominio=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, moduni.getN_unidad());
+            ps.setString(2, moduni.getId_condominio());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                
+                moduni.setId(rs.getInt("area"));
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
 
     public boolean modificarUnidades(Unidades moduni) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE unidades SET direccion=?, area=?, id_propietario=? WHERE n_unidad=?;";
+        String sql = "UPDATE unidades SET direccion=?, area=?, id_propietario=? WHERE n_unidad=? and id_condominio=?";
 
         try {
 
@@ -282,6 +334,7 @@ public class Unidades extends Propietarios {
             ps.setString(3, getCedula());
 
             ps.setString(4, getN_unidad());
+            ps.setString(5, getId_condominio());
             ps.execute();
 
             return true;
