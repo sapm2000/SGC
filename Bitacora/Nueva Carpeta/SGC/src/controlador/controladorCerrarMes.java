@@ -395,6 +395,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                         }
 
                         for (int m = 0; m < numRegistro; m++) {
+                            modc.setId_condominio(panta1.rif.getText());
                             modc.setId_unidad(String.valueOf(num_casa[m]));
 
                             if (modc.buscartotal(modc)) {
