@@ -274,6 +274,7 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                                 if (modcuen.getMonto() > total) {
                                     JOptionPane.showMessageDialog(null, "No puede ingresar mas dinero de lo que debe");
                                 } else {
+                                    modcuen.setId_condominio(panta1.rif.getText());
                                     if (modcuen.registrarCobro(modcuen)) {
                                         double var4 = modfon.getSaldo() + modcuen.getMonto();
                                         modfon.setSaldo(var4);

@@ -25,6 +25,17 @@ public class CuentasPorCobrar extends ConexionBD {
     private String referencia;
     private int id_fondo;
     private java.sql.Date fecha;
+    private String id_condominio;
+
+    public String getId_condominio() {
+        return id_condominio;
+    }
+
+    public void setId_condominio(String id_condominio) {
+        this.id_condominio = id_condominio;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -103,7 +114,7 @@ public class CuentasPorCobrar extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO cobro(monto, descripcion, id_unidad, id_cuenta, forma_pago, referencia, fecha, id_fondo) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO cobro(monto, descripcion, id_unidad, id_cuenta, forma_pago, referencia, fecha, id_fondo, id_condominio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         try {
 
@@ -116,6 +127,7 @@ public class CuentasPorCobrar extends ConexionBD {
             ps.setString(6, getReferencia());
             ps.setDate(7, getFecha());
             ps.setInt(8, getId_fondo());
+            ps.setString(9, getId_condominio());
 
             ps.execute();
 

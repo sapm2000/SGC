@@ -17,6 +17,7 @@ import java.util.ArrayList;
  */
 public class Propietarios extends ConexionBD {
 
+    private String id2;
     private String cedula;
     private String nombre;
     private String apellido;
@@ -71,6 +72,18 @@ public class Propietarios extends ConexionBD {
     public void setId_condominio(String id_condominio) {
         this.id_condominio = id_condominio;
     }
+
+    public String getId2() {
+        return id2;
+    }
+
+    public void setId2(String id2) {
+        this.id2 = id2;
+    }
+
+   
+    
+    
 
     public boolean registrar(Propietarios modpro) {
 
@@ -176,6 +189,50 @@ public class Propietarios extends ConexionBD {
                 modpro.setApellido(rs.getString("apellido"));
 
                 modpro.setTelefono(rs.getString("telefono"));
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+    
+    public boolean buscarepeprop(Propietarios modpro) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT * FROM propietarios WHERE id_condominio=? and cedula=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, modpro.getId_condominio());
+            ps.setString(2, modpro.getCedula());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                modpro.setId2(rs.getString("nombre"));
+               
+                
 
                 return true;
             }
