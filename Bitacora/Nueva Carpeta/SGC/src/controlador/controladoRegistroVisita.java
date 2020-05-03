@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import modelo.CategoriaGasto;
 import modelo.Registro_visitante;
 import modelo.Registro_visitas;
 import modelo.Unidades;
@@ -67,8 +66,7 @@ public class controladoRegistroVisita implements ActionListener, ItemListener, M
 
         if (datos != null) {
             for (Unidades datosX : datos) {
-                modUni = datosX;
-                visRvis.cbxUnidad.addItem(modUni.getN_unidad());
+                visRvis.cbxUnidad.addItem(datosX.getN_unidad() + " - " + datosX.getNombre() + " " + datosX.getApellido());
             }
 
         }

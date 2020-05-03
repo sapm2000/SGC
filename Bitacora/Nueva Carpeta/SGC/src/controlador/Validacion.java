@@ -25,10 +25,20 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
 
     public static DecimalFormatSymbols simbolos = DecimalFormatSymbols.getInstance(Locale.ENGLISH);
 
-    public static DecimalFormat formato1 = new DecimalFormat("#.##", simbolos);
+    public static DecimalFormat formato1 = new DecimalFormat();
+    //public static DecimalFormat formato1 = new DecimalFormat("#.##", simbolos);
+    public static DecimalFormat formato2 = new DecimalFormat("###,###,###,###,###,###.####", simbolos);
     public static DecimalFormat formatoalicuota = new DecimalFormat("#.##%", simbolos);
 
     /*---FUNCIÓN PARA EVITAR EL COPY & PASTE---*/
+    public static String formatoDecimal(Double dec) {
+        DecimalFormat format = new DecimalFormat();
+        format.setMaximumFractionDigits(4);
+        format.setGroupingSize(3);
+        format.setGroupingUsed(true);
+        return format.format(dec);
+    }
+
     public static void evitarPegar(java.awt.event.KeyEvent evt) {
 
         char c = evt.getKeyChar();
@@ -117,9 +127,10 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
         }
 
     }
-     public static void pegar(JComponent[] components){
 
-        for (JComponent campo : components){
+    public static void pegar(JComponent[] components) {
+
+        for (JComponent campo : components) {
             InputMap map = campo.getInputMap();
             map.put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK), "null");
             map.put(KeyStroke.getKeyStroke(KeyEvent.VK_INSERT, Event.SHIFT_MASK), "null");
@@ -127,12 +138,12 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
 
     }
 
-    public static void copiar(Component[] components){
+    public static void copiar(Component[] components) {
 
-        for (Component campo : components){
+        for (Component campo : components) {
 
-            if(campo instanceof JComponent){
-                InputMap map = ((JComponent)campo).getInputMap();
+            if (campo instanceof JComponent) {
+                InputMap map = ((JComponent) campo).getInputMap();
                 map.put(KeyStroke.getKeyStroke(KeyEvent.VK_C, Event.CTRL_MASK), "null");
             }
         }

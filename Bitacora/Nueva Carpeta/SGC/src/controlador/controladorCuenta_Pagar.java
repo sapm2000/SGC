@@ -18,7 +18,6 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import modelo.Cuenta;
 import modelo.Cuenta_Pagar;
 import modelo.Fondo;
@@ -97,8 +96,9 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
             }
 
             //listaGastoC = modGastoC.listarGastoComun();
+            listaGastoC = modGastoC.listarGastoComun(2);
             Llenartabla(vistaCuentaP.jTable, 2);
-            listaFondo = modFondo.listar();
+            listaFondo = modFondo.listar(1);
             crearCbxFondo(listaFondo);
         }
         if (e.getSource() == vistaCuentaP.btnMostrar) {
@@ -111,7 +111,7 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
     public void windowOpened(WindowEvent e) {
         if (e.getSource() == vistaCuentaP) {
 
-            listaFondo = modFondo.listar();
+            listaFondo = modFondo.listar(1);
             crearCbxFondo(listaFondo);
             listaCuenta = modCuenta.listarcuenta();
             crearCbxCuenta(listaCuenta);
@@ -173,12 +173,12 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        Llenartabla(vistaCuentaP.jTable, 2);
         fila = 0;
         fila = this.vistaCuentaP.jTable.getSelectedRow(); // primero, obtengo la fila seleccionada
         Boolean resultado = true;
         String msj = "";
 
-        
         modCuentaP.cargarProveedor(listaGastoC.get(fila).getId());
 
         vistaCuentaP.setVisible(true);
@@ -207,8 +207,7 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
 
         if (datos != null) {
             for (Cuenta datosX : datos) {
-                modCuenta = datosX;
-                vistaCuentaP.cbxCuentaT.addItem(modCuenta.getN_cuenta());
+                vistaCuentaP.cbxCuentaT.addItem(datosX.getN_cuenta() + " - " + datosX.getNombre_banco());
             }
 
         }
@@ -217,12 +216,10 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
     private void crearCbxFondo(ArrayList<Fondo> datos) {
         vistaCuentaP.cbxFondo.removeAllItems();
         vistaCuentaP.cbxFondo.addItem("Seleccione...");
-
+        
         if (datos != null) {
             for (Fondo datosX : datos) {
-                modFondo = datosX;
-
-                vistaCuentaP.cbxFondo.addItem(String.valueOf(modFondo.getSaldo()));
+                vistaCuentaP.cbxFondo.addItem(Validacion.formatoDecimal(datosX.getSaldo()));
             }
 
         }
@@ -242,24 +239,26 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
         tablaD.getTableHeader().setResizingAllowed(false);
 
         // modeloT.addColumn("Selecciona");
+        modeloT.addColumn("id");
         modeloT.addColumn("Fecha");
         modeloT.addColumn("Concepto");
         modeloT.addColumn("Monto");
         modeloT.addColumn("Saldo Restante");
         modeloT.addColumn("Estado");
         modeloT.addColumn("Tipo");
-        Object[] columna = new Object[6];
+        Object[] columna = new Object[7];
 
         int num = listaGastoC.size();
 
         for (int i = 0; i < num; i++) {
 
-            columna[0] = listaGastoC.get(i).getFecha();
-            columna[1] = listaGastoC.get(i).getNombre_Concepto();
-            columna[2] = listaGastoC.get(i).getMonto();
-            columna[3] = listaGastoC.get(i).getSaldo();
-            columna[4] = listaGastoC.get(i).getEstado();
-            columna[5] = listaGastoC.get(i).getTipo_gasto();
+            columna[0] = listaGastoC.get(i).getId();
+            columna[1] = listaGastoC.get(i).getFecha();
+            columna[2] = listaGastoC.get(i).getNombre_Concepto();
+            columna[3] = listaGastoC.get(i).getMonto();
+            columna[4] = listaGastoC.get(i).getSaldo();
+            columna[5] = listaGastoC.get(i).getEstado();
+            columna[6] = listaGastoC.get(i).getTipo_gasto();
 
             modeloT.addRow(columna);
 
