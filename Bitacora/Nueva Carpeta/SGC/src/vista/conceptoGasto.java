@@ -350,6 +350,8 @@ public class MyScrollBarUI extends BasicScrollBarUI {
             g.fillRect(0, 0, 500, 500);
 
         }
+        
+        
 
         @Override
         public void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {

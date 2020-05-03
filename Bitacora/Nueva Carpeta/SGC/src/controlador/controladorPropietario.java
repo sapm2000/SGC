@@ -24,6 +24,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Propietarios;
+import vista.PantallaPrincipal;
 import vista.PantallaPrincipal1;
 import vista.catalogoPropietarios;
 import vista.propietarios;
@@ -37,7 +38,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
     private propietarios pro;
     private catalogoPropietarios catapro;
     private Propietarios modpro;
-    private PantallaPrincipal1 panta1;
+    private PantallaPrincipal panta1;
     ArrayList<Propietarios> listaPropietarios;
     DefaultTableModel dm;
 
