@@ -860,7 +860,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT id, monto, mes, anio, alicuota, estado, saldo_restante FROM detalle_total where id_unidad=? and id_condominio=? and estado='Pendiente de pago' order by anio,mes";
+        String sql = "SELECT id, monto, mes, anio, alicuota, estado, saldo_restante FROM detalle_total where id_unidad=? and id_condominio=? and estado='Pendiente de Pago' order by anio,mes";
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_unidad());

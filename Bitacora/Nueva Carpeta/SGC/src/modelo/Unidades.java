@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import static sgc.SGC.condominioActual;
 
 /**
  *
@@ -32,8 +33,6 @@ public class Unidades extends Propietarios {
     public void setId(int id) {
         this.id = id;
     }
-    
-    
 
     public String getN_unidad() {
         return N_unidad;
@@ -211,7 +210,7 @@ public class Unidades extends Propietarios {
                 //prs = new Persona();
                 Unidades.setN_unidad(rs.getString("n_unidad"));
                 Unidades.setDireccion(rs.getString("direccion"));
-                
+
                 Unidades.setArea(rs.getInt("area"));
 
                 listaUnidades.add(Unidades);
@@ -275,7 +274,7 @@ public class Unidades extends Propietarios {
         }
 
     }
-    
+
     public boolean buscarepe(Unidades moduni) {
 
         PreparedStatement ps = null;
@@ -291,7 +290,6 @@ public class Unidades extends Propietarios {
             rs = ps.executeQuery();
             if (rs.next()) {
 
-                
                 moduni.setId(rs.getInt("area"));
 
                 return true;
@@ -401,7 +399,7 @@ public class Unidades extends Propietarios {
         ResultSet rs = null;
 
 //Creamos la Consulta SQL
-        String sql = "SELECT n_unidad FROM unidades inner join propietarios on unidades.id_propietario=propietarios.cedula where id_condominio=?;";
+        String sql = "SELECT n_unidad FROM unidades where id_condominio=?;";
 
 //Establecemos bloque try-catch-finally
         try {
@@ -434,7 +432,8 @@ public class Unidades extends Propietarios {
         }
 
     }
-        public ArrayList<Unidades> listarCbxUnidad() {
+
+    public ArrayList<Unidades> listarCbxUnidad() {
         ArrayList listaUnidad = new ArrayList();
         Unidades uni;
 
@@ -442,30 +441,33 @@ public class Unidades extends Propietarios {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT n_unidad FROM unidades;";
-        
+        String sql = "SELECT n_unidad, nombre, apellido FROM unidades "
+                + "INNER JOIN propietarios ON id_propietario = cedula "
+                + "WHERE unidades.id_condominio = ?;";
+
         try {
             ps = con.prepareStatement(sql);
+            ps.setString(1, condominioActual.getRif());
             rs = ps.executeQuery();
 
             while (rs.next()) {
                 uni = new Unidades();
-
-                //prs = new Persona();
                 uni.setN_unidad(rs.getString("n_unidad"));
+                uni.setNombre(rs.getString("nombre"));
+                uni.setApellido(rs.getString("apellido"));
 
                 listaUnidad.add(uni);
             }
 
         } catch (Exception e) {
-            
+
         } finally {
             try {
                 con.close();
-                
+
             } catch (SQLException e) {
                 System.err.println(e);
-                
+
             }
         }
 

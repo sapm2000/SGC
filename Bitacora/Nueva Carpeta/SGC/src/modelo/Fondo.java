@@ -135,20 +135,26 @@ public class Fondo extends ConexionBD {
 
     }
 
-    public ArrayList<Fondo> listar() {
+    public ArrayList<Fondo> listar(int status) {
         ArrayList listaFondo = new ArrayList();
         Fondo modfon;
 
         Connection con = getConexion();
         PreparedStatement ps = null;
         ResultSet rs = null;
-
-        String sql = "SELECT tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id FROM fondos where id_condominio=?;";
+        String sql = "";
+        
+        if (status == 1) {
+            sql = "SELECT tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id FROM fondos where id_condominio=? AND saldo > 0;";
+        }
+        if (status == 2) {
+            sql = "SELECT tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id FROM fondos where id_condominio=?;";
+        }
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, SGC.condominioActual.getRif());
             rs = ps.executeQuery();
-             
+
             while (rs.next()) {
 
                 modfon = new Fondo();
@@ -439,15 +445,15 @@ public class Fondo extends ConexionBD {
         }
 
     }
-    
-    public boolean restarFondo(Float saldoNuevo){
+
+    public boolean restarFondo(Float saldoNuevo) {
         PreparedStatement ps = null;
         Connection con = getConexion();
-        
+
         String sql = "UPDATE fondos SET saldo = saldo - ? WHERE id = ?;";
-        
+
         try {
-            ps=con.prepareStatement(sql);
+            ps = con.prepareStatement(sql);
             ps.setDouble(1, saldoNuevo);
             ps.setInt(2, getId());
             ps.execute();
@@ -455,14 +461,14 @@ public class Fondo extends ConexionBD {
         } catch (Exception e) {
             System.err.println(e);
             return false;
-        }finally{
+        } finally {
             try {
                 con.close();
             } catch (Exception e) {
                 System.err.println(e);
             }
         }
-        
+
     }
 
 }
