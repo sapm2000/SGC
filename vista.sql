@@ -1,0 +1,3 @@
+create or replace view v_cuenta_pagar as SELECT cp.num_ref, cp.forma_pago, cp.descripcion, cp.monto, cp.fecha, prov.nombre, cu.n_cuenta, ba.nombre_banco, fon.tipo, fon.id_condominio FROM cuenta_pagar AS cp INNER JOIN proveedores AS prov ON prov.cedula = cp.id_proveedor INNER JOIN cuenta AS cu ON cu.n_cuenta = cp.id_cuenta INNER JOIN fondos AS fon ON fon.id = cp.id_fondo INNER JOIN banco AS ba ON ba.id=cu.id_banco ORDER BY cp.fecha desc;
+
+SELECT * FROM v_cuenta_pagar

@@ -87,6 +87,7 @@ public class cuentasPorPagar extends javax.swing.JFrame {
         btnProcesar = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         btnMostrar = new javax.swing.JButton();
+        btnPagos = new javax.swing.JButton();
 
         jLabel9.setText("jLabel9");
 
@@ -269,7 +270,7 @@ public class cuentasPorPagar extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 94, 159));
         jLabel11.setText("<html>\nSeleccione en la tabla las <br> facturas a procesar pago.\n</html>");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, 270, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 270, -1));
 
         btnProcesar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnProcesar.setForeground(new java.awt.Color(0, 94, 159));
@@ -296,7 +297,15 @@ public class cuentasPorPagar extends javax.swing.JFrame {
                 btnMostrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
+        jPanel1.add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, -1, -1));
+
+        btnPagos.setText("Mostrar Pagos");
+        btnPagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPagosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 630));
 
@@ -330,6 +339,10 @@ public class cuentasPorPagar extends javax.swing.JFrame {
         //controladorCuenta_Pagar ctrlCuen_pagar = controladorCuenta_Pagar(modGastoC, catCuenPro);
         
     }//GEN-LAST:event_btnMostrarActionPerformed
+
+    private void btnPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagosActionPerformed
+       
+    }//GEN-LAST:event_btnPagosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -369,6 +382,7 @@ public class cuentasPorPagar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnMostrar;
+    public javax.swing.JButton btnPagos;
     public javax.swing.JButton btnProcesar;
     public javax.swing.JButton btnSalir;
     public javax.swing.JComboBox<String> cbxCuentaT;
