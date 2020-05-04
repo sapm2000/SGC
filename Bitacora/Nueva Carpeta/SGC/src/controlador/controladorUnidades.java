@@ -79,7 +79,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         this.uni.btnLimpiar.addActionListener(this);
         this.uni.btnEliminar.addActionListener(this);
         this.uni.btnModificar.addActionListener(this);
-        this.catauni.jButton7.addActionListener(this);
         this.detacun.txtBuscar.addKeyListener(this);
         this.detacun.jTable1.addMouseListener(this);
     }
@@ -413,11 +412,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         if (e.getSource() == uni.btnBuscarpropietarios) {
             this.buscp.setVisible(true);
             llenartablapropietarios(buscp.tablaprop);
-        }
-
-        if (e.getSource() == catauni.jButton7) {
-            this.detacun.setVisible(true);
-
         }
 
         if (e.getSource() == uni.btnGuardar) {

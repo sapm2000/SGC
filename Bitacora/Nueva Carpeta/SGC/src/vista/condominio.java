@@ -67,6 +67,7 @@ public class condominio extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
+        btnMinimizar.setToolTipText("Minimizar");
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
@@ -82,6 +83,7 @@ public class condominio extends javax.swing.JFrame {
         jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 40, 30));
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
+        btnSalir.setToolTipText("Cerrar");
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
@@ -101,7 +103,7 @@ public class condominio extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("<html>\nRazon <br> Social:\n</html>");
+        jLabel2.setText("<html> Razón <br> Social: </html>");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 50, 40));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -112,6 +114,7 @@ public class condominio extends javax.swing.JFrame {
         txtRif.setBackground(new java.awt.Color(0, 94, 159));
         txtRif.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtRif.setForeground(new java.awt.Color(255, 255, 255));
+        txtRif.setToolTipText("Ingrese el rif");
         txtRif.setBorder(null);
         txtRif.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtRif.addActionListener(new java.awt.event.ActionListener() {
@@ -124,18 +127,21 @@ public class condominio extends javax.swing.JFrame {
         txtCorreo.setBackground(new java.awt.Color(0, 94, 159));
         txtCorreo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCorreo.setForeground(new java.awt.Color(255, 255, 255));
+        txtCorreo.setToolTipText("Ingrese el correo electrónico");
         txtCorreo.setBorder(null);
         jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 300, 20));
 
         txtTelefono.setBackground(new java.awt.Color(0, 94, 159));
         txtTelefono.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtTelefono.setForeground(new java.awt.Color(255, 255, 255));
+        txtTelefono.setToolTipText("Ingrese el teléfono");
         txtTelefono.setBorder(null);
         jPanel2.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 300, 20));
 
         txtRazonS.setBackground(new java.awt.Color(0, 94, 159));
         txtRazonS.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtRazonS.setForeground(new java.awt.Color(255, 255, 255));
+        txtRazonS.setToolTipText("Ingrese la razón Social");
         txtRazonS.setBorder(null);
         jPanel2.add(txtRazonS, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 300, 20));
 
@@ -174,6 +180,7 @@ public class condominio extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salvar.png"))); // NOI18N
+        btnGuardar.setToolTipText("Guardar");
         btnGuardar.setBorder(null);
         btnGuardar.setBorderPainted(false);
         btnGuardar.setContentAreaFilled(false);
@@ -190,6 +197,7 @@ public class condominio extends javax.swing.JFrame {
         //btnGuardar.addActionListener(ctrl);
 
         btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato.png"))); // NOI18N
+        btnModificar.setToolTipText("Modificar");
         btnModificar.setBorder(null);
         btnModificar.setBorderPainted(false);
         btnModificar.setContentAreaFilled(false);
@@ -201,6 +209,7 @@ public class condominio extends javax.swing.JFrame {
         //btnMinimizar.addActionListener(ctrl);
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo.png"))); // NOI18N
+        btnLimpiar.setToolTipText("Limpiar todo");
         btnLimpiar.setBorderPainted(false);
         btnLimpiar.setContentAreaFilled(false);
         btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -218,6 +227,7 @@ public class condominio extends javax.swing.JFrame {
         jPanel3.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 10, 70));
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (4).png"))); // NOI18N
+        btnEliminar.setToolTipText("Eliminar");
         btnEliminar.setBorder(null);
         btnEliminar.setBorderPainted(false);
         btnEliminar.setContentAreaFilled(false);
@@ -232,10 +242,10 @@ public class condominio extends javax.swing.JFrame {
         jSeparator10.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel3.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 10, 70));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 360, 90));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, 360, 80));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondobtn1chiqui.png"))); // NOI18N
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, -1, 120));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 370, -1, 120));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 490));
 

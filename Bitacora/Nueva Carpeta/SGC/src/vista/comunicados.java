@@ -112,6 +112,7 @@ public class comunicados extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        jTable1.setToolTipText("Seleccione a los usuarios a los que les enviará el mensaje");
         jTable1.setRowHeight(35);
         jScrollPane2.setViewportView(jTable1);
 
@@ -124,10 +125,11 @@ public class comunicados extends javax.swing.JFrame {
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 510, 300));
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
+        btnMinimizar.setToolTipText("Minimizar");
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
@@ -139,10 +141,11 @@ public class comunicados extends javax.swing.JFrame {
         jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, 40, 30));
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
+        btnSalir.setToolTipText("Cerrar");
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
@@ -164,6 +167,7 @@ public class comunicados extends javax.swing.JFrame {
         txtAsunto.setBackground(new java.awt.Color(0, 94, 159));
         txtAsunto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtAsunto.setForeground(new java.awt.Color(255, 255, 255));
+        txtAsunto.setToolTipText("Coloque aquí el asunto del mensaje");
         txtAsunto.setBorder(null);
         jPanel2.add(txtAsunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 330, 20));
 
@@ -175,6 +179,7 @@ public class comunicados extends javax.swing.JFrame {
         txtBuscarPropietarios.setBackground(new java.awt.Color(0, 94, 159));
         txtBuscarPropietarios.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtBuscarPropietarios.setForeground(new java.awt.Color(255, 255, 255));
+        txtBuscarPropietarios.setToolTipText("Buscador");
         txtBuscarPropietarios.setBorder(null);
         jPanel2.add(txtBuscarPropietarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 220, 20));
 
@@ -191,6 +196,8 @@ public class comunicados extends javax.swing.JFrame {
         txaMensaje.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txaMensaje.setForeground(new java.awt.Color(255, 255, 255));
         txaMensaje.setRows(5);
+        txaMensaje.setToolTipText("Coloque aquí el mensaje");
+        txaMensaje.setWrapStyleWord(true);
         jScrollPane1.setViewportView(txaMensaje);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 320, 120));
@@ -203,9 +210,10 @@ public class comunicados extends javax.swing.JFrame {
         btnEnviar.setForeground(new java.awt.Color(255, 255, 255));
         btnEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enviar.png"))); // NOI18N
         btnEnviar.setText("Enviar el Mensaje");
+        btnEnviar.setToolTipText("Enviar el mensaje a los usuarios seleccionados");
         btnEnviar.setBorderPainted(false);
         btnEnviar.setContentAreaFilled(false);
-        btnEnviar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEnviar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEnviar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enviar (1).png"))); // NOI18N
         btnEnviar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enviar (1).png"))); // NOI18N
         btnEnviar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enviar (1).png"))); // NOI18N
@@ -214,7 +222,7 @@ public class comunicados extends javax.swing.JFrame {
                 btnEnviarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, -1, -1));
+        jPanel2.add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 180, -1));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 330, 10));

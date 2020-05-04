@@ -102,10 +102,11 @@ public class catalogoProveedores extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 800, 300));
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
+        btnMinimizar.setToolTipText("Minimizar");
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
@@ -117,10 +118,11 @@ public class catalogoProveedores extends javax.swing.JFrame {
         jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 20, 40, 30));
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
+        btnSalir.setToolTipText("Cerrar");
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
@@ -139,10 +141,11 @@ public class catalogoProveedores extends javax.swing.JFrame {
         btn_NuevoProveedor.setForeground(new java.awt.Color(0, 94, 159));
         btn_NuevoProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (2).png"))); // NOI18N
         btn_NuevoProveedor.setText("Nuevo Proveedor");
+        btn_NuevoProveedor.setToolTipText("Registrar un nuevo proveedor");
         btn_NuevoProveedor.setBorder(null);
         btn_NuevoProveedor.setBorderPainted(false);
         btn_NuevoProveedor.setContentAreaFilled(false);
-        btn_NuevoProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_NuevoProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_NuevoProveedor.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btn_NuevoProveedor.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btn_NuevoProveedor.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
@@ -152,9 +155,8 @@ public class catalogoProveedores extends javax.swing.JFrame {
         jLabel3.setText("Buscar:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 70, -1));
 
-        txtBuscarProveedores.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txtBuscarProveedores.setForeground(new java.awt.Color(204, 204, 204));
-        txtBuscarProveedores.setText("Buscar...");
+        txtBuscarProveedores.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtBuscarProveedores.setToolTipText("Buscador");
         txtBuscarProveedores.setBorder(null);
         jPanel1.add(txtBuscarProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 190, 20));
 

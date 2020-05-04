@@ -72,7 +72,6 @@ public class cuentasPorPagar extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
         jDate = new com.toedter.calendar.JDateChooser();
         txtProveedor = new javax.swing.JTextField();
@@ -125,7 +124,7 @@ public class cuentasPorPagar extends javax.swing.JFrame {
         jTable.setRowHeight(20);
         jScrollPane1.setViewportView(jTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 750, 170));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 510, 750, 170));
 
         jPanel.setBackground(new java.awt.Color(0, 94, 159));
         jPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -133,7 +132,7 @@ public class cuentasPorPagar extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Proveedor:");
-        jPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
+        jPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, 20));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -204,9 +203,6 @@ public class cuentasPorPagar extends javax.swing.JFrame {
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 190, 260, 20));
 
-        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 240, 20));
-
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
         jPanel.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, 260, 20));
         jPanel.add(jDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 240, -1));
@@ -216,7 +212,7 @@ public class cuentasPorPagar extends javax.swing.JFrame {
         txtProveedor.setForeground(new java.awt.Color(255, 255, 255));
         txtProveedor.setBorder(null);
         txtProveedor.setEnabled(false);
-        jPanel.add(txtProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 260, 20));
+        jPanel.add(txtProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 260, 20));
 
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
         jPanel.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 240, 20));
@@ -230,7 +226,7 @@ public class cuentasPorPagar extends javax.swing.JFrame {
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
@@ -245,7 +241,7 @@ public class cuentasPorPagar extends javax.swing.JFrame {
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
@@ -257,20 +253,20 @@ public class cuentasPorPagar extends javax.swing.JFrame {
         jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, -1, 30));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, 510, 300));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, 510, 300));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 440, -1, 300));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 490, -1, 300));
 
         jSeparator5.setBackground(new java.awt.Color(0, 94, 159));
         jSeparator5.setForeground(new java.awt.Color(0, 94, 159));
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 20, 50));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, 20, 60));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 94, 159));
         jLabel11.setText("<html>\nSeleccione en la tabla las <br> facturas a procesar pago.\n</html>");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 270, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 410, 210, -1));
 
         btnProcesar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnProcesar.setForeground(new java.awt.Color(0, 94, 159));
@@ -278,36 +274,56 @@ public class cuentasPorPagar extends javax.swing.JFrame {
         btnProcesar.setText("<html>\n<br><br><br>Procesar el Pago y Descargar el Recibo\n</html>");
         btnProcesar.setBorder(null);
         btnProcesar.setContentAreaFilled(false);
-        btnProcesar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnProcesar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProcesar.setHideActionText(true);
         btnProcesar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnProcesar.setIconTextGap(10);
         btnProcesar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/2imageonline-co-merged-image.png"))); // NOI18N
         btnProcesar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/2imageonline-co-merged-image.png"))); // NOI18N
         btnProcesar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/2imageonline-co-merged-image.png"))); // NOI18N
-        jPanel1.add(btnProcesar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 360, 260, 70));
+        jPanel1.add(btnProcesar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 390, 260, 70));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel14.setText("Cuentas por Pagar");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
 
+        btnMostrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnMostrar.setForeground(new java.awt.Color(0, 54, 194));
+        btnMostrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/management.png"))); // NOI18N
         btnMostrar.setText("Mostrar Procesado");
+        btnMostrar.setBorder(null);
+        btnMostrar.setBorderPainted(false);
+        btnMostrar.setContentAreaFilled(false);
+        btnMostrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMostrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/management (1).png"))); // NOI18N
+        btnMostrar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/management.png"))); // NOI18N
+        btnMostrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/management.png"))); // NOI18N
         btnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMostrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, -1, -1));
+        jPanel1.add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, -1, -1));
 
+        btnPagos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnPagos.setForeground(new java.awt.Color(0, 54, 194));
+        btnPagos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice.png"))); // NOI18N
         btnPagos.setText("Mostrar Pagos");
+        btnPagos.setBorder(null);
+        btnPagos.setBorderPainted(false);
+        btnPagos.setContentAreaFilled(false);
+        btnPagos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPagos.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice (1).png"))); // NOI18N
+        btnPagos.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice.png"))); // NOI18N
+        btnPagos.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice.png"))); // NOI18N
         btnPagos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPagosActionPerformed(evt);
             }
         });
-        jPanel1.add(btnPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, -1, -1));
+        jPanel1.add(btnPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 371, 160, 40));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 630));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 690));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -409,7 +425,6 @@ public class cuentasPorPagar extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
