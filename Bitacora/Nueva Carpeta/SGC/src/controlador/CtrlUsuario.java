@@ -8,17 +8,17 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JOptionPane;
-import modelo.CrudUsuario;
-import vista.GestionarUsuario;
-import vista.catalogoUsuario;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import modelo.CrudUsuario;
+import vista.GestionarUsuario;
+import vista.catalogoUsuario;
 
 public class CtrlUsuario implements ActionListener, ItemListener, MouseListener, KeyListener, WindowListener {
 
@@ -256,7 +256,6 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
 
         if (e.getSource() == catausu.txtBuscar) {
             filtro(catausu.txtBuscar.getText(), catausu.jtable);
-        } else {
         }
     }
 
