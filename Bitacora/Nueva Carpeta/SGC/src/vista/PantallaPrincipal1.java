@@ -360,7 +360,8 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         Asambleas modasa = new Asambleas();
         CuotasEspeciales modcuo = new CuotasEspeciales();
         CerrarMes modc = new CerrarMes();
-        controladorCuotasEspeciales controce = new controladorCuotasEspeciales(cuotae, catace, modpro, modcon, modasa, this, modcuo, modc);
+        buscarProveedor buscpro = new buscarProveedor();
+        controladorCuotasEspeciales controce = new controladorCuotasEspeciales(cuotae, catace, modpro, modcon, modasa, this, modcuo, modc, buscpro);
 
         catace.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
@@ -382,8 +383,9 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         Proveedores modpro = new Proveedores();
         ModeloConceptoGastos modcon = new ModeloConceptoGastos();
         CerrarMes modc = new CerrarMes();
+        buscarProveedor buscpro = new buscarProveedor();
 
-        controladorGastoComun controgc = new controladorGastoComun(gc, catagac, modgac, modpro, modcon, this, modc);
+        controladorGastoComun controgc = new controladorGastoComun(gc, catagac, modgac, modpro, modcon, this, modc,buscpro);
 
         catagac.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
