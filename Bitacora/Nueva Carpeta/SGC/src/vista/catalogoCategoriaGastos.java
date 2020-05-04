@@ -115,14 +115,15 @@ public class catalogoCategoriaGastos extends javax.swing.JFrame {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Listado de Categoria Gastos");
+        jLabel3.setText("Listado de Categoría Gastos");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
+        btnMinimizar.setToolTipText("Minimizar");
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
@@ -134,10 +135,11 @@ public class catalogoCategoriaGastos extends javax.swing.JFrame {
         jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 40, 30));
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
+        btnSalir.setToolTipText("Cerrar");
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
@@ -152,10 +154,11 @@ public class catalogoCategoriaGastos extends javax.swing.JFrame {
         btn_nuevaCategoriaGasto.setForeground(new java.awt.Color(0, 94, 159));
         btn_nuevaCategoriaGasto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (2).png"))); // NOI18N
         btn_nuevaCategoriaGasto.setText("Nuevo Registro");
+        btn_nuevaCategoriaGasto.setToolTipText("Registrar una categoría gastos nueva");
         btn_nuevaCategoriaGasto.setBorder(null);
         btn_nuevaCategoriaGasto.setBorderPainted(false);
         btn_nuevaCategoriaGasto.setContentAreaFilled(false);
-        btn_nuevaCategoriaGasto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_nuevaCategoriaGasto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_nuevaCategoriaGasto.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btn_nuevaCategoriaGasto.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btn_nuevaCategoriaGasto.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
@@ -165,9 +168,8 @@ public class catalogoCategoriaGastos extends javax.swing.JFrame {
         jLabel1.setText("Buscar:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 70, 20));
 
-        txt_buscarCategoriaGasto.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txt_buscarCategoriaGasto.setForeground(new java.awt.Color(204, 204, 204));
-        txt_buscarCategoriaGasto.setText("Buscar...");
+        txt_buscarCategoriaGasto.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txt_buscarCategoriaGasto.setToolTipText("Buscador");
         txt_buscarCategoriaGasto.setBorder(null);
         jPanel1.add(txt_buscarCategoriaGasto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 190, 20));
 

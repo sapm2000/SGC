@@ -98,6 +98,7 @@ public class detallecuenta extends javax.swing.JFrame {
         txtUnidad.setBackground(new java.awt.Color(0, 94, 159));
         txtUnidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtUnidad.setForeground(new java.awt.Color(255, 255, 255));
+        txtUnidad.setToolTipText("No se puede modificar este dato");
         txtUnidad.setBorder(null);
         txtUnidad.setEnabled(false);
         jPanel2.add(txtUnidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 180, 20));
@@ -131,6 +132,7 @@ public class detallecuenta extends javax.swing.JFrame {
         txtMesesdeuda.setBackground(new java.awt.Color(0, 94, 159));
         txtMesesdeuda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtMesesdeuda.setForeground(new java.awt.Color(255, 255, 255));
+        txtMesesdeuda.setToolTipText("No se puede modificar este dato");
         txtMesesdeuda.setBorder(null);
         txtMesesdeuda.setEnabled(false);
         jPanel2.add(txtMesesdeuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 180, 20));
@@ -138,6 +140,7 @@ public class detallecuenta extends javax.swing.JFrame {
         txtPropietarios.setBackground(new java.awt.Color(0, 94, 159));
         txtPropietarios.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPropietarios.setForeground(new java.awt.Color(255, 255, 255));
+        txtPropietarios.setToolTipText("No se puede modificar este dato");
         txtPropietarios.setBorder(null);
         txtPropietarios.setEnabled(false);
         jPanel2.add(txtPropietarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 180, 20));
@@ -185,6 +188,7 @@ public class detallecuenta extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, -1, -1));
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
+        btnMinimizar.setToolTipText("Minimizar");
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
@@ -197,9 +201,10 @@ public class detallecuenta extends javax.swing.JFrame {
                 btnMinimizarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, 40, 30));
+        jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 40, 30));
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
+        btnSalir.setToolTipText("Cerrar");
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
@@ -212,7 +217,7 @@ public class detallecuenta extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, -1, 30));
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, -1, 30));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel9.setText("Detalle de la Cuenta");

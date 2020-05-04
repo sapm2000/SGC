@@ -151,6 +151,7 @@ public class detalleRecibo extends javax.swing.JFrame {
         txtUnidad.setBackground(new java.awt.Color(0, 94, 159));
         txtUnidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtUnidad.setForeground(new java.awt.Color(255, 255, 255));
+        txtUnidad.setToolTipText("No se puede modificar este dato");
         txtUnidad.setBorder(null);
         txtUnidad.setEnabled(false);
         jPanel2.add(txtUnidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 240, 20));
@@ -168,6 +169,7 @@ public class detalleRecibo extends javax.swing.JFrame {
         txtAlicuota.setBackground(new java.awt.Color(0, 94, 159));
         txtAlicuota.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtAlicuota.setForeground(new java.awt.Color(255, 255, 255));
+        txtAlicuota.setToolTipText("No se puede modificar este dato");
         txtAlicuota.setBorder(null);
         txtAlicuota.setEnabled(false);
         jPanel2.add(txtAlicuota, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 240, 20));
@@ -175,6 +177,7 @@ public class detalleRecibo extends javax.swing.JFrame {
         txtPropietarios.setBackground(new java.awt.Color(0, 94, 159));
         txtPropietarios.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPropietarios.setForeground(new java.awt.Color(255, 255, 255));
+        txtPropietarios.setToolTipText("No se puede modificar este dato");
         txtPropietarios.setBorder(null);
         txtPropietarios.setEnabled(false);
         jPanel2.add(txtPropietarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 240, 20));
@@ -197,6 +200,7 @@ public class detalleRecibo extends javax.swing.JFrame {
         txtTotal.setBackground(new java.awt.Color(0, 94, 159));
         txtTotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtTotal.setForeground(new java.awt.Color(255, 255, 255));
+        txtTotal.setToolTipText("No se puede modificar este dato");
         txtTotal.setBorder(null);
         txtTotal.setEnabled(false);
         jPanel2.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 230, 20));
@@ -204,6 +208,7 @@ public class detalleRecibo extends javax.swing.JFrame {
         txtMes.setBackground(new java.awt.Color(0, 94, 159));
         txtMes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtMes.setForeground(new java.awt.Color(255, 255, 255));
+        txtMes.setToolTipText("No se puede modificar este dato");
         txtMes.setBorder(null);
         txtMes.setEnabled(false);
         jPanel2.add(txtMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 230, 20));
@@ -211,6 +216,7 @@ public class detalleRecibo extends javax.swing.JFrame {
         txtId.setBackground(new java.awt.Color(0, 94, 159));
         txtId.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtId.setForeground(new java.awt.Color(255, 255, 255));
+        txtId.setToolTipText("No se puede modificar este dato");
         txtId.setBorder(null);
         txtId.setEnabled(false);
         jPanel2.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 230, 20));
@@ -293,10 +299,11 @@ public class detalleRecibo extends javax.swing.JFrame {
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, -1, -1));
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
+        btnMinimizar.setToolTipText("Minimizar");
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
@@ -308,10 +315,11 @@ public class detalleRecibo extends javax.swing.JFrame {
         jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 10, 40, 30));
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
+        btnSalir.setToolTipText("Cerrar");
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N

@@ -111,6 +111,7 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
                 "<html>N° de <br> Recibo</html>", "Mes", "Año", "Alícuota", "Monto", "<html>Saldo<br>Restante</html>", "Estado", "Seleccione"
             }
         ));
+        jTable1.setToolTipText("Seleccione las facturas a procesar");
         jTable1.setRowHeight(35);
         jScrollPane1.setViewportView(jTable1);
         jTable1.getTableHeader().setResizingAllowed(false);
@@ -134,6 +135,7 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
         txtReferencia.setBackground(new java.awt.Color(0, 94, 159));
         txtReferencia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtReferencia.setForeground(new java.awt.Color(255, 255, 255));
+        txtReferencia.setToolTipText("Ingrese el número de referencia");
         txtReferencia.setBorder(null);
         jPanel2.add(txtReferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 230, 20));
 
@@ -148,6 +150,7 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 70, 40));
 
         jComboUnidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jComboUnidad.setToolTipText("Seleccione la unidad");
         jComboUnidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboUnidadActionPerformed(evt);
@@ -162,14 +165,16 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("<html>\nCuenta <br> depositada:\n</html>");
+        jLabel7.setText("<html> Cuenta <br> Depositada: </html>");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, 80, -1));
 
         jComboCuenta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jComboCuenta.setToolTipText("Seleccione la cuenta depositada");
         jPanel2.add(jComboCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 240, -1));
 
         jComboForma.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboForma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Transferencia", "Deposito", "Cheque", "Efectivo" }));
+        jComboForma.setToolTipText("Seleccione la forma de pago");
         jPanel2.add(jComboForma, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 240, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -188,11 +193,13 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 70, -1));
 
         jComboFondo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jComboFondo.setToolTipText("Seleccione el fondo a depositar");
         jPanel2.add(jComboFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 220, 250, -1));
 
         txtMonto.setBackground(new java.awt.Color(0, 94, 159));
         txtMonto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtMonto.setForeground(new java.awt.Color(255, 255, 255));
+        txtMonto.setToolTipText("Ingrese el monto");
         txtMonto.setBorder(null);
         jPanel2.add(txtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, 240, 20));
 
@@ -201,6 +208,8 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 230, 20));
+
+        jDateChooser1.setToolTipText("Ingrese la fecha del pago");
         jPanel2.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 229, 230, 30));
         jDateChooser1.getDateEditor().setEnabled(false);
 
@@ -213,6 +222,8 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
         txtDescripcion.setForeground(new java.awt.Color(255, 255, 255));
         txtDescripcion.setLineWrap(true);
         txtDescripcion.setRows(5);
+        txtDescripcion.setToolTipText("Ingrese una descripción");
+        txtDescripcion.setWrapStyleWord(true);
         jScrollPane3.setViewportView(txtDescripcion);
 
         jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 220, 80));
@@ -227,10 +238,11 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, -1));
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
+        btnSalir.setToolTipText("Cerrar");
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
@@ -242,10 +254,11 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
         jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 20, -1, 30));
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
+        btnMinimizar.setToolTipText("Minimizar");
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
@@ -291,9 +304,10 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
         btnGuardar.setForeground(new java.awt.Color(0, 94, 159));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/1imageonline-co-merged-image.png"))); // NOI18N
         btnGuardar.setText("<html>\n<br><br><br>Procesar el Pago y Descargar el Recibo\n</html>");
+        btnGuardar.setToolTipText("Procesar el pago y descargar el recibo");
         btnGuardar.setBorder(null);
         btnGuardar.setContentAreaFilled(false);
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGuardar.setHideActionText(true);
         btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnGuardar.setIconTextGap(10);
