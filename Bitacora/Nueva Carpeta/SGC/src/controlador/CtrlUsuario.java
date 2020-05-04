@@ -328,13 +328,13 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
         Object[] columna = new Object[5];
 
         int numRegistro = listaUsu.size();
-        System.out.println(numRegistro);
+        
 
         for (int i = 0; i < numRegistro; i++) {
 
             columna[0] = listaUsu.get(i).getUsuario();
             columna[1] = listaUsu.get(i).getNombre();
-            System.out.println(listaUsu.get(i).getUsuario());
+           
             columna[2] = listaUsu.get(i).getApellido();
             columna[3] = listaUsu.get(i).getNtelefono();
             columna[4] = listaUsu.get(i).getTipo();

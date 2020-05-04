@@ -124,7 +124,7 @@ public class Unidades extends Propietarios {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT cedula, nombre, telefono, correo	FROM propietarios where id_condominio=?;";
+        String sql = "	SELECT cedula, nombre, telefono, correo	FROM puente_propietario_condominio inner join propietarios on puente_propietario_condominio.id_propietario=propietarios.cedula where id_condominio=?;";
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_condominio());

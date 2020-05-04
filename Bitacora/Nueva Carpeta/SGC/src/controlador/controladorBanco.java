@@ -125,7 +125,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
                 ban.cbxBanco.addItem(modban.getNombre_banco());
             }
 
-            System.out.println("ComboBox banco creado");
+            
         }
     }*/
     @Override

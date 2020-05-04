@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,6 +25,18 @@ public class Propietarios extends ConexionBD {
     private String telefono;
     private String correo;
     private String id_condominio;
+    private int cantidad;
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    
+    
 
     public String getCedula() {
         return cedula;
@@ -90,7 +103,7 @@ public class Propietarios extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO propietarios(cedula, nombre, apellido, telefono, correo,id_condominio) VALUES (?, ?, ?, ?, ?,?);";
+        String sql = "INSERT INTO propietarios(cedula, nombre, apellido, telefono, correo) VALUES (?, ?, ?, ?, ?);";
 
         try {
 
@@ -100,7 +113,7 @@ public class Propietarios extends ConexionBD {
             ps.setString(3, getApellido());
             ps.setString(4, getTelefono());
             ps.setString(5, getCorreo());
-            ps.setString(6, getId_condominio());
+          
 
             ps.execute();
 
@@ -134,10 +147,10 @@ public class Propietarios extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT cedula, nombre, apellido, telefono, correo, id_condominio FROM propietarios WHERE id_condominio=?;";
+        String sql = "SELECT cedula, nombre, apellido, telefono, correo, count (puente_propietario_condominio.id_propietario) FROM puente_propietario_condominio right join propietarios on puente_propietario_condominio.id_propietario=propietarios.cedula group by propietarios.cedula";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_condominio());
+           
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -149,7 +162,52 @@ public class Propietarios extends ConexionBD {
                 modpro.setApellido(rs.getString(3));
                 modpro.setTelefono(rs.getString(4));
                 modpro.setCorreo(rs.getString(5));
-                modpro.setId_condominio(rs.getString(6));
+                modpro.setCantidad(rs.getInt(6));
+
+                listaPropietarios.add(modpro);
+            }
+        } catch (Exception e) {
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+        return listaPropietarios;
+    }
+    
+    public ArrayList<Propietarios> listarxcon() {
+        ArrayList listaPropietarios = new ArrayList();
+        Propietarios modpro;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT cedula, nombre, apellido, telefono, correo FROM puente_propietario_condominio right join propietarios on puente_propietario_condominio.id_propietario=propietarios.cedula where id_condominio=? group by propietarios.cedula ";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getId_condominio());
+          
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modpro = new Propietarios();
+
+                modpro.setCedula(rs.getString(1));
+                modpro.setNombre(rs.getString(2));
+                modpro.setApellido(rs.getString(3));
+                modpro.setTelefono(rs.getString(4));
+                modpro.setCorreo(rs.getString(5));
+                
 
                 listaPropietarios.add(modpro);
             }
@@ -215,29 +273,56 @@ public class Propietarios extends ConexionBD {
 
     }
     
-    public boolean buscarepeprop(Propietarios modpro) {
+     public boolean registrar_propietario_condominio(Propietarios modpro) {
 
         PreparedStatement ps = null;
-        ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT * FROM propietarios WHERE id_condominio=? and cedula=?";
+
+        String sql = "INSERT INTO puente_propietario_condominio(id_propietario, id_condominio) VALUES (?, ?);";
 
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, modpro.getId_condominio());
-            ps.setString(2, modpro.getCedula());
-            rs = ps.executeQuery();
-            if (rs.next()) {
+            ps.setString(1, getCedula());
+            ps.setString(2, getId_condominio());
 
-                modpro.setId2(rs.getString("nombre"));
-               
-                
+            ps.execute();
 
-                return true;
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
             }
 
-            return false;
+        }
+
+    }
+     public boolean borrarpuente(Propietarios modpro) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "DELETE FROM puente_propietario_condominio WHERE id_propietario=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getCedula());
+            ps.execute();
+
+            return true;
 
         } catch (SQLException e) {
 

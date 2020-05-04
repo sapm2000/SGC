@@ -137,7 +137,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
         int numRegistro = listaCondo.size();
 
         for (int i = 0; i < numRegistro; i++) {
-            System.out.println(listaCondo.get(i).getRif());
+           
             columna[0] = listaCondo.get(i).getRif();
             columna[1] = listaCondo.get(i).getRazonS();
 

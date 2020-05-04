@@ -66,7 +66,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
     public void Llenartabla(JTable tablaD) {
 
-        listaPropietarios = modpro.listar();
+        listaPropietarios = modpro.listarxcon();
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -107,9 +107,10 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         Object[] columna = new Object[5];
 
         int numRegistro = listaPropietarios.size();
+         
 
         for (int i = 0; i < numRegistro; i++) {
-
+           
             columna[0] = listaPropietarios.get(i).getCedula();
             columna[1] = listaPropietarios.get(i).getNombre();
             columna[2] = listaPropietarios.get(i).getApellido();

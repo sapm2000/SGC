@@ -279,7 +279,7 @@ public class Asambleas extends Propietarios {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "select propietarios.cedula, propietarios.nombre, propietarios.apellido, propietarios.telefono, propietarios.correo, id_asamblea from propietarios left join puente_asamblea_propietario on puente_asamblea_propietario.id_propietario=propietarios.cedula and puente_asamblea_propietario.id_asamblea=? where id_condominio=?";
+        String sql = "select propietarios.cedula, propietarios.nombre, propietarios.apellido, propietarios.telefono, propietarios.correo, puente_asamblea_propietario.id_asamblea from propietarios left join puente_asamblea_propietario on puente_asamblea_propietario.id_propietario=propietarios.cedula and puente_asamblea_propietario.id_asamblea=? inner join puente_propietario_condominio on puente_propietario_condominio.id_propietario=propietarios.cedula where id_condominio=?";
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
