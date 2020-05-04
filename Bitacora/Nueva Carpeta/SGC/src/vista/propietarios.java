@@ -415,7 +415,7 @@ public class propietarios extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField5;
     public javax.swing.JTextField txtApellido;
     public javax.swing.JTextField txtCedula;

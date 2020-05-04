@@ -15,117 +15,132 @@ import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import modelo.Cuenta;
 import modelo.Cuenta_Pagar;
 import modelo.Fondo;
 import modelo.GastoComun;
 import vista.catalogoCuentas_procesada;
+import vista.catalogoPagos_referencias;
 import vista.cuentasPorPagar;
 
 public class controladorCuenta_Pagar implements ActionListener, WindowListener, ItemListener, KeyListener, MouseListener {
 
     private Cuenta_Pagar modCuentaP;
-    private cuentasPorPagar vistaCuentaP;
+    private cuentasPorPagar vista;
     private Fondo modFondo;
     private Cuenta modCuenta;
     private GastoComun modGastoC;
     private catalogoCuentas_procesada catCuenPro;
+    private catalogoPagos_referencias catPagos;
     ArrayList<GastoComun> listaGastoC;
     ArrayList<Fondo> listaFondo;
     ArrayList<Cuenta> listaCuenta;
+    ArrayList<Cuenta_Pagar> listaPagar;
     DefaultTableModel dm;
 
     int fila;
 
     public controladorCuenta_Pagar(Cuenta_Pagar modCuentaP, cuentasPorPagar vistaCuentaP, Fondo modFondo, Cuenta modCuenta, GastoComun modGastoC, catalogoCuentas_procesada catCuenPro) {
 
+        catPagos = new catalogoPagos_referencias();
         this.modCuentaP = modCuentaP;
-        this.vistaCuentaP = vistaCuentaP;
+        this.vista = vistaCuentaP;
         this.modFondo = modFondo;
         this.modCuenta = modCuenta;
         this.modGastoC = modGastoC;
         this.catCuenPro = catCuenPro;
-        this.vistaCuentaP.btnProcesar.addActionListener(this);
-        this.vistaCuentaP.addWindowListener(this);
-        this.vistaCuentaP.jTable.addMouseListener(this);
-        this.vistaCuentaP.btnMostrar.addActionListener(this);
+        this.vista.btnProcesar.addActionListener(this);
+        this.vista.addWindowListener(this);
+        this.vista.jTable.addMouseListener(this);
+        this.vista.btnMostrar.addActionListener(this);
+        this.vista.btnPagos.addActionListener(this);
+        this.catPagos.txtBusqueda.addKeyListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == vistaCuentaP.btnProcesar) {
+        if (e.getSource() == vista.btnProcesar) {
 
-            modCuentaP.setNum_ref(vistaCuentaP.txtReferencia.getText());
-            modCuentaP.setForma_pago(vistaCuentaP.cbxFormaP.getSelectedItem().toString());
-            int ind = vistaCuentaP.cbxCuentaT.getSelectedIndex() - 1;
+            modCuentaP.setNum_ref(vista.txtReferencia.getText());
+            modCuentaP.setForma_pago(vista.cbxFormaP.getSelectedItem().toString());
+            int ind = vista.cbxCuentaT.getSelectedIndex() - 1;
             modCuentaP.getModCuenta().setN_cuenta(listaCuenta.get(ind).getN_cuenta());
-            modCuentaP.setDescripcion(vistaCuentaP.txtDescripcion.getText());
-            java.sql.Date sqlDate = convert(vistaCuentaP.jDate.getDate());
+            modCuentaP.setDescripcion(vista.txtDescripcion.getText());
+            java.sql.Date sqlDate = convert(vista.jDate.getDate());
             modCuentaP.setFecha(sqlDate);
-            ind = vistaCuentaP.cbxFondo.getSelectedIndex() - 1;
+            ind = vista.cbxFondo.getSelectedIndex() - 1;
             modCuentaP.getModFondo().setId(listaFondo.get(ind).getId());
             modCuentaP.getModFondo().setSaldo(listaFondo.get(ind).getSaldo());
             //int fila = this.vistaCuentaP.jTable.getSelectedRow(); // primero, obtengo la fila seleccionada
             float montoTabla;
-            float montoX;
-            montoX = Float.parseFloat(vistaCuentaP.txtMonto.getText());
-            montoTabla = Float.parseFloat(vistaCuentaP.jTable.getValueAt(fila, 3).toString());
+            float montoUsuario;
+            if (Float.parseFloat(vista.txtMonto.getText()) > 0) {
+                montoUsuario = Float.parseFloat(vista.txtMonto.getText());
+                montoTabla = Float.parseFloat(vista.jTable.getValueAt(fila, 3).toString());
 
-            if (montoX <= montoTabla) {
-                if (montoX <= modCuentaP.getModFondo().getSaldo()) {
-                    modCuentaP.setMonto(Float.parseFloat(vistaCuentaP.txtMonto.getText()));
+                if (montoUsuario <= montoTabla) {
+                    if (montoUsuario <= modCuentaP.getModFondo().getSaldo()) {
+                        modCuentaP.setMonto(Float.parseFloat(vista.txtMonto.getText()));
 
-                    if (modCuentaP.registrarPago(modCuentaP)) {
-                        modCuentaP.getModFondo().restarFondo(modCuentaP.getMonto());
-                        modGastoC.setId(listaGastoC.get(fila).getId());
-                        modGastoC.restarSaldo(modCuentaP.getMonto());
-                        JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
+                        if (modCuentaP.registrarPago(modCuentaP)) {
+                            modCuentaP.getModFondo().restarFondo(modCuentaP.getMonto());
+                            modGastoC.setId(listaGastoC.get(fila).getId());
+                            modGastoC.restarSaldo(modCuentaP.getMonto());
+                            JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
 
+                        } else {
+                            JOptionPane.showMessageDialog(null, "ERROR AL REGISTAR");
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(null, "ERROR AL REGISTAR");
+                        JOptionPane.showMessageDialog(null, "El monto ingresado no puede ser mayor al Fondo");
                     }
-
                 } else {
-                    JOptionPane.showMessageDialog(null, "El monto ingreso no puede ser mayor al Fondo");
+                    JOptionPane.showMessageDialog(null, "El monto ingresado no puede ser mayor al monto de la factura");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "El monto ingreso no puede ser mayor al monto de la factura");
+                JOptionPane.showMessageDialog(null, "El monto ingresado no puede ser cero");
             }
-
             //listaGastoC = modGastoC.listarGastoComun();
             listaGastoC = modGastoC.listarGastoComun(2);
-            Llenartabla(vistaCuentaP.jTable, 2);
+            Llenartabla(vista.jTable, 2);
             listaFondo = modFondo.listar(1);
             crearCbxFondo(listaFondo);
         }
-        if (e.getSource() == vistaCuentaP.btnMostrar) {
+        if (e.getSource() == vista.btnMostrar) {
             catCuenPro.addWindowListener(this);
             this.catCuenPro.setVisible(true);
+        }
+        if (e.getSource() == vista.btnPagos) {
+            catPagos.addWindowListener(this);
+            this.catPagos.setVisible(true);
+
         }
     }
 
     @Override
     public void windowOpened(WindowEvent e) {
-        if (e.getSource() == vistaCuentaP) {
-
+        if (e.getSource() == vista) {
             listaFondo = modFondo.listar(1);
             crearCbxFondo(listaFondo);
             listaCuenta = modCuenta.listarcuenta();
             crearCbxCuenta(listaCuenta);
             modGastoC = new GastoComun();
             //listaGastoC = modGastoC.listarGastoComun();
-            Llenartabla(vistaCuentaP.jTable, 2);
+            Llenartabla(vista.jTable, 2);
             //addCheckBox(0, vistaCuentaP.jTable);
         } else if (e.getSource() == catCuenPro) {
             Llenartabla(catCuenPro.jTable1, 1);
-
+        } else if (e.getSource() == catPagos) {
+            llenarTablaPagos(catPagos.jTable);
         }
 
-        Component[] components = vistaCuentaP.jPanel.getComponents();
-        JComponent[] com = {vistaCuentaP.jDate, vistaCuentaP.txtDescripcion, vistaCuentaP.txtMonto, vistaCuentaP.txtProveedor, vistaCuentaP.txtReferencia};
+        Component[] components = vista.jPanel.getComponents();
+        JComponent[] com = {vista.jDate, vista.txtDescripcion, vista.txtMonto, vista.txtProveedor, vista.txtReferencia};
         Validacion.copiar(components);
         Validacion.pegar(com);
 
@@ -169,21 +184,25 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
 
     @Override
     public void keyReleased(KeyEvent e) {
+        if (e.getSource() == catPagos.txtBusqueda) {
+            filtro(catPagos.txtBusqueda.getText(), catPagos.jTable);
+        }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        Llenartabla(vistaCuentaP.jTable, 2);
-        fila = 0;
-        fila = this.vistaCuentaP.jTable.getSelectedRow(); // primero, obtengo la fila seleccionada
-        Boolean resultado = true;
-        String msj = "";
+        if(e.getSource() == vista.jTable)
+        {
+        //Llenartabla(vista.jTable, 2);
+        fila = this.vista.jTable.getSelectedRow(); // primero, obtengo la fila seleccionada
+        //Boolean resultado = true;
+        //String msj = "";
 
         modCuentaP.cargarProveedor(listaGastoC.get(fila).getId());
 
-        vistaCuentaP.setVisible(true);
-        vistaCuentaP.txtProveedor.setText(modCuentaP.getNom_proveedor());
-
+        vista.setVisible(true);
+        vista.txtProveedor.setText(modCuentaP.getNom_proveedor());
+        }
     }
 
     @Override
@@ -203,26 +222,33 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
     }
 
     private void crearCbxCuenta(ArrayList<Cuenta> datos) {
-        vistaCuentaP.cbxCuentaT.addItem("Seleccione...");
+        vista.cbxCuentaT.addItem("Seleccione...");
 
         if (datos != null) {
             for (Cuenta datosX : datos) {
-                vistaCuentaP.cbxCuentaT.addItem(datosX.getN_cuenta() + " - " + datosX.getNombre_banco());
+                vista.cbxCuentaT.addItem(datosX.getN_cuenta() + " - " + datosX.getNombre_banco());
             }
 
         }
     }
 
     private void crearCbxFondo(ArrayList<Fondo> datos) {
-        vistaCuentaP.cbxFondo.removeAllItems();
-        vistaCuentaP.cbxFondo.addItem("Seleccione...");
-        
+        vista.cbxFondo.removeAllItems();
+        vista.cbxFondo.addItem("Seleccione...");
+
         if (datos != null) {
             for (Fondo datosX : datos) {
-                vistaCuentaP.cbxFondo.addItem(Validacion.formatoDecimal(datosX.getSaldo()));
+                vista.cbxFondo.addItem(Validacion.formatoDecimal(datosX.getSaldo()) + " - " + datosX.getTipo());
             }
 
         }
+    }
+
+    private void filtro(String consulta, JTable jtableBuscar) {
+        dm = (DefaultTableModel) jtableBuscar.getModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        jtableBuscar.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(consulta));
     }
 
     private static java.sql.Date convert(java.util.Date uDate) {
@@ -269,6 +295,44 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
         tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+    }
+
+    public void llenarTablaPagos(JTable tablaD) {
+        listaPagar = modCuentaP.listar();
+
+        DefaultTableModel modeloT = new DefaultTableModel();
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+
+        // modeloT.addColumn("Selecciona");
+        modeloT.addColumn("Referencia");
+        modeloT.addColumn("Pago");
+        modeloT.addColumn("Descripción");
+        modeloT.addColumn("Monto");
+        modeloT.addColumn("Fecha");
+        modeloT.addColumn("Proveedor");
+        modeloT.addColumn("Nro Cuenta");
+        modeloT.addColumn("Banco");
+        modeloT.addColumn("Tipo");
+
+        Object[] columna = new Object[9];
+
+        int num = listaPagar.size();
+
+        for (int i = 0; i < num; i++) {
+            columna[0] = listaPagar.get(i).getNum_ref();
+            columna[1] = listaPagar.get(i).getForma_pago();
+            columna[2] = listaPagar.get(i).getDescripcion();
+            columna[3] = listaPagar.get(i).getMonto();
+            columna[4] = listaPagar.get(i).getFecha();
+            columna[5] = listaPagar.get(i).getNom_proveedor();
+            columna[6] = listaPagar.get(i).getModCuenta().getN_cuenta();
+            columna[7] = listaPagar.get(i).getModBanco().getNombre_banco();
+            columna[8] = listaPagar.get(i).getModFondo().getTipo();
+            modeloT.addRow(columna);
+
+        }
+
     }
 
     /*public void addCheckBox(int column, JTable table) {

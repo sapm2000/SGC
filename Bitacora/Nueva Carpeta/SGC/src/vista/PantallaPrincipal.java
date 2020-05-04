@@ -413,7 +413,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     catalogoPropietarios cataprop = new catalogoPropietarios();
         propietarios prop = new propietarios();
         Propietarios modpro = new Propietarios();
-        controladorPropietario contropro = new controladorPropietario(prop, cataprop, modpro, this);
+        Condominio modcon = new Condominio();
+        controladorPropietario contropro = new controladorPropietario(prop, cataprop, modpro, modcon);
 
         cataprop.setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
