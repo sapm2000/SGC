@@ -38,6 +38,7 @@ public class cuenta extends javax.swing.JFrame {
         initComponents();
         jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
+        
         setLocationRelativeTo(null);
     }
 

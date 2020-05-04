@@ -271,5 +271,44 @@ public class Condominio extends ConexionBD {
         return listaPersona;
 
     }
+    
+    public ArrayList<Condominio> propietariocondominiomodificar() {
+        ArrayList listaPersona = new ArrayList();
+        Condominio Condominio = new Condominio();
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT rif , razon_social, puente_propietario_condominio.id_propietario as prop FROM condominio left join puente_propietario_condominio on puente_propietario_condominio.id_condominio=condominio.rif and puente_propietario_condominio.id_propietario=?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getRif());
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Condominio = new Condominio();
+
+                //prs = new Persona();
+                Condominio.setRif(rs.getString("rif"));
+                Condominio.setRazonS(rs.getString("razon_social"));
+                Condominio.setId_cuenta(rs.getString("prop"));
+
+                listaPersona.add(Condominio);
+            }
+
+        } catch (Exception e) {
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+        return listaPersona;
+
+    }
 
 }

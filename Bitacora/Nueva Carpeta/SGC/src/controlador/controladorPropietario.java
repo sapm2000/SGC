@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -22,9 +23,10 @@ import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
+import modelo.Condominio;
 import modelo.Propietarios;
-import vista.PantallaPrincipal1;
 import vista.catalogoPropietarios;
 import vista.propietarios;
 
@@ -37,15 +39,18 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
     private propietarios pro;
     private catalogoPropietarios catapro;
     private Propietarios modpro;
-    private PantallaPrincipal1 panta1;
+    private Condominio modcon;
+
     ArrayList<Propietarios> listaPropietarios;
+    ArrayList<Condominio> listaCondo;
     DefaultTableModel dm;
 
-    public controladorPropietario(propietarios pro, catalogoPropietarios catapro, Propietarios modpro, PantallaPrincipal1 panta1) {
+    public controladorPropietario(propietarios pro, catalogoPropietarios catapro, Propietarios modpro, Condominio modcon) {
         this.pro = pro;
         this.catapro = catapro;
         this.modpro = modpro;
-        this.panta1 = panta1;
+        this.modcon = modcon;
+
         this.catapro.btn_NuevoPropietario.addActionListener(this);
         this.catapro.addWindowListener(this);
         this.catapro.txtBuscarPropietarios.addKeyListener(this);
@@ -59,6 +64,105 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         pro.txtApellido.addKeyListener(this);
         pro.txtTelefono.addKeyListener(this);
         pro.txtCorreo.addKeyListener(this);
+    }
+
+    public void Llenartablacondominio(JTable tablaD) {
+
+        listaCondo = modcon.lPerson();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+                if (column == 2) {
+                    resu = true;
+                }
+                return resu;
+            }
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
+
+        modeloT.addColumn("Rif");
+        modeloT.addColumn("Razón social");
+        modeloT.addColumn("Seleccione");
+
+        Object[] columna = new Object[2];
+
+        int numRegistro = listaCondo.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listaCondo.get(i).getRif();
+            columna[1] = listaCondo.get(i).getRazonS();
+
+            modeloT.addRow(columna);
+
+        }
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+    }
+
+    public void Llenartablacondominiomodificar(JTable tablaD) {
+        listaCondo = modcon.propietariocondominiomodificar();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+                if (column == 2) {
+                    resu = true;
+                }
+                return resu;
+            }
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
+
+        modeloT.addColumn("Rif");
+        modeloT.addColumn("Razón Social");
+        modeloT.addColumn("Seleccione");
+
+        Object[] columna = new Object[3];
+
+        int numRegistro = listaCondo.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listaCondo.get(i).getRif();
+            columna[1] = listaCondo.get(i).getRazonS();
+
+            if (listaCondo.get(i).getId_cuenta() != null) {
+                columna[2] = Boolean.TRUE;
+            } else {
+                columna[2] = Boolean.FALSE;
+            }
+
+            modeloT.addRow(columna);
+
+        }
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
     }
 
     public void Llenartabla(JTable tablaD) {
@@ -81,8 +185,9 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         modeloT.addColumn("Apellido");
         modeloT.addColumn("Teléfono");
         modeloT.addColumn("<html>Correo <br> Electrónico</html>");
+        modeloT.addColumn("Condominio");
 
-        Object[] columna = new Object[5];
+        Object[] columna = new Object[6];
 
         int numRegistro = listaPropietarios.size();
 
@@ -93,6 +198,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
             columna[2] = listaPropietarios.get(i).getApellido();
             columna[3] = listaPropietarios.get(i).getTelefono();
             columna[4] = listaPropietarios.get(i).getCorreo();
+            columna[5] = listaPropietarios.get(i).getCantidad();
 
             modeloT.addRow(columna);
 
@@ -105,6 +211,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
 
     }
 
@@ -117,6 +224,8 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
             this.pro.btnEliminar.setEnabled(false);
             this.pro.txtCedula.setEnabled(true);
             this.catapro.addWindowListener(this);
+            Llenartablacondominio(pro.jTable1);
+            addCheckBox(2, pro.jTable1);
             pro.txtCedula.setText("");
             pro.txtApellido.setText("");
             pro.txtCorreo.setText("");
@@ -132,52 +241,92 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
                 modpro.setApellido(pro.txtApellido.getText());
                 modpro.setCorreo(pro.txtCorreo.getText());
                 modpro.setTelefono(pro.txtTelefono.getText());
-                modpro.setId_condominio(panta1.rif.getText());
-                
+                int j = 0;
+                for (int i = 0; i < pro.jTable1.getRowCount(); i++) {
+                    if (valueOf(pro.jTable1.getValueAt(i, 2)) == "true") {
+                        j = j + 1;
 
-                if (modpro.buscarepeprop(modpro)) {
-                    JOptionPane.showMessageDialog(null, "Este condiminio ya tiene esta cedula asignada");
+                    }
+                }
+
+                if (j == 0) {
+                    JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
                 } else {
 
-                if (modpro.registrar(modpro)) {
+                    if (modpro.registrar(modpro)) {
 
-                    JOptionPane.showMessageDialog(null, "Registro Guardado");
-                    Llenartabla(catapro.TablaPropietarios);
+                        JOptionPane.showMessageDialog(null, "Registro Guardado");
+                        for (int i = 0; i < pro.jTable1.getRowCount(); i++) {
+                            if (valueOf(pro.jTable1.getValueAt(i, 2)) == "true") {
+                                String valor = String.valueOf(pro.jTable1.getValueAt(i, 0));
+                                modpro.setId_condominio(valor);
+                                modpro.setCedula(pro.txtCedula.getText());
+                                modpro.registrar_propietario_condominio(modpro);
 
-                } else {
+                            }
+                        }
 
-                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                        pro.dispose();
+                        limpiar();
+                        Llenartabla(catapro.TablaPropietarios);
 
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                    }
                 }
             }
-            }
-
         }
 
-        if (e.getSource() == pro.btnModificar) {
+        if (e.getSource()
+                == pro.btnModificar) {
             if (validar()) {
                 modpro.setCedula(pro.txtCedula.getText());
                 modpro.setNombre(pro.txtNombre.getText());
                 modpro.setApellido(pro.txtApellido.getText());
                 modpro.setCorreo(pro.txtCorreo.getText());
                 modpro.setTelefono(pro.txtTelefono.getText());
+                int j = 0;
+                for (int i = 0; i < pro.jTable1.getRowCount(); i++) {
+                    if (valueOf(pro.jTable1.getValueAt(i, 2)) == "true") {
+                        j = j + 1;
 
-                if (modpro.modificar(modpro)) {
+                    }
+                }
 
-                    JOptionPane.showMessageDialog(null, "Registro Modificado");
-                    Llenartabla(catapro.TablaPropietarios);
-                    pro.dispose();
-
+                if (j == 0) {
+                    JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                    if (modpro.modificar(modpro)) {
+                        modpro.borrarpuente(modpro);
+                        JOptionPane.showMessageDialog(null, "Registro Modificado");
+                        for (int i = 0; i < pro.jTable1.getRowCount(); i++) {
+                            if (valueOf(pro.jTable1.getValueAt(i, 2)) == "true") {
+                                String valor = String.valueOf(pro.jTable1.getValueAt(i, 0));
+                                modpro.setId_condominio(valor);
+                                modpro.setCedula(pro.txtCedula.getText());
+                                modpro.registrar_propietario_condominio(modpro);
 
+                            }
+                        }
+
+                        pro.dispose();
+                        limpiar();
+                        Llenartabla(catapro.TablaPropietarios);
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                    }
                 }
-            }
 
+            }
         }
 
-        if (e.getSource() == pro.btnEliminar) {
+        if (e.getSource()== pro.btnEliminar) {
 
             if (modpro.eliminar(modpro)) {
 
@@ -193,7 +342,8 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
             }
 
         }
-        if (e.getSource() == pro.btnLimpiar) {
+
+        if (e.getSource()== pro.btnLimpiar) {
 
             limpiar();
 
@@ -263,7 +413,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
     @Override
     public void mouseClicked(MouseEvent e) {
         int fila = this.catapro.TablaPropietarios.getSelectedRow(); // primero, obtengo la fila seleccionada
-        int columna = this.catapro.TablaPropietarios.getSelectedColumn(); // luego, obtengo la columna seleccionada
+
         String dato = String.valueOf(this.catapro.TablaPropietarios.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
         catapro.txtBuscarPropietarios.setText(String.valueOf(dato));
 
@@ -284,6 +434,9 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
 
         pro.btnModificar.setEnabled(true);
         pro.btnEliminar.setEnabled(true);
+        modcon.setRif(modpro.getCedula());
+        Llenartablacondominiomodificar(pro.jTable1);
+        addCheckBox(2, pro.jTable1);
     }
 
     @Override
@@ -316,7 +469,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         if (ke.getSource() == pro.txtNombre) {
 
             Validacion.soloLetras(ke);
-            
+
             Validacion.limite(ke, pro.txtNombre.getText(), 30);
         }
         if (ke.getSource() == pro.txtApellido) {
@@ -355,12 +508,12 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
 
     @Override
     public void windowOpened(WindowEvent e) {
-        modpro.setId_condominio(panta1.rif.getText());
+
         Llenartabla(catapro.TablaPropietarios);
 
-        Component[] components =pro.jPanel2.getComponents();
+        Component[] components = pro.jPanel2.getComponents();
         JComponent[] com = {
-            pro.txtCedula,pro.txtNombre, pro.txtApellido, pro.txtTelefono, pro.txtCorreo
+            pro.txtCedula, pro.txtNombre, pro.txtApellido, pro.txtTelefono, pro.txtCorreo
         };
         Validacion.copiar(components);
         Validacion.pegar(com);
@@ -394,6 +547,12 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
     @Override
     public void windowDeactivated(WindowEvent e) {
 
+    }
+
+    public void addCheckBox(int column, JTable table) {
+        TableColumn tc = table.getColumnModel().getColumn(column);
+        tc.setCellEditor(table.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
     }
 
 }
