@@ -9,7 +9,6 @@ import controlador.controladorCuentasPorCobrar;
 import controlador.controladorCuotasEspeciales;
 import controlador.controladorFondo;
 import controlador.controladorGastoComun;
-import controlador.controladorPropietario;
 import controlador.controladorSancion;
 import controlador.controladorUnidades;
 import java.awt.Image;
@@ -406,9 +405,9 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         detallecuenta detacun = new detallecuenta();
         detalleRecibo detare = new detalleRecibo();
         Unidades moduni = new Unidades();
-        buscarPropietario buscp = new buscarPropietario();
+      
         CerrarMes modc = new CerrarMes();
-        controladorUnidades controuni = new controladorUnidades(uni, cataun, detacun, detare, moduni, this, buscp, modc);
+        controladorUnidades controuni = new controladorUnidades(uni, cataun, detacun, detare, moduni, this, modc);
 
         cataun.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed

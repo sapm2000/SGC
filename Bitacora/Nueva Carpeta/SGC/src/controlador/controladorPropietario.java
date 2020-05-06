@@ -66,104 +66,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         pro.txtCorreo.addKeyListener(this);
     }
 
-    public void Llenartablacondominio(JTable tablaD) {
-
-        listaCondo = modcon.lPerson();
-        DefaultTableModel modeloT = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-
-                boolean resu = false;
-                if (column == 0) {
-                    resu = false;
-                }
-                if (column == 1) {
-                    resu = false;
-                }
-                if (column == 2) {
-                    resu = true;
-                }
-                return resu;
-            }
-        };
-        tablaD.setModel(modeloT);
-        tablaD.getTableHeader().setReorderingAllowed(false);
-        tablaD.getTableHeader().setResizingAllowed(false);
-
-        modeloT.addColumn("Rif");
-        modeloT.addColumn("Razón social");
-        modeloT.addColumn("Seleccione");
-
-        Object[] columna = new Object[2];
-
-        int numRegistro = listaCondo.size();
-
-        for (int i = 0; i < numRegistro; i++) {
-
-            columna[0] = listaCondo.get(i).getRif();
-            columna[1] = listaCondo.get(i).getRazonS();
-
-            modeloT.addRow(columna);
-
-        }
-        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-        tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-    }
-
-    public void Llenartablacondominiomodificar(JTable tablaD) {
-        listaCondo = modcon.propietariocondominiomodificar();
-        DefaultTableModel modeloT = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-
-                boolean resu = false;
-                if (column == 0) {
-                    resu = false;
-                }
-                if (column == 1) {
-                    resu = false;
-                }
-                if (column == 2) {
-                    resu = true;
-                }
-                return resu;
-            }
-        };
-        tablaD.setModel(modeloT);
-        tablaD.getTableHeader().setReorderingAllowed(false);
-        tablaD.getTableHeader().setResizingAllowed(false);
-
-        modeloT.addColumn("Rif");
-        modeloT.addColumn("Razón Social");
-        modeloT.addColumn("Seleccione");
-
-        Object[] columna = new Object[3];
-
-        int numRegistro = listaCondo.size();
-
-        for (int i = 0; i < numRegistro; i++) {
-
-            columna[0] = listaCondo.get(i).getRif();
-            columna[1] = listaCondo.get(i).getRazonS();
-
-            if (listaCondo.get(i).getId_cuenta() != null) {
-                columna[2] = Boolean.TRUE;
-            } else {
-                columna[2] = Boolean.FALSE;
-            }
-
-            modeloT.addRow(columna);
-
-        }
-        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-        tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-    }
+    
 
     public void Llenartabla(JTable tablaD) {
 
@@ -185,9 +88,9 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         modeloT.addColumn("Apellido");
         modeloT.addColumn("Teléfono");
         modeloT.addColumn("<html>Correo <br> Electrónico</html>");
-        modeloT.addColumn("Condominio");
+        
 
-        Object[] columna = new Object[6];
+        Object[] columna = new Object[5];
 
         int numRegistro = listaPropietarios.size();
 
@@ -198,7 +101,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
             columna[2] = listaPropietarios.get(i).getApellido();
             columna[3] = listaPropietarios.get(i).getTelefono();
             columna[4] = listaPropietarios.get(i).getCorreo();
-            columna[5] = listaPropietarios.get(i).getCantidad();
+            
 
             modeloT.addRow(columna);
 
@@ -211,7 +114,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
+       
 
     }
 
@@ -224,8 +127,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
             this.pro.btnEliminar.setEnabled(false);
             this.pro.txtCedula.setEnabled(true);
             this.catapro.addWindowListener(this);
-            Llenartablacondominio(pro.jTable1);
-            addCheckBox(2, pro.jTable1);
+           
             pro.txtCedula.setText("");
             pro.txtApellido.setText("");
             pro.txtCorreo.setText("");
@@ -241,41 +143,17 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
                 modpro.setApellido(pro.txtApellido.getText());
                 modpro.setCorreo(pro.txtCorreo.getText());
                 modpro.setTelefono(pro.txtTelefono.getText());
-                int j = 0;
-                for (int i = 0; i < pro.jTable1.getRowCount(); i++) {
-                    if (valueOf(pro.jTable1.getValueAt(i, 2)) == "true") {
-                        j = j + 1;
 
-                    }
-                }
+                if (modpro.registrar(modpro)) {
 
-                if (j == 0) {
-                    JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
+                    JOptionPane.showMessageDialog(null, "Registro Guardado");
+
                 } else {
 
-                    if (modpro.registrar(modpro)) {
+                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
 
-                        JOptionPane.showMessageDialog(null, "Registro Guardado");
-                        for (int i = 0; i < pro.jTable1.getRowCount(); i++) {
-                            if (valueOf(pro.jTable1.getValueAt(i, 2)) == "true") {
-                                String valor = String.valueOf(pro.jTable1.getValueAt(i, 0));
-                                modpro.setId_condominio(valor);
-                                modpro.setCedula(pro.txtCedula.getText());
-                                modpro.registrar_propietario_condominio(modpro);
-
-                            }
-                        }
-
-                        pro.dispose();
-                        limpiar();
-                        Llenartabla(catapro.TablaPropietarios);
-
-                    } else {
-
-                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
-
-                    }
                 }
+
             }
         }
 
@@ -287,46 +165,23 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
                 modpro.setApellido(pro.txtApellido.getText());
                 modpro.setCorreo(pro.txtCorreo.getText());
                 modpro.setTelefono(pro.txtTelefono.getText());
-                int j = 0;
-                for (int i = 0; i < pro.jTable1.getRowCount(); i++) {
-                    if (valueOf(pro.jTable1.getValueAt(i, 2)) == "true") {
-                        j = j + 1;
 
-                    }
-                }
+                if (modpro.modificar(modpro)) {
 
-                if (j == 0) {
-                    JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
+                    pro.dispose();
+                    limpiar();
+                    Llenartabla(catapro.TablaPropietarios);
+
                 } else {
 
-                    if (modpro.modificar(modpro)) {
-                        modpro.borrarpuente(modpro);
-                        JOptionPane.showMessageDialog(null, "Registro Modificado");
-                        for (int i = 0; i < pro.jTable1.getRowCount(); i++) {
-                            if (valueOf(pro.jTable1.getValueAt(i, 2)) == "true") {
-                                String valor = String.valueOf(pro.jTable1.getValueAt(i, 0));
-                                modpro.setId_condominio(valor);
-                                modpro.setCedula(pro.txtCedula.getText());
-                                modpro.registrar_propietario_condominio(modpro);
+                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
 
-                            }
-                        }
-
-                        pro.dispose();
-                        limpiar();
-                        Llenartabla(catapro.TablaPropietarios);
-
-                    } else {
-
-                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
-
-                    }
                 }
 
             }
         }
 
-        if (e.getSource()== pro.btnEliminar) {
+        if (e.getSource() == pro.btnEliminar) {
 
             if (modpro.eliminar(modpro)) {
 
@@ -343,7 +198,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
 
         }
 
-        if (e.getSource()== pro.btnLimpiar) {
+        if (e.getSource() == pro.btnLimpiar) {
 
             limpiar();
 
@@ -435,8 +290,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         pro.btnModificar.setEnabled(true);
         pro.btnEliminar.setEnabled(true);
         modcon.setRif(modpro.getCedula());
-        Llenartablacondominiomodificar(pro.jTable1);
-        addCheckBox(2, pro.jTable1);
+       
     }
 
     @Override
@@ -549,10 +403,6 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
 
     }
 
-    public void addCheckBox(int column, JTable table) {
-        TableColumn tc = table.getColumnModel().getColumn(column);
-        tc.setCellEditor(table.getDefaultEditor(Boolean.class));
-        tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
-    }
+  
 
 }

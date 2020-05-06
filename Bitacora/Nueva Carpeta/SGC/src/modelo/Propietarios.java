@@ -147,7 +147,7 @@ public class Propietarios extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT cedula, nombre, apellido, telefono, correo, count (puente_propietario_condominio.id_propietario) FROM puente_propietario_condominio right join propietarios on puente_propietario_condominio.id_propietario=propietarios.cedula group by propietarios.cedula";
+        String sql = "SELECT cedula, nombre, apellido, telefono, correo FROM propietarios";
         try {
             ps = con.prepareStatement(sql);
            
@@ -162,7 +162,7 @@ public class Propietarios extends ConexionBD {
                 modpro.setApellido(rs.getString(3));
                 modpro.setTelefono(rs.getString(4));
                 modpro.setCorreo(rs.getString(5));
-                modpro.setCantidad(rs.getInt(6));
+               
 
                 listaPropietarios.add(modpro);
             }
@@ -273,76 +273,7 @@ public class Propietarios extends ConexionBD {
 
     }
     
-     public boolean registrar_propietario_condominio(Propietarios modpro) {
-
-        PreparedStatement ps = null;
-        Connection con = getConexion();
-
-        String sql = "INSERT INTO puente_propietario_condominio(id_propietario, id_condominio) VALUES (?, ?);";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-            ps.setString(1, getCedula());
-            ps.setString(2, getId_condominio());
-
-            ps.execute();
-
-            return true;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-    }
-     public boolean borrarpuente(Propietarios modpro) {
-
-        PreparedStatement ps = null;
-        Connection con = getConexion();
-
-        String sql = "DELETE FROM puente_propietario_condominio WHERE id_propietario=?";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-            ps.setString(1, getCedula());
-            ps.execute();
-
-            return true;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-    }
+     
 
     public boolean modificar(Propietarios modpro) {
 
