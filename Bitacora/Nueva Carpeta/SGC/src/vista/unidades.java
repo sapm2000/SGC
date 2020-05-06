@@ -60,21 +60,11 @@ public class unidades extends javax.swing.JFrame {
         txtArea = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
         txtNumeroUnidad = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        txtCorreo = new javax.swing.JTextField();
-        txtNombrePropietario = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
-        jSeparator7 = new javax.swing.JSeparator();
-        txtCedula = new javax.swing.JTextField();
-        jSeparator11 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         txadireccion = new javax.swing.JTextArea();
-        btnBuscarpropietarios = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         btnMinimizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
@@ -88,6 +78,10 @@ public class unidades extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         jSeparator10 = new javax.swing.JSeparator();
         jLabel11 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         jButton5.setText("jButton5");
 
@@ -105,29 +99,29 @@ public class unidades extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("<html> Numero de <br> la unidad: </html>");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Dirección:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, 30));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, 30));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Área (mts 2):");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 120, 30));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 100, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Teléfono:");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 90, 30));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 90, 30));
 
         txtArea.setBackground(new java.awt.Color(0, 94, 159));
         txtArea.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtArea.setForeground(new java.awt.Color(255, 255, 255));
         txtArea.setToolTipText("Ingrese los metros cuadrados que tiene la unidad");
         txtArea.setBorder(null);
-        jPanel2.add(txtArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 230, 20));
+        jPanel2.add(txtArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 300, 20));
 
         txtTelefono.setEditable(false);
         txtTelefono.setBackground(new java.awt.Color(0, 94, 159));
@@ -136,74 +130,23 @@ public class unidades extends javax.swing.JFrame {
         txtTelefono.setToolTipText("Ingrese el teléfono de la unidad");
         txtTelefono.setBorder(null);
         txtTelefono.setEnabled(false);
-        jPanel2.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 230, 20));
+        jPanel2.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 300, 20));
 
         txtNumeroUnidad.setBackground(new java.awt.Color(0, 94, 159));
         txtNumeroUnidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtNumeroUnidad.setForeground(new java.awt.Color(255, 255, 255));
         txtNumeroUnidad.setToolTipText("Ingrese el número de la unidad");
         txtNumeroUnidad.setBorder(null);
-        jPanel2.add(txtNumeroUnidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 230, 20));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("<html>\n<center>Propietario<br>/<br>Inquilino:</center>\n</html>");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("CI/RIF:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 74, -1));
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("<html>\nCorreo <br> Electrónico:\n</hmtl>");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 210, -1, -1));
-
-        txtCorreo.setEditable(false);
-        txtCorreo.setBackground(new java.awt.Color(0, 94, 159));
-        txtCorreo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCorreo.setForeground(new java.awt.Color(255, 255, 255));
-        txtCorreo.setToolTipText("No puede modificar este dato");
-        txtCorreo.setBorder(null);
-        txtCorreo.setEnabled(false);
-        jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, 230, 20));
-
-        txtNombrePropietario.setEditable(false);
-        txtNombrePropietario.setBackground(new java.awt.Color(0, 94, 159));
-        txtNombrePropietario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtNombrePropietario.setForeground(new java.awt.Color(255, 255, 255));
-        txtNombrePropietario.setToolTipText("No puede modificar este dato");
-        txtNombrePropietario.setBorder(null);
-        txtNombrePropietario.setEnabled(false);
-        jPanel2.add(txtNombrePropietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 230, 20));
-
-        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, 230, 10));
+        jPanel2.add(txtNumeroUnidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 300, 20));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 230, 10));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 300, 10));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 230, 10));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 300, 10));
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 230, 10));
-
-        jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 170, 230, 10));
-
-        txtCedula.setEditable(false);
-        txtCedula.setBackground(new java.awt.Color(0, 94, 159));
-        txtCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCedula.setForeground(new java.awt.Color(255, 255, 255));
-        txtCedula.setToolTipText("No puede modificar este dato");
-        txtCedula.setBorder(null);
-        txtCedula.setEnabled(false);
-        jPanel2.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, 230, 20));
-
-        jSeparator11.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, 230, 10));
+        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 300, 10));
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -217,21 +160,12 @@ public class unidades extends javax.swing.JFrame {
         txadireccion.setWrapStyleWord(true);
         jScrollPane1.setViewportView(txadireccion);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 270, 110));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 310, 110));
 
-        btnBuscarpropietarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda.png"))); // NOI18N
-        btnBuscarpropietarios.setBorderPainted(false);
-        btnBuscarpropietarios.setContentAreaFilled(false);
-        btnBuscarpropietarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBuscarpropietarios.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
-        btnBuscarpropietarios.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
-        btnBuscarpropietarios.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
-        jPanel2.add(btnBuscarpropietarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 30, 40, 40));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 480, 280));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 770, 280));
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 800, 300));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 500, 300));
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
         btnMinimizar.setToolTipText("Minimizar");
@@ -247,7 +181,7 @@ public class unidades extends javax.swing.JFrame {
                 btnMinimizarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 10, 40, 30));
+        jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, 40, 30));
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
         btnSalir.setToolTipText("Cerrar");
@@ -263,11 +197,11 @@ public class unidades extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, -1, 30));
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, 30));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 19)); // NOI18N
         jLabel10.setText("Registro de Unidades");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
 
         jPanel3.setBackground(new java.awt.Color(0, 94, 159));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -335,12 +269,38 @@ public class unidades extends javax.swing.JFrame {
         jSeparator10.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel3.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 10, 70));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, 360, 80));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 760, 360, 80));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondobtn1chiqui.png"))); // NOI18N
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, -1, 90));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 740, -1, 90));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 490));
+        jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "<html>Cédula/<br> Rif</html>", "<html>Nombre/<br>Razón Social</html>", "Apellido", "Teléfono", "<html>Correo <br> Electrónico</html>"
+            }
+        ));
+        jTable1.setRowHeight(35);
+        jScrollPane2.setViewportView(jTable1);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 460, 280));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, 300));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 54, 159));
+        jLabel9.setText("Seleccione al o los propietarios");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 840));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -406,7 +366,6 @@ public class unidades extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnBuscarpropietarios;
     public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnLimpiar;
@@ -417,31 +376,26 @@ public class unidades extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator10;
-    private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
+    public javax.swing.JTable jTable1;
     public javax.swing.JTextArea txadireccion;
     public javax.swing.JTextField txtArea;
-    public javax.swing.JTextField txtCedula;
-    public javax.swing.JTextField txtCorreo;
-    public javax.swing.JTextField txtNombrePropietario;
     public javax.swing.JTextField txtNumeroUnidad;
     public javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
