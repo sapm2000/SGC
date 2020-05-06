@@ -58,64 +58,6 @@ public class Unidades extends Propietarios {
         this.area = area;
     }
 
-    public void llenar_propietarios(JComboBox Propietarios) {
-
-//Creamos objeto tipo Connection    
-        java.sql.Connection conectar = null;
-        PreparedStatement pst = null;
-        ResultSet result = null;
-
-//Creamos la Consulta SQL
-        String SSQL = "SELECT cedula FROM propietarios where id_condominio=?;";
-
-//Establecemos bloque try-catch-finally
-        try {
-
-            //Establecemos conexión con la BD 
-            conectar = getConexion();
-            //Preparamos la consulta SQL
-            pst = conectar.prepareStatement(SSQL);
-            pst.setString(1, getId_condominio());
-            //Ejecutamos la consulta
-            result = pst.executeQuery();
-
-            //LLenamos nuestro ComboBox
-            Propietarios.addItem("Seleccione la cedula");
-
-            while (result.next()) {
-
-                Propietarios.addItem(result.getString("cedula"));
-
-            }
-
-        } catch (SQLException e) {
-
-            JOptionPane.showMessageDialog(null, e);
-
-        } finally {
-
-            if (conectar != null) {
-
-                try {
-
-                    conectar.close();
-                    result.close();
-
-                    conectar = null;
-                    result = null;
-
-                } catch (SQLException ex) {
-
-                    JOptionPane.showMessageDialog(null, ex);
-
-                }
-
-            }
-
-        }
-
-    }
-
     public ArrayList<Unidades> buscarPropietario() {
         ArrayList listaPropietario = new ArrayList();
         Unidades Unidades = new Unidades();
@@ -127,7 +69,6 @@ public class Unidades extends Propietarios {
         String sql = "	SELECT cedula, nombre, telefono, correo	FROM propietarios;";
         try {
             ps = con.prepareStatement(sql);
-            
 
             rs = ps.executeQuery();
 
@@ -160,7 +101,7 @@ public class Unidades extends Propietarios {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO unidades( n_unidad, direccion, area, id_propietario, id_condominio) VALUES (?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO unidades( n_unidad, direccion, area, id_condominio) VALUES (?, ?, ?, ?);";
 
         try {
 
@@ -168,8 +109,8 @@ public class Unidades extends Propietarios {
             ps.setString(1, moduni.getN_unidad());
             ps.setString(2, moduni.getDireccion());
             ps.setDouble(3, moduni.getArea());
-            ps.setString(4, moduni.getCedula());
-            ps.setString(5, moduni.getId_condominio());
+
+            ps.setString(4, moduni.getId_condominio());
 
             ps.execute();
             return true;
@@ -234,20 +175,19 @@ public class Unidades extends Propietarios {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT unidades.n_unidad, unidades.direccion, unidades.area, propietarios.cedula, propietarios.nombre, propietarios.telefono, propietarios.correo from unidades inner join propietarios on unidades.id_propietario=propietarios.cedula where n_unidad=?;";
+        String sql = "SELECT id, n_unidad, direccion, area from unidades where n_unidad=? and id_condominio=?;";
 
         try {
 
             ps = con.prepareStatement(sql);
             ps.setString(1, moduni.getN_unidad());
+            ps.setString(2, moduni.getId_condominio());
             rs = ps.executeQuery();
             if (rs.next()) {
-
+                moduni.setId(rs.getInt("id"));
                 moduni.setDireccion(rs.getString("direccion"));
-                moduni.setCedula(rs.getString("cedula"));
-                moduni.setNombre(rs.getString("nombre"));
-                moduni.setTelefono(rs.getString("telefono"));
-                moduni.setCorreo(rs.getString("correo"));
+              
+               
                 moduni.setArea(rs.getInt("area"));
 
                 return true;
@@ -280,7 +220,7 @@ public class Unidades extends Propietarios {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT unidades.n_unidad, unidades.direccion, unidades.area, propietarios.cedula, propietarios.nombre, propietarios.telefono, propietarios.correo from unidades inner join propietarios on unidades.id_propietario=propietarios.cedula where n_unidad=? and unidades.id_condominio=?;";
+        String sql = "SELECT n_unidad, direccion, area from unidades  where n_unidad=? and id_condominio=?;";
 
         try {
 
@@ -290,7 +230,7 @@ public class Unidades extends Propietarios {
             rs = ps.executeQuery();
             if (rs.next()) {
 
-                moduni.setId(rs.getInt("area"));
+                
 
                 return true;
             }
@@ -322,17 +262,17 @@ public class Unidades extends Propietarios {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE unidades SET direccion=?, area=?, id_propietario=? WHERE n_unidad=? and id_condominio=?";
+        String sql = "UPDATE unidades SET direccion=?, area=? WHERE id=?;";
 
         try {
 
             ps = con.prepareStatement(sql);
             ps.setString(1, getDireccion());
             ps.setDouble(2, getArea());
-            ps.setString(3, getCedula());
+         
 
-            ps.setString(4, getN_unidad());
-            ps.setString(5, getId_condominio());
+            ps.setInt(3, getId());
+            JOptionPane.showMessageDialog(null, getId());
             ps.execute();
 
             return true;
