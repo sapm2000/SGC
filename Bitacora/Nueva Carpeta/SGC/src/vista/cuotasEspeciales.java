@@ -60,7 +60,6 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jCalcular = new javax.swing.JComboBox<>();
         jConcepto = new javax.swing.JComboBox<>();
-        jProveedor = new javax.swing.JComboBox<>();
         txtMonto = new javax.swing.JTextField();
         txtNmeses = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -78,6 +77,7 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         si = new javax.swing.JRadioButton();
         jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
         jYearChooser1 = new com.toedter.calendar.JYearChooser();
+        txtProveedor = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         btnMinimizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
@@ -150,9 +150,6 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         jConcepto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jConcepto.setToolTipText("Seleccione un concepto");
         jPanel2.add(jConcepto, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 250, -1));
-
-        jProveedor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel2.add(jProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 220, -1));
 
         txtMonto.setBackground(new java.awt.Color(0, 94, 159));
         txtMonto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -264,6 +261,9 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         jYearChooser1.setDayChooser(null);
         jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 70, 30));
 
+        txtProveedor.setEditable(false);
+        jPanel2.add(txtProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 170, -1));
+
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 770, 320));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
@@ -274,7 +274,7 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
@@ -290,7 +290,7 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
@@ -313,7 +313,7 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         btnGuardar.setBorder(null);
         btnGuardar.setBorderPainted(false);
         btnGuardar.setContentAreaFilled(false);
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
         btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
         btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
@@ -330,7 +330,7 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         btnModificar.setBorder(null);
         btnModificar.setBorderPainted(false);
         btnModificar.setContentAreaFilled(false);
-        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnModificar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
         btnModificar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
         btnModificar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
@@ -341,7 +341,7 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         btnLimpiar.setToolTipText("Limpiar todo");
         btnLimpiar.setBorderPainted(false);
         btnLimpiar.setContentAreaFilled(false);
-        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLimpiar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
         btnLimpiar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
         btnLimpiar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
@@ -360,7 +360,7 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         btnEliminar.setBorder(null);
         btnEliminar.setBorderPainted(false);
         btnEliminar.setContentAreaFilled(false);
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (2).png"))); // NOI18N
         btnEliminar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (2).png"))); // NOI18N
         btnEliminar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (2).png"))); // NOI18N
@@ -487,7 +487,6 @@ public class cuotasEspeciales extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    public javax.swing.JComboBox<String> jProveedor;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
@@ -501,6 +500,7 @@ public class cuotasEspeciales extends javax.swing.JFrame {
     public javax.swing.JTextArea txaObservaciones;
     public javax.swing.JTextField txtMonto;
     public javax.swing.JTextField txtNmeses;
+    public javax.swing.JTextField txtProveedor;
     public javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables
 public class MyScrollBarUI extends BasicScrollBarUI {

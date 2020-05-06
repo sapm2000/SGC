@@ -65,21 +65,18 @@ public class gastoComun extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jcomboproveedor = new javax.swing.JComboBox<>();
         txtNumerofactura = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txaObservaciones = new javax.swing.JTextArea();
-        jSeparator1 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
         jYearChooser1 = new com.toedter.calendar.JYearChooser();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jLabel13 = new javax.swing.JLabel();
-        txtnombreprov = new javax.swing.JTextField();
         btnBuscarproveedor = new javax.swing.JButton();
+        txtProveedor = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         btnMinimizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
@@ -165,9 +162,6 @@ public class gastoComun extends javax.swing.JFrame {
         jLabel2.setText("Proveedor:");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 80, 30));
 
-        jcomboproveedor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel2.add(jcomboproveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 250, -1));
-
         txtNumerofactura.setBackground(new java.awt.Color(0, 94, 159));
         txtNumerofactura.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtNumerofactura.setForeground(new java.awt.Color(255, 255, 255));
@@ -205,9 +199,6 @@ public class gastoComun extends javax.swing.JFrame {
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 300, 110));
 
-        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 290, 10));
-
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 230, 20));
 
@@ -224,20 +215,6 @@ public class gastoComun extends javax.swing.JFrame {
         jPanel2.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 230, 30));
         jDateChooser1.getDateEditor().setEnabled(false);
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("<html>\nNombre del <br> Proveedor:\n</html>");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, 90, -1));
-
-        txtnombreprov.setEditable(false);
-        txtnombreprov.setBackground(new java.awt.Color(0, 94, 159));
-        txtnombreprov.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtnombreprov.setForeground(new java.awt.Color(255, 255, 255));
-        txtnombreprov.setToolTipText("No puede modificar este dato");
-        txtnombreprov.setBorder(null);
-        txtnombreprov.setEnabled(false);
-        jPanel2.add(txtnombreprov, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 290, 20));
-
         btnBuscarproveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda.png"))); // NOI18N
         btnBuscarproveedor.setBorderPainted(false);
         btnBuscarproveedor.setContentAreaFilled(false);
@@ -246,6 +223,9 @@ public class gastoComun extends javax.swing.JFrame {
         btnBuscarproveedor.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
         btnBuscarproveedor.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
         jPanel2.add(btnBuscarproveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, 40, 40));
+
+        txtProveedor.setEditable(false);
+        jPanel2.add(txtProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, 220, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 770, 280));
 
@@ -257,7 +237,7 @@ public class gastoComun extends javax.swing.JFrame {
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
@@ -273,7 +253,7 @@ public class gastoComun extends javax.swing.JFrame {
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
@@ -296,7 +276,7 @@ public class gastoComun extends javax.swing.JFrame {
         btnGuardar.setBorder(null);
         btnGuardar.setBorderPainted(false);
         btnGuardar.setContentAreaFilled(false);
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
         btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
         btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
@@ -313,7 +293,7 @@ public class gastoComun extends javax.swing.JFrame {
         btnModificar.setBorder(null);
         btnModificar.setBorderPainted(false);
         btnModificar.setContentAreaFilled(false);
-        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnModificar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
         btnModificar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
         btnModificar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
@@ -324,7 +304,7 @@ public class gastoComun extends javax.swing.JFrame {
         btnLimpiar.setToolTipText("Limpiar todo");
         btnLimpiar.setBorderPainted(false);
         btnLimpiar.setContentAreaFilled(false);
-        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLimpiar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
         btnLimpiar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
         btnLimpiar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
@@ -343,7 +323,7 @@ public class gastoComun extends javax.swing.JFrame {
         btnEliminar.setBorder(null);
         btnEliminar.setBorderPainted(false);
         btnEliminar.setContentAreaFilled(false);
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (2).png"))); // NOI18N
         btnEliminar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (2).png"))); // NOI18N
         btnEliminar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (2).png"))); // NOI18N
@@ -449,7 +429,6 @@ public class gastoComun extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -463,7 +442,6 @@ public class gastoComun extends javax.swing.JFrame {
     public javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
@@ -472,13 +450,12 @@ public class gastoComun extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     public com.toedter.calendar.JYearChooser jYearChooser1;
     public javax.swing.JComboBox<String> jcomboconcepto;
-    public javax.swing.JComboBox<String> jcomboproveedor;
     public javax.swing.JComboBox<String> jcombotipo;
     public javax.swing.JTextArea txaObservaciones;
     public javax.swing.JTextField txtMonto;
     public javax.swing.JTextField txtNumerofactura;
+    public javax.swing.JTextField txtProveedor;
     public javax.swing.JTextField txtid;
-    public javax.swing.JTextField txtnombreprov;
     // End of variables declaration//GEN-END:variables
 public class MyScrollBarUI extends BasicScrollBarUI {
 
