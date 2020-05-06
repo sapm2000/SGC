@@ -22,6 +22,7 @@ import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.CerrarMes;
 import modelo.Unidades;
@@ -90,11 +91,34 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             @Override
             public boolean isCellEditable(int row, int column) {
 
-                return false;
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+                if (column == 2) {
+                    resu = false;
+                }
+                if (column == 3) {
+                    resu = false;
+                }
+                if (column == 4) {
+                    resu = true;
+                }
+                if (column == 5) {
+                    resu = true;
+                }
+                return resu;
             }
+            
 
         };
+       
         tablaD.setModel(modeloT);
+        
+        
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
 
@@ -102,8 +126,11 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         modeloT.addColumn("Nombre");
         modeloT.addColumn("Teléfono");
         modeloT.addColumn("Correo");
-
-        Object[] columna = new Object[4];
+        modeloT.addColumn("Seleccione");
+        modeloT.addColumn("Nº documento");
+       
+        Object[] columna = new Object[6];
+        
 
         int numRegistro = listapropietarios.size();
 
@@ -113,7 +140,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             columna[1] = listapropietarios.get(i).getNombre();
             columna[2] = listapropietarios.get(i).getTelefono();
             columna[3] = listapropietarios.get(i).getCorreo();
-
+            
             modeloT.addRow(columna);
 
         }
@@ -122,6 +149,9 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+
+        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
 
     }
 
@@ -367,9 +397,9 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("<html>Número de <br> Unidad</html>");
-      
+
         modeloT.addColumn("Dirección");
-        
+
         modeloT.addColumn("Area (mts2)");
 
         Object[] columna = new Object[3];
@@ -379,9 +409,9 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         for (int i = 0; i < numRegistro; i++) {
 
             columna[0] = listaunidades.get(i).getN_unidad();
-           
+
             columna[1] = listaunidades.get(i).getDireccion();
-          
+
             columna[2] = listaunidades.get(i).getArea();
 
             modeloT.addRow(columna);
@@ -392,7 +422,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-        
+
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -412,6 +442,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         if (e.getSource() == uni.btnBuscarpropietarios) {
             this.buscp.setVisible(true);
             llenartablapropietarios(buscp.tablaprop);
+            addCheckBox(4, buscp.tablaprop);
         }
 
         if (e.getSource() == uni.btnGuardar) {
@@ -499,13 +530,12 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
     public void mouseClicked(MouseEvent e) {
 
         if (e.getSource() == buscp.tablaprop) {
-
-            int fila = this.buscp.tablaprop.getSelectedRow(); // primero, obtengo la fila seleccionada
-            uni.txtCedula.setText(String.valueOf(this.buscp.tablaprop.getValueAt(fila, 0)));
-            uni.txtNombrePropietario.setText(String.valueOf(this.buscp.tablaprop.getValueAt(fila, 1)));
-            uni.txtCorreo.setText(String.valueOf(this.buscp.tablaprop.getValueAt(fila, 2)));
-            uni.txtTelefono.setText(String.valueOf(this.buscp.tablaprop.getValueAt(fila, 3)));
-            buscp.dispose();
+              int fila = this.buscp.tablaprop.getSelectedRow(); // primero, obtengo la fila seleccionada
+               String dato = String.valueOf(this.buscp.tablaprop.getValueAt(fila, 4)); // por ultimo, obtengo el valor de la celda
+             
+               if (dato.equals("true")) {
+                   buscp.tablaprop.editCellAt(fila, 5);
+               }
         }
 
         if (e.getSource() == catauni.jTable1) {
@@ -569,7 +599,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             detare.txtPropietarios.setText(detacun.txtPropietarios.getText());
             detare.txtId.setText(dato3);
             modc.bucartotal(modc);
-            
+
             detare.txtAlicuota.setText(String.valueOf(Validacion.formatoalicuota.format(modc.getAlicuota())));
             detare.txtTotal.setText(String.valueOf(Validacion.formato1.format(modc.getMonto())));
         }
@@ -737,6 +767,12 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         }
 
         return resultado;
+    }
+
+    public void addCheckBox(int column, JTable table) {
+        TableColumn tc = table.getColumnModel().getColumn(column);
+        tc.setCellEditor(table.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
     }
 
 }

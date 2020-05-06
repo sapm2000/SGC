@@ -66,104 +66,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         pro.txtCorreo.addKeyListener(this);
     }
 
-    public void Llenartablacondominio(JTable tablaD) {
-
-        listaCondo = modcon.lPerson();
-        DefaultTableModel modeloT = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-
-                boolean resu = false;
-                if (column == 0) {
-                    resu = false;
-                }
-                if (column == 1) {
-                    resu = false;
-                }
-                if (column == 2) {
-                    resu = true;
-                }
-                return resu;
-            }
-        };
-        tablaD.setModel(modeloT);
-        tablaD.getTableHeader().setReorderingAllowed(false);
-        tablaD.getTableHeader().setResizingAllowed(false);
-
-        modeloT.addColumn("Rif");
-        modeloT.addColumn("Razón social");
-        modeloT.addColumn("Seleccione");
-
-        Object[] columna = new Object[2];
-
-        int numRegistro = listaCondo.size();
-
-        for (int i = 0; i < numRegistro; i++) {
-
-            columna[0] = listaCondo.get(i).getRif();
-            columna[1] = listaCondo.get(i).getRazonS();
-
-            modeloT.addRow(columna);
-
-        }
-        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-        tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-    }
-
-    public void Llenartablacondominiomodificar(JTable tablaD) {
-        listaCondo = modcon.propietariocondominiomodificar();
-        DefaultTableModel modeloT = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-
-                boolean resu = false;
-                if (column == 0) {
-                    resu = false;
-                }
-                if (column == 1) {
-                    resu = false;
-                }
-                if (column == 2) {
-                    resu = true;
-                }
-                return resu;
-            }
-        };
-        tablaD.setModel(modeloT);
-        tablaD.getTableHeader().setReorderingAllowed(false);
-        tablaD.getTableHeader().setResizingAllowed(false);
-
-        modeloT.addColumn("Rif");
-        modeloT.addColumn("Razón Social");
-        modeloT.addColumn("Seleccione");
-
-        Object[] columna = new Object[3];
-
-        int numRegistro = listaCondo.size();
-
-        for (int i = 0; i < numRegistro; i++) {
-
-            columna[0] = listaCondo.get(i).getRif();
-            columna[1] = listaCondo.get(i).getRazonS();
-
-            if (listaCondo.get(i).getId_cuenta() != null) {
-                columna[2] = Boolean.TRUE;
-            } else {
-                columna[2] = Boolean.FALSE;
-            }
-
-            modeloT.addRow(columna);
-
-        }
-        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-        tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-    }
+    
 
     public void Llenartabla(JTable tablaD) {
 
@@ -224,8 +127,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
             this.pro.btnEliminar.setEnabled(false);
             this.pro.txtCedula.setEnabled(true);
             this.catapro.addWindowListener(this);
-            Llenartablacondominio(pro.jTable1);
-            addCheckBox(2, pro.jTable1);
+           
             pro.txtCedula.setText("");
             pro.txtApellido.setText("");
             pro.txtCorreo.setText("");
@@ -388,8 +290,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         pro.btnModificar.setEnabled(true);
         pro.btnEliminar.setEnabled(true);
         modcon.setRif(modpro.getCedula());
-        Llenartablacondominiomodificar(pro.jTable1);
-        addCheckBox(2, pro.jTable1);
+       
     }
 
     @Override
@@ -502,10 +403,6 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
 
     }
 
-    public void addCheckBox(int column, JTable table) {
-        TableColumn tc = table.getColumnModel().getColumn(column);
-        tc.setCellEditor(table.getDefaultEditor(Boolean.class));
-        tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
-    }
+  
 
 }
