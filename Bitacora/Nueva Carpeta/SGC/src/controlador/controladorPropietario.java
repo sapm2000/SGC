@@ -185,9 +185,9 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         modeloT.addColumn("Apellido");
         modeloT.addColumn("Teléfono");
         modeloT.addColumn("<html>Correo <br> Electrónico</html>");
-        modeloT.addColumn("Condominio");
+        
 
-        Object[] columna = new Object[6];
+        Object[] columna = new Object[5];
 
         int numRegistro = listaPropietarios.size();
 
@@ -198,7 +198,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
             columna[2] = listaPropietarios.get(i).getApellido();
             columna[3] = listaPropietarios.get(i).getTelefono();
             columna[4] = listaPropietarios.get(i).getCorreo();
-            columna[5] = listaPropietarios.get(i).getCantidad();
+            
 
             modeloT.addRow(columna);
 
@@ -211,7 +211,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
+       
 
     }
 
@@ -241,41 +241,17 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
                 modpro.setApellido(pro.txtApellido.getText());
                 modpro.setCorreo(pro.txtCorreo.getText());
                 modpro.setTelefono(pro.txtTelefono.getText());
-                int j = 0;
-                for (int i = 0; i < pro.jTable1.getRowCount(); i++) {
-                    if (valueOf(pro.jTable1.getValueAt(i, 2)) == "true") {
-                        j = j + 1;
 
-                    }
-                }
+                if (modpro.registrar(modpro)) {
 
-                if (j == 0) {
-                    JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
+                    JOptionPane.showMessageDialog(null, "Registro Guardado");
+
                 } else {
 
-                    if (modpro.registrar(modpro)) {
+                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
 
-                        JOptionPane.showMessageDialog(null, "Registro Guardado");
-                        for (int i = 0; i < pro.jTable1.getRowCount(); i++) {
-                            if (valueOf(pro.jTable1.getValueAt(i, 2)) == "true") {
-                                String valor = String.valueOf(pro.jTable1.getValueAt(i, 0));
-                                modpro.setId_condominio(valor);
-                                modpro.setCedula(pro.txtCedula.getText());
-                                modpro.registrar_propietario_condominio(modpro);
-
-                            }
-                        }
-
-                        pro.dispose();
-                        limpiar();
-                        Llenartabla(catapro.TablaPropietarios);
-
-                    } else {
-
-                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
-
-                    }
                 }
+
             }
         }
 
@@ -287,46 +263,23 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
                 modpro.setApellido(pro.txtApellido.getText());
                 modpro.setCorreo(pro.txtCorreo.getText());
                 modpro.setTelefono(pro.txtTelefono.getText());
-                int j = 0;
-                for (int i = 0; i < pro.jTable1.getRowCount(); i++) {
-                    if (valueOf(pro.jTable1.getValueAt(i, 2)) == "true") {
-                        j = j + 1;
 
-                    }
-                }
+                if (modpro.modificar(modpro)) {
 
-                if (j == 0) {
-                    JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
+                    pro.dispose();
+                    limpiar();
+                    Llenartabla(catapro.TablaPropietarios);
+
                 } else {
 
-                    if (modpro.modificar(modpro)) {
-                        modpro.borrarpuente(modpro);
-                        JOptionPane.showMessageDialog(null, "Registro Modificado");
-                        for (int i = 0; i < pro.jTable1.getRowCount(); i++) {
-                            if (valueOf(pro.jTable1.getValueAt(i, 2)) == "true") {
-                                String valor = String.valueOf(pro.jTable1.getValueAt(i, 0));
-                                modpro.setId_condominio(valor);
-                                modpro.setCedula(pro.txtCedula.getText());
-                                modpro.registrar_propietario_condominio(modpro);
+                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
 
-                            }
-                        }
-
-                        pro.dispose();
-                        limpiar();
-                        Llenartabla(catapro.TablaPropietarios);
-
-                    } else {
-
-                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
-
-                    }
                 }
 
             }
         }
 
-        if (e.getSource()== pro.btnEliminar) {
+        if (e.getSource() == pro.btnEliminar) {
 
             if (modpro.eliminar(modpro)) {
 
@@ -343,7 +296,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
 
         }
 
-        if (e.getSource()== pro.btnLimpiar) {
+        if (e.getSource() == pro.btnLimpiar) {
 
             limpiar();
 
