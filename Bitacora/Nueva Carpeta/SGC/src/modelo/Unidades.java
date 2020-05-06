@@ -6,6 +6,7 @@
 package modelo;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,8 +24,21 @@ public class Unidades extends Propietarios {
     private String N_unidad;
     private String direccion;
     private int id;
+    private java.sql.Date fecha_desde;
+    private java.sql.Date fecha_hasta;
+    private int estatus;
+    private String documento;
+    private int id_puente;
 
     private double area;
+
+    public int getId_puente() {
+        return id_puente;
+    }
+
+    public void setId_puente(int id_puente) {
+        this.id_puente = id_puente;
+    }
 
     public int getId() {
         return id;
@@ -58,6 +72,120 @@ public class Unidades extends Propietarios {
         this.area = area;
     }
 
+    public Date getFecha_desde() {
+        return fecha_desde;
+    }
+
+    public void setFecha_desde(Date fecha_desde) {
+        this.fecha_desde = fecha_desde;
+    }
+
+    public Date getFecha_hasta() {
+        return fecha_hasta;
+    }
+
+    public void setFecha_hasta(Date fecha_hasta) {
+        this.fecha_hasta = fecha_hasta;
+    }
+
+    public int getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(int estatus) {
+        this.estatus = estatus;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(String documento) {
+        this.documento = documento;
+    }
+
+    public boolean buscId(Unidades moduni) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT MAX(id) as id from unidades";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                moduni.setId(rs.getInt("id"));
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
+    public boolean registrar_propietario_unidad(Unidades moduni) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "INSERT INTO puente_unidad_propietarios(id_propietario, id_unidad, fecha_desde, documento, estado) VALUES (?, ?, ?, ?, ?);";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getCedula());
+            ps.setInt(2, getId());
+            ps.setDate(3, getFecha_desde());
+
+            ps.setString(4, getDocumento());
+            ps.setInt(5, getEstatus());
+
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
     public ArrayList<Unidades> buscarPropietario() {
         ArrayList listaPropietario = new ArrayList();
         Unidades Unidades = new Unidades();
@@ -80,6 +208,51 @@ public class Unidades extends Propietarios {
                 Unidades.setNombre(rs.getString("nombre"));
                 Unidades.setTelefono(rs.getString("telefono"));
                 Unidades.setCorreo(rs.getString("correo"));
+
+                listaPropietario.add(Unidades);
+            }
+
+        } catch (Exception e) {
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+        return listaPropietario;
+
+    }
+
+    public ArrayList<Unidades> buscarPropietariomod() {
+        ArrayList listaPropietario = new ArrayList();
+        Unidades Unidades = new Unidades();
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT id, cedula, nombre, telefono, correo, id_unidad, fecha_desde, fecha_hasta, estado, documento FROM propietarios left join puente_unidad_propietarios on puente_unidad_propietarios.id_propietario=propietarios.cedula and id_unidad=? and not estado=0";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, getId());
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Unidades = new Unidades();
+
+                //prs = new Persona();
+                Unidades.setId_puente(rs.getInt("id"));
+                Unidades.setCedula(rs.getString("cedula"));
+                Unidades.setNombre(rs.getString("nombre"));
+                Unidades.setTelefono(rs.getString("telefono"));
+                Unidades.setCorreo(rs.getString("correo"));
+                Unidades.setId(rs.getInt("id_unidad"));
+                Unidades.setFecha_desde(rs.getDate("fecha_desde"));
+                Unidades.setFecha_hasta(rs.getDate("fecha_hasta"));
+                Unidades.setEstatus(rs.getInt("estado"));
+                Unidades.setDocumento(rs.getString("documento"));
 
                 listaPropietario.add(Unidades);
             }
@@ -186,8 +359,7 @@ public class Unidades extends Propietarios {
             if (rs.next()) {
                 moduni.setId(rs.getInt("id"));
                 moduni.setDireccion(rs.getString("direccion"));
-              
-               
+
                 moduni.setArea(rs.getInt("area"));
 
                 return true;
@@ -230,8 +402,6 @@ public class Unidades extends Propietarios {
             rs = ps.executeQuery();
             if (rs.next()) {
 
-                
-
                 return true;
             }
 
@@ -269,10 +439,81 @@ public class Unidades extends Propietarios {
             ps = con.prepareStatement(sql);
             ps.setString(1, getDireccion());
             ps.setDouble(2, getArea());
-         
 
             ps.setInt(3, getId());
-            JOptionPane.showMessageDialog(null, getId());
+
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+    }
+
+    public boolean actualizardocumento(Unidades moduni) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE puente_unidad_propietarios SET documento=? WHERE id=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getDocumento());
+            ps.setInt(2, getId_puente());
+
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
+    public boolean retirarpropietario(Unidades moduni) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE puente_unidad_propietarios SET fecha_hasta=?, estado=? WHERE id=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setDate(1, getFecha_hasta());
+            ps.setInt(2, getEstatus());
+            ps.setInt(3, getId_puente());
+
             ps.execute();
 
             return true;
