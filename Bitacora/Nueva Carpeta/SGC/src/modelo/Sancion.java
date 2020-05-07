@@ -22,7 +22,7 @@ public class Sancion extends Unidades {
     private int año;
     private double monto;
     private String descripcion;
-    private int id;
+   
     private int cantidad_de_unidades;
     private String estado;
     private int id_sancion;
@@ -83,13 +83,7 @@ public class Sancion extends Unidades {
         this.descripcion = descripcion;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+   
 
     public int getCantidad_de_unidades() {
         return cantidad_de_unidades;
@@ -103,7 +97,7 @@ public class Sancion extends Unidades {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO sancion(tipo, mes, anio, monto, descripcion, id_condominio, estado) VALUES (?, ?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO sancion(tipo, mes, anio, monto, descripcion,  estado) VALUES (?, ?, ?, ?, ?, ?);";
 
         try {
 
@@ -113,8 +107,8 @@ public class Sancion extends Unidades {
             ps.setInt(3, modsan.getAño());
             ps.setDouble(4, modsan.getMonto());
             ps.setString(5, modsan.getDescripcion());
-            ps.setString(6, modsan.getId_condominio());
-            ps.setString(7, modsan.getEstado());
+            
+            ps.setString(6, modsan.getEstado());
 
             ps.execute();
             return true;
@@ -148,7 +142,7 @@ public class Sancion extends Unidades {
             rs = ps.executeQuery();
             if (rs.next()) {
 
-                modsan.setId(rs.getInt("id"));
+                modsan.setId_sancion(rs.getInt("id"));
 
                 return true;
             }
@@ -185,8 +179,8 @@ public class Sancion extends Unidades {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
-            ps.setString(2, getN_unidad());
+            ps.setInt(1, getId_sancion());
+            ps.setInt(2, getId());
 
             ps.execute();
 
@@ -220,7 +214,7 @@ public class Sancion extends Unidades {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT sancion.id, tipo, mes, anio, monto, descripcion, id_condominio, count(id_sancion) as total, estado FROM sancion inner join puente_sancion_unidad on puente_sancion_unidad.id_sancion=sancion.id where sancion.id_condominio=? group by sancion.id";
+        String sql = "SELECT sancion.id, tipo, mes, anio, monto, descripcion, id_condominio, count(id_sancion) as total, estado FROM sancion inner join puente_sancion_unidad on puente_sancion_unidad.id_sancion=sancion.id inner join unidades on puente_sancion_unidad.id_unidad=unidades.id where unidades.id_condominio=? group by sancion.id, id_condominio";
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_condominio());
@@ -314,7 +308,7 @@ public class Sancion extends Unidades {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setInt(1, modsan.getId());
+            ps.setInt(1, modsan.getId_sancion());
             rs = ps.executeQuery();
             if (rs.next()) {
 
@@ -355,7 +349,7 @@ public class Sancion extends Unidades {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT * FROM sancion where tipo='Interes de mora' and mes=? and anio=? and id_condominio=?;";
+        String sql = "SELECT sancion.id FROM sancion inner join puente_sancion_unidad on puente_sancion_unidad.id_sancion=sancion.id inner join unidades on puente_sancion_unidad.id_unidad=unidades.id where tipo='Interes de mora' and mes=? and anio=? and id_condominio=?";
 
         try {
 
@@ -367,7 +361,7 @@ public class Sancion extends Unidades {
             rs = ps.executeQuery();
             if (rs.next()) {
 
-                modsan.setId_sancion(rs.getInt("id"));
+               modsan.setId_sancion(rs.getInt("id"));
 
                 return true;
             }
@@ -402,10 +396,10 @@ public class Sancion extends Unidades {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "select unidades.n_unidad, puente_sancion_unidad.id_sancion from unidades left join puente_sancion_unidad on puente_sancion_unidad.id_unidad=unidades.n_unidad and puente_sancion_unidad.id_sancion=?  where unidades.id_condominio=?";
+        String sql = "select unidades.id, unidades.n_unidad, puente_sancion_unidad.id_sancion from unidades left join puente_sancion_unidad on puente_sancion_unidad.id_unidad=unidades.id and puente_sancion_unidad.id_sancion=?  where unidades.id_condominio=?";
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
+            ps.setInt(1, getId_sancion());
 
             ps.setString(2, getId_condominio());
 
@@ -416,7 +410,7 @@ public class Sancion extends Unidades {
 
                 //prs = new Persona();
                 modsan.setN_unidad(rs.getString("n_unidad"));
-
+                modsan.setId(rs.getInt("id"));
                 modsan.setId_sancion(rs.getInt("id_sancion"));
 
                 listaunimod.add(modsan);
@@ -450,7 +444,7 @@ public class Sancion extends Unidades {
             ps.setInt(3, getAño());
             ps.setDouble(4, getMonto());
             ps.setString(5, getDescripcion());
-            ps.setInt(6, getId());
+            ps.setInt(6, getId_sancion());
 
             ps.execute();
 
@@ -485,7 +479,7 @@ public class Sancion extends Unidades {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
+            ps.setInt(1, getId_sancion());
             ps.execute();
 
             return true;

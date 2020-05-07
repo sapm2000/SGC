@@ -311,7 +311,7 @@ public class Unidades extends Propietarios {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT unidades.n_unidad, unidades.direccion, unidades.area  from unidades  where unidades.id_condominio=?;";
+        String sql = "SELECT id, n_unidad, direccion, area  from unidades  where id_condominio=?;";
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_condominio());
@@ -324,7 +324,7 @@ public class Unidades extends Propietarios {
                 //prs = new Persona();
                 Unidades.setN_unidad(rs.getString("n_unidad"));
                 Unidades.setDireccion(rs.getString("direccion"));
-
+                Unidades.setId(rs.getInt("id"));
                 Unidades.setArea(rs.getInt("area"));
 
                 listaUnidades.add(Unidades);
