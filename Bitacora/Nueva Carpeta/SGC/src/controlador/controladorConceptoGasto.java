@@ -3,8 +3,6 @@ package controlador;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -25,7 +23,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableRowSorter;
 import modelo.CategoriaGasto;
 
-public class controladorConceptoGasto implements ActionListener, ItemListener, MouseListener, KeyListener, WindowListener {
+public class controladorConceptoGasto implements ActionListener, MouseListener, KeyListener, WindowListener {
 
     private catalogoConceptoGasto catacga;
     private conceptoGasto cga;
@@ -55,6 +53,7 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
         crearCbxCategoria(listaCatGas);
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == cga.btnGuardar) {
             if (validar()) {
@@ -222,9 +221,7 @@ public class controladorConceptoGasto implements ActionListener, ItemListener, M
         tr.setRowFilter(RowFilter.regexFilter(consulta));
     }
 
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-    }
+    
 
     @Override
     public void mouseClicked(MouseEvent e) {

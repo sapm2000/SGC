@@ -40,7 +40,7 @@ public class CategoriaGasto extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO categoriagasto (nombre, descripcion) VALUES(?,?)";
+        String sql = "INSERT INTO categoriagasto (nombre, descripcion, activo) VALUES(?,?,1)";
 
         try {
 
@@ -74,7 +74,7 @@ public class CategoriaGasto extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT id, nombre, descripcion FROM categoriagasto;";
+        String sql = "SELECT id, nombre, descripcion FROM categoriagasto where activo=1;";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -109,7 +109,7 @@ public class CategoriaGasto extends ConexionBD {
         ResultSet rs = null;
         Connection con = getConexion();
 
-        String sql = "SELECT * FROM categoriagasto WHERE nombre=? ";
+        String sql = "SELECT * FROM categoriagasto WHERE nombre=? and activo=1 ";
 
         try {
 
@@ -123,6 +123,46 @@ public class CategoriaGasto extends ConexionBD {
                 catagc.setId(rs.getInt("id"));
                 catagc.setNombre(rs.getString("nombre"));
                 catagc.setDescripcion(rs.getString("descripcion"));
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
+    
+     public boolean buscarrepe(CategoriaGasto catagc) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+
+        String sql = "SELECT * FROM categoriagasto WHERE nombre=? and  activo=1 ";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, catagc.getNombre());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                catagc.setId(rs.getInt("id"));
+                
 
                 return true;
             }
@@ -186,7 +226,7 @@ public class CategoriaGasto extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "DELETE FROM categoriagasto WHERE id=?";
+        String sql = "UPDATE categoriagasto SET activo=0 WHERE id=?";
 
         try {
 

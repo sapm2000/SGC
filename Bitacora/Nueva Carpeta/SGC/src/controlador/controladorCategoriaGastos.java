@@ -115,16 +115,21 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
                 modcg.setNombre(cg.txtnombre.getText());
                 modcg.setDescripcion(cg.txtdescripcion.getText());
 
-                if (modcg.registrar(modcg)) {
-
-                    JOptionPane.showMessageDialog(null, "Registro Guardado");
-                    Llenartabla(catacg.tabla_categoria_gastos);
-                    cg.dispose();
-
+                if (modcg.buscarrepe(modcg)) {
+                    JOptionPane.showMessageDialog(null, "Registro Duplicado");
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "Registro Duplicado");
+                    if (modcg.registrar(modcg)) {
 
+                        JOptionPane.showMessageDialog(null, "Registro Guardado");
+                        Llenartabla(catacg.tabla_categoria_gastos);
+                        cg.dispose();
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Registro Duplicado");
+
+                    }
                 }
             }
 
@@ -152,17 +157,21 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
                 modcg.setNombre(cg.txtnombre.getText());
                 modcg.setDescripcion(cg.txtdescripcion.getText());
                 modcg.setId(Integer.parseInt(cg.txtId.getText()));
-
-                if (modcg.modificar(modcg)) {
-
-                    JOptionPane.showMessageDialog(null, "Registro modificado");
-                    cg.dispose();
-                    Llenartabla(catacg.tabla_categoria_gastos);
-
+                if (modcg.buscarrepe(modcg)&&modcg.getId()!=Integer.parseInt(cg.txtId.getText())) {
+                    JOptionPane.showMessageDialog(null, "Registro Duplicado");
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
+                    if (modcg.modificar(modcg)) {
 
+                        JOptionPane.showMessageDialog(null, "Registro modificado");
+                        cg.dispose();
+                        Llenartabla(catacg.tabla_categoria_gastos);
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
+
+                    }
                 }
             }
         }
@@ -264,8 +273,8 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
     @Override
     public void windowOpened(WindowEvent e) {
         Llenartabla(catacg.tabla_categoria_gastos);
-        
-        Component[] components =cg.jPanel2.getComponents();
+
+        Component[] components = cg.jPanel2.getComponents();
         JComponent[] com = {
             cg.txtnombre
         };

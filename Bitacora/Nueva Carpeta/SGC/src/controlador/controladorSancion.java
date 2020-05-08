@@ -262,12 +262,13 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                                     if (modsan.registrarsancion(modsan)) {
                                         JOptionPane.showMessageDialog(null, "Registro Guardado");
                                         modsan.buscId(modsan);
+                                          listaunidades = modsan.buscarUnidades();
 
                                         for (int i = 0; i < san.jTable1.getRowCount(); i++) {
                                             if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
 
-                                                String valor = String.valueOf(san.jTable1.getValueAt(i, 0));
-                                                modsan.setN_unidad(valor);
+                                                
+                                                modsan.setId(listaunidades.get(i).getId());
 
                                                 modsan.registrar_sancion_unidad(modsan);
 
@@ -301,7 +302,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                         JOptionPane.showMessageDialog(null, "seleccione un tipo de deuda");
                     } else {
                         modsan.setDescripcion(san.txaDescripcion.getText());
-                        modsan.setId(Integer.parseInt(san.txtId.getText()));
+                        modsan.setId_sancion(Integer.parseInt(san.txtId.getText()));
                         modsan.setMonto(Double.parseDouble(san.txtmonto.getText()));
                         modsan.setId_condominio(panta1.rif.getText());
 
@@ -329,17 +330,16 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                                 JOptionPane.showMessageDialog(null, "no puede registrar Sanciones a un periodo ya cerrado");
                             } else {
 
-                                if (x == 0 || x == modsan.getId()) {
+                                if (x == 0 || x == modsan.getId_sancion()) {
                                     if (modsan.modificarSancion(modsan)) {
                                         JOptionPane.showMessageDialog(null, "Registro Modificado");
 
                                         modsan.borrarpuentesancion(modsan);
-
+                                         listaunimod = modsan.listarunidadesmod();
                                         for (int i = 0; i < san.jTable1.getRowCount(); i++) {
-                                            if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
+                                            if (valueOf(san.jTable1.getValueAt(i, 1)).equals("true")) {
 
-                                                String valor = String.valueOf(san.jTable1.getValueAt(i, 0));
-                                                modsan.setN_unidad(valor);
+                                                modsan.setId(listaunimod.get(i).getId());
 
                                                 modsan.registrar_sancion_unidad(modsan);
 
@@ -353,7 +353,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
                                     }
                                 } else {
-                                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existes");
                                 }
                             }
 
@@ -397,7 +397,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         int fila = this.catasan.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
 
         String dato = String.valueOf(this.catasan.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
-        modsan.setId(Integer.parseInt(dato));
+        modsan.setId_sancion(Integer.parseInt(dato));
 
         modsan.buscarSancion(modsan);
 
@@ -405,7 +405,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         san.txtId.setVisible(false);
         san.txtId.setText(dato);
         san.txaDescripcion.setText(modsan.getDescripcion());
-        san.txtmonto.setText(String.valueOf(Validacion.formato1.format(modsan.getMonto())));
+        san.txtmonto.setText(String.valueOf(modsan.getMonto()));
         san.jComboBox1.setSelectedItem(modsan.getTipo());
         int mes = modsan.getMes() - 1;
         san.jMonthChooser1.setMonth(mes);
