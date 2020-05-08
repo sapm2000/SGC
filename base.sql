@@ -5,7 +5,7 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2020-05-06 18:22:12
+-- Started on 2020-05-07 22:11:43
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -83,7 +83,7 @@ CREATE SEQUENCE public.asambleas_id_seq
 ALTER TABLE public.asambleas_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3182 (class 0 OID 0)
+-- TOC entry 3180 (class 0 OID 0)
 -- Dependencies: 203
 -- Name: asambleas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -121,7 +121,7 @@ CREATE SEQUENCE public.banco_id_seq
 ALTER TABLE public.banco_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3183 (class 0 OID 0)
+-- TOC entry 3181 (class 0 OID 0)
 -- Dependencies: 205
 -- Name: banco_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -137,7 +137,8 @@ ALTER SEQUENCE public.banco_id_seq OWNED BY public.banco.id;
 CREATE TABLE public.categoriagasto (
     id integer NOT NULL,
     nombre character varying(120) NOT NULL,
-    descripcion character varying(120) NOT NULL
+    descripcion character varying(120) NOT NULL,
+    activo bigint
 );
 
 
@@ -160,7 +161,7 @@ CREATE SEQUENCE public.categoriagasto_id_seq
 ALTER TABLE public.categoriagasto_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3184 (class 0 OID 0)
+-- TOC entry 3182 (class 0 OID 0)
 -- Dependencies: 207
 -- Name: categoriagasto_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -200,7 +201,7 @@ CREATE SEQUENCE public.cierre_de_mes_id_seq
 ALTER TABLE public.cierre_de_mes_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3185 (class 0 OID 0)
+-- TOC entry 3183 (class 0 OID 0)
 -- Dependencies: 209
 -- Name: cierre_de_mes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -246,7 +247,7 @@ CREATE SEQUENCE public.cobro_id_seq
 ALTER TABLE public.cobro_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3186 (class 0 OID 0)
+-- TOC entry 3184 (class 0 OID 0)
 -- Dependencies: 211
 -- Name: cobro_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -286,7 +287,7 @@ CREATE SEQUENCE public.comunicados_id_seq
 ALTER TABLE public.comunicados_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3187 (class 0 OID 0)
+-- TOC entry 3185 (class 0 OID 0)
 -- Dependencies: 213
 -- Name: comunicados_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -303,7 +304,8 @@ CREATE TABLE public.concepto_gasto (
     id integer NOT NULL,
     nom_concepto character varying(120) NOT NULL,
     descripcion character varying(120) NOT NULL,
-    id_categoria integer NOT NULL
+    id_categoria integer NOT NULL,
+    activo bigint
 );
 
 
@@ -326,7 +328,7 @@ CREATE SEQUENCE public.concepto_gasto_id_seq
 ALTER TABLE public.concepto_gasto_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3188 (class 0 OID 0)
+-- TOC entry 3186 (class 0 OID 0)
 -- Dependencies: 215
 -- Name: concepto_gasto_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -402,7 +404,7 @@ CREATE SEQUENCE public.cuenta_pagar_id_seq
 ALTER TABLE public.cuenta_pagar_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3189 (class 0 OID 0)
+-- TOC entry 3187 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: cuenta_pagar_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -452,7 +454,7 @@ CREATE SEQUENCE public.cuotas_especiales_id_seq
 ALTER TABLE public.cuotas_especiales_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3190 (class 0 OID 0)
+-- TOC entry 3188 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: cuotas_especiales_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -495,7 +497,7 @@ CREATE SEQUENCE public.detalle_cuotas_id_seq
 ALTER TABLE public.detalle_cuotas_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3191 (class 0 OID 0)
+-- TOC entry 3189 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: detalle_cuotas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -538,7 +540,7 @@ CREATE SEQUENCE public.detalle_interes_id_seq
 ALTER TABLE public.detalle_interes_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3192 (class 0 OID 0)
+-- TOC entry 3190 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: detalle_interes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -581,7 +583,7 @@ CREATE SEQUENCE public.detalle_pagos_id_seq
 ALTER TABLE public.detalle_pagos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3193 (class 0 OID 0)
+-- TOC entry 3191 (class 0 OID 0)
 -- Dependencies: 227
 -- Name: detalle_pagos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -624,7 +626,7 @@ CREATE SEQUENCE public.detalle_sancion_id_seq
 ALTER TABLE public.detalle_sancion_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3194 (class 0 OID 0)
+-- TOC entry 3192 (class 0 OID 0)
 -- Dependencies: 229
 -- Name: detalle_sancion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -669,7 +671,7 @@ CREATE SEQUENCE public.detalle_total_id_seq
 ALTER TABLE public.detalle_total_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3195 (class 0 OID 0)
+-- TOC entry 3193 (class 0 OID 0)
 -- Dependencies: 231
 -- Name: detalle_total_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -713,7 +715,7 @@ CREATE SEQUENCE public.fondos_id_seq
 ALTER TABLE public.fondos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3196 (class 0 OID 0)
+-- TOC entry 3194 (class 0 OID 0)
 -- Dependencies: 233
 -- Name: fondos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -762,7 +764,7 @@ CREATE SEQUENCE public.gasto_comun_id_seq
 ALTER TABLE public.gasto_comun_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3197 (class 0 OID 0)
+-- TOC entry 3195 (class 0 OID 0)
 -- Dependencies: 235
 -- Name: gasto_comun_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -802,7 +804,7 @@ CREATE SEQUENCE public.interes_id_seq
 ALTER TABLE public.interes_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3198 (class 0 OID 0)
+-- TOC entry 3196 (class 0 OID 0)
 -- Dependencies: 237
 -- Name: interes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -874,7 +876,7 @@ CREATE SEQUENCE public.puente_asamblea_propietario_id_seq
 ALTER TABLE public.puente_asamblea_propietario_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3199 (class 0 OID 0)
+-- TOC entry 3197 (class 0 OID 0)
 -- Dependencies: 241
 -- Name: puente_asamblea_propietario_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -914,7 +916,7 @@ CREATE SEQUENCE public.puente_cobro_factura_id_seq
 ALTER TABLE public.puente_cobro_factura_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3200 (class 0 OID 0)
+-- TOC entry 3198 (class 0 OID 0)
 -- Dependencies: 243
 -- Name: puente_cobro_factura_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -954,7 +956,7 @@ CREATE SEQUENCE public.puente_comunicado_usuario_id_seq
 ALTER TABLE public.puente_comunicado_usuario_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3201 (class 0 OID 0)
+-- TOC entry 3199 (class 0 OID 0)
 -- Dependencies: 245
 -- Name: puente_comunicado_usuario_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -993,7 +995,7 @@ CREATE SEQUENCE public.puente_condomino_cuenta_id_seq
 ALTER TABLE public.puente_condomino_cuenta_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3202 (class 0 OID 0)
+-- TOC entry 3200 (class 0 OID 0)
 -- Dependencies: 247
 -- Name: puente_condomino_cuenta_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1032,7 +1034,7 @@ CREATE SEQUENCE public.puente_interes_condominio_id_seq
 ALTER TABLE public.puente_interes_condominio_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3203 (class 0 OID 0)
+-- TOC entry 3201 (class 0 OID 0)
 -- Dependencies: 249
 -- Name: puente_interes_condominio_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1048,7 +1050,7 @@ ALTER SEQUENCE public.puente_interes_condominio_id_seq OWNED BY public.puente_in
 CREATE TABLE public.puente_sancion_unidad (
     id bigint NOT NULL,
     id_sancion bigint NOT NULL,
-    id_unidad character varying(50) NOT NULL
+    id_unidad bigint
 );
 
 
@@ -1070,7 +1072,7 @@ CREATE SEQUENCE public.puente_sancion_unidad_id_seq
 ALTER TABLE public.puente_sancion_unidad_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3204 (class 0 OID 0)
+-- TOC entry 3202 (class 0 OID 0)
 -- Dependencies: 251
 -- Name: puente_sancion_unidad_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1113,7 +1115,7 @@ CREATE SEQUENCE public.puente_unidad_propietarios_id_seq
 ALTER TABLE public.puente_unidad_propietarios_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3205 (class 0 OID 0)
+-- TOC entry 3203 (class 0 OID 0)
 -- Dependencies: 260
 -- Name: puente_unidad_propietarios_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1133,7 +1135,6 @@ CREATE TABLE public.sancion (
     anio bigint NOT NULL,
     monto double precision NOT NULL,
     descripcion character varying(200) NOT NULL,
-    id_condominio character varying(15) NOT NULL,
     estado character varying(20)
 );
 
@@ -1157,7 +1158,7 @@ CREATE SEQUENCE public.sancion_id_seq
 ALTER TABLE public.sancion_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3206 (class 0 OID 0)
+-- TOC entry 3204 (class 0 OID 0)
 -- Dependencies: 253
 -- Name: sancion_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1198,7 +1199,7 @@ CREATE SEQUENCE public.unidades_id_seq
 ALTER TABLE public.unidades_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3207 (class 0 OID 0)
+-- TOC entry 3205 (class 0 OID 0)
 -- Dependencies: 255
 -- Name: unidades_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1260,7 +1261,7 @@ CREATE SEQUENCE public.visita_id_seq
 ALTER TABLE public.visita_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3208 (class 0 OID 0)
+-- TOC entry 3206 (class 0 OID 0)
 -- Dependencies: 258
 -- Name: visita_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -1499,7 +1500,7 @@ ALTER TABLE ONLY public.visita ALTER COLUMN id SET DEFAULT nextval('public.visit
 
 
 --
--- TOC entry 3117 (class 0 OID 26408)
+-- TOC entry 3115 (class 0 OID 26408)
 -- Dependencies: 202
 -- Data for Name: asambleas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1558,7 +1559,7 @@ INSERT INTO public.asambleas VALUES (50, 'Estacionamiento', '2020-04-18', '-', '
 
 
 --
--- TOC entry 3119 (class 0 OID 26416)
+-- TOC entry 3117 (class 0 OID 26416)
 -- Dependencies: 204
 -- Data for Name: banco; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1576,19 +1577,21 @@ INSERT INTO public.banco VALUES (11, 'Venezolana de Credito');
 
 
 --
--- TOC entry 3121 (class 0 OID 26421)
+-- TOC entry 3119 (class 0 OID 26421)
 -- Dependencies: 206
 -- Data for Name: categoriagasto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.categoriagasto VALUES (1, 'Administrativo', 'Conjunto de conceptos administrativos');
-INSERT INTO public.categoriagasto VALUES (2, 'Mantenimiento', 'Conjunto de conceptos de mantenimiento');
-INSERT INTO public.categoriagasto VALUES (3, 'Reparaciones', 'Conjunto de conceptos de reparaciones');
-INSERT INTO public.categoriagasto VALUES (4, 'Uso comun', 'Conjunto de conceptos de uso comun y consumo');
+INSERT INTO public.categoriagasto VALUES (1, 'Administrativo', 'Conjunto de conceptos administrativos', 1);
+INSERT INTO public.categoriagasto VALUES (2, 'Mantenimiento', 'Conjunto de conceptos de mantenimiento', 1);
+INSERT INTO public.categoriagasto VALUES (3, 'Reparaciones', 'Conjunto de conceptos de reparaciones', 1);
+INSERT INTO public.categoriagasto VALUES (4, 'Uso comun', 'Conjunto de conceptos de uso comun y consumo', 1);
+INSERT INTO public.categoriagasto VALUES (5, 'asda', 'Conjunto de conceptos administrativo', 0);
+INSERT INTO public.categoriagasto VALUES (6, 'asda', 'ddasda', 1);
 
 
 --
--- TOC entry 3123 (class 0 OID 26426)
+-- TOC entry 3121 (class 0 OID 26426)
 -- Dependencies: 208
 -- Data for Name: cierre_de_mes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1606,7 +1609,7 @@ INSERT INTO public.cierre_de_mes VALUES (50, 4, 2020, 'J-77663250004');
 
 
 --
--- TOC entry 3125 (class 0 OID 26431)
+-- TOC entry 3123 (class 0 OID 26431)
 -- Dependencies: 210
 -- Data for Name: cobro; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1617,7 +1620,7 @@ INSERT INTO public.cobro VALUES (10, 1377, 'hola', '1', '01025487596584758945', 
 
 
 --
--- TOC entry 3127 (class 0 OID 26439)
+-- TOC entry 3125 (class 0 OID 26439)
 -- Dependencies: 212
 -- Data for Name: comunicados; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1675,55 +1678,55 @@ INSERT INTO public.comunicados VALUES (53, 'Reunion 5', 'Por favor asistir a la 
 
 
 --
--- TOC entry 3129 (class 0 OID 26447)
+-- TOC entry 3127 (class 0 OID 26447)
 -- Dependencies: 214
 -- Data for Name: concepto_gasto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.concepto_gasto VALUES (1, 'Honorarios administrador', 'Honorarios del administrador del condominio', 1);
-INSERT INTO public.concepto_gasto VALUES (2, 'Salario conserje', 'Salario del conserje del condominio', 1);
-INSERT INTO public.concepto_gasto VALUES (3, 'Honorarios administradora', 'Honorarios administradora del condominio', 1);
-INSERT INTO public.concepto_gasto VALUES (4, 'Gastos oficina', 'Gastos en material de oficina', 1);
-INSERT INTO public.concepto_gasto VALUES (5, 'Gastos varios', 'Gastos fotocopias, impresiones, internet', 1);
-INSERT INTO public.concepto_gasto VALUES (6, 'Retiro prestaciones', 'Retiro de prestaciones sociales', 1);
-INSERT INTO public.concepto_gasto VALUES (7, 'Prestaciones soc.', 'Prestaciones sociales trabajador', 1);
-INSERT INTO public.concepto_gasto VALUES (8, 'Seguro social', 'Seguro social trabajador', 1);
-INSERT INTO public.concepto_gasto VALUES (9, 'Bono Vacacional ', 'Bono vacacional trabajador', 1);
-INSERT INTO public.concepto_gasto VALUES (10, 'Liquidación ', 'Liquidacion trabajador', 1);
-INSERT INTO public.concepto_gasto VALUES (11, 'Provisión utilidades ', 'Utilidades del trabajador', 1);
-INSERT INTO public.concepto_gasto VALUES (12, 'Provisión vacaciones ', 'Vacaciones trabajador', 1);
-INSERT INTO public.concepto_gasto VALUES (13, 'Ley de alimentación', 'Pago alimentación', 1);
-INSERT INTO public.concepto_gasto VALUES (14, 'FAHO', 'Fondo de ahorro obligatorio de la vivienda', 1);
-INSERT INTO public.concepto_gasto VALUES (15, 'Caja chica', 'Caja chica', 1);
-INSERT INTO public.concepto_gasto VALUES (16, 'Mant. ascensores', 'Mantenimiento de los asecensores', 2);
-INSERT INTO public.concepto_gasto VALUES (17, 'Mant. hidroneumatico', 'Mantenimiento del hidroneumatico', 2);
-INSERT INTO public.concepto_gasto VALUES (18, 'Mant. porton electrico', 'Mantenimiento del porton electrico', 2);
-INSERT INTO public.concepto_gasto VALUES (19, 'Mant. cerco electrico', 'Mantenimiento del cerco electrico', 2);
-INSERT INTO public.concepto_gasto VALUES (20, 'Mant. areas verdes', 'Mantenimiento de areas verdes', 2);
-INSERT INTO public.concepto_gasto VALUES (21, 'Mant. piscina', 'Mantenimiento de la piscina', 2);
-INSERT INTO public.concepto_gasto VALUES (22, 'Mant. parque infantil', 'Mantenimiento del parque infantil', 2);
-INSERT INTO public.concepto_gasto VALUES (23, 'Mant. camaras vigilancia', 'Mantenimiento camaras de vigilancia', 2);
-INSERT INTO public.concepto_gasto VALUES (24, 'Mant. tuberias', 'Mantenimiento de tuberias ', 2);
-INSERT INTO public.concepto_gasto VALUES (25, 'Mant. estacionamiento', 'Mantenimiento del estacionamiento ', 2);
-INSERT INTO public.concepto_gasto VALUES (26, 'Mant. pintura edif. ', 'Pintura de areas comunes ', 2);
-INSERT INTO public.concepto_gasto VALUES (27, 'Mant. alumbrado elect. ', 'Mantenimiento del alumbrado elect.', 2);
-INSERT INTO public.concepto_gasto VALUES (28, 'Mant. compra prod. limp.', 'Gastos productos de limpieza', 2);
-INSERT INTO public.concepto_gasto VALUES (29, 'Mant. prod. limpieza ', 'Gasto otros productos', 2);
-INSERT INTO public.concepto_gasto VALUES (30, 'Repar. ascensores', 'Reparacion de los asecensores', 3);
-INSERT INTO public.concepto_gasto VALUES (31, 'Repar. tuberia', 'Reparacion de tuberias de aguas', 3);
-INSERT INTO public.concepto_gasto VALUES (32, 'Repar. porton', 'Reparacion del porton electrico', 3);
-INSERT INTO public.concepto_gasto VALUES (33, 'Repar. cerco elect.', 'Reparacion del cerco electrico', 3);
-INSERT INTO public.concepto_gasto VALUES (34, 'Repar. hidroneumatico.', 'Reparacion la bomba de agua', 3);
-INSERT INTO public.concepto_gasto VALUES (35, 'Repar. camaras.', 'Reparacion de camaras', 3);
-INSERT INTO public.concepto_gasto VALUES (36, 'Repar. electricas.', 'Reparacion/Sustitucion de componentes electricos', 3);
-INSERT INTO public.concepto_gasto VALUES (37, 'Consumo de electricidad', 'Consumo de electricidad', 3);
-INSERT INTO public.concepto_gasto VALUES (39, 'Cantv', 'Consumo de telefonos', 4);
-INSERT INTO public.concepto_gasto VALUES (40, 'HidroCapital', 'Consumo de agua', 4);
-INSERT INTO public.concepto_gasto VALUES (41, 'Vigilancia', 'Gastos por vigilancia', 4);
+INSERT INTO public.concepto_gasto VALUES (1, 'Honorarios administrador', 'Honorarios del administrador del condominio', 1, NULL);
+INSERT INTO public.concepto_gasto VALUES (2, 'Salario conserje', 'Salario del conserje del condominio', 1, NULL);
+INSERT INTO public.concepto_gasto VALUES (3, 'Honorarios administradora', 'Honorarios administradora del condominio', 1, NULL);
+INSERT INTO public.concepto_gasto VALUES (4, 'Gastos oficina', 'Gastos en material de oficina', 1, NULL);
+INSERT INTO public.concepto_gasto VALUES (5, 'Gastos varios', 'Gastos fotocopias, impresiones, internet', 1, NULL);
+INSERT INTO public.concepto_gasto VALUES (6, 'Retiro prestaciones', 'Retiro de prestaciones sociales', 1, NULL);
+INSERT INTO public.concepto_gasto VALUES (7, 'Prestaciones soc.', 'Prestaciones sociales trabajador', 1, NULL);
+INSERT INTO public.concepto_gasto VALUES (8, 'Seguro social', 'Seguro social trabajador', 1, NULL);
+INSERT INTO public.concepto_gasto VALUES (9, 'Bono Vacacional ', 'Bono vacacional trabajador', 1, NULL);
+INSERT INTO public.concepto_gasto VALUES (10, 'Liquidación ', 'Liquidacion trabajador', 1, NULL);
+INSERT INTO public.concepto_gasto VALUES (11, 'Provisión utilidades ', 'Utilidades del trabajador', 1, NULL);
+INSERT INTO public.concepto_gasto VALUES (12, 'Provisión vacaciones ', 'Vacaciones trabajador', 1, NULL);
+INSERT INTO public.concepto_gasto VALUES (13, 'Ley de alimentación', 'Pago alimentación', 1, NULL);
+INSERT INTO public.concepto_gasto VALUES (14, 'FAHO', 'Fondo de ahorro obligatorio de la vivienda', 1, NULL);
+INSERT INTO public.concepto_gasto VALUES (15, 'Caja chica', 'Caja chica', 1, NULL);
+INSERT INTO public.concepto_gasto VALUES (16, 'Mant. ascensores', 'Mantenimiento de los asecensores', 2, NULL);
+INSERT INTO public.concepto_gasto VALUES (17, 'Mant. hidroneumatico', 'Mantenimiento del hidroneumatico', 2, NULL);
+INSERT INTO public.concepto_gasto VALUES (18, 'Mant. porton electrico', 'Mantenimiento del porton electrico', 2, NULL);
+INSERT INTO public.concepto_gasto VALUES (19, 'Mant. cerco electrico', 'Mantenimiento del cerco electrico', 2, NULL);
+INSERT INTO public.concepto_gasto VALUES (20, 'Mant. areas verdes', 'Mantenimiento de areas verdes', 2, NULL);
+INSERT INTO public.concepto_gasto VALUES (21, 'Mant. piscina', 'Mantenimiento de la piscina', 2, NULL);
+INSERT INTO public.concepto_gasto VALUES (22, 'Mant. parque infantil', 'Mantenimiento del parque infantil', 2, NULL);
+INSERT INTO public.concepto_gasto VALUES (23, 'Mant. camaras vigilancia', 'Mantenimiento camaras de vigilancia', 2, NULL);
+INSERT INTO public.concepto_gasto VALUES (24, 'Mant. tuberias', 'Mantenimiento de tuberias ', 2, NULL);
+INSERT INTO public.concepto_gasto VALUES (25, 'Mant. estacionamiento', 'Mantenimiento del estacionamiento ', 2, NULL);
+INSERT INTO public.concepto_gasto VALUES (26, 'Mant. pintura edif. ', 'Pintura de areas comunes ', 2, NULL);
+INSERT INTO public.concepto_gasto VALUES (27, 'Mant. alumbrado elect. ', 'Mantenimiento del alumbrado elect.', 2, NULL);
+INSERT INTO public.concepto_gasto VALUES (28, 'Mant. compra prod. limp.', 'Gastos productos de limpieza', 2, NULL);
+INSERT INTO public.concepto_gasto VALUES (29, 'Mant. prod. limpieza ', 'Gasto otros productos', 2, NULL);
+INSERT INTO public.concepto_gasto VALUES (30, 'Repar. ascensores', 'Reparacion de los asecensores', 3, NULL);
+INSERT INTO public.concepto_gasto VALUES (31, 'Repar. tuberia', 'Reparacion de tuberias de aguas', 3, NULL);
+INSERT INTO public.concepto_gasto VALUES (32, 'Repar. porton', 'Reparacion del porton electrico', 3, NULL);
+INSERT INTO public.concepto_gasto VALUES (33, 'Repar. cerco elect.', 'Reparacion del cerco electrico', 3, NULL);
+INSERT INTO public.concepto_gasto VALUES (34, 'Repar. hidroneumatico.', 'Reparacion la bomba de agua', 3, NULL);
+INSERT INTO public.concepto_gasto VALUES (35, 'Repar. camaras.', 'Reparacion de camaras', 3, NULL);
+INSERT INTO public.concepto_gasto VALUES (36, 'Repar. electricas.', 'Reparacion/Sustitucion de componentes electricos', 3, NULL);
+INSERT INTO public.concepto_gasto VALUES (37, 'Consumo de electricidad', 'Consumo de electricidad', 3, NULL);
+INSERT INTO public.concepto_gasto VALUES (39, 'Cantv', 'Consumo de telefonos', 4, NULL);
+INSERT INTO public.concepto_gasto VALUES (40, 'HidroCapital', 'Consumo de agua', 4, NULL);
+INSERT INTO public.concepto_gasto VALUES (41, 'Vigilancia', 'Gastos por vigilancia', 4, NULL);
 
 
 --
--- TOC entry 3131 (class 0 OID 26452)
+-- TOC entry 3129 (class 0 OID 26452)
 -- Dependencies: 216
 -- Data for Name: condominio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1741,7 +1744,7 @@ INSERT INTO public.condominio VALUES ('J-9854762000', 'Urbanizacion Cisnes', '04
 
 
 --
--- TOC entry 3132 (class 0 OID 26455)
+-- TOC entry 3130 (class 0 OID 26455)
 -- Dependencies: 217
 -- Data for Name: cuenta; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1754,7 +1757,7 @@ INSERT INTO public.cuenta VALUES ('J-285856', '01145247946596656485', 'Condomini
 
 
 --
--- TOC entry 3133 (class 0 OID 26458)
+-- TOC entry 3131 (class 0 OID 26458)
 -- Dependencies: 218
 -- Data for Name: cuenta_pagar; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1762,7 +1765,7 @@ INSERT INTO public.cuenta VALUES ('J-285856', '01145247946596656485', 'Condomini
 
 
 --
--- TOC entry 3135 (class 0 OID 26463)
+-- TOC entry 3133 (class 0 OID 26463)
 -- Dependencies: 220
 -- Data for Name: cuotas_especiales; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1821,7 +1824,7 @@ INSERT INTO public.cuotas_especiales VALUES (74, '24666587', 2, 'Alicuota', 5, 2
 
 
 --
--- TOC entry 3137 (class 0 OID 26471)
+-- TOC entry 3135 (class 0 OID 26471)
 -- Dependencies: 222
 -- Data for Name: detalle_cuotas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2064,7 +2067,7 @@ INSERT INTO public.detalle_cuotas VALUES (433, '1', 68, 4, 2020, 'J-77663250004'
 
 
 --
--- TOC entry 3139 (class 0 OID 26476)
+-- TOC entry 3137 (class 0 OID 26476)
 -- Dependencies: 224
 -- Data for Name: detalle_interes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2222,7 +2225,7 @@ INSERT INTO public.detalle_interes VALUES (330, '10', 4, 2020, 135, 17, 'J-25407
 
 
 --
--- TOC entry 3141 (class 0 OID 26481)
+-- TOC entry 3139 (class 0 OID 26481)
 -- Dependencies: 226
 -- Data for Name: detalle_pagos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2455,7 +2458,7 @@ INSERT INTO public.detalle_pagos VALUES (1267, '1', 4, 2020, 600, 68, 'J-7766325
 
 
 --
--- TOC entry 3143 (class 0 OID 26486)
+-- TOC entry 3141 (class 0 OID 26486)
 -- Dependencies: 228
 -- Data for Name: detalle_sancion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2500,7 +2503,7 @@ INSERT INTO public.detalle_sancion VALUES (174, '5', 70, 4, 2020, 'J-77663250004
 
 
 --
--- TOC entry 3145 (class 0 OID 26491)
+-- TOC entry 3143 (class 0 OID 26491)
 -- Dependencies: 230
 -- Data for Name: detalle_total; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2558,7 +2561,7 @@ INSERT INTO public.detalle_total VALUES (144, '1', 5650, 4, 2020, 0.2, 'Pendient
 
 
 --
--- TOC entry 3147 (class 0 OID 26496)
+-- TOC entry 3145 (class 0 OID 26496)
 -- Dependencies: 232
 -- Data for Name: fondos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2616,7 +2619,7 @@ INSERT INTO public.fondos VALUES ('Gastos Varios', '2020-05-01', '-', '-', 3000,
 
 
 --
--- TOC entry 3149 (class 0 OID 26504)
+-- TOC entry 3147 (class 0 OID 26504)
 -- Dependencies: 234
 -- Data for Name: gasto_comun; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2675,7 +2678,7 @@ INSERT INTO public.gasto_comun VALUES (74, 'Ordinario', 5, 2020, 123123, '2344',
 
 
 --
--- TOC entry 3151 (class 0 OID 26509)
+-- TOC entry 3149 (class 0 OID 26509)
 -- Dependencies: 236
 -- Data for Name: interes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2693,7 +2696,7 @@ INSERT INTO public.interes VALUES (11, 'Liquidacion', 5, 'Activo');
 
 
 --
--- TOC entry 3153 (class 0 OID 26514)
+-- TOC entry 3151 (class 0 OID 26514)
 -- Dependencies: 238
 -- Data for Name: propietarios; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2752,7 +2755,7 @@ INSERT INTO public.propietarios VALUES ('5478965', 'Marisol', 'Souza', '04124002
 
 
 --
--- TOC entry 3154 (class 0 OID 26517)
+-- TOC entry 3152 (class 0 OID 26517)
 -- Dependencies: 239
 -- Data for Name: proveedores; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2770,7 +2773,7 @@ INSERT INTO public.proveedores VALUES ('J-547859655', 'Reparacion de Camaras', '
 
 
 --
--- TOC entry 3155 (class 0 OID 26523)
+-- TOC entry 3153 (class 0 OID 26523)
 -- Dependencies: 240
 -- Data for Name: puente_asamblea_propietario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2926,7 +2929,7 @@ INSERT INTO public.puente_asamblea_propietario VALUES (255, 50, '24578965');
 
 
 --
--- TOC entry 3157 (class 0 OID 26528)
+-- TOC entry 3155 (class 0 OID 26528)
 -- Dependencies: 242
 -- Data for Name: puente_cobro_factura; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2937,7 +2940,7 @@ INSERT INTO public.puente_cobro_factura VALUES (7, 105, 10, 1377);
 
 
 --
--- TOC entry 3159 (class 0 OID 26533)
+-- TOC entry 3157 (class 0 OID 26533)
 -- Dependencies: 244
 -- Data for Name: puente_comunicado_usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -3445,7 +3448,7 @@ INSERT INTO public.puente_comunicado_usuario VALUES (503, '20122354', 53, 0);
 
 
 --
--- TOC entry 3161 (class 0 OID 26541)
+-- TOC entry 3159 (class 0 OID 26541)
 -- Dependencies: 246
 -- Data for Name: puente_condominio_cuenta; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -3503,7 +3506,7 @@ INSERT INTO public.puente_condominio_cuenta VALUES (138, '01145247946596656485',
 
 
 --
--- TOC entry 3163 (class 0 OID 26546)
+-- TOC entry 3161 (class 0 OID 26546)
 -- Dependencies: 248
 -- Data for Name: puente_interes_condominio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -3536,92 +3539,21 @@ INSERT INTO public.puente_interes_condominio VALUES (94, 'J-2540768143', 11);
 
 
 --
--- TOC entry 3165 (class 0 OID 26551)
+-- TOC entry 3163 (class 0 OID 26551)
 -- Dependencies: 250
 -- Data for Name: puente_sancion_unidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.puente_sancion_unidad VALUES (51, 26, 'A1');
-INSERT INTO public.puente_sancion_unidad VALUES (54, 28, 'A2');
-INSERT INTO public.puente_sancion_unidad VALUES (55, 29, 'B2');
-INSERT INTO public.puente_sancion_unidad VALUES (56, 29, 'E2');
-INSERT INTO public.puente_sancion_unidad VALUES (57, 30, 'D1');
-INSERT INTO public.puente_sancion_unidad VALUES (58, 31, '1');
-INSERT INTO public.puente_sancion_unidad VALUES (59, 32, '2');
-INSERT INTO public.puente_sancion_unidad VALUES (60, 33, '3');
-INSERT INTO public.puente_sancion_unidad VALUES (61, 34, '4');
-INSERT INTO public.puente_sancion_unidad VALUES (65, 36, '05');
-INSERT INTO public.puente_sancion_unidad VALUES (66, 37, '04');
-INSERT INTO public.puente_sancion_unidad VALUES (67, 38, '03');
-INSERT INTO public.puente_sancion_unidad VALUES (68, 39, '02');
-INSERT INTO public.puente_sancion_unidad VALUES (72, 41, '1A');
-INSERT INTO public.puente_sancion_unidad VALUES (73, 42, '2B');
-INSERT INTO public.puente_sancion_unidad VALUES (74, 43, '4A');
-INSERT INTO public.puente_sancion_unidad VALUES (75, 44, '4B');
-INSERT INTO public.puente_sancion_unidad VALUES (77, 46, '6');
-INSERT INTO public.puente_sancion_unidad VALUES (78, 47, '7');
-INSERT INTO public.puente_sancion_unidad VALUES (79, 48, '8');
-INSERT INTO public.puente_sancion_unidad VALUES (80, 49, '9');
-INSERT INTO public.puente_sancion_unidad VALUES (82, 51, '003');
-INSERT INTO public.puente_sancion_unidad VALUES (83, 52, '001');
-INSERT INTO public.puente_sancion_unidad VALUES (84, 53, '002');
-INSERT INTO public.puente_sancion_unidad VALUES (85, 54, '004');
-INSERT INTO public.puente_sancion_unidad VALUES (89, 56, '11');
-INSERT INTO public.puente_sancion_unidad VALUES (90, 57, '12');
-INSERT INTO public.puente_sancion_unidad VALUES (91, 58, '13');
-INSERT INTO public.puente_sancion_unidad VALUES (92, 59, '15');
-INSERT INTO public.puente_sancion_unidad VALUES (96, 61, '01');
-INSERT INTO public.puente_sancion_unidad VALUES (97, 62, '02');
-INSERT INTO public.puente_sancion_unidad VALUES (98, 63, '03');
-INSERT INTO public.puente_sancion_unidad VALUES (99, 64, '04');
-INSERT INTO public.puente_sancion_unidad VALUES (103, 66, '1');
-INSERT INTO public.puente_sancion_unidad VALUES (104, 67, '2');
-INSERT INTO public.puente_sancion_unidad VALUES (105, 68, '4');
-INSERT INTO public.puente_sancion_unidad VALUES (106, 69, '2');
-INSERT INTO public.puente_sancion_unidad VALUES (107, 69, '4');
-INSERT INTO public.puente_sancion_unidad VALUES (108, 70, '5');
-INSERT INTO public.puente_sancion_unidad VALUES (109, 27, 'A1');
-INSERT INTO public.puente_sancion_unidad VALUES (110, 27, 'B2');
-INSERT INTO public.puente_sancion_unidad VALUES (111, 35, '3');
-INSERT INTO public.puente_sancion_unidad VALUES (112, 35, '4');
-INSERT INTO public.puente_sancion_unidad VALUES (113, 35, '5');
-INSERT INTO public.puente_sancion_unidad VALUES (114, 40, '01');
-INSERT INTO public.puente_sancion_unidad VALUES (115, 40, '04');
-INSERT INTO public.puente_sancion_unidad VALUES (116, 40, '05');
-INSERT INTO public.puente_sancion_unidad VALUES (117, 45, 'PH');
-INSERT INTO public.puente_sancion_unidad VALUES (118, 50, '10');
-INSERT INTO public.puente_sancion_unidad VALUES (119, 55, '002');
-INSERT INTO public.puente_sancion_unidad VALUES (120, 55, '004');
-INSERT INTO public.puente_sancion_unidad VALUES (121, 55, '005');
-INSERT INTO public.puente_sancion_unidad VALUES (122, 60, '12');
-INSERT INTO public.puente_sancion_unidad VALUES (123, 60, '13');
-INSERT INTO public.puente_sancion_unidad VALUES (124, 60, '14');
-INSERT INTO public.puente_sancion_unidad VALUES (125, 65, '01');
-INSERT INTO public.puente_sancion_unidad VALUES (126, 65, '03');
-INSERT INTO public.puente_sancion_unidad VALUES (127, 65, '05');
-INSERT INTO public.puente_sancion_unidad VALUES (128, 71, '010');
-INSERT INTO public.puente_sancion_unidad VALUES (129, 71, '011');
-INSERT INTO public.puente_sancion_unidad VALUES (130, 72, '010');
-INSERT INTO public.puente_sancion_unidad VALUES (131, 72, '011');
-INSERT INTO public.puente_sancion_unidad VALUES (132, 72, '012');
-INSERT INTO public.puente_sancion_unidad VALUES (133, 73, '010');
-INSERT INTO public.puente_sancion_unidad VALUES (134, 73, '011');
-INSERT INTO public.puente_sancion_unidad VALUES (135, 73, '012');
-INSERT INTO public.puente_sancion_unidad VALUES (136, 74, '010');
-INSERT INTO public.puente_sancion_unidad VALUES (137, 74, '011');
-INSERT INTO public.puente_sancion_unidad VALUES (138, 74, '012');
-INSERT INTO public.puente_sancion_unidad VALUES (139, 74, '013');
-INSERT INTO public.puente_sancion_unidad VALUES (140, 74, '014');
-INSERT INTO public.puente_sancion_unidad VALUES (141, 74, '015');
-INSERT INTO public.puente_sancion_unidad VALUES (142, 75, '010');
-INSERT INTO public.puente_sancion_unidad VALUES (143, 75, '011');
-INSERT INTO public.puente_sancion_unidad VALUES (144, 75, '012');
-INSERT INTO public.puente_sancion_unidad VALUES (145, 75, '013');
-INSERT INTO public.puente_sancion_unidad VALUES (146, 75, '015');
+INSERT INTO public.puente_sancion_unidad VALUES (179, 79, 3);
+INSERT INTO public.puente_sancion_unidad VALUES (180, 79, 5);
+INSERT INTO public.puente_sancion_unidad VALUES (181, 79, 4);
+INSERT INTO public.puente_sancion_unidad VALUES (182, 79, 2);
+INSERT INTO public.puente_sancion_unidad VALUES (183, 79, 1);
+INSERT INTO public.puente_sancion_unidad VALUES (184, 79, 62);
 
 
 --
--- TOC entry 3176 (class 0 OID 26716)
+-- TOC entry 3174 (class 0 OID 26716)
 -- Dependencies: 261
 -- Data for Name: puente_unidad_propietarios; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -3644,65 +3576,19 @@ INSERT INTO public.puente_unidad_propietarios VALUES (14, '9245638', 63, '2020-0
 
 
 --
--- TOC entry 3167 (class 0 OID 26556)
+-- TOC entry 3165 (class 0 OID 26556)
 -- Dependencies: 252
 -- Data for Name: sancion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.sancion VALUES (69, 'Interes de mora', 4, 2020, 8, '-', 'J-77663250004', 'Pendiente');
-INSERT INTO public.sancion VALUES (26, 'Multa', 4, 2020, 100, '-', 'J-4512698007', 'Procesado');
-INSERT INTO public.sancion VALUES (28, 'Multa', 4, 2020, 200, '-', 'J-4512698007', 'Procesado');
-INSERT INTO public.sancion VALUES (59, 'Multa', 4, 2020, 200, '-', 'J-7774122010236', 'Procesado');
-INSERT INTO public.sancion VALUES (29, 'Multa', 4, 2020, 250, '-', 'J-4512698007', 'Procesado');
-INSERT INTO public.sancion VALUES (30, 'Multa', 4, 2020, 50, '-', 'J-4512698007', 'Procesado');
-INSERT INTO public.sancion VALUES (31, 'Multa', 4, 2020, 50, '-', 'J-0145232547', 'Procesado');
-INSERT INTO public.sancion VALUES (32, 'Multa', 4, 2020, 100, '-', 'J-0145232547', 'Procesado');
-INSERT INTO public.sancion VALUES (33, 'Multa', 4, 2020, 150, '-', 'J-0145232547', 'Procesado');
-INSERT INTO public.sancion VALUES (34, 'Multa', 4, 2020, 200, '-', 'J-0145232547', 'Procesado');
-INSERT INTO public.sancion VALUES (36, 'Multa', 4, 2020, 50, '-', 'J-9685745568', 'Procesado');
-INSERT INTO public.sancion VALUES (37, 'Multa', 4, 2020, 100, '-', 'J-9685745568', 'Procesado');
-INSERT INTO public.sancion VALUES (38, 'Multa', 4, 2020, 150, '-', 'J-9685745568', 'Procesado');
-INSERT INTO public.sancion VALUES (39, 'Multa', 4, 2020, 200, '-', 'J-9685745568', 'Procesado');
-INSERT INTO public.sancion VALUES (41, 'Multa', 4, 2020, 50, '-', 'J-0024514563', 'Procesado');
-INSERT INTO public.sancion VALUES (42, 'Multa', 4, 2020, 100, '-', 'J-0024514563', 'Procesado');
-INSERT INTO public.sancion VALUES (43, 'Multa', 4, 2020, 150, '-', 'J-0024514563', 'Procesado');
-INSERT INTO public.sancion VALUES (44, 'Multa', 4, 2020, 200, '-', 'J-0024514563', 'Procesado');
-INSERT INTO public.sancion VALUES (46, 'Multa', 4, 2020, 20, '-', 'J-2540768143', 'Procesado');
-INSERT INTO public.sancion VALUES (47, 'Multa', 4, 2020, 40, '-', 'J-2540768143', 'Procesado');
-INSERT INTO public.sancion VALUES (48, 'Multa', 4, 2020, 60, '-', 'J-2540768143', 'Procesado');
-INSERT INTO public.sancion VALUES (49, 'Multa', 4, 2020, 80, '-', 'J-2540768143', 'Procesado');
-INSERT INTO public.sancion VALUES (51, 'Multa', 4, 2020, 100, '-', 'J-5784968566654', 'Procesado');
-INSERT INTO public.sancion VALUES (52, 'Multa', 4, 2020, 150, '-', 'J-5784968566654', 'Procesado');
-INSERT INTO public.sancion VALUES (53, 'Multa', 4, 2020, 200, '-', 'J-5784968566654', 'Procesado');
-INSERT INTO public.sancion VALUES (54, 'Multa', 4, 2020, 250, '-', 'J-5784968566654', 'Procesado');
-INSERT INTO public.sancion VALUES (56, 'Multa', 4, 2020, 50, '-', 'J-7774122010236', 'Procesado');
-INSERT INTO public.sancion VALUES (57, 'Multa', 4, 2020, 100, '-', 'J-7774122010236', 'Procesado');
-INSERT INTO public.sancion VALUES (58, 'Multa', 4, 2020, 150, '-', 'J-7774122010236', 'Procesado');
-INSERT INTO public.sancion VALUES (61, 'Multa', 4, 2020, 100, '-', 'J-77741220004', 'Procesado');
-INSERT INTO public.sancion VALUES (62, 'Multa', 4, 2020, 100, '-', 'J-77741220004', 'Procesado');
-INSERT INTO public.sancion VALUES (63, 'Multa', 4, 2020, 200, '-', 'J-77741220004', 'Procesado');
-INSERT INTO public.sancion VALUES (64, 'Multa', 4, 2020, 300, '-', 'J-77741220004', 'Procesado');
-INSERT INTO public.sancion VALUES (66, 'Multa', 4, 2020, 50, '-', 'J-77663250004', 'Procesado');
-INSERT INTO public.sancion VALUES (67, 'Multa', 4, 2020, 100, '-', 'J-77663250004', 'Procesado');
-INSERT INTO public.sancion VALUES (68, 'Multa', 4, 2020, 160, '-', 'J-77663250004', 'Procesado');
-INSERT INTO public.sancion VALUES (70, 'Multa', 4, 2020, 80, '-', 'J-77663250004', 'Procesado');
-INSERT INTO public.sancion VALUES (27, 'Interes de mora', 5, 2020, 5, '-', 'J-4512698007', 'Pendiente');
-INSERT INTO public.sancion VALUES (35, 'Interes de mora', 6, 2020, 5, '-', 'J-0145232547', 'Pendiente');
-INSERT INTO public.sancion VALUES (40, 'Interes de mora', 5, 2020, 6, '-', 'J-9685745568', 'Pendiente');
-INSERT INTO public.sancion VALUES (45, 'Interes de mora', 5, 2020, 5, '-', 'J-0024514563', 'Pendiente');
-INSERT INTO public.sancion VALUES (50, 'Interes de mora', 5, 2020, 8, '-', 'J-2540768143', 'Pendiente');
-INSERT INTO public.sancion VALUES (55, 'Interes de mora', 5, 2020, 5, '-', 'J-5784968566654', 'Pendiente');
-INSERT INTO public.sancion VALUES (60, 'Interes de mora', 5, 2020, 5, '-', 'J-7774122010236', 'Pendiente');
-INSERT INTO public.sancion VALUES (65, 'Interes de mora', 5, 2020, 5, '-', 'J-77741220004', 'Pendiente');
-INSERT INTO public.sancion VALUES (71, 'Multa', 4, 2020, 10, 'd', 'J-9854762000', 'Pendiente');
-INSERT INTO public.sancion VALUES (72, 'Multa', 4, 2020, 10, '-', 'J-9854762000', 'Pendiente');
-INSERT INTO public.sancion VALUES (73, 'Interes de mora', 4, 2020, 10, '-', 'J-9854762000', 'Pendiente');
-INSERT INTO public.sancion VALUES (74, 'Multa', 4, 2020, 100, '-', 'J-9854762000', 'Pendiente');
-INSERT INTO public.sancion VALUES (75, 'Multa', 4, 2020, 1000, '-', 'J-9854762000', 'Pendiente');
+INSERT INTO public.sancion VALUES (76, 'Multa', 5, 2020, 2000, 'cvbc', 'Pendiente');
+INSERT INTO public.sancion VALUES (78, 'Interes de mora', 9, 2020, 123213, 'asdad', 'Pendiente');
+INSERT INTO public.sancion VALUES (77, 'Interes de mora', 5, 2020, 2.131, 'adad', 'Pendiente');
+INSERT INTO public.sancion VALUES (79, 'Interes de mora', 8, 2020, 1233, 'ads', 'Pendiente');
 
 
 --
--- TOC entry 3169 (class 0 OID 26561)
+-- TOC entry 3167 (class 0 OID 26561)
 -- Dependencies: 254
 -- Data for Name: unidades; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -3766,7 +3652,7 @@ INSERT INTO public.unidades VALUES ('asda', 'asd', 123, 63, 'J-4512698007');
 
 
 --
--- TOC entry 3171 (class 0 OID 26566)
+-- TOC entry 3169 (class 0 OID 26566)
 -- Dependencies: 256
 -- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -3784,7 +3670,7 @@ INSERT INTO public.usuario VALUES ('20122354', 'jhklgff', '444', 'Juan', 'Lopez'
 
 
 --
--- TOC entry 3172 (class 0 OID 26569)
+-- TOC entry 3170 (class 0 OID 26569)
 -- Dependencies: 257
 -- Data for Name: visita; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -3844,7 +3730,7 @@ INSERT INTO public.visita VALUES (52, '2020-05-01', '23:24:03', 'mjgl3', '-', 'A
 
 
 --
--- TOC entry 3174 (class 0 OID 26576)
+-- TOC entry 3172 (class 0 OID 26576)
 -- Dependencies: 259
 -- Data for Name: visitante; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -3857,7 +3743,7 @@ INSERT INTO public.visitante VALUES ('V-1434801', 'Blanca', 'Ovija');
 
 
 --
--- TOC entry 3209 (class 0 OID 0)
+-- TOC entry 3207 (class 0 OID 0)
 -- Dependencies: 203
 -- Name: asambleas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -3866,7 +3752,7 @@ SELECT pg_catalog.setval('public.asambleas_id_seq', 80, true);
 
 
 --
--- TOC entry 3210 (class 0 OID 0)
+-- TOC entry 3208 (class 0 OID 0)
 -- Dependencies: 205
 -- Name: banco_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -3875,16 +3761,16 @@ SELECT pg_catalog.setval('public.banco_id_seq', 11, true);
 
 
 --
--- TOC entry 3211 (class 0 OID 0)
+-- TOC entry 3209 (class 0 OID 0)
 -- Dependencies: 207
 -- Name: categoriagasto_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.categoriagasto_id_seq', 4, true);
+SELECT pg_catalog.setval('public.categoriagasto_id_seq', 6, true);
 
 
 --
--- TOC entry 3212 (class 0 OID 0)
+-- TOC entry 3210 (class 0 OID 0)
 -- Dependencies: 209
 -- Name: cierre_de_mes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -3893,7 +3779,7 @@ SELECT pg_catalog.setval('public.cierre_de_mes_id_seq', 50, true);
 
 
 --
--- TOC entry 3213 (class 0 OID 0)
+-- TOC entry 3211 (class 0 OID 0)
 -- Dependencies: 211
 -- Name: cobro_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -3902,7 +3788,7 @@ SELECT pg_catalog.setval('public.cobro_id_seq', 10, true);
 
 
 --
--- TOC entry 3214 (class 0 OID 0)
+-- TOC entry 3212 (class 0 OID 0)
 -- Dependencies: 213
 -- Name: comunicados_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -3911,7 +3797,7 @@ SELECT pg_catalog.setval('public.comunicados_id_seq', 53, true);
 
 
 --
--- TOC entry 3215 (class 0 OID 0)
+-- TOC entry 3213 (class 0 OID 0)
 -- Dependencies: 215
 -- Name: concepto_gasto_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -3920,7 +3806,7 @@ SELECT pg_catalog.setval('public.concepto_gasto_id_seq', 41, true);
 
 
 --
--- TOC entry 3216 (class 0 OID 0)
+-- TOC entry 3214 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: cuenta_pagar_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -3929,7 +3815,7 @@ SELECT pg_catalog.setval('public.cuenta_pagar_id_seq', 1, false);
 
 
 --
--- TOC entry 3217 (class 0 OID 0)
+-- TOC entry 3215 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: cuotas_especiales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -3938,7 +3824,7 @@ SELECT pg_catalog.setval('public.cuotas_especiales_id_seq', 74, true);
 
 
 --
--- TOC entry 3218 (class 0 OID 0)
+-- TOC entry 3216 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: detalle_cuotas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -3947,7 +3833,7 @@ SELECT pg_catalog.setval('public.detalle_cuotas_id_seq', 433, true);
 
 
 --
--- TOC entry 3219 (class 0 OID 0)
+-- TOC entry 3217 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: detalle_interes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -3956,7 +3842,7 @@ SELECT pg_catalog.setval('public.detalle_interes_id_seq', 330, true);
 
 
 --
--- TOC entry 3220 (class 0 OID 0)
+-- TOC entry 3218 (class 0 OID 0)
 -- Dependencies: 227
 -- Name: detalle_pagos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -3965,7 +3851,7 @@ SELECT pg_catalog.setval('public.detalle_pagos_id_seq', 1267, true);
 
 
 --
--- TOC entry 3221 (class 0 OID 0)
+-- TOC entry 3219 (class 0 OID 0)
 -- Dependencies: 229
 -- Name: detalle_sancion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -3974,7 +3860,7 @@ SELECT pg_catalog.setval('public.detalle_sancion_id_seq', 174, true);
 
 
 --
--- TOC entry 3222 (class 0 OID 0)
+-- TOC entry 3220 (class 0 OID 0)
 -- Dependencies: 231
 -- Name: detalle_total_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -3983,7 +3869,7 @@ SELECT pg_catalog.setval('public.detalle_total_id_seq', 144, true);
 
 
 --
--- TOC entry 3223 (class 0 OID 0)
+-- TOC entry 3221 (class 0 OID 0)
 -- Dependencies: 233
 -- Name: fondos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -3992,7 +3878,7 @@ SELECT pg_catalog.setval('public.fondos_id_seq', 54, true);
 
 
 --
--- TOC entry 3224 (class 0 OID 0)
+-- TOC entry 3222 (class 0 OID 0)
 -- Dependencies: 235
 -- Name: gasto_comun_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -4001,7 +3887,7 @@ SELECT pg_catalog.setval('public.gasto_comun_id_seq', 74, true);
 
 
 --
--- TOC entry 3225 (class 0 OID 0)
+-- TOC entry 3223 (class 0 OID 0)
 -- Dependencies: 237
 -- Name: interes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -4010,7 +3896,7 @@ SELECT pg_catalog.setval('public.interes_id_seq', 17, true);
 
 
 --
--- TOC entry 3226 (class 0 OID 0)
+-- TOC entry 3224 (class 0 OID 0)
 -- Dependencies: 241
 -- Name: puente_asamblea_propietario_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -4019,7 +3905,7 @@ SELECT pg_catalog.setval('public.puente_asamblea_propietario_id_seq', 255, true)
 
 
 --
--- TOC entry 3227 (class 0 OID 0)
+-- TOC entry 3225 (class 0 OID 0)
 -- Dependencies: 243
 -- Name: puente_cobro_factura_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -4028,7 +3914,7 @@ SELECT pg_catalog.setval('public.puente_cobro_factura_id_seq', 7, true);
 
 
 --
--- TOC entry 3228 (class 0 OID 0)
+-- TOC entry 3226 (class 0 OID 0)
 -- Dependencies: 245
 -- Name: puente_comunicado_usuario_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -4037,7 +3923,7 @@ SELECT pg_catalog.setval('public.puente_comunicado_usuario_id_seq', 503, true);
 
 
 --
--- TOC entry 3229 (class 0 OID 0)
+-- TOC entry 3227 (class 0 OID 0)
 -- Dependencies: 247
 -- Name: puente_condomino_cuenta_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -4046,7 +3932,7 @@ SELECT pg_catalog.setval('public.puente_condomino_cuenta_id_seq', 138, true);
 
 
 --
--- TOC entry 3230 (class 0 OID 0)
+-- TOC entry 3228 (class 0 OID 0)
 -- Dependencies: 249
 -- Name: puente_interes_condominio_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -4055,16 +3941,16 @@ SELECT pg_catalog.setval('public.puente_interes_condominio_id_seq', 94, true);
 
 
 --
--- TOC entry 3231 (class 0 OID 0)
+-- TOC entry 3229 (class 0 OID 0)
 -- Dependencies: 251
 -- Name: puente_sancion_unidad_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.puente_sancion_unidad_id_seq', 146, true);
+SELECT pg_catalog.setval('public.puente_sancion_unidad_id_seq', 184, true);
 
 
 --
--- TOC entry 3232 (class 0 OID 0)
+-- TOC entry 3230 (class 0 OID 0)
 -- Dependencies: 260
 -- Name: puente_unidad_propietarios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -4073,16 +3959,16 @@ SELECT pg_catalog.setval('public.puente_unidad_propietarios_id_seq', 16, true);
 
 
 --
--- TOC entry 3233 (class 0 OID 0)
+-- TOC entry 3231 (class 0 OID 0)
 -- Dependencies: 253
 -- Name: sancion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sancion_id_seq', 75, true);
+SELECT pg_catalog.setval('public.sancion_id_seq', 79, true);
 
 
 --
--- TOC entry 3234 (class 0 OID 0)
+-- TOC entry 3232 (class 0 OID 0)
 -- Dependencies: 255
 -- Name: unidades_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -4091,7 +3977,7 @@ SELECT pg_catalog.setval('public.unidades_id_seq', 64, true);
 
 
 --
--- TOC entry 3235 (class 0 OID 0)
+-- TOC entry 3233 (class 0 OID 0)
 -- Dependencies: 258
 -- Name: visita_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -4127,16 +4013,7 @@ ALTER TABLE ONLY public.banco
 
 
 --
--- TOC entry 2911 (class 2606 OID 26615)
--- Name: categoriagasto categoriagasto_nombre_key; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.categoriagasto
-    ADD CONSTRAINT categoriagasto_nombre_key UNIQUE (nombre);
-
-
---
--- TOC entry 2913 (class 2606 OID 26617)
+-- TOC entry 2911 (class 2606 OID 26617)
 -- Name: categoriagasto categoriagasto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4145,7 +4022,7 @@ ALTER TABLE ONLY public.categoriagasto
 
 
 --
--- TOC entry 2915 (class 2606 OID 26619)
+-- TOC entry 2913 (class 2606 OID 26619)
 -- Name: cierre_de_mes cierre_de_mes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4154,7 +4031,7 @@ ALTER TABLE ONLY public.cierre_de_mes
 
 
 --
--- TOC entry 2917 (class 2606 OID 26621)
+-- TOC entry 2915 (class 2606 OID 26621)
 -- Name: cobro cobro_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4163,7 +4040,7 @@ ALTER TABLE ONLY public.cobro
 
 
 --
--- TOC entry 2919 (class 2606 OID 26623)
+-- TOC entry 2917 (class 2606 OID 26623)
 -- Name: comunicados comunicados_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4172,7 +4049,7 @@ ALTER TABLE ONLY public.comunicados
 
 
 --
--- TOC entry 2921 (class 2606 OID 26625)
+-- TOC entry 2919 (class 2606 OID 26625)
 -- Name: concepto_gasto concepto_gasto_nom_concepto_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4181,7 +4058,7 @@ ALTER TABLE ONLY public.concepto_gasto
 
 
 --
--- TOC entry 2923 (class 2606 OID 26627)
+-- TOC entry 2921 (class 2606 OID 26627)
 -- Name: concepto_gasto concepto_gasto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4190,7 +4067,7 @@ ALTER TABLE ONLY public.concepto_gasto
 
 
 --
--- TOC entry 2925 (class 2606 OID 26629)
+-- TOC entry 2923 (class 2606 OID 26629)
 -- Name: condominio condominio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4199,7 +4076,7 @@ ALTER TABLE ONLY public.condominio
 
 
 --
--- TOC entry 2927 (class 2606 OID 26631)
+-- TOC entry 2925 (class 2606 OID 26631)
 -- Name: condominio condominio_rif_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4208,7 +4085,7 @@ ALTER TABLE ONLY public.condominio
 
 
 --
--- TOC entry 2929 (class 2606 OID 26633)
+-- TOC entry 2927 (class 2606 OID 26633)
 -- Name: cuenta cuenta_n_cuenta_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4217,7 +4094,7 @@ ALTER TABLE ONLY public.cuenta
 
 
 --
--- TOC entry 2933 (class 2606 OID 26635)
+-- TOC entry 2931 (class 2606 OID 26635)
 -- Name: cuenta_pagar cuenta_pagar_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4226,7 +4103,7 @@ ALTER TABLE ONLY public.cuenta_pagar
 
 
 --
--- TOC entry 2931 (class 2606 OID 26637)
+-- TOC entry 2929 (class 2606 OID 26637)
 -- Name: cuenta cuenta_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4235,7 +4112,7 @@ ALTER TABLE ONLY public.cuenta
 
 
 --
--- TOC entry 2935 (class 2606 OID 26639)
+-- TOC entry 2933 (class 2606 OID 26639)
 -- Name: cuotas_especiales cuotas_especiales_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4244,7 +4121,7 @@ ALTER TABLE ONLY public.cuotas_especiales
 
 
 --
--- TOC entry 2937 (class 2606 OID 26641)
+-- TOC entry 2935 (class 2606 OID 26641)
 -- Name: detalle_cuotas detalle_cuotas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4253,7 +4130,7 @@ ALTER TABLE ONLY public.detalle_cuotas
 
 
 --
--- TOC entry 2939 (class 2606 OID 26643)
+-- TOC entry 2937 (class 2606 OID 26643)
 -- Name: detalle_interes detalle_interes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4262,7 +4139,7 @@ ALTER TABLE ONLY public.detalle_interes
 
 
 --
--- TOC entry 2941 (class 2606 OID 26645)
+-- TOC entry 2939 (class 2606 OID 26645)
 -- Name: detalle_pagos detalle_pagos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4271,7 +4148,7 @@ ALTER TABLE ONLY public.detalle_pagos
 
 
 --
--- TOC entry 2943 (class 2606 OID 26647)
+-- TOC entry 2941 (class 2606 OID 26647)
 -- Name: detalle_sancion detalle_sancion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4280,7 +4157,7 @@ ALTER TABLE ONLY public.detalle_sancion
 
 
 --
--- TOC entry 2945 (class 2606 OID 26649)
+-- TOC entry 2943 (class 2606 OID 26649)
 -- Name: detalle_total detalle_total_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4289,7 +4166,7 @@ ALTER TABLE ONLY public.detalle_total
 
 
 --
--- TOC entry 2947 (class 2606 OID 26651)
+-- TOC entry 2945 (class 2606 OID 26651)
 -- Name: fondos fondos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4298,7 +4175,7 @@ ALTER TABLE ONLY public.fondos
 
 
 --
--- TOC entry 2949 (class 2606 OID 26653)
+-- TOC entry 2947 (class 2606 OID 26653)
 -- Name: gasto_comun gasto_comun_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4307,7 +4184,7 @@ ALTER TABLE ONLY public.gasto_comun
 
 
 --
--- TOC entry 2951 (class 2606 OID 26655)
+-- TOC entry 2949 (class 2606 OID 26655)
 -- Name: interes interes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4316,7 +4193,7 @@ ALTER TABLE ONLY public.interes
 
 
 --
--- TOC entry 2953 (class 2606 OID 26657)
+-- TOC entry 2951 (class 2606 OID 26657)
 -- Name: propietarios propietarios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4325,7 +4202,7 @@ ALTER TABLE ONLY public.propietarios
 
 
 --
--- TOC entry 2955 (class 2606 OID 26659)
+-- TOC entry 2953 (class 2606 OID 26659)
 -- Name: proveedores proveedores_nombre_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4334,7 +4211,7 @@ ALTER TABLE ONLY public.proveedores
 
 
 --
--- TOC entry 2957 (class 2606 OID 26661)
+-- TOC entry 2955 (class 2606 OID 26661)
 -- Name: proveedores proveedores_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4343,7 +4220,7 @@ ALTER TABLE ONLY public.proveedores
 
 
 --
--- TOC entry 2959 (class 2606 OID 26663)
+-- TOC entry 2957 (class 2606 OID 26663)
 -- Name: puente_asamblea_propietario puente_asamblea_propietario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4352,7 +4229,7 @@ ALTER TABLE ONLY public.puente_asamblea_propietario
 
 
 --
--- TOC entry 2961 (class 2606 OID 26665)
+-- TOC entry 2959 (class 2606 OID 26665)
 -- Name: puente_cobro_factura puente_cobro_factura_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4361,7 +4238,7 @@ ALTER TABLE ONLY public.puente_cobro_factura
 
 
 --
--- TOC entry 2963 (class 2606 OID 26667)
+-- TOC entry 2961 (class 2606 OID 26667)
 -- Name: puente_comunicado_usuario puente_comunicado_usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4370,7 +4247,7 @@ ALTER TABLE ONLY public.puente_comunicado_usuario
 
 
 --
--- TOC entry 2965 (class 2606 OID 26669)
+-- TOC entry 2963 (class 2606 OID 26669)
 -- Name: puente_condominio_cuenta puente_condomino_cuenta_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4379,7 +4256,7 @@ ALTER TABLE ONLY public.puente_condominio_cuenta
 
 
 --
--- TOC entry 2967 (class 2606 OID 26671)
+-- TOC entry 2965 (class 2606 OID 26671)
 -- Name: puente_interes_condominio puente_interes_condominio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4388,7 +4265,7 @@ ALTER TABLE ONLY public.puente_interes_condominio
 
 
 --
--- TOC entry 2969 (class 2606 OID 26673)
+-- TOC entry 2967 (class 2606 OID 26673)
 -- Name: puente_sancion_unidad puente_sancion_unidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4397,7 +4274,7 @@ ALTER TABLE ONLY public.puente_sancion_unidad
 
 
 --
--- TOC entry 2985 (class 2606 OID 26721)
+-- TOC entry 2983 (class 2606 OID 26721)
 -- Name: puente_unidad_propietarios puente_unidad_propietarios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4406,7 +4283,7 @@ ALTER TABLE ONLY public.puente_unidad_propietarios
 
 
 --
--- TOC entry 2971 (class 2606 OID 26675)
+-- TOC entry 2969 (class 2606 OID 26675)
 -- Name: sancion sancion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4415,7 +4292,7 @@ ALTER TABLE ONLY public.sancion
 
 
 --
--- TOC entry 2973 (class 2606 OID 26677)
+-- TOC entry 2971 (class 2606 OID 26677)
 -- Name: unidades unidades_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4424,7 +4301,7 @@ ALTER TABLE ONLY public.unidades
 
 
 --
--- TOC entry 2975 (class 2606 OID 26679)
+-- TOC entry 2973 (class 2606 OID 26679)
 -- Name: usuario usuario_cedula_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4433,7 +4310,7 @@ ALTER TABLE ONLY public.usuario
 
 
 --
--- TOC entry 2977 (class 2606 OID 26681)
+-- TOC entry 2975 (class 2606 OID 26681)
 -- Name: usuario usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4442,7 +4319,7 @@ ALTER TABLE ONLY public.usuario
 
 
 --
--- TOC entry 2979 (class 2606 OID 26683)
+-- TOC entry 2977 (class 2606 OID 26683)
 -- Name: usuario usuario_usuario_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4451,7 +4328,7 @@ ALTER TABLE ONLY public.usuario
 
 
 --
--- TOC entry 2981 (class 2606 OID 26685)
+-- TOC entry 2979 (class 2606 OID 26685)
 -- Name: visita visita_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4460,7 +4337,7 @@ ALTER TABLE ONLY public.visita
 
 
 --
--- TOC entry 2983 (class 2606 OID 26687)
+-- TOC entry 2981 (class 2606 OID 26687)
 -- Name: visitante visitante_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4469,7 +4346,7 @@ ALTER TABLE ONLY public.visitante
 
 
 --
--- TOC entry 2986 (class 2606 OID 26688)
+-- TOC entry 2984 (class 2606 OID 26688)
 -- Name: concepto_gasto concepto_gasto_id_categoria_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4478,7 +4355,7 @@ ALTER TABLE ONLY public.concepto_gasto
 
 
 --
--- TOC entry 2987 (class 2606 OID 26693)
+-- TOC entry 2985 (class 2606 OID 26693)
 -- Name: cuenta_pagar cuenta_pagar_id_cuenta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4487,7 +4364,7 @@ ALTER TABLE ONLY public.cuenta_pagar
 
 
 --
--- TOC entry 2988 (class 2606 OID 26698)
+-- TOC entry 2986 (class 2606 OID 26698)
 -- Name: cuenta_pagar cuenta_pagar_id_fondo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4496,7 +4373,7 @@ ALTER TABLE ONLY public.cuenta_pagar
 
 
 --
--- TOC entry 2989 (class 2606 OID 26703)
+-- TOC entry 2987 (class 2606 OID 26703)
 -- Name: cuenta_pagar cuenta_pagar_id_proveedor_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4505,7 +4382,7 @@ ALTER TABLE ONLY public.cuenta_pagar
 
 
 --
--- TOC entry 2990 (class 2606 OID 26708)
+-- TOC entry 2988 (class 2606 OID 26708)
 -- Name: visita visita_ci_visitante_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4513,7 +4390,7 @@ ALTER TABLE ONLY public.visita
     ADD CONSTRAINT visita_ci_visitante_fkey FOREIGN KEY (ci_visitante) REFERENCES public.visitante(cedula);
 
 
--- Completed on 2020-05-06 18:22:16
+-- Completed on 2020-05-07 22:11:44
 
 --
 -- PostgreSQL database dump complete
