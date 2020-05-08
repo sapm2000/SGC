@@ -147,7 +147,7 @@ public class catalogoInactivoPropietario extends javax.swing.JFrame {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 300));
 
-        btnActivar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnActivar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnActivar.setForeground(new java.awt.Color(0, 54, 159));
         btnActivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by.png"))); // NOI18N
         btnActivar.setText("Activar Propietario");

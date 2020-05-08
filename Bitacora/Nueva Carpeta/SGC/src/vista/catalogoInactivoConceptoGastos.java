@@ -140,7 +140,7 @@ public class catalogoInactivoConceptoGastos extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(0, 94, 159));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 190, 10));
 
-        btnActivar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnActivar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnActivar.setForeground(new java.awt.Color(0, 54, 159));
         btnActivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by.png"))); // NOI18N
         btnActivar.setText("Activar Categoría Gastos");

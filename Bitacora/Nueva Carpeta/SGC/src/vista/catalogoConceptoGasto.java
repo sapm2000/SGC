@@ -63,6 +63,7 @@ public class catalogoConceptoGasto extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
+        btnActivar = new javax.swing.JButton();
 
         jButton3.setText("jButton3");
 
@@ -131,7 +132,7 @@ public class catalogoConceptoGasto extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Listado de Conceptos de Gastos");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
 
         btnNuevoRegistro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnNuevoRegistro.setForeground(new java.awt.Color(0, 94, 159));
@@ -145,20 +146,34 @@ public class catalogoConceptoGasto extends javax.swing.JFrame {
         btnNuevoRegistro.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btnNuevoRegistro.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btnNuevoRegistro.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
-        jPanel1.add(btnNuevoRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, -1, -1));
+        jPanel1.add(btnNuevoRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Buscar:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 70, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 70, -1));
 
         txtBuscar.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtBuscar.setToolTipText("Buscador");
         txtBuscar.setBorder(null);
-        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 190, 20));
+        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 190, 20));
 
         jSeparator1.setBackground(new java.awt.Color(0, 94, 159));
         jSeparator1.setForeground(new java.awt.Color(0, 94, 159));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 190, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 190, 10));
+
+        btnActivar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnActivar.setForeground(new java.awt.Color(0, 94, 159));
+        btnActivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by.png"))); // NOI18N
+        btnActivar.setText("Concepto Gastos Inactivos");
+        btnActivar.setToolTipText("Ir a la patalla de concepto gastos inactivos");
+        btnActivar.setBorder(null);
+        btnActivar.setBorderPainted(false);
+        btnActivar.setContentAreaFilled(false);
+        btnActivar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnActivar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by (1).png"))); // NOI18N
+        btnActivar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by (1).png"))); // NOI18N
+        btnActivar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by.png"))); // NOI18N
+        jPanel1.add(btnActivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 470));
 
@@ -221,6 +236,7 @@ public class catalogoConceptoGasto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnActivar;
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnNuevoRegistro;
     public javax.swing.JButton btnSalir;

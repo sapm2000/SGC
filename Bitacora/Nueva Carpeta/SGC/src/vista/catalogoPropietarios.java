@@ -64,6 +64,7 @@ public class catalogoPropietarios extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        btnActivar = new javax.swing.JButton();
 
         jButton3.setText("jButton3");
 
@@ -93,7 +94,7 @@ public class catalogoPropietarios extends javax.swing.JFrame {
         TablaPropietarios.setRowHeight(35);
         jScrollPane1.setViewportView(TablaPropietarios);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 500, 280));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 500, 280));
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
         btnMinimizar.setToolTipText("Minimizar");
@@ -143,26 +144,40 @@ public class catalogoPropietarios extends javax.swing.JFrame {
         btn_NuevoPropietario.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btn_NuevoPropietario.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btn_NuevoPropietario.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
-        jPanel1.add(btn_NuevoPropietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, -1, -1));
+        jPanel1.add(btn_NuevoPropietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Buscar:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 70, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 70, -1));
 
         txtBuscarPropietarios.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtBuscarPropietarios.setToolTipText("Buscador");
         txtBuscarPropietarios.setBorder(null);
-        jPanel1.add(txtBuscarPropietarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 190, 20));
+        jPanel1.add(txtBuscarPropietarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 190, 20));
 
         jSeparator1.setBackground(new java.awt.Color(0, 94, 159));
         jSeparator1.setForeground(new java.awt.Color(0, 94, 159));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 190, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 190, 10));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, 300));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, 300));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 300));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, 300));
+
+        btnActivar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnActivar.setForeground(new java.awt.Color(0, 94, 159));
+        btnActivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by.png"))); // NOI18N
+        btnActivar.setText("Propietarios Inactivos");
+        btnActivar.setToolTipText("Ir a la pantalla de propietarios inactivos");
+        btnActivar.setBorder(null);
+        btnActivar.setBorderPainted(false);
+        btnActivar.setContentAreaFilled(false);
+        btnActivar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnActivar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by (1).png"))); // NOI18N
+        btnActivar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by (1).png"))); // NOI18N
+        btnActivar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by.png"))); // NOI18N
+        jPanel1.add(btnActivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 440));
 
@@ -226,6 +241,7 @@ public class catalogoPropietarios extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTable TablaPropietarios;
+    public javax.swing.JButton btnActivar;
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnSalir;
     public javax.swing.JButton btn_NuevoPropietario;

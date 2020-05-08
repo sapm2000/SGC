@@ -67,6 +67,7 @@ public class catalogoBanco extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtBuscar_banco = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
+        btnDesactivar = new javax.swing.JButton();
 
         jButton3.setText("jButton3");
 
@@ -154,20 +155,34 @@ public class catalogoBanco extends javax.swing.JFrame {
         btnNuevo_banco.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btnNuevo_banco.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btnNuevo_banco.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
-        jPanel1.add(btnNuevo_banco, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, -1, -1));
+        jPanel1.add(btnNuevo_banco, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Buscar:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 70, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 70, -1));
 
         txtBuscar_banco.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtBuscar_banco.setToolTipText("Buscador");
         txtBuscar_banco.setBorder(null);
-        jPanel1.add(txtBuscar_banco, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 190, 20));
+        jPanel1.add(txtBuscar_banco, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 190, 20));
 
         jSeparator1.setBackground(new java.awt.Color(0, 94, 159));
         jSeparator1.setForeground(new java.awt.Color(0, 94, 159));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 190, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 190, 10));
+
+        btnDesactivar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnDesactivar.setForeground(new java.awt.Color(0, 94, 159));
+        btnDesactivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by.png"))); // NOI18N
+        btnDesactivar.setText("Bancos Inactivos");
+        btnDesactivar.setToolTipText("Ir a la pantalla de bancos inactivos");
+        btnDesactivar.setBorder(null);
+        btnDesactivar.setBorderPainted(false);
+        btnDesactivar.setContentAreaFilled(false);
+        btnDesactivar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDesactivar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by (1).png"))); // NOI18N
+        btnDesactivar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by (1).png"))); // NOI18N
+        btnDesactivar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by.png"))); // NOI18N
+        jPanel1.add(btnDesactivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 450));
 
@@ -234,6 +249,7 @@ public class catalogoBanco extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnDesactivar;
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnNuevo_banco;
     public javax.swing.JButton btnSalir;
