@@ -401,7 +401,7 @@ public class Unidades extends Propietarios {
             ps.setString(2, moduni.getId_condominio());
             rs = ps.executeQuery();
             if (rs.next()) {
-
+                  moduni.setN_unidad(rs.getString("n_unidad"));
                 return true;
             }
 
