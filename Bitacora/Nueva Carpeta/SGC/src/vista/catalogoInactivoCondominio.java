@@ -145,7 +145,7 @@ public class catalogoInactivoCondominio extends javax.swing.JFrame {
         jLabel2.setText("Listado de Condominios Inactivos");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
 
-        btnActivar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnActivar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnActivar.setForeground(new java.awt.Color(0, 54, 159));
         btnActivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by.png"))); // NOI18N
         btnActivar.setText("Activar Condominio");
