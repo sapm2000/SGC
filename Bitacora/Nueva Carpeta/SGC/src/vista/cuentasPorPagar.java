@@ -288,7 +288,7 @@ public class cuentasPorPagar extends javax.swing.JFrame {
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
 
         btnMostrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnMostrar.setForeground(new java.awt.Color(0, 54, 194));
+        btnMostrar.setForeground(new java.awt.Color(0, 94, 159));
         btnMostrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/management.png"))); // NOI18N
         btnMostrar.setText("Mostrar Procesado");
         btnMostrar.setBorder(null);
@@ -306,7 +306,7 @@ public class cuentasPorPagar extends javax.swing.JFrame {
         jPanel1.add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, -1, -1));
 
         btnPagos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnPagos.setForeground(new java.awt.Color(0, 54, 194));
+        btnPagos.setForeground(new java.awt.Color(0, 94, 159));
         btnPagos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice.png"))); // NOI18N
         btnPagos.setText("Mostrar Pagos");
         btnPagos.setBorder(null);
