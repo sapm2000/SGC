@@ -187,7 +187,7 @@ public class CategoriaGasto extends ConexionBD {
         ResultSet rs = null;
         Connection con = getConexion();
 
-        String sql = "SELECT id, nom_concepto, descripcion, id_categoria, activo FROM concepto_gasto where id_categoria=?;";
+        String sql = "SELECT id, nom_concepto, descripcion, id_categoria, activo FROM concepto_gasto where id_categoria=? and activo=1;";
 
         try {
 
