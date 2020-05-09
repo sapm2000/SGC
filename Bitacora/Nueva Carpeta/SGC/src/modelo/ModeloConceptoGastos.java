@@ -61,7 +61,7 @@ public class ModeloConceptoGastos extends CategoriaGasto {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO concepto_Gasto (nom_concepto, descripcion, id_Categoria) VALUES (?, ?, ?);";
+        String sql = "INSERT INTO concepto_Gasto (nom_concepto, descripcion, id_Categoria, activo) VALUES (?, ?, ?, 1);";
         System.out.println(sql);
         try {
 
@@ -138,7 +138,43 @@ public class ModeloConceptoGastos extends CategoriaGasto {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "DELETE FROM concepto_gasto WHERE id=? ";
+        String sql = "UPDATE concepto_gasto SET activo=0 WHERE id=? ";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, getId());
+
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
+    public boolean activar(ModeloConceptoGastos modConGas) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE concepto_gasto SET activo=1 WHERE id=? ";
 
         try {
 
@@ -227,7 +263,7 @@ public class ModeloConceptoGastos extends CategoriaGasto {
         PreparedStatement ps = null;
         ResultSet rs = null;
         String sql = "SELECT nom_concepto, concepto_gasto.descripcion, categoriagasto.nombre FROM concepto_gasto "
-                + "INNER JOIN categoriagasto ON concepto_gasto.id_categoria=categoriagasto.id";
+                + "INNER JOIN categoriagasto ON concepto_gasto.id_categoria=categoriagasto.id where concepto_gasto.activo=1 ";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -238,6 +274,47 @@ public class ModeloConceptoGastos extends CategoriaGasto {
                 modConGas.setNombre_Concepto(rs.getString(1));
                 modConGas.setDescripcion(rs.getString(2));
                 modConGas.setNombreCategoria(rs.getString(3));
+
+                listaPersona.add(modConGas);
+            }
+
+        } catch (Exception e) {
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+        return listaPersona;
+
+    }
+
+    public ArrayList<ModeloConceptoGastos> listarConcepto1() {
+        ArrayList listaPersona = new ArrayList();
+        ModeloConceptoGastos modConGas;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "SELECT concepto_gasto.id, nom_concepto, concepto_gasto.descripcion, categoriagasto.nombre FROM concepto_gasto "
+                + "INNER JOIN categoriagasto ON concepto_gasto.id_categoria=categoriagasto.id where concepto_gasto.activo=0";
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                modConGas = new ModeloConceptoGastos();
+                modConGas.setId(rs.getInt(1));
+                modConGas.setNombre_Concepto(rs.getString(2));
+                modConGas.setDescripcion(rs.getString(3));
+                modConGas.setNombreCategoria(rs.getString(4));
 
                 listaPersona.add(modConGas);
             }

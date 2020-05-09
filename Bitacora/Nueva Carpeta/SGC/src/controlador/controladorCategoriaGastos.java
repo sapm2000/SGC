@@ -163,11 +163,10 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
         if (e.getSource() == cataicg.btnActivar) {
             listaCatGas = modcg.lCategGasi();
-            int w = listaCatGas.size();
-            JOptionPane.showMessageDialog(null, w);
+
             for (int i = 0; i < cataicg.jTable1.getRowCount(); i++) {
                 if (valueOf(cataicg.jTable1.getValueAt(i, 2)) == "true") {
-                    JOptionPane.showMessageDialog(null, listaCatGas.get(i).getId());
+
                     modcg.setId(listaCatGas.get(i).getId());
                     modcg.activar(modcg);
 
@@ -210,20 +209,23 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         }
 
         if (e.getSource() == cg.btnEliminar) {
-
-            if (modcg.eliminar(modcg)) {
-
-                modcg.setId(Integer.parseInt(cg.txtId.getText()));
-                JOptionPane.showMessageDialog(null, "Registro Eliminado");
-                cg.dispose();
-                Llenartabla(catacg.tabla_categoria_gastos);
-
+            modcg.setId(Integer.parseInt(cg.txtId.getText()));
+            if (modcg.Buscarcon(modcg)) {
+                JOptionPane.showMessageDialog(null, "no se puede eliminar si tiene conceptos asignados");
             } else {
+                if (modcg.eliminar(modcg)) {
 
-                JOptionPane.showMessageDialog(null, "Error al Eliminar");
+                    JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                    cg.dispose();
+                    Llenartabla(catacg.tabla_categoria_gastos);
+
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "Error al Eliminar");
+
+                }
 
             }
-
         }
 
         if (e.getSource() == cg.btnModificar) {

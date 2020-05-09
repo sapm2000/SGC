@@ -180,6 +180,44 @@ public class CategoriaGasto extends ConexionBD {
         }
 
     }
+    
+    public boolean Buscarcon(CategoriaGasto catagc) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+
+        String sql = "SELECT id, nom_concepto, descripcion, id_categoria, activo FROM concepto_gasto where id_categoria=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, catagc.getId());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
 
     public boolean modificar(CategoriaGasto catacg) {
 

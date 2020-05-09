@@ -330,8 +330,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         conceptoGasto cga = new conceptoGasto();
         ModeloConceptoGastos modConGas = new ModeloConceptoGastos();
         CategoriaGasto modCat = new CategoriaGasto();
+        catalogoInactivoConceptoGastos cataicga = new catalogoInactivoConceptoGastos();
 
-        controladorConceptoGasto controcga = new controladorConceptoGasto(catacog, cga, modConGas, modCat);
+        controladorConceptoGasto controcga = new controladorConceptoGasto(catacog, cga, modConGas, modCat, cataicga);
         catacog.btnNuevoRegistro.setEnabled(true);
         catacog.setVisible(true);
 
