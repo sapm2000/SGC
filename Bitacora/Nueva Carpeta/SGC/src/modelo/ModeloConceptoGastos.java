@@ -262,7 +262,7 @@ public class ModeloConceptoGastos extends CategoriaGasto {
         Connection con = getConexion();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "SELECT nom_concepto, concepto_gasto.descripcion, categoriagasto.nombre FROM concepto_gasto "
+        String sql = "SELECT concepto_gasto.id, nom_concepto, concepto_gasto.descripcion, categoriagasto.nombre FROM concepto_gasto "
                 + "INNER JOIN categoriagasto ON concepto_gasto.id_categoria=categoriagasto.id where concepto_gasto.activo=1 ";
         try {
             ps = con.prepareStatement(sql);
@@ -271,9 +271,10 @@ public class ModeloConceptoGastos extends CategoriaGasto {
             while (rs.next()) {
                 modConGas = new ModeloConceptoGastos();
 
-                modConGas.setNombre_Concepto(rs.getString(1));
-                modConGas.setDescripcion(rs.getString(2));
-                modConGas.setNombreCategoria(rs.getString(3));
+                modConGas.setId(rs.getInt(1));
+                modConGas.setNombre_Concepto(rs.getString(2));
+                modConGas.setDescripcion(rs.getString(3));
+                modConGas.setNombreCategoria(rs.getString(4));
 
                 listaPersona.add(modConGas);
             }
