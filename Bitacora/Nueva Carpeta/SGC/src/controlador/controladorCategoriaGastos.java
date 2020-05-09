@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import static java.lang.String.valueOf;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -26,6 +27,8 @@ import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
+import vista.catalogoInactivoCategoriaGastos;
 
 /**
  *
@@ -34,18 +37,20 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class controladorCategoriaGastos implements ActionListener, MouseListener, KeyListener, WindowListener {
 
     private catalogoCategoriaGastos catacg;
+    private catalogoInactivoCategoriaGastos cataicg;
     private categoriaGastos cg;
     private CategoriaGasto modcg;
     DefaultTableModel dm;
     ArrayList<CategoriaGasto> listaCatGas;
 
-    public controladorCategoriaGastos(catalogoCategoriaGastos catacg, categoriaGastos cg, CategoriaGasto modcg) {
+    public controladorCategoriaGastos(catalogoCategoriaGastos catacg, categoriaGastos cg, CategoriaGasto modcg, catalogoInactivoCategoriaGastos cataicg) {
         this.catacg = catacg;
         this.cg = cg;
         this.modcg = modcg;
-
+        this.cataicg = cataicg;
         this.catacg.btn_nuevaCategoriaGasto.addActionListener(this);
-
+        this.catacg.btnActivar.addActionListener(this);
+        this.cataicg.btnActivar.addActionListener(this);
         this.cg.btnModificar.addActionListener(this);
         this.cg.btnGuardar.addActionListener(this);
         this.cg.btnLimpiar.addActionListener(this);
@@ -96,7 +101,81 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
     }
 
+    public void Llenartablai(JTable tablaD) {
+
+        listaCatGas = modcg.lCategGasi();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+
+                if (column == 2) {
+                    resu = true;
+                }
+                return resu;
+            }
+
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
+
+        modeloT.addColumn("Nombre");
+        modeloT.addColumn("Descripcion");
+        modeloT.addColumn("Seleccione");
+
+        Object[] columna = new Object[3];
+
+        int numRegistro = listaCatGas.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listaCatGas.get(i).getNombre();
+            columna[1] = listaCatGas.get(i).getDescripcion();
+
+            modeloT.addRow(columna);
+
+        }
+
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+
+    }
+
     public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == catacg.btnActivar) {
+
+            this.cataicg.setVisible(true);
+            Llenartablai(cataicg.jTable1);
+            addCheckBox(2, cataicg.jTable1);
+        }
+
+        if (e.getSource() == cataicg.btnActivar) {
+            listaCatGas = modcg.lCategGasi();
+            int w = listaCatGas.size();
+            JOptionPane.showMessageDialog(null, w);
+            for (int i = 0; i < cataicg.jTable1.getRowCount(); i++) {
+                if (valueOf(cataicg.jTable1.getValueAt(i, 2)) == "true") {
+                    JOptionPane.showMessageDialog(null, listaCatGas.get(i).getId());
+                    modcg.setId(listaCatGas.get(i).getId());
+                    modcg.activar(modcg);
+
+                }
+            }
+            Llenartablai(cataicg.jTable1);
+            Llenartabla(catacg.tabla_categoria_gastos);
+        }
 
         if (e.getSource() == catacg.btn_nuevaCategoriaGasto) {
             this.cg.setVisible(true);
@@ -115,21 +194,16 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
                 modcg.setNombre(cg.txtnombre.getText());
                 modcg.setDescripcion(cg.txtdescripcion.getText());
 
-                if (modcg.buscarrepe(modcg)) {
-                    JOptionPane.showMessageDialog(null, "Registro Duplicado");
+                if (modcg.registrar(modcg)) {
+
+                    JOptionPane.showMessageDialog(null, "Registro Guardado");
+                    Llenartabla(catacg.tabla_categoria_gastos);
+                    cg.dispose();
+
                 } else {
 
-                    if (modcg.registrar(modcg)) {
+                    JOptionPane.showMessageDialog(null, "Registro Duplicado");
 
-                        JOptionPane.showMessageDialog(null, "Registro Guardado");
-                        Llenartabla(catacg.tabla_categoria_gastos);
-                        cg.dispose();
-
-                    } else {
-
-                        JOptionPane.showMessageDialog(null, "Registro Duplicado");
-
-                    }
                 }
             }
 
@@ -157,21 +231,17 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
                 modcg.setNombre(cg.txtnombre.getText());
                 modcg.setDescripcion(cg.txtdescripcion.getText());
                 modcg.setId(Integer.parseInt(cg.txtId.getText()));
-                if (modcg.buscarrepe(modcg)&&modcg.getId()!=Integer.parseInt(cg.txtId.getText())) {
-                    JOptionPane.showMessageDialog(null, "Registro Duplicado");
+
+                if (modcg.modificar(modcg)) {
+
+                    JOptionPane.showMessageDialog(null, "Registro modificado");
+                    cg.dispose();
+                    Llenartabla(catacg.tabla_categoria_gastos);
+
                 } else {
 
-                    if (modcg.modificar(modcg)) {
+                    JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
 
-                        JOptionPane.showMessageDialog(null, "Registro modificado");
-                        cg.dispose();
-                        Llenartabla(catacg.tabla_categoria_gastos);
-
-                    } else {
-
-                        JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
-
-                    }
                 }
             }
         }
@@ -334,6 +404,12 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         }
 
         return resultado;
+    }
+
+    public void addCheckBox(int column, JTable table) {
+        TableColumn tc = table.getColumnModel().getColumn(column);
+        tc.setCellEditor(table.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
     }
 
 }

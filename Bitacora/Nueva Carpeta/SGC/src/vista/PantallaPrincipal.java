@@ -318,7 +318,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         catalogoCategoriaGastos catacg = new catalogoCategoriaGastos();
         categoriaGastos gas = new categoriaGastos();
         CategoriaGasto modcg = new CategoriaGasto();
-        controladorCategoriaGastos controcg = new controladorCategoriaGastos(catacg, gas, modcg);
+        catalogoInactivoCategoriaGastos cataicg = new catalogoInactivoCategoriaGastos();
+        controladorCategoriaGastos controcg = new controladorCategoriaGastos(catacg, gas, modcg, cataicg);
 
         catacg.setVisible(true);
 

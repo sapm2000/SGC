@@ -102,6 +102,43 @@ public class CategoriaGasto extends ConexionBD {
         return listaPersona;
 
     }
+    
+     public ArrayList<CategoriaGasto> lCategGasi() {
+        ArrayList listaPersona = new ArrayList();
+        CategoriaGasto CategoriaGasto;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT id, nombre, descripcion FROM categoriagasto where activo=0;";
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                CategoriaGasto = new CategoriaGasto();
+
+                //prs = new Persona();
+                CategoriaGasto.setId(rs.getInt(1));
+                CategoriaGasto.setNombre(rs.getString(2));
+                CategoriaGasto.setDescripcion(rs.getString(3));
+
+                listaPersona.add(CategoriaGasto);
+            }
+
+        } catch (Exception e) {
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+        return listaPersona;
+
+    }
 
     public boolean Buscar(CategoriaGasto catagc) {
 
@@ -123,46 +160,6 @@ public class CategoriaGasto extends ConexionBD {
                 catagc.setId(rs.getInt("id"));
                 catagc.setNombre(rs.getString("nombre"));
                 catagc.setDescripcion(rs.getString("descripcion"));
-
-                return true;
-            }
-
-            return false;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                System.err.println(e);
-            }
-        }
-
-    }
-    
-     public boolean buscarrepe(CategoriaGasto catagc) {
-
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
-
-        String sql = "SELECT * FROM categoriagasto WHERE nombre=? and  activo=1 ";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-            ps.setString(1, catagc.getNombre());
-
-            rs = ps.executeQuery();
-
-            if (rs.next()) {
-
-                catagc.setId(rs.getInt("id"));
-                
 
                 return true;
             }
@@ -227,6 +224,34 @@ public class CategoriaGasto extends ConexionBD {
         Connection con = getConexion();
 
         String sql = "UPDATE categoriagasto SET activo=0 WHERE id=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, prs.getId());
+            ps.execute();
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
+    
+    public boolean activar(CategoriaGasto prs) {
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE categoriagasto SET activo=1 WHERE id=?";
 
         try {
 
