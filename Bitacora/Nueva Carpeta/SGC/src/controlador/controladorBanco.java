@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComponent;
@@ -18,10 +19,12 @@ import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.Banco;
 import vista.banco;
 import vista.catalogoBanco;
+import vista.catalogoInactivoBanco;
 
 /**
  *
@@ -32,19 +35,22 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     private banco ban;
     private catalogoBanco cban;
     private Banco modban;
+    private catalogoInactivoBanco ciban;
     DefaultTableModel dm;
     DefaultComboBoxModel dmCbx;
     ArrayList<Banco> listaBanco;
 
-    public controladorBanco(banco ban, catalogoBanco cban, Banco modban) {
+    public controladorBanco(banco ban, catalogoBanco cban, Banco modban, catalogoInactivoBanco ciban) {
         this.ban = ban;
         this.cban = cban;
         this.modban = modban;
+        this.ciban = ciban;
 
         //crearCbxBanco(modban.listar());
-        //CrearCbx(ban.cbxBanco, modban.listar());        
+        //CrearCbx(ban.cbxBanco, modban.listar());      
+        this.ciban.btnActivar.addActionListener(this);
         this.cban.btnNuevo_banco.addActionListener(this);
-
+        this.cban.btnDesactivar.addActionListener(this);
         this.ban.btnGuardar.addActionListener(this);
         this.ban.btnLimpiar.addActionListener(this);
         this.ban.btnEliminar.addActionListener(this);
@@ -94,6 +100,53 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
                 .getColumn(0).setCellRenderer(tcr);
     }
 
+    public void Llenartablainactivos(JTable tablaD) {
+
+        listaBanco = modban.listarinactivos();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = true;
+                }
+
+               
+                return resu;
+            }
+
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
+
+        modeloT.addColumn("Nombre del Banco");
+        modeloT.addColumn("Seleccione");
+
+        Object[] columna = new Object[2];
+
+        int numRegistro = listaBanco.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listaBanco.get(i).getNombre_banco();
+
+            modeloT.addRow(columna);
+
+        }
+
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+    }
+
     /*public void CrearCbx(JComboBox comboD, ArrayList<Banco> dato) {
         
         
@@ -130,6 +183,27 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     }*/
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        if (e.getSource()==ciban.btnActivar) {
+              listaBanco = modban.listarinactivos();
+
+            for (int i = 0; i < ciban.jTable1.getRowCount(); i++) {
+                if (valueOf(ciban.jTable1.getValueAt(i, 1)) == "true") {
+
+                    modban.setId(listaBanco.get(i).getId());
+                    modban.activar(modban);
+
+                }
+            }
+            Llenartablainactivos(ciban.jTable1);
+            addCheckBox(1, ciban.jTable1);
+            Llenartabla(cban.tabla_bancos);
+        }
+        if (e.getSource()==cban.btnDesactivar) {
+            this.ciban.setVisible(true);
+            Llenartablainactivos(ciban.jTable1);
+            addCheckBox(1, ciban.jTable1);
+        }
 
         if (e.getSource() == cban.btnNuevo_banco) {
 
@@ -166,18 +240,23 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
             modban.setId(Integer.parseInt(ban.txtid.getText()));
 
-            if (modban.eliminar(modban)) {
-
-                JOptionPane.showMessageDialog(null, "Registro Eliminado");
-                ban.dispose();
-                Llenartabla(cban.tabla_bancos);
-
+            if (modban.buscacuentas(modban)) {
+                JOptionPane.showMessageDialog(null, "No puede eliminar el banco porque tiene cuentas asignadas");
             } else {
 
-                JOptionPane.showMessageDialog(null, "Error al Eliminar");
+                if (modban.eliminar(modban)) {
+
+                    JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                    ban.dispose();
+                    Llenartabla(cban.tabla_bancos);
+
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "Error al Eliminar");
+
+                }
 
             }
-
         }
 
         if (e.getSource() == ban.btnModificar) {
@@ -274,7 +353,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         if (ke.getSource() == ban.txtnombre_banco) {
             Validacion.soloLetras(ke);
             Validacion.limite(ke, ban.txtnombre_banco.getText(), 30);
-            
+
         }
 
     }
@@ -299,7 +378,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     public void windowOpened(WindowEvent e) {
         Llenartabla(cban.tabla_bancos);
 
-        Component[] components =ban.jPanel2.getComponents();
+        Component[] components = ban.jPanel2.getComponents();
         JComponent[] com = {
             ban.txtnombre_banco
         };
@@ -355,5 +434,13 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
         return resultado;
     }
+    
+    
+    public void addCheckBox(int column, JTable table) {
+        TableColumn tc = table.getColumnModel().getColumn(column);
+        tc.setCellEditor(table.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
+    }
+
 
 }

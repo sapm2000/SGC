@@ -173,6 +173,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
                 }
             }
             Llenartablai(cataicg.jTable1);
+            addCheckBox(2, cataicg.jTable1);
             Llenartabla(catacg.tabla_categoria_gastos);
         }
 

@@ -308,7 +308,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         catalogoBanco cataBan = new catalogoBanco();
         banco ban = new banco();
         Banco modban = new Banco();
-        controladorBanco controb = new controladorBanco(ban, cataBan, modban);
+        catalogoInactivoBanco ciban = new catalogoInactivoBanco();
+        controladorBanco controb = new controladorBanco(ban, cataBan, modban, ciban);
 
         cataBan.setVisible(true);
 

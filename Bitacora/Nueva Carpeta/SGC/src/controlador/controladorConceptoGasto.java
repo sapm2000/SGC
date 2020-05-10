@@ -83,6 +83,7 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
                 }
             }
             Llenartabla1(cataicga.jTable1);
+            addCheckBox(3, cataicga.jTable1);
             Llenartabla(catacga.jTable);
 
         }
@@ -129,7 +130,7 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
             }
         }
         if (e.getSource() == cga.btnEliminar) {
-            if (modCatGas.Buscargas(modCatGas)||modCatGas.Buscarcuo(modCatGas)) {
+            if (modCatGas.Buscargas(modCatGas) || modCatGas.Buscarcuo(modCatGas)) {
                 JOptionPane.showMessageDialog(null, "no se puede eliminar si tiene gastos por procesar asignados");
             } else {
                 if (modCatGas.eliminar(modCatGas)) {
