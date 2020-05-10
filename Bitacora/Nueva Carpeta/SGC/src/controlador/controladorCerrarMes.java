@@ -245,9 +245,10 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                     if (mes >= mes_c) {
 
                                         if (var1 > 13) {
+                                            int var2=var1;
                                             var1 = var1 - 12;
                                             año_c = año_c + 1;
-                                            if (var1 > 25) {
+                                            if (var2 > 25) {
                                                 var1 = var1 - 12;
                                                 año_c = año_c + 1;
                                             }

@@ -43,7 +43,7 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
         this.cga = cga;
         this.modCatGas = modCatGas;
         this.modCat = modCat;
-        this.cataicga=cataicga;
+        this.cataicga = cataicga;
         this.catacga.btnActivar.addActionListener(this);
         this.cataicga.btnActivar.addActionListener(this);
         this.catacga.btnNuevoRegistro.addActionListener(this);
@@ -62,26 +62,29 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==catacga.btnActivar) {
+        if (e.getSource() == catacga.btnActivar) {
             this.cataicga.setVisible(true);
             Llenartabla1(cataicga.jTable1);
             addCheckBox(3, cataicga.jTable1);
         }
-        
+
         if (e.getSource() == cataicga.btnActivar) {
             listaConGas = modCatGas.listarConcepto1();
-          
-            
+
             for (int i = 0; i < cataicga.jTable1.getRowCount(); i++) {
                 if (valueOf(cataicga.jTable1.getValueAt(i, 3)) == "true") {
-                   
+
                     modCatGas.setId(listaConGas.get(i).getId());
                     modCatGas.activar(modCatGas);
+                    modCat.setId(listaConGas.get(i).getId_categoria());
+
+                    modCat.activar(modCat);
 
                 }
             }
             Llenartabla1(cataicga.jTable1);
             Llenartabla(catacga.jTable);
+
         }
         if (e.getSource() == cga.btnGuardar) {
             if (validar()) {
@@ -126,17 +129,20 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
             }
         }
         if (e.getSource() == cga.btnEliminar) {
-
-            if (modCatGas.eliminar(modCatGas)) {
-                modCatGas.setId(Integer.parseInt(cga.txtId.getText()));
-                JOptionPane.showMessageDialog(null, "Registro Eliminado");
-                cga.dispose();
-                Llenartabla(catacga.jTable);
-
+            if (modCatGas.Buscargas(modCatGas)||modCatGas.Buscarcuo(modCatGas)) {
+                JOptionPane.showMessageDialog(null, "no se puede eliminar si tiene gastos por procesar asignados");
             } else {
+                if (modCatGas.eliminar(modCatGas)) {
+                    modCatGas.setId(Integer.parseInt(cga.txtId.getText()));
+                    JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                    cga.dispose();
+                    Llenartabla(catacga.jTable);
 
-                JOptionPane.showMessageDialog(null, "Error al Eliminar");
+                } else {
 
+                    JOptionPane.showMessageDialog(null, "Error al Eliminar");
+
+                }
             }
 
         }
@@ -205,7 +211,7 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
         tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
     }
-    
+
     public void Llenartabla1(JTable tablaD) {
 
         listaConGas = modCatGas.listarConcepto1();
@@ -214,7 +220,7 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
             @Override
             public boolean isCellEditable(int row, int column) {
 
-                  boolean resu = false;
+                boolean resu = false;
                 if (column == 0) {
                     resu = false;
                 }
@@ -305,8 +311,6 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
         tr.setRowFilter(RowFilter.regexFilter(consulta));
     }
 
-    
-
     @Override
     public void mouseClicked(MouseEvent e) {
         int fila = this.catacga.jTable.getSelectedRow(); // primero, obtengo la fila seleccionada
@@ -375,8 +379,8 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
     @Override
     public void windowOpened(WindowEvent e) {
         Llenartabla(catacga.jTable);
-        
-        Component[] components =cga.jPanel2.getComponents();
+
+        Component[] components = cga.jPanel2.getComponents();
         JComponent[] com = {
             cga.txtNombreC
         };

@@ -296,6 +296,121 @@ public class ModeloConceptoGastos extends CategoriaGasto {
         return listaPersona;
 
     }
+    
+     public boolean Buscargas(ModeloConceptoGastos modCatGas) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+
+        String sql = "SELECT * FROM gasto_comun where id_concepto=? and estado='Pendiente'";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, modCatGas.getId());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
+     
+      public boolean Buscarcuo(ModeloConceptoGastos modCatGas) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+
+        String sql = "SELECT * FROM cuotas_especiales where id_concepto=? and estado='Pendiente'";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, modCatGas.getId());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
+     
+     public boolean Buscarconcepto(ModeloConceptoGastos modCatGas) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+
+        String sql = "SELECT * FROM categoriagasto where id=? and activo=1;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, modCatGas.getId_categoria());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
+
 
     public ArrayList<ModeloConceptoGastos> listarConcepto1() {
         ArrayList listaPersona = new ArrayList();
@@ -304,7 +419,7 @@ public class ModeloConceptoGastos extends CategoriaGasto {
         Connection con = getConexion();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "SELECT concepto_gasto.id, nom_concepto, concepto_gasto.descripcion, categoriagasto.nombre FROM concepto_gasto "
+        String sql = "SELECT concepto_gasto.id, nom_concepto, concepto_gasto.descripcion, categoriagasto.nombre, categoriagasto.id FROM concepto_gasto "
                 + "INNER JOIN categoriagasto ON concepto_gasto.id_categoria=categoriagasto.id where concepto_gasto.activo=0";
         try {
             ps = con.prepareStatement(sql);
@@ -316,6 +431,7 @@ public class ModeloConceptoGastos extends CategoriaGasto {
                 modConGas.setNombre_Concepto(rs.getString(2));
                 modConGas.setDescripcion(rs.getString(3));
                 modConGas.setNombreCategoria(rs.getString(4));
+                 modConGas.setId_categoria(rs.getInt(5));
 
                 listaPersona.add(modConGas);
             }

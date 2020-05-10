@@ -51,6 +51,8 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
     ArrayList<Proveedores> listaProveedores;
     DefaultTableModel dm;
     ArrayList<CuotasEspeciales> listacuotasEspeciales;
+    ArrayList<ModeloConceptoGastos> listaConGas;
+    ArrayList<Asambleas> listaasambleas;
 
     public controladorCuotasEspeciales(cuotasEspeciales cuotae, catalogoCuotasEspeciales catacuoe, Proveedores modpro, ModeloConceptoGastos modcon, Asambleas modasa, PantallaPrincipal1 panta1, CuotasEspeciales modcuo, CerrarMes modc, buscarProveedor buscpro) {
         this.cuotae = cuotae;
@@ -78,6 +80,8 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
         cuotae.txtNmeses.addKeyListener(this);
         cuotae.txtMonto.addKeyListener(this);
         cuotae.txaObservaciones.addKeyListener(this);
+        listaConGas = modcon.listarConcepto();
+        listaasambleas = modasa.listarAsambleas();
     }
 
     public void llenartablaCuotasEspeciales(JTable tablaD) {
@@ -202,14 +206,16 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             modasa.setId_condominio(panta1.rif.getText());
             cuotae.jAsamblea.removeAllItems();
             cuotae.jConcepto.removeAllItems();
-
-            modcon.llenar_concepto(cuotae.jConcepto);
-            modasa.llenar_Asamblea(cuotae.jAsamblea);
+            listaasambleas = modasa.listarAsambleas();
+            listaConGas = modcon.listarConcepto();
+            crearCbxConcepto(listaConGas);
+            crearCbxAsamblea(listaasambleas);
             this.cuotae.txtid.setVisible(false);
             cuotae.txaObservaciones.setText("");
             cuotae.txtMonto.setText("");
             cuotae.txtNmeses.setText("");
             cuotae.txtid.setText("");
+            cuotae.txtProveedor.setText("");
 
         }
         if (e.getSource() == cuotae.btnBuscarproveedor) {
@@ -224,8 +230,8 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                 if (modcon.getNombre_Concepto().equals("Seleccione el Concepto")) {
                     JOptionPane.showMessageDialog(null, "seleccione un concepto");
                 } else {
-                    modcon.buscarid(modcon);
-                    modcuo.setId_concepto(modcon.getId());
+                    int ind = cuotae.jConcepto.getSelectedIndex() - 1;
+                    modcuo.setId_concepto(listaConGas.get(ind).getId());
                     String var10 = cuotae.jCalcular.getSelectedItem().toString();
                     if (var10.equals("Total de Inmuebles")) {
                         var10 = "Total de Inmuebles";
@@ -280,9 +286,8 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                                 if (cuotae.jAsamblea.getSelectedItem().toString() == "Seleccione la Asamblea") {
                                     modcuo.setId_asamblea(0);
                                 } else {
-                                    modasa.setNombre(cuotae.jAsamblea.getSelectedItem().toString());
-                                    modasa.buscarid(modasa);
-                                    modcuo.setId_asamblea(modasa.getId());
+                                    int ind1 = cuotae.jAsamblea.getSelectedIndex() - 1;
+                                    modcuo.setId_asamblea(listaasambleas.get(ind1).getId());
                                 }
 
                                 if (modcuo.registrar_cuota_especial(modcuo)) {
@@ -308,7 +313,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
         if (e.getSource() == cuotae.btnModificar) {
             if (validar()) {
-
+                modasa.setId_condominio(panta1.rif.getText());
                 modcon.setNombre_Concepto(cuotae.jConcepto.getSelectedItem().toString());
                 if (modcon.getNombre_Concepto().equals("Seleccione el Concepto")) {
                     JOptionPane.showMessageDialog(null, "seleccione un concepto");
@@ -319,7 +324,8 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                         JOptionPane.showMessageDialog(null, "seleccione una asamblea");
                     } else {
 
-                        modcuo.setId_concepto(modcon.getId());
+                        int ind = cuotae.jConcepto.getSelectedIndex() - 1;
+                        modcuo.setId_concepto(listaConGas.get(ind).getId());
                         modcuo.setCalcular(cuotae.jCalcular.getSelectedItem().toString());
                         modcuo.setMes(cuotae.jMonthChooser1.getMonth() + 1);
                         modcuo.setAño(cuotae.jYearChooser1.getYear());
@@ -364,9 +370,11 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                                 if (cuotae.jAsamblea.getSelectedItem().toString() == "Seleccione la Asamblea") {
                                     modcuo.setId_asamblea(0);
                                 } else {
-                                    modasa.setNombre(cuotae.jAsamblea.getSelectedItem().toString());
-                                    modasa.buscarid(modasa);
-                                    modcuo.setId_asamblea(modasa.getId());
+                                    listaasambleas = modasa.listarAsambleas();
+                                    int ind1 = cuotae.jAsamblea.getSelectedIndex() - 1;
+                                    JOptionPane.showMessageDialog(null, ind1);
+                                    JOptionPane.showMessageDialog(null, listaasambleas.get(ind1).getId());
+                                    modcuo.setId_asamblea(listaasambleas.get(ind1).getId());
                                 }
 
                                 if (modcuo.modificar_cuota_especial(modcuo)) {
@@ -455,18 +463,29 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == cuotae.si) {
-            cuotae.jAsamblea.setVisible(true);
-            cuotae.jAsamblea.removeAllItems();
-            modasa.llenar_Asamblea(cuotae.jAsamblea);
-            cuotae.jAsamblea.setSelectedItem("Seleccione la Asamblea");
+            if (cuotae.si.isSelected()) {
+                if (modcuo.getEstado().equals("Pendiente")) {
+                    cuotae.jAsamblea.setVisible(true);
+                    listaasambleas = modasa.listarAsambleas();
+
+                    crearCbxAsamblea(listaasambleas);
+                    cuotae.jAsamblea.setSelectedItem("Seleccione la Asamblea");
+                }
+            }
         }
         if (e.getSource() == cuotae.no) {
-            cuotae.jAsamblea.setVisible(false);
-            cuotae.jAsamblea.setSelectedItem("Seleccione la Asamblea");
-
+            if (cuotae.no.isSelected()) {
+                if (modcuo.getEstado().equals("Pendiente")) {
+                    cuotae.jAsamblea.setVisible(false);
+                    cuotae.jAsamblea.setSelectedItem("Seleccione la Asamblea");
+                }
+            }
         }
 
         if (e.getSource() == catacuoe.jTable1) {
+            cuotae.si.setEnabled(true);
+            cuotae.no.setEnabled(true);
+
             int fila = this.catacuoe.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
             String dato = String.valueOf(this.catacuoe.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
             modcuo.setId(Integer.parseInt(dato));
@@ -481,19 +500,10 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
             modasa.setId_condominio(panta1.rif.getText());
 
-            modcon.llenar_concepto(cuotae.jConcepto);
-            modasa.llenar_Asamblea(cuotae.jAsamblea);
             cuotae.txtProveedor.setText(modcuo.getId_proveedor());
-            cuotae.jConcepto.setSelectedItem(modcuo.getNombre_Concepto());
+
             cuotae.jCalcular.setSelectedItem(modcuo.getCalcular());
-            if (modcuo.getNombre_asamble() == null) {
-                cuotae.jAsamblea.setSelectedItem("Seleccione la Asamblea");
-                cuotae.jAsamblea.setVisible(false);
-                cuotae.no.setSelected(true);
-            } else {
-                cuotae.jAsamblea.setSelectedItem(modcuo.getNombre_asamble());
-                cuotae.si.setSelected(true);
-            }
+
             cuotae.jMonthChooser1.setMonth(modcuo.getMes() - 1);
             cuotae.jYearChooser1.setYear(modcuo.getAño());
             cuotae.txaObservaciones.setText(modcuo.getObservacion());
@@ -503,16 +513,46 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                 cuotae.btnEliminar.setEnabled(true);
                 cuotae.btnModificar.setEnabled(true);
                 cuotae.btnGuardar.setEnabled(false);
+                listaasambleas = modasa.listarAsambleas();
+                listaConGas = modcon.listarConcepto();
+                crearCbxConcepto(listaConGas);
+                crearCbxAsamblea(listaasambleas);
+                if (modcuo.getNombre_asamble() == null) {
+                    cuotae.jAsamblea.setSelectedItem("Seleccione la Asamblea");
+                    cuotae.jAsamblea.setVisible(false);
+                    cuotae.no.setSelected(true);
+                } else {
+                    cuotae.jAsamblea.setSelectedItem(modcuo.getNombre_asamble() + " " + modcuo.getFecha());
+                    cuotae.si.setSelected(true);
+                    cuotae.jAsamblea.setVisible(true);
+                }
 
             } else {
+                if (modcuo.getNombre_asamble() == null) {
+                    cuotae.jAsamblea.addItem("Seleccione la Asamblea");
+                    cuotae.jAsamblea.setSelectedItem("Seleccione la Asamblea");
+                    cuotae.jAsamblea.setVisible(false);
+                    cuotae.no.setSelected(true);
+                    cuotae.no.setEnabled(false);
+                    cuotae.si.setEnabled(false);
+                } else {
+                    cuotae.jAsamblea.addItem(modcuo.getNombre_asamble() + " " + modcuo.getFecha());
+                    cuotae.jAsamblea.setSelectedItem(modcuo.getNombre_asamble() + " " + modcuo.getFecha());
+                    cuotae.si.setSelected(true);
+                    cuotae.si.setEnabled(false);
+                    cuotae.no.setEnabled(false);
+                }
                 cuotae.btnEliminar.setEnabled(false);
                 cuotae.btnModificar.setEnabled(false);
                 cuotae.btnGuardar.setEnabled(false);
                 JOptionPane.showMessageDialog(null, "las cuotas especiales en proceso no puenden ser modificadas ni eliminadas");
+
+                cuotae.jConcepto.addItem(modcuo.getNombre_Concepto());
             }
 
+            cuotae.jConcepto.setSelectedItem(modcuo.getNombre_Concepto());
         }
-        if (e.getSource()==buscpro.jTable1) {
+        if (e.getSource() == buscpro.jTable1) {
             int fila1 = this.buscpro.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
             String dato = String.valueOf(this.buscpro.jTable1.getValueAt(fila1, 0)); // por ultimo, obtengo el valor de la celda
             cuotae.txtProveedor.setText(dato);
@@ -621,5 +661,29 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
         jtableBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));
 
+    }
+
+    private void crearCbxConcepto(ArrayList<ModeloConceptoGastos> datos) {
+        cuotae.jConcepto.addItem("Seleccione el Concepto");
+
+        if (datos != null) {
+            for (ModeloConceptoGastos datosX : datos) {
+                modcon = datosX;
+                cuotae.jConcepto.addItem(modcon.getNombre_Concepto());
+            }
+
+        }
+    }
+
+    private void crearCbxAsamblea(ArrayList<Asambleas> datos) {
+        cuotae.jAsamblea.addItem("Seleccione la Asamblea");
+
+        if (datos != null) {
+            for (Asambleas datosX : datos) {
+                modasa = datosX;
+                cuotae.jAsamblea.addItem(modasa.getNombre_asamblea() + " " + modasa.getFecha());
+            }
+
+        }
     }
 }

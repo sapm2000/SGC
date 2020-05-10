@@ -6,6 +6,7 @@
 package modelo;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,6 +34,17 @@ public class CuotasEspeciales extends ConexionBD {
     private String nombre_Concepto;
     private String nombre_asamble;
     private int n_meses_restantes;
+    private java.sql.Date fecha;
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+    
+    
 
     public int getN_meses_restantes() {
         return n_meses_restantes;
@@ -317,7 +329,7 @@ public class CuotasEspeciales extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT id_proveedor, concepto_gasto.nom_concepto, calcular, mes, anio, monto, saldo, n_meses, asambleas.nombre, observacion, estado FROM cuotas_especiales inner join proveedores on proveedores.cedula=cuotas_especiales.id_proveedor inner join concepto_gasto on concepto_gasto.id=cuotas_especiales.id_concepto left join asambleas on asambleas.id = cuotas_especiales.id_asamblea where cuotas_especiales.id=?;";
+        String sql = "SELECT id_proveedor, concepto_gasto.nom_concepto, calcular, mes, anio, monto, saldo, n_meses, asambleas.nombre, asambleas.fecha, observacion, estado FROM cuotas_especiales inner join proveedores on proveedores.cedula=cuotas_especiales.id_proveedor inner join concepto_gasto on concepto_gasto.id=cuotas_especiales.id_concepto left join asambleas on asambleas.id = cuotas_especiales.id_asamblea where cuotas_especiales.id=?;";
 
         try {
 
@@ -337,6 +349,7 @@ public class CuotasEspeciales extends ConexionBD {
                 modcuo.setNombre_asamble(rs.getString("nombre"));
                 modcuo.setObservacion(rs.getString("observacion"));
                 modcuo.setEstado(rs.getString("estado"));
+                modcuo.setFecha(rs.getDate("fecha"));
 
                 return true;
             }
