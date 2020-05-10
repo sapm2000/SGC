@@ -77,6 +77,7 @@ public class gastoComun extends javax.swing.JFrame {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         btnBuscarproveedor = new javax.swing.JButton();
         txtProveedor = new javax.swing.JTextField();
+        jSeparator5 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
         btnMinimizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
@@ -160,7 +161,7 @@ public class gastoComun extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Proveedor:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 80, 30));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, 80, 20));
 
         txtNumerofactura.setBackground(new java.awt.Color(0, 94, 159));
         txtNumerofactura.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -177,12 +178,12 @@ public class gastoComun extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Observaciones:");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 110, -1));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, 110, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Concepto:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 80, 30));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, 80, 20));
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -200,7 +201,7 @@ public class gastoComun extends javax.swing.JFrame {
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 300, 110));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 230, 20));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 230, 20));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 230, 20));
@@ -225,7 +226,14 @@ public class gastoComun extends javax.swing.JFrame {
         jPanel2.add(btnBuscarproveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 0, 40, 40));
 
         txtProveedor.setEditable(false);
-        jPanel2.add(txtProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, 220, -1));
+        txtProveedor.setBackground(new java.awt.Color(0, 94, 159));
+        txtProveedor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtProveedor.setForeground(new java.awt.Color(255, 255, 255));
+        txtProveedor.setBorder(null);
+        jPanel2.add(txtProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, 230, 20));
+
+        jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 230, 20));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 770, 280));
 
@@ -445,6 +453,7 @@ public class gastoComun extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTextField jTextField6;
