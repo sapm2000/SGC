@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComponent;
@@ -23,8 +24,10 @@ import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.Proveedores;
+import vista.catalogoInactivoProveedores;
 import vista.catalogoProveedores;
 import vista.proveedores;
 
@@ -37,16 +40,19 @@ public class controladorProveedores implements ActionListener, WindowListener, K
     private catalogoProveedores cataprov;
     private proveedores prov;
     private Proveedores modpro;
+    private catalogoInactivoProveedores cataiprov;
 
     ArrayList<Proveedores> listaProveedores;
     DefaultTableModel dm;
     DefaultComboBoxModel dmCbx;
 
-    public controladorProveedores(catalogoProveedores cataprov, proveedores prov, Proveedores modpro) {
+    public controladorProveedores(catalogoProveedores cataprov, proveedores prov, Proveedores modpro, catalogoInactivoProveedores cataiprov) {
         this.cataprov = cataprov;
         this.prov = prov;
         this.modpro = modpro;
-
+        this.cataiprov = cataiprov;
+        this.cataprov.btnActivar.addActionListener(this);
+        this.cataiprov.btnActivar.addActionListener(this);
         this.cataprov.addWindowListener(this);
         this.cataprov.btn_NuevoProveedor.addActionListener(this);
         this.cataprov.TablaProveedores.addMouseListener(this);
@@ -112,7 +118,102 @@ public class controladorProveedores implements ActionListener, WindowListener, K
         tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
     }
 
+    public void Llenartablainactivos(JTable tablaD) {
+
+        listaProveedores = modpro.listarinactivos();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+                if (column == 2) {
+                    resu = false;
+                }
+                if (column == 3) {
+                    resu = false;
+                }
+                if (column == 4) {
+                    resu = false;
+                }
+                if (column == 5) {
+                    resu = false;
+                }
+                if (column == 6) {
+                    resu = true;
+                }
+
+                return resu;
+            }
+
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
+
+        modeloT.addColumn("Cédula/Rif");
+        modeloT.addColumn("Nombre/Razón Social");
+        modeloT.addColumn("Teléfono");
+        modeloT.addColumn("Correo Electrónico");
+        modeloT.addColumn("Contacto");
+        modeloT.addColumn("Dirección");
+        modeloT.addColumn("Seleccione");
+
+        Object[] columna = new Object[7];
+
+        int numRegistro = listaProveedores.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listaProveedores.get(i).getCedula();
+            columna[1] = listaProveedores.get(i).getNombre();
+            columna[2] = listaProveedores.get(i).getTelefono();
+            columna[3] = listaProveedores.get(i).getCorreo();
+            columna[4] = listaProveedores.get(i).getContacto();
+            columna[5] = listaProveedores.get(i).getDireccion();
+
+            modeloT.addRow(columna);
+
+        }
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(6).setCellRenderer(tcr);
+    }
+
     public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == cataprov.btnActivar) {
+            this.cataiprov.setVisible(true);
+            Llenartablainactivos(cataiprov.jTable1);
+            addCheckBox(6, cataiprov.jTable1);
+        }
+
+        if (e.getSource() == cataiprov.btnActivar) {
+            listaProveedores = modpro.listarinactivos();
+
+            for (int i = 0; i < cataiprov.jTable1.getRowCount(); i++) {
+                if (valueOf(cataiprov.jTable1.getValueAt(i, 6)) == "true") {
+
+                    modpro.setCedula(listaProveedores.get(i).getCedula());
+                    modpro.activar(modpro);
+
+                }
+            }
+            Llenartablainactivos(cataiprov.jTable1);
+            addCheckBox(6, cataiprov.jTable1);
+            Llenartabla(cataprov.TablaProveedores);
+        }
 
         if (e.getSource() == cataprov.btn_NuevoProveedor) {
             this.prov.setVisible(true);
@@ -177,18 +278,21 @@ public class controladorProveedores implements ActionListener, WindowListener, K
         }
 
         if (e.getSource() == prov.btnEliminar) {
-
-            if (modpro.eliminar(modpro)) {
-
-                modpro.setCedula(prov.txtCedula.getText());
-                JOptionPane.showMessageDialog(null, "Registro Eliminado");
-                prov.dispose();
-                Llenartabla(cataprov.TablaProveedores);
-
+            modpro.setCedula(prov.txtCedula.getText());
+            if (modpro.Buscargas(modpro) || modpro.Buscarcuo(modpro)) {
+                JOptionPane.showMessageDialog(null, "no se puede eliminar si tiene gastos por procesar asignados");
             } else {
+                if (modpro.eliminar(modpro)) {
 
-                JOptionPane.showMessageDialog(null, "Error al Eliminar");
+                    JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                    prov.dispose();
+                    Llenartabla(cataprov.TablaProveedores);
 
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "Error al Eliminar");
+
+                }
             }
 
         }
@@ -261,10 +365,10 @@ public class controladorProveedores implements ActionListener, WindowListener, K
     @Override
     public void windowOpened(WindowEvent e) {
         Llenartabla(cataprov.TablaProveedores);
-        
-        Component[] components =prov.jPanel2.getComponents();
+
+        Component[] components = prov.jPanel2.getComponents();
         JComponent[] com = {
-            prov.txtCedula,prov.txtNombre, prov.txtContacto, prov.txtTelefono, prov.txtCorreo
+            prov.txtCedula, prov.txtNombre, prov.txtContacto, prov.txtTelefono, prov.txtCorreo
         };
         Validacion.copiar(components);
         Validacion.pegar(com);
@@ -304,7 +408,7 @@ public class controladorProveedores implements ActionListener, WindowListener, K
     public void keyTyped(KeyEvent ke) {
 
         if (ke.getSource() == prov.txtCedula) {
-            
+
             Validacion.Espacio(ke);
             Validacion.limite(ke, prov.txtCedula.getText(), 15);
         }
@@ -401,6 +505,12 @@ public class controladorProveedores implements ActionListener, WindowListener, K
         jtableBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));
 
+    }
+
+    public void addCheckBox(int column, JTable table) {
+        TableColumn tc = table.getColumnModel().getColumn(column);
+        tc.setCellEditor(table.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
     }
 
 }

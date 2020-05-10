@@ -216,6 +216,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             cuotae.txtNmeses.setText("");
             cuotae.txtid.setText("");
             cuotae.txtProveedor.setText("");
+            cuotae.btnBuscarproveedor.setVisible(true);
 
         }
         if (e.getSource() == cuotae.btnBuscarproveedor) {
@@ -492,7 +493,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             modcuo.setId_condominio(panta1.rif.getText());
             modcuo.buscarCuotaEspecial(modcuo);
             this.cuotae.setVisible(true);
-
+            cuotae.btnBuscarproveedor.setVisible(true);
             cuotae.txtid.setVisible(false);
             cuotae.txtid.setText(dato);
             cuotae.jAsamblea.removeAllItems();
@@ -545,6 +546,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                 cuotae.btnEliminar.setEnabled(false);
                 cuotae.btnModificar.setEnabled(false);
                 cuotae.btnGuardar.setEnabled(false);
+                cuotae.btnBuscarproveedor.setVisible(false);
                 JOptionPane.showMessageDialog(null, "las cuotas especiales en proceso no puenden ser modificadas ni eliminadas");
 
                 cuotae.jConcepto.addItem(modcuo.getNombre_Concepto());
