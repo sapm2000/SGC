@@ -199,7 +199,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
             gc.jcomboconcepto.removeAllItems();
             listaConGas = modcon.listarConcepto();
             crearCbxConcepto(listaConGas);
-
+            gc.btnBuscarproveedor.setVisible(true);
         }
         if (e.getSource() == gc.btnBuscarproveedor) {
             this.buscpro.setVisible(true);
@@ -395,7 +395,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
             modgac.setId(Integer.parseInt(dato));
             modgac.setId_condominio(panta1.rif.getText());
             modgac.buscargastoComun(modgac);
-
+             gc.btnBuscarproveedor.setVisible(true);
             this.gc.setVisible(true);
             gc.txtid.setVisible(false);
             gc.txtid.setText(dato);
@@ -412,6 +412,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
                 gc.jcombotipo.setEditable(false);
                 gc.jcomboconcepto.setEditable(false);
                 gc.jcomboconcepto.addItem(modgac.getNombre_Concepto());
+                gc.btnBuscarproveedor.setVisible(false);
 
                 JOptionPane.showMessageDialog(null, "los gastos procesados no pueden ser modificados ni eliminados");
             } else {

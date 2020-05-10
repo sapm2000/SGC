@@ -346,7 +346,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         Cuenta modcu = new Cuenta();
         Banco modban = new Banco();
         Condominio modcon = new Condominio();
-        controladorCuenta controcu = new controladorCuenta(catacu, cu, modcu, modban, modcon);
+        catalogoInactivoCuenta cataicu= new catalogoInactivoCuenta();
+        controladorCuenta controcu = new controladorCuenta(catacu, cu, modcu, modban, modcon, cataicu);
 
         catacu.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
@@ -355,7 +356,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         catalogoProveedores cataprov = new catalogoProveedores();
         proveedores prov = new proveedores();
         Proveedores modpro = new Proveedores();
-        controladorProveedores controProv = new controladorProveedores(cataprov, prov, modpro);
+        catalogoInactivoProveedores cataiprov = new catalogoInactivoProveedores();
+        controladorProveedores controProv = new controladorProveedores(cataprov, prov, modpro, cataiprov);
 
         cataprov.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed

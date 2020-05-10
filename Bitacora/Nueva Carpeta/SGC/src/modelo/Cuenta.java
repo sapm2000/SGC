@@ -145,7 +145,7 @@ public class Cuenta extends Banco {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO cuenta (cedula, n_cuenta, beneficiario, tipo, id_banco) VALUES (?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO cuenta (cedula, n_cuenta, beneficiario, tipo, id_banco, activo) VALUES (?, ?, ?, ?, ?, 1);";
 
         try {
 
@@ -185,7 +185,7 @@ public class Cuenta extends Banco {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO puente_condominio_cuenta(id_condominio, id_cuenta) VALUES (?, ?);";
+        String sql = "INSERT INTO puente_condominio_cuenta(id_condominio, id_cuenta, activo) VALUES (?, ?, 1);";
 
         try {
 
@@ -225,7 +225,7 @@ public class Cuenta extends Banco {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "select cuenta.cedula, cuenta.n_cuenta, cuenta.beneficiario, cuenta.tipo, banco.nombre_banco, count(puente_condominio_cuenta.id_cuenta) as condominio  from cuenta inner join banco on banco.id=cuenta.id_banco inner join puente_condominio_cuenta on cuenta.n_cuenta=puente_condominio_cuenta.id_cuenta group by cuenta.n_cuenta,banco.nombre_banco";
+        String sql = "select cuenta.cedula, cuenta.n_cuenta, cuenta.beneficiario, cuenta.tipo, banco.nombre_banco, count(puente_condominio_cuenta.id_cuenta) as condominio  from cuenta inner join banco on banco.id=cuenta.id_banco inner join puente_condominio_cuenta on cuenta.n_cuenta=puente_condominio_cuenta.id_cuenta where cuenta.activo=1 group by cuenta.n_cuenta,banco.nombre_banco";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -241,6 +241,49 @@ public class Cuenta extends Banco {
                 modcu.setNombre_banco(rs.getString(5));
                 modcu.setCantidad(rs.getInt(6));
 
+                listaCuenta.add(modcu);
+            }
+        } catch (Exception e) {
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+        return listaCuenta;
+    }
+    
+    public ArrayList<Cuenta> listarcuentainactiva() {
+        ArrayList listaCuenta = new ArrayList();
+        Cuenta modcu;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "select cuenta.cedula, cuenta.n_cuenta, cuenta.beneficiario, cuenta.tipo, banco.nombre_banco, count(puente_condominio_cuenta.id_cuenta) as condominio, banco.id  from cuenta inner join banco on banco.id=cuenta.id_banco inner join puente_condominio_cuenta on cuenta.n_cuenta=puente_condominio_cuenta.id_cuenta where cuenta.activo=0 group by cuenta.n_cuenta,banco.nombre_banco";
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modcu = new Cuenta();
+
+                modcu.setCedula(rs.getString(1));
+                modcu.setN_cuenta(rs.getString(2));
+                modcu.setBeneficiario(rs.getString(3));
+                modcu.setTipo(rs.getString(4));
+                modcu.setNombre_banco(rs.getString(5));
+                modcu.setCantidad(rs.getInt(6));
+                modcu.setId(rs.getInt(7));
                 listaCuenta.add(modcu);
             }
         } catch (Exception e) {
@@ -348,7 +391,7 @@ public class Cuenta extends Banco {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "DELETE FROM puente_condominio_cuenta WHERE id_cuenta=?";
+        String sql = "UPDATE puente_condominio_cuenta SET activo=0 WHERE id_cuenta=?";
 
         try {
 
@@ -383,7 +426,77 @@ public class Cuenta extends Banco {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "DELETE FROM cuenta WHERE n_cuenta=?";
+        String sql = "UPDATE cuenta SET activo=0 WHERE n_cuenta=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getN_cuenta());
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+    
+     public boolean activarpuente(Cuenta modcun) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE puente_condominio_cuenta SET activo=1 WHERE id_cuenta=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getN_cuenta());
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
+    public boolean activarcuenta(Cuenta modcun) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE cuenta SET activo=1 WHERE n_cuenta=?";
 
         try {
 

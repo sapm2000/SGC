@@ -25,6 +25,7 @@ import vista.catalogoCuenta;
 import vista.cuenta;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import vista.catalogoInactivoCuenta;
 
 public class controladorCuenta implements ActionListener, MouseListener, KeyListener, WindowListener {
 
@@ -33,17 +34,20 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     private Cuenta modcu;
     private Banco modban;
     private Condominio modcon;
+    private catalogoInactivoCuenta cataicu;
     DefaultTableModel dm;
     ArrayList<Banco> listaBanco;
     ArrayList<Cuenta> listaCuenta;
     ArrayList<Condominio> listaCondo;
 
-    public controladorCuenta(catalogoCuenta catacu, cuenta cu, Cuenta modcu, Banco modban, Condominio modcon) {
+    public controladorCuenta(catalogoCuenta catacu, cuenta cu, Cuenta modcu, Banco modban, Condominio modcon, catalogoInactivoCuenta cataicu) {
         this.catacu = catacu;
         this.cu = cu;
         this.modcu = modcu;
         this.modban = modban;
         this.modcon = modcon;
+        this.cataicu = cataicu;
+        this.catacu.btnActivar.addActionListener(this);
         this.catacu.btn_nuevaCuenta.addActionListener(this);
         this.cu.btnGuardar.addActionListener(this);
         this.cu.btnLimpiar.addActionListener(this);
@@ -54,6 +58,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
         this.cu.txtCedula.addKeyListener(this);
         this.cu.txtN_cuenta.addKeyListener(this);
         this.cu.txtBeneficiario.addKeyListener(this);
+        this.cataicu.btnActivar.addActionListener(this);
     }
 
     public void Llenartabla(JTable tablaD) {
@@ -104,6 +109,79 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
         tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
     }
 
+    public void Llenartablainactivos(JTable tablaD) {
+
+        listaCuenta = modcu.listarcuentainactiva();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+                if (column == 2) {
+                    resu = false;
+                }
+                if (column == 3) {
+                    resu = false;
+                }
+                if (column == 4) {
+                    resu = false;
+                }
+                if (column == 5) {
+                    resu = false;
+                }
+                if (column == 6) {
+                    resu = true;
+                }
+
+                return resu;
+            }
+
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
+
+        modeloT.addColumn("Banco");
+        modeloT.addColumn("Cuenta");
+        modeloT.addColumn("CI/RIF");
+        modeloT.addColumn("Beneficiario");
+        modeloT.addColumn("Tipo");
+        modeloT.addColumn("Condominio");
+        modeloT.addColumn("Seleccione");
+
+        Object[] columna = new Object[7];
+
+        int numRegistro = listaCuenta.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listaCuenta.get(i).getNombre_banco();
+            columna[1] = listaCuenta.get(i).getN_cuenta();
+            columna[2] = listaCuenta.get(i).getCedula();
+            columna[3] = listaCuenta.get(i).getBeneficiario();
+            columna[4] = listaCuenta.get(i).getTipo();
+            columna[5] = listaCuenta.get(i).getCantidad();
+
+            modeloT.addRow(columna);
+
+        }
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(6).setCellRenderer(tcr);
+    }
+
     public void Llenartablacondominio(JTable tablaD) {
 
         listaCondo = modcon.lPerson();
@@ -137,7 +215,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
         int numRegistro = listaCondo.size();
 
         for (int i = 0; i < numRegistro; i++) {
-           
+
             columna[0] = listaCondo.get(i).getRif();
             columna[1] = listaCondo.get(i).getRazonS();
 
@@ -204,6 +282,30 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     }
 
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == catacu.btnActivar) {
+            this.cataicu.setVisible(true);
+            Llenartablainactivos(cataicu.jTable1);
+            addCheckBox(6, cataicu.jTable1);
+        }
+
+        if (e.getSource() == cataicu.btnActivar) {
+            listaCuenta = modcu.listarcuentainactiva();
+
+            for (int i = 0; i < cataicu.jTable1.getRowCount(); i++) {
+                if (valueOf(cataicu.jTable1.getValueAt(i, 6)) == "true") {
+
+                    modcu.setN_cuenta(listaCuenta.get(i).getN_cuenta());
+                    modban.setId(listaCuenta.get(i).getId());
+                    modcu.activarcuenta(modcu);
+                    modcu.activarpuente(modcu);
+                    modban.activar(modban);
+
+                }
+            }
+            Llenartabla(catacu.jTable1);
+            Llenartablainactivos(cataicu.jTable1);
+           addCheckBox(6, cataicu.jTable1);
+        }
 
         if (e.getSource() == catacu.btn_nuevaCuenta) {
             cu.jComboBox1.removeAllItems();
@@ -280,7 +382,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
                 modcu.setCedula(cu.txtCedula.getText());
                 modcu.setBeneficiario(cu.txtBeneficiario.getText());
                 modcu.setN_cuenta(cu.txtN_cuenta.getText());
-               
+
                 modcu.setTipo(cu.jComboBox2.getSelectedItem().toString());
                 modban.setNombre_banco(cu.jComboBox1.getSelectedItem().toString());
                 if (modban.getNombre_banco().equals("Seleccione el Banco")) {
@@ -301,7 +403,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
                         if (modcu.modificarcuenta(modcu)) {
 
                             JOptionPane.showMessageDialog(null, "Registro modificado");
-                            
+
                             modcu.borrarpuente(modcu);
 
                             for (int i = 0; i < cu.jTable1.getRowCount(); i++) {
@@ -441,7 +543,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     public void keyTyped(KeyEvent ke) {
 
         if (ke.getSource() == cu.txtCedula) {
-            
+
             Validacion.Espacio(ke);
             Validacion.limite(ke, cu.txtCedula.getText(), 8);
         }
@@ -477,10 +579,10 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     @Override
     public void windowOpened(WindowEvent e) {
         Llenartabla(catacu.jTable1);
-        
-        Component[] components =cu.jPanel2.getComponents();
+
+        Component[] components = cu.jPanel2.getComponents();
         JComponent[] com = {
-            cu.txtCedula,cu.txtN_cuenta, cu.txtBeneficiario
+            cu.txtCedula, cu.txtN_cuenta, cu.txtBeneficiario
         };
         Validacion.copiar(components);
         Validacion.pegar(com);

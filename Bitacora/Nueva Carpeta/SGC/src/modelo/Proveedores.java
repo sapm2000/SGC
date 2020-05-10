@@ -79,7 +79,7 @@ public class Proveedores extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO proveedores(cedula, nombre, telefono, correo, contacto, direccion) VALUES (?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO proveedores(cedula, nombre, telefono, correo, contacto, direccion, activo) VALUES (?, ?, ?, ?, ?, ?, 1);";
 
         try {
 
@@ -122,7 +122,50 @@ public class Proveedores extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT cedula, nombre, telefono, correo, contacto, direccion FROM proveedores;";
+        String sql = "SELECT cedula, nombre, telefono, correo, contacto, direccion FROM proveedores where activo=1;";
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modpro = new Proveedores();
+
+                modpro.setCedula(rs.getString(1));
+                modpro.setNombre(rs.getString(2));
+                modpro.setTelefono(rs.getString(3));
+                modpro.setCorreo(rs.getString(4));
+                modpro.setContacto(rs.getString(5));
+                modpro.setDireccion(rs.getString(6));
+
+                listaProveedores.add(modpro);
+            }
+        } catch (Exception e) {
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+        return listaProveedores;
+    }
+    
+    public ArrayList<Proveedores> listarinactivos() {
+        ArrayList listaProveedores = new ArrayList();
+        Proveedores modpro;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT cedula, nombre, telefono, correo, contacto, direccion FROM proveedores where activo=0;";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -247,7 +290,42 @@ public class Proveedores extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "DELETE FROM proveedores WHERE cedula=?";
+        String sql = "UPDATE proveedores SET activo=0 WHERE cedula=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getCedula());
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+    
+     public boolean activar(Proveedores modpro) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE proveedores SET activo=1 WHERE cedula=?;";
 
         try {
 
@@ -330,6 +408,82 @@ public class Proveedores extends ConexionBD {
 
             }
 
+        }
+
+    }
+    
+    public boolean Buscargas(Proveedores modpro) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+
+        String sql = "SELECT * FROM gasto_comun where id_proveedor=? and estado='Pendiente'";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, modpro.getCedula());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
+    
+    public boolean Buscarcuo(Proveedores modpro) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+
+        String sql = "SELECT * FROM cuotas_especiales where id_proveedor=? and estado='Pendiente'";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, modpro.getCedula());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
 
     }
