@@ -25,6 +25,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import modelo.CategoriaGasto;
 import modelo.CerrarMes;
 import modelo.GastoComun;
 import modelo.ModeloConceptoGastos;
@@ -50,6 +51,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
     private buscarProveedor buscpro;
     ArrayList<Proveedores> listaProveedores;
     ArrayList<GastoComun> listagastocomun;
+    ArrayList<ModeloConceptoGastos> listaConGas;
     DefaultTableModel dm;
     double montoi;
     double saldo;
@@ -78,6 +80,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
         gc.txtNumerofactura.addKeyListener(this);
         gc.txtMonto.addKeyListener(this);
         gc.txaObservaciones.addKeyListener(this);
+        listaConGas = modcon.listarConcepto();
     }
 
     public void Llenartabla(JTable tablaD) {
@@ -193,10 +196,9 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
             this.gc.btnGuardar.setEnabled(true);
             this.gc.btnEliminar.setEnabled(false);
             this.gc.txtid.setVisible(false);
-
             gc.jcomboconcepto.removeAllItems();
-
-            modcon.llenar_concepto(gc.jcomboconcepto);
+            listaConGas = modcon.listarConcepto();
+            crearCbxConcepto(listaConGas);
 
         }
         if (e.getSource() == gc.btnBuscarproveedor) {
@@ -207,6 +209,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
 
         if (e.getSource() == gc.btnGuardar) {
             if (validar()) {
+
                 modgac.setTipo_gasto(gc.jcombotipo.getSelectedItem().toString());
                 modgac.setMes(gc.jMonthChooser1.getMonth() + 1);
                 modgac.setAño(gc.jYearChooser1.getYear());
@@ -214,8 +217,9 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
                 modgac.setNumero_factura(gc.txtNumerofactura.getText());
                 modgac.setId_proveedor(gc.txtProveedor.getText());
                 modcon.setNombre_Concepto(gc.jcomboconcepto.getSelectedItem().toString());
-                modcon.buscarid(modcon);
-                modgac.setId_concepto(modcon.getId());
+                int ind = gc.jcomboconcepto.getSelectedIndex() - 1;
+                modgac.setId_concepto(listaConGas.get(ind).getId());
+
                 modgac.setObservaciones(gc.txaObservaciones.getText());
                 modgac.setSaldo(Double.parseDouble(gc.txtMonto.getText()));
                 if (modgac.getId_proveedor().equals("Seleccione el Proveedor")) {
@@ -269,7 +273,8 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
                     if (modcon.getNombre_Concepto().equals("Seleccione el Concepto")) {
                         JOptionPane.showMessageDialog(null, "seleccione un concepto");
                     } else {
-                        modgac.setId_concepto(modcon.getId());
+                        int ind = gc.jcomboconcepto.getSelectedIndex() - 1;
+                        modgac.setId_concepto(listaConGas.get(ind).getId());
                         modgac.setObservaciones(gc.txaObservaciones.getText());
                         modgac.setId(Integer.parseInt(gc.txtid.getText()));
                         modc.setMes_cierre(gc.jMonthChooser1.getMonth() + 1);
@@ -396,8 +401,28 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
             gc.txtid.setText(dato);
 
             gc.jcomboconcepto.removeAllItems();
+            if (modgac.getEstado().equals("Procesado") || modgac.getEstado().equals("Pagado") || modgac.getEstado().equals("Procesado y pagado")) {
+                gc.btnEliminar.setEnabled(false);
+                gc.btnModificar.setEnabled(false);
+                gc.btnGuardar.setEnabled(false);
+                gc.txaObservaciones.setEditable(false);
+                gc.txtMonto.setEditable(false);
+                gc.txtNumerofactura.setEditable(false);
+                gc.txtProveedor.setEditable(false);
+                gc.jcombotipo.setEditable(false);
+                gc.jcomboconcepto.setEditable(false);
+                gc.jcomboconcepto.addItem(modgac.getNombre_Concepto());
 
-            modcon.llenar_concepto(gc.jcomboconcepto);
+                JOptionPane.showMessageDialog(null, "los gastos procesados no pueden ser modificados ni eliminados");
+            } else {
+                gc.btnEliminar.setEnabled(true);
+                gc.btnModificar.setEnabled(true);
+                gc.btnGuardar.setEnabled(false);
+                listaConGas = modcon.listarConcepto();
+                crearCbxConcepto(listaConGas);
+
+            }
+
             gc.txtProveedor.setText(modgac.getId_proveedor());
             gc.jcomboconcepto.setSelectedItem(modgac.getNombre_Concepto());
             gc.jMonthChooser1.setMonth(modgac.getMes() - 1);
@@ -409,16 +434,6 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
             gc.txtMonto.setText(String.valueOf(Validacion.formato1.format(modgac.getMonto())));
             gc.txtNumerofactura.setText(modgac.getNumero_factura());
 
-            if (modgac.getEstado().equals("Procesado")) {
-                gc.btnEliminar.setEnabled(false);
-                gc.btnModificar.setEnabled(false);
-                gc.btnGuardar.setEnabled(false);
-                JOptionPane.showMessageDialog(null, "los gastos procesados no pueden ser modificados ni eliminados");
-            } else {
-                gc.btnEliminar.setEnabled(true);
-                gc.btnModificar.setEnabled(true);
-                gc.btnGuardar.setEnabled(false);
-            }
         }
         if (e.getSource() == buscpro.jTable1) {
             int fila1 = this.buscpro.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
@@ -530,5 +545,17 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
         jtableBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));
 
+    }
+
+    private void crearCbxConcepto(ArrayList<ModeloConceptoGastos> datos) {
+        gc.jcomboconcepto.addItem("Seleccione el Concepto");
+
+        if (datos != null) {
+            for (ModeloConceptoGastos datosX : datos) {
+                modcon = datosX;
+                gc.jcomboconcepto.addItem(modcon.getNombre_Concepto());
+            }
+
+        }
     }
 }

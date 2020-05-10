@@ -124,7 +124,7 @@ public class catalogoInactivoConceptoGastos extends javax.swing.JFrame {
         jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 20, 40, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Listado de Categoría Gastos Inactivos");
+        jLabel1.setText("Listado de Concepto Gastos Inactivos");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -143,12 +143,12 @@ public class catalogoInactivoConceptoGastos extends javax.swing.JFrame {
         btnActivar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnActivar.setForeground(new java.awt.Color(0, 54, 159));
         btnActivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by.png"))); // NOI18N
-        btnActivar.setText("Activar Categoría Gastos");
+        btnActivar.setText("Activar Concepto Gastos");
         btnActivar.setToolTipText("Activar los bancos seleccionados");
         btnActivar.setBorder(null);
         btnActivar.setBorderPainted(false);
         btnActivar.setContentAreaFilled(false);
-        btnActivar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnActivar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnActivar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by (1).png"))); // NOI18N
         btnActivar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by (1).png"))); // NOI18N
         btnActivar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by.png"))); // NOI18N

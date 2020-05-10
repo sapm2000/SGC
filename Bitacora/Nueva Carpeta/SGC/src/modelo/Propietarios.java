@@ -191,7 +191,7 @@ public class Propietarios extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT cedula, nombre, apellido, telefono, correo FROM puente_propietario_condominio right join propietarios on puente_propietario_condominio.id_propietario=propietarios.cedula where id_condominio=? group by propietarios.cedula ";
+        String sql = "SELECT cedula, nombre, apellido, telefono, correo FROM propietarios inner join puente_unidad_propietarios on propietarios.cedula=puente_unidad_propietarios.id_propietario inner join unidades on puente_unidad_propietarios.id_unidad=unidades.id where id_condominio=? group by cedula";
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_condominio());

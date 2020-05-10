@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -20,8 +21,10 @@ import modelo.ModeloConceptoGastos;
 import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.CategoriaGasto;
+import vista.catalogoInactivoConceptoGastos;
 
 public class controladorConceptoGasto implements ActionListener, MouseListener, KeyListener, WindowListener {
 
@@ -29,16 +32,20 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
     private conceptoGasto cga;
     private ModeloConceptoGastos modCatGas;
     private CategoriaGasto modCat;
+    private catalogoInactivoConceptoGastos cataicga;
     ArrayList<ModeloConceptoGastos> listaConGas;
     ArrayList<CategoriaGasto> listaCatGas;
     DefaultTableModel dm;
 
-    public controladorConceptoGasto(catalogoConceptoGasto catacga, conceptoGasto cga, ModeloConceptoGastos modCatGas, CategoriaGasto modCat) {
+    public controladorConceptoGasto(catalogoConceptoGasto catacga, conceptoGasto cga, ModeloConceptoGastos modCatGas, CategoriaGasto modCat, catalogoInactivoConceptoGastos cataicga) {
 
         this.catacga = catacga;
         this.cga = cga;
         this.modCatGas = modCatGas;
         this.modCat = modCat;
+        this.cataicga = cataicga;
+        this.catacga.btnActivar.addActionListener(this);
+        this.cataicga.btnActivar.addActionListener(this);
         this.catacga.btnNuevoRegistro.addActionListener(this);
         this.cga.btnGuardar.addActionListener(this);
         this.cga.btnLimpiar.addActionListener(this);
@@ -55,6 +62,30 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == catacga.btnActivar) {
+            this.cataicga.setVisible(true);
+            Llenartabla1(cataicga.jTable1);
+            addCheckBox(3, cataicga.jTable1);
+        }
+
+        if (e.getSource() == cataicga.btnActivar) {
+            listaConGas = modCatGas.listarConcepto1();
+
+            for (int i = 0; i < cataicga.jTable1.getRowCount(); i++) {
+                if (valueOf(cataicga.jTable1.getValueAt(i, 3)) == "true") {
+
+                    modCatGas.setId(listaConGas.get(i).getId());
+                    modCatGas.activar(modCatGas);
+                    modCat.setId(listaConGas.get(i).getId_categoria());
+
+                    modCat.activar(modCat);
+
+                }
+            }
+            Llenartabla1(cataicga.jTable1);
+            Llenartabla(catacga.jTable);
+
+        }
         if (e.getSource() == cga.btnGuardar) {
             if (validar()) {
                 modCatGas.setNombre_Concepto(cga.txtNombreC.getText());
@@ -98,17 +129,20 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
             }
         }
         if (e.getSource() == cga.btnEliminar) {
-
-            if (modCatGas.eliminar(modCatGas)) {
-                modCatGas.setId(Integer.parseInt(cga.txtId.getText()));
-                JOptionPane.showMessageDialog(null, "Registro Eliminado");
-                cga.dispose();
-                Llenartabla(catacga.jTable);
-
+            if (modCatGas.Buscargas(modCatGas)||modCatGas.Buscarcuo(modCatGas)) {
+                JOptionPane.showMessageDialog(null, "no se puede eliminar si tiene gastos por procesar asignados");
             } else {
+                if (modCatGas.eliminar(modCatGas)) {
+                    modCatGas.setId(Integer.parseInt(cga.txtId.getText()));
+                    JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                    cga.dispose();
+                    Llenartabla(catacga.jTable);
 
-                JOptionPane.showMessageDialog(null, "Error al Eliminar");
+                } else {
 
+                    JOptionPane.showMessageDialog(null, "Error al Eliminar");
+
+                }
             }
 
         }
@@ -178,6 +212,62 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
     }
 
+    public void Llenartabla1(JTable tablaD) {
+
+        listaConGas = modCatGas.listarConcepto1();
+
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+
+                if (column == 2) {
+                    resu = false;
+                }
+                if (column == 3) {
+                    resu = true;
+                }
+                return resu;
+            }
+
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
+
+        modeloT.addColumn("Concepto");
+        modeloT.addColumn("Descripción");
+        modeloT.addColumn("Categoría");
+        modeloT.addColumn("Seleccione");
+
+        Object[] columna = new Object[4];
+
+        int numRegistro = listaConGas.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listaConGas.get(i).getNombre_Concepto();
+            columna[1] = listaConGas.get(i).getDescripcion();
+            columna[2] = listaConGas.get(i).getNombreCategoria();
+
+            modeloT.addRow(columna);
+
+        }
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+    }
+
     private Boolean validar() {
 
         Boolean resultado = true;
@@ -220,8 +310,6 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
         jTableBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));
     }
-
-    
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -291,8 +379,8 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
     @Override
     public void windowOpened(WindowEvent e) {
         Llenartabla(catacga.jTable);
-        
-        Component[] components =cga.jPanel2.getComponents();
+
+        Component[] components = cga.jPanel2.getComponents();
         JComponent[] com = {
             cga.txtNombreC
         };
@@ -324,4 +412,9 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
     public void windowDeactivated(WindowEvent e) {
     }
 
+    public void addCheckBox(int column, JTable table) {
+        TableColumn tc = table.getColumnModel().getColumn(column);
+        tc.setCellEditor(table.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
+    }
 }
