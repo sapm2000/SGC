@@ -23,10 +23,10 @@ import javax.swing.JTable;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 
-public class unidadesInactivar extends javax.swing.JFrame {
+public class unidadesInactivas extends javax.swing.JFrame {
 
     /**
-     * Creates new form unidadesInactivar
+     * Creates new form unidadesInactivas
      */
     //Aquí cambias la trasparencia de la barra mientras el cursor está encima. Mientras mál alto el valor, menos transparente
     private static final int SCROLL_BAR_ALPHA_ROLLOVER = 150;
@@ -38,7 +38,7 @@ public class unidadesInactivar extends javax.swing.JFrame {
     //Aquí cambias el color de la barra
     private static final Color THUMB_COLOR = Color.BLUE;
 
-    public unidadesInactivar() {
+    public unidadesInactivas() {
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         jScrollPane2.getVerticalScrollBar().setUI(new MyScrollBarUI());
@@ -214,7 +214,7 @@ public class unidadesInactivar extends javax.swing.JFrame {
         btnDesactivar.setBorder(null);
         btnDesactivar.setBorderPainted(false);
         btnDesactivar.setContentAreaFilled(false);
-        btnDesactivar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDesactivar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnDesactivar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by (1).png"))); // NOI18N
         btnDesactivar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by (1).png"))); // NOI18N
         btnDesactivar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by.png"))); // NOI18N
@@ -262,20 +262,21 @@ public class unidadesInactivar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(unidadesInactivar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(unidadesInactivas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(unidadesInactivar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(unidadesInactivas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(unidadesInactivar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(unidadesInactivas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(unidadesInactivar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(unidadesInactivas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new unidadesInactivar().setVisible(true);
+                new unidadesInactivas().setVisible(true);
             }
         });
     }

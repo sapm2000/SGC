@@ -16,6 +16,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import static java.lang.String.valueOf;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -27,6 +28,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.Condominio;
 import modelo.Propietarios;
+import vista.catalogoInactivoPropietario;
 import vista.catalogoPropietarios;
 import vista.propietarios;
 
@@ -40,17 +42,19 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
     private catalogoPropietarios catapro;
     private Propietarios modpro;
     private Condominio modcon;
-
+    private catalogoInactivoPropietario cataipro;
     ArrayList<Propietarios> listaPropietarios;
     ArrayList<Condominio> listaCondo;
     DefaultTableModel dm;
 
-    public controladorPropietario(propietarios pro, catalogoPropietarios catapro, Propietarios modpro, Condominio modcon) {
+    public controladorPropietario(propietarios pro, catalogoPropietarios catapro, Propietarios modpro, Condominio modcon, catalogoInactivoPropietario cataipro) {
         this.pro = pro;
         this.catapro = catapro;
         this.modpro = modpro;
         this.modcon = modcon;
-
+        this.cataipro = cataipro;
+        this.catapro.btnActivar.addActionListener(this);
+        this.cataipro.btnActivar.addActionListener(this);
         this.catapro.btn_NuevoPropietario.addActionListener(this);
         this.catapro.addWindowListener(this);
         this.catapro.txtBuscarPropietarios.addKeyListener(this);
@@ -65,8 +69,6 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         pro.txtTelefono.addKeyListener(this);
         pro.txtCorreo.addKeyListener(this);
     }
-
-    
 
     public void Llenartabla(JTable tablaD) {
 
@@ -88,7 +90,6 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         modeloT.addColumn("Apellido");
         modeloT.addColumn("Teléfono");
         modeloT.addColumn("<html>Correo <br> Electrónico</html>");
-        
 
         Object[] columna = new Object[5];
 
@@ -101,7 +102,6 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
             columna[2] = listaPropietarios.get(i).getApellido();
             columna[3] = listaPropietarios.get(i).getTelefono();
             columna[4] = listaPropietarios.get(i).getCorreo();
-            
 
             modeloT.addRow(columna);
 
@@ -114,11 +114,100 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
-       
+
+    }
+
+    public void Llenartablainactivos(JTable tablaD) {
+
+        listaPropietarios = modpro.listarinactivos();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+                if (column == 2) {
+                    resu = false;
+                }
+                if (column == 3) {
+                    resu = false;
+                }
+                if (column == 4) {
+                    resu = false;
+                }
+                if (column == 5) {
+                    resu = true;
+                }
+
+                return resu;
+            }
+
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
+
+        modeloT.addColumn("<html>Cédula/<br>Rif</html>");
+        modeloT.addColumn("<html>Nombre/<br>Razón Social</html>");
+        modeloT.addColumn("Apellido");
+        modeloT.addColumn("Teléfono");
+        modeloT.addColumn("<html>Correo <br> Electrónico</html>");
+        modeloT.addColumn("Seleccione");
+
+        Object[] columna = new Object[6];
+
+        int numRegistro = listaPropietarios.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listaPropietarios.get(i).getCedula();
+            columna[1] = listaPropietarios.get(i).getNombre();
+            columna[2] = listaPropietarios.get(i).getApellido();
+            columna[3] = listaPropietarios.get(i).getTelefono();
+            columna[4] = listaPropietarios.get(i).getCorreo();
+
+            modeloT.addRow(columna);
+
+        }
+
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
 
     }
 
     public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == catapro.btnActivar) {
+            this.cataipro.setVisible(true);
+            Llenartablainactivos(cataipro.jTable1);
+            addCheckBox(5, cataipro.jTable1);
+        }
+        if (e.getSource() == cataipro.btnActivar) {
+            listaPropietarios = modpro.listarinactivos();
+
+            for (int i = 0; i < cataipro.jTable1.getRowCount(); i++) {
+                if (valueOf(cataipro.jTable1.getValueAt(i, 5)) == "true") {
+
+                    modpro.setCedula(listaPropietarios.get(i).getCedula());
+                    modpro.activar(modpro);
+
+                }
+            }
+            Llenartablainactivos(cataipro.jTable1);
+            addCheckBox(5, cataipro.jTable1);
+            Llenartabla(catapro.TablaPropietarios);
+        }
 
         if (e.getSource() == catapro.btn_NuevoPropietario) {
             this.pro.setVisible(true);
@@ -127,7 +216,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
             this.pro.btnEliminar.setEnabled(false);
             this.pro.txtCedula.setEnabled(true);
             this.catapro.addWindowListener(this);
-           
+
             pro.txtCedula.setText("");
             pro.txtApellido.setText("");
             pro.txtCorreo.setText("");
@@ -182,18 +271,25 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         }
 
         if (e.getSource() == pro.btnEliminar) {
-
-            if (modpro.eliminar(modpro)) {
-
-                modpro.setCedula(pro.txtCedula.getText());
-                JOptionPane.showMessageDialog(null, "Registro Eliminado");
-                pro.dispose();
-                Llenartabla(catapro.TablaPropietarios);
-
+            modpro.setCedula(pro.txtCedula.getText());
+           
+            if (modpro.buscarunidadesasociadas(modpro)) {
+                JOptionPane.showMessageDialog(null, "No puede eliminar un propietario con unidades asociadas");
             } else {
+                java.util.Date fecha = new Date();
+                java.sql.Date sqlDate = convert(fecha);
+                modpro.setFecha_hasta(sqlDate);
+                if (modpro.eliminar(modpro)) {
+                    modpro.eliminarpuenteuni(modpro);
+                    JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                    pro.dispose();
+                    Llenartabla(catapro.TablaPropietarios);
 
-                JOptionPane.showMessageDialog(null, "Error al Eliminar");
+                } else {
 
+                    JOptionPane.showMessageDialog(null, "Error al Eliminar");
+
+                }
             }
 
         }
@@ -290,7 +386,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         pro.btnModificar.setEnabled(true);
         pro.btnEliminar.setEnabled(true);
         modcon.setRif(modpro.getCedula());
-       
+
     }
 
     @Override
@@ -403,6 +499,15 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
 
     }
 
-  
+    public void addCheckBox(int column, JTable table) {
+        TableColumn tc = table.getColumnModel().getColumn(column);
+        tc.setCellEditor(table.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
+    }
+
+    private static java.sql.Date convert(java.util.Date uDate) {
+        java.sql.Date sDate = new java.sql.Date(uDate.getTime());
+        return sDate;
+    }
 
 }

@@ -27,6 +27,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.Condominio;
 import modelo.Interes;
+import vista.catalogoInactivoInteres;
 import vista.catalogoInteres;
 import vista.interes;
 
@@ -41,16 +42,19 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
     ArrayList<Condominio> listaCondo;
     private Condominio modcon;
     private Interes modin;
+    private catalogoInactivoInteres cataiin;
     DefaultTableModel dm;
     ArrayList<Interes> listainteres;
     ArrayList<Interes> listainteresmod;
 
-    public controladorInteres(interes in, catalogoInteres catain, Condominio modcon, Interes modin) {
+    public controladorInteres(interes in, catalogoInteres catain, Condominio modcon, Interes modin, catalogoInactivoInteres cataiin) {
         this.in = in;
         this.catain = catain;
         this.modcon = modcon;
         this.modin = modin;
-
+        this.cataiin = cataiin;
+        this.catain.btnActivar.addActionListener(this);
+        this.cataiin.btnActivar.addActionListener(this);
         this.catain.jButton2.addActionListener(this);
         this.catain.jTable1.addMouseListener(this);
         this.catain.jTextField1.addKeyListener(this);
@@ -156,6 +160,73 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
     }
 
+    public void Llenartablainteresinactivo(JTable tablaD) {
+
+        listainteres = modin.listarInteresinactivo();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+                if (column == 2) {
+                    resu = false;
+                }
+                if (column == 3) {
+                    resu = false;
+                }
+                if (column == 4) {
+                    resu = false;
+                }
+                if (column == 5) {
+                    resu = true;
+                }
+
+                return resu;
+
+            }
+
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
+
+        modeloT.addColumn("<html>Nº de <br> Interes</html>");
+        modeloT.addColumn("<html>Nombre de<br> Interes</html>");
+        modeloT.addColumn("Factor");
+        modeloT.addColumn("<html>Nº de <br> Condominios</html>");
+        modeloT.addColumn("Estatus");
+        modeloT.addColumn("Seleccione");
+
+        Object[] columna = new Object[6];
+
+        int numRegistro = listainteres.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listainteres.get(i).getId();
+            columna[1] = listainteres.get(i).getNombre();
+            columna[2] = listainteres.get(i).getFactor();
+            columna[3] = listainteres.get(i).getN_condominios();
+            columna[4] = listainteres.get(i).getEstado();
+
+            modeloT.addRow(columna);
+
+        }
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
+    }
+
     public void llenartablacondominiomod(JTable tablaD) {
         listainteresmod = modin.interescondominiomodificar();
         DefaultTableModel modeloT = new DefaultTableModel() {
@@ -209,6 +280,30 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
     }
 
     public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == catain.btnActivar) {
+            this.cataiin.setVisible(true);
+            Llenartablainteresinactivo(cataiin.jTable1);
+            addCheckBox(5, cataiin.jTable1);
+        }
+
+        if (e.getSource() == cataiin.btnActivar) {
+            listainteres = modin.listarInteresinactivo();
+
+            for (int i = 0; i < cataiin.jTable1.getRowCount(); i++) {
+                if (valueOf(cataiin.jTable1.getValueAt(i, 5)) == "true") {
+
+                    modin.setId(listainteres.get(i).getId());
+
+                    modin.activarInteres(modin);
+                    modin.activarpuente(modin);
+
+                }
+            }
+            Llenartablainteres(catain.jTable1);
+            Llenartablainteresinactivo(cataiin.jTable1);
+            addCheckBox(5, cataiin.jTable1);
+        }
 
         if (e.getSource() == catain.jButton2) {
             this.in.setVisible(true);
@@ -438,10 +533,10 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
     @Override
     public void windowOpened(WindowEvent e) {
         Llenartablainteres(catain.jTable1);
-        
-        Component[] components =in.jPanel2.getComponents();
+
+        Component[] components = in.jPanel2.getComponents();
         JComponent[] com = {
-            in.txtFactor,in.txtNombreinteres
+            in.txtFactor, in.txtNombreinteres
         };
         Validacion.copiar(components);
         Validacion.pegar(com);

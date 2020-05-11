@@ -61,7 +61,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
         this.as.btnGuardar.addActionListener(this);
 
-        this.as.btnModificar.addActionListener(this);
+        //this.as.btnModificar.addActionListener(this);
     }
 
     public void Llenartabla(JTable tablaD) {
@@ -264,7 +264,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
         if (e.getSource() == cataa.jButton2) {
             this.as.setVisible(true);
-            this.as.btnModificar.setEnabled(false);
+//            this.as.btnModificar.setEnabled(false);
             this.as.btnGuardar.setEnabled(true);
             modpro.setId_condominio(panta1.rif.getText());
             Llenartabla(as.jTable1);
@@ -324,7 +324,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
         }
 
-        if (e.getSource() == as.btnModificar) {
+/*        if (e.getSource() == as.btnModificar) {
             if (validar()) {
                 int j = 0;
 
@@ -373,6 +373,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
                 }
             }
         }
+*/
     }
 
     @Override
@@ -415,7 +416,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         llenartablapropietariomodificar(as.jTable1);
         addCheckBox(5, as.jTable1);;
         as.btnGuardar.setEnabled(false);
-        as.btnModificar.setEnabled(true);
+//        as.btnModificar.setEnabled(true);
     }
 
     @Override

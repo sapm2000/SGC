@@ -411,7 +411,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         interes in = new interes();
         Condominio modcon = new Condominio();
         Interes modin = new Interes();
-        controladorInteres controin = new controladorInteres(in, catain, modcon, modin);
+        catalogoInactivoInteres cataiin = new catalogoInactivoInteres();
+        controladorInteres controin = new controladorInteres(in, catain, modcon, modin, cataiin);
 
         catain.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -425,7 +426,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         propietarios prop = new propietarios();
         Propietarios modpro = new Propietarios();
         Condominio modcon = new Condominio();
-        controladorPropietario contropro = new controladorPropietario(prop, cataprop, modpro, modcon);
+        catalogoInactivoPropietario cataiprop = new catalogoInactivoPropietario();
+        controladorPropietario contropro = new controladorPropietario(prop, cataprop, modpro, modcon,cataiprop);
 
         cataprop.setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed

@@ -405,9 +405,11 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         detallecuenta detacun = new detallecuenta();
         detalleRecibo detare = new detalleRecibo();
         Unidades moduni = new Unidades();
+        catalogoInactivoUnidades cataiuni = new catalogoInactivoUnidades();
+        unidadesInactivas unii = new unidadesInactivas();
       
         CerrarMes modc = new CerrarMes();
-        controladorUnidades controuni = new controladorUnidades(uni, cataun, detacun, detare, moduni, this, modc);
+        controladorUnidades controuni = new controladorUnidades(uni, cataun, detacun, detare, moduni, this, modc, cataiuni, unii);
 
         cataun.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
