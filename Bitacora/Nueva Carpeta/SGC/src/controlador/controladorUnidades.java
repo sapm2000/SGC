@@ -34,6 +34,7 @@ import vista.catalogoUnidades;
 import vista.detalleRecibo;
 import vista.unidades;
 import vista.detallecuenta;
+import vista.unidadesInactivas;
 
 /**
  *
@@ -48,6 +49,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
     private Unidades moduni;
     private PantallaPrincipal1 panta1;
     private catalogoInactivoUnidades cataiuni;
+    private unidadesInactivas unii;
 
     private CerrarMes modc;
     ArrayList<Unidades> listapropietarios;
@@ -59,7 +61,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
     ArrayList<CerrarMes> listadetalleinteres;
     DefaultTableModel dm;
 
-    public controladorUnidades(unidades uni, catalogoUnidades catauni, detallecuenta detacun, detalleRecibo detare, Unidades moduni, PantallaPrincipal1 panta1, CerrarMes modc, catalogoInactivoUnidades cataiuni) {
+    public controladorUnidades(unidades uni, catalogoUnidades catauni, detallecuenta detacun, detalleRecibo detare, Unidades moduni, PantallaPrincipal1 panta1, CerrarMes modc, catalogoInactivoUnidades cataiuni, unidadesInactivas unii) {
         this.uni = uni;
         this.catauni = catauni;
         this.detacun = detacun;
@@ -67,16 +69,20 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         this.moduni = moduni;
         this.panta1 = panta1;
         this.cataiuni = cataiuni;
+        this.unii = unii;
+        this.unii.btnDesactivar.addActionListener(this);
 
-        this.cataiuni.btnActivar.addActionListener(this);
+        
         this.modc = modc;
         this.catauni.addWindowListener(this);
-        this.catauni.btnDesactivar.addActionListener(this);
+        this.catauni.btnActivar.addActionListener(this);
         this.catauni.jButton2.addActionListener(this);
+        this.cataiuni.jTable1.addMouseListener(this);
 
         this.uni.txtArea.addKeyListener(this);
 
         this.uni.txtNumeroUnidad.addKeyListener(this);
+        this.unii.jTable1.addMouseListener(this);
 
         this.catauni.jTable1.addMouseListener(this);
 
@@ -517,9 +523,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                 if (column == 2) {
                     resu = false;
                 }
-                if (column == 3) {
-                    resu = true;
-                }
 
                 return resu;
             }
@@ -534,9 +537,8 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         modeloT.addColumn("Dirección");
 
         modeloT.addColumn("Area (mts2)");
-        modeloT.addColumn("Seleccione");
 
-        Object[] columna = new Object[4];
+        Object[] columna = new Object[3];
 
         int numRegistro = listaunidades.size();
 
@@ -556,16 +558,15 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
 
     }
 
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource()== catauni.btnDesactivar) {
+        if (e.getSource() == catauni.btnActivar) {
             this.cataiuni.setVisible(true);
             llenartablaunidadesinactivas(cataiuni.jTable1);
-            addCheckBox(3,cataiuni.jTable1);
+
         }
         if (e.getSource() == catauni.jButton2) {
             this.uni.setVisible(true);
@@ -689,7 +690,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                                             moduni.setDocumento(String.valueOf(uni.jTable1.getValueAt(i, 5)));
                                             moduni.setId_puente(listapropietarios.get(i).getId_puente());
                                             moduni.actualizardocumento(moduni);
-                                            JOptionPane.showMessageDialog(null, "hola");
+
                                         }
                                     }
 
@@ -738,6 +739,71 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                 uni.dispose();
             }
         }
+        if (e.getSource() == unii.btnDesactivar) {
+            if (unii.jTable1.isEditing()) {//si se esta edtando la tabla
+                unii.jTable1.getCellEditor().stopCellEditing();//detenga la edicion
+            }
+            java.util.Date fecha = new Date();
+            java.sql.Date sqlDate = convert(fecha);
+            moduni.setId(Integer.parseInt(unii.txtId.getText()));
+            int j = 0;
+            int x = 0;
+            for (int i = 0; i < unii.jTable1.getRowCount(); i++) {
+                if (valueOf(unii.jTable1.getValueAt(i, 4)) == "true") {
+                    j = j + 1;
+                   
+
+                    if (!valueOf(unii.jTable1.getValueAt(i, 5)).equals("")) {
+                        x = x + 1;
+                        
+                    }
+
+                }
+            }
+            if (j == 0) {
+                JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
+            } else {
+                if (j != x) {
+                    JOptionPane.showMessageDialog(null, "debe ingresar el numero de documento en la tabla");
+                } else {
+                    listapropietarios = moduni.buscarPropietariomod();
+                    if (moduni.activarUnidad(moduni)) {
+                        JOptionPane.showMessageDialog(null, "Unidad restaurada");
+                        for (int w = 0; w < unii.jTable1.getRowCount(); w++) {
+
+                            if (listapropietarios.get(w).getId() != 0 && valueOf(unii.jTable1.getValueAt(w, 4)) == "true") {
+                                if (!listapropietarios.get(w).getDocumento().equals(valueOf(unii.jTable1.getValueAt(w, 5)))) {
+                                    moduni.setDocumento(String.valueOf(unii.jTable1.getValueAt(w, 5)));
+                                    moduni.setId_puente(listapropietarios.get(w).getId_puente());
+                                    moduni.actualizardocumento(moduni);
+                                }
+                            }
+
+                            if (listapropietarios.get(w).getId() != 0 && valueOf(unii.jTable1.getValueAt(w, 4)).equals("false")) {
+                                moduni.setFecha_hasta(sqlDate);
+                                moduni.setEstatus(0);
+                                moduni.setId_puente(listapropietarios.get(w).getId_puente());
+                                moduni.retirarpropietario(moduni);
+                            }
+
+                            if (listapropietarios.get(w).getId() == 0 && valueOf(unii.jTable1.getValueAt(w, 4)).equals("true")) {
+                                moduni.setCedula(valueOf(unii.jTable1.getValueAt(w, 0)));
+                                moduni.setDocumento(valueOf(unii.jTable1.getValueAt(w, 5)));
+                                moduni.setFecha_desde(sqlDate);
+                                moduni.setEstatus(1);
+                                moduni.registrar_propietario_unidad(moduni);
+                            }
+
+                        }
+                        llenartablaunidadesinactivas(cataiuni.jTable1);
+                        llenartablaunidades(catauni.jTable1);
+                        unii.dispose();
+                    }
+
+                }
+            }
+
+        }
 
         if (e.getSource() == uni.btnLimpiar) {
 
@@ -764,6 +830,15 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
             if (dato.equals("true")) {
                 uni.jTable1.editCellAt(fila, 5);
+            }
+        }
+
+        if (e.getSource() == unii.jTable1) {
+            int fila = this.unii.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+            String dato = String.valueOf(this.unii.jTable1.getValueAt(fila, 4)); // por ultimo, obtengo el valor de la celda
+
+            if (dato.equals("true")) {
+                unii.jTable1.editCellAt(fila, 5);
             }
         }
 
@@ -833,6 +908,24 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
             detare.txtAlicuota.setText(String.valueOf(Validacion.formatoalicuota.format(modc.getAlicuota())));
             detare.txtTotal.setText(String.valueOf(Validacion.formato1.format(modc.getMonto())));
+        }
+
+        if (e.getSource() == cataiuni.jTable1) {
+            int fila = this.cataiuni.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+            String dato = String.valueOf(this.cataiuni.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+
+            moduni.setN_unidad(String.valueOf(dato));
+            unii.setVisible(true);
+            unii.txtId.setVisible(false);
+            moduni.setId_condominio(panta1.rif.getText());
+            moduni.buscarUnidad(moduni);
+            unii.txadireccion.setText(moduni.getDireccion());
+            unii.txtArea.setText(String.valueOf(moduni.getArea()));
+
+            unii.txtId.setText(String.valueOf(moduni.getId()));
+            unii.txtNumeroUnidad.setText(moduni.getN_unidad());
+            llenartablapropietariosmod(unii.jTable1);
+            addCheckBox(4, unii.jTable1);
         }
     }
 

@@ -272,6 +272,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
 
         if (e.getSource() == pro.btnEliminar) {
             modpro.setCedula(pro.txtCedula.getText());
+           
             if (modpro.buscarunidadesasociadas(modpro)) {
                 JOptionPane.showMessageDialog(null, "No puede eliminar un propietario con unidades asociadas");
             } else {

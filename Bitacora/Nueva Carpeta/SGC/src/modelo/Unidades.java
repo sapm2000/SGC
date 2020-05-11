@@ -550,7 +550,7 @@ public class Unidades extends Propietarios {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE puente_unidad_propietarios SET documento=? WHERE id=?;";
+        String sql = "UPDATE puente_unidad_propietarios SET documento=?, activo=1 WHERE id=?;";
 
         try {
 
@@ -659,6 +659,41 @@ public class Unidades extends Propietarios {
         Connection con = getConexion();
 
         String sql = "UPDATE unidades SET activo=0 WHERE id=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, getId());
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+    
+    public boolean activarUnidad(Unidades moduni) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE unidades SET activo=1 WHERE id=?";
 
         try {
 
