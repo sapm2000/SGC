@@ -72,7 +72,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         this.unii = unii;
         this.unii.btnDesactivar.addActionListener(this);
 
-        
         this.modc = modc;
         this.catauni.addWindowListener(this);
         this.catauni.btnActivar.addActionListener(this);
@@ -731,13 +730,93 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             if (moduni.buscarsancion(moduni)) {
                 JOptionPane.showMessageDialog(null, "No puede eliminar unidades que tengan sanciones pendientes");
             } else {
+                if (uni.jTable1.isEditing()) {//si se esta edtando la tabla
+                    uni.jTable1.getCellEditor().stopCellEditing();//detenga la edicion
+                }
+                java.util.Date fecha = new Date();
+                java.sql.Date sqlDate = convert(fecha);
+                moduni.setN_unidad(uni.txtNumeroUnidad.getText());
+                moduni.setArea(Double.parseDouble(uni.txtArea.getText()));
+                moduni.setDireccion(uni.txadireccion.getText());
+                moduni.setId_condominio(panta1.rif.getText());
                 moduni.setId(Integer.parseInt(uni.txtId.getText()));
-                moduni.eliminarUnidad(moduni);
-                moduni.eliminarPuenteUnidad(moduni);
-                JOptionPane.showMessageDialog(null, "registro eliminado");
-                llenartablaunidades(catauni.jTable1);
-                uni.dispose();
+                int j = 0;
+                int x = 0;
+                for (int i = 0; i < uni.jTable1.getRowCount(); i++) {
+                    if (valueOf(uni.jTable1.getValueAt(i, 4)) == "true") {
+                        j = j + 1;
+
+                        if (!valueOf(uni.jTable1.getValueAt(i, 5)).equals("")) {
+                            x = x + 1;
+                        }
+
+                    }
+                }
+                if (j == 0) {
+                    JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
+                } else {
+                    if (j != x) {
+                        JOptionPane.showMessageDialog(null, "debe ingresar el numero de documento en la tabla");
+                    } else {
+
+                        if (moduni.buscarepe(moduni) && !moduni.getN_unidad().equals(uni.txtNumeroUnidad.getText())) {
+                            JOptionPane.showMessageDialog(null, "Este condiminio ya tiene este numero de unidad asignada");
+                        } else {
+
+                            if (moduni.modificarUnidades(moduni)) {
+                                listapropietarios = moduni.buscarPropietariomod();
+                                for (int i = 0; i < uni.jTable1.getRowCount(); i++) {
+
+                                    if (listapropietarios.get(i).getId() != 0 && valueOf(uni.jTable1.getValueAt(i, 4)) == "true") {
+                                        if (!listapropietarios.get(i).getDocumento().equals(valueOf(uni.jTable1.getValueAt(i, 5)))) {
+                                            moduni.setDocumento(String.valueOf(uni.jTable1.getValueAt(i, 5)));
+                                            moduni.setId_puente(listapropietarios.get(i).getId_puente());
+                                            moduni.actualizardocumento(moduni);
+
+                                        }
+                                    }
+
+                                    if (listapropietarios.get(i).getId() != 0 && valueOf(uni.jTable1.getValueAt(i, 4)).equals("false")) {
+                                        moduni.setFecha_hasta(sqlDate);
+                                        moduni.setEstatus(0);
+                                        moduni.setId_puente(listapropietarios.get(i).getId_puente());
+                                        moduni.retirarpropietario(moduni);
+                                    }
+
+                                    if (listapropietarios.get(i).getId() == 0 && valueOf(uni.jTable1.getValueAt(i, 4)).equals("true")) {
+                                        moduni.setCedula(valueOf(uni.jTable1.getValueAt(i, 0)));
+                                        moduni.setDocumento(valueOf(uni.jTable1.getValueAt(i, 5)));
+                                        moduni.setFecha_desde(sqlDate);
+                                        moduni.setEstatus(1);
+                                        moduni.registrar_propietario_unidad(moduni);
+                                    }
+
+                                }
+
+                                moduni.setId(Integer.parseInt(uni.txtId.getText()));
+                                moduni.eliminarUnidad(moduni);
+                                moduni.eliminarPuenteUnidad(moduni);
+                               
+                                llenartablaunidades(catauni.jTable1);
+                                uni.dispose();
+
+                                JOptionPane.showMessageDialog(null, "Registro Modificado");
+                                llenartablaunidades(catauni.jTable1);
+
+                                uni.dispose();
+
+                            } else {
+
+                                JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                            }
+
+                        }
+                    }
+                }
+
             }
+
         }
         if (e.getSource() == unii.btnDesactivar) {
             if (unii.jTable1.isEditing()) {//si se esta edtando la tabla
@@ -751,11 +830,10 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             for (int i = 0; i < unii.jTable1.getRowCount(); i++) {
                 if (valueOf(unii.jTable1.getValueAt(i, 4)) == "true") {
                     j = j + 1;
-                   
 
                     if (!valueOf(unii.jTable1.getValueAt(i, 5)).equals("")) {
                         x = x + 1;
-                        
+
                     }
 
                 }
