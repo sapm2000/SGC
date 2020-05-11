@@ -658,11 +658,16 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         }
 
         if (e.getSource() == uni.btnEliminar) {
-
+            if (moduni.buscarsancion(moduni)) {
+                JOptionPane.showMessageDialog(null, "No puede eliminar unidades que tengan sanciones pendientes");
+            } else {
+            moduni.setId(Integer.parseInt(uni.txtId.getText()));
             moduni.eliminarUnidad(moduni);
+            moduni.eliminarPuenteUnidad(moduni);
             JOptionPane.showMessageDialog(null, "registro eliminado");
             llenartablaunidades(catauni.jTable1);
             uni.dispose();
+        }
         }
 
         if (e.getSource() == uni.btnLimpiar) {

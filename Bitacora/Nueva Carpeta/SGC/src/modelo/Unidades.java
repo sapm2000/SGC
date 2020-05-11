@@ -150,7 +150,7 @@ public class Unidades extends Propietarios {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO puente_unidad_propietarios(id_propietario, id_unidad, fecha_desde, documento, estado) VALUES (?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO puente_unidad_propietarios(id_propietario, id_unidad, fecha_desde, documento, estado, activo) VALUES (?, ?, ?, ?, ?, 1);";
 
         try {
 
@@ -194,7 +194,7 @@ public class Unidades extends Propietarios {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "	SELECT cedula, nombre, telefono, correo	FROM propietarios;";
+        String sql = "	SELECT cedula, nombre, telefono, correo	FROM propietarios where activo=1;";
         try {
             ps = con.prepareStatement(sql);
 
@@ -233,7 +233,7 @@ public class Unidades extends Propietarios {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT id, cedula, nombre, telefono, correo, id_unidad, fecha_desde, fecha_hasta, estado, documento FROM propietarios left join puente_unidad_propietarios on puente_unidad_propietarios.id_propietario=propietarios.cedula and id_unidad=? and not estado=0";
+        String sql = "SELECT id, cedula, nombre, telefono, correo, id_unidad, fecha_desde, fecha_hasta, estado, documento FROM propietarios left join puente_unidad_propietarios on puente_unidad_propietarios.id_propietario=propietarios.cedula  and  id_unidad=? and not estado=0 where propietarios.activo=1";
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
@@ -274,7 +274,7 @@ public class Unidades extends Propietarios {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO unidades( n_unidad, direccion, area, id_condominio) VALUES (?, ?, ?, ?);";
+        String sql = "INSERT INTO unidades( n_unidad, direccion, area, id_condominio,activo) VALUES (?, ?, ?, ?, 1);";
 
         try {
 
@@ -311,7 +311,7 @@ public class Unidades extends Propietarios {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT id, n_unidad, direccion, area  from unidades  where id_condominio=?;";
+        String sql = "SELECT id, n_unidad, direccion, area  from unidades  where id_condominio=? and activo=1;";
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_condominio());
@@ -361,6 +361,47 @@ public class Unidades extends Propietarios {
                 moduni.setDireccion(rs.getString("direccion"));
 
                 moduni.setArea(rs.getInt("area"));
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+    
+    public boolean buscarsancion(Unidades moduni) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT * FROM unidades inner join puente_sancion_unidad on puente_sancion_unidad.id_unidad=unidades.id inner join sancion on puente_sancion_unidad.id_sancion=sancion.id where unidades.id=? and estado='Pendiente'";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, moduni.getId());
+          
+            rs = ps.executeQuery();
+            if (rs.next()) {
+              
 
                 return true;
             }
@@ -505,7 +546,7 @@ public class Unidades extends Propietarios {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE puente_unidad_propietarios SET fecha_hasta=?, estado=? WHERE id=?;";
+        String sql = "UPDATE puente_unidad_propietarios SET fecha_hasta=?, estado=?, activo=0 WHERE id=?;";
 
         try {
 
@@ -537,17 +578,52 @@ public class Unidades extends Propietarios {
 
     }
 
+    public boolean eliminarPuenteUnidad(Unidades moduni) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE puente_unidad_propietarios SET activo=0 WHERE id_unidad=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, getId());
+            
+
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
     public boolean eliminarUnidad(Unidades moduni) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "DELETE FROM unidades WHERE n_unidad=?";
+        String sql = "UPDATE unidades SET activo=0 WHERE id=?";
 
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, getN_unidad());
+            ps.setInt(1, getId());
             ps.execute();
 
             return true;

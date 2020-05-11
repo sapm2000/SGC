@@ -6,6 +6,7 @@
 package modelo;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,6 +27,17 @@ public class Propietarios extends ConexionBD {
     private String correo;
     private String id_condominio;
     private int cantidad;
+    private java.sql.Date fecha_hasta;
+
+    public Date getFecha_hasta() {
+        return fecha_hasta;
+    }
+
+    public void setFecha_hasta(Date fecha_hasta) {
+        this.fecha_hasta = fecha_hasta;
+    }
+    
+    
 
     public int getCantidad() {
         return cantidad;
@@ -103,7 +115,7 @@ public class Propietarios extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO propietarios(cedula, nombre, apellido, telefono, correo) VALUES (?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO propietarios(cedula, nombre, apellido, telefono, correo, activo) VALUES (?, ?, ?, ?, ?, 1);";
 
         try {
 
@@ -138,6 +150,43 @@ public class Propietarios extends ConexionBD {
         }
 
     }
+    
+    public boolean eliminarpuenteuni(Propietarios modpro) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE puente_unidad_propietarios SET fecha_hasta=?, estado=0 WHERE id_propietario=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setDate(1, getFecha_hasta());
+            ps.setString(2, getCedula());
+            
+
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
 
     public ArrayList<Propietarios> listar() {
         ArrayList listaPropietarios = new ArrayList();
@@ -147,7 +196,51 @@ public class Propietarios extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT cedula, nombre, apellido, telefono, correo FROM propietarios";
+        String sql = "SELECT cedula, nombre, apellido, telefono, correo FROM propietarios where activo=1";
+        try {
+            ps = con.prepareStatement(sql);
+           
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modpro = new Propietarios();
+
+                modpro.setCedula(rs.getString(1));
+                modpro.setNombre(rs.getString(2));
+                modpro.setApellido(rs.getString(3));
+                modpro.setTelefono(rs.getString(4));
+                modpro.setCorreo(rs.getString(5));
+               
+
+                listaPropietarios.add(modpro);
+            }
+        } catch (Exception e) {
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+        return listaPropietarios;
+    }
+    
+    public ArrayList<Propietarios> listarinactivos() {
+        ArrayList listaPropietarios = new ArrayList();
+        Propietarios modpro;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT cedula, nombre, apellido, telefono, correo FROM propietarios where activo=0";
         try {
             ps = con.prepareStatement(sql);
            
@@ -191,7 +284,7 @@ public class Propietarios extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT cedula, nombre, apellido, telefono, correo FROM propietarios inner join puente_unidad_propietarios on propietarios.cedula=puente_unidad_propietarios.id_propietario inner join unidades on puente_unidad_propietarios.id_unidad=unidades.id where id_condominio=? group by cedula";
+        String sql = "SELECT cedula, nombre, apellido, telefono, correo FROM propietarios inner join puente_unidad_propietarios on propietarios.cedula=puente_unidad_propietarios.id_propietario inner join unidades on puente_unidad_propietarios.id_unidad=unidades.id where id_condominio=? and propietarios.activo=1 group by cedula";
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_condominio());
@@ -273,6 +366,47 @@ public class Propietarios extends ConexionBD {
 
     }
     
+    public boolean buscarunidadesasociadas(Propietarios modpro) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT * FROM puente_unidad_propietarios where id_propietario=? and activo=1;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, modpro.getCedula());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+               
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+    
      
 
     public boolean modificar(Propietarios modpro) {
@@ -319,7 +453,42 @@ public class Propietarios extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "DELETE FROM propietarios WHERE cedula=?";
+        String sql = "UPDATE propietarios SET activo=0 WHERE cedula=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getCedula());
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+    
+    public boolean activar(Propietarios modpro) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE propietarios SET activo=1 WHERE cedula=?";
 
         try {
 

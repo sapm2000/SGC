@@ -77,7 +77,7 @@ public class Interes extends Condominio {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO interes(nombre, factor, estado) VALUES (?, ?, ?);";
+        String sql = "INSERT INTO interes(nombre, factor, estado, activo) VALUES (?, ?, ?, 1);";
 
         try {
 
@@ -157,7 +157,7 @@ public class Interes extends Condominio {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO puente_interes_condominio(id_condominio, id_interes) VALUES (?, ?);";
+        String sql = "INSERT INTO puente_interes_condominio(id_condominio, id_interes, activo) VALUES (?, ?, 1);";
 
         try {
 
@@ -197,7 +197,49 @@ public class Interes extends Condominio {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "select interes.id, interes.nombre, interes.factor, interes.estado, count(puente_interes_condominio.id_interes) as condominio  from interes inner join puente_interes_condominio on interes.id=puente_interes_condominio.id_interes group by interes.id";
+        String sql = "select interes.id, interes.nombre, interes.factor, interes.estado, count(puente_interes_condominio.id_interes) as condominio  from interes inner join puente_interes_condominio on interes.id=puente_interes_condominio.id_interes where interes.activo=1 group by interes.id";
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modin = new Interes();
+
+                modin.setId(rs.getInt(1));
+                modin.setNombre(rs.getString(2));
+                modin.setFactor(rs.getDouble(3));
+                modin.setEstado(rs.getString(4));
+                modin.setN_condominios(rs.getInt(5));
+
+                listainteres.add(modin);
+            }
+        } catch (Exception e) {
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+        return listainteres;
+    }
+    
+    public ArrayList<Interes> listarInteresinactivo() {
+        ArrayList listainteres = new ArrayList();
+        Interes modin;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "select interes.id, interes.nombre, interes.factor, interes.estado, count(puente_interes_condominio.id_interes) as condominio  from interes inner join puente_interes_condominio on interes.id=puente_interes_condominio.id_interes where interes.activo=0 group by interes.id";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -399,7 +441,7 @@ public class Interes extends Condominio {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "DELETE FROM puente_interes_condominio WHERE id_interes=?";
+        String sql = "UPDATE puente_interes_condominio SET activo=0 WHERE id_interes=?";
 
         try {
 
@@ -434,7 +476,77 @@ public class Interes extends Condominio {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "DELETE FROM interes WHERE id=?";
+        String sql = "UPDATE interes SET activo=0, estado='Inactivo' WHERE id=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, getId());
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+    
+     public boolean activarpuente(Interes modin) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE puente_interes_condominio SET activo=1 WHERE id_interes=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, getId());
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
+    public boolean activarInteres(Interes modin) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE interes SET activo=1, estado='Activo' WHERE id=?";
 
         try {
 
