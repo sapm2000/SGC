@@ -29,6 +29,7 @@ import javax.swing.table.TableRowSorter;
 import modelo.CerrarMes;
 import modelo.Unidades;
 import vista.PantallaPrincipal1;
+import vista.catalogoInactivoUnidades;
 import vista.catalogoUnidades;
 import vista.detalleRecibo;
 import vista.unidades;
@@ -46,6 +47,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
     private detalleRecibo detare;
     private Unidades moduni;
     private PantallaPrincipal1 panta1;
+    private catalogoInactivoUnidades cataiuni;
 
     private CerrarMes modc;
     ArrayList<Unidades> listapropietarios;
@@ -57,17 +59,19 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
     ArrayList<CerrarMes> listadetalleinteres;
     DefaultTableModel dm;
 
-    public controladorUnidades(unidades uni, catalogoUnidades catauni, detallecuenta detacun, detalleRecibo detare, Unidades moduni, PantallaPrincipal1 panta1, CerrarMes modc) {
+    public controladorUnidades(unidades uni, catalogoUnidades catauni, detallecuenta detacun, detalleRecibo detare, Unidades moduni, PantallaPrincipal1 panta1, CerrarMes modc, catalogoInactivoUnidades cataiuni) {
         this.uni = uni;
         this.catauni = catauni;
         this.detacun = detacun;
         this.detare = detare;
         this.moduni = moduni;
         this.panta1 = panta1;
+        this.cataiuni = cataiuni;
 
+        this.cataiuni.btnActivar.addActionListener(this);
         this.modc = modc;
         this.catauni.addWindowListener(this);
-
+        this.catauni.btnDesactivar.addActionListener(this);
         this.catauni.jButton2.addActionListener(this);
 
         this.uni.txtArea.addKeyListener(this);
@@ -496,8 +500,73 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
     }
 
+    public void llenartablaunidadesinactivas(JTable tablaD) {
+
+        listaunidades = moduni.buscarUnidadesinactivas();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+                if (column == 2) {
+                    resu = false;
+                }
+                if (column == 3) {
+                    resu = true;
+                }
+
+                return resu;
+            }
+
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
+
+        modeloT.addColumn("<html>Número de <br> Unidad</html>");
+
+        modeloT.addColumn("Dirección");
+
+        modeloT.addColumn("Area (mts2)");
+        modeloT.addColumn("Seleccione");
+
+        Object[] columna = new Object[4];
+
+        int numRegistro = listaunidades.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listaunidades.get(i).getN_unidad();
+
+            columna[1] = listaunidades.get(i).getDireccion();
+
+            columna[2] = listaunidades.get(i).getArea();
+
+            modeloT.addRow(columna);
+
+        }
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+
+    }
+
     public void actionPerformed(ActionEvent e) {
 
+        if (e.getSource()== catauni.btnDesactivar) {
+            this.cataiuni.setVisible(true);
+            llenartablaunidadesinactivas(cataiuni.jTable1);
+            addCheckBox(3,cataiuni.jTable1);
+        }
         if (e.getSource() == catauni.jButton2) {
             this.uni.setVisible(true);
             this.uni.btnModificar.setEnabled(false);
@@ -578,7 +647,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
         if (e.getSource() == uni.btnModificar) {
             if (validar()) {
-                 if (uni.jTable1.isEditing()) {//si se esta edtando la tabla
+                if (uni.jTable1.isEditing()) {//si se esta edtando la tabla
                     uni.jTable1.getCellEditor().stopCellEditing();//detenga la edicion
                 }
                 java.util.Date fecha = new Date();
@@ -615,7 +684,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                                 listapropietarios = moduni.buscarPropietariomod();
                                 for (int i = 0; i < uni.jTable1.getRowCount(); i++) {
 
-                                    if (listapropietarios.get(i).getId() != 0 && valueOf(uni.jTable1.getValueAt(i, 4))=="true") {
+                                    if (listapropietarios.get(i).getId() != 0 && valueOf(uni.jTable1.getValueAt(i, 4)) == "true") {
                                         if (!listapropietarios.get(i).getDocumento().equals(valueOf(uni.jTable1.getValueAt(i, 5)))) {
                                             moduni.setDocumento(String.valueOf(uni.jTable1.getValueAt(i, 5)));
                                             moduni.setId_puente(listapropietarios.get(i).getId_puente());
@@ -630,7 +699,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                                         moduni.setId_puente(listapropietarios.get(i).getId_puente());
                                         moduni.retirarpropietario(moduni);
                                     }
-                                    
+
                                     if (listapropietarios.get(i).getId() == 0 && valueOf(uni.jTable1.getValueAt(i, 4)).equals("true")) {
                                         moduni.setCedula(valueOf(uni.jTable1.getValueAt(i, 0)));
                                         moduni.setDocumento(valueOf(uni.jTable1.getValueAt(i, 5)));
@@ -661,13 +730,13 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             if (moduni.buscarsancion(moduni)) {
                 JOptionPane.showMessageDialog(null, "No puede eliminar unidades que tengan sanciones pendientes");
             } else {
-            moduni.setId(Integer.parseInt(uni.txtId.getText()));
-            moduni.eliminarUnidad(moduni);
-            moduni.eliminarPuenteUnidad(moduni);
-            JOptionPane.showMessageDialog(null, "registro eliminado");
-            llenartablaunidades(catauni.jTable1);
-            uni.dispose();
-        }
+                moduni.setId(Integer.parseInt(uni.txtId.getText()));
+                moduni.eliminarUnidad(moduni);
+                moduni.eliminarPuenteUnidad(moduni);
+                JOptionPane.showMessageDialog(null, "registro eliminado");
+                llenartablaunidades(catauni.jTable1);
+                uni.dispose();
+            }
         }
 
         if (e.getSource() == uni.btnLimpiar) {
