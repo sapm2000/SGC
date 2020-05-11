@@ -5,6 +5,10 @@
  */
 package vista;
 
+/**
+ *
+ * @author Maryo
+ */
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -19,14 +23,10 @@ import javax.swing.JTable;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 
-/**
- *
- * @author rma
- */
-public class unidades extends javax.swing.JFrame {
+public class unidadesInactivar extends javax.swing.JFrame {
 
     /**
-     * Creates new form Unidades
+     * Creates new form unidadesInactivar
      */
     //Aquí cambias la trasparencia de la barra mientras el cursor está encima. Mientras mál alto el valor, menos transparente
     private static final int SCROLL_BAR_ALPHA_ROLLOVER = 150;
@@ -38,7 +38,7 @@ public class unidades extends javax.swing.JFrame {
     //Aquí cambias el color de la barra
     private static final Color THUMB_COLOR = Color.BLUE;
 
-    public unidades() {
+    public unidadesInactivar() {
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         jScrollPane2.getVerticalScrollBar().setUI(new MyScrollBarUI());
@@ -55,8 +55,12 @@ public class unidades extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton5 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        btnSalir = new javax.swing.JButton();
+        btnMinimizar = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -69,32 +73,70 @@ public class unidades extends javax.swing.JFrame {
         txadireccion = new javax.swing.JTextArea();
         txtId = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        btnMinimizar = new javax.swing.JButton();
-        btnSalir = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        btnGuardar = new javax.swing.JButton();
-        btnModificar = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
-        jSeparator8 = new javax.swing.JSeparator();
-        jSeparator9 = new javax.swing.JSeparator();
-        btnEliminar = new javax.swing.JButton();
-        jSeparator10 = new javax.swing.JSeparator();
-        jLabel11 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        btnDesactivar = new javax.swing.JButton();
 
-        jButton5.setText("jButton5");
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setUndecorated(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 94, 159), 5, true));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "<html>Cédula/<br> Rif</html>", "<html>Nombre/<br>Razón Social</html>", "Apellido", "Teléfono", "<html>Correo <br> Electrónico</html>"
+            }
+        ));
+        jTable1.setRowHeight(35);
+        jScrollPane2.setViewportView(jTable1);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 460, 280));
+
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
+        btnSalir.setToolTipText("Cerrar");
+        btnSalir.setBorder(null);
+        btnSalir.setBorderPainted(false);
+        btnSalir.setContentAreaFilled(false);
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
+        btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
+        btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, 30));
+
+        btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
+        btnMinimizar.setToolTipText("Minimizar");
+        btnMinimizar.setBorder(null);
+        btnMinimizar.setBorderPainted(false);
+        btnMinimizar.setContentAreaFilled(false);
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
+        btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
+        btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
+        btnMinimizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinimizarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, 40, 30));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 19)); // NOI18N
+        jLabel10.setText("Registro de Unidades");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(0, 94, 159));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -156,147 +198,32 @@ public class unidades extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 500, 300));
 
-        btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
-        btnMinimizar.setToolTipText("Minimizar");
-        btnMinimizar.setBorder(null);
-        btnMinimizar.setBorderPainted(false);
-        btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
-        btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
-        btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
-        btnMinimizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMinimizarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, 40, 30));
-
-        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
-        btnSalir.setToolTipText("Cerrar");
-        btnSalir.setBorder(null);
-        btnSalir.setBorderPainted(false);
-        btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
-        btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
-        btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, 30));
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 19)); // NOI18N
-        jLabel10.setText("Registro de Unidades");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
-
-        jPanel3.setBackground(new java.awt.Color(0, 94, 159));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salvar.png"))); // NOI18N
-        btnGuardar.setToolTipText("Guardar");
-        btnGuardar.setBorder(null);
-        btnGuardar.setBorderPainted(false);
-        btnGuardar.setContentAreaFilled(false);
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
-        btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
-        btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 70, -1));
-        //btnGuardar.addActionListener(ctrl);
-
-        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato.png"))); // NOI18N
-        btnModificar.setToolTipText("Modificar");
-        btnModificar.setBorder(null);
-        btnModificar.setBorderPainted(false);
-        btnModificar.setContentAreaFilled(false);
-        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnModificar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
-        btnModificar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
-        btnModificar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
-        jPanel3.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 70, 70));
-        //btnMinimizar.addActionListener(ctrl);
-
-        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo.png"))); // NOI18N
-        btnLimpiar.setToolTipText("Limpiar todo");
-        btnLimpiar.setBorderPainted(false);
-        btnLimpiar.setContentAreaFilled(false);
-        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnLimpiar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
-        btnLimpiar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
-        btnLimpiar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
-        jPanel3.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 70, 70));
-
-        jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
-        jSeparator8.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel3.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 10, 70));
-
-        jSeparator9.setForeground(new java.awt.Color(255, 255, 255));
-        jSeparator9.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel3.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 10, 70));
-
-        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (4).png"))); // NOI18N
-        btnEliminar.setToolTipText("Eliminar");
-        btnEliminar.setBorder(null);
-        btnEliminar.setBorderPainted(false);
-        btnEliminar.setContentAreaFilled(false);
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (2).png"))); // NOI18N
-        btnEliminar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (2).png"))); // NOI18N
-        btnEliminar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (2).png"))); // NOI18N
-        jPanel3.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 70, 70));
-        //btnMinimizar.addActionListener(ctrl);
-
-        jSeparator10.setForeground(new java.awt.Color(255, 255, 255));
-        jSeparator10.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel3.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 10, 70));
-
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 760, 360, 80));
-
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondobtn1chiqui.png"))); // NOI18N
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 740, -1, 90));
-
-        jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "<html>Cédula/<br> Rif</html>", "<html>Nombre/<br>Razón Social</html>", "Apellido", "Teléfono", "<html>Correo <br> Electrónico</html>"
-            }
-        ));
-        jTable1.setRowHeight(35);
-        jScrollPane2.setViewportView(jTable1);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 460, 280));
-
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, 300));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 54, 159));
         jLabel9.setText("Seleccione al o los propietarios");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 840));
+        btnDesactivar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnDesactivar.setForeground(new java.awt.Color(0, 94, 159));
+        btnDesactivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by.png"))); // NOI18N
+        btnDesactivar.setText("Activar Unidad");
+        btnDesactivar.setToolTipText("Activar unidad en pantalla");
+        btnDesactivar.setBorder(null);
+        btnDesactivar.setBorderPainted(false);
+        btnDesactivar.setContentAreaFilled(false);
+        btnDesactivar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDesactivar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by (1).png"))); // NOI18N
+        btnDesactivar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by (1).png"))); // NOI18N
+        btnDesactivar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by.png"))); // NOI18N
+        jPanel1.add(btnDesactivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 740));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
-        this.setState(vista.InicioUsuario.ICONIFIED);
-    }//GEN-LAST:event_btnMinimizarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         try {
@@ -314,9 +241,9 @@ public class unidades extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarActionPerformed
+    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
+        this.setState(vista.InicioUsuario.ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -335,36 +262,30 @@ public class unidades extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(unidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(unidadesInactivar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(unidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(unidadesInactivar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(unidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(unidadesInactivar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(unidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(unidadesInactivar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new unidades().setVisible(true);
+                new unidadesInactivar().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnEliminar;
-    public javax.swing.JButton btnGuardar;
-    public javax.swing.JButton btnLimpiar;
+    public javax.swing.JButton btnDesactivar;
     public javax.swing.JButton btnMinimizar;
-    public javax.swing.JButton btnModificar;
     public javax.swing.JButton btnSalir;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -372,14 +293,10 @@ public class unidades extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JSeparator jSeparator8;
-    private javax.swing.JSeparator jSeparator9;
     public javax.swing.JTable jTable1;
     public javax.swing.JTextArea txadireccion;
     public javax.swing.JTextField txtArea;

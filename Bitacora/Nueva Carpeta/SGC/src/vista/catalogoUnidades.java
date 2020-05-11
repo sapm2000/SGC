@@ -236,7 +236,7 @@ public class catalogoUnidades extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnDesactivar;
+    private javax.swing.JButton btnDesactivar;
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnSalir;
     public javax.swing.JButton jButton2;
