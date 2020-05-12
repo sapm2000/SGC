@@ -796,7 +796,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                                 moduni.setId(Integer.parseInt(uni.txtId.getText()));
                                 moduni.eliminarUnidad(moduni);
                                 moduni.eliminarPuenteUnidad(moduni);
-                               
+
                                 llenartablaunidades(catauni.jTable1);
                                 uni.dispose();
 

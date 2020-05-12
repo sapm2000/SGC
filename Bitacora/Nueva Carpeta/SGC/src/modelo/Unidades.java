@@ -382,6 +382,44 @@ public class Unidades extends Propietarios {
         return listaUnidades;
 
     }
+    
+    public ArrayList<Unidades> buscar() {
+        ArrayList listaUnidades = new ArrayList();
+        Unidades Unidades = new Unidades();
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "select id from unidades where id_condominio=?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getId_condominio());
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Unidades = new Unidades();
+
+               
+                Unidades.setId(rs.getInt("id"));
+                
+
+                listaUnidades.add(Unidades);
+            }
+
+        } catch (Exception e) {
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+        return listaUnidades;
+
+    }
 
     public boolean buscarUnidad(Unidades moduni) {
 
@@ -507,6 +545,8 @@ public class Unidades extends Propietarios {
         }
 
     }
+    
+    
 
     public boolean modificarUnidades(Unidades moduni) {
 
