@@ -315,7 +315,7 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                                             }
                                         }
                                         modc.setId_condominio(panta1.rif.getText());
-                                        modc.setId_unidad(cuenco.jComboUnidad.getSelectedItem().toString());
+                                        modc.setId_unidad(Integer.parseInt(cuenco.jComboUnidad.getSelectedItem().toString()));
                                         Llenartabla(cuenco.jTable1);
                                         addCheckBox(7, cuenco.jTable1);
                                         Llenartablapagados(cuenco.jTable2);
@@ -385,7 +385,7 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
             } else {
 
                 modc.setId_condominio(panta1.rif.getText());
-                modc.setId_unidad(cuenco.jComboUnidad.getSelectedItem().toString());
+                modc.setId_unidad(Integer.parseInt(cuenco.jComboUnidad.getSelectedItem().toString()));
                 Llenartabla(cuenco.jTable1);
                 addCheckBox(7, cuenco.jTable1);
                 Llenartablapagados(cuenco.jTable2);

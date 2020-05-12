@@ -58,7 +58,7 @@ public class Condominio extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO condominio (rif, razon_social, telefono, correo_electronico) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO condominio (rif, razon_social, telefono, correo_electronico, activo) VALUES(?,?,?,?,1)";
 
         try {
 

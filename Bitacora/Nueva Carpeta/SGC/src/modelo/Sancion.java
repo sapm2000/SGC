@@ -22,7 +22,7 @@ public class Sancion extends Unidades {
     private int año;
     private double monto;
     private String descripcion;
-   
+
     private int cantidad_de_unidades;
     private String estado;
     private int id_sancion;
@@ -83,8 +83,6 @@ public class Sancion extends Unidades {
         this.descripcion = descripcion;
     }
 
-   
-
     public int getCantidad_de_unidades() {
         return cantidad_de_unidades;
     }
@@ -107,7 +105,7 @@ public class Sancion extends Unidades {
             ps.setInt(3, modsan.getAño());
             ps.setDouble(4, modsan.getMonto());
             ps.setString(5, modsan.getDescripcion());
-            
+
             ps.setString(6, modsan.getEstado());
 
             ps.execute();
@@ -262,7 +260,7 @@ public class Sancion extends Unidades {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT id_sancion, id_unidad, tipo, monto FROM puente_sancion_unidad inner join sancion on puente_sancion_unidad.id_sancion=sancion.id where sancion.id_condominio=? and mes=? and anio=?";
+        String sql = "SELECT id_sancion,detalle_total.id, tipo, sancion.monto FROM puente_sancion_unidad inner join sancion on puente_sancion_unidad.id_sancion=sancion.id inner join unidades on puente_sancion_unidad.id_unidad=unidades.id inner join detalle_total on detalle_total.id_unidad = unidades.id where unidades.id_condominio=? and detalle_total.mes=? and detalle_total.anio=?";
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_condominio());
@@ -274,8 +272,8 @@ public class Sancion extends Unidades {
 
                 modsan = new Sancion();
 
-                modsan.setId(rs.getInt(1));
-                modsan.setN_unidad(rs.getString(2));
+                modsan.setId_sancion(rs.getInt(1));
+                modsan.setId(rs.getInt(2));
                 modsan.setTipo(rs.getString(3));
                 modsan.setMonto(rs.getDouble(4));
 
@@ -361,7 +359,7 @@ public class Sancion extends Unidades {
             rs = ps.executeQuery();
             if (rs.next()) {
 
-               modsan.setId_sancion(rs.getInt("id"));
+                modsan.setId_sancion(rs.getInt("id"));
 
                 return true;
             }

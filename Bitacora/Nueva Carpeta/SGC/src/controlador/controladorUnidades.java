@@ -929,7 +929,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                 int fila2 = this.catauni.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
                 String dato2 = String.valueOf(this.catauni.jTable1.getValueAt(fila2, 2)); // por ultimo, obtengo el valor de la celda
                 detacun.setVisible(true);
-                modc.setId_unidad(dato);
+                modc.setId_unidad(Integer.parseInt(dato));
                 modc.setId_condominio(panta1.rif.getText());
                 detacun.txtPropietarios.setText(dato2);
                 llenartablapagos(detacun.jTable1);
@@ -962,7 +962,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         }
 
         if (e.getSource() == detacun.jTable1) {
-            modc.setId_unidad(detacun.txtUnidad.getText());
+            modc.setId_unidad(Integer.parseInt(detacun.txtUnidad.getText()));
             int fila = this.detacun.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
             String datos = String.valueOf(this.detacun.jTable1.getValueAt(fila, 1)); // por ultimo, obtengo el valor de la celda
             int fila2 = this.detacun.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
