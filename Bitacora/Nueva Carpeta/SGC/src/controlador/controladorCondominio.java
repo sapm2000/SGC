@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import static java.lang.String.valueOf;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -28,7 +29,10 @@ import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
+import modelo.Unidades;
 import sgc.SGC;
+import vista.catalogoInactivoCondominio;
 
 /**
  *
@@ -40,16 +44,23 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
     private condominio condo;
     private PantallaPrincipal1 panta1;
     private PantallaPrincipal panta;
+    private Unidades moduni;
     DefaultTableModel dm;
     private Condominio co;
+    private catalogoInactivoCondominio cataico;
     ArrayList<Condominio> listaCondo;
+    ArrayList<Unidades> listaunidades;
 
-    public controladorCondominio(catalogoCondominio cataco, condominio condo, PantallaPrincipal1 panta1, PantallaPrincipal panta, Condominio co) {
+    public controladorCondominio(catalogoCondominio cataco, condominio condo, PantallaPrincipal1 panta1, PantallaPrincipal panta, Condominio co, Unidades moduni, catalogoInactivoCondominio cataico) {
         this.cataco = cataco;
         this.condo = condo;
         this.panta1 = panta1;
         this.panta = panta;
         this.co = co;
+        this.moduni = moduni;
+        this.cataico = cataico;
+        this.cataco.btnActivar.addActionListener(this);
+        this.cataico.btnActivar.addActionListener(this);
         this.cataco.jButton2.addActionListener(this);
         this.condo.btnGuardar.addActionListener(this);
         this.condo.btnEliminar.addActionListener(this);
@@ -78,7 +89,6 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
-        
 
         modeloT.addColumn("Rif");
         modeloT.addColumn("Razón Social");
@@ -107,6 +117,67 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
     }
 
+    public void Llenartablainactivos(JTable tablaD) {
+
+        listaCondo = co.lPersoni();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+                if (column == 2) {
+                    resu = false;
+                }
+                if (column == 3) {
+                    resu = false;
+                }
+                if (column == 4) {
+                    resu = true;
+                }
+
+                return resu;
+            }
+
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
+
+        modeloT.addColumn("Rif");
+        modeloT.addColumn("Razón Social");
+        modeloT.addColumn("Teléfono");
+        modeloT.addColumn("Correo Electrónico");
+        modeloT.addColumn("Seleccione");
+
+        Object[] columna = new Object[5];
+
+        int num = listaCondo.size();
+
+        for (int i = 0; i < num; i++) {
+
+            columna[0] = listaCondo.get(i).getRif();
+            columna[1] = listaCondo.get(i).getRazonS();
+            columna[2] = listaCondo.get(i).getTelefono();
+            columna[3] = listaCondo.get(i).getCorreoElectro();
+
+            modeloT.addRow(columna);
+
+        }
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
+    }
+
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == cataco.jButton2) {
@@ -119,6 +190,28 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
             condo.txtRazonS.setText("");
             condo.txtTelefono.setText("");
             condo.txtCorreo.setText("");
+        }
+        
+          if (e.getSource()==cataico.btnActivar) {
+              listaCondo = co.lPersoni();
+
+            for (int i = 0; i < cataico.jTable1.getRowCount(); i++) {
+                if (valueOf(cataico.jTable1.getValueAt(i, 4)) == "true") {
+
+                    co.setRif(listaCondo.get(i).getRif());
+                    co.activar(co);
+
+                }
+            }
+            Llenartablainactivos(cataico.jTable1);
+            addCheckBox(4, cataico.jTable1);
+            Llenartabla(cataco.jTable1);
+        }
+
+        if (e.getSource() == cataco.btnActivar) {
+            this.cataico.setVisible(true);
+            Llenartablainactivos(cataico.jTable1);
+            addCheckBox(4, cataico.jTable1);
         }
 
         if (e.getSource() == condo.btnGuardar) {
@@ -164,18 +257,42 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         }
 
         if (e.getSource() == condo.btnEliminar) {
-
-            if (co.eliminar(co)) {
-
-                co.setRif(condo.txtRif.getText());
-                JOptionPane.showMessageDialog(null, "Registro Eliminado");
-                condo.dispose();
-                Llenartabla(cataco.jTable1);
+            co.setRif(condo.txtRif.getText());
+            if (co.Buscargas(co) || co.Buscarcuo(co)) {
+                JOptionPane.showMessageDialog(null, "no se puede eliminar si tiene gastos por procesar asignados");
 
             } else {
+                if (co.Buscarsan(co)) {
+                    JOptionPane.showMessageDialog(null, "no se puede eliminar si tiene Sanciones por procesar");
+                } else {
+                    if (co.Buscarcuen(co)) {
+                        JOptionPane.showMessageDialog(null, "no se puede eliminar si tiene Cuentas asignadas");
+                    } else {
+                        if (co.Buscarin(co)) {
+                            JOptionPane.showMessageDialog(null, "no se puede eliminar si tiene Interese asignados");
+                        } else {
+                            if (co.eliminar(co)) {
+                                co.eliminarunidadcondominio(co);
+                                moduni.setId_condominio(co.getRif());
+                                listaunidades = moduni.buscar();
+                                int q = listaunidades.size();
 
-                JOptionPane.showMessageDialog(null, "Error al Eliminar");
+                                for (int i = 0; i < q; i++) {
+                                    moduni.setId(listaunidades.get(i).getId());
+                                    moduni.eliminarPuenteUnidad(moduni);
+                                }
 
+                                JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                                condo.dispose();
+                                Llenartabla(cataco.jTable1);
+
+                            } else {
+
+                                JOptionPane.showMessageDialog(null, "Error al Eliminar");
+                            }
+                        }
+                    }
+                }
             }
 
         }
@@ -274,13 +391,11 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
     @Override
     public void keyTyped(KeyEvent ke) {
         if (ke.getSource() == condo.txtRif) {
-            
+
             Validacion.Espacio(ke);
             Validacion.limite(ke, condo.txtRif.getText(), 15);
         }
         if (ke.getSource() == condo.txtRazonS) {
-
-            
 
             Validacion.limite(ke, condo.txtRazonS.getText(), 150);
         }
@@ -315,10 +430,10 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
     @Override
     public void windowOpened(WindowEvent e) {
         Llenartabla(cataco.jTable1);
-        
-        Component[] components =condo.jPanel2.getComponents();
+
+        Component[] components = condo.jPanel2.getComponents();
         JComponent[] com = {
-            condo.txtRif,condo.txtRazonS, condo.txtTelefono, condo.txtCorreo
+            condo.txtRif, condo.txtRazonS, condo.txtTelefono, condo.txtCorreo
         };
         Validacion.copiar(components);
         Validacion.pegar(com);
@@ -388,4 +503,9 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         return resultado;
     }
 
+    public void addCheckBox(int column, JTable table) {
+        TableColumn tc = table.getColumnModel().getColumn(column);
+        tc.setCellEditor(table.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
+    }
 }

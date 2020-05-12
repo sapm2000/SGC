@@ -94,7 +94,44 @@ public class Condominio extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT rif, razon_social, telefono, correo_electronico FROM condominio;";
+        String sql = "SELECT rif, razon_social, telefono, correo_electronico FROM condominio where activo=1;";
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Condominio = new Condominio();
+
+                //prs = new Persona();
+                Condominio.setRif(rs.getString(1));
+                Condominio.setRazonS(rs.getString(2));
+                Condominio.setTelefono(rs.getString(3));
+                Condominio.setCorreoElectro(rs.getString(4));
+                listaPersona.add(Condominio);
+            }
+
+        } catch (Exception e) {
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+        return listaPersona;
+
+    }
+    
+     public ArrayList<Condominio> lPersoni() {
+        ArrayList listaPersona = new ArrayList();
+        Condominio Condominio;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT rif, razon_social, telefono, correo_electronico FROM condominio where activo=0;";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -204,12 +241,268 @@ public class Condominio extends ConexionBD {
         }
 
     }
+    
+    
+    
+     public boolean eliminarunidadcondominio(Condominio co) {
 
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE unidades SET activo=0 WHERE id_condominio=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getRif());
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+     
+     public boolean Buscarsan(Condominio co) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+
+        String sql = "SELECT *  FROM sancion inner join puente_sancion_unidad on puente_sancion_unidad.id_sancion=sancion.id inner join unidades on puente_sancion_unidad.id_unidad=unidades.id where unidades.id_condominio=? and estado='Pendiente'";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, co.getRif());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
+     
+       public boolean Buscarcuo(Condominio co) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+
+        String sql = "SELECT * FROM cuotas_especiales where id_condominio=? and estado='Pendiente'";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, co.getRif());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
+       
+         public boolean Buscarcuen(Condominio co) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+
+        String sql = "SELECT * FROM puente_condominio_cuenta where id_condominio=? and activo=1";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, co.getRif());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
+         
+          public boolean Buscarin(Condominio co) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+
+        String sql = "SELECT * FROM puente_interes_condominio where id_condominio=? and activo=1";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, co.getRif());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
+
+     
+     public boolean Buscargas(Condominio co) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+
+        String sql = "SELECT * FROM gasto_comun where id_condominio=? and estado='Pendiente'";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, co.getRif());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
+     
     public boolean eliminar(Condominio prs) {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "DELETE FROM condominio WHERE rif=?";
+        String sql = "UPDATE condominio SET activo=0 WHERE rif=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, prs.getRif());
+            ps.execute();
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
+    
+      public boolean activar(Condominio prs) {
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE condominio SET activo=1 WHERE rif=?";
 
         try {
 
@@ -241,7 +534,7 @@ public class Condominio extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT rif , razon_social, puente_condominio_cuenta.id_cuenta as cuenta FROM condominio left join puente_condominio_cuenta on puente_condominio_cuenta.id_condominio=condominio.rif and puente_condominio_cuenta.id_cuenta=?";
+        String sql = "SELECT rif , razon_social, puente_condominio_cuenta.id_cuenta as cuenta FROM condominio left join puente_condominio_cuenta on puente_condominio_cuenta.id_condominio=condominio.rif and puente_condominio_cuenta.id_cuenta=? where condominio.activo=1";
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, getRif());
