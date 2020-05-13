@@ -5,7 +5,7 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2020-05-12 21:59:55
+-- Started on 2020-05-13 09:13:22
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -510,10 +510,10 @@ ALTER SEQUENCE public.detalle_pagos_id_seq OWNED BY public.detalle_pagos.id;
 
 --
 -- TOC entry 224 (class 1259 OID 26821)
--- Name: detalle_total; Type: TABLE; Schema: public; Owner: postgres
+-- Name: factura_unidad; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.detalle_total (
+CREATE TABLE public.factura_unidad (
     id integer NOT NULL,
     monto double precision NOT NULL,
     mes bigint NOT NULL,
@@ -525,7 +525,7 @@ CREATE TABLE public.detalle_total (
 );
 
 
-ALTER TABLE public.detalle_total OWNER TO postgres;
+ALTER TABLE public.factura_unidad OWNER TO postgres;
 
 --
 -- TOC entry 225 (class 1259 OID 26824)
@@ -549,7 +549,7 @@ ALTER TABLE public.detalle_total_id_seq OWNER TO postgres;
 -- Name: detalle_total_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.detalle_total_id_seq OWNED BY public.detalle_total.id;
+ALTER SEQUENCE public.detalle_total_id_seq OWNED BY public.factura_unidad.id;
 
 
 --
@@ -1245,10 +1245,10 @@ ALTER TABLE ONLY public.detalle_pagos ALTER COLUMN id SET DEFAULT nextval('publi
 
 --
 -- TOC entry 2868 (class 2604 OID 26927)
--- Name: detalle_total id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: factura_unidad id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.detalle_total ALTER COLUMN id SET DEFAULT nextval('public.detalle_total_id_seq'::regclass);
+ALTER TABLE ONLY public.factura_unidad ALTER COLUMN id SET DEFAULT nextval('public.detalle_total_id_seq'::regclass);
 
 
 --
@@ -1527,10 +1527,10 @@ INSERT INTO public.detalle_pagos VALUES (1323, 5, 2020, 1200, 9, 157, 'Interes')
 --
 -- TOC entry 3113 (class 0 OID 26821)
 -- Dependencies: 224
--- Data for Name: detalle_total; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: factura_unidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.detalle_total VALUES (157, 22500, 5, 2020, 1, 'Pendiente de Pago', 22500, 66);
+INSERT INTO public.factura_unidad VALUES (157, 22500, 5, 2020, 1, 'Pendiente de Pago', 22500, 66);
 
 
 --
@@ -2146,10 +2146,10 @@ ALTER TABLE ONLY public.detalle_pagos
 
 --
 -- TOC entry 2919 (class 2606 OID 26982)
--- Name: detalle_total detalle_total_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: factura_unidad detalle_total_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.detalle_total
+ALTER TABLE ONLY public.factura_unidad
     ADD CONSTRAINT detalle_total_pkey PRIMARY KEY (id);
 
 
@@ -2378,7 +2378,7 @@ ALTER TABLE ONLY public.visita
     ADD CONSTRAINT visita_ci_visitante_fkey FOREIGN KEY (ci_visitante) REFERENCES public.visitante(cedula);
 
 
--- Completed on 2020-05-12 21:59:58
+-- Completed on 2020-05-13 09:13:26
 
 --
 -- PostgreSQL database dump complete
