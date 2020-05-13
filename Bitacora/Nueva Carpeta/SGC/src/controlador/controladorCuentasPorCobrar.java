@@ -36,7 +36,7 @@ import vista.cuentasPorCobrar;
  * @author rma
  */
 public class controladorCuentasPorCobrar implements ActionListener, WindowListener, ItemListener, KeyListener {
-    
+
     private cuentasPorCobrar cuenco;
     private CuentasPorCobrar modcuen;
     private Unidades moduni;
@@ -47,8 +47,8 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
     ArrayList<CerrarMes> listaCierremes;
     ArrayList<Unidades> listaunidades;
     ArrayList<Fondo> listafondo;
-      ArrayList<Cuenta> listaCuenta;
-      
+    ArrayList<Cuenta> listaCuenta;
+
     public controladorCuentasPorCobrar(cuentasPorCobrar cuenco, CuentasPorCobrar modcuen, Unidades moduni, Fondo modfon, Cuenta modcu, CerrarMes modc, PantallaPrincipal1 panta1) {
         this.cuenco = cuenco;
         this.modcuen = modcuen;
@@ -64,16 +64,16 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
         cuenco.txtDescripcion.addKeyListener(this);
         cuenco.txtReferencia.addKeyListener(this);
     }
-    
+
     public void Llenartabla(JTable tablaD) {
-        
+
         listaCierremes = modc.listarpagospendientes();
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                
+
                 boolean resu = false;
-                
+
                 if (column == 0) {
                     resu = false;
                 }
@@ -98,15 +98,15 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                 if (column == 7) {
                     resu = true;
                 }
-                
+
                 return resu;
             }
-            
+
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
-        
+
         modeloT.addColumn("<html>Nº de<br> Recibo</html>");
         modeloT.addColumn("Mes");
         modeloT.addColumn("Año");
@@ -115,13 +115,13 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
         modeloT.addColumn("<html>Saldo <br> Restante</html>");
         modeloT.addColumn("Estado");
         modeloT.addColumn("Seleccione");
-        
+
         Object[] columna = new Object[8];
-        
+
         int numRegistro = listaCierremes.size();
-        
+
         for (int i = 0; i < numRegistro; i++) {
-            
+
             columna[0] = listaCierremes.get(i).getId_gasto();
             columna[1] = listaCierremes.get(i).getMes_cierre();
             columna[2] = listaCierremes.get(i).getAño_cierre();
@@ -129,9 +129,9 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
             columna[4] = Validacion.formato1.format(listaCierremes.get(i).getMonto());
             columna[5] = Validacion.formato1.format(listaCierremes.get(i).getSaldo_restante());
             columna[6] = listaCierremes.get(i).getEstado();
-            
+
             modeloT.addRow(columna);
-            
+
         }
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -142,16 +142,16 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
     }
-    
+
     public void Llenartablapagados(JTable tablaD) {
-        
+
         listaCierremes = modc.listarpagospagados();
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                
+
                 boolean resu = false;
-                
+
                 if (column == 0) {
                     resu = false;
                 }
@@ -176,15 +176,15 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                 if (column == 7) {
                     resu = true;
                 }
-                
+
                 return resu;
             }
-            
+
         };
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
-        
+
         modeloT.addColumn("<html>Nº de<br> Recibo</html>");
         modeloT.addColumn("Mes");
         modeloT.addColumn("Año");
@@ -192,13 +192,13 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
         modeloT.addColumn("Monto");
         modeloT.addColumn("<html>Saldo <br> Restante</html>");
         modeloT.addColumn("Estado");
-        
+
         Object[] columna = new Object[7];
-        
+
         int numRegistro = listaCierremes.size();
-        
+
         for (int i = 0; i < numRegistro; i++) {
-            
+
             columna[0] = listaCierremes.get(i).getId_gasto();
             columna[1] = listaCierremes.get(i).getMes_cierre();
             columna[2] = listaCierremes.get(i).getAño_cierre();
@@ -208,9 +208,9 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
             columna[4] = Validacion.formato1.format(listaCierremes.get(i).getMonto());
             columna[5] = Validacion.formato1.format(listaCierremes.get(i).getSaldo_restante());
             columna[6] = listaCierremes.get(i).getEstado();
-            
+
             modeloT.addRow(columna);
-            
+
         }
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -221,44 +221,53 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
     }
-    
+
     private static java.sql.Date convert(java.util.Date uDate) {
         java.sql.Date sDate = new java.sql.Date(uDate.getTime());
         return sDate;
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == cuenco.btnGuardar) {
             if (validar()) {
+                listaunidades = moduni.buscarUnidades();
+                listafondo = modfon.listar(2);
+                listaCuenta = modcu.listarcuenta();
+
                 int j = 0;
                 modcuen.setDescripcion(cuenco.txtDescripcion.getText());
                 modcuen.setForma_pago(cuenco.jComboForma.getSelectedItem().toString());
-                modcuen.setId_cuenta(cuenco.jComboCuenta.getSelectedItem().toString());
+                int ind2 = cuenco.jComboCuenta.getSelectedIndex() - 1;
+
                 for (int i = 0; i < cuenco.jTable1.getRowCount(); i++) {
                     if (valueOf(cuenco.jTable1.getValueAt(i, 7)) == "true") {
-                        
+
                         j = j + 1;
-                        
+
                     }
                 }
                 if (j == 0) {
                     JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
                 } else {
-                    if (modcuen.getId_cuenta().equals("Seleccione la cuenta depositada")) {
+                    if (ind2 == -1) {
                         JOptionPane.showMessageDialog(null, "seleccione una cuenta");
                     } else {
-                        modfon.setTipo(cuenco.jComboFondo.getSelectedItem().toString());
-                        if (modfon.getTipo().equals("Seleccione el fondo a depositar")) {
+                        modcuen.setId_cuenta(listaCuenta.get(ind2).getN_cuenta());
+
+                        int ind1 = cuenco.jComboFondo.getSelectedIndex() - 1;
+                        if (ind1 == -1) {
                             JOptionPane.showMessageDialog(null, "seleccione el fondo a depositar");
                         } else {
-                            modfon.setId_condominio(panta1.rif.getText());
-                            modfon.buscar1(modfon);
-                            modcuen.setId_fondo(modfon.getId());
-                            modcuen.setId_unidad(cuenco.jComboUnidad.getSelectedItem().toString());
-                            if (modcuen.getId_unidad().equals("Seleccione el numero de la unidad")) {
+
+                            modcuen.setId_fondo(listafondo.get(ind1).getId());
+
+                            int ind = cuenco.jComboUnidad.getSelectedIndex() - 1;
+
+                            if (ind == -1) {
                                 JOptionPane.showMessageDialog(null, "seleccione el numero de la unidad");
                             } else {
+                                modcuen.setId_unidad(listaunidades.get(ind).getId());
                                 modcuen.setMonto(Double.parseDouble(cuenco.txtMonto.getText()));
                                 modcuen.setReferencia(cuenco.txtReferencia.getText());
                                 java.sql.Date sqlDate = convert(cuenco.jDateChooser1.getDate());
@@ -267,13 +276,13 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                                 double total = 0;
                                 for (int i = 0; i < cuenco.jTable1.getRowCount(); i++) {
                                     if (valueOf(cuenco.jTable1.getValueAt(i, 7)) == "true") {
-                                        
+
                                         double dato = Double.parseDouble(String.valueOf(this.cuenco.jTable1.getValueAt(i, 5)));
                                         total = total + dato;
-                                        
+
                                     }
                                 }
-                                
+
                                 if (modcuen.getMonto() > total) {
                                     JOptionPane.showMessageDialog(null, "No puede ingresar mas dinero de lo que debe");
                                 } else {
@@ -282,12 +291,12 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                                         double var4 = modfon.getSaldo() + modcuen.getMonto();
                                         modfon.setSaldo(var4);
                                         modfon.fondear(modfon);
-                                        
+
                                         JOptionPane.showMessageDialog(null, "registro guardado");
                                         modc.buscId(modc);
                                         for (int i = 0; i < cuenco.jTable1.getRowCount(); i++) {
                                             if (valueOf(cuenco.jTable1.getValueAt(i, 7)) == "true") {
-                                                
+
                                                 double dato = Double.parseDouble(String.valueOf(this.cuenco.jTable1.getValueAt(i, 5)));
                                                 double parte = dato - monto;
                                                 double va1 = dato - parte;
@@ -295,18 +304,18 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                                                     parte = 0;
                                                     va1 = dato;
                                                 }
-                                                
+
                                                 if (monto <= 0) {
-                                                    
+
                                                 } else {
                                                     if (parte == 0) {
                                                         modc.setEstado("Pagado");
-                                                        
+
                                                     } else {
-                                                        modc.setEstado("Pendiente de pago");
+                                                        modc.setEstado("Pendiente de Pago");
                                                     }
                                                     modc.setSaldo_restante(parte);
-                                                    
+
                                                     modc.setId_gasto(Integer.parseInt(String.valueOf(this.cuenco.jTable1.getValueAt(i, 0))));
                                                     modc.actualizartotal(modc);
                                                     modc.setSaldo_restante(va1);
@@ -314,15 +323,15 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                                                     modc.setSaldo_restante(0);
                                                 }
                                                 monto = monto - dato;
-                                                
+
                                             }
                                         }
                                         modc.setId_condominio(panta1.rif.getText());
-                                        modc.setId_unidad(Integer.parseInt(cuenco.jComboUnidad.getSelectedItem().toString()));
+                                        modcuen.setId_unidad(listaunidades.get(ind).getId());
                                         Llenartabla(cuenco.jTable1);
                                         addCheckBox(7, cuenco.jTable1);
                                         Llenartablapagados(cuenco.jTable2);
-                                        
+
                                     }
                                 }
                             }
@@ -332,42 +341,43 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
             }
         }
     }
-    
+
     private void crearCbxUnidad(ArrayList<Unidades> datos) {
         cuenco.jComboUnidad.addItem("Seleccione el numero de la unidad");
-        
+
         if (datos != null) {
             for (Unidades datosX : datos) {
                 moduni = datosX;
                 cuenco.jComboUnidad.addItem(moduni.getN_unidad());
             }
-            
+
         }
     }
-    
+
     private void crearCbxFondo(ArrayList<Fondo> datos) {
         cuenco.jComboFondo.addItem("Seleccione el fondo a depositar");
-        
+
         if (datos != null) {
             for (Fondo datosX : datos) {
                 modfon = datosX;
                 cuenco.jComboFondo.addItem(modfon.getTipo() + " " + modfon.getSaldo());
             }
-            
+
         }
     }
+
     private void crearCbxCuenta(ArrayList<Cuenta> datos) {
         cuenco.jComboCuenta.addItem("Seleccione la cuenta depositada");
-        
+
         if (datos != null) {
             for (Cuenta datosX : datos) {
                 modcu = datosX;
-                cuenco.jComboCuenta.addItem(modcu.getN_cuenta()+" "+ modcu.getCedula()+" "+ modcu.getBeneficiario());
+                cuenco.jComboCuenta.addItem(modcu.getN_cuenta() + " " + modcu.getCedula() + " " + modcu.getBeneficiario());
             }
-            
+
         }
     }
-    
+
     @Override
     public void windowOpened(WindowEvent e) {
         moduni.setId_condominio(panta1.rif.getText());
@@ -377,10 +387,9 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
         crearCbxUnidad(listaunidades);
         listafondo = modfon.listar(2);
         crearCbxFondo(listafondo);
-       listaCuenta = modcu.listarcuenta();
+        listaCuenta = modcu.listarcuenta();
         crearCbxCuenta(listaCuenta);
-       
-        
+
         Component[] components = cuenco.jPanel2.getComponents();
         JComponent[] com = {
             cuenco.txtReferencia, cuenco.txtDescripcion, cuenco.txtMonto
@@ -388,118 +397,121 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
         Validacion.copiar(components);
         Validacion.pegar(com);
     }
-    
+
     @Override
     public void windowClosing(WindowEvent e) {
-        
+
     }
-    
+
     @Override
     public void windowClosed(WindowEvent e) {
-        
+
     }
-    
+
     @Override
     public void windowIconified(WindowEvent e) {
-        
+
     }
-    
+
     @Override
     public void windowDeiconified(WindowEvent e) {
-        
+
     }
-    
+
     @Override
     public void windowActivated(WindowEvent e) {
-        
+
     }
-    
+
     @Override
     public void windowDeactivated(WindowEvent e) {
-        
+
     }
-    
+
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getStateChange() == ItemEvent.SELECTED) {
-            if (cuenco.jComboUnidad.getSelectedItem().toString().equals("Seleccione el numero de la unidad")) {
-                
+             moduni.setId_condominio(panta1.rif.getText());
+            listaunidades = moduni.buscarUnidades();
+             int ind = cuenco.jComboUnidad.getSelectedIndex() - 1;
+           if (ind == -1) {
+
             } else {
-                
-                modc.setId_condominio(panta1.rif.getText());
-                modc.setId_unidad(Integer.parseInt(cuenco.jComboUnidad.getSelectedItem().toString()));
+                 
+               
+                modc.setId_unidad(listaunidades.get(ind).getId());
                 Llenartabla(cuenco.jTable1);
                 addCheckBox(7, cuenco.jTable1);
                 Llenartablapagados(cuenco.jTable2);
             }
         }
-        
+
     }
-    
+
     private Boolean validar() {
-        
+
         Boolean resultado = true;
         String msj = "";
-        
+
         if (cuenco.txtMonto.getText().isEmpty()) {
-            
+
             msj += "El campo monto no puede estar vacio\n";
             resultado = false;
         }
-        
+
         if (cuenco.txtReferencia.getText().isEmpty()) {
-            
+
             msj += "El campo de número de referencia no puede estar vacío\n";
             resultado = false;
         }
-        
+
         if (cuenco.txtDescripcion.getText().isEmpty()) {
-            
+
             msj += "El campo descripción no puede estar vacío\n";
             resultado = false;
         }
-        
+
         if (!resultado) {
-            
+
             JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
-        
+
         return resultado;
     }
-    
+
     public void addCheckBox(int column, JTable table) {
         TableColumn tc = table.getColumnModel().getColumn(column);
         tc.setCellEditor(table.getDefaultEditor(Boolean.class));
         tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
     }
-    
+
     @Override
     public void keyTyped(KeyEvent e) {
         if (e.getSource() == cuenco.txtReferencia) {
-            
+
             Validacion.Espacio(e);
             Validacion.limite(e, cuenco.txtReferencia.getText(), 50);
         }
-        
+
         if (e.getSource() == cuenco.txtDescripcion) {
-            
+
             Validacion.limite(e, cuenco.txtDescripcion.getText(), 500);
         }
         if (e.getSource() == cuenco.txtMonto) {
-            
+
             Validacion.Espacio(e);
             Validacion.soloUnPunto(e, cuenco.txtMonto.getText());
         }
     }
-    
+
     @Override
     public void keyPressed(KeyEvent e) {
-        
+
     }
-    
+
     @Override
     public void keyReleased(KeyEvent e) {
-        
+
     }
-    
+
 }

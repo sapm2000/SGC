@@ -17,7 +17,7 @@ import java.sql.SQLException;
 public class CuentasPorCobrar extends ConexionBD {
 
     private int id;
-    private String id_unidad;
+    private int id_unidad;
     private double monto;
     private String descripcion;
     private String id_cuenta;
@@ -45,13 +45,15 @@ public class CuentasPorCobrar extends ConexionBD {
         this.id = id;
     }
 
-    public String getId_unidad() {
+    public int getId_unidad() {
         return id_unidad;
     }
 
-    public void setId_unidad(String id_unidad) {
+    public void setId_unidad(int id_unidad) {
         this.id_unidad = id_unidad;
     }
+
+  
 
     public double getMonto() {
         return monto;
@@ -114,20 +116,20 @@ public class CuentasPorCobrar extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO cobro(monto, descripcion, id_unidad, id_cuenta, forma_pago, referencia, fecha, id_fondo, id_condominio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO cobro_unidad(monto, descripcion, id_unidad, id_cuenta, forma_pago, referencia, fecha, id_fondo) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 
         try {
 
             ps = con.prepareStatement(sql);
             ps.setDouble(1, getMonto());
             ps.setString(2, getDescripcion());
-            ps.setString(3, getId_unidad());
+            ps.setInt(3, getId_unidad());
             ps.setString(4, getId_cuenta());
             ps.setString(5, getForma_pago());
             ps.setString(6, getReferencia());
             ps.setDate(7, getFecha());
             ps.setInt(8, getId_fondo());
-            ps.setString(9, getId_condominio());
+            
 
             ps.execute();
 

@@ -889,7 +889,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT id, monto, mes, anio, alicuota, estado, saldo_restante FROM factura_unidad where id_unidad=? and id_condominio=? and estado='Pagado' order by anio,mes";
+        String sql = "SELECT id, monto, mes, anio, alicuota, estado, saldo_restante FROM factura_unidad where id_unidad=? and estado='Pagado' order by anio,mes";
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId_unidad());
@@ -1207,7 +1207,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT MAX(id) as id from cobro";
+        String sql = "SELECT MAX(id) as id from cobro_unidad";
 
         try {
 
@@ -1216,7 +1216,7 @@ public class CerrarMes extends ConexionBD {
             rs = ps.executeQuery();
             if (rs.next()) {
 
-                modc.setMes_cierre(rs.getInt("id"));
+                modc.setId(rs.getInt("id"));
 
                 return true;
             }
@@ -1253,8 +1253,8 @@ public class CerrarMes extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setDouble(1, getId_gasto());
-            ps.setInt(2, getMes_cierre());
+            ps.setInt(1, getId_gasto());
+            ps.setInt(2, getId());
             ps.setDouble(3, getSaldo_restante());
 
             ps.execute();
