@@ -33,6 +33,7 @@ public class CerrarMes extends ConexionBD {
     private String nom_proveedor;
     private String tipo;
     private double saldo_restante;
+    private String tipo_gasto;
 
     public int getId_unidad() {
         return id_unidad;
@@ -49,6 +50,16 @@ public class CerrarMes extends ConexionBD {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getTipo_gasto() {
+        return tipo_gasto;
+    }
+
+    public void setTipo_gasto(String tipo_gasto) {
+        this.tipo_gasto = tipo_gasto;
+    }
+    
+    
     
     
 
@@ -170,7 +181,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO detalle_pagos(mes, anio, monto, id_gasto, id_factura) VALUES (?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO detalle_pagos(mes, anio, monto, id_gasto, id_factura, tipo_gasto) VALUES (?, ?, ?, ?, ?, ?);";
 
         try {
 
@@ -181,6 +192,7 @@ public class CerrarMes extends ConexionBD {
             ps.setDouble(3, getMonto());
             ps.setInt(4, getId_gasto());
             ps.setInt(5, getId());
+            ps.setString(6, getTipo_gasto());
             ps.execute();
 
             return true;
@@ -249,7 +261,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO detalle_cuotas(id_cuota, mes, anio, id_factura, monto) VALUES (?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO detalle_pagos(id_gasto, mes, anio, id_factura, monto, tipo_gasto) VALUES (?, ?, ?, ?, ?, ?);";
 
         try {
 
@@ -260,6 +272,7 @@ public class CerrarMes extends ConexionBD {
             ps.setInt(3, getAño_cierre());
             ps.setInt(4, getId());
             ps.setDouble(5, getMonto());
+            ps.setString(6, getTipo_gasto());
 
             ps.execute();
 
@@ -290,7 +303,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT id_factura, sum(monto) as total FROM detalle_pagos where id_factura=? and mes=? and anio=? group by id_factura;";
+        String sql = "SELECT id_factura, sum(monto) as total FROM detalle_pagos where id_factura=? and mes=? and anio=? and tipo_gasto=? group by id_factura;";
 
         try {
 
@@ -298,6 +311,7 @@ public class CerrarMes extends ConexionBD {
             ps.setInt(1, modc.getId());
             ps.setInt(2, modc.getMes_cierre());
             ps.setInt(3, modc.getAño_cierre());
+            ps.setString(4, modc.getTipo_gasto());
         
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -329,137 +343,10 @@ public class CerrarMes extends ConexionBD {
 
     }
 
-    public boolean buscartotal1(CerrarMes modc) {
+    
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
-        String sql = "SELECT id_factura, sum(monto) as total FROM detalle_sancion where id_factura=? and mes=? and anio=? group by id_factura;";
+    
 
-        try {
-
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, modc.getId());
-            ps.setInt(2, modc.getMes_cierre());
-            ps.setInt(3, modc.getAño_cierre());
-            
-            rs = ps.executeQuery();
-            if (rs.next()) {
-
-                modc.setMonto(rs.getDouble("total"));
-
-                return true;
-            }
-
-            return false;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-    }
-
-    public boolean buscartotal2(CerrarMes modc) {
-
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
-        String sql = "SELECT id_factura, sum(monto) as total FROM detalle_cuotas where id_factura=? and mes=? and anio=? group by id_factura;";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, modc.getId());
-            ps.setInt(2, modc.getMes_cierre());
-            ps.setInt(3, modc.getAño_cierre());
-         
-            rs = ps.executeQuery();
-            if (rs.next()) {
-
-                modc.setMonto(rs.getDouble("total"));
-
-                return true;
-            }
-
-            return false;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-    }
-
-    public boolean buscartotal3(CerrarMes modc) {
-
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
-        String sql = "SELECT id_factura, sum(monto) as total FROM detalle_interes where id_factura=? and mes=? and anio=? group by id_factura;";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, modc.getId());
-            ps.setInt(2, modc.getMes_cierre());
-            ps.setInt(3, modc.getAño_cierre());
-            
-            rs = ps.executeQuery();
-            if (rs.next()) {
-
-                modc.setMonto(rs.getDouble("total"));
-
-                return true;
-            }
-
-            return false;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-    }
     
      public boolean buscaultimo(CerrarMes modc) {
 
@@ -507,7 +394,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO detalle_sancion(id_factura, id_sancion, mes, anio, monto) VALUES (?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO detalle_pagos(id_factura, id_gasto, mes, anio, monto, tipo_gasto) VALUES (?, ?, ?, ?, ?, ?);";
 
         try {
 
@@ -518,6 +405,7 @@ public class CerrarMes extends ConexionBD {
             ps.setInt(4, getAño_cierre());
           
             ps.setDouble(5, getMonto());
+             ps.setString(6, getTipo_gasto());
 
             ps.execute();
 
@@ -548,7 +436,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO detalle_interes(id_factura, id_interes, mes, anio, monto) VALUES (?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO detalle_pagos(id_factura, id_gasto, mes, anio, monto, tipo_gasto) VALUES (?, ?, ?, ?, ?, ?);";
 
         try {
 
@@ -559,6 +447,7 @@ public class CerrarMes extends ConexionBD {
             ps.setInt(4, getAño_cierre());
           
             ps.setDouble(5, getMonto());
+              ps.setString(6, getTipo_gasto());
 
             ps.execute();
 
@@ -1090,13 +979,13 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT concepto_gasto.nom_concepto, detalle_pagos.monto, proveedores.cedula, proveedores.nombre, gasto_comun.tipo  FROM detalle_pagos INNER join gasto_comun on detalle_pagos.id_gasto = gasto_comun.id INNER join concepto_gasto on concepto_gasto.id = gasto_comun.id_concepto INNER join proveedores on gasto_comun.id_proveedor=proveedores.cedula where detalle_pagos.id_unidad=? and detalle_pagos.mes=? and detalle_pagos.anio=? order by gasto_comun.tipo;";
+        String sql = "SELECT concepto_gasto.nom_concepto, detalle_pagos.monto, proveedores.cedula, proveedores.nombre, gasto_comun.tipo  FROM detalle_pagos INNER join gasto_comun on detalle_pagos.id_gasto = gasto_comun.id and tipo_gasto='Gasto comun' INNER join concepto_gasto on concepto_gasto.id = gasto_comun.id_concepto INNER join proveedores on gasto_comun.id_proveedor=proveedores.cedula where detalle_pagos.id_factura=? and detalle_pagos.mes=? and detalle_pagos.anio=? order by gasto_comun.tipo;";
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId_unidad());
+            ps.setInt(1, getId());
             ps.setInt(2, getMes_cierre());
             ps.setInt(3, getAño_cierre());
-            ps.setString(4, getId_condominio());
+           
 
             rs = ps.executeQuery();
 
@@ -1137,7 +1026,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT concepto_gasto.nom_concepto, detalle_cuotas.monto, proveedores.cedula, proveedores.nombre, cuotas_especiales.n_mese_restante FROM detalle_cuotas inner join cuotas_especiales on detalle_cuotas.id_cuota=cuotas_especiales.id inner join concepto_gasto on cuotas_especiales.id_concepto=concepto_gasto.id inner join proveedores on proveedores.cedula=cuotas_especiales.id_proveedor where id_factura=?  and detalle_cuotas.mes=? and detalle_cuotas.anio=?";
+        String sql = "SELECT concepto_gasto.nom_concepto, detalle_pagos.monto, proveedores.cedula, proveedores.nombre, cuotas_especiales.n_mese_restante FROM detalle_pagos inner join cuotas_especiales on detalle_pagos.id_gasto=cuotas_especiales.id  and tipo_gasto='Cuota especial' inner join concepto_gasto on cuotas_especiales.id_concepto=concepto_gasto.id inner join proveedores on proveedores.cedula=cuotas_especiales.id_proveedor where id_factura=?  and detalle_pagos.mes=? and detalle_pagos.anio=?";
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
@@ -1184,7 +1073,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT detalle_sancion.monto, sancion.monto, sancion.tipo, sancion.descripcion FROM detalle_sancion inner join sancion on detalle_sancion.id_sancion=sancion.id where detalle_sancion.id_factura=? and detalle_sancion.mes=? and detalle_sancion.anio=?";
+        String sql = "SELECT detalle_pagos.monto, sancion.monto, sancion.tipo, sancion.descripcion FROM detalle_pagos inner join sancion on detalle_pagos.id_gasto=sancion.id and tipo_gasto='Sancion' where detalle_pagos.id_factura=? and detalle_pagos.mes=? and detalle_pagos.anio=?";
         try {
             ps = con.prepareStatement(sql);
              ps.setInt(1, getId());
@@ -1230,7 +1119,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT  detalle_interes.monto, interes.factor, interes.nombre FROM public.detalle_interes INNER join interes on detalle_interes.id_interes = interes.id where detalle_interes.id_factura=? and detalle_interes.mes=? and detalle_interes.anio=";
+        String sql = "SELECT  detalle_pagos.monto, interes.factor, interes.nombre FROM detalle_pagos INNER join interes on detalle_pagos.id_gasto = interes.id and tipo_gasto='Interes' where detalle_pagos.id_factura=? and detalle_pagos.mes=? and detalle_pagos.anio=?";
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());

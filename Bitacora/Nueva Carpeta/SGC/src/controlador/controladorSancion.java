@@ -167,6 +167,45 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
     }
 
+    public void llenartablaunidadesmodprocesadas(JTable tablaD) {
+        listaunimod = modsan.listarunidadesmodprocesadas();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+               
+                return false;
+            }
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
+
+        modeloT.addColumn("Número de Unidad");
+        modeloT.addColumn("seleccione");
+
+        Object[] columna = new Object[2];
+
+        int numRegistro = listaunimod.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listaunimod.get(i).getN_unidad();
+
+            if (listaunimod.get(i).getId_sancion() != 0) {
+                columna[1] = Boolean.TRUE;
+            } else {
+                columna[1] = Boolean.FALSE;
+            }
+
+            modeloT.addRow(columna);
+
+        }
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+    }
     public void llenartablaunidades(JTable tablaD) {
 
         listaunidades = modsan.buscarUnidades();
@@ -398,6 +437,9 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
         String dato = String.valueOf(this.catasan.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
         modsan.setId_sancion(Integer.parseInt(dato));
+        
+        String estado = String.valueOf(this.catasan.jTable1.getValueAt(fila, 6)); // por ultimo, obtengo el valor de la celda
+        modsan.setEstado(estado);
 
         modsan.buscarSancion(modsan);
 
@@ -411,8 +453,13 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         san.jMonthChooser1.setMonth(mes);
         san.jYearChooser1.setYear(modsan.getAño());
         modsan.setId_condominio(panta1.rif.getText());
+        if (modsan.getEstado().equals("Pendiente")) {
         llenartablaunidadesmod(san.jTable1);
         addCheckBox(1, san.jTable1);
+        } else {
+            llenartablaunidadesmodprocesadas(san.jTable1);
+             addCheckBox(1, san.jTable1);
+        }
         if (modsan.getEstado().equals("Procesado")) {
             san.btnEliminar.setEnabled(false);
             san.btnModificar.setEnabled(false);

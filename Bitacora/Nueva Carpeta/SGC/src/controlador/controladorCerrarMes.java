@@ -168,7 +168,6 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                             modc.guardartotal(modc);
                             modc.buscaultimo(modc);
                             id_factura[i] = modc.getId();
-                            JOptionPane.showMessageDialog(null, id_factura[i]);
 
                         }
 
@@ -211,6 +210,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                     if (listagastocomun.get(f).getEstado().equals("Pagado")) {
                                         modc.setEstado("Procesado y pagado");
                                     }
+                                    modc.setTipo_gasto("Gasto comun");
 
                                     modc.registrarGasto(modc);
                                     modc.actualizarGasto(modc);
@@ -291,6 +291,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                                         modc.setId(Integer.parseInt(String.valueOf(id_factura[w])));
                                                         modc.setMonto(parte_cuota);
                                                         modc.setId_gasto(Integer.parseInt(String.valueOf(id_cuota[z])));
+                                                        modc.setTipo_gasto("Cuota especial");
                                                         modc.registrar_cuota(modc);
                                                         numReales = numReales + 1;
 
@@ -302,6 +303,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                                         modc.setId(Integer.parseInt(String.valueOf(id_factura[w])));
                                                         modc.setMonto(parte_cuota);
                                                         modc.setId_gasto(Integer.parseInt(String.valueOf(id_cuota[z])));
+                                                        modc.setTipo_gasto("Cuota especial");
                                                         modc.registrar_cuota(modc);
                                                         modc.actualizar_cuota(modc);
                                                         numReales = numReales + 1;
@@ -329,15 +331,17 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                             for (int j = 0; j < numSanciones; j++) {
                                 tipo_sancion[j] = listasanciones.get(j).getTipo();
                                 factor_sancion[j] = listasanciones.get(j).getMonto();
-                                id_sancion[j] = listasanciones.get(j).getId();
+                                id_sancion[j] = listasanciones.get(j).getId_sancion();
                                 String var = String.valueOf(tipo_sancion[j]);
 
                                 if (var.equals("Interes de mora")) {
                                     int id_fac = listasanciones.get(j).getId();
                                     modc.setId(id_fac);
+                                    modc.setTipo_gasto("Gasto comun");
                                     modc.buscartotal(modc);
                                     double var6 = modc.getMonto();
-                                    modc.buscartotal2(modc);
+                                    modc.setTipo_gasto("Cuota especial");
+                                    modc.buscartotal(modc);
                                     double var7 = modc.getMonto();
 
                                     double total = var6 + var7;
@@ -347,19 +351,20 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                     modc.setId_gasto(Integer.parseInt(String.valueOf(id_sancion[j])));
                                     modc.setMonto(var3);
                                     modc.setEstado("Procesado");
-
+                                    modc.setTipo_gasto("Sancion");
                                     modc.guardarsancionpro(modc);
                                     modc.actualizarSancion(modc);
 
                                 }
 
                                 if (var.equals("Multa")) {
-                                    int id_fac = listasanciones.get(j).getId();
-                                    modc.setId(id_fac);
+                                  
                                     modc.setMonto(listasanciones.get(j).getMonto());
                                     modc.setId_gasto(Integer.parseInt(String.valueOf(id_sancion[j])));
+                                     modc.setTipo_gasto("Sancion");
                                     modc.guardarsancionpro(modc);
                                     modc.setEstado("Procesado");
+                                    
                                     modc.actualizarSancion(modc);
 
                                 }
@@ -378,7 +383,8 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                 factor[l] = listainteres.get(l).getFactor();
 
                                 for (int w = 0; w < numRegistro; w++) {
-                                     modc.setId(Integer.parseInt(String.valueOf(id_factura[w])));
+                                    modc.setId(Integer.parseInt(String.valueOf(id_factura[w])));
+                                    modc.setTipo_gasto("Gasto comun");
                                     if (modc.buscartotal(modc)) {
 
                                     } else {
@@ -386,7 +392,12 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                     }
 
                                     double var6 = modc.getMonto();
-                                    modc.buscartotal2(modc);
+                                    modc.setTipo_gasto("Cuota especial");
+                                    if (modc.buscartotal(modc)) {
+
+                                    } else {
+                                        modc.setMonto(0);
+                                    }
                                     double var7 = modc.getMonto();
                                     double var9 = Double.parseDouble(String.valueOf(factor[l])) / 100;
                                     double total = var6 + var7;
@@ -395,7 +406,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                     modc.setId(Integer.parseInt(String.valueOf(id_factura[w])));
                                     modc.setMonto(parte_cuota);
                                     modc.setId_gasto(Integer.parseInt(String.valueOf(id_interes[l])));
-
+                                    modc.setTipo_gasto("Interes");
                                     modc.registrar_interes(modc);
 
                                 }
@@ -406,29 +417,30 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                         for (int m = 0; m < numRegistro; m++) {
                             modc.setId_condominio(panta1.rif.getText());
                             modc.setId(Integer.parseInt(String.valueOf(id_factura[m])));
-
+                            modc.setTipo_gasto("Gasto comun");
                             if (modc.buscartotal(modc)) {
 
                             } else {
                                 modc.setMonto(0);
                             }
                             double var6 = modc.getMonto();
-
-                            if (modc.buscartotal1(modc)) {
+                            modc.setTipo_gasto("Cuota especial");
+                            if (modc.buscartotal(modc)) {
 
                             } else {
                                 modc.setMonto(0);
                             }
                             double var7 = modc.getMonto();
-
-                            if (modc.buscartotal2(modc)) {
+                            modc.setTipo_gasto("Sancion");
+                            if (modc.buscartotal(modc)) {
 
                             } else {
                                 modc.setMonto(0);
                             }
                             double var8 = modc.getMonto();
+                            modc.setTipo_gasto("Interes");
 
-                            if (modc.buscartotal3(modc)) {
+                            if (modc.buscartotal(modc)) {
 
                             } else {
                                 modc.setMonto(0);

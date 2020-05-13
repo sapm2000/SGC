@@ -394,6 +394,47 @@ public class Sancion extends Unidades {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
+        String sql = "select unidades.id, unidades.n_unidad, puente_sancion_unidad.id_sancion from unidades left join puente_sancion_unidad on puente_sancion_unidad.id_unidad=unidades.id and puente_sancion_unidad.id_sancion=?  where unidades.id_condominio=? and unidades.activo=1";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, getId_sancion());
+
+            ps.setString(2, getId_condominio());
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                modsan = new Sancion();
+
+                //prs = new Persona();
+                modsan.setN_unidad(rs.getString("n_unidad"));
+                modsan.setId(rs.getInt("id"));
+                modsan.setId_sancion(rs.getInt("id_sancion"));
+
+                listaunimod.add(modsan);
+            }
+
+        } catch (Exception e) {
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+        return listaunimod;
+
+    }
+    
+     public ArrayList<Sancion> listarunidadesmodprocesadas() {
+        ArrayList listaunimod = new ArrayList();
+        Sancion modsan = new Sancion();
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
         String sql = "select unidades.id, unidades.n_unidad, puente_sancion_unidad.id_sancion from unidades left join puente_sancion_unidad on puente_sancion_unidad.id_unidad=unidades.id and puente_sancion_unidad.id_sancion=?  where unidades.id_condominio=?";
         try {
             ps = con.prepareStatement(sql);

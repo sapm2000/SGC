@@ -134,6 +134,52 @@ public class Fondo extends ConexionBD {
         }
 
     }
+    
+     public ArrayList<Fondo> listar1() {
+        ArrayList listaFondo = new ArrayList();
+        Fondo modfon;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "SELECT tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id FROM fondos where id_condominio=?";
+        
+        
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, SGC.condominioActual.getRif());
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modfon = new Fondo();
+
+                modfon.setTipo(rs.getString(1));
+                modfon.setFecha(rs.getDate(2));
+                modfon.setDescripcion(rs.getString(3));
+                modfon.setObservacion(rs.getString(4));
+                modfon.setMonto_inicial(rs.getDouble(5));
+                modfon.setSaldo(rs.getDouble(6));
+                modfon.setId(rs.getInt(7));
+
+                listaFondo.add(modfon);
+            }
+        } catch (Exception e) {
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+        return listaFondo;
+    }
 
     public ArrayList<Fondo> listar(int status) {
         ArrayList listaFondo = new ArrayList();
