@@ -384,7 +384,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         CerrarMes modc = new CerrarMes();
         buscarProveedor buscpro = new buscarProveedor();
 
-        controladorGastoComun controgc = new controladorGastoComun(gc, catagac, modgac, modpro, modcon, this, modc,buscpro);
+        controladorGastoComun controgc = new controladorGastoComun(gc, catagac, modgac, modpro, modcon, this, modc, buscpro);
 
         catagac.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -407,7 +407,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         Unidades moduni = new Unidades();
         catalogoInactivoUnidades cataiuni = new catalogoInactivoUnidades();
         unidadesInactivas unii = new unidadesInactivas();
-      
+
         CerrarMes modc = new CerrarMes();
         controladorUnidades controuni = new controladorUnidades(uni, cataun, detacun, detare, moduni, this, modc, cataiuni, unii);
 
@@ -418,7 +418,9 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         catalogoFondo catafon = new catalogoFondo();
         fondo fon = new fondo();
         Fondo modfon = new Fondo();
-        controladorFondo controfon = new controladorFondo(fon, catafon, modfon, this);
+        catalogoInactivoFondo cataifon = new catalogoInactivoFondo();
+
+        controladorFondo controfon = new controladorFondo(fon, catafon, modfon, this, cataifon);
 
         catafon.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
