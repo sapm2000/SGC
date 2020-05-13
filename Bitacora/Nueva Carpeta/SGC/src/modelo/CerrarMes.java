@@ -353,7 +353,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT max(id) as id FROM detalle_total;";
+        String sql = "SELECT max(id) as id FROM factura_unidad;";
 
         try {
 
@@ -478,7 +478,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO detalle_total(id_unidad, monto, mes, anio, alicuota, estado, saldo_restante) VALUES (?, ?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO factura_unidad(id_unidad, monto, mes, anio, alicuota, estado, saldo_restante) VALUES (?, ?, ?, ?, ?, ?, ?);";
 
         try {
 
@@ -521,7 +521,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE detalle_total SET monto=?, saldo_restante=? WHERE id=?";
+        String sql = "UPDATE factura_unidad SET monto=?, saldo_restante=? WHERE id=?";
 
         try {
 
@@ -670,7 +670,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE detalle_total SET saldo_restante=?, estado=? WHERE id=?;";
+        String sql = "UPDATE factura_unidad SET saldo_restante=?, estado=? WHERE id=?;";
 
         try {
 
@@ -795,7 +795,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT id, monto, mes, anio, alicuota, estado, saldo_restante FROM detalle_total where id_unidad=? order by anio,mes";
+        String sql = "SELECT id, monto, mes, anio, alicuota, estado, saldo_restante FROM factura_unidad where id_unidad=? order by anio,mes";
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId_unidad());
@@ -842,7 +842,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT id, monto, mes, anio, alicuota, estado, saldo_restante FROM detalle_total where id_unidad=? and estado='Pendiente de Pago' order by anio,mes";
+        String sql = "SELECT id, monto, mes, anio, alicuota, estado, saldo_restante FROM factura_unidad where id_unidad=? and estado='Pendiente de Pago' order by anio,mes";
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId_unidad());
@@ -889,7 +889,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT id, monto, mes, anio, alicuota, estado, saldo_restante FROM detalle_total where id_unidad=? and id_condominio=? and estado='Pagado' order by anio,mes";
+        String sql = "SELECT id, monto, mes, anio, alicuota, estado, saldo_restante FROM factura_unidad where id_unidad=? and id_condominio=? and estado='Pagado' order by anio,mes";
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId_unidad());
@@ -933,7 +933,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT count(estado) as estado FROM public.detalle_total where estado='Pendiente de Pago' and id_unidad=?";
+        String sql = "SELECT count(estado) as estado FROM public.factura_unidad where estado='Pendiente de Pago' and id_unidad=?";
 
         try {
 
@@ -1161,7 +1161,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT monto, alicuota FROM detalle_total where id_unidad=? and mes=? and anio=?";
+        String sql = "SELECT monto, alicuota FROM factura_unidad where id_unidad=? and mes=? and anio=?";
 
         try {
 

@@ -260,7 +260,7 @@ public class Sancion extends Unidades {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT id_sancion,detalle_total.id, tipo, sancion.monto FROM puente_sancion_unidad inner join sancion on puente_sancion_unidad.id_sancion=sancion.id inner join unidades on puente_sancion_unidad.id_unidad=unidades.id inner join detalle_total on detalle_total.id_unidad = unidades.id where unidades.id_condominio=? and detalle_total.mes=? and detalle_total.anio=?";
+        String sql = "SELECT id_sancion,factura_unidad.id, tipo, sancion.monto FROM puente_sancion_unidad inner join sancion on puente_sancion_unidad.id_sancion=sancion.id inner join unidades on puente_sancion_unidad.id_unidad=unidades.id inner join factura_unidad on factura_unidad.id_unidad = unidades.id where unidades.id_condominio=? and factura_unidad.mes=? and factura_unidad.anio=?";
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_condominio());
