@@ -30,6 +30,11 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
     public static DecimalFormat formato2 = new DecimalFormat("###,###,###,###,###,###.####", simbolos);
     public static DecimalFormat formatoalicuota = new DecimalFormat("#.##%", simbolos);
 
+    public static java.sql.Date convert(java.util.Date uDate) {
+        java.sql.Date sDate = new java.sql.Date(uDate.getDate());
+        return sDate;
+    }
+
     /*---FUNCIÓN PARA EVITAR EL COPY & PASTE---*/
     public static String formatoDecimal(Double dec) {
         DecimalFormat format = new DecimalFormat();

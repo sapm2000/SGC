@@ -1,5 +1,6 @@
 package vista;
 
+import controlador.ControladorPagarCuotasEsp;
 import controlador.controladoRegistroVisita;
 import controlador.controladorAsambleas;
 import controlador.controladorCerrarMes;
@@ -26,6 +27,7 @@ import modelo.Fondo;
 import modelo.GastoComun;
 import modelo.Interes;
 import modelo.ModeloConceptoGastos;
+import modelo.PagarCuotaEspecial;
 import modelo.Propietarios;
 import modelo.Proveedores;
 import modelo.Registro_visitas;
@@ -467,8 +469,13 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-        pagoCuotasEspeciales pagoce = new pagoCuotasEspeciales();
-        pagoce.setVisible(true);
+        pagoCuotasEspeciales vista = new pagoCuotasEspeciales();
+        PagarCuotaEspecial modPagarCuoE = new PagarCuotaEspecial();
+        Fondo modFondo = new Fondo();
+        Cuenta modCuenta = new Cuenta();
+        CuotasEspeciales modCuotaEsp = new CuotasEspeciales();
+        ControladorPagarCuotasEsp controPagarCE = new ControladorPagarCuotasEsp(vista, modPagarCuoE, modFondo, modCuenta, modCuotaEsp);
+        vista.setVisible(true);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
