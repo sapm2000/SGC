@@ -375,7 +375,7 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
         modfon.setId_condominio(panta1.rif.getText());
         listaunidades = moduni.buscarUnidades();
         crearCbxUnidad(listaunidades);
-        listafondo = modfon.listar1();
+        listafondo = modfon.listar(2);
         crearCbxFondo(listafondo);
        listaCuenta = modcu.listarcuenta();
         crearCbxCuenta(listaCuenta);
