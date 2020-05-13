@@ -23,6 +23,7 @@ import modelo.Interes;
 import modelo.Proveedores;
 import modelo.ModeloConceptoGastos;
 import modelo.Propietarios;
+import modelo.Unidades;
 
 /**
  *
@@ -296,8 +297,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         condominio condo = new condominio();
         PantallaPrincipal1 panta1 = new PantallaPrincipal1();
         Condominio co = new Condominio();
-
-        controladorCondominio controcon = new controladorCondominio(cataCon, condo, panta1, this, co);
+        Unidades moduni = new Unidades();
+        catalogoInactivoCondominio cataico = new catalogoInactivoCondominio();
+        controladorCondominio controcon = new controladorCondominio(cataCon, condo, panta1, this, co, moduni, cataico);
 
         cataCon.setVisible(true);
 

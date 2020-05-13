@@ -63,7 +63,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
 
     public void Llenartabla(JTable tablaD) {
 
-        listafondo = modfon.listar(1);
+        listafondo = modfon.listar(2);
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {

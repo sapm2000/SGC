@@ -134,7 +134,8 @@ public class Fondo extends ConexionBD {
         }
 
     }
-
+    
+   
     public ArrayList<Fondo> listar(int status) {
         ArrayList listaFondo = new ArrayList();
         Fondo modfon;
