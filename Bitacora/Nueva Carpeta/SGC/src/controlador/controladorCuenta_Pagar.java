@@ -30,13 +30,16 @@ import vista.cuentasPorPagar;
 
 public class controladorCuenta_Pagar implements ActionListener, WindowListener, ItemListener, KeyListener, MouseListener {
 
-    private Cuenta_Pagar modCuentaP;
     private cuentasPorPagar vista;
+    private Cuenta_Pagar modCuentaP;
+
+    private catalogoCuentas_procesada catCuenPro;
+    private GastoComun modGastoC;
+
+    private catalogoPagos_referencias catPagos;
+
     private Fondo modFondo;
     private Cuenta modCuenta;
-    private GastoComun modGastoC;
-    private catalogoCuentas_procesada catCuenPro;
-    private catalogoPagos_referencias catPagos;
     ArrayList<GastoComun> listaGastoC;
     ArrayList<Fondo> listaFondo;
     ArrayList<Cuenta> listaCuenta;
@@ -65,51 +68,35 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.btnProcesar) {
+            if (validar()) {
+                modCuentaP.setNum_ref(vista.txtReferencia.getText());
+                modCuentaP.setForma_pago(vista.cbxFormaP.getSelectedItem().toString());
+                int ind = vista.cbxCuentaT.getSelectedIndex() - 1;
+                modCuentaP.getModCuenta().setN_cuenta(listaCuenta.get(ind).getN_cuenta());
+                modCuentaP.setDescripcion(vista.txtDescripcion.getText());
+                java.sql.Date sqlDate = convert(vista.jDate.getDate());
+                modCuentaP.setFecha(sqlDate);
+                ind = vista.cbxFondo.getSelectedIndex() - 1;
+                modCuentaP.getModFondo().setId(listaFondo.get(ind).getId());
+                modCuentaP.getModFondo().setSaldo(listaFondo.get(ind).getSaldo());
+                //int fila = this.vistaCuentaP.jTable.getSelectedRow(); // primero, obtengo la fila seleccionada
+                modCuentaP.setMonto(Float.parseFloat(vista.txtMonto.getText()));
 
-            modCuentaP.setNum_ref(vista.txtReferencia.getText());
-            modCuentaP.setForma_pago(vista.cbxFormaP.getSelectedItem().toString());
-            int ind = vista.cbxCuentaT.getSelectedIndex() - 1;
-            modCuentaP.getModCuenta().setN_cuenta(listaCuenta.get(ind).getN_cuenta());
-            modCuentaP.setDescripcion(vista.txtDescripcion.getText());
-            java.sql.Date sqlDate = convert(vista.jDate.getDate());
-            modCuentaP.setFecha(sqlDate);
-            ind = vista.cbxFondo.getSelectedIndex() - 1;
-            modCuentaP.getModFondo().setId(listaFondo.get(ind).getId());
-            modCuentaP.getModFondo().setSaldo(listaFondo.get(ind).getSaldo());
-            //int fila = this.vistaCuentaP.jTable.getSelectedRow(); // primero, obtengo la fila seleccionada
-            float montoTabla;
-            float montoUsuario;
-            if (Float.parseFloat(vista.txtMonto.getText()) > 0) {
-                montoUsuario = Float.parseFloat(vista.txtMonto.getText());
-                montoTabla = Float.parseFloat(vista.jTable.getValueAt(fila, 3).toString());
+                if (modCuentaP.registrarPago(modCuentaP)) {
+                    modCuentaP.getModFondo().restarFondo(modCuentaP.getMonto());
+                    modGastoC.setId(listaGastoC.get(fila).getId());
+                    modGastoC.restarSaldo(modCuentaP.getMonto());
+                    JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
 
-                if (montoUsuario <= montoTabla) {
-                    if (montoUsuario <= modCuentaP.getModFondo().getSaldo()) {
-                        modCuentaP.setMonto(Float.parseFloat(vista.txtMonto.getText()));
-
-                        if (modCuentaP.registrarPago(modCuentaP)) {
-                            modCuentaP.getModFondo().restarFondo(modCuentaP.getMonto());
-                            modGastoC.setId(listaGastoC.get(fila).getId());
-                            modGastoC.restarSaldo(modCuentaP.getMonto());
-                            JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
-
-                        } else {
-                            JOptionPane.showMessageDialog(null, "ERROR AL REGISTAR");
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "El monto ingresado no puede ser mayor al Fondo");
-                    }
                 } else {
-                    JOptionPane.showMessageDialog(null, "El monto ingresado no puede ser mayor al monto de la factura");
+                    JOptionPane.showMessageDialog(null, "ERROR AL REGISTAR");
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "El monto ingresado no puede ser cero");
+                //listaGastoC = modGastoC.listarGastoComun();
+                listaGastoC = modGastoC.listarGastoComun(2);
+                Llenartabla(vista.jTable, 2);
+                listaFondo = modFondo.listar(1);
+                crearCbxFondo(listaFondo);
             }
-            //listaGastoC = modGastoC.listarGastoComun();
-            listaGastoC = modGastoC.listarGastoComun(2);
-            Llenartabla(vista.jTable, 2);
-            listaFondo = modFondo.listar(1);
-            crearCbxFondo(listaFondo);
         }
         if (e.getSource() == vista.btnMostrar) {
             catCuenPro.addWindowListener(this);
@@ -133,6 +120,7 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
             //listaGastoC = modGastoC.listarGastoComun();
             Llenartabla(vista.jTable, 2);
             //addCheckBox(0, vistaCuentaP.jTable);
+            
         } else if (e.getSource() == catCuenPro) {
             Llenartabla(catCuenPro.jTable1, 1);
         } else if (e.getSource() == catPagos) {
@@ -191,17 +179,16 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(e.getSource() == vista.jTable)
-        {
-        //Llenartabla(vista.jTable, 2);
-        fila = this.vista.jTable.getSelectedRow(); // primero, obtengo la fila seleccionada
-        //Boolean resultado = true;
-        //String msj = "";
+        if (e.getSource() == vista.jTable) {
+            //Llenartabla(vista.jTable, 2);
+            fila = this.vista.jTable.getSelectedRow(); // primero, obtengo la fila seleccionada
+            //Boolean resultado = true;
+            //String msj = "";
 
-        modCuentaP.cargarProveedor(listaGastoC.get(fila).getId());
+            modCuentaP.cargarProveedor(listaGastoC.get(fila).getId());
 
-        vista.setVisible(true);
-        vista.txtProveedor.setText(modCuentaP.getNom_proveedor());
+            vista.setVisible(true);
+            vista.txtProveedor.setText(modCuentaP.getNom_proveedor());
         }
     }
 
@@ -269,26 +256,35 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
         modeloT.addColumn("Fecha");
         modeloT.addColumn("Concepto");
         modeloT.addColumn("Monto");
-        modeloT.addColumn("Saldo Restante");
+
+        if (status != 1) {
+            modeloT.addColumn("Saldo Restante");
+        }
+
         modeloT.addColumn("Estado");
         modeloT.addColumn("Tipo");
-        Object[] columna = new Object[7];
+        Object[] columna = new Object[modeloT.getColumnCount()];
 
         int num = listaGastoC.size();
 
+        System.out.println(modeloT.getColumnCount());
+        System.out.println(num);
         for (int i = 0; i < num; i++) {
+            int j = 0;
+            columna[j++] = listaGastoC.get(i).getId();
+            columna[j++] = listaGastoC.get(i).getFecha();
+            columna[j++] = listaGastoC.get(i).getNombre_Concepto();
+            columna[j++] = listaGastoC.get(i).getMonto();
 
-            columna[0] = listaGastoC.get(i).getId();
-            columna[1] = listaGastoC.get(i).getFecha();
-            columna[2] = listaGastoC.get(i).getNombre_Concepto();
-            columna[3] = listaGastoC.get(i).getMonto();
-            columna[4] = listaGastoC.get(i).getSaldo();
-            columna[5] = listaGastoC.get(i).getEstado();
-            columna[6] = listaGastoC.get(i).getTipo_gasto();
+            if (status != 1) {
+                columna[j++] = listaGastoC.get(i).getSaldo();
+            }
 
+            columna[j++] = listaGastoC.get(i).getEstado();
+            columna[j++] = listaGastoC.get(i).getTipo_gasto();
             modeloT.addRow(columna);
-
         }
+
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
@@ -340,4 +336,50 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
         tc.setCellEditor(table.getDefaultEditor(Boolean.class));
         tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
     }*/
+    private boolean validar() {
+        boolean resultado = true;
+        String mensaje = "";
+
+        if (vista.txtProveedor.getText().isEmpty()) {
+            resultado = false;
+            mensaje += "El campo Proveedor no puede estar vacío\n";
+        } else if (vista.txtMonto.getText().isEmpty()) {
+            resultado = false;
+            mensaje += "El campo Monto no puede estar vacío\n";
+        } else if (Float.parseFloat(vista.txtMonto.getText()) <= 0) {
+            resultado = false;
+            mensaje += "El monto no puede ser 0\n";
+        } else if (Float.parseFloat(vista.txtMonto.getText()) > Float.parseFloat(vista.jTable.getValueAt(fila, 4).toString())) {
+            resultado = false;
+            mensaje += "El monto no puede ser mayor al saldo restante de la factura\n";
+        }
+        if (vista.txtReferencia.getText().isEmpty()) {
+            resultado = false;
+            mensaje += "El campo Número de Referencia no puede estar vacío\n";
+        }
+        if (vista.cbxCuentaT.getSelectedIndex() == 0) {
+            resultado = false;
+            mensaje += "Debe seleccionar una Cuenta a transferir\n";
+        }
+        if (vista.txtDescripcion.getText().isEmpty()) {
+            resultado = false;
+            mensaje += "El campo Descripción no puede estar vacío\n";
+        }
+        if (vista.jDate.getDate() == null) {
+            resultado = false;
+            mensaje += "Debe seleccionar una Fecha de pago\n";
+        }
+        if (vista.cbxFondo.getSelectedIndex() == 0) {
+            resultado = false;
+            mensaje += "Debe seleccionar un Fondo\n";
+        } else if (Float.parseFloat(vista.txtMonto.getText()) > listaFondo.get(vista.cbxFondo.getSelectedIndex() - 1).getSaldo()) {
+            resultado = false;
+            mensaje += "El monto no puede ser mayor al Fondo\n";
+        }
+        if (resultado = false) {
+            JOptionPane.showMessageDialog(vista, mensaje);
+        }
+
+        return resultado;
+    }
 }

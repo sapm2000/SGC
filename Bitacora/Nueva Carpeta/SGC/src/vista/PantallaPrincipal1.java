@@ -1,5 +1,6 @@
 package vista;
 
+import controlador.ControladorPagarCuotasEsp;
 import controlador.controladoRegistroVisita;
 import controlador.controladorAsambleas;
 import controlador.controladorCerrarMes;
@@ -26,6 +27,7 @@ import modelo.Fondo;
 import modelo.GastoComun;
 import modelo.Interes;
 import modelo.ModeloConceptoGastos;
+import modelo.PagarCuotaEspecial;
 import modelo.Propietarios;
 import modelo.Proveedores;
 import modelo.Registro_visitas;
@@ -384,7 +386,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         CerrarMes modc = new CerrarMes();
         buscarProveedor buscpro = new buscarProveedor();
 
-        controladorGastoComun controgc = new controladorGastoComun(gc, catagac, modgac, modpro, modcon, this, modc,buscpro);
+        controladorGastoComun controgc = new controladorGastoComun(gc, catagac, modgac, modpro, modcon, this, modc, buscpro);
 
         catagac.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -407,7 +409,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         Unidades moduni = new Unidades();
         catalogoInactivoUnidades cataiuni = new catalogoInactivoUnidades();
         unidadesInactivas unii = new unidadesInactivas();
-      
+
         CerrarMes modc = new CerrarMes();
         controladorUnidades controuni = new controladorUnidades(uni, cataun, detacun, detare, moduni, this, modc, cataiuni, unii);
 
@@ -418,7 +420,9 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         catalogoFondo catafon = new catalogoFondo();
         fondo fon = new fondo();
         Fondo modfon = new Fondo();
-        controladorFondo controfon = new controladorFondo(fon, catafon, modfon, this);
+        catalogoInactivoFondo cataifon = new catalogoInactivoFondo();
+
+        controladorFondo controfon = new controladorFondo(fon, catafon, modfon, this, cataifon);
 
         catafon.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
@@ -467,8 +471,13 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
-        pagoCuotasEspeciales pagoce = new pagoCuotasEspeciales();
-        pagoce.setVisible(true);
+        pagoCuotasEspeciales vista = new pagoCuotasEspeciales();
+        PagarCuotaEspecial modPagarCuoE = new PagarCuotaEspecial();
+        Fondo modFondo = new Fondo();
+        Cuenta modCuenta = new Cuenta();
+        CuotasEspeciales modCuotaEsp = new CuotasEspeciales();
+        ControladorPagarCuotasEsp controPagarCE = new ControladorPagarCuotasEsp(vista, modPagarCuoE, modFondo, modCuenta, modCuotaEsp);
+        vista.setVisible(true);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed

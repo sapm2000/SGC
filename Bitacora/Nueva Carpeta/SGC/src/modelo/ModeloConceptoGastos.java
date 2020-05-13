@@ -62,7 +62,7 @@ public class ModeloConceptoGastos extends CategoriaGasto {
         Connection con = getConexion();
 
         String sql = "INSERT INTO concepto_Gasto (nom_concepto, descripcion, id_Categoria, activo) VALUES (?, ?, ?, 1);";
-        System.out.println(sql);
+        
         try {
 
             ps = con.prepareStatement(sql);

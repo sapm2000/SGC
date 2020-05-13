@@ -5,7 +5,7 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2020-05-13 09:13:22
+-- Started on 2020-05-13 10:40:51
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -212,24 +212,23 @@ ALTER SEQUENCE public.cierre_de_mes_id_seq OWNED BY public.cierre_de_mes.id;
 
 --
 -- TOC entry 210 (class 1259 OID 26761)
--- Name: cobro; Type: TABLE; Schema: public; Owner: postgres
+-- Name: cobro_unidad; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.cobro (
+CREATE TABLE public.cobro_unidad (
     id integer NOT NULL,
     monto double precision NOT NULL,
     descripcion character varying(500) NOT NULL,
-    id_unidad character varying(150) NOT NULL,
     id_cuenta character varying(20) NOT NULL,
     forma_pago character varying(150) NOT NULL,
     referencia character varying(50) NOT NULL,
     fecha date NOT NULL,
     id_fondo bigint NOT NULL,
-    id_condominio character varying(15)
+    id_unidad bigint
 );
 
 
-ALTER TABLE public.cobro OWNER TO postgres;
+ALTER TABLE public.cobro_unidad OWNER TO postgres;
 
 --
 -- TOC entry 211 (class 1259 OID 26767)
@@ -253,7 +252,7 @@ ALTER TABLE public.cobro_id_seq OWNER TO postgres;
 -- Name: cobro_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.cobro_id_seq OWNED BY public.cobro.id;
+ALTER SEQUENCE public.cobro_id_seq OWNED BY public.cobro_unidad.id;
 
 
 --
@@ -565,7 +564,8 @@ CREATE TABLE public.fondos (
     monto_inicial double precision NOT NULL,
     saldo double precision NOT NULL,
     id_condominio character varying(15) NOT NULL,
-    id integer NOT NULL
+    id integer NOT NULL,
+    activo bigint
 );
 
 
@@ -1197,10 +1197,10 @@ ALTER TABLE ONLY public.cierre_de_mes ALTER COLUMN id SET DEFAULT nextval('publi
 
 --
 -- TOC entry 2862 (class 2604 OID 26918)
--- Name: cobro id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: cobro_unidad id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.cobro ALTER COLUMN id SET DEFAULT nextval('public.cobro_id_seq'::regclass);
+ALTER TABLE ONLY public.cobro_unidad ALTER COLUMN id SET DEFAULT nextval('public.cobro_id_seq'::regclass);
 
 
 --
@@ -1407,9 +1407,11 @@ INSERT INTO public.cierre_de_mes VALUES (57, 5, 2020, '21321312');
 --
 -- TOC entry 3099 (class 0 OID 26761)
 -- Dependencies: 210
--- Data for Name: cobro; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: cobro_unidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public.cobro_unidad VALUES (11, 12500, 'asdas', '01020045120268985654', 'Transferencia', 'asdsad', '2020-05-09', 55, 66);
+INSERT INTO public.cobro_unidad VALUES (12, 10000, 'fdf', '01020045120268985654', 'Transferencia', '12313', '2020-05-09', 55, 66);
 
 
 --
@@ -1530,7 +1532,7 @@ INSERT INTO public.detalle_pagos VALUES (1323, 5, 2020, 1200, 9, 157, 'Interes')
 -- Data for Name: factura_unidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.factura_unidad VALUES (157, 22500, 5, 2020, 1, 'Pendiente de Pago', 22500, 66);
+INSERT INTO public.factura_unidad VALUES (157, 22500, 5, 2020, 1, 'Pagado', 0, 66);
 
 
 --
@@ -1539,7 +1541,10 @@ INSERT INTO public.factura_unidad VALUES (157, 22500, 5, 2020, 1, 'Pendiente de 
 -- Data for Name: fondos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.fondos VALUES ('asdad', '2020-05-16', 'dadsad', 'sadas', 21313, 21313, '21321312', 55);
+INSERT INTO public.fondos VALUES ('asdads', '2020-05-09', 'adsasd', 'asda', 31231, 31231, '21321312', 56, 1);
+INSERT INTO public.fondos VALUES ('sdadsad', '2020-05-16', 'fsdfds', 'sdfsd', 0, 0, '21321312', 58, 0);
+INSERT INTO public.fondos VALUES ('asdad', '2020-05-16', 'dadsad', 'sadas', 21313, 0, '21321312', 55, 1);
+INSERT INTO public.fondos VALUES ('asdsad', '2020-05-10', 'fsf', 'sfdsd', 0, 0, '21321312', 57, 1);
 
 
 --
@@ -1661,6 +1666,8 @@ INSERT INTO public.proveedores VALUES ('J-547859655', 'Reparacion de Camaras', '
 -- Data for Name: puente_cobro_factura; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public.puente_cobro_factura VALUES (8, 157, 11, 12500);
+INSERT INTO public.puente_cobro_factura VALUES (9, 157, 12, 10000);
 
 
 --
@@ -1817,7 +1824,7 @@ SELECT pg_catalog.setval('public.cierre_de_mes_id_seq', 57, true);
 -- Name: cobro_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.cobro_id_seq', 10, true);
+SELECT pg_catalog.setval('public.cobro_id_seq', 12, true);
 
 
 --
@@ -1880,7 +1887,7 @@ SELECT pg_catalog.setval('public.detalle_total_id_seq', 157, true);
 -- Name: fondos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.fondos_id_seq', 55, true);
+SELECT pg_catalog.setval('public.fondos_id_seq', 58, true);
 
 
 --
@@ -1916,7 +1923,7 @@ SELECT pg_catalog.setval('public.puente_asamblea_propietario_id_seq', 258, true)
 -- Name: puente_cobro_factura_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.puente_cobro_factura_id_seq', 7, true);
+SELECT pg_catalog.setval('public.puente_cobro_factura_id_seq', 9, true);
 
 
 --
@@ -2047,10 +2054,10 @@ ALTER TABLE ONLY public.cierre_de_mes
 
 --
 -- TOC entry 2897 (class 2606 OID 26954)
--- Name: cobro cobro_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: cobro_unidad cobro_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.cobro
+ALTER TABLE ONLY public.cobro_unidad
     ADD CONSTRAINT cobro_pkey PRIMARY KEY (id);
 
 
@@ -2378,7 +2385,7 @@ ALTER TABLE ONLY public.visita
     ADD CONSTRAINT visita_ci_visitante_fkey FOREIGN KEY (ci_visitante) REFERENCES public.visitante(cedula);
 
 
--- Completed on 2020-05-13 09:13:26
+-- Completed on 2020-05-13 10:40:52
 
 --
 -- PostgreSQL database dump complete

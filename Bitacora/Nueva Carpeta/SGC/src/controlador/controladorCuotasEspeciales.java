@@ -86,7 +86,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
     public void llenartablaCuotasEspeciales(JTable tablaD) {
 
-        listacuotasEspeciales = modcuo.listarCuotasEspeciales();
+        listacuotasEspeciales = modcuo.listarCuotasEspeciales("");
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -107,51 +107,43 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
         modeloT.addColumn("<html>Monto <br> Inicial</html>");
         modeloT.addColumn("Saldo");
         modeloT.addColumn("Asamblea");
-
         modeloT.addColumn("<html>Meses <br> Iniciales</html>");
         modeloT.addColumn("<html>Meses <br> Restantes</html>");
         modeloT.addColumn("Observación");
-
         modeloT.addColumn("Estado");
+        modeloT.addColumn("Estado Pago");
 
         Object[] columna = new Object[13];
 
         int numRegistro = listacuotasEspeciales.size();
+        int ind;
 
         for (int i = 0; i < numRegistro; i++) {
-
-            columna[0] = listacuotasEspeciales.get(i).getId();
-            columna[1] = listacuotasEspeciales.get(i).getId_proveedor();
+            ind = 0;
+            columna[ind++] = listacuotasEspeciales.get(i).getId();
+            columna[ind++] = listacuotasEspeciales.get(i).getId_proveedor();
+            columna[ind++] = listacuotasEspeciales.get(i).getNombre_Concepto();
             String fecha = String.valueOf(listacuotasEspeciales.get(i).getMes()) + "-" + listacuotasEspeciales.get(i).getAño();
-
-            columna[2] = listacuotasEspeciales.get(i).getNombre_Concepto();
-            columna[3] = listacuotasEspeciales.get(i).getCalcular();
-            columna[4] = fecha;
-            columna[5] = Validacion.formato1.format(listacuotasEspeciales.get(i).getMonto());
-            columna[6] = Validacion.formato1.format(listacuotasEspeciales.get(i).getSaldo());
-            columna[7] = listacuotasEspeciales.get(i).getNombre_asamble();
-            columna[8] = listacuotasEspeciales.get(i).getN_meses();
-            columna[9] = listacuotasEspeciales.get(i).getN_meses_restantes();
-            columna[10] = listacuotasEspeciales.get(i).getObservacion();
-            columna[11] = listacuotasEspeciales.get(i).getEstado();
+            columna[ind++] = listacuotasEspeciales.get(i).getCalcular();
+            columna[ind++] = fecha;
+            columna[ind++] = Validacion.formato1.format(listacuotasEspeciales.get(i).getMonto());
+            columna[ind++] = Validacion.formato1.format(listacuotasEspeciales.get(i).getSaldo());
+            columna[ind++] = listacuotasEspeciales.get(i).getNombre_asamble();
+            columna[ind++] = listacuotasEspeciales.get(i).getN_meses();
+            columna[ind++] = listacuotasEspeciales.get(i).getN_meses_restantes();
+            columna[ind++] = listacuotasEspeciales.get(i).getObservacion();
+            columna[ind++] = listacuotasEspeciales.get(i).getEstado();
+            columna[ind++] = listacuotasEspeciales.get(i).getPagado();
 
             modeloT.addRow(columna);
 
         }
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(6).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(7).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(8).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(9).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(10).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(11).setCellRenderer(tcr);
+
+        for (int i = 0; i < modeloT.getColumnCount(); i++) {
+            tablaD.getColumnModel().getColumn(i).setCellRenderer(tcr);
+        }
     }
 
     public void Llenartabla(JTable tablaD) {
@@ -443,13 +435,13 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
         if (cuotae.txtMonto.getText().isEmpty()) {
 
-            msj += "El campo numero de Cuenta no puede estar vacio\n";
+            msj += "El campo número de Cuenta no puede estar vacío\n";
             resultado = false;
         }
 
         if (cuotae.txtNmeses.getText().isEmpty()) {
 
-            msj += "El campo numero de N° de meses no puede estar vacio\n";
+            msj += "El campo N° de meses no puede estar vacío\n";
             resultado = false;
         }
 
