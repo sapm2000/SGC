@@ -99,7 +99,7 @@ public class Fondo extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO fondos(tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id_condominio) VALUES (?, ?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO fondos(tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id_condominio, activo) VALUES (?, ?, ?, ?, ?, ?, ?, 1);";
 
         try {
 
@@ -134,7 +134,8 @@ public class Fondo extends ConexionBD {
         }
 
     }
-
+    
+   
     public ArrayList<Fondo> listar(int status) {
         ArrayList listaFondo = new ArrayList();
         Fondo modfon;
@@ -145,10 +146,13 @@ public class Fondo extends ConexionBD {
         String sql = "";
         
         if (status == 1) {
-            sql = "SELECT tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id FROM fondos where id_condominio=? AND saldo > 0;";
+            sql = "SELECT tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id FROM fondos where id_condominio=? AND saldo > 0 and activo=1;";
         }
         if (status == 2) {
-            sql = "SELECT tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id FROM fondos where id_condominio=?;";
+            sql = "SELECT tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id FROM fondos where id_condominio=? and activo=1;";
+        }
+        if (status == 3) {
+            sql = "SELECT tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id FROM fondos where id_condominio=? and activo=0;";
         }
         try {
             ps = con.prepareStatement(sql);
@@ -357,7 +361,42 @@ public class Fondo extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "DELETE FROM fondos WHERE id=?";
+        String sql = "UPDATE fondos SET activo=0 WHERE id=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, getId());
+
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+     public boolean activar(Fondo modfon) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE fondos SET activo=1 WHERE id=?";
 
         try {
 

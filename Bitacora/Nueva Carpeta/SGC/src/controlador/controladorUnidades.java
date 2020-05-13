@@ -925,11 +925,12 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             int result = JOptionPane.showOptionDialog(null, "Seleccione si desea ver detalles de pagp o modificar datos", "MENU", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
             if (result == 0) {
                 int fila = this.catauni.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+               listaunidades = moduni.buscarUnidades();
                 String dato = String.valueOf(this.catauni.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
-                int fila2 = this.catauni.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
-                String dato2 = String.valueOf(this.catauni.jTable1.getValueAt(fila2, 2)); // por ultimo, obtengo el valor de la celda
+               
+                String dato2 = String.valueOf(this.catauni.jTable1.getValueAt(fila, 2)); // por ultimo, obtengo el valor de la celda
                 detacun.setVisible(true);
-                modc.setId_unidad(dato);
+                modc.setId_unidad(listaunidades.get(fila).getId());
                 modc.setId_condominio(panta1.rif.getText());
                 detacun.txtPropietarios.setText(dato2);
                 llenartablapagos(detacun.jTable1);
@@ -962,7 +963,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         }
 
         if (e.getSource() == detacun.jTable1) {
-            modc.setId_unidad(detacun.txtUnidad.getText());
+            
             int fila = this.detacun.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
             String datos = String.valueOf(this.detacun.jTable1.getValueAt(fila, 1)); // por ultimo, obtengo el valor de la celda
             int fila2 = this.detacun.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
@@ -970,6 +971,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             int fila3 = this.detacun.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
             String dato3 = String.valueOf(this.detacun.jTable1.getValueAt(fila3, 0)); // por ultimo, obtengo el valor de la celda
             this.detare.setVisible(true);
+            modc.setId(Integer.parseInt(dato3));
 
             modc.setMes_cierre(Integer.parseInt(datos));
             modc.setAño_cierre(Integer.parseInt(dato2));
@@ -978,7 +980,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             llenardetallecuotas(detare.tablacuotas);
             llenardetallesancion(detare.tablasancion);
             llenardetalleinteres(detare.tablainteres);
-            detare.txtMes.setText(datos);
+            detare.txtMes.setText(datos+"-"+dato2);
             detare.txtUnidad.setText(detacun.txtUnidad.getText());
             detare.txtPropietarios.setText(detacun.txtPropietarios.getText());
             detare.txtId.setText(dato3);

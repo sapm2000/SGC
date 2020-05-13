@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -22,10 +23,12 @@ import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.Fondo;
 import vista.PantallaPrincipal1;
 import vista.catalogoFondo;
+import vista.catalogoInactivoFondo;
 import vista.fondo;
 
 /**
@@ -38,22 +41,24 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
     private catalogoFondo catafon;
     private Fondo modfon;
     private PantallaPrincipal1 panta1;
+    private catalogoInactivoFondo cataifon;
     ArrayList<Fondo> listafondo;
     DefaultTableModel dm;
     double montoi;
     double saldo;
 
-    public controladorFondo(fondo fon, catalogoFondo catafon, Fondo modfon, PantallaPrincipal1 panta1) {
+    public controladorFondo(fondo fon, catalogoFondo catafon, Fondo modfon, PantallaPrincipal1 panta1, catalogoInactivoFondo cataifon) {
         this.fon = fon;
         this.catafon = catafon;
         this.modfon = modfon;
         this.panta1 = panta1;
+        this.cataifon = cataifon;
         this.catafon.addWindowListener(this);
-
+        this.cataifon.btnActivar.addActionListener(this);
         this.catafon.jButton2.addActionListener(this);
         this.catafon.jTextField1.addKeyListener(this);
         this.catafon.jTable1.addMouseListener(this);
-
+        this.catafon.btnDesactivar.addActionListener(this);
         this.fon.btnGuardar.addActionListener(this);
         this.fon.btnLimpiar.addActionListener(this);
         this.fon.btnModificar.addActionListener(this);
@@ -63,7 +68,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
 
     public void Llenartabla(JTable tablaD) {
 
-        listafondo = modfon.listar(1);
+        listafondo = modfon.listar(2);
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -108,7 +113,101 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
         tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
     }
 
+    public void Llenartablainactivos(JTable tablaD) {
+
+        listafondo = modfon.listar(3);
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                boolean resu = false;
+
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+                if (column == 2) {
+                    resu = false;
+                }
+                if (column == 3) {
+                    resu = false;
+                }
+                if (column == 4) {
+                    resu = false;
+                }
+                if (column == 5) {
+                    resu = false;
+                }
+                if (column == 6) {
+                    resu = true;
+                }
+
+                return resu;
+            }
+
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+
+        modeloT.addColumn("Fecha");
+        modeloT.addColumn("Tipo");
+        modeloT.addColumn("Descripción");
+        modeloT.addColumn("Observación");
+        modeloT.addColumn("Monto Inicial");
+        modeloT.addColumn("Saldo Actual");
+        modeloT.addColumn("Seleccione");
+
+        Object[] columna = new Object[7];
+
+        int numRegistro = listafondo.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listafondo.get(i).getFecha();
+            columna[1] = listafondo.get(i).getTipo();
+            columna[2] = listafondo.get(i).getDescripcion();
+            columna[3] = listafondo.get(i).getObservacion();
+            columna[4] = Validacion.formato1.format(listafondo.get(i).getMonto_inicial());
+            columna[5] = Validacion.formato1.format(listafondo.get(i).getSaldo());
+
+            modeloT.addRow(columna);
+
+        }
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(6).setCellRenderer(tcr);
+    }
+
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == catafon.btnDesactivar) {
+            this.cataifon.setVisible(true);
+            Llenartablainactivos(cataifon.jTable1);
+            addCheckBox(6, cataifon.jTable1);
+        }
+
+        if (e.getSource() == cataifon.btnActivar) {
+            listafondo = modfon.listar(3);
+
+            for (int i = 0; i < cataifon.jTable1.getRowCount(); i++) {
+                if (valueOf(cataifon.jTable1.getValueAt(i, 6)) == "true") {
+
+                    modfon.setId(listafondo.get(i).getId());
+                    modfon.activar(modfon);
+
+                }
+            }
+            Llenartablainactivos(cataifon.jTable1);
+            addCheckBox(6, cataifon.jTable1);
+            Llenartabla(catafon.jTable1);
+        }
 
         if (e.getSource() == catafon.jButton2) {
             this.fon.setVisible(true);
@@ -128,25 +227,29 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
         if (e.getSource() == fon.btnGuardar) {
             if (validar()) {
                 modfon.setTipo(fon.txtTipo.getText());
-                java.sql.Date sqlDate = convert(fon.jDateChooser1.getDate());
-                modfon.setFecha(sqlDate);
-                modfon.setDescripcion(fon.txaDescripcion.getText());
-                modfon.setObservacion(fon.txaObservaciones.getText());
-                modfon.setMonto_inicial(Double.parseDouble(fon.txtMontoInicial.getText()));
-                modfon.setId_condominio(panta1.rif.getText());
-                if (modfon.buscar(modfon)) {
-                    JOptionPane.showMessageDialog(null, "este fondo ya esta registrado");
+                if (fon.jDateChooser1.getDate() == null) {
+                    JOptionPane.showMessageDialog(null, "ingrese la fecha de creacion del fondo");
                 } else {
-
-                    if (modfon.registrar(modfon)) {
-
-                        JOptionPane.showMessageDialog(null, "Registro Guardado");
-                        Llenartabla(catafon.jTable1);
-
+                    java.sql.Date sqlDate = convert(fon.jDateChooser1.getDate());
+                    modfon.setFecha(sqlDate);
+                    modfon.setDescripcion(fon.txaDescripcion.getText());
+                    modfon.setObservacion(fon.txaObservaciones.getText());
+                    modfon.setMonto_inicial(Double.parseDouble(fon.txtMontoInicial.getText()));
+                    modfon.setId_condominio(panta1.rif.getText());
+                    if (modfon.buscar(modfon)) {
+                        JOptionPane.showMessageDialog(null, "este fondo ya esta registrado");
                     } else {
 
-                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                        if (modfon.registrar(modfon)) {
 
+                            JOptionPane.showMessageDialog(null, "Registro Guardado");
+                            Llenartabla(catafon.jTable1);
+
+                        } else {
+
+                            JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                        }
                     }
                 }
             }
@@ -226,6 +329,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
             modfon.setTipo(fon.txtTipo.getText());
 
             if (saldo == 0) {
+
                 if (modfon.eliminar(modfon)) {
 
                     JOptionPane.showMessageDialog(null, "Registro Eliminado");
@@ -263,7 +367,6 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
         Boolean resultado = true;
         String msj = "";
 
-
         if (fon.txtMontoInicial.getText().isEmpty()) {
 
             msj += "El campo monto inicial no puede estar vacío\n";
@@ -275,7 +378,6 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
             msj += "El campo tipo no puede estar vacío\n";
             resultado = false;
         }
-
 
         if (!resultado) {
 
@@ -367,8 +469,8 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
     public void windowOpened(WindowEvent e) {
         modfon.setId_condominio(panta1.rif.getText());
         Llenartabla(catafon.jTable1);
-        
-        Component[] components =fon.jPanel2.getComponents();
+
+        Component[] components = fon.jPanel2.getComponents();
         JComponent[] com = {
             fon.txtTipo, fon.txtMontoInicial
         };
@@ -412,5 +514,11 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
         jtableBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));
 
+    }
+
+    public void addCheckBox(int column, JTable table) {
+        TableColumn tc = table.getColumnModel().getColumn(column);
+        tc.setCellEditor(table.getDefaultEditor(Boolean.class));
+        tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
     }
 }

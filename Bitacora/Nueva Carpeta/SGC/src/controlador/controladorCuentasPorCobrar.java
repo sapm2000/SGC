@@ -45,6 +45,9 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
     private CerrarMes modc;
     private PantallaPrincipal1 panta1;
     ArrayList<CerrarMes> listaCierremes;
+    ArrayList<Unidades> listaunidades;
+    ArrayList<Fondo> listafondo;
+    ArrayList<Cuenta> listaCuenta;
 
     public controladorCuentasPorCobrar(cuentasPorCobrar cuenco, CuentasPorCobrar modcuen, Unidades moduni, Fondo modfon, Cuenta modcu, CerrarMes modc, PantallaPrincipal1 panta1) {
         this.cuenco = cuenco;
@@ -228,10 +231,15 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == cuenco.btnGuardar) {
             if (validar()) {
+                listaunidades = moduni.buscarUnidades();
+                listafondo = modfon.listar(2);
+                listaCuenta = modcu.listarcuenta();
+
                 int j = 0;
                 modcuen.setDescripcion(cuenco.txtDescripcion.getText());
                 modcuen.setForma_pago(cuenco.jComboForma.getSelectedItem().toString());
-                modcuen.setId_cuenta(cuenco.jComboCuenta.getSelectedItem().toString());
+                int ind2 = cuenco.jComboCuenta.getSelectedIndex() - 1;
+
                 for (int i = 0; i < cuenco.jTable1.getRowCount(); i++) {
                     if (valueOf(cuenco.jTable1.getValueAt(i, 7)) == "true") {
 
@@ -242,20 +250,24 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                 if (j == 0) {
                     JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
                 } else {
-                    if (modcuen.getId_cuenta().equals("Seleccione la cuenta depositada")) {
+                    if (ind2 == -1) {
                         JOptionPane.showMessageDialog(null, "seleccione una cuenta");
                     } else {
-                        modfon.setTipo(cuenco.jComboFondo.getSelectedItem().toString());
-                        if (modfon.getTipo().equals("Seleccione el fondo a depositar")) {
+                        modcuen.setId_cuenta(listaCuenta.get(ind2).getN_cuenta());
+
+                        int ind1 = cuenco.jComboFondo.getSelectedIndex() - 1;
+                        if (ind1 == -1) {
                             JOptionPane.showMessageDialog(null, "seleccione el fondo a depositar");
                         } else {
-                            modfon.setId_condominio(panta1.rif.getText());
-                            modfon.buscar1(modfon);
-                            modcuen.setId_fondo(modfon.getId());
-                            modcuen.setId_unidad(cuenco.jComboUnidad.getSelectedItem().toString());
-                            if (modcuen.getId_unidad().equals("Seleccione el numero de la unidad")) {
+
+                            modcuen.setId_fondo(listafondo.get(ind1).getId());
+
+                            int ind = cuenco.jComboUnidad.getSelectedIndex() - 1;
+
+                            if (ind == -1) {
                                 JOptionPane.showMessageDialog(null, "seleccione el numero de la unidad");
                             } else {
+                                modcuen.setId_unidad(listaunidades.get(ind).getId());
                                 modcuen.setMonto(Double.parseDouble(cuenco.txtMonto.getText()));
                                 modcuen.setReferencia(cuenco.txtReferencia.getText());
                                 java.sql.Date sqlDate = convert(cuenco.jDateChooser1.getDate());
@@ -300,7 +312,7 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                                                         modc.setEstado("Pagado");
 
                                                     } else {
-                                                        modc.setEstado("Pendiente de pago");
+                                                        modc.setEstado("Pendiente de Pago");
                                                     }
                                                     modc.setSaldo_restante(parte);
 
@@ -315,7 +327,7 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                                             }
                                         }
                                         modc.setId_condominio(panta1.rif.getText());
-                                        modc.setId_unidad(cuenco.jComboUnidad.getSelectedItem().toString());
+                                        modcuen.setId_unidad(listaunidades.get(ind).getId());
                                         Llenartabla(cuenco.jTable1);
                                         addCheckBox(7, cuenco.jTable1);
                                         Llenartablapagados(cuenco.jTable2);
@@ -330,18 +342,57 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
         }
     }
 
+    private void crearCbxUnidad(ArrayList<Unidades> datos) {
+        cuenco.jComboUnidad.addItem("Seleccione el numero de la unidad");
+
+        if (datos != null) {
+            for (Unidades datosX : datos) {
+                moduni = datosX;
+                cuenco.jComboUnidad.addItem(moduni.getN_unidad());
+            }
+
+        }
+    }
+
+    private void crearCbxFondo(ArrayList<Fondo> datos) {
+        cuenco.jComboFondo.addItem("Seleccione el fondo a depositar");
+
+        if (datos != null) {
+            for (Fondo datosX : datos) {
+                modfon = datosX;
+                cuenco.jComboFondo.addItem(modfon.getTipo() + " " + modfon.getSaldo());
+            }
+
+        }
+    }
+
+    private void crearCbxCuenta(ArrayList<Cuenta> datos) {
+        cuenco.jComboCuenta.addItem("Seleccione la cuenta depositada");
+
+        if (datos != null) {
+            for (Cuenta datosX : datos) {
+                modcu = datosX;
+                cuenco.jComboCuenta.addItem(modcu.getN_cuenta() + " " + modcu.getCedula() + " " + modcu.getBeneficiario());
+            }
+
+        }
+    }
+
     @Override
     public void windowOpened(WindowEvent e) {
         moduni.setId_condominio(panta1.rif.getText());
         modcu.setId_condominio(panta1.rif.getText());
         modfon.setId_condominio(panta1.rif.getText());
-        moduni.llenar_unidades(cuenco.jComboUnidad);
-        modcu.llenar_cuentas(cuenco.jComboCuenta);
-        modfon.llenar_fondo(cuenco.jComboFondo);
-        
-        Component[] components =cuenco.jPanel2.getComponents();
+        listaunidades = moduni.buscarUnidades();
+        crearCbxUnidad(listaunidades);
+        listafondo = modfon.listar(2);
+        crearCbxFondo(listafondo);
+        listaCuenta = modcu.listarcuenta();
+        crearCbxCuenta(listaCuenta);
+
+        Component[] components = cuenco.jPanel2.getComponents();
         JComponent[] com = {
-            cuenco.txtReferencia,cuenco.txtDescripcion, cuenco.txtMonto
+            cuenco.txtReferencia, cuenco.txtDescripcion, cuenco.txtMonto
         };
         Validacion.copiar(components);
         Validacion.pegar(com);
@@ -380,12 +431,15 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getStateChange() == ItemEvent.SELECTED) {
-            if (cuenco.jComboUnidad.getSelectedItem().toString().equals("Seleccione el numero de la unidad")) {
+             moduni.setId_condominio(panta1.rif.getText());
+            listaunidades = moduni.buscarUnidades();
+             int ind = cuenco.jComboUnidad.getSelectedIndex() - 1;
+           if (ind == -1) {
 
             } else {
-
-                modc.setId_condominio(panta1.rif.getText());
-                modc.setId_unidad(cuenco.jComboUnidad.getSelectedItem().toString());
+                 
+               
+                modc.setId_unidad(listaunidades.get(ind).getId());
                 Llenartabla(cuenco.jTable1);
                 addCheckBox(7, cuenco.jTable1);
                 Llenartablapagados(cuenco.jTable2);

@@ -225,7 +225,7 @@ public class Cuenta extends Banco {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "select cuenta.cedula, cuenta.n_cuenta, cuenta.beneficiario, cuenta.tipo, banco.nombre_banco, count(puente_condominio_cuenta.id_cuenta) as condominio  from cuenta inner join banco on banco.id=cuenta.id_banco inner join puente_condominio_cuenta on cuenta.n_cuenta=puente_condominio_cuenta.id_cuenta where cuenta.activo=1 group by cuenta.n_cuenta,banco.nombre_banco";
+        String sql = "select cuenta.cedula, cuenta.n_cuenta, cuenta.beneficiario, cuenta.tipo, banco.nombre_banco, count(puente_condominio_cuenta.id_cuenta) as condominio  from cuenta inner join banco on banco.id=cuenta.id_banco left join puente_condominio_cuenta on cuenta.n_cuenta=puente_condominio_cuenta.id_cuenta where cuenta.activo=1 group by cuenta.n_cuenta,banco.nombre_banco";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
