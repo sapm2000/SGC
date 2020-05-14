@@ -167,6 +167,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                             modc.setEstado("Pendiente de Pago");
                             modc.guardartotal(modc);
                             modc.buscaultimo(modc);
+                           
                             id_factura[i] = modc.getId();
 
                         }
@@ -204,14 +205,16 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                     modc.setId_gasto(Integer.parseInt(String.valueOf(id_gasto[f])));
 
                                     modc.setId(Integer.parseInt(String.valueOf(id_factura[x])));
+                                     JOptionPane.showMessageDialog(null, listagastocomun.get(f).getEstado());
                                     if (listagastocomun.get(f).getEstado().equals("Pendiente")) {
                                         modc.setEstado("Procesado");
+                                        JOptionPane.showMessageDialog(null, modc.getEstado());
                                     }
                                     if (listagastocomun.get(f).getEstado().equals("Pagado")) {
                                         modc.setEstado("Procesado y pagado");
                                     }
                                     modc.setTipo_gasto("Gasto comun");
-
+                                     
                                     modc.registrarGasto(modc);
                                     modc.actualizarGasto(modc);
 
@@ -241,6 +244,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                 tipo_cuota[z] = listacuotasespeciales.get(z).getCalcular();
                                 int var1 = mes_c + meses_r;
                                 double monto_t = listacuotasespeciales.get(z).getMonto();
+                                
                                 double parte_periodo = monto_t / meses_r;
 
                                 if (año >= año_c) {
@@ -358,7 +362,8 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                 }
 
                                 if (var.equals("Multa")) {
-                                  
+                                  int id_fac = listasanciones.get(j).getId();
+                                    modc.setId(id_fac);
                                     modc.setMonto(listasanciones.get(j).getMonto());
                                     modc.setId_gasto(Integer.parseInt(String.valueOf(id_sancion[j])));
                                      modc.setTipo_gasto("Sancion");

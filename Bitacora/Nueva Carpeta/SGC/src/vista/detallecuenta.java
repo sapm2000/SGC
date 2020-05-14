@@ -65,7 +65,7 @@ public class detallecuenta extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtMesesdeuda = new javax.swing.JTextField();
-        txtPropietarios = new javax.swing.JTextField();
+        txtArea = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
@@ -105,13 +105,13 @@ public class detallecuenta extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Unidad:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 60, -1));
+        jLabel1.setText("N° de Unidad:");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 100, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Propietario:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, 20));
+        jLabel2.setText("Areá:");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, 20));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -137,13 +137,13 @@ public class detallecuenta extends javax.swing.JFrame {
         txtMesesdeuda.setEnabled(false);
         jPanel2.add(txtMesesdeuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 180, 20));
 
-        txtPropietarios.setBackground(new java.awt.Color(0, 94, 159));
-        txtPropietarios.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtPropietarios.setForeground(new java.awt.Color(255, 255, 255));
-        txtPropietarios.setToolTipText("No se puede modificar este dato");
-        txtPropietarios.setBorder(null);
-        txtPropietarios.setEnabled(false);
-        jPanel2.add(txtPropietarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 180, 20));
+        txtArea.setBackground(new java.awt.Color(0, 94, 159));
+        txtArea.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtArea.setForeground(new java.awt.Color(255, 255, 255));
+        txtArea.setToolTipText("No se puede modificar este dato");
+        txtArea.setBorder(null);
+        txtArea.setEnabled(false);
+        jPanel2.add(txtArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 180, 20));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 180, 10));
@@ -309,9 +309,9 @@ public class detallecuenta extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator6;
     public javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField5;
+    public javax.swing.JTextField txtArea;
     public javax.swing.JTextField txtBuscar;
     public javax.swing.JTextField txtMesesdeuda;
-    public javax.swing.JTextField txtPropietarios;
     public javax.swing.JTextField txtUnidad;
     // End of variables declaration//GEN-END:variables
 
