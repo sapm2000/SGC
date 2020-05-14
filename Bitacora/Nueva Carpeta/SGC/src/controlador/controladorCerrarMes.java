@@ -205,10 +205,10 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                     modc.setId_gasto(Integer.parseInt(String.valueOf(id_gasto[f])));
 
                                     modc.setId(Integer.parseInt(String.valueOf(id_factura[x])));
-                                     JOptionPane.showMessageDialog(null, listagastocomun.get(f).getEstado());
+                                     
                                     if (listagastocomun.get(f).getEstado().equals("Pendiente")) {
                                         modc.setEstado("Procesado");
-                                        JOptionPane.showMessageDialog(null, modc.getEstado());
+                                       
                                     }
                                     if (listagastocomun.get(f).getEstado().equals("Pagado")) {
                                         modc.setEstado("Procesado y pagado");

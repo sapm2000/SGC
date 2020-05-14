@@ -280,6 +280,10 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                                     modcuo.setId_asamblea(0);
                                 } else {
                                     int ind1 = cuotae.jAsamblea.getSelectedIndex() - 1;
+                                     modasa.setId_condominio(panta1.rif.getText());
+                                     listaasambleas = modasa.listarAsambleas();
+                                  
+                                    
                                     modcuo.setId_asamblea(listaasambleas.get(ind1).getId());
                                 }
 
@@ -459,8 +463,9 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             if (cuotae.si.isSelected()) {
                 if (modcuo.getEstado().equals("Pendiente")) {
                     cuotae.jAsamblea.setVisible(true);
+                     modasa.setId_condominio(panta1.rif.getText());
                     listaasambleas = modasa.listarAsambleas();
-
+                    cuotae.jAsamblea.removeAllItems();
                     crearCbxAsamblea(listaasambleas);
                     cuotae.jAsamblea.setSelectedItem("Seleccione la Asamblea");
                 }
