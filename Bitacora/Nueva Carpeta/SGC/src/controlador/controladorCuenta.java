@@ -404,7 +404,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
 
                             JOptionPane.showMessageDialog(null, "Registro modificado");
 
-                            modcu.borrarpuente(modcu);
+                            modcu.borrarpuente1(modcu);
 
                             for (int i = 0; i < cu.jTable1.getRowCount(); i++) {
 

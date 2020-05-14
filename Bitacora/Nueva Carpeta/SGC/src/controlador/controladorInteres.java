@@ -377,7 +377,7 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
                     if (modin.modificar_Interes(modin)) {
 
                         JOptionPane.showMessageDialog(null, "Registro Modificado");
-                        modin.borrarpuente(modin);
+                        modin.borrarpuente1(modin);
 
                         for (int i = 0; i < in.jTable1.getRowCount(); i++) {
                             if (valueOf(in.jTable1.getValueAt(i, 2)) == "true") {

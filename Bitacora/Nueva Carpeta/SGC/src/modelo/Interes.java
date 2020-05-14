@@ -366,7 +366,7 @@ public class Interes extends Condominio {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT rif , razon_social, puente_interes_condominio.id_interes as cuenta FROM condominio left join puente_interes_condominio on puente_interes_condominio.id_condominio=condominio.rif and puente_interes_condominio.id_interes=? where condominio.activo=1";
+        String sql = "SELECT rif , razon_social, puente_interes_condominio.id_interes as cuenta FROM condominio left join puente_interes_condominio on puente_interes_condominio.id_condominio=condominio.rif and puente_interes_condominio.id_interes=? where condominio.activo=1 group by rif, puente_interes_condominio.id_interes";
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
@@ -442,6 +442,41 @@ public class Interes extends Condominio {
         Connection con = getConexion();
 
         String sql = "UPDATE puente_interes_condominio SET activo=0 WHERE id_interes=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, getId());
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+    
+    public boolean borrarpuente1(Interes modin) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "DELETE FROM puente_interes_condominio WHERE id_interes=?";
 
         try {
 
