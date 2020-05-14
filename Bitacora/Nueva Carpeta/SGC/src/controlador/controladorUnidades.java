@@ -932,7 +932,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                 detacun.setVisible(true);
                 modc.setId_unidad(listaunidades.get(fila).getId());
                 modc.setId_condominio(panta1.rif.getText());
-                detacun.txtPropietarios.setText(dato2);
+                detacun.txtArea.setText(dato2);
                 llenartablapagos(detacun.jTable1);
                 detacun.txtUnidad.setText(dato);
                 modc.buscarmesesdedeuda(modc);
@@ -982,7 +982,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             llenardetalleinteres(detare.tablainteres);
             detare.txtMes.setText(datos+"-"+dato2);
             detare.txtUnidad.setText(detacun.txtUnidad.getText());
-            detare.txtPropietarios.setText(detacun.txtPropietarios.getText());
+            detare.txtArea.setText(detacun.txtArea.getText());
             detare.txtId.setText(dato3);
             modc.bucartotal(modc);
 
