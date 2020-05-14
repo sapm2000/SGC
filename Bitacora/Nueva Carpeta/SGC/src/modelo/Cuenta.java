@@ -421,6 +421,41 @@ public class Cuenta extends Banco {
 
     }
 
+    public boolean borrarpuente1(Cuenta modcun) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "DELETE FROM puente_condominio_cuenta WHERE id_cuenta=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getN_cuenta());
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+    
     public boolean eliminarcuenta(Cuenta modcun) {
 
         PreparedStatement ps = null;
