@@ -982,7 +982,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             llenardetalleinteres(detare.tablainteres);
             detare.txtMes.setText(datos+"-"+dato2);
             detare.txtUnidad.setText(detacun.txtUnidad.getText());
-            detare.txtPropietarios.setText(detacun.txtArea.getText());
+            detare.txtArea.setText(detacun.txtArea.getText());
             detare.txtId.setText(dato3);
             modc.bucartotal(modc);
 
