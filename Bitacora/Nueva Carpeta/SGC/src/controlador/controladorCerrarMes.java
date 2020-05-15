@@ -474,6 +474,8 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                             Llenartabla(catac.jTable1);
                             this.rec.dispose();
                         } else {
+                           
+                            modc.borrarnulo(modc);
                             JOptionPane.showMessageDialog(null, "No hay gastos por cerrar");
                         }
                     }
