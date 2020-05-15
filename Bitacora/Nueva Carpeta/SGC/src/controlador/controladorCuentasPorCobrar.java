@@ -288,7 +288,8 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                                 } else {
                                     modcuen.setId_condominio(panta1.rif.getText());
                                     if (modcuen.registrarCobro(modcuen)) {
-                                        double var4 = modfon.getSaldo() + modcuen.getMonto();
+                                        double var4 = listafondo.get(ind1).getSaldo()+ modcuen.getMonto();
+                                        modfon.setId(listafondo.get(ind1).getId());
                                         modfon.setSaldo(var4);
                                         modfon.fondear(modfon);
 
@@ -331,6 +332,9 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                                         Llenartabla(cuenco.jTable1);
                                         addCheckBox(7, cuenco.jTable1);
                                         Llenartablapagados(cuenco.jTable2);
+                                        cuenco.jComboFondo.removeAllItems();
+                                        listafondo = modfon.listar(2);
+                                        crearCbxFondo(listafondo);
 
                                     }
                                 }

@@ -58,10 +58,6 @@ public class CerrarMes extends ConexionBD {
     public void setTipo_gasto(String tipo_gasto) {
         this.tipo_gasto = tipo_gasto;
     }
-    
-    
-    
-    
 
     public double getSaldo_restante() {
         return saldo_restante;
@@ -119,7 +115,6 @@ public class CerrarMes extends ConexionBD {
         this.monto = monto;
     }
 
-   
     public int getId_gasto() {
         return id_gasto;
     }
@@ -186,7 +181,7 @@ public class CerrarMes extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-           
+
             ps.setInt(1, getMes_cierre());
             ps.setInt(2, getAño_cierre());
             ps.setDouble(3, getMonto());
@@ -266,7 +261,7 @@ public class CerrarMes extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-           
+
             ps.setInt(1, getId_gasto());
             ps.setInt(2, getMes_cierre());
             ps.setInt(3, getAño_cierre());
@@ -312,7 +307,7 @@ public class CerrarMes extends ConexionBD {
             ps.setInt(2, modc.getMes_cierre());
             ps.setInt(3, modc.getAño_cierre());
             ps.setString(4, modc.getTipo_gasto());
-        
+
             rs = ps.executeQuery();
             if (rs.next()) {
 
@@ -343,12 +338,7 @@ public class CerrarMes extends ConexionBD {
 
     }
 
-    
-
-    
-
-    
-     public boolean buscaultimo(CerrarMes modc) {
+    public boolean buscaultimo(CerrarMes modc) {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -358,7 +348,7 @@ public class CerrarMes extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-         
+
             rs = ps.executeQuery();
             if (rs.next()) {
 
@@ -403,9 +393,9 @@ public class CerrarMes extends ConexionBD {
             ps.setInt(2, getId_gasto());
             ps.setInt(3, getMes_cierre());
             ps.setInt(4, getAño_cierre());
-          
+
             ps.setDouble(5, getMonto());
-             ps.setString(6, getTipo_gasto());
+            ps.setString(6, getTipo_gasto());
 
             ps.execute();
 
@@ -445,9 +435,46 @@ public class CerrarMes extends ConexionBD {
             ps.setInt(2, getId_gasto());
             ps.setInt(3, getMes_cierre());
             ps.setInt(4, getAño_cierre());
-          
+
             ps.setDouble(5, getMonto());
-              ps.setString(6, getTipo_gasto());
+            ps.setString(6, getTipo_gasto());
+
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
+    public boolean borrarnulo(CerrarMes modc) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "DELETE FROM factura_unidad WHERE mes=? and anio=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, getMes_cierre());
+            ps.setInt(2, getAño_cierre());
 
             ps.execute();
 
@@ -489,7 +516,7 @@ public class CerrarMes extends ConexionBD {
             ps.setInt(4, getAño_cierre());
             ps.setDouble(5, getAlicuota());
             ps.setString(6, getEstado());
-          
+
             ps.setDouble(7, getMonto());
 
             ps.execute();
@@ -515,8 +542,8 @@ public class CerrarMes extends ConexionBD {
         }
 
     }
-    
-     public boolean actualizartotalcierre(CerrarMes modc) {
+
+    public boolean actualizartotalcierre(CerrarMes modc) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
@@ -526,8 +553,7 @@ public class CerrarMes extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-            
-          
+
             ps.setDouble(1, getMonto());
             ps.setDouble(2, getMonto());
             ps.setInt(3, getId());
@@ -799,7 +825,6 @@ public class CerrarMes extends ConexionBD {
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId_unidad());
-          
 
             rs = ps.executeQuery();
 
@@ -846,7 +871,6 @@ public class CerrarMes extends ConexionBD {
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId_unidad());
-           
 
             rs = ps.executeQuery();
 
@@ -893,7 +917,6 @@ public class CerrarMes extends ConexionBD {
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId_unidad());
-            
 
             rs = ps.executeQuery();
 
@@ -940,7 +963,7 @@ public class CerrarMes extends ConexionBD {
             ps = con.prepareStatement(sql);
 
             ps.setInt(1, getId_unidad());
-          
+
             rs = ps.executeQuery();
             if (rs.next()) {
 
@@ -985,7 +1008,6 @@ public class CerrarMes extends ConexionBD {
             ps.setInt(1, getId());
             ps.setInt(2, getMes_cierre());
             ps.setInt(3, getAño_cierre());
-           
 
             rs = ps.executeQuery();
 
@@ -1032,7 +1054,6 @@ public class CerrarMes extends ConexionBD {
             ps.setInt(1, getId());
             ps.setInt(2, getMes_cierre());
             ps.setInt(3, getAño_cierre());
-           
 
             rs = ps.executeQuery();
 
@@ -1076,10 +1097,9 @@ public class CerrarMes extends ConexionBD {
         String sql = "SELECT detalle_pagos.monto, sancion.monto, sancion.tipo, sancion.descripcion FROM detalle_pagos inner join sancion on detalle_pagos.id_gasto=sancion.id and tipo_gasto='Sancion' where detalle_pagos.id_factura=? and detalle_pagos.mes=? and detalle_pagos.anio=?";
         try {
             ps = con.prepareStatement(sql);
-             ps.setInt(1, getId());
+            ps.setInt(1, getId());
             ps.setInt(2, getMes_cierre());
             ps.setInt(3, getAño_cierre());
-          
 
             rs = ps.executeQuery();
 
@@ -1125,7 +1145,6 @@ public class CerrarMes extends ConexionBD {
             ps.setInt(1, getId());
             ps.setInt(2, getMes_cierre());
             ps.setInt(3, getAño_cierre());
-           
 
             rs = ps.executeQuery();
 
@@ -1170,7 +1189,7 @@ public class CerrarMes extends ConexionBD {
             ps.setInt(1, getId_unidad());
             ps.setInt(2, getMes_cierre());
             ps.setInt(3, getAño_cierre());
-           
+
             rs = ps.executeQuery();
             if (rs.next()) {
 

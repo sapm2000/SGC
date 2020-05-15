@@ -281,7 +281,7 @@ public class Interes extends Condominio {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "select interes.id, interes.nombre, interes.factor, interes.estado from interes inner join puente_interes_condominio on interes.id=puente_interes_condominio.id_interes where puente_interes_condominio.id_condominio=? group by interes.id,puente_interes_condominio.id_condominio";
+        String sql = "select interes.id, interes.nombre, interes.factor, interes.estado from interes inner join puente_interes_condominio on interes.id=puente_interes_condominio.id_interes where puente_interes_condominio.id_condominio=? and interes.activo=1 group by interes.id,puente_interes_condominio.id_condominio";
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, getId_condominio());

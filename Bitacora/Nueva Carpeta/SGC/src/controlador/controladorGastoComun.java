@@ -218,16 +218,17 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
                 modgac.setId_proveedor(gc.txtProveedor.getText());
                 modcon.setNombre_Concepto(gc.jcomboconcepto.getSelectedItem().toString());
                 int ind = gc.jcomboconcepto.getSelectedIndex() - 1;
-                modgac.setId_concepto(listaConGas.get(ind).getId());
+              
 
                 modgac.setObservaciones(gc.txaObservaciones.getText());
                 modgac.setSaldo(Double.parseDouble(gc.txtMonto.getText()));
                 if (modgac.getId_proveedor().equals("Seleccione el Proveedor")) {
                     JOptionPane.showMessageDialog(null, "seleccione un proveedor");
                 } else {
-                    if (modcon.getNombre_Concepto().equals("Seleccione el Concepto")) {
+                    if (ind==-1) {
                         JOptionPane.showMessageDialog(null, "seleccione un concepto");
                     } else {
+                          modgac.setId_concepto(listaConGas.get(ind).getId());
                         java.sql.Date sqlDate = convert(gc.jDateChooser1.getDate());
                         modgac.setFecha(sqlDate);
                         modgac.setEstado("Pendiente");
