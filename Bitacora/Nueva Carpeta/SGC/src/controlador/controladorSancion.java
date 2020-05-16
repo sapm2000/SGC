@@ -41,19 +41,19 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
     private sancion san;
     private catalogoSancion catasan;
     private Sancion modsan;
-    private PantallaPrincipal1 panta1;
+   
     private CerrarMes modc;
     ArrayList<Unidades> listaunidades;
     ArrayList<Sancion> listaSancion;
     ArrayList<Sancion> listaunimod;
     DefaultTableModel dm;
 
-    public controladorSancion(sancion san, catalogoSancion catasan, Sancion modsan, PantallaPrincipal1 panta1, CerrarMes modc) {
-        this.san = san;
-        this.catasan = catasan;
-        this.modsan = modsan;
-        this.panta1 = panta1;
-        this.modc = modc;
+    public controladorSancion() {
+        this.san = new sancion();
+        this.catasan = new catalogoSancion();
+        this.modsan = new Sancion();
+        
+        this.modc = new CerrarMes();
 
         this.catasan.jButton2.addActionListener(this);
         this.catasan.addWindowListener(this);
@@ -67,6 +67,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         this.san.btnModificar.addActionListener(this);
         san.txtmonto.addKeyListener(this);
         san.txaDescripcion.addKeyListener(this);
+        this.catasan.setVisible(true);
 
     }
 
@@ -255,7 +256,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
             this.san.btnGuardar.setEnabled(true);
             this.san.btnEliminar.setEnabled(false);
             san.txtId.setVisible(false);
-            modsan.setId_condominio(panta1.rif.getText());
+           
             llenartablaunidades(san.jTable1);
             addCheckBox(1, san.jTable1);
 
@@ -274,12 +275,12 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                         JOptionPane.showMessageDialog(null, "seleccione un tipo de deuda");
                     } else {
                         modsan.setDescripcion(san.txaDescripcion.getText());
-                        modsan.setId_condominio(panta1.rif.getText());
+                       
                         modsan.setMonto(Double.parseDouble(san.txtmonto.getText()));
                         modsan.setEstado("Pendiente");
                         modc.setMes_cierre(san.jMonthChooser1.getMonth() + 1);
                         modc.setAño_cierre(san.jYearChooser1.getYear());
-                        modc.setId_condominio(panta1.rif.getText());
+                     
                         for (int i = 0; i < san.jTable1.getRowCount(); i++) {
                             if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
 
@@ -343,7 +344,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                         modsan.setDescripcion(san.txaDescripcion.getText());
                         modsan.setId_sancion(Integer.parseInt(san.txtId.getText()));
                         modsan.setMonto(Double.parseDouble(san.txtmonto.getText()));
-                        modsan.setId_condominio(panta1.rif.getText());
+                       
 
                         int x = 0;
                         if (modsan.buscarSancionRepetido(modsan)) {
@@ -353,7 +354,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
                         modc.setMes_cierre(san.jMonthChooser1.getMonth() + 1);
                         modc.setAño_cierre(san.jYearChooser1.getYear());
-                        modc.setId_condominio(panta1.rif.getText());
+                       
                         for (int i = 0; i < san.jTable1.getRowCount(); i++) {
                             if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
 
@@ -452,7 +453,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         int mes = modsan.getMes() - 1;
         san.jMonthChooser1.setMonth(mes);
         san.jYearChooser1.setYear(modsan.getAño());
-        modsan.setId_condominio(panta1.rif.getText());
+      
         if (modsan.getEstado().equals("Pendiente")) {
         llenartablaunidadesmod(san.jTable1);
         addCheckBox(1, san.jTable1);
@@ -532,7 +533,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
     @Override
     public void windowOpened(WindowEvent e
     ) {
-        modsan.setId_condominio(panta1.rif.getText());
+       
         LlenartablaSancion(catasan.jTable1);
 
         Component[] components = san.jPanel2.getComponents();

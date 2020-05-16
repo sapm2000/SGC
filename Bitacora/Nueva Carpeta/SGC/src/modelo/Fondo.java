@@ -110,7 +110,7 @@ public class Fondo extends ConexionBD {
             ps.setString(4, getObservacion());
             ps.setDouble(5, getMonto_inicial());
             ps.setDouble(6, getMonto_inicial());
-            ps.setString(7, getId_condominio());
+            ps.setString(7,  SGC.condominioActual.getRif());
             ps.execute();
 
             return true;
@@ -200,7 +200,7 @@ public class Fondo extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, modfon.getId_condominio());
+            ps.setString(1,  SGC.condominioActual.getRif());
             ps.setString(2, modfon.getTipo());
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -246,7 +246,7 @@ public class Fondo extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, modfon.getId_condominio());
+            ps.setString(1,  SGC.condominioActual.getRif());
             ps.setString(2, modfon.getTipo());
             rs = ps.executeQuery();
             if (rs.next()) {

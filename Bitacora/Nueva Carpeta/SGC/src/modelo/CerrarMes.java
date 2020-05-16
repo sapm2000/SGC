@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import sgc.SGC;
 
 /**
  *
@@ -739,7 +740,7 @@ public class CerrarMes extends ConexionBD {
         String sql = "SELECT id, mes, anio FROM cierre_de_mes where id_condominio=?;";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_condominio());
+            ps.setString(1, SGC.condominioActual.getRif());
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -782,7 +783,7 @@ public class CerrarMes extends ConexionBD {
 
             ps.setInt(1, modc.getMes_cierre());
             ps.setInt(2, modc.getAño_cierre());
-            ps.setString(3, modc.getId_condominio());
+            ps.setString(3, SGC.condominioActual.getRif());
             rs = ps.executeQuery();
             if (rs.next()) {
 

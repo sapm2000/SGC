@@ -46,7 +46,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
     ArrayList<Sancion> listasanciones;
     ArrayList<Interes> listainteres;
     ArrayList<CerrarMes> listaCierremes;
-    private PantallaPrincipal1 panta1;
+  
     private GastoComun modgac;
     private CuotasEspeciales modcuo;
     private Sancion modsan;
@@ -54,20 +54,21 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
     private catalogoCierreMes catac;
     DefaultTableModel dm;
 
-    public controladorCerrarMes(cerrarMes rec, CerrarMes modc, Unidades moduni, PantallaPrincipal1 panta1, GastoComun modgac, CuotasEspeciales modcuo, Sancion modsan, Interes modin, catalogoCierreMes catac) {
-        this.rec = rec;
-        this.modc = modc;
-        this.moduni = moduni;
-        this.panta1 = panta1;
-        this.modgac = modgac;
-        this.modcuo = modcuo;
-        this.modsan = modsan;
-        this.modin = modin;
-        this.catac = catac;
+    public controladorCerrarMes() {
+        this.rec = new cerrarMes();
+        this.modc = new CerrarMes();
+        this.moduni = new Unidades();
+        
+        this.modgac = new GastoComun();
+        this.modcuo = new CuotasEspeciales();
+        this.modsan = new Sancion();
+        this.modin = new Interes();
+        this.catac = new catalogoCierreMes();
         rec.jButton1.addActionListener(this);
         catac.btnNuevo.addActionListener(this);
         catac.txtBuscar.addKeyListener(this);
         catac.addWindowListener(this);
+        this.catac.setVisible(true);
 
     }
 
@@ -134,7 +135,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                     } else {
 
                         modc.setId_condominio(panta1.rif.getText());
-                        moduni.setId_condominio(panta1.rif.getText());
+                        
                         modc.setMes_cierre(rec.jMonthChooser1.getMonth() + 1);
                         modc.setAño_cierre(rec.jYearChooser1.getYear());
                         listaunidades = moduni.listar();
@@ -321,7 +322,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                 }
                             }
                         }
-                        modsan.setId_condominio(panta1.rif.getText());
+                     
                         modsan.setMes(modc.getMes_cierre());
                         modsan.setAño(modc.getAño_cierre());
                         listasanciones = modsan.listarSancionesCerrarmes();
@@ -510,7 +511,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
 
     @Override
     public void windowOpened(WindowEvent e) {
-        modc.setId_condominio(panta1.rif.getText());
+       
         Llenartabla(catac.jTable1);
     }
 

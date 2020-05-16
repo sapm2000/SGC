@@ -48,21 +48,22 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
 
     int fila;
 
-    public controladorCuenta_Pagar(Cuenta_Pagar modCuentaP, cuentasPorPagar vistaCuentaP, Fondo modFondo, Cuenta modCuenta, GastoComun modGastoC, catalogoCuentas_procesada catCuenPro) {
+    public controladorCuenta_Pagar() {
 
         catPagos = new catalogoPagos_referencias();
-        this.modCuentaP = modCuentaP;
-        this.vista = vistaCuentaP;
-        this.modFondo = modFondo;
-        this.modCuenta = modCuenta;
-        this.modGastoC = modGastoC;
-        this.catCuenPro = catCuenPro;
+        this.modCuentaP = new Cuenta_Pagar();
+        this.vista = new cuentasPorPagar();
+        this.modFondo = new Fondo();
+        this.modCuenta = new Cuenta();
+        this.modGastoC = new GastoComun();
+        this.catCuenPro = new catalogoCuentas_procesada();
         this.vista.btnProcesar.addActionListener(this);
         this.vista.addWindowListener(this);
         this.vista.jTable.addMouseListener(this);
         this.vista.btnMostrar.addActionListener(this);
         this.vista.btnPagos.addActionListener(this);
         this.catPagos.txtBusqueda.addKeyListener(this);
+        this.vista.setVisible(true);
     }
 
     @Override

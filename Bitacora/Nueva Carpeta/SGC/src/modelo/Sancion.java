@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import sgc.SGC;
 
 /**
  *
@@ -215,7 +216,7 @@ public class Sancion extends Unidades {
         String sql = "SELECT sancion.id, tipo, mes, anio, monto, descripcion, id_condominio, count(id_sancion) as total, estado FROM sancion inner join puente_sancion_unidad on puente_sancion_unidad.id_sancion=sancion.id inner join unidades on puente_sancion_unidad.id_unidad=unidades.id where unidades.id_condominio=? group by sancion.id, id_condominio";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_condominio());
+            ps.setString(1, SGC.condominioActual.getRif());
 
             rs = ps.executeQuery();
 
@@ -263,7 +264,7 @@ public class Sancion extends Unidades {
         String sql = "SELECT id_sancion,factura_unidad.id, tipo, sancion.monto FROM puente_sancion_unidad inner join sancion on puente_sancion_unidad.id_sancion=sancion.id inner join unidades on puente_sancion_unidad.id_unidad=unidades.id inner join factura_unidad on factura_unidad.id_unidad = unidades.id where unidades.id_condominio=? and sancion.mes=? and sancion.anio=?";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_condominio());
+            ps.setString(1, SGC.condominioActual.getRif());
             ps.setInt(2, getMes());
             ps.setInt(3, getAño());
             rs = ps.executeQuery();
@@ -355,7 +356,7 @@ public class Sancion extends Unidades {
 
             ps.setInt(1, modsan.getMes());
             ps.setInt(2, modsan.getAño());
-            ps.setString(3, modsan.getId_condominio());
+            ps.setString(3, SGC.condominioActual.getRif());
             rs = ps.executeQuery();
             if (rs.next()) {
 
@@ -399,7 +400,7 @@ public class Sancion extends Unidades {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId_sancion());
 
-            ps.setString(2, getId_condominio());
+            ps.setString(2, SGC.condominioActual.getRif());
 
             rs = ps.executeQuery();
 

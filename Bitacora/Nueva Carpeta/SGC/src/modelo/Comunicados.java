@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import sgc.SGC;
 
 /**
  *
@@ -93,7 +94,7 @@ public class Comunicados extends CrudUsuario {
             ps = con.prepareStatement(sql);
             ps.setString(1, getAsunto());
             ps.setString(2, getMensaje());
-            ps.setString(3, getId_condominio());
+            ps.setString(3, SGC.condominioActual.getRif());
             ps.execute();
 
             return true;
@@ -208,7 +209,7 @@ public class Comunicados extends CrudUsuario {
         String sql = "SELECT id_comunicado, comunicados.asunto, count(id_usuario) as enviado, SUM(leido) as leido FROM puente_comunicado_usuario inner join comunicados on comunicados.id = puente_comunicado_usuario.id_comunicado where comunicados.id_condominio=? group by id_comunicado, comunicados.asunto;";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_condominio());
+            ps.setString(1, SGC.condominioActual.getRif());
             rs = ps.executeQuery();
 
             while (rs.next()) {

@@ -39,17 +39,18 @@ public class ControladorPagarCuotasEsp implements ActionListener, MouseListener,
 
     int fila = 0;
 
-    public ControladorPagarCuotasEsp(pagoCuotasEspeciales vista, PagarCuotaEspecial modPagarCuoE, Fondo modFondo, Cuenta modCuenta, CuotasEspeciales modCuotaEsp) {
-        this.vista = vista;
-        this.modPagarCuoE = modPagarCuoE;
-        this.modCuotaEsp = modCuotaEsp;
-        this.modFondo = modFondo;
-        this.modCuenta = modCuenta;
+    public ControladorPagarCuotasEsp() {
+        this.vista = new pagoCuotasEspeciales();
+        this.modPagarCuoE = new PagarCuotaEspecial();
+        this.modCuotaEsp = new CuotasEspeciales();
+        this.modFondo = new Fondo();
+        this.modCuenta = new Cuenta();
         vista.btnProcesar.addActionListener(this);
         vista.btnPagado.addActionListener(this);
         vista.btnPagos.addActionListener(this);
         vista.tabla.addMouseListener(this);
         vista.addWindowListener(this);
+        this.vista.setVisible(true);
     }
 
     @Override

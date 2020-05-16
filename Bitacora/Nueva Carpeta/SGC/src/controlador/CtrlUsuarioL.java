@@ -82,9 +82,7 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
             usu.setPassword(pass);
 
             if (usu.login()) {
-                if ("sapm".equals(usu.getUsuario())) { //No lo borres uwu
-                    JOptionPane.showMessageDialog(null, "Samuel te quiero mucho uwu", "<3", JOptionPane.INFORMATION_MESSAGE);
-                }
+               
 
                 vistaU.dispose();
                 controladorMenu ctrlMenu = new controladorMenu();

@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import sgc.SGC;
 
 /**
  *
@@ -196,7 +197,7 @@ public class Asambleas extends Propietarios {
         String sql = "SELECT asambleas.id, nombre, fecha, descripcion, count(id_asamblea) as nº FROM asambleas inner join puente_asamblea_propietario on puente_asamblea_propietario.id_asamblea=asambleas.id where id_condominio=? group by puente_asamblea_propietario.id_asamblea, asambleas.id";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_condominio());
+            ps.setString(1, SGC.condominioActual.getRif());
             rs = ps.executeQuery();
 
             while (rs.next()) {

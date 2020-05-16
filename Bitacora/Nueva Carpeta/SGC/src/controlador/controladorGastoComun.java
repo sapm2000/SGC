@@ -56,15 +56,15 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
     double montoi;
     double saldo;
 
-    public controladorGastoComun(gastoComun gc, catalogoGastoComun gatagc, GastoComun modgac, Proveedores modpro, ModeloConceptoGastos modcon, PantallaPrincipal1 panta1, CerrarMes modc, buscarProveedor buscpro) {
-        this.gc = gc;
-        this.catagc = gatagc;
-        this.modgac = modgac;
-        this.modpro = modpro;
-        this.modcon = modcon;
-        this.panta1 = panta1;
-        this.modc = modc;
-        this.buscpro = buscpro;
+    public controladorGastoComun() {
+        this.gc = new gastoComun();
+        this.catagc = new catalogoGastoComun();
+        this.modgac = new GastoComun();
+        this.modpro = new Proveedores();
+        this.modcon = new ModeloConceptoGastos();
+        
+        this.modc = new CerrarMes();
+        this.buscpro = new buscarProveedor();
         this.catagc.addWindowListener(this);
 
         this.catagc.jButton2.addActionListener(this);
@@ -81,6 +81,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
         gc.txtMonto.addKeyListener(this);
         gc.txaObservaciones.addKeyListener(this);
         listaConGas = modcon.listarConcepto();
+        this.catagc.setVisible(true);
     }
 
     public void Llenartabla(JTable tablaD) {
@@ -500,7 +501,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
 
     @Override
     public void windowOpened(WindowEvent e) {
-        modgac.setId_condominio(panta1.rif.getText());
+       
         LlenartablaGastocomun(catagc.jTable1);
 
         Component[] components = gc.jPanel2.getComponents();

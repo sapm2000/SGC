@@ -43,26 +43,27 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
     private Fondo modfon;
     private Cuenta modcu;
     private CerrarMes modc;
-    private PantallaPrincipal1 panta1;
+   
     ArrayList<CerrarMes> listaCierremes;
     ArrayList<Unidades> listaunidades;
     ArrayList<Fondo> listafondo;
     ArrayList<Cuenta> listaCuenta;
 
-    public controladorCuentasPorCobrar(cuentasPorCobrar cuenco, CuentasPorCobrar modcuen, Unidades moduni, Fondo modfon, Cuenta modcu, CerrarMes modc, PantallaPrincipal1 panta1) {
-        this.cuenco = cuenco;
-        this.modcuen = modcuen;
-        this.moduni = moduni;
-        this.modfon = modfon;
-        this.modcu = modcu;
-        this.modc = modc;
-        this.panta1 = panta1;
+    public controladorCuentasPorCobrar() {
+        this.cuenco = new cuentasPorCobrar();
+        this.modcuen = new CuentasPorCobrar();
+        this.moduni = new Unidades();
+        this.modfon = new Fondo();
+        this.modcu = new Cuenta();
+        this.modc = new CerrarMes();
+        
         cuenco.addWindowListener(this);
         cuenco.jComboUnidad.addItemListener(this);
         cuenco.btnGuardar.addActionListener(this);
         cuenco.txtMonto.addKeyListener(this);
         cuenco.txtDescripcion.addKeyListener(this);
         cuenco.txtReferencia.addKeyListener(this);
+        this.cuenco.setVisible(true);
     }
 
     public void Llenartabla(JTable tablaD) {
@@ -286,7 +287,7 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                                 if (modcuen.getMonto() > total) {
                                     JOptionPane.showMessageDialog(null, "No puede ingresar mas dinero de lo que debe");
                                 } else {
-                                    modcuen.setId_condominio(panta1.rif.getText());
+                                  
                                     if (modcuen.registrarCobro(modcuen)) {
                                         double var4 = listafondo.get(ind1).getSaldo()+ modcuen.getMonto();
                                         modfon.setId(listafondo.get(ind1).getId());
@@ -327,7 +328,7 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
 
                                             }
                                         }
-                                        modc.setId_condominio(panta1.rif.getText());
+                                    
                                         modcuen.setId_unidad(listaunidades.get(ind).getId());
                                         Llenartabla(cuenco.jTable1);
                                         addCheckBox(7, cuenco.jTable1);
@@ -384,9 +385,7 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
 
     @Override
     public void windowOpened(WindowEvent e) {
-        moduni.setId_condominio(panta1.rif.getText());
-        modcu.setId_condominio(panta1.rif.getText());
-        modfon.setId_condominio(panta1.rif.getText());
+      
         listaunidades = moduni.listar();
         crearCbxUnidad(listaunidades);
         listafondo = modfon.listar(2);
@@ -435,7 +434,7 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getStateChange() == ItemEvent.SELECTED) {
-             moduni.setId_condominio(panta1.rif.getText());
+         
             listaunidades = moduni.listar();
              int ind = cuenco.jComboUnidad.getSelectedIndex() - 1;
            if (ind == -1) {
