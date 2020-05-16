@@ -68,7 +68,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jCondominio = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -155,16 +155,16 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenu2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        jMenuItem2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/condominio.png"))); // NOI18N
-        jMenuItem2.setText("Condominio");
-        jMenuItem2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jCondominio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jCondominio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/condominio.png"))); // NOI18N
+        jCondominio.setText("Condominio");
+        jCondominio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jCondominio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jCondominioActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        jMenu2.add(jCondominio);
 
         jMenuItem9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/team.png"))); // NOI18N
@@ -301,19 +301,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        catalogoCondominio cataCon = new catalogoCondominio();
-        condominio condo = new condominio();
-        PantallaPrincipal1 panta1 = new PantallaPrincipal1();
-        Condominio co = new Condominio();
-        Unidades moduni = new Unidades();
-        catalogoInactivoCondominio cataico = new catalogoInactivoCondominio();
-        controladorCondominio controcon = new controladorCondominio(cataCon, condo, panta1, this, co, moduni, cataico);
-
-        cataCon.setVisible(true);
+    private void jCondominioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCondominioActionPerformed
+    
 
 
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_jCondominioActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         catalogoBanco cataBan = new catalogoBanco();
@@ -478,6 +470,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMinimizar2;
     private javax.swing.JButton btnSalir2;
+    public javax.swing.JMenuItem jCondominio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
@@ -490,7 +483,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

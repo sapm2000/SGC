@@ -51,7 +51,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
     ArrayList<Condominio> listaCondo;
     ArrayList<Unidades> listaunidades;
 
-    public controladorCondominio(catalogoCondominio cataco, condominio condo, PantallaPrincipal1 panta1, PantallaPrincipal panta, Condominio co, Unidades moduni, catalogoInactivoCondominio cataico) {
+    public controladorCondominio() {
         this.cataco = cataco;
         this.condo = condo;
         this.panta1 = panta1;
