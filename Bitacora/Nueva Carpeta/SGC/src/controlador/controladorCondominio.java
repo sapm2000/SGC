@@ -15,24 +15,24 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import static java.lang.String.valueOf;
+import java.util.ArrayList;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.Condominio;
+import modelo.Unidades;
+import sgc.SGC;
 import vista.PantallaPrincipal;
 import vista.PantallaPrincipal1;
 import vista.catalogoCondominio;
-import vista.condominio;
-import java.util.ArrayList;
-import javax.swing.JComponent;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableColumn;
-import modelo.Unidades;
-import sgc.SGC;
 import vista.catalogoInactivoCondominio;
+import vista.condominio;
 
 /**
  *
@@ -52,13 +52,13 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
     ArrayList<Unidades> listaunidades;
 
     public controladorCondominio() {
-        this.cataco = cataco;
-        this.condo = condo;
-        this.panta1 = panta1;
-        this.panta = panta;
-        this.co = co;
-        this.moduni = moduni;
-        this.cataico = cataico;
+        this.cataco = new catalogoCondominio();
+        this.condo = new condominio();
+        this.panta1 = new PantallaPrincipal1();
+        this.panta = new PantallaPrincipal();
+        this.co = new Condominio();
+        this.moduni = new Unidades();
+        this.cataico = new catalogoInactivoCondominio();
         this.cataco.btnActivar.addActionListener(this);
         this.cataico.btnActivar.addActionListener(this);
         this.cataco.jButton2.addActionListener(this);

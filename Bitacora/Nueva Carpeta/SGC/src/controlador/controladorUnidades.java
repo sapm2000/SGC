@@ -37,7 +37,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
     private unidades vista;
     private Unidades modelo;
     private catalogoUnidades catalogo;
-    
+
     private Propietarios modPropietario;
 
     private detallecuenta detacun;
@@ -47,7 +47,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
     ArrayList<Unidades> listaUnidades;
     ArrayList<Propietarios> listaPropietarios;
-    
+
     private CerrarMes modc;
     ArrayList<CerrarMes> listapagos;
     ArrayList<CerrarMes> listadetallegasto;
@@ -88,8 +88,8 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         this.detacun.jTable1.addMouseListener(this);
     }
 
-    public void llenarTablaPropietarios(JTable tablaD) {
-        listaPropietarios = modPropietario.listar();
+    public void llenarTablaPropietarios(JTable tablaD, String accion) {
+        //listaPropietarios = modPropietario.listar();
 
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
@@ -146,21 +146,44 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
         Object[] columna = new Object[modeloT.getColumnCount()];
 
-        int numRegistro = listaPropietarios.size();
+        int numRegistro;
         int ind;
 
-        for (int i = 0; i < numRegistro; i++) {
-            ind = 0;
+        if (accion.equals("Registrar")) {
+            numRegistro = listaPropietarios.size();
 
-            columna[ind++] = listaPropietarios.get(i).getCedula();
-            columna[ind++] = listaPropietarios.get(i).getpNombre() + " " + listaPropietarios.get(i).getpApellido();
-            columna[ind++] = listaPropietarios.get(i).getTelefono();
-            columna[ind++] = listaPropietarios.get(i).getCorreo();
+            for (int i = 0; i < numRegistro; i++) {
+                ind = 0;
 
-            modeloT.addRow(columna);
+                columna[ind++] = listaPropietarios.get(i).getCedula();
+                columna[ind++] = listaPropietarios.get(i).getpNombre() + " " + listaPropietarios.get(i).getpApellido();
+                columna[ind++] = listaPropietarios.get(i).getTelefono();
+                columna[ind++] = listaPropietarios.get(i).getCorreo();
 
+                modeloT.addRow(columna);
+
+            }
+        } else if (accion.equals("Modificar")) {
+            numRegistro = modelo.getPropietario().size();
+
+            for (int i = 0; i < numRegistro; i++) {
+        System.out.println("poli4");
+                ind = 0;
+
+                System.out.println(modelo.getId());
+                System.out.println(modelo.getPropietario().get(i).getCedula());
+                System.out.println(modelo.getPropietario().get(i).getpNombre());
+                System.out.println(modelo.getPropietario().get(i).getpApellido());
+                columna[ind++] = modelo.getPropietario().get(i).getCedula();
+                columna[ind++] = modelo.getPropietario().get(i).getpNombre() + " " + listaPropietarios.get(i).getpApellido();
+                columna[ind++] = modelo.getPropietario().get(i).getTelefono();
+                columna[ind++] = modelo.getPropietario().get(i).getCorreo();
+
+                modeloT.addRow(columna);
+
+            }
         }
-
+        
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -168,7 +191,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             tablaD.getColumnModel().getColumn(i).setCellRenderer(tcr);
 
         }
-
+        System.out.println("poli4");
     }
 
     public void llenartablapropietariosmod(JTable tablaD) {
@@ -579,7 +602,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             this.vista.btnEliminar.setEnabled(false);
             this.vista.txtNumeroUnidad.setEnabled(true);
             this.vista.txtId.setVisible(false);
-            llenarTablaPropietarios(vista.tablaPropietarios);
+            llenarTablaPropietarios(vista.tablaPropietarios, "Registrar");
             addCheckBox(4, vista.tablaPropietarios);
             limpiar();
 
@@ -590,9 +613,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                 if (vista.tablaPropietarios.isEditing()) {//si se esta edtando la tabla
                     vista.tablaPropietarios.getCellEditor().stopCellEditing();//detenga la edicion
                 }
-
-                java.util.Date fecha = new Date();
-                java.sql.Date sqlDate = convert(fecha);
 
                 modelo.setN_unidad(vista.txtNumeroUnidad.getText());
                 modelo.setArea(Double.parseDouble(vista.txtArea.getText()));
@@ -610,7 +630,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                         }
                     }
                 }
-                
+
                 if (j == 0) {
                     JOptionPane.showMessageDialog(null, "Debe seleccionar al menos 1 registro de la tabla");
                 } else {
@@ -621,23 +641,23 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                         if (modelo.buscarepe(modelo)) {
                             JOptionPane.showMessageDialog(null, "Este condiminio ya tiene este número de unidad asignado");
                         } else {
-                                int k = 0;
-                                
-                                for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
-                                    if (valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
-                                        modelo.getPropietario().add(new Propietarios(vista.tablaPropietarios.getValueAt(i, 0).toString()));
-                                        modelo.getDocumento().add(vista.tablaPropietarios.getValueAt(i, 5).toString());
-                                        modelo.setEstatus(1);
-                                        //modelo.registrar_propietario_unidad(modelo);
+                            int k = 0;
 
-                                    }
+                            for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
+                                if (valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
+                                    modelo.getPropietario().add(new Propietarios(vista.tablaPropietarios.getValueAt(i, 0).toString()));
+                                    modelo.getDocumento().add(vista.tablaPropietarios.getValueAt(i, 5).toString());
+                                    modelo.setEstatus(1);
+                                    //modelo.registrar_propietario_unidad(modelo);
+
                                 }
-                                
+                            }
+
                             if (modelo.registrar()) {
                                 //modelo.buscId(modelo);
 
                                 JOptionPane.showMessageDialog(null, "Registro Guardado");
-                                
+
 //                                int k = 0;
 //                                
 //                                for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
@@ -649,7 +669,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 //
 //                                    }
 //                                }
-                                
                                 llenarTabla(catalogo.tabla);
 
                             } else {
@@ -669,12 +688,12 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                 if (vista.tablaPropietarios.isEditing()) {//si se esta edtando la tabla
                     vista.tablaPropietarios.getCellEditor().stopCellEditing();//detenga la edicion
                 }
+
                 java.util.Date fecha = new Date();
-                java.sql.Date sqlDate = convert(fecha);
+                java.sql.Date sqlDate = Validacion.convert(fecha);
                 modelo.setN_unidad(vista.txtNumeroUnidad.getText());
                 modelo.setArea(Double.parseDouble(vista.txtArea.getText()));
                 modelo.setDireccion(vista.txtDireccion.getText());
-                modelo.setId_condominio(panta1.rif.getText());
                 modelo.setId(Integer.parseInt(vista.txtId.getText()));
                 int j = 0;
                 int x = 0;
@@ -921,6 +940,53 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
     @Override
     public void mouseClicked(MouseEvent e) {
 
+        if (e.getSource() == catalogo.tabla) {
+            String[] options = {"Ver detalles de pago", "Modificar datos"};
+            int result = JOptionPane.showOptionDialog(null, "Seleccione si desea ver detalles de pago o modificar datos", "MENÚ", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+            if (result == 0) {
+                int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
+                listaUnidades = modelo.listar();
+                String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+
+                String dato2 = String.valueOf(this.catalogo.tabla.getValueAt(fila, 2)); // por ultimo, obtengo el valor de la celda
+                detacun.setVisible(true);
+                modc.setId_unidad(listaUnidades.get(fila).getId());
+                detacun.txtArea.setText(dato2);
+                llenartablapagos(detacun.jTable1);
+                detacun.txtUnidad.setText(dato);
+                modc.buscarmesesdedeuda(modc);
+                detacun.txtMesesdeuda.setText(String.valueOf(modc.getMeses_deuda()));
+            }
+
+            if (result == 1) {
+                int fila = this.catalogo.tabla.getSelectedRow(); //Primero, obtengo la fila seleccionada
+                //String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); //Por último, obtengo el valor de la celda
+
+                modelo = listaUnidades.get(fila);
+                //modelo.setN_unidad(String.valueOf(dato));
+                vista.setVisible(true);
+                //modelo.buscarUnidad();
+
+                vista.txtNumeroUnidad.setText(modelo.getN_unidad());
+                vista.txtDireccion.setText(modelo.getDireccion());
+                vista.txtArea.setText(String.valueOf(modelo.getArea()));
+
+                vista.txtId.setVisible(false);
+                vista.txtId.setText(String.valueOf(modelo.getId()));
+
+                vista.txtNumeroUnidad.setEnabled(false);
+
+                vista.btnEliminar.setEnabled(true);
+                vista.btnModificar.setEnabled(true);
+                vista.btnGuardar.setEnabled(false);
+
+                llenarTablaPropietarios(vista.tablaPropietarios, "Modificar");
+                //llenartablapropietariosmod(vista.tablaPropietarios);
+                addCheckBox(4, vista.tablaPropietarios);
+            }
+        }
+
         if (e.getSource() == vista.tablaPropietarios) {
             int fila = this.vista.tablaPropietarios.getSelectedRow(); // primero, obtengo la fila seleccionada
             String dato = String.valueOf(this.vista.tablaPropietarios.getValueAt(fila, 4)); // por ultimo, obtengo el valor de la celda
@@ -939,47 +1005,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             }
         }
 
-        if (e.getSource() == catalogo.tabla) {
-            String[] options = {"Ver detalles de pago", "Modificar datos"};
-            int result = JOptionPane.showOptionDialog(null, "Seleccione si desea ver detalles de pagp o modificar datos", "MENU", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-            if (result == 0) {
-                int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
-                listaUnidades = modelo.listar();
-                String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
-
-                String dato2 = String.valueOf(this.catalogo.tabla.getValueAt(fila, 2)); // por ultimo, obtengo el valor de la celda
-                detacun.setVisible(true);
-                modc.setId_unidad(listaUnidades.get(fila).getId());
-                modc.setId_condominio(panta1.rif.getText());
-                detacun.txtArea.setText(dato2);
-                llenartablapagos(detacun.jTable1);
-                detacun.txtUnidad.setText(dato);
-                modc.buscarmesesdedeuda(modc);
-                detacun.txtMesesdeuda.setText(String.valueOf(modc.getMeses_deuda()));
-            }
-            if (result == 1) {
-                int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
-                String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
-
-                modelo.setN_unidad(String.valueOf(dato));
-                vista.setVisible(true);
-                modelo.buscarUnidad(modelo);
-
-                vista.txtDireccion.setText(modelo.getDireccion());
-                vista.txtArea.setText(String.valueOf(modelo.getArea()));
-                vista.txtId.setVisible(false);
-                vista.txtId.setText(String.valueOf(modelo.getId()));
-                vista.txtNumeroUnidad.setText(modelo.getN_unidad());
-
-                vista.txtNumeroUnidad.setEnabled(false);
-                vista.btnEliminar.setEnabled(true);
-                vista.btnModificar.setEnabled(true);
-                vista.btnGuardar.setEnabled(false);
-                llenartablapropietariosmod(vista.tablaPropietarios);
-                addCheckBox(4, vista.tablaPropietarios);
-            }
-        }
-
         if (e.getSource() == detacun.jTable1) {
 
             int fila = this.detacun.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
@@ -993,7 +1018,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
             modc.setMes_cierre(Integer.parseInt(datos));
             modc.setAño_cierre(Integer.parseInt(dato2));
-            modc.setId_condominio(panta1.rif.getText());
             llenardetallegasto(detare.tablagastos);
             llenardetallecuotas(detare.tablacuotas);
             llenardetallesancion(detare.tablasancion);
@@ -1015,7 +1039,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             modelo.setN_unidad(String.valueOf(dato));
             unii.setVisible(true);
             unii.txtId.setVisible(false);
-            modelo.setId_condominio(panta1.rif.getText());
             modelo.buscarUnidad(modelo);
             unii.txadireccion.setText(modelo.getDireccion());
             unii.txtArea.setText(String.valueOf(modelo.getArea()));
@@ -1170,8 +1193,4 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
     }
 
-    private static java.sql.Date convert(java.util.Date uDate) {
-        java.sql.Date sDate = new java.sql.Date(uDate.getTime());
-        return sDate;
-    }
 }

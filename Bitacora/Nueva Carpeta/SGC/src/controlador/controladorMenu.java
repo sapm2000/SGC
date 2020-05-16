@@ -7,17 +7,6 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import controlador.CtrlPropietario;
-import controlador.CtrlResponsable;
-import controlador.CtrlUsuario;
-import controlador.controladorBanco;
-import controlador.controladorCategoriaGastos;
-import controlador.controladorConceptoGasto;
-import controlador.controladorCondominio;
-import controlador.controladorCuenta;
-import controlador.controladorInteres;
-import controlador.controladorProveedores;
-import controlador.controladorTipoUsuario;
 import vista.PantallaPrincipal;
 import vista.catalogoCondominio;
 
@@ -32,9 +21,9 @@ public class controladorMenu implements ActionListener{
     private PantallaPrincipal panta;
 
     public controladorMenu() {
-        this.concondo = concondo;
-        this.catacon=catacon;
-        this.panta=panta;
+        this.concondo = new controladorCondominio();
+        this.catacon= new catalogoCondominio();
+        this.panta = new PantallaPrincipal();
         this.panta.jCondominio.addActionListener(this);
     }
     

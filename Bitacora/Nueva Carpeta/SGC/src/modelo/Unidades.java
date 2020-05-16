@@ -20,9 +20,9 @@ public class Unidades extends ConexionBD {
     private Condominio condominio;
     private ArrayList<Propietarios> propietario;
     private ArrayList<String> documento;
-    
-    PreparedStatement ps;
-    ResultSet rs;
+
+    private PreparedStatement ps;
+    private ResultSet rs;
 
     private java.sql.Date fecha_desde;
     private java.sql.Date fecha_hasta;
@@ -33,7 +33,7 @@ public class Unidades extends ConexionBD {
         condominio = new Condominio();
         propietario = new ArrayList();
         documento = new ArrayList();
-        
+
     }
 
     public boolean buscId(Unidades moduni) {
@@ -165,6 +165,7 @@ public class Unidades extends ConexionBD {
         ResultSet rs = null;
 
         String sql = "SELECT id, cedula, nombre, telefono, correo, id_unidad, fecha_desde, fecha_hasta, estado, documento FROM propietarios left join puente_unidad_propietarios on puente_unidad_propietarios.id_propietario=propietarios.cedula  and  id_unidad=? and not estado=0 where propietarios.activo=1";
+
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
@@ -231,10 +232,10 @@ public class Unidades extends ConexionBD {
             ps.setString(i++, SGC.condominioActual.getRif());
 
             rs = ps.executeQuery();
-            
-            if(rs.next()) {
+
+            if (rs.next()) {
                 setId(rs.getInt(1));
-                
+
             }
 
             //Registro de los datos del puente
@@ -276,6 +277,7 @@ public class Unidades extends ConexionBD {
         Connection con = getConexion();
         ps = null;
         rs = null;
+        ResultSet rs2 = null;
 
         String sql = "SELECT * FROM v_unidad WHERE id_condominio=?;";
 
@@ -285,6 +287,9 @@ public class Unidades extends ConexionBD {
 
             rs = ps.executeQuery();
 
+            sql = "SELECT * FROM v_unidad_propietario WHERE id_condominio = ? AND id = ?";
+            ps = con.prepareStatement(sql);
+
             while (rs.next()) {
                 unidad = new Unidades();
 
@@ -293,9 +298,20 @@ public class Unidades extends ConexionBD {
                 unidad.setDireccion(rs.getString("direccion"));
                 unidad.setArea(rs.getInt("area"));
 
-                listaUnidades.add(unidad);
-            }
+                ps.setString(1, SGC.condominioActual.getRif());
+                ps.setInt(2, unidad.getId());
 
+                rs2 = ps.executeQuery();
+
+                while (rs2.next()) {
+                    unidad.getPropietario().add(new Propietarios(rs2.getString("cedula"), rs2.getString("p_nombre"), rs2.getString("s_nombre"), rs2.getString("p_apellido"), rs2.getString("s_apellido"), rs2.getString("telefono"), rs2.getString("correo")));
+                    unidad.getDocumento().add(rs2.getString("documento"));
+
+                }
+
+                listaUnidades.add(unidad);
+
+            }
         } catch (SQLException e) {
             System.err.println(e);
 
@@ -324,7 +340,7 @@ public class Unidades extends ConexionBD {
         String sql = "select id from unidades where id_condominio=?";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_condominio());
+            ps.setString(1, SGC.condominioActual.getRif());
 
             rs = ps.executeQuery();
 
@@ -349,48 +365,43 @@ public class Unidades extends ConexionBD {
 
     }
 
-    public boolean buscarUnidad(Unidades moduni) {
-
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+    public boolean buscarUnidad() {
+        ps = null;
+        rs = null;
         Connection con = getConexion();
-        String sql = "SELECT id, n_unidad, direccion, area from unidades where n_unidad=? and id_condominio=?;";
+
+        String sql = "SELECT id, n_unidad, direccion, area FROM unidades where n_unidad=? AND id_condominio=?;";
 
         try {
-
             ps = con.prepareStatement(sql);
-            ps.setString(1, moduni.getN_unidad());
-            ps.setString(2, moduni.getId_condominio());
+            ps.setString(1, getN_unidad());
+            ps.setString(2, SGC.condominioActual.getRif());
+
             rs = ps.executeQuery();
+
             if (rs.next()) {
-                moduni.setId(rs.getInt("id"));
-                moduni.setDireccion(rs.getString("direccion"));
-
-                moduni.setArea(rs.getInt("area"));
-
+                setId(rs.getInt("id"));
+                setDireccion(rs.getString("direccion"));
+                setArea(rs.getInt("area"));
                 return true;
+
             }
 
             return false;
 
         } catch (SQLException e) {
-
             System.err.println(e);
             return false;
 
         } finally {
             try {
-
                 con.close();
 
             } catch (SQLException e) {
-
                 System.err.println(e);
 
             }
-
         }
-
     }
 
     public boolean buscarsancion(Unidades moduni) {
