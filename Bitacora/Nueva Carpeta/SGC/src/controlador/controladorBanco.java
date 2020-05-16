@@ -40,11 +40,11 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     DefaultComboBoxModel dmCbx;
     ArrayList<Banco> listaBanco;
 
-    public controladorBanco(banco ban, catalogoBanco cban, Banco modban, catalogoInactivoBanco ciban) {
-        this.ban = ban;
-        this.cban = cban;
-        this.modban = modban;
-        this.ciban = ciban;
+    public controladorBanco() {
+        this.ban = new banco();
+        this.cban = new catalogoBanco();
+        this.modban = new Banco();
+        this.ciban = new catalogoInactivoBanco();
 
         //crearCbxBanco(modban.listar());
         //CrearCbx(ban.cbxBanco, modban.listar());      
@@ -60,6 +60,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         this.cban.txtBuscar_banco.addKeyListener(this);
         this.cban.addWindowListener(this);
         this.ban.txtnombre_banco.addKeyListener(this);
+        cban.setVisible(true);
 
     }
 
@@ -147,40 +148,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
     }
 
-    /*public void CrearCbx(JComboBox comboD, ArrayList<Banco> dato) {
-        
-        
-        DefaultComboBoxModel modelot = new DefaultComboBoxModel();
-        comboD.setModel(modelot);
-
-        modelot.addElement("Nombre ");
-
-        //Object[] columna = new Object[1];
-
-        int numRegistro = dato.size();
-
-        for (int i = 0; i < numRegistro; i++) {
-
-            //columna[0] = modban.listar().get(i).getNombre_banco();
-
-            modelot.addElement(dato.get(i).getNombre_banco());
-
-        }
-
-    }
-     */
- /*private void crearCbxBanco(ArrayList<Banco> datos) {
-        ban.cbxBanco.addItem("Seleccione...");
-
-        if (datos != null) {
-            for (Banco datosX : datos) {
-                modban = datosX;
-                ban.cbxBanco.addItem(modban.getNombre_banco());
-            }
-
-            
-        }
-    }*/
+   
     @Override
     public void actionPerformed(ActionEvent e) {
         

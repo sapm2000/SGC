@@ -46,11 +46,11 @@ public class controladorProveedores implements ActionListener, WindowListener, K
     DefaultTableModel dm;
     DefaultComboBoxModel dmCbx;
 
-    public controladorProveedores(catalogoProveedores cataprov, proveedores prov, Proveedores modpro, catalogoInactivoProveedores cataiprov) {
-        this.cataprov = cataprov;
-        this.prov = prov;
-        this.modpro = modpro;
-        this.cataiprov = cataiprov;
+    public controladorProveedores() {
+        this.cataprov = new catalogoProveedores();
+        this.prov = new proveedores();
+        this.modpro = new Proveedores();
+        this.cataiprov = new catalogoInactivoProveedores();
         this.cataprov.btnActivar.addActionListener(this);
         this.cataiprov.btnActivar.addActionListener(this);
         this.cataprov.addWindowListener(this);
@@ -68,6 +68,7 @@ public class controladorProveedores implements ActionListener, WindowListener, K
         prov.txtTelefono.addKeyListener(this);
         prov.txtCorreo.addKeyListener(this);
         prov.txaDireccion.addKeyListener(this);
+        this.cataprov.setVisible(true);
     }
 
     public void Llenartabla(JTable tablaD) {

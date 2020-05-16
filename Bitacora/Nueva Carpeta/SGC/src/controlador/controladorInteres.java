@@ -47,12 +47,12 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
     ArrayList<Interes> listainteres;
     ArrayList<Interes> listainteresmod;
 
-    public controladorInteres(interes in, catalogoInteres catain, Condominio modcon, Interes modin, catalogoInactivoInteres cataiin) {
-        this.in = in;
-        this.catain = catain;
-        this.modcon = modcon;
-        this.modin = modin;
-        this.cataiin = cataiin;
+    public controladorInteres() {
+        this.in = new interes();
+        this.catain = new catalogoInteres();
+        this.modcon = new Condominio();
+        this.modin = new Interes();
+        this.cataiin = new catalogoInactivoInteres();
         this.catain.btnActivar.addActionListener(this);
         this.cataiin.btnActivar.addActionListener(this);
         this.catain.jButton2.addActionListener(this);
@@ -66,6 +66,7 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
         this.in.btnEliminar.addActionListener(this);
         in.txtNombreinteres.addKeyListener(this);
         in.txtFactor.addKeyListener(this);
+        this.catain.setVisible(true);
     }
 
     public void Llenartablacondominio(JTable tablaD) {
