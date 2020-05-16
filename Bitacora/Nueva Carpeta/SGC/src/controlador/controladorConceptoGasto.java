@@ -37,13 +37,13 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
     ArrayList<CategoriaGasto> listaCatGas;
     DefaultTableModel dm;
 
-    public controladorConceptoGasto(catalogoConceptoGasto catacga, conceptoGasto cga, ModeloConceptoGastos modCatGas, CategoriaGasto modCat, catalogoInactivoConceptoGastos cataicga) {
+    public controladorConceptoGasto() {
 
-        this.catacga = catacga;
-        this.cga = cga;
-        this.modCatGas = modCatGas;
-        this.modCat = modCat;
-        this.cataicga = cataicga;
+        this.catacga = new catalogoConceptoGasto();
+        this.cga = new conceptoGasto();
+        this.modCatGas = new ModeloConceptoGastos();
+        this.modCat = new CategoriaGasto();
+        this.cataicga = new catalogoInactivoConceptoGastos();
         this.catacga.btnActivar.addActionListener(this);
         this.cataicga.btnActivar.addActionListener(this);
         this.catacga.btnNuevoRegistro.addActionListener(this);
@@ -58,6 +58,7 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
         this.catacga.txtBuscar.addKeyListener(this);
         listaCatGas = modCat.lCategGas();
         crearCbxCategoria(listaCatGas);
+        this.catacga.setVisible(true);
     }
 
     @Override

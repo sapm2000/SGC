@@ -69,16 +69,16 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jCondominio = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
+        jTipo = new javax.swing.JMenuItem();
+        jCategoria = new javax.swing.JMenuItem();
+        jConcepto = new javax.swing.JMenuItem();
+        jBanco = new javax.swing.JMenuItem();
+        jCuenta = new javax.swing.JMenuItem();
+        jPropietarios = new javax.swing.JMenuItem();
+        jProveedores = new javax.swing.JMenuItem();
+        jUsuario = new javax.swing.JMenuItem();
+        jInteres = new javax.swing.JMenuItem();
+        jResponsable = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
@@ -166,115 +166,115 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jCondominio);
 
-        jMenuItem9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/team.png"))); // NOI18N
-        jMenuItem9.setText("Tipos de Usuarios");
-        jMenuItem9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+        jTipo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/team.png"))); // NOI18N
+        jTipo.setText("Tipos de Usuarios");
+        jTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
+                jTipoActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem9);
+        jMenu2.add(jTipo);
 
-        jMenuItem4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gastos.png"))); // NOI18N
-        jMenuItem4.setText("Categoría Gastos");
-        jMenuItem4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        jCategoria.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gastos.png"))); // NOI18N
+        jCategoria.setText("Categoría Gastos");
+        jCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                jCategoriaActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem4);
+        jMenu2.add(jCategoria);
 
-        jMenuItem5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/analisis.png"))); // NOI18N
-        jMenuItem5.setText("Concepto Gastos");
-        jMenuItem5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        jConcepto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jConcepto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/analisis.png"))); // NOI18N
+        jConcepto.setText("Concepto Gastos");
+        jConcepto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jConcepto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                jConceptoActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem5);
+        jMenu2.add(jConcepto);
 
-        jMenuItem3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banco.png"))); // NOI18N
-        jMenuItem3.setText("Bancos");
-        jMenuItem3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jBanco.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jBanco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banco.png"))); // NOI18N
+        jBanco.setText("Bancos");
+        jBanco.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jBanco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                jBancoActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        jMenu2.add(jBanco);
 
-        jMenuItem6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cuota.png"))); // NOI18N
-        jMenuItem6.setText("Cuentas Bancarias");
-        jMenuItem6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        jCuenta.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cuota.png"))); // NOI18N
+        jCuenta.setText("Cuentas Bancarias");
+        jCuenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                jCuentaActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem6);
+        jMenu2.add(jCuenta);
 
-        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton-cuadrado-de-la-llave-de-la-casa.png"))); // NOI18N
-        jMenuItem11.setText("Propietarios");
-        jMenuItem11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+        jPropietarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton-cuadrado-de-la-llave-de-la-casa.png"))); // NOI18N
+        jPropietarios.setText("Propietarios");
+        jPropietarios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPropietarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
+                jPropietariosActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem11);
+        jMenu2.add(jPropietarios);
 
-        jMenuItem7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/proveedor.png"))); // NOI18N
-        jMenuItem7.setText("Proveedores");
-        jMenuItem7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        jProveedores.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/proveedor.png"))); // NOI18N
+        jProveedores.setText("Proveedores");
+        jProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                jProveedoresActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem7);
+        jMenu2.add(jProveedores);
 
-        jMenuItem10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/administracion.png"))); // NOI18N
-        jMenuItem10.setText("Gestionar Usuarios");
-        jMenuItem10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+        jUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/administracion.png"))); // NOI18N
+        jUsuario.setText("Gestionar Usuarios");
+        jUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem10ActionPerformed(evt);
+                jUsuarioActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem10);
+        jMenu2.add(jUsuario);
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caro.png"))); // NOI18N
-        jMenuItem1.setText("Interes");
-        jMenuItem1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jInteres.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caro.png"))); // NOI18N
+        jInteres.setText("Interes");
+        jInteres.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jInteres.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuItem1MouseClicked(evt);
+                jInteresMouseClicked(evt);
             }
         });
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jInteres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jInteresActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        jMenu2.add(jInteres);
 
-        jMenuItem12.setText("Responsable");
-        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+        jResponsable.setText("Responsable");
+        jResponsable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem12ActionPerformed(evt);
+                jResponsableActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem12);
+        jMenu2.add(jResponsable);
 
         jMenuBar1.add(jMenu2);
 
@@ -302,92 +302,39 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCondominioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCondominioActionPerformed
-    
 
 
     }//GEN-LAST:event_jCondominioActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        catalogoBanco cataBan = new catalogoBanco();
-        banco ban = new banco();
-        Banco modban = new Banco();
-        catalogoInactivoBanco ciban = new catalogoInactivoBanco();
-        controladorBanco controb = new controladorBanco(ban, cataBan, modban, ciban);
-
-        cataBan.setVisible(true);
-
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        catalogoCategoriaGastos catacg = new catalogoCategoriaGastos();
-        categoriaGastos gas = new categoriaGastos();
-        CategoriaGasto modcg = new CategoriaGasto();
-        catalogoInactivoCategoriaGastos cataicg = new catalogoInactivoCategoriaGastos();
-        controladorCategoriaGastos controcg = new controladorCategoriaGastos(catacg, gas, modcg, cataicg);
-
-        catacg.setVisible(true);
-
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        catalogoConceptoGasto catacog = new catalogoConceptoGasto();
-        conceptoGasto cga = new conceptoGasto();
-        ModeloConceptoGastos modConGas = new ModeloConceptoGastos();
-        CategoriaGasto modCat = new CategoriaGasto();
-        catalogoInactivoConceptoGastos cataicga = new catalogoInactivoConceptoGastos();
-
-        controladorConceptoGasto controcga = new controladorConceptoGasto(catacog, cga, modConGas, modCat, cataicga);
-        catacog.btnNuevoRegistro.setEnabled(true);
-        catacog.setVisible(true);
-
-        catacog.setVisible(true);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        catalogoCuenta catacu = new catalogoCuenta();
-        cuenta cu = new cuenta();
-        Cuenta modcu = new Cuenta();
-        Banco modban = new Banco();
-        Condominio modcon = new Condominio();
-        catalogoInactivoCuenta cataicu= new catalogoInactivoCuenta();
-        controladorCuenta controcu = new controladorCuenta(catacu, cu, modcu, modban, modcon, cataicu);
-
-        catacu.setVisible(true);
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
-
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        catalogoProveedores cataprov = new catalogoProveedores();
-        proveedores prov = new proveedores();
-        Proveedores modpro = new Proveedores();
-        catalogoInactivoProveedores cataiprov = new catalogoInactivoProveedores();
-        controladorProveedores controProv = new controladorProveedores(cataprov, prov, modpro, cataiprov);
-
-        cataprov.setVisible(true);
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
-
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        catalogoTipoUsuario catati = new catalogoTipoUsuario();
-        tipoUsuario tipou = new tipoUsuario();
-        controladorTipoUsuario controti = new controladorTipoUsuario(catati, tipou);
-        catati.jButton2.setForeground(gray);
-        catati.jButton2.setEnabled(false);
-
-        
-        catati.setVisible(true);
-
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
-
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        catalogoUsuario catausu = new catalogoUsuario();
-        GestionarUsuario gestusu = new GestionarUsuario();
-
-        CrudUsuario modc = new CrudUsuario();
-
-        CtrlUsuario ctrl = new CtrlUsuario(modc, gestusu, catausu);
-        catausu.setVisible(true);
+    private void jBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBancoActionPerformed
 
 
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
+    }//GEN-LAST:event_jBancoActionPerformed
+
+    private void jCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCategoriaActionPerformed
+
+    }//GEN-LAST:event_jCategoriaActionPerformed
+
+    private void jConceptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConceptoActionPerformed
+
+    }//GEN-LAST:event_jConceptoActionPerformed
+
+    private void jCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCuentaActionPerformed
+
+    }//GEN-LAST:event_jCuentaActionPerformed
+
+    private void jProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jProveedoresActionPerformed
+       
+    }//GEN-LAST:event_jProveedoresActionPerformed
+
+    private void jTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTipoActionPerformed
+    
+
+    }//GEN-LAST:event_jTipoActionPerformed
+
+    private void jUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsuarioActionPerformed
+  
+    }//GEN-LAST:event_jUsuarioActionPerformed
 
     private void btnMinimizar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizar2ActionPerformed
         this.setState(vista.InicioUsuario.ICONIFIED);
@@ -409,28 +356,21 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        catalogoInteres catain = new catalogoInteres();
-        interes in = new interes();
-        Condominio modcon = new Condominio();
-        Interes modin = new Interes();
-        catalogoInactivoInteres cataiin = new catalogoInactivoInteres();
-        controladorInteres controin = new controladorInteres(in, catain, modcon, modin, cataiin);
+    private void jInteresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jInteresActionPerformed
+      
+    }//GEN-LAST:event_jInteresActionPerformed
 
-        catain.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseClicked
+    private void jInteresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jInteresMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1MouseClicked
+    }//GEN-LAST:event_jInteresMouseClicked
 
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        CtrlPropietario ctrl = new CtrlPropietario();
-    }//GEN-LAST:event_jMenuItem11ActionPerformed
+    private void jPropietariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPropietariosActionPerformed
+      
+    }//GEN-LAST:event_jPropietariosActionPerformed
 
-    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        CtrlResponsable ctrl = new CtrlResponsable();
-    }//GEN-LAST:event_jMenuItem12ActionPerformed
+    private void jResponsableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jResponsableActionPerformed
+       
+    }//GEN-LAST:event_jResponsableActionPerformed
 
     /**
      * @param args the command line arguments
@@ -470,7 +410,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMinimizar2;
     private javax.swing.JButton btnSalir2;
+    public javax.swing.JMenuItem jBanco;
+    public javax.swing.JMenuItem jCategoria;
+    public javax.swing.JMenuItem jConcepto;
     public javax.swing.JMenuItem jCondominio;
+    public javax.swing.JMenuItem jCuenta;
+    public javax.swing.JMenuItem jInteres;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
@@ -479,18 +424,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    public javax.swing.JMenuItem jPropietarios;
+    public javax.swing.JMenuItem jProveedores;
+    public javax.swing.JMenuItem jResponsable;
+    public javax.swing.JMenuItem jTipo;
+    public javax.swing.JMenuItem jUsuario;
     // End of variables declaration//GEN-END:variables
 }

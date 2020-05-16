@@ -21,13 +21,14 @@ public class controladorTipoUsuario implements ActionListener {
     private catalogoTipoUsuario catati;
     private tipoUsuario ti;
 
-    public controladorTipoUsuario(catalogoTipoUsuario catati, tipoUsuario ti) {
-        this.catati = catati;
-        this.ti = ti;
+    public controladorTipoUsuario() {
+        this.catati = new catalogoTipoUsuario();
+        this.ti = new tipoUsuario();
         this.catati.jButton2.addActionListener(this);
         this.ti.btnGuardar.addActionListener(this);
 
         this.ti.btnModificar.addActionListener(this);
+        this.catati.setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {

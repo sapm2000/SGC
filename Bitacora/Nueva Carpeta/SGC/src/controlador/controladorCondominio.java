@@ -274,7 +274,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
                         } else {
                             if (co.eliminar(co)) {
                                 co.eliminarunidadcondominio(co);
-                                moduni.setId_condominio(co.getRif());
+                                
                                 listaunidades = moduni.buscar();
                                 int q = listaunidades.size();
 
