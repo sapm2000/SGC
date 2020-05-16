@@ -15,24 +15,24 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import static java.lang.String.valueOf;
+import java.util.ArrayList;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.Condominio;
+import modelo.Unidades;
+import sgc.SGC;
 import vista.PantallaPrincipal;
 import vista.PantallaPrincipal1;
 import vista.catalogoCondominio;
-import vista.condominio;
-import java.util.ArrayList;
-import javax.swing.JComponent;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableColumn;
-import modelo.Unidades;
-import sgc.SGC;
 import vista.catalogoInactivoCondominio;
+import vista.condominio;
 
 /**
  *
@@ -51,14 +51,13 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
     ArrayList<Condominio> listaCondo;
     ArrayList<Unidades> listaunidades;
 
-    public controladorCondominio(catalogoCondominio cataco, condominio condo, PantallaPrincipal1 panta1, PantallaPrincipal panta, Condominio co, Unidades moduni, catalogoInactivoCondominio cataico) {
-        this.cataco = cataco;
-        this.condo = condo;
-        this.panta1 = panta1;
-        this.panta = panta;
-        this.co = co;
-        this.moduni = moduni;
-        this.cataico = cataico;
+    public controladorCondominio() {
+        this.cataco = new catalogoCondominio();
+        this.condo = new condominio();
+        this.panta = new PantallaPrincipal();
+        this.co = new Condominio();
+        this.moduni = new Unidades();
+        this.cataico = new catalogoInactivoCondominio();
         this.cataco.btnActivar.addActionListener(this);
         this.cataico.btnActivar.addActionListener(this);
         this.cataco.jButton2.addActionListener(this);
@@ -73,6 +72,8 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         this.condo.txtRazonS.addKeyListener(this);
         this.condo.txtTelefono.addKeyListener(this);
         this.condo.txtCorreo.addKeyListener(this);
+
+        cataco.setVisible(true);
     }
 
     public void Llenartabla(JTable tablaD) {
@@ -175,7 +176,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
-         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -191,9 +192,9 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
             condo.txtTelefono.setText("");
             condo.txtCorreo.setText("");
         }
-        
-          if (e.getSource()==cataico.btnActivar) {
-              listaCondo = co.lPersoni();
+
+        if (e.getSource() == cataico.btnActivar) {
+            listaCondo = co.lPersoni();
 
             for (int i = 0; i < cataico.jTable1.getRowCount(); i++) {
                 if (valueOf(cataico.jTable1.getValueAt(i, 4)) == "true") {
@@ -330,7 +331,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
             co.setRif(String.valueOf(dato));
             SGC.condominioActual = co;
             this.cataco.dispose();
-            this.panta.dispose();
+            this.panta1 = new PantallaPrincipal1();
             this.panta1.setVisible(true);
             panta1.rif.setText(dato);
 

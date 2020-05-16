@@ -208,7 +208,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
     }
     public void llenartablaunidades(JTable tablaD) {
 
-        listaunidades = modsan.buscarUnidades();
+        listaunidades = modsan.listar();
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -301,7 +301,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                                     if (modsan.registrarsancion(modsan)) {
                                         JOptionPane.showMessageDialog(null, "Registro Guardado");
                                         modsan.buscId(modsan);
-                                          listaunidades = modsan.buscarUnidades();
+                                          listaunidades = modsan.listar();
 
                                         for (int i = 0; i < san.jTable1.getRowCount(); i++) {
                                             if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import java.awt.Component;
@@ -27,33 +22,33 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.CerrarMes;
+import modelo.Propietarios;
 import modelo.Unidades;
 import vista.PantallaPrincipal1;
 import vista.catalogoInactivoUnidades;
 import vista.catalogoUnidades;
 import vista.detalleRecibo;
-import vista.unidades;
 import vista.detallecuenta;
+import vista.unidades;
 import vista.unidadesInactivas;
 
-/**
- *
- * @author rma
- */
 public class controladorUnidades implements ActionListener, MouseListener, KeyListener, WindowListener {
 
-    private unidades uni;
-    private catalogoUnidades catauni;
+    private unidades vista;
+    private Unidades modelo;
+    private catalogoUnidades catalogo;
+
+    private Propietarios modPropietario;
+
     private detallecuenta detacun;
     private detalleRecibo detare;
-    private Unidades moduni;
-    private PantallaPrincipal1 panta1;
     private catalogoInactivoUnidades cataiuni;
     private unidadesInactivas unii;
 
+    ArrayList<Unidades> listaUnidades;
+    ArrayList<Propietarios> listaPropietarios;
+
     private CerrarMes modc;
-    ArrayList<Unidades> listapropietarios;
-    ArrayList<Unidades> listaunidades;
     ArrayList<CerrarMes> listapagos;
     ArrayList<CerrarMes> listadetallegasto;
     ArrayList<CerrarMes> listadetallecuotas;
@@ -62,47 +57,60 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
     DefaultTableModel dm;
 
     public controladorUnidades(unidades uni, catalogoUnidades catauni, detallecuenta detacun, detalleRecibo detare, Unidades moduni, PantallaPrincipal1 panta1, CerrarMes modc, catalogoInactivoUnidades cataiuni, unidadesInactivas unii) {
-        this.uni = uni;
-        this.catauni = catauni;
+        this.vista = uni;
+        this.catalogo = catauni;
         this.detacun = detacun;
         this.detare = detare;
-        this.moduni = moduni;
-        this.panta1 = panta1;
+        this.modelo = moduni;
         this.cataiuni = cataiuni;
         this.unii = unii;
-        this.unii.btnDesactivar.addActionListener(this);
-
         this.modc = modc;
-        this.catauni.addWindowListener(this);
-        this.catauni.btnActivar.addActionListener(this);
-        this.catauni.jButton2.addActionListener(this);
+        modPropietario = new Propietarios();
+
+        this.unii.btnDesactivar.addActionListener(this);
+        this.catalogo.addWindowListener(this);
+        this.catalogo.btnNuevo.addActionListener(this);
         this.cataiuni.jTable1.addMouseListener(this);
 
-        this.uni.txtArea.addKeyListener(this);
+        this.vista.txtArea.addKeyListener(this);
 
-        this.uni.txtNumeroUnidad.addKeyListener(this);
+        this.vista.txtNumeroUnidad.addKeyListener(this);
         this.unii.jTable1.addMouseListener(this);
 
-        this.catauni.jTable1.addMouseListener(this);
+        this.catalogo.tabla.addMouseListener(this);
 
-        this.uni.jTable1.addMouseListener(this);
-        this.uni.btnGuardar.addActionListener(this);
-        this.uni.btnLimpiar.addActionListener(this);
-        this.uni.btnEliminar.addActionListener(this);
-        this.uni.btnModificar.addActionListener(this);
+        this.vista.tablaPropietarios.addMouseListener(this);
+        this.vista.btnGuardar.addActionListener(this);
+        this.vista.btnLimpiar.addActionListener(this);
+        this.vista.btnEliminar.addActionListener(this);
+        this.vista.btnModificar.addActionListener(this);
         this.detacun.txtBuscar.addKeyListener(this);
         this.detacun.jTable1.addMouseListener(this);
     }
 
-    public void llenartablapropietarios(JTable tablaD) {
+    public void llenarTablaPropietarios(JTable tablaD, String accion) {
+        //listaPropietarios = modPropietario.listar();
 
-        listapropietarios = moduni.buscarPropietario();
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
 
                 boolean resu = false;
-                if (column == 0) {
+
+                switch (column) {
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                        resu = false;
+                        break;
+                    case 4:
+                    case 5:
+                        resu = true;
+                        break;
+                }
+
+                /*if (column == 0) {
                     resu = false;
                 }
                 if (column == 1) {
@@ -119,10 +127,9 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                 }
                 if (column == 5) {
                     resu = true;
-                }
+                }*/
                 return resu;
             }
-
         };
 
         tablaD.setModel(modeloT);
@@ -137,34 +144,59 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         modeloT.addColumn("Seleccione");
         modeloT.addColumn("Nº documento");
 
-        Object[] columna = new Object[6];
+        Object[] columna = new Object[modeloT.getColumnCount()];
 
-        int numRegistro = listapropietarios.size();
+        int numRegistro;
+        int ind;
 
-        for (int i = 0; i < numRegistro; i++) {
+        if (accion.equals("Registrar")) {
+            numRegistro = listaPropietarios.size();
 
-            columna[0] = listapropietarios.get(i).getCedula();
-            columna[1] = listapropietarios.get(i).getNombre();
-            columna[2] = listapropietarios.get(i).getTelefono();
-            columna[3] = listapropietarios.get(i).getCorreo();
+            for (int i = 0; i < numRegistro; i++) {
+                ind = 0;
 
-            modeloT.addRow(columna);
+                columna[ind++] = listaPropietarios.get(i).getCedula();
+                columna[ind++] = listaPropietarios.get(i).getpNombre() + " " + listaPropietarios.get(i).getpApellido();
+                columna[ind++] = listaPropietarios.get(i).getTelefono();
+                columna[ind++] = listaPropietarios.get(i).getCorreo();
 
+                modeloT.addRow(columna);
+
+            }
+        } else if (accion.equals("Modificar")) {
+            numRegistro = modelo.getPropietario().size();
+
+            for (int i = 0; i < numRegistro; i++) {
+        System.out.println("poli4");
+                ind = 0;
+
+                System.out.println(modelo.getId());
+                System.out.println(modelo.getPropietario().get(i).getCedula());
+                System.out.println(modelo.getPropietario().get(i).getpNombre());
+                System.out.println(modelo.getPropietario().get(i).getpApellido());
+                columna[ind++] = modelo.getPropietario().get(i).getCedula();
+                columna[ind++] = modelo.getPropietario().get(i).getpNombre() + " " + listaPropietarios.get(i).getpApellido();
+                columna[ind++] = modelo.getPropietario().get(i).getTelefono();
+                columna[ind++] = modelo.getPropietario().get(i).getCorreo();
+
+                modeloT.addRow(columna);
+
+            }
         }
+        
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
 
-        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
+        for (int i = 0; i < modeloT.getColumnCount(); i++) {
+            tablaD.getColumnModel().getColumn(i).setCellRenderer(tcr);
 
+        }
+        System.out.println("poli4");
     }
 
     public void llenartablapropietariosmod(JTable tablaD) {
 
-        listapropietarios = moduni.buscarPropietariomod();
+        listaPropietarios = modelo.buscarPropietariomod();
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -207,20 +239,20 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
         Object[] columna = new Object[10];
 
-        int numRegistro = listapropietarios.size();
+        int numRegistro = listaPropietarios.size();
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = listapropietarios.get(i).getCedula();
-            columna[1] = listapropietarios.get(i).getNombre();
-            columna[2] = listapropietarios.get(i).getTelefono();
-            columna[3] = listapropietarios.get(i).getCorreo();
-            if (listapropietarios.get(i).getId() != 0) {
+            columna[0] = listaPropietarios.get(i).getCedula();
+            columna[1] = listaPropietarios.get(i).getNombre();
+            columna[2] = listaPropietarios.get(i).getTelefono();
+            columna[3] = listaPropietarios.get(i).getCorreo();
+            if (listaPropietarios.get(i).getId() != 0) {
                 columna[4] = Boolean.TRUE;
             } else {
                 columna[4] = Boolean.FALSE;
             }
-            columna[5] = listapropietarios.get(i).getDocumento();
+            columna[5] = listaPropietarios.get(i).getDocumento();
             modeloT.addRow(columna);
 
         }
@@ -461,9 +493,9 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
     }
 
-    public void llenartablaunidades(JTable tablaD) {
+    public void llenarTabla(JTable tablaD) {
+        listaUnidades = modelo.listar();
 
-        listaunidades = moduni.buscarUnidades();
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -472,42 +504,44 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             }
 
         };
+
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("<html>Número de <br> Unidad</html>");
-
         modeloT.addColumn("Dirección");
+        modeloT.addColumn("Área (mts2)");
 
-        modeloT.addColumn("Area (mts2)");
+        Object[] columna = new Object[modeloT.getColumnCount()];
 
-        Object[] columna = new Object[3];
-
-        int numRegistro = listaunidades.size();
+        int numRegistro = listaUnidades.size();
+        int ind;
 
         for (int i = 0; i < numRegistro; i++) {
+            ind = 0;
 
-            columna[0] = listaunidades.get(i).getN_unidad();
-
-            columna[1] = listaunidades.get(i).getDireccion();
-
-            columna[2] = listaunidades.get(i).getArea();
+            columna[ind++] = listaUnidades.get(i).getN_unidad();
+            columna[ind++] = listaUnidades.get(i).getDireccion();
+            columna[ind++] = listaUnidades.get(i).getArea();
 
             modeloT.addRow(columna);
 
         }
+
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+
+        for (int i = 0; i < modeloT.getColumnCount(); i++) {
+            tablaD.getColumnModel().getColumn(i).setCellRenderer(tcr);
+
+        }
 
     }
 
     public void llenartablaunidadesinactivas(JTable tablaD) {
 
-        listaunidades = moduni.buscarUnidadesinactivas();
+        listaUnidades = modelo.buscarUnidadesinactivas();
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -539,15 +573,15 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
         Object[] columna = new Object[3];
 
-        int numRegistro = listaunidades.size();
+        int numRegistro = listaUnidades.size();
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = listaunidades.get(i).getN_unidad();
+            columna[0] = listaUnidades.get(i).getN_unidad();
 
-            columna[1] = listaunidades.get(i).getDireccion();
+            columna[1] = listaUnidades.get(i).getDireccion();
 
-            columna[2] = listaunidades.get(i).getArea();
+            columna[2] = listaUnidades.get(i).getArea();
 
             modeloT.addRow(columna);
 
@@ -561,81 +595,85 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
     }
 
     public void actionPerformed(ActionEvent e) {
-
-        if (e.getSource() == catauni.btnActivar) {
-            this.cataiuni.setVisible(true);
-            llenartablaunidadesinactivas(cataiuni.jTable1);
-
-        }
-        if (e.getSource() == catauni.jButton2) {
-            this.uni.setVisible(true);
-            this.uni.btnModificar.setEnabled(false);
-            this.uni.btnGuardar.setEnabled(true);
-            this.uni.btnEliminar.setEnabled(false);
-            this.uni.txtNumeroUnidad.setEnabled(true);
-            this.uni.txtId.setVisible(false);
-            llenartablapropietarios(uni.jTable1);
-            addCheckBox(4, uni.jTable1);
+        if (e.getSource() == catalogo.btnNuevo) {
+            this.vista.setVisible(true);
+            this.vista.btnModificar.setEnabled(false);
+            this.vista.btnGuardar.setEnabled(true);
+            this.vista.btnEliminar.setEnabled(false);
+            this.vista.txtNumeroUnidad.setEnabled(true);
+            this.vista.txtId.setVisible(false);
+            llenarTablaPropietarios(vista.tablaPropietarios, "Registrar");
+            addCheckBox(4, vista.tablaPropietarios);
             limpiar();
 
-            moduni.setId_condominio(panta1.rif.getText());
-
         }
 
-        if (e.getSource() == uni.btnGuardar) {
+        if (e.getSource() == vista.btnGuardar) {
             if (validar()) {
-                if (uni.jTable1.isEditing()) {//si se esta edtando la tabla
-                    uni.jTable1.getCellEditor().stopCellEditing();//detenga la edicion
+                if (vista.tablaPropietarios.isEditing()) {//si se esta edtando la tabla
+                    vista.tablaPropietarios.getCellEditor().stopCellEditing();//detenga la edicion
                 }
-                java.util.Date fecha = new Date();
-                java.sql.Date sqlDate = convert(fecha);
 
-                moduni.setN_unidad(uni.txtNumeroUnidad.getText());
-                moduni.setArea(Double.parseDouble(uni.txtArea.getText()));
-                moduni.setDireccion(uni.txadireccion.getText());
-                moduni.setId_condominio(panta1.rif.getText());
+                modelo.setN_unidad(vista.txtNumeroUnidad.getText());
+                modelo.setArea(Double.parseDouble(vista.txtArea.getText()));
+                modelo.setDireccion(vista.txtDireccion.getText());
+
                 int j = 0;
                 int x = 0;
-                for (int i = 0; i < uni.jTable1.getRowCount(); i++) {
-                    if (valueOf(uni.jTable1.getValueAt(i, 4)) == "true") {
+
+                for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
+                    if (valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
                         j = j + 1;
 
-                        if (!valueOf(uni.jTable1.getValueAt(i, 5)).equals("")) {
+                        if (!valueOf(vista.tablaPropietarios.getValueAt(i, 5)).equals("")) {
                             x = x + 1;
                         }
-
                     }
                 }
+
                 if (j == 0) {
-                    JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar al menos 1 registro de la tabla");
                 } else {
                     if (j != x) {
-                        JOptionPane.showMessageDialog(null, "debe ingresar el numero de documento en la tabla");
+                        JOptionPane.showMessageDialog(null, "Debe ingresar el número de documento en la tabla");
                     } else {
 
-                        if (moduni.buscarepe(moduni)) {
-                            JOptionPane.showMessageDialog(null, "Este condiminio ya tiene este numero de unidad asignada");
+                        if (modelo.buscarepe(modelo)) {
+                            JOptionPane.showMessageDialog(null, "Este condiminio ya tiene este número de unidad asignado");
                         } else {
+                            int k = 0;
 
-                            if (moduni.registrarUnidades(moduni)) {
-                                moduni.buscId(moduni);
+                            for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
+                                if (valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
+                                    modelo.getPropietario().add(new Propietarios(vista.tablaPropietarios.getValueAt(i, 0).toString()));
+                                    modelo.getDocumento().add(vista.tablaPropietarios.getValueAt(i, 5).toString());
+                                    modelo.setEstatus(1);
+                                    //modelo.registrar_propietario_unidad(modelo);
+
+                                }
+                            }
+
+                            if (modelo.registrar()) {
+                                //modelo.buscId(modelo);
 
                                 JOptionPane.showMessageDialog(null, "Registro Guardado");
-                                for (int i = 0; i < uni.jTable1.getRowCount(); i++) {
-                                    if (valueOf(uni.jTable1.getValueAt(i, 4)) == "true") {
-                                        moduni.setCedula(valueOf(uni.jTable1.getValueAt(i, 0)));
-                                        moduni.setDocumento(valueOf(uni.jTable1.getValueAt(i, 5)));
-                                        moduni.setFecha_desde(sqlDate);
-                                        moduni.setEstatus(1);
-                                        moduni.registrar_propietario_unidad(moduni);
 
-                                    }
-                                }
-                                llenartablaunidades(catauni.jTable1);
+//                                int k = 0;
+//                                
+//                                for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
+//                                    if (valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
+//                                        modelo.getPropietario().add(new Propietarios(valueOf(vista.tablaPropietarios.getValueAt(i, 0))));
+//                                        modelo.getDocumento().add(valueOf(vista.tablaPropietarios.getValueAt(i, 5)));
+//                                        modelo.setEstatus(1);
+//                                        modelo.registrar_propietario_unidad(modelo);
+//
+//                                    }
+//                                }
+                                llenarTabla(catalogo.tabla);
 
                             } else {
 
-                                JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                                JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
 
                             }
                         }
@@ -645,25 +683,25 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             }
         }
 
-        if (e.getSource() == uni.btnModificar) {
+        if (e.getSource() == vista.btnModificar) {
             if (validar()) {
-                if (uni.jTable1.isEditing()) {//si se esta edtando la tabla
-                    uni.jTable1.getCellEditor().stopCellEditing();//detenga la edicion
+                if (vista.tablaPropietarios.isEditing()) {//si se esta edtando la tabla
+                    vista.tablaPropietarios.getCellEditor().stopCellEditing();//detenga la edicion
                 }
+
                 java.util.Date fecha = new Date();
-                java.sql.Date sqlDate = convert(fecha);
-                moduni.setN_unidad(uni.txtNumeroUnidad.getText());
-                moduni.setArea(Double.parseDouble(uni.txtArea.getText()));
-                moduni.setDireccion(uni.txadireccion.getText());
-                moduni.setId_condominio(panta1.rif.getText());
-                moduni.setId(Integer.parseInt(uni.txtId.getText()));
+                java.sql.Date sqlDate = Validacion.convert(fecha);
+                modelo.setN_unidad(vista.txtNumeroUnidad.getText());
+                modelo.setArea(Double.parseDouble(vista.txtArea.getText()));
+                modelo.setDireccion(vista.txtDireccion.getText());
+                modelo.setId(Integer.parseInt(vista.txtId.getText()));
                 int j = 0;
                 int x = 0;
-                for (int i = 0; i < uni.jTable1.getRowCount(); i++) {
-                    if (valueOf(uni.jTable1.getValueAt(i, 4)) == "true") {
+                for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
+                    if (valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
                         j = j + 1;
 
-                        if (!valueOf(uni.jTable1.getValueAt(i, 5)).equals("")) {
+                        if (!valueOf(vista.tablaPropietarios.getValueAt(i, 5)).equals("")) {
                             x = x + 1;
                         }
 
@@ -676,44 +714,44 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                         JOptionPane.showMessageDialog(null, "debe ingresar el numero de documento en la tabla");
                     } else {
 
-                        if (moduni.buscarepe(moduni) && !moduni.getN_unidad().equals(uni.txtNumeroUnidad.getText())) {
+                        if (modelo.buscarepe(modelo) && !modelo.getN_unidad().equals(vista.txtNumeroUnidad.getText())) {
                             JOptionPane.showMessageDialog(null, "Este condiminio ya tiene este numero de unidad asignada");
                         } else {
 
-                            if (moduni.modificarUnidades(moduni)) {
-                                listapropietarios = moduni.buscarPropietariomod();
-                                for (int i = 0; i < uni.jTable1.getRowCount(); i++) {
+                            if (modelo.modificarUnidades(modelo)) {
+                                listaPropietarios = modelo.buscarPropietariomod();
+                                for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
 
-                                    if (listapropietarios.get(i).getId() != 0 && valueOf(uni.jTable1.getValueAt(i, 4)) == "true") {
-                                        if (!listapropietarios.get(i).getDocumento().equals(valueOf(uni.jTable1.getValueAt(i, 5)))) {
-                                            moduni.setDocumento(String.valueOf(uni.jTable1.getValueAt(i, 5)));
-                                            moduni.setId_puente(listapropietarios.get(i).getId_puente());
-                                            moduni.actualizardocumento(moduni);
+                                    if (listaPropietarios.get(i).getId() != 0 && valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
+                                        if (!listaPropietarios.get(i).getDocumento().equals(valueOf(vista.tablaPropietarios.getValueAt(i, 5)))) {
+                                            modelo.setDocumento(String.valueOf(vista.tablaPropietarios.getValueAt(i, 5)));
+                                            modelo.setId_puente(listaPropietarios.get(i).getId_puente());
+                                            modelo.actualizardocumento(modelo);
 
                                         }
                                     }
 
-                                    if (listapropietarios.get(i).getId() != 0 && valueOf(uni.jTable1.getValueAt(i, 4)).equals("false")) {
-                                        moduni.setFecha_hasta(sqlDate);
-                                        moduni.setEstatus(0);
-                                        moduni.setId_puente(listapropietarios.get(i).getId_puente());
-                                        moduni.retirarpropietario(moduni);
+                                    if (listaPropietarios.get(i).getId() != 0 && valueOf(vista.tablaPropietarios.getValueAt(i, 4)).equals("false")) {
+                                        modelo.setFecha_hasta(sqlDate);
+                                        modelo.setEstatus(0);
+                                        modelo.setId_puente(listaPropietarios.get(i).getId_puente());
+                                        modelo.retirarpropietario(modelo);
                                     }
 
-                                    if (listapropietarios.get(i).getId() == 0 && valueOf(uni.jTable1.getValueAt(i, 4)).equals("true")) {
-                                        moduni.setCedula(valueOf(uni.jTable1.getValueAt(i, 0)));
-                                        moduni.setDocumento(valueOf(uni.jTable1.getValueAt(i, 5)));
-                                        moduni.setFecha_desde(sqlDate);
-                                        moduni.setEstatus(1);
-                                        moduni.registrar_propietario_unidad(moduni);
+                                    if (listaPropietarios.get(i).getId() == 0 && valueOf(vista.tablaPropietarios.getValueAt(i, 4)).equals("true")) {
+                                        modelo.setCedula(valueOf(vista.tablaPropietarios.getValueAt(i, 0)));
+                                        modelo.setDocumento(valueOf(vista.tablaPropietarios.getValueAt(i, 5)));
+                                        modelo.setFecha_desde(sqlDate);
+                                        modelo.setEstatus(1);
+                                        modelo.registrar_propietario_unidad(modelo);
                                     }
 
                                 }
 
                                 JOptionPane.showMessageDialog(null, "Registro Modificado");
-                                llenartablaunidades(catauni.jTable1);
+                                llenarTabla(catalogo.tabla);
 
-                                uni.dispose();
+                                vista.dispose();
 
                             } else {
 
@@ -726,27 +764,27 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             }
         }
 
-        if (e.getSource() == uni.btnEliminar) {
-            if (moduni.buscarsancion(moduni)) {
+        if (e.getSource() == vista.btnEliminar) {
+            if (modelo.buscarsancion(modelo)) {
                 JOptionPane.showMessageDialog(null, "No puede eliminar unidades que tengan sanciones pendientes");
             } else {
-                if (uni.jTable1.isEditing()) {//si se esta edtando la tabla
-                    uni.jTable1.getCellEditor().stopCellEditing();//detenga la edicion
+                if (vista.tablaPropietarios.isEditing()) {//si se esta edtando la tabla
+                    vista.tablaPropietarios.getCellEditor().stopCellEditing();//detenga la edicion
                 }
                 java.util.Date fecha = new Date();
                 java.sql.Date sqlDate = convert(fecha);
-                moduni.setN_unidad(uni.txtNumeroUnidad.getText());
-                moduni.setArea(Double.parseDouble(uni.txtArea.getText()));
-                moduni.setDireccion(uni.txadireccion.getText());
-                moduni.setId_condominio(panta1.rif.getText());
-                moduni.setId(Integer.parseInt(uni.txtId.getText()));
+                modelo.setN_unidad(vista.txtNumeroUnidad.getText());
+                modelo.setArea(Double.parseDouble(vista.txtArea.getText()));
+                modelo.setDireccion(vista.txtDireccion.getText());
+                modelo.setId_condominio(panta1.rif.getText());
+                modelo.setId(Integer.parseInt(vista.txtId.getText()));
                 int j = 0;
                 int x = 0;
-                for (int i = 0; i < uni.jTable1.getRowCount(); i++) {
-                    if (valueOf(uni.jTable1.getValueAt(i, 4)) == "true") {
+                for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
+                    if (valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
                         j = j + 1;
 
-                        if (!valueOf(uni.jTable1.getValueAt(i, 5)).equals("")) {
+                        if (!valueOf(vista.tablaPropietarios.getValueAt(i, 5)).equals("")) {
                             x = x + 1;
                         }
 
@@ -759,51 +797,51 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                         JOptionPane.showMessageDialog(null, "debe ingresar el numero de documento en la tabla");
                     } else {
 
-                        if (moduni.buscarepe(moduni) && !moduni.getN_unidad().equals(uni.txtNumeroUnidad.getText())) {
+                        if (modelo.buscarepe(modelo) && !modelo.getN_unidad().equals(vista.txtNumeroUnidad.getText())) {
                             JOptionPane.showMessageDialog(null, "Este condiminio ya tiene este numero de unidad asignada");
                         } else {
 
-                            if (moduni.modificarUnidades(moduni)) {
-                                listapropietarios = moduni.buscarPropietariomod();
-                                for (int i = 0; i < uni.jTable1.getRowCount(); i++) {
+                            if (modelo.modificarUnidades(modelo)) {
+                                listaPropietarios = modelo.buscarPropietariomod();
+                                for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
 
-                                    if (listapropietarios.get(i).getId() != 0 && valueOf(uni.jTable1.getValueAt(i, 4)) == "true") {
-                                        if (!listapropietarios.get(i).getDocumento().equals(valueOf(uni.jTable1.getValueAt(i, 5)))) {
-                                            moduni.setDocumento(String.valueOf(uni.jTable1.getValueAt(i, 5)));
-                                            moduni.setId_puente(listapropietarios.get(i).getId_puente());
-                                            moduni.actualizardocumento(moduni);
+                                    if (listaPropietarios.get(i).getId() != 0 && valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
+                                        if (!listaPropietarios.get(i).getDocumento().equals(valueOf(vista.tablaPropietarios.getValueAt(i, 5)))) {
+                                            modelo.setDocumento(String.valueOf(vista.tablaPropietarios.getValueAt(i, 5)));
+                                            modelo.setId_puente(listaPropietarios.get(i).getId_puente());
+                                            modelo.actualizardocumento(modelo);
 
                                         }
                                     }
 
-                                    if (listapropietarios.get(i).getId() != 0 && valueOf(uni.jTable1.getValueAt(i, 4)).equals("false")) {
-                                        moduni.setFecha_hasta(sqlDate);
-                                        moduni.setEstatus(0);
-                                        moduni.setId_puente(listapropietarios.get(i).getId_puente());
-                                        moduni.retirarpropietario(moduni);
+                                    if (listaPropietarios.get(i).getId() != 0 && valueOf(vista.tablaPropietarios.getValueAt(i, 4)).equals("false")) {
+                                        modelo.setFecha_hasta(sqlDate);
+                                        modelo.setEstatus(0);
+                                        modelo.setId_puente(listaPropietarios.get(i).getId_puente());
+                                        modelo.retirarpropietario(modelo);
                                     }
 
-                                    if (listapropietarios.get(i).getId() == 0 && valueOf(uni.jTable1.getValueAt(i, 4)).equals("true")) {
-                                        moduni.setCedula(valueOf(uni.jTable1.getValueAt(i, 0)));
-                                        moduni.setDocumento(valueOf(uni.jTable1.getValueAt(i, 5)));
-                                        moduni.setFecha_desde(sqlDate);
-                                        moduni.setEstatus(1);
-                                        moduni.registrar_propietario_unidad(moduni);
+                                    if (listaPropietarios.get(i).getId() == 0 && valueOf(vista.tablaPropietarios.getValueAt(i, 4)).equals("true")) {
+                                        modelo.setCedula(valueOf(vista.tablaPropietarios.getValueAt(i, 0)));
+                                        modelo.setDocumento(valueOf(vista.tablaPropietarios.getValueAt(i, 5)));
+                                        modelo.setFecha_desde(sqlDate);
+                                        modelo.setEstatus(1);
+                                        modelo.registrar_propietario_unidad(modelo);
                                     }
 
                                 }
 
-                                moduni.setId(Integer.parseInt(uni.txtId.getText()));
-                                moduni.eliminarUnidad(moduni);
-                                moduni.eliminarPuenteUnidad(moduni);
+                                modelo.setId(Integer.parseInt(vista.txtId.getText()));
+                                modelo.eliminarUnidad(modelo);
+                                modelo.eliminarPuenteUnidad(modelo);
 
-                                llenartablaunidades(catauni.jTable1);
-                                uni.dispose();
+                                llenarTabla(catalogo.tabla);
+                                vista.dispose();
 
                                 JOptionPane.showMessageDialog(null, "Registro Modificado");
-                                llenartablaunidades(catauni.jTable1);
+                                llenarTabla(catalogo.tabla);
 
-                                uni.dispose();
+                                vista.dispose();
 
                             } else {
 
@@ -824,7 +862,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             }
             java.util.Date fecha = new Date();
             java.sql.Date sqlDate = convert(fecha);
-            moduni.setId(Integer.parseInt(unii.txtId.getText()));
+            modelo.setId(Integer.parseInt(unii.txtId.getText()));
             int j = 0;
             int x = 0;
             for (int i = 0; i < unii.jTable1.getRowCount(); i++) {
@@ -844,37 +882,37 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                 if (j != x) {
                     JOptionPane.showMessageDialog(null, "debe ingresar el numero de documento en la tabla");
                 } else {
-                    listapropietarios = moduni.buscarPropietariomod();
-                    if (moduni.activarUnidad(moduni)) {
+                    listaPropietarios = modelo.buscarPropietariomod();
+                    if (modelo.activarUnidad(modelo)) {
                         JOptionPane.showMessageDialog(null, "Unidad restaurada");
                         for (int w = 0; w < unii.jTable1.getRowCount(); w++) {
 
-                            if (listapropietarios.get(w).getId() != 0 && valueOf(unii.jTable1.getValueAt(w, 4)) == "true") {
-                                if (!listapropietarios.get(w).getDocumento().equals(valueOf(unii.jTable1.getValueAt(w, 5)))) {
-                                    moduni.setDocumento(String.valueOf(unii.jTable1.getValueAt(w, 5)));
-                                    moduni.setId_puente(listapropietarios.get(w).getId_puente());
-                                    moduni.actualizardocumento(moduni);
+                            if (listaPropietarios.get(w).getId() != 0 && valueOf(unii.jTable1.getValueAt(w, 4)) == "true") {
+                                if (!listaPropietarios.get(w).getDocumento().equals(valueOf(unii.jTable1.getValueAt(w, 5)))) {
+                                    modelo.setDocumento(String.valueOf(unii.jTable1.getValueAt(w, 5)));
+                                    modelo.setId_puente(listaPropietarios.get(w).getId_puente());
+                                    modelo.actualizardocumento(modelo);
                                 }
                             }
 
-                            if (listapropietarios.get(w).getId() != 0 && valueOf(unii.jTable1.getValueAt(w, 4)).equals("false")) {
-                                moduni.setFecha_hasta(sqlDate);
-                                moduni.setEstatus(0);
-                                moduni.setId_puente(listapropietarios.get(w).getId_puente());
-                                moduni.retirarpropietario(moduni);
+                            if (listaPropietarios.get(w).getId() != 0 && valueOf(unii.jTable1.getValueAt(w, 4)).equals("false")) {
+                                modelo.setFecha_hasta(sqlDate);
+                                modelo.setEstatus(0);
+                                modelo.setId_puente(listaPropietarios.get(w).getId_puente());
+                                modelo.retirarpropietario(modelo);
                             }
 
-                            if (listapropietarios.get(w).getId() == 0 && valueOf(unii.jTable1.getValueAt(w, 4)).equals("true")) {
-                                moduni.setCedula(valueOf(unii.jTable1.getValueAt(w, 0)));
-                                moduni.setDocumento(valueOf(unii.jTable1.getValueAt(w, 5)));
-                                moduni.setFecha_desde(sqlDate);
-                                moduni.setEstatus(1);
-                                moduni.registrar_propietario_unidad(moduni);
+                            if (listaPropietarios.get(w).getId() == 0 && valueOf(unii.jTable1.getValueAt(w, 4)).equals("true")) {
+                                modelo.setCedula(valueOf(unii.jTable1.getValueAt(w, 0)));
+                                modelo.setDocumento(valueOf(unii.jTable1.getValueAt(w, 5)));
+                                modelo.setFecha_desde(sqlDate);
+                                modelo.setEstatus(1);
+                                modelo.registrar_propietario_unidad(modelo);
                             }
 
                         }
                         llenartablaunidadesinactivas(cataiuni.jTable1);
-                        llenartablaunidades(catauni.jTable1);
+                        llenarTabla(catalogo.tabla);
                         unii.dispose();
                     }
 
@@ -883,7 +921,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
         }
 
-        if (e.getSource() == uni.btnLimpiar) {
+        if (e.getSource() == vista.btnLimpiar) {
 
             limpiar();
 
@@ -892,22 +930,69 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
     public void limpiar() {
 
-        uni.txtNumeroUnidad.setText(null);
-        uni.txtArea.setText(null);
+        vista.txtNumeroUnidad.setText(null);
+        vista.txtArea.setText(null);
 
-        uni.txadireccion.setText(null);
+        vista.txtDireccion.setText(null);
 
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        if (e.getSource() == uni.jTable1) {
-            int fila = this.uni.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
-            String dato = String.valueOf(this.uni.jTable1.getValueAt(fila, 4)); // por ultimo, obtengo el valor de la celda
+        if (e.getSource() == catalogo.tabla) {
+            String[] options = {"Ver detalles de pago", "Modificar datos"};
+            int result = JOptionPane.showOptionDialog(null, "Seleccione si desea ver detalles de pago o modificar datos", "MENÚ", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+            if (result == 0) {
+                int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
+                listaUnidades = modelo.listar();
+                String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+
+                String dato2 = String.valueOf(this.catalogo.tabla.getValueAt(fila, 2)); // por ultimo, obtengo el valor de la celda
+                detacun.setVisible(true);
+                modc.setId_unidad(listaUnidades.get(fila).getId());
+                detacun.txtArea.setText(dato2);
+                llenartablapagos(detacun.jTable1);
+                detacun.txtUnidad.setText(dato);
+                modc.buscarmesesdedeuda(modc);
+                detacun.txtMesesdeuda.setText(String.valueOf(modc.getMeses_deuda()));
+            }
+
+            if (result == 1) {
+                int fila = this.catalogo.tabla.getSelectedRow(); //Primero, obtengo la fila seleccionada
+                //String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); //Por último, obtengo el valor de la celda
+
+                modelo = listaUnidades.get(fila);
+                //modelo.setN_unidad(String.valueOf(dato));
+                vista.setVisible(true);
+                //modelo.buscarUnidad();
+
+                vista.txtNumeroUnidad.setText(modelo.getN_unidad());
+                vista.txtDireccion.setText(modelo.getDireccion());
+                vista.txtArea.setText(String.valueOf(modelo.getArea()));
+
+                vista.txtId.setVisible(false);
+                vista.txtId.setText(String.valueOf(modelo.getId()));
+
+                vista.txtNumeroUnidad.setEnabled(false);
+
+                vista.btnEliminar.setEnabled(true);
+                vista.btnModificar.setEnabled(true);
+                vista.btnGuardar.setEnabled(false);
+
+                llenarTablaPropietarios(vista.tablaPropietarios, "Modificar");
+                //llenartablapropietariosmod(vista.tablaPropietarios);
+                addCheckBox(4, vista.tablaPropietarios);
+            }
+        }
+
+        if (e.getSource() == vista.tablaPropietarios) {
+            int fila = this.vista.tablaPropietarios.getSelectedRow(); // primero, obtengo la fila seleccionada
+            String dato = String.valueOf(this.vista.tablaPropietarios.getValueAt(fila, 4)); // por ultimo, obtengo el valor de la celda
 
             if (dato.equals("true")) {
-                uni.jTable1.editCellAt(fila, 5);
+                vista.tablaPropietarios.editCellAt(fila, 5);
             }
         }
 
@@ -920,50 +1005,8 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             }
         }
 
-        if (e.getSource() == catauni.jTable1) {
-            String[] options = {"Ver detalles de pago", "Modificar datos"};
-            int result = JOptionPane.showOptionDialog(null, "Seleccione si desea ver detalles de pagp o modificar datos", "MENU", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-            if (result == 0) {
-                int fila = this.catauni.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
-               listaunidades = moduni.buscarUnidades();
-                String dato = String.valueOf(this.catauni.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
-               
-                String dato2 = String.valueOf(this.catauni.jTable1.getValueAt(fila, 2)); // por ultimo, obtengo el valor de la celda
-                detacun.setVisible(true);
-                modc.setId_unidad(listaunidades.get(fila).getId());
-                modc.setId_condominio(panta1.rif.getText());
-                detacun.txtArea.setText(dato2);
-                llenartablapagos(detacun.jTable1);
-                detacun.txtUnidad.setText(dato);
-                modc.buscarmesesdedeuda(modc);
-                detacun.txtMesesdeuda.setText(String.valueOf(modc.getMeses_deuda()));
-            }
-            if (result == 1) {
-                int fila = this.catauni.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
-                String dato = String.valueOf(this.catauni.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
-
-                moduni.setN_unidad(String.valueOf(dato));
-                uni.setVisible(true);
-                moduni.setId_condominio(panta1.rif.getText());
-                moduni.buscarUnidad(moduni);
-
-                uni.txadireccion.setText(moduni.getDireccion());
-                uni.txtArea.setText(String.valueOf(moduni.getArea()));
-                uni.txtId.setVisible(false);
-                uni.txtId.setText(String.valueOf(moduni.getId()));
-                uni.txtNumeroUnidad.setText(moduni.getN_unidad());
-
-                uni.txtNumeroUnidad.setEnabled(false);
-                uni.btnEliminar.setEnabled(true);
-                uni.btnModificar.setEnabled(true);
-                uni.btnGuardar.setEnabled(false);
-                llenartablapropietariosmod(uni.jTable1);
-                addCheckBox(4, uni.jTable1);
-            }
-        }
-
         if (e.getSource() == detacun.jTable1) {
-            
+
             int fila = this.detacun.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
             String datos = String.valueOf(this.detacun.jTable1.getValueAt(fila, 1)); // por ultimo, obtengo el valor de la celda
             int fila2 = this.detacun.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
@@ -975,12 +1018,11 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
             modc.setMes_cierre(Integer.parseInt(datos));
             modc.setAño_cierre(Integer.parseInt(dato2));
-            modc.setId_condominio(panta1.rif.getText());
             llenardetallegasto(detare.tablagastos);
             llenardetallecuotas(detare.tablacuotas);
             llenardetallesancion(detare.tablasancion);
             llenardetalleinteres(detare.tablainteres);
-            detare.txtMes.setText(datos+"-"+dato2);
+            detare.txtMes.setText(datos + "-" + dato2);
             detare.txtUnidad.setText(detacun.txtUnidad.getText());
             detare.txtArea.setText(detacun.txtArea.getText());
             detare.txtId.setText(dato3);
@@ -994,16 +1036,15 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             int fila = this.cataiuni.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
             String dato = String.valueOf(this.cataiuni.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
 
-            moduni.setN_unidad(String.valueOf(dato));
+            modelo.setN_unidad(String.valueOf(dato));
             unii.setVisible(true);
             unii.txtId.setVisible(false);
-            moduni.setId_condominio(panta1.rif.getText());
-            moduni.buscarUnidad(moduni);
-            unii.txadireccion.setText(moduni.getDireccion());
-            unii.txtArea.setText(String.valueOf(moduni.getArea()));
+            modelo.buscarUnidad(modelo);
+            unii.txadireccion.setText(modelo.getDireccion());
+            unii.txtArea.setText(String.valueOf(modelo.getArea()));
 
-            unii.txtId.setText(String.valueOf(moduni.getId()));
-            unii.txtNumeroUnidad.setText(moduni.getN_unidad());
+            unii.txtId.setText(String.valueOf(modelo.getId()));
+            unii.txtNumeroUnidad.setText(modelo.getN_unidad());
             llenartablapropietariosmod(unii.jTable1);
             addCheckBox(4, unii.jTable1);
         }
@@ -1031,20 +1072,20 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
     @Override
     public void keyTyped(KeyEvent ke) {
-        if (ke.getSource() == uni.txtNumeroUnidad) {
+        if (ke.getSource() == vista.txtNumeroUnidad) {
 
             Validacion.Espacio(ke);
-            Validacion.limite(ke, uni.txtNumeroUnidad.getText(), 10);
+            Validacion.limite(ke, vista.txtNumeroUnidad.getText(), 10);
         }
-        if (ke.getSource() == uni.txtArea) {
+        if (ke.getSource() == vista.txtArea) {
 
-            Validacion.soloUnPunto(ke, uni.txtArea.getText());
+            Validacion.soloUnPunto(ke, vista.txtArea.getText());
             Validacion.Espacio(ke);
-            Validacion.limite(ke, uni.txtArea.getText(), 6);
+            Validacion.limite(ke, vista.txtArea.getText(), 6);
         }
-        if (ke.getSource() == uni.txadireccion) {
+        if (ke.getSource() == vista.txtDireccion) {
 
-            Validacion.limite(ke, uni.txadireccion.getText(), 200);
+            Validacion.limite(ke, vista.txtDireccion.getText(), 200);
         }
     }
 
@@ -1055,9 +1096,9 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getSource() == catauni.jTextField1) {
+        if (e.getSource() == catalogo.txtBuscar) {
 
-            filtro(catauni.jTextField1.getText(), catauni.jTable1);
+            filtro(catalogo.txtBuscar.getText(), catalogo.tabla);
         }
 
         if (e.getSource() == detacun.txtBuscar) {
@@ -1067,12 +1108,11 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
     @Override
     public void windowOpened(WindowEvent e) {
-        moduni.setId_condominio(panta1.rif.getText());
-        llenartablaunidades(catauni.jTable1);
+        llenarTabla(catalogo.tabla);
 
-        Component[] components = uni.jPanel2.getComponents();
+        Component[] components = vista.jPanel2.getComponents();
         JComponent[] com = {
-            uni.txtNumeroUnidad, uni.txtArea, uni.txadireccion
+            vista.txtNumeroUnidad, vista.txtArea, vista.txtDireccion
         };
         Validacion.copiar(components);
         Validacion.pegar(com);
@@ -1121,19 +1161,19 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         Boolean resultado = true;
         String msj = "";
 
-        if (uni.txtNumeroUnidad.getText().isEmpty()) {
+        if (vista.txtNumeroUnidad.getText().isEmpty()) {
 
             msj += "El campo numero de unidad no puede estar vacio\n";
             resultado = false;
         }
 
-        if (uni.txtArea.getText().isEmpty()) {
+        if (vista.txtArea.getText().isEmpty()) {
 
             msj += "El campo área no puede estar vacio\n";
             resultado = false;
         }
 
-        if (uni.txadireccion.getText().isEmpty()) {
+        if (vista.txtDireccion.getText().isEmpty()) {
 
             msj += "El campo dirección no puede estar vacio\n";
             resultado = false;
@@ -1153,8 +1193,4 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
     }
 
-    private static java.sql.Date convert(java.util.Date uDate) {
-        java.sql.Date sDate = new java.sql.Date(uDate.getTime());
-        return sDate;
-    }
 }

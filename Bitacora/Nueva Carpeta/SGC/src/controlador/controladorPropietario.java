@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import java.awt.Component;
@@ -14,7 +9,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JComponent;
@@ -28,51 +22,146 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.Condominio;
 import modelo.Propietarios;
-import vista.catalogoInactivoPropietario;
+import vista.Propietario;
 import vista.catalogoPropietarios;
-import vista.propietarios;
 
-/**
- *
- * @author rma
- */
 public class controladorPropietario implements ActionListener, MouseListener, KeyListener, WindowListener {
 
-    private propietarios pro;
-    private catalogoPropietarios catapro;
-    private Propietarios modpro;
-    private Condominio modcon;
-    private catalogoInactivoPropietario cataipro;
-    ArrayList<Propietarios> listaPropietarios;
-    ArrayList<Condominio> listaCondo;
-    DefaultTableModel dm;
+    private Propietario vista;
+    private Propietarios modelo;
+    private catalogoPropietarios catalogo;
+    private Condominio modCon;
 
-    public controladorPropietario(propietarios pro, catalogoPropietarios catapro, Propietarios modpro, Condominio modcon, catalogoInactivoPropietario cataipro) {
-        this.pro = pro;
-        this.catapro = catapro;
-        this.modpro = modpro;
-        this.modcon = modcon;
-        this.cataipro = cataipro;
-        this.catapro.btnActivar.addActionListener(this);
-        this.cataipro.btnActivar.addActionListener(this);
-        this.catapro.btn_NuevoPropietario.addActionListener(this);
-        this.catapro.addWindowListener(this);
-        this.catapro.txtBuscarPropietarios.addKeyListener(this);
-        this.catapro.TablaPropietarios.addMouseListener(this);
-        this.pro.btnGuardar.addActionListener(this);
-        this.pro.btnLimpiar.addActionListener(this);
-        this.pro.btnModificar.addActionListener(this);
-        this.pro.btnEliminar.addActionListener(this);
+    private ArrayList<Propietarios> listaPropietarios;
+    private ArrayList<Condominio> listaCondo;
+    private DefaultTableModel dm;
+
+    public controladorPropietario(Propietario pro, catalogoPropietarios catapro, Propietarios modpro, Condominio modcon) {
+        this.vista = pro;
+        this.catalogo = catapro;
+        this.modelo = modpro;
+        this.modCon = modcon;
+
+        this.catalogo.btnActivar.addActionListener(this);
+        this.catalogo.btn_NuevoPropietario.addActionListener(this);
+        this.catalogo.addWindowListener(this);
+        this.catalogo.txtBuscarPropietarios.addKeyListener(this);
+        this.catalogo.TablaPropietarios.addMouseListener(this);
+        this.vista.btnGuardar.addActionListener(this);
+        this.vista.btnLimpiar.addActionListener(this);
+        this.vista.btnModificar.addActionListener(this);
+        this.vista.btnEliminar.addActionListener(this);
         pro.txtCedula.addKeyListener(this);
-        pro.txtNombre.addKeyListener(this);
-        pro.txtApellido.addKeyListener(this);
+        pro.txtPnombre.addKeyListener(this);
+        pro.txtSnombre.addKeyListener(this);
+        pro.txtPapellido.addKeyListener(this);
+        pro.txtSapellido.addKeyListener(this);
         pro.txtTelefono.addKeyListener(this);
         pro.txtCorreo.addKeyListener(this);
     }
 
-    public void Llenartabla(JTable tablaD) {
+    public void actionPerformed(ActionEvent e) {
 
-        listaPropietarios = modpro.listar();
+        if (e.getSource() == catalogo.btnActivar) {
+            this.cataipro.setVisible(true);
+            Llenartablainactivos(cataipro.jTable1);
+            addCheckBox(5, cataipro.jTable1);
+        }
+        if (e.getSource() == catalogo.btn_NuevoPropietario) {
+            this.vista.setVisible(true);
+            this.vista.btnModificar.setEnabled(false);
+            this.vista.btnGuardar.setEnabled(true);
+            this.vista.btnEliminar.setEnabled(false);
+            this.vista.txtCedula.setEnabled(true);
+            this.catalogo.addWindowListener(this);
+
+            vista.txtCedula.setText("");
+            vista.txtApellido.setText("");
+            vista.txtCorreo.setText("");
+            vista.txtNombre.setText("");
+            vista.txtTelefono.setText("");
+
+        }
+
+        if (e.getSource() == vista.btnGuardar) {
+            if (validar()) {
+                modelo.setCedula(vista.txtCedula.getText());
+                modelo.setNombre(vista.txtNombre.getText());
+                modelo.setApellido(vista.txtApellido.getText());
+                modelo.setCorreo(vista.txtCorreo.getText());
+                modelo.setTelefono(vista.txtTelefono.getText());
+
+                if (modelo.registrar(modelo)) {
+
+                    JOptionPane.showMessageDialog(null, "Registro Guardado");
+
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                }
+
+            }
+        }
+
+        if (e.getSource()
+                == vista.btnModificar) {
+            if (validar()) {
+                modelo.setCedula(vista.txtCedula.getText());
+                modelo.setNombre(vista.txtNombre.getText());
+                modelo.setApellido(vista.txtApellido.getText());
+                modelo.setCorreo(vista.txtCorreo.getText());
+                modelo.setTelefono(vista.txtTelefono.getText());
+
+                if (modelo.modificar(modelo)) {
+
+                    vista.dispose();
+                    limpiar();
+                    llenarTabla(catalogo.TablaPropietarios);
+
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                }
+
+            }
+        }
+
+        if (e.getSource() == vista.btnEliminar) {
+            modelo.setCedula(vista.txtCedula.getText());
+
+            if (modelo.buscarunidadesasociadas(modelo)) {
+                JOptionPane.showMessageDialog(null, "No puede eliminar un propietario con unidades asociadas");
+            } else {
+                java.util.Date fecha = new Date();
+                java.sql.Date sqlDate = convert(fecha);
+                modelo.setFecha_hasta(sqlDate);
+                if (modelo.eliminar(modelo)) {
+                    modelo.eliminarpuenteuni(modelo);
+                    JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                    vista.dispose();
+                    llenarTabla(catalogo.TablaPropietarios);
+
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "Error al Eliminar");
+
+                }
+            }
+
+        }
+
+        if (e.getSource() == vista.btnLimpiar) {
+
+            limpiar();
+
+        }
+    }
+
+    public void llenarTabla(JTable tablaD) {
+        listaPropietarios = modelo.listar();
+
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -81,6 +170,7 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
             }
 
         };
+
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
@@ -91,17 +181,20 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         modeloT.addColumn("Teléfono");
         modeloT.addColumn("<html>Correo <br> Electrónico</html>");
 
-        Object[] columna = new Object[5];
+        Object[] columna = new Object[modeloT.getColumnCount()];
 
         int numRegistro = listaPropietarios.size();
+        int col;
 
         for (int i = 0; i < numRegistro; i++) {
-
-            columna[0] = listaPropietarios.get(i).getCedula();
-            columna[1] = listaPropietarios.get(i).getNombre();
-            columna[2] = listaPropietarios.get(i).getApellido();
-            columna[3] = listaPropietarios.get(i).getTelefono();
-            columna[4] = listaPropietarios.get(i).getCorreo();
+            col = 0;
+            columna[col++] = listaPropietarios.get(i).getCedula();
+            columna[col++] = listaPropietarios.get(i).getpNombre();
+            columna[col++] = listaPropietarios.get(i).getsNombre();
+            columna[col++] = listaPropietarios.get(i).getpApellido();
+            columna[col++] = listaPropietarios.get(i).getsApellido();
+            columna[col++] = listaPropietarios.get(i).getTelefono();
+            columna[col++] = listaPropietarios.get(i).getCorreo();
 
             modeloT.addRow(columna);
 
@@ -109,17 +202,16 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
 
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
 
+        for (int i = 0; i < modeloT.getColumnCount(); i++) {
+            tablaD.getColumnModel().getColumn(i).setCellRenderer(tcr);
+
+        }
     }
 
     public void Llenartablainactivos(JTable tablaD) {
 
-        listaPropietarios = modpro.listarinactivos();
+        listaPropietarios = modelo.listarinactivos();
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -186,128 +278,13 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
 
     }
 
-    public void actionPerformed(ActionEvent e) {
-
-        if (e.getSource() == catapro.btnActivar) {
-            this.cataipro.setVisible(true);
-            Llenartablainactivos(cataipro.jTable1);
-            addCheckBox(5, cataipro.jTable1);
-        }
-        if (e.getSource() == cataipro.btnActivar) {
-            listaPropietarios = modpro.listarinactivos();
-
-            for (int i = 0; i < cataipro.jTable1.getRowCount(); i++) {
-                if (valueOf(cataipro.jTable1.getValueAt(i, 5)) == "true") {
-
-                    modpro.setCedula(listaPropietarios.get(i).getCedula());
-                    modpro.activar(modpro);
-
-                }
-            }
-            Llenartablainactivos(cataipro.jTable1);
-            addCheckBox(5, cataipro.jTable1);
-            Llenartabla(catapro.TablaPropietarios);
-        }
-
-        if (e.getSource() == catapro.btn_NuevoPropietario) {
-            this.pro.setVisible(true);
-            this.pro.btnModificar.setEnabled(false);
-            this.pro.btnGuardar.setEnabled(true);
-            this.pro.btnEliminar.setEnabled(false);
-            this.pro.txtCedula.setEnabled(true);
-            this.catapro.addWindowListener(this);
-
-            pro.txtCedula.setText("");
-            pro.txtApellido.setText("");
-            pro.txtCorreo.setText("");
-            pro.txtNombre.setText("");
-            pro.txtTelefono.setText("");
-
-        }
-
-        if (e.getSource() == pro.btnGuardar) {
-            if (validar()) {
-                modpro.setCedula(pro.txtCedula.getText());
-                modpro.setNombre(pro.txtNombre.getText());
-                modpro.setApellido(pro.txtApellido.getText());
-                modpro.setCorreo(pro.txtCorreo.getText());
-                modpro.setTelefono(pro.txtTelefono.getText());
-
-                if (modpro.registrar(modpro)) {
-
-                    JOptionPane.showMessageDialog(null, "Registro Guardado");
-
-                } else {
-
-                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
-
-                }
-
-            }
-        }
-
-        if (e.getSource()
-                == pro.btnModificar) {
-            if (validar()) {
-                modpro.setCedula(pro.txtCedula.getText());
-                modpro.setNombre(pro.txtNombre.getText());
-                modpro.setApellido(pro.txtApellido.getText());
-                modpro.setCorreo(pro.txtCorreo.getText());
-                modpro.setTelefono(pro.txtTelefono.getText());
-
-                if (modpro.modificar(modpro)) {
-
-                    pro.dispose();
-                    limpiar();
-                    Llenartabla(catapro.TablaPropietarios);
-
-                } else {
-
-                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
-
-                }
-
-            }
-        }
-
-        if (e.getSource() == pro.btnEliminar) {
-            modpro.setCedula(pro.txtCedula.getText());
-           
-            if (modpro.buscarunidadesasociadas(modpro)) {
-                JOptionPane.showMessageDialog(null, "No puede eliminar un propietario con unidades asociadas");
-            } else {
-                java.util.Date fecha = new Date();
-                java.sql.Date sqlDate = convert(fecha);
-                modpro.setFecha_hasta(sqlDate);
-                if (modpro.eliminar(modpro)) {
-                    modpro.eliminarpuenteuni(modpro);
-                    JOptionPane.showMessageDialog(null, "Registro Eliminado");
-                    pro.dispose();
-                    Llenartabla(catapro.TablaPropietarios);
-
-                } else {
-
-                    JOptionPane.showMessageDialog(null, "Error al Eliminar");
-
-                }
-            }
-
-        }
-
-        if (e.getSource() == pro.btnLimpiar) {
-
-            limpiar();
-
-        }
-    }
-
     public void limpiar() {
 
-        pro.txtCedula.setText(null);
-        pro.txtNombre.setText(null);
-        pro.txtApellido.setText(null);
-        pro.txtTelefono.setText(null);
-        pro.txtCorreo.setText(null);
+        vista.txtCedula.setText(null);
+        vista.txtNombre.setText(null);
+        vista.txtApellido.setText(null);
+        vista.txtTelefono.setText(null);
+        vista.txtCorreo.setText(null);
     }
 
     private Boolean validar() {
@@ -315,31 +292,31 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
         Boolean resultado = true;
         String msj = "";
 
-        if (pro.txtCedula.getText().isEmpty()) {
+        if (vista.txtCedula.getText().isEmpty()) {
 
             msj += "El campo C.I./RIF. no puede estar vacío\n";
             resultado = false;
         }
 
-        if (pro.txtNombre.getText().isEmpty()) {
+        if (vista.txtNombre.getText().isEmpty()) {
 
             msj += "El campo nombre no puede estar vacío\n";
             resultado = false;
         }
 
-        if (pro.txtApellido.getText().isEmpty()) {
+        if (vista.txtApellido.getText().isEmpty()) {
 
             msj += "El campo apellido no puede estar vacío\n";
             resultado = false;
         }
 
-        if (pro.txtTelefono.getText().isEmpty()) {
+        if (vista.txtTelefono.getText().isEmpty()) {
 
             msj += "El campo teléfono no puede estar vacío\n";
             resultado = false;
         }
 
-        if (pro.txtCorreo.getText().isEmpty()) {
+        if (vista.txtCorreo.getText().isEmpty()) {
 
             msj += "El campo correo electrónico no puede estar vacío\n";
             resultado = false;
@@ -363,29 +340,29 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int fila = this.catapro.TablaPropietarios.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int fila = this.catalogo.TablaPropietarios.getSelectedRow(); // primero, obtengo la fila seleccionada
 
-        String dato = String.valueOf(this.catapro.TablaPropietarios.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
-        catapro.txtBuscarPropietarios.setText(String.valueOf(dato));
+        String dato = String.valueOf(this.catalogo.TablaPropietarios.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+        catalogo.txtBuscarPropietarios.setText(String.valueOf(dato));
 
-        modpro.setCedula(String.valueOf(dato));
+        modelo.setCedula(String.valueOf(dato));
 
-        modpro.buscar(modpro);
+        modelo.buscar(modelo);
 
-        pro.setVisible(true);
-        pro.txtCedula.setText(modpro.getCedula());
-        pro.txtApellido.setText(modpro.getApellido());
-        pro.txtCorreo.setText(modpro.getCorreo());
-        pro.txtNombre.setText(modpro.getNombre());
-        pro.txtTelefono.setText(modpro.getTelefono());
+        vista.setVisible(true);
+        vista.txtCedula.setText(modelo.getCedula());
+        vista.txtApellido.setText(modelo.getApellido());
+        vista.txtCorreo.setText(modelo.getCorreo());
+        vista.txtNombre.setText(modelo.getNombre());
+        vista.txtTelefono.setText(modelo.getTelefono());
 
-        pro.txtCedula.setEnabled(false);
+        vista.txtCedula.setEnabled(false);
 
-        pro.btnGuardar.setEnabled(false);
+        vista.btnGuardar.setEnabled(false);
 
-        pro.btnModificar.setEnabled(true);
-        pro.btnEliminar.setEnabled(true);
-        modcon.setRif(modpro.getCedula());
+        vista.btnModificar.setEnabled(true);
+        vista.btnEliminar.setEnabled(true);
+        modCon.setRif(modelo.getCedula());
 
     }
 
@@ -411,32 +388,32 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
 
     @Override
     public void keyTyped(KeyEvent ke) {
-        if (ke.getSource() == pro.txtCedula) {
+        if (ke.getSource() == vista.txtCedula) {
             Validacion.soloNumeros(ke);
             Validacion.Espacio(ke);
-            Validacion.limite(ke, pro.txtCedula.getText(), 8);
+            Validacion.limite(ke, vista.txtCedula.getText(), 8);
         }
-        if (ke.getSource() == pro.txtNombre) {
+        if (ke.getSource() == vista.txtNombre) {
 
             Validacion.soloLetras(ke);
 
-            Validacion.limite(ke, pro.txtNombre.getText(), 30);
+            Validacion.limite(ke, vista.txtNombre.getText(), 30);
         }
-        if (ke.getSource() == pro.txtApellido) {
+        if (ke.getSource() == vista.txtApellido) {
 
             Validacion.soloLetras(ke);
 
-            Validacion.limite(ke, pro.txtApellido.getText(), 100);
+            Validacion.limite(ke, vista.txtApellido.getText(), 100);
         }
-        if (ke.getSource() == pro.txtTelefono) {
+        if (ke.getSource() == vista.txtTelefono) {
             Validacion.Espacio(ke);
             Validacion.soloNumeros(ke);
-            Validacion.limite(ke, pro.txtTelefono.getText(), 11);
+            Validacion.limite(ke, vista.txtTelefono.getText(), 11);
         }
-        if (ke.getSource() == pro.txtCorreo) {
+        if (ke.getSource() == vista.txtCorreo) {
 
             Validacion.Espacio(ke);
-            Validacion.limite(ke, pro.txtCorreo.getText(), 100);
+            Validacion.limite(ke, vista.txtCorreo.getText(), 100);
 
         }
     }
@@ -448,9 +425,9 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getSource() == catapro.txtBuscarPropietarios) {
+        if (e.getSource() == catalogo.txtBuscarPropietarios) {
 
-            filtro(catapro.txtBuscarPropietarios.getText(), catapro.TablaPropietarios);
+            filtro(catalogo.txtBuscarPropietarios.getText(), catalogo.TablaPropietarios);
         } else {
 
         }
@@ -459,11 +436,11 @@ public class controladorPropietario implements ActionListener, MouseListener, Ke
     @Override
     public void windowOpened(WindowEvent e) {
 
-        Llenartabla(catapro.TablaPropietarios);
+        llenarTabla(catalogo.TablaPropietarios);
 
-        Component[] components = pro.jPanel2.getComponents();
+        Component[] components = vista.jPanel2.getComponents();
         JComponent[] com = {
-            pro.txtCedula, pro.txtNombre, pro.txtApellido, pro.txtTelefono, pro.txtCorreo
+            vista.txtCedula, vista.txtNombre, vista.txtApellido, vista.txtTelefono, vista.txtCorreo
         };
         Validacion.copiar(components);
         Validacion.pegar(com);

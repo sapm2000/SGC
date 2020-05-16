@@ -10,6 +10,7 @@ import controlador.controladorCuentasPorCobrar;
 import controlador.controladorCuotasEspeciales;
 import controlador.controladorFondo;
 import controlador.controladorGastoComun;
+import controlador.controladorMenu;
 import controlador.controladorSancion;
 import controlador.controladorUnidades;
 import java.awt.Image;
@@ -33,6 +34,7 @@ import modelo.Proveedores;
 import modelo.Registro_visitas;
 import modelo.Sancion;
 import modelo.Unidades;
+import sgc.SGC;
 
 /**
  *
@@ -49,6 +51,8 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Vista");
         this.setVisible(false);
+        
+        SGC.panta.dispose();
     }
 
     public Image getIconImagine() {
@@ -517,8 +521,9 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMinimizarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PantallaPrincipal panta = new PantallaPrincipal();
-        panta.setVisible(true);
+        controladorMenu ctrl = new controladorMenu();
+        //PantallaPrincipal panta = new PantallaPrincipal();
+        //panta.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

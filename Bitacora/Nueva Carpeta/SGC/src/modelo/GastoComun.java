@@ -183,7 +183,7 @@ public class GastoComun extends ModeloConceptoGastos {
         ResultSet rs = null;
         String sql = "";
         
-        if (status == 1) { //Muestra los retgistro pagados
+        if (status == 1) { //Muestra los registros pagados
             sql = "SELECT gasto_comun.id, tipo, mes, anio, monto, n_factura, proveedores.cedula,  concepto_gasto.nom_concepto, observaciones, fecha, estado, saldo FROM gasto_comun inner join proveedores on proveedores.cedula=gasto_comun.id_proveedor INNER join concepto_gasto on concepto_gasto.id = gasto_comun.id_concepto where gasto_comun.id_condominio=? AND (estado = 'Pagado' OR estado = 'Procesado y pagado') ORDER by tipo desc, mes, anio;";
         } else if (status == 2) { //Muestra los registros sin pagar
             sql = "SELECT gasto_comun.id, tipo, mes, anio, monto, n_factura, proveedores.cedula,  concepto_gasto.nom_concepto, observaciones, fecha, estado, saldo FROM gasto_comun inner join proveedores on proveedores.cedula=gasto_comun.id_proveedor INNER join concepto_gasto on concepto_gasto.id = gasto_comun.id_concepto where gasto_comun.id_condominio=? AND (estado = 'Pendiente' OR estado = 'Procesado') ORDER by tipo desc, mes, anio;";

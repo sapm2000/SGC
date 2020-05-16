@@ -68,7 +68,9 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.btnProcesar) {
+            System.out.println("poli0");
             if (validar()) {
+                System.out.println("poli1");
                 modCuentaP.setNum_ref(vista.txtReferencia.getText());
                 modCuentaP.setForma_pago(vista.cbxFormaP.getSelectedItem().toString());
                 int ind = vista.cbxCuentaT.getSelectedIndex() - 1;
@@ -376,10 +378,9 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
             resultado = false;
             mensaje += "El monto no puede ser mayor al Fondo\n";
         }
-        if (resultado = false) {
+        if (resultado == false) {
             JOptionPane.showMessageDialog(vista, mensaje);
         }
-
         return resultado;
     }
 }
