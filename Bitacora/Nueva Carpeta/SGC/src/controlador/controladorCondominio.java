@@ -54,7 +54,6 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
     public controladorCondominio() {
         this.cataco = new catalogoCondominio();
         this.condo = new condominio();
-        this.panta1 = new PantallaPrincipal1();
         this.panta = new PantallaPrincipal();
         this.co = new Condominio();
         this.moduni = new Unidades();
@@ -73,6 +72,8 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         this.condo.txtRazonS.addKeyListener(this);
         this.condo.txtTelefono.addKeyListener(this);
         this.condo.txtCorreo.addKeyListener(this);
+
+        cataco.setVisible(true);
     }
 
     public void Llenartabla(JTable tablaD) {
@@ -175,7 +176,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
-         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -191,9 +192,9 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
             condo.txtTelefono.setText("");
             condo.txtCorreo.setText("");
         }
-        
-          if (e.getSource()==cataico.btnActivar) {
-              listaCondo = co.lPersoni();
+
+        if (e.getSource() == cataico.btnActivar) {
+            listaCondo = co.lPersoni();
 
             for (int i = 0; i < cataico.jTable1.getRowCount(); i++) {
                 if (valueOf(cataico.jTable1.getValueAt(i, 4)) == "true") {
@@ -330,7 +331,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
             co.setRif(String.valueOf(dato));
             SGC.condominioActual = co;
             this.cataco.dispose();
-            this.panta.dispose();
+            this.panta1 = new PantallaPrincipal1();
             this.panta1.setVisible(true);
             panta1.rif.setText(dato);
 

@@ -7,8 +7,8 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import sgc.SGC;
 import vista.PantallaPrincipal;
-import vista.catalogoCondominio;
 
 /**
  *
@@ -17,23 +17,25 @@ import vista.catalogoCondominio;
 public class controladorMenu implements ActionListener{
     
     private controladorCondominio concondo;
-    private catalogoCondominio catacon;
-    private PantallaPrincipal panta;
+    private PantallaPrincipal vista;
+    //private catalogoCondominio catacon;
 
     public controladorMenu() {
-        this.concondo = new controladorCondominio();
-        this.catacon= new catalogoCondominio();
-        this.panta = new PantallaPrincipal();
-        this.panta.jCondominio.addActionListener(this);
+        //this.concondo = new controladorCondominio();
+        //this.catacon= new catalogoCondominio();
+        SGC.panta = new PantallaPrincipal();
+        vista = SGC.panta;
+        vista.setVisible(true);
+        vista.jCondominio.addActionListener(this);
     }
     
     
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==panta.jCondominio) {
+        if (e.getSource()==vista.jCondominio) {
             concondo = new controladorCondominio();
-            catacon.setVisible(true);
+            //catacon.setVisible(true);
         }
     }
     

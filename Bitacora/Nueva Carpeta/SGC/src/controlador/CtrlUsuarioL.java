@@ -87,7 +87,8 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
                 }
 
                 vistaU.dispose();
-                pp.setVisible(true);
+                controladorMenu ctrlMenu = new controladorMenu();
+                //pp.setVisible(true);
 
             } else {
 
