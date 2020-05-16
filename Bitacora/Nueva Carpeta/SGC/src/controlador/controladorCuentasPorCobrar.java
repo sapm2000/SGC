@@ -231,7 +231,7 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == cuenco.btnGuardar) {
             if (validar()) {
-                listaunidades = moduni.buscarUnidades();
+                listaunidades = moduni.listar();
                 listafondo = modfon.listar(2);
                 listaCuenta = modcu.listarcuenta();
 
@@ -387,7 +387,7 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
         moduni.setId_condominio(panta1.rif.getText());
         modcu.setId_condominio(panta1.rif.getText());
         modfon.setId_condominio(panta1.rif.getText());
-        listaunidades = moduni.buscarUnidades();
+        listaunidades = moduni.listar();
         crearCbxUnidad(listaunidades);
         listafondo = modfon.listar(2);
         crearCbxFondo(listafondo);
@@ -436,7 +436,7 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
     public void itemStateChanged(ItemEvent e) {
         if (e.getStateChange() == ItemEvent.SELECTED) {
              moduni.setId_condominio(panta1.rif.getText());
-            listaunidades = moduni.buscarUnidades();
+            listaunidades = moduni.listar();
              int ind = cuenco.jComboUnidad.getSelectedIndex() - 1;
            if (ind == -1) {
 

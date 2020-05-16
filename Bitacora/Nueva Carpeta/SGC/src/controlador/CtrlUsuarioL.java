@@ -2,17 +2,17 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import javax.swing.JOptionPane;
-import modelo.UsuarioL;
-import modelo.MetodosUsuario;
+import modelo.Usuario;
 import vista.InicioUsuario;
 import vista.PantallaPrincipal;
 
-public class CtrlUsuarioL implements ActionListener {
+public class CtrlUsuarioL implements ActionListener, FocusListener {
 
     private InicioUsuario vistaU;
-    private MetodosUsuario modelo = new MetodosUsuario();
+    //private MetodosUsuario modelo = new MetodosUsuario();
 
     PantallaPrincipal pp = new PantallaPrincipal();
 
@@ -21,8 +21,9 @@ public class CtrlUsuarioL implements ActionListener {
         vistaU.btnEnviar.addActionListener(this);
         vistaU.txtUsuario.addActionListener(this);
         vistaU.txtPassword.addActionListener(this);
-
         vistaU.checkViewPass.addActionListener(this);
+        vistaU.txtUsuario.addFocusListener(this);
+        vistaU.txtPassword.addFocusListener(this);
 
     }
 
@@ -38,15 +39,15 @@ public class CtrlUsuarioL implements ActionListener {
 
         Object evt = e.getSource();
         if (evt.equals(vistaU.txtUsuario)) {
-            Enter();
+            enter();
         }
         if (evt.equals(vistaU.txtPassword)) {
-            Enter();
+            enter();
         }
 
         if (evt.equals(vistaU.btnEnviar)) {
 
-            Enter();
+            enter();
 
         } else if (evt.equals(vistaU.checkViewPass)) {
 
@@ -64,7 +65,7 @@ public class CtrlUsuarioL implements ActionListener {
 
     }
 
-    public void Enter() {
+    public void enter() {
 
         char p[] = vistaU.txtPassword.getPassword();
         String pass = new String(p);
@@ -76,23 +77,41 @@ public class CtrlUsuarioL implements ActionListener {
         } else {
 
             String user = vistaU.txtUsuario.getText();
+            Usuario usu = new Usuario();
+            usu.setUsuario(user);
+            usu.setPassword(pass);
 
-            ArrayList<UsuarioL> list;
-            list = modelo.login(user, pass);
+            if (usu.login()) {
+                if ("sapm".equals(usu.getUsuario())) { //No lo borres uwu
+                    JOptionPane.showMessageDialog(null, "Samuel te quiero mucho uwu", "<3", JOptionPane.INFORMATION_MESSAGE);
+                }
 
-            if (list.size() > 0) {
-
-                JOptionPane.showConfirmDialog(null, "Bienvenido al sistema");
                 vistaU.dispose();
                 pp.setVisible(true);
 
             } else {
 
-                JOptionPane.showConfirmDialog(null, "Acceso Denegado", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Acceso Denegado", "Error", JOptionPane.ERROR_MESSAGE);
 
             }
 
         }
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+        if (e.getSource() == vistaU.txtUsuario) {
+            vistaU.txtUsuario.setText("");
+            vistaU.txtUsuario.removeFocusListener(this);
+        }
+        if (e.getSource() == vistaU.txtPassword) {
+            vistaU.txtPassword.setText("");
+            vistaU.txtPassword.removeFocusListener(this);
+        }
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
     }
 
 }

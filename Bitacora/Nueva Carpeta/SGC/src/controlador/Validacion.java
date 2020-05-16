@@ -16,6 +16,7 @@ import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -152,6 +153,10 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
                 map.put(KeyStroke.getKeyStroke(KeyEvent.VK_C, Event.CTRL_MASK), "null");
             }
         }
+    }
+
+    public String encriptar(String textoSinEncriptar) {
+        return DigestUtils.md5Hex(textoSinEncriptar);
     }
 
     @Override

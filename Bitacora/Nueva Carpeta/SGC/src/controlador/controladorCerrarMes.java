@@ -137,7 +137,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                         moduni.setId_condominio(panta1.rif.getText());
                         modc.setMes_cierre(rec.jMonthChooser1.getMonth() + 1);
                         modc.setAño_cierre(rec.jYearChooser1.getYear());
-                        listaunidades = moduni.buscarUnidades();
+                        listaunidades = moduni.listar();
 
                         int numRegistro = listaunidades.size();
 
