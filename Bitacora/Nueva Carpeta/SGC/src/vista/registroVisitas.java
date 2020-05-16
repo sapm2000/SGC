@@ -5,7 +5,7 @@
  */
 package vista;
 
-import controlador.controladoRegistroVisita;
+import controlador.controladorRegistroVisita;
 import controlador.controladorVisitante;
 import java.awt.Color;
 import java.awt.Component;

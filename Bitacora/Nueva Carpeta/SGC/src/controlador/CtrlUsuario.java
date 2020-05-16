@@ -29,11 +29,11 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
     DefaultTableModel dm;
 
     //Constructor de inicializacion de variables. Desde la linea 16 a la 26
-    public CtrlUsuario(CrudUsuario modC, GestionarUsuario vistaGU, catalogoUsuario catausu) {
+    public CtrlUsuario() {
 
-        this.modC = modC;
-        this.vistaGU = vistaGU;
-        this.catausu = catausu;
+        this.modC = new CrudUsuario();
+        this.vistaGU = new GestionarUsuario();
+        this.catausu = new catalogoUsuario();
         this.vistaGU.btnGuardar.addActionListener(this);
         this.vistaGU.btnModificar.addActionListener(this);
         this.vistaGU.btnLimpiar.addActionListener(this);
@@ -48,6 +48,7 @@ public class CtrlUsuario implements ActionListener, ItemListener, MouseListener,
         this.catausu.jtable.addMouseListener(this);
         this.catausu.addWindowListener(this);
         this.vistaGU.btnEliminar.addActionListener(this);
+        this.catausu.setVisible(true);
 
     }
     //Fin del constructor

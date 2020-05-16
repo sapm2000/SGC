@@ -43,11 +43,11 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
     DefaultTableModel dm;
     ArrayList<CategoriaGasto> listaCatGas;
 
-    public controladorCategoriaGastos(catalogoCategoriaGastos catacg, categoriaGastos cg, CategoriaGasto modcg, catalogoInactivoCategoriaGastos cataicg) {
-        this.catacg = catacg;
-        this.cg = cg;
-        this.modcg = modcg;
-        this.cataicg = cataicg;
+    public controladorCategoriaGastos() {
+        this.catacg = new catalogoCategoriaGastos();
+        this.cg = new categoriaGastos();
+        this.modcg = new CategoriaGasto();
+        this.cataicg = new catalogoInactivoCategoriaGastos();
         this.catacg.btn_nuevaCategoriaGasto.addActionListener(this);
         this.catacg.btnActivar.addActionListener(this);
         this.cataicg.btnActivar.addActionListener(this);
@@ -60,6 +60,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         this.catacg.addWindowListener(this);
         this.cg.txtnombre.addKeyListener(this);
         this.cg.txtdescripcion.addKeyListener(this);
+        this.catacg.setVisible(true);
 
     }
 

@@ -40,13 +40,13 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     ArrayList<Cuenta> listaCuenta;
     ArrayList<Condominio> listaCondo;
 
-    public controladorCuenta(catalogoCuenta catacu, cuenta cu, Cuenta modcu, Banco modban, Condominio modcon, catalogoInactivoCuenta cataicu) {
-        this.catacu = catacu;
-        this.cu = cu;
-        this.modcu = modcu;
-        this.modban = modban;
-        this.modcon = modcon;
-        this.cataicu = cataicu;
+    public controladorCuenta() {
+        this.catacu = new catalogoCuenta();
+        this.cu = new cuenta();
+        this.modcu = new Cuenta();
+        this.modban =new Banco();
+        this.modcon = new Condominio();
+        this.cataicu = new catalogoInactivoCuenta();
         this.catacu.btnActivar.addActionListener(this);
         this.catacu.btn_nuevaCuenta.addActionListener(this);
         this.cu.btnGuardar.addActionListener(this);
@@ -59,6 +59,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
         this.cu.txtN_cuenta.addKeyListener(this);
         this.cu.txtBeneficiario.addKeyListener(this);
         this.cataicu.btnActivar.addActionListener(this);
+        this.catacu.setVisible(true);
     }
 
     public void Llenartabla(JTable tablaD) {

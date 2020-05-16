@@ -20,7 +20,7 @@ import modelo.Unidades;
 import vista.registroVisitas;
 import vista.visitasAutorizadas;
 
-public class controladoRegistroVisita implements ActionListener, ItemListener, MouseListener, KeyListener, WindowListener {
+public class controladorRegistroVisita implements ActionListener, ItemListener, MouseListener, KeyListener, WindowListener {
 
     private registroVisitas visRvis = new registroVisitas();
     private visitasAutorizadas visAuto;
@@ -32,7 +32,7 @@ public class controladoRegistroVisita implements ActionListener, ItemListener, M
     ArrayList<Registro_visitas> listaRegistroVisita;
     DefaultTableModel dm;
 
-    public controladoRegistroVisita(registroVisitas Rvis, Registro_visitas modRvtas) {
+    public controladorRegistroVisita(registroVisitas Rvis, Registro_visitas modRvtas) {
 
         this.visRvis = Rvis;
         this.modRvtas = modRvtas;
