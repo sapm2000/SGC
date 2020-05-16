@@ -67,7 +67,7 @@ public class controladorRegistroVisita implements ActionListener, ItemListener, 
 
         if (datos != null) {
             for (Unidades datosX : datos) {
-                visRvis.cbxUnidad.addItem(datosX.getN_unidad() + " - " + datosX.getNombre() + " " + datosX.getApellido());
+                visRvis.cbxUnidad.addItem(datosX.getN_unidad());
             }
 
         }
