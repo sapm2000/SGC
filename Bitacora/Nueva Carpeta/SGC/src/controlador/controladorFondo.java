@@ -26,7 +26,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.Fondo;
-import vista.PantallaPrincipal1;
 import vista.catalogoFondo;
 import vista.catalogoInactivoFondo;
 import vista.fondo;

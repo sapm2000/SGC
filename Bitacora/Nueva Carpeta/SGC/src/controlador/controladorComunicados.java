@@ -25,7 +25,6 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.Comunicados;
 import modelo.CrudUsuario;
-import vista.PantallaPrincipal1;
 import vista.catalogoComunicados;
 import vista.comunicados;
 

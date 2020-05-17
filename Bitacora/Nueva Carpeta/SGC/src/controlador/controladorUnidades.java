@@ -24,7 +24,6 @@ import javax.swing.table.TableRowSorter;
 import modelo.CerrarMes;
 import modelo.Propietarios;
 import modelo.Unidades;
-import vista.PantallaPrincipal1;
 import vista.catalogoInactivoUnidades;
 import vista.catalogoUnidades;
 import vista.detalleRecibo;
