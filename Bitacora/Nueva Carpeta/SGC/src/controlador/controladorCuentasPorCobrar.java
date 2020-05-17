@@ -384,7 +384,6 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
 
     @Override
     public void windowOpened(WindowEvent e) {
-        moduni.setId_condominio(panta1.rif.getText());
         modcu.setId_condominio(panta1.rif.getText());
         modfon.setId_condominio(panta1.rif.getText());
         listaunidades = moduni.listar();
@@ -435,7 +434,6 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getStateChange() == ItemEvent.SELECTED) {
-             moduni.setId_condominio(panta1.rif.getText());
             listaunidades = moduni.listar();
              int ind = cuenco.jComboUnidad.getSelectedIndex() - 1;
            if (ind == -1) {

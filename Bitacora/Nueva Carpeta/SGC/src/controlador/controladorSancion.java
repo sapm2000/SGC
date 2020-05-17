@@ -255,7 +255,6 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
             this.san.btnGuardar.setEnabled(true);
             this.san.btnEliminar.setEnabled(false);
             san.txtId.setVisible(false);
-            modsan.setId_condominio(panta1.rif.getText());
             llenartablaunidades(san.jTable1);
             addCheckBox(1, san.jTable1);
 
@@ -274,7 +273,6 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                         JOptionPane.showMessageDialog(null, "seleccione un tipo de deuda");
                     } else {
                         modsan.setDescripcion(san.txaDescripcion.getText());
-                        modsan.setId_condominio(panta1.rif.getText());
                         modsan.setMonto(Double.parseDouble(san.txtmonto.getText()));
                         modsan.setEstado("Pendiente");
                         modc.setMes_cierre(san.jMonthChooser1.getMonth() + 1);
@@ -343,7 +341,6 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                         modsan.setDescripcion(san.txaDescripcion.getText());
                         modsan.setId_sancion(Integer.parseInt(san.txtId.getText()));
                         modsan.setMonto(Double.parseDouble(san.txtmonto.getText()));
-                        modsan.setId_condominio(panta1.rif.getText());
 
                         int x = 0;
                         if (modsan.buscarSancionRepetido(modsan)) {
@@ -452,7 +449,6 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         int mes = modsan.getMes() - 1;
         san.jMonthChooser1.setMonth(mes);
         san.jYearChooser1.setYear(modsan.getAño());
-        modsan.setId_condominio(panta1.rif.getText());
         if (modsan.getEstado().equals("Pendiente")) {
         llenartablaunidadesmod(san.jTable1);
         addCheckBox(1, san.jTable1);
@@ -532,7 +528,6 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
     @Override
     public void windowOpened(WindowEvent e
     ) {
-        modsan.setId_condominio(panta1.rif.getText());
         LlenartablaSancion(catasan.jTable1);
 
         Component[] components = san.jPanel2.getComponents();

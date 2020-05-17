@@ -12,12 +12,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import sgc.SGC;
 
 /**
  *
  * @author rma
  */
-public class Asambleas extends Propietarios {
+public class Asambleas extends ConexionBD {
 
     private int id;
     private String nombre_asamblea;
@@ -82,12 +83,14 @@ public class Asambleas extends Propietarios {
         String sql = "INSERT INTO asambleas(nombre, fecha, descripcion, id_condominio) VALUES (?, ?, ?, ?);";
 
         try {
-
+            int i;
+            i=1;
+            
             ps = con.prepareStatement(sql);
-            ps.setString(1, modasa.getNombre_asamblea());
-            ps.setDate(2, modasa.getFecha());
-            ps.setString(3, modasa.getDescripcion());
-            ps.setString(4, modasa.getId_condominio());
+            ps.setString(i++, modasa.getNombre_asamblea());
+            ps.setDate(i++, modasa.getFecha());
+            ps.setString(i++, modasa.getDescripcion());
+            ps.setString(i++, SGC.condominioActual.getRif());
 
             ps.execute();
             return true;

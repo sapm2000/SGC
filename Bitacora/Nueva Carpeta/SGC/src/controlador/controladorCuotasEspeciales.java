@@ -195,7 +195,6 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             this.cuotae.btnEliminar.setEnabled(false);
             modcuo.setEstado("Pendiente");
             this.cuotae.jCalcular.setEnabled(true);
-            modasa.setId_condominio(panta1.rif.getText());
             cuotae.jAsamblea.removeAllItems();
             cuotae.jConcepto.removeAllItems();
             listaasambleas = modasa.listarAsambleas();
@@ -280,7 +279,6 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                                     modcuo.setId_asamblea(0);
                                 } else {
                                     int ind1 = cuotae.jAsamblea.getSelectedIndex() - 1;
-                                     modasa.setId_condominio(panta1.rif.getText());
                                      listaasambleas = modasa.listarAsambleas();
                                   
                                     
@@ -310,7 +308,6 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
         if (e.getSource() == cuotae.btnModificar) {
             if (validar()) {
-                modasa.setId_condominio(panta1.rif.getText());
                 modcon.setNombre_Concepto(cuotae.jConcepto.getSelectedItem().toString());
                 if (modcon.getNombre_Concepto().equals("Seleccione el Concepto")) {
                     JOptionPane.showMessageDialog(null, "seleccione un concepto");
@@ -463,7 +460,6 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             if (cuotae.si.isSelected()) {
                 if (modcuo.getEstado().equals("Pendiente")) {
                     cuotae.jAsamblea.setVisible(true);
-                     modasa.setId_condominio(panta1.rif.getText());
                     listaasambleas = modasa.listarAsambleas();
                     cuotae.jAsamblea.removeAllItems();
                     crearCbxAsamblea(listaasambleas);
@@ -496,7 +492,6 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             cuotae.jAsamblea.removeAllItems();
             cuotae.jConcepto.removeAllItems();
 
-            modasa.setId_condominio(panta1.rif.getText());
 
             cuotae.txtProveedor.setText(modcuo.getId_proveedor());
 

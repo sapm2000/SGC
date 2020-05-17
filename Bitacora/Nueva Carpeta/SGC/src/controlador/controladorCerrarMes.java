@@ -134,7 +134,6 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                     } else {
 
                         modc.setId_condominio(panta1.rif.getText());
-                        moduni.setId_condominio(panta1.rif.getText());
                         modc.setMes_cierre(rec.jMonthChooser1.getMonth() + 1);
                         modc.setAño_cierre(rec.jYearChooser1.getYear());
                         listaunidades = moduni.listar();
@@ -321,7 +320,6 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                 }
                             }
                         }
-                        modsan.setId_condominio(panta1.rif.getText());
                         modsan.setMes(modc.getMes_cierre());
                         modsan.setAño(modc.getAño_cierre());
                         listasanciones = modsan.listarSancionesCerrarmes();
