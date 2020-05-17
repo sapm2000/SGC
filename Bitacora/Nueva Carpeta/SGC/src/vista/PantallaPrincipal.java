@@ -17,6 +17,8 @@ import java.awt.Font;
 import java.awt.Image;
  import javax.swing.UIManager;
 import java.awt.Toolkit;
+import javax.swing.BorderFactory;
+import static javax.swing.BorderFactory.createLineBorder;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -46,6 +48,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public PantallaPrincipal() {
         initComponents();
 
+        
         this.setLocationRelativeTo(null);
         this.setTitle("Vista");
         this.setVisible(false);
@@ -144,7 +147,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 94, 159));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 1360, 140));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 1370, 140));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 94, 159));
@@ -367,9 +370,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void btnSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir2ActionPerformed
         try {
             UIManager UI=new UIManager();
-            UI.put("OptionPane.background",new ColorUIResource(0,94,159));
-            UI.put("Panel.background",new ColorUIResource(255,255,255));
             
+            UI.put("OptionPane.border",createLineBorder(new Color(0,94,159), 5));
+            UI.put("Panel.background",new ColorUIResource(255,255,255));
             
             int botonDialogo = JOptionPane.YES_NO_OPTION;
             Icon p = new ImageIcon(getClass().getResource("/img/pregunta.png"));
@@ -378,17 +381,18 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-            int result = JOptionPane.showConfirmDialog(null, "¿DESEA CERRAR LA VENTANA?", "SALIR", botonDialogo, JOptionPane.INFORMATION_MESSAGE,p);
-            
+         
+            int result = JOptionPane.showConfirmDialog(null, "¿Desea salir del sistema?", "Salir", botonDialogo, JOptionPane.INFORMATION_MESSAGE,p);
             
             if (result == 0) {
 
                 System.exit(0);
 
             }
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
+            
         }
     }//GEN-LAST:event_btnSalir2ActionPerformed
 

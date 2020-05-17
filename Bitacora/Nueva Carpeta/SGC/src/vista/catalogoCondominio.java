@@ -110,7 +110,7 @@ public class catalogoCondominio extends javax.swing.JFrame {
         jButton2.setForeground(new java.awt.Color(0, 94, 159));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (2).png"))); // NOI18N
         jButton2.setText("Nuevo Condominio");
-        jButton2.setToolTipText("Registrar un nuevo condominio");
+        jButton2.setToolTipText("Haga click aquí para registrar un nuevo condominio");
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
@@ -171,8 +171,8 @@ public class catalogoCondominio extends javax.swing.JFrame {
         jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, -1, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("Listado de Condominio");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
+        jLabel2.setText("Condominios");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
 
         btnActivar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnActivar.setForeground(new java.awt.Color(0, 94, 159));

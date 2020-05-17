@@ -83,11 +83,12 @@ public class catalogoCierreMes extends javax.swing.JFrame {
         btnNuevo.setForeground(new java.awt.Color(0, 94, 159));
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (2).png"))); // NOI18N
         btnNuevo.setText("Nuevo Cierre de Mes");
-        btnNuevo.setToolTipText("Registrar un cierre de mes nuevo");
+        btnNuevo.setToolTipText("Haga click aquí para registrar un cierre de mes nuevo");
+        btnNuevo.setBorder(null);
         btnNuevo.setBorderPainted(false);
         btnNuevo.setContentAreaFilled(false);
         btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 210, 40));
+        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 180, 40));
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
@@ -151,8 +152,8 @@ public class catalogoCierreMes extends javax.swing.JFrame {
         jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Listado de Recibos");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
+        jLabel3.setText("Recibos");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 470));
 

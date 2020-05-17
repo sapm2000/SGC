@@ -1,9 +1,16 @@
 package vista;
 
 import controlador.CtrlUsuarioL;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 
 public class InicioUsuario extends javax.swing.JFrame {
 
@@ -59,6 +66,7 @@ public class InicioUsuario extends javax.swing.JFrame {
         btnEnviar.setBackground(new java.awt.Color(255, 255, 255));
         btnEnviar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/next.png"))); // NOI18N
+        btnEnviar.setToolTipText("Entrar al sistema");
         btnEnviar.setBorder(null);
         btnEnviar.setBorderPainted(false);
         btnEnviar.setContentAreaFilled(false);
@@ -139,14 +147,14 @@ public class InicioUsuario extends javax.swing.JFrame {
                 txtPasswordActionPerformed(evt);
             }
         });
-        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 220, 40));
+        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 220, 40));
 
-        jSeparator1.setBackground(new java.awt.Color(51, 204, 255));
-        jSeparator1.setForeground(new java.awt.Color(51, 204, 255));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, 220, 10));
+        jSeparator1.setBackground(new java.awt.Color(0, 94, 159));
+        jSeparator1.setForeground(new java.awt.Color(0, 94, 159));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 220, 10));
 
-        jSeparator2.setBackground(new java.awt.Color(51, 204, 255));
-        jSeparator2.setForeground(new java.awt.Color(51, 204, 255));
+        jSeparator2.setBackground(new java.awt.Color(0, 94, 159));
+        jSeparator2.setForeground(new java.awt.Color(0, 94, 159));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 220, 10));
 
         jLabel1.setBackground(new java.awt.Color(51, 204, 255));
@@ -155,13 +163,13 @@ public class InicioUsuario extends javax.swing.JFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/condominio1 (2).png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, 180));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user (2).png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/key (2).png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/key.png"))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
 
         checkViewPass.setBackground(new java.awt.Color(255, 255, 255));
         checkViewPass.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -178,7 +186,7 @@ public class InicioUsuario extends javax.swing.JFrame {
                 checkViewPassActionPerformed(evt);
             }
         });
-        jPanel1.add(checkViewPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 330, -1, 20));
+        jPanel1.add(checkViewPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 360, -1, 20));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 500));
 
@@ -212,9 +220,22 @@ public class InicioUsuario extends javax.swing.JFrame {
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         try {
-
+            UIManager UI=new UIManager();
+            
+            UI.put("OptionPane.border",createLineBorder(new Color(0,94,159), 5));
+            UI.put("Panel.background",new ColorUIResource(255,255,255));
+            
+            
             int botonDialogo = JOptionPane.YES_NO_OPTION;
-            int result = JOptionPane.showConfirmDialog(null, "DESEA CERRAR LA VENTANA?", "SALIR", botonDialogo);
+            
+            Icon p = new ImageIcon(getClass().getResource("/img/pregunta.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+            
+            int result = JOptionPane.showConfirmDialog(null, "¿Desea cerrar la ventana?", "Salir", botonDialogo, JOptionPane.INFORMATION_MESSAGE,p);
             if (result == 0) {
 
                 System.exit(0);

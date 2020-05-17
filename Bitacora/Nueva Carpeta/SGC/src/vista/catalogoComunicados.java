@@ -134,14 +134,14 @@ public class catalogoComunicados extends javax.swing.JFrame {
         jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Listado de Comunicados");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
+        jLabel1.setText("Comunicados");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 94, 159));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (2).png"))); // NOI18N
         jButton2.setText("Nuevo Comunicado");
-        jButton2.setToolTipText("Realizar un nuevo comunicado");
+        jButton2.setToolTipText("Haga click aquí para realizar un nuevo comunicado");
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);

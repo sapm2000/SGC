@@ -12,12 +12,17 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JTable;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -98,19 +103,19 @@ public class catalogoAsambleas extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "N° de Asamblea", "Nombre de Asamblea", "Fecha", "Descripción", "N° de Asistentes"
+                "<html>N° de <br> Asamblea</html>", "<html>Nombre de <br> Asamblea</html>", "Fecha", "Descripción", "<html>N° de <br> Asistentes</html>"
             }
         ));
         jTable1.setRowHeight(35);
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 740, 275));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 680, 275));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 510, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 510, -1));
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
         btnSalir.setToolTipText("Cerrar");
@@ -126,7 +131,7 @@ public class catalogoAsambleas extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, 30));
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, -1, 30));
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
         btnMinimizar.setToolTipText("Minimizar");
@@ -142,16 +147,17 @@ public class catalogoAsambleas extends javax.swing.JFrame {
                 btnMinimizarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 10, 40, 30));
+        jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, 40, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Listado de Asambleas Realizadas");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, -1));
+        jLabel1.setText("Asambleas Realizadas");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 94, 159));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (2).png"))); // NOI18N
         jButton2.setText("Nueva Asamblea");
+        jButton2.setToolTipText("Haga click aquí para registrar una nueva asamblea");
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
@@ -159,31 +165,44 @@ public class catalogoAsambleas extends javax.swing.JFrame {
         jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         jButton2.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         jButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 60, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("Buscar:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 70, 20));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 70, 20));
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jTextField1.setToolTipText("Buscador\n");
         jTextField1.setBorder(null);
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 190, 20));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 190, 20));
 
         jSeparator1.setBackground(new java.awt.Color(0, 94, 159));
         jSeparator1.setForeground(new java.awt.Color(0, 94, 159));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 190, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 190, 10));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 470));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         try {
+            
+            UIManager UI=new UIManager();
+            
+            UI.put("OptionPane.border",createLineBorder(new Color(0,94,159), 5));
+            UI.put("Panel.background",new ColorUIResource(255,255,255));
 
             int botonDialogo = JOptionPane.YES_NO_OPTION;
-            int result = JOptionPane.showConfirmDialog(null, "DESEA CERRAR LA VENTANA?", "SALIR", botonDialogo);
+            
+            Icon p = new ImageIcon(getClass().getResource("/img/pregunta.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+            
+            int result = JOptionPane.showConfirmDialog(null, "¿Desea cerrar la ventana de asambleas realizadas?", "Salir", botonDialogo, JOptionPane.INFORMATION_MESSAGE,p);
             if (result == 0) {
 
                 this.dispose();

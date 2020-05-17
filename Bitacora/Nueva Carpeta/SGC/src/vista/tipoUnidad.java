@@ -5,21 +5,18 @@
  */
 package vista;
 
-import java.awt.Color;
-import java.awt.Font;
-import static javax.swing.BorderFactory.createLineBorder;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-import javax.swing.plaf.ColorUIResource;
 
-public class banco extends javax.swing.JFrame {
+/**
+ *
+ * @author Maryo
+ */
+public class tipoUnidad extends javax.swing.JFrame {
 
     /**
-     * Creates new form banco
+     * Creates new form tipoUnidad
      */
-    public banco() {
+    public tipoUnidad() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -33,15 +30,17 @@ public class banco extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton4 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         btnMinimizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        txtnombre_banco = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
@@ -54,10 +53,7 @@ public class banco extends javax.swing.JFrame {
         txtid = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
 
-        jButton4.setText("jButton4");
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setUndecorated(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -97,33 +93,43 @@ public class banco extends javax.swing.JFrame {
         jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, 30));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel2.setText("Registro de Bancos");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, -1));
+        jLabel2.setText("Tipo de Unidad");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(0, 94, 159));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtnombre_banco.setBackground(new java.awt.Color(0, 94, 159));
-        txtnombre_banco.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtnombre_banco.setForeground(new java.awt.Color(255, 255, 255));
-        txtnombre_banco.setToolTipText("Ingrese el nombre del banco");
-        txtnombre_banco.setBorder(null);
-        txtnombre_banco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnombre_bancoActionPerformed(evt);
-            }
-        });
-        jPanel2.add(txtnombre_banco, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 220, 20));
-
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 220, 10));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 220, 10));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("<html>\nNombre <br> del Banco:\n</html>");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 80, 40));
+        jLabel1.setText("<html>\nNombre de <br>  la unidad:\n</html>");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 40));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 300, 70));
+        jTextField1.setBackground(new java.awt.Color(0, 94, 159));
+        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField1.setToolTipText("Ingrese el nombre de la unidad");
+        jTextField1.setBorder(null);
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 220, 20));
+
+        jTextField2.setBackground(new java.awt.Color(0, 94, 159));
+        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField2.setToolTipText("Ingrese el área de la unidad");
+        jTextField2.setBorder(null);
+        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 220, 20));
+
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 220, 10));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("<html>\nÁrea de <br> la unidad:\n</html>");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 56, -1, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 320, 110));
 
         jPanel3.setBackground(new java.awt.Color(0, 94, 159));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -214,21 +220,9 @@ public class banco extends javax.swing.JFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         try {
-            UIManager UI=new UIManager();
-            
-            UI.put("OptionPane.border",createLineBorder(new Color(0,94,159), 5));
-            UI.put("Panel.background",new ColorUIResource(255,255,255));
-            
+
             int botonDialogo = JOptionPane.YES_NO_OPTION;
-            
-            Icon p = new ImageIcon(getClass().getResource("/img/pregunta.png"));
-            UIManager.put("Button.background", Color.white);
-            UIManager.put("Button.font", Color.blue);
-            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-            UIManager.put("Label.background", Color.blue);
-            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-            
-            int result = JOptionPane.showConfirmDialog(null, "¿Desea cerrar la ventana de gestion de bancos?", "Salir", botonDialogo, JOptionPane.INFORMATION_MESSAGE,p);
+            int result = JOptionPane.showConfirmDialog(null, "DESEA CERRAR LA VENTANA?", "SALIR", botonDialogo);
             if (result == 0) {
 
                 this.dispose();
@@ -243,10 +237,6 @@ public class banco extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void txtnombre_bancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombre_bancoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnombre_bancoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,20 +255,20 @@ public class banco extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(banco.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(tipoUnidad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(banco.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(tipoUnidad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(banco.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(tipoUnidad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(banco.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(tipoUnidad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new banco().setVisible(true);
+                new tipoUnidad().setVisible(true);
             }
         });
     }
@@ -290,9 +280,9 @@ public class banco extends javax.swing.JFrame {
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnModificar;
     public javax.swing.JButton btnSalir;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -300,9 +290,11 @@ public class banco extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     public javax.swing.JTextField txtid;
-    public javax.swing.JTextField txtnombre_banco;
     // End of variables declaration//GEN-END:variables
 }
