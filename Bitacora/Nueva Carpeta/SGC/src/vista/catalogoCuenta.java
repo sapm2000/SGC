@@ -105,10 +105,10 @@ public class catalogoCuenta extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 680, 280));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 680, 280));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, -1, -1));
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
         btnMinimizar.setToolTipText("Minimizar");
@@ -143,8 +143,8 @@ public class catalogoCuenta extends javax.swing.JFrame {
         jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, -1, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Listado de Cuentas");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, -1, -1));
+        jLabel1.setText("Cuentas");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, -1));
 
         btn_nuevaCuenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btn_nuevaCuenta.setForeground(new java.awt.Color(0, 94, 159));
@@ -158,11 +158,11 @@ public class catalogoCuenta extends javax.swing.JFrame {
         btn_nuevaCuenta.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btn_nuevaCuenta.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btn_nuevaCuenta.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
-        jPanel1.add(btn_nuevaCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, -1, -1));
+        jPanel1.add(btn_nuevaCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Buscar:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 70, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 70, -1));
 
         txtBuscarCuenta.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtBuscarCuenta.setToolTipText("Buscador");
@@ -178,14 +178,14 @@ public class catalogoCuenta extends javax.swing.JFrame {
                 txtBuscarCuentaKeyTyped(evt);
             }
         });
-        jPanel1.add(txtBuscarCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 190, 20));
+        jPanel1.add(txtBuscarCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 190, 20));
 
         jSeparator1.setBackground(new java.awt.Color(0, 94, 159));
         jSeparator1.setForeground(new java.awt.Color(0, 94, 159));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 190, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 190, 10));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
         btnActivar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnActivar.setForeground(new java.awt.Color(0, 94, 159));
@@ -199,9 +199,9 @@ public class catalogoCuenta extends javax.swing.JFrame {
         btnActivar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by (1).png"))); // NOI18N
         btnActivar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by (1).png"))); // NOI18N
         btnActivar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by.png"))); // NOI18N
-        jPanel1.add(btnActivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, -1, -1));
+        jPanel1.add(btnActivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 460));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

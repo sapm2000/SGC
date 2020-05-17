@@ -80,7 +80,10 @@
               <Image iconType="3" name="/img/simbolo-grueso-adicional (2).png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Nuevo Cierre de Mes"/>
-            <Property name="toolTipText" type="java.lang.String" value="Registrar un cierre de mes nuevo"/>
+            <Property name="toolTipText" type="java.lang.String" value="Haga click aqu&#xed; para registrar un cierre de mes nuevo"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
             <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -92,7 +95,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="370" y="70" width="210" height="40"/>
+              <AbsoluteConstraints x="370" y="70" width="180" height="40"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -273,11 +276,11 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Listado de Recibos"/>
+            <Property name="text" type="java.lang.String" value="Recibos"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="230" y="20" width="-1" height="-1"/>
+              <AbsoluteConstraints x="270" y="10" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>

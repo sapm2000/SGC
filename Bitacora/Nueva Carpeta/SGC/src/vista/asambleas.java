@@ -12,10 +12,15 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 import javax.swing.JTable;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 
@@ -230,7 +235,7 @@ public class asambleas extends javax.swing.JFrame {
         jTable1.setRowHeight(20);
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 690, 210));
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 700, 210));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
         jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 510, 300));
@@ -281,9 +286,22 @@ public class asambleas extends javax.swing.JFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         try {
+            
+            UIManager UI=new UIManager();
+            
+            UI.put("OptionPane.border",createLineBorder(new Color(0,94,159), 5));
+            UI.put("Panel.background",new ColorUIResource(255,255,255));
 
             int botonDialogo = JOptionPane.YES_NO_OPTION;
-            int result = JOptionPane.showConfirmDialog(null, "DESEA CERRAR LA VENTANA?", "SALIR", botonDialogo);
+            
+            Icon p = new ImageIcon(getClass().getResource("/img/pregunta.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+            
+            int result = JOptionPane.showConfirmDialog(null, "¿Desea cerrar la ventana de gestion de administrar asambleas?", "SALIR", botonDialogo, JOptionPane.INFORMATION_MESSAGE,p);
             if (result == 0) {
 
                 this.dispose();

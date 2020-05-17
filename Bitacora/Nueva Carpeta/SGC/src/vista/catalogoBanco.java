@@ -12,11 +12,16 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JTable;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 
 /**
@@ -140,14 +145,14 @@ public class catalogoBanco extends javax.swing.JFrame {
         jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setText("Listado de Bancos");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
+        jLabel4.setText("Bancos");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
 
         btnNuevo_banco.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnNuevo_banco.setForeground(new java.awt.Color(0, 94, 159));
         btnNuevo_banco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (2).png"))); // NOI18N
         btnNuevo_banco.setText("Nuevo Banco");
-        btnNuevo_banco.setToolTipText("Registrar un banco nuevo");
+        btnNuevo_banco.setToolTipText("Haga click aquí para regisrar un banco nuevo");
         btnNuevo_banco.setBorder(null);
         btnNuevo_banco.setBorderPainted(false);
         btnNuevo_banco.setContentAreaFilled(false);
@@ -195,9 +200,22 @@ public class catalogoBanco extends javax.swing.JFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         try {
+            
+            UIManager UI=new UIManager();
+            
+            UI.put("OptionPane.border",createLineBorder(new Color(0,94,159), 5));
+            UI.put("Panel.background",new ColorUIResource(255,255,255));
 
             int botonDialogo = JOptionPane.YES_NO_OPTION;
-            int result = JOptionPane.showConfirmDialog(null, "DESEA CERRAR LA VENTANA?", "SALIR", botonDialogo);
+            
+            Icon p = new ImageIcon(getClass().getResource("/img/pregunta.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+            
+            int result = JOptionPane.showConfirmDialog(null, "¿Desea cerrar la ventana de bancos?", "Salir", botonDialogo, JOptionPane.INFORMATION_MESSAGE,p);
             if (result == 0) {
 
                 this.dispose();

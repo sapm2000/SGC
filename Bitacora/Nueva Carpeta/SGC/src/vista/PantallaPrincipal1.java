@@ -13,9 +13,16 @@ import controlador.controladorGastoComun;
 import controlador.controladorMenu;
 import controlador.controladorSancion;
 import controlador.controladorUnidades;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import modelo.Asambleas;
 import modelo.CerrarMes;
 import modelo.Comunicados;
@@ -429,9 +436,21 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         try {
+            UIManager UI=new UIManager();
+            
+            UI.put("OptionPane.border",createLineBorder(new Color(0,94,159), 5));
+            UI.put("Panel.background",new ColorUIResource(255,255,255));
 
             int botonDialogo = JOptionPane.YES_NO_OPTION;
-            int result = JOptionPane.showConfirmDialog(null, "DESEA CERRAR LA VENTANA?", "SALIR", botonDialogo);
+            
+            Icon p = new ImageIcon(getClass().getResource("/img/pregunta.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+            
+            int result = JOptionPane.showConfirmDialog(null, "¿Desea salir del sistema?", "Salir", botonDialogo, JOptionPane.INFORMATION_MESSAGE,p);
             if (result == 0) {
 
                 System.exit(0);

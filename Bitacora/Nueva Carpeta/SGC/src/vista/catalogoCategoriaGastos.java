@@ -12,10 +12,15 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 import javax.swing.JTable;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 
@@ -116,8 +121,8 @@ public class catalogoCategoriaGastos extends javax.swing.JFrame {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Listado de Categoría Gastos");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
+        jLabel3.setText("Categorías de Gastos");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, -1));
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
         btnMinimizar.setToolTipText("Minimizar");
@@ -155,7 +160,7 @@ public class catalogoCategoriaGastos extends javax.swing.JFrame {
         btn_nuevaCategoriaGasto.setForeground(new java.awt.Color(0, 94, 159));
         btn_nuevaCategoriaGasto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (2).png"))); // NOI18N
         btn_nuevaCategoriaGasto.setText("Nuevo Registro");
-        btn_nuevaCategoriaGasto.setToolTipText("Registrar una categoría gastos nueva");
+        btn_nuevaCategoriaGasto.setToolTipText("Haga click aquí para registrar una categoría de gastos nueva");
         btn_nuevaCategoriaGasto.setBorder(null);
         btn_nuevaCategoriaGasto.setBorderPainted(false);
         btn_nuevaCategoriaGasto.setContentAreaFilled(false);
@@ -203,9 +208,22 @@ public class catalogoCategoriaGastos extends javax.swing.JFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         try {
+            
+            UIManager UI=new UIManager();
+            
+            UI.put("OptionPane.border",createLineBorder(new Color(0,94,159), 5));
+            UI.put("Panel.background",new ColorUIResource(255,255,255));
 
             int botonDialogo = JOptionPane.YES_NO_OPTION;
-            int result = JOptionPane.showConfirmDialog(null, "DESEA CERRAR LA VENTANA?", "SALIR", botonDialogo);
+            
+            Icon p = new ImageIcon(getClass().getResource("/img/pregunta.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+            
+            int result = JOptionPane.showConfirmDialog(null, "¿Desea cerrar la ventana de categoría gastos?", "Salir", botonDialogo, JOptionPane.INFORMATION_MESSAGE,p);
             if (result == 0) {
 
                 this.dispose();

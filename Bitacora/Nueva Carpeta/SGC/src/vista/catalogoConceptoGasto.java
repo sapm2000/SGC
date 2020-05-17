@@ -131,14 +131,14 @@ public class catalogoConceptoGasto extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Listado de Conceptos de Gastos");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
+        jLabel1.setText("Conceptos de Gastos");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, -1));
 
         btnNuevoRegistro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnNuevoRegistro.setForeground(new java.awt.Color(0, 94, 159));
         btnNuevoRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (2).png"))); // NOI18N
         btnNuevoRegistro.setText("Nuevo Registro");
-        btnNuevoRegistro.setToolTipText("Registrar un concepto de gastos nuevo");
+        btnNuevoRegistro.setToolTipText("Haga click aquí para registrar un concepto de gastos nuevo");
         btnNuevoRegistro.setBorder(null);
         btnNuevoRegistro.setBorderPainted(false);
         btnNuevoRegistro.setContentAreaFilled(false);
