@@ -54,20 +54,22 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
     private catalogoCierreMes catac;
     DefaultTableModel dm;
 
-    public controladorCerrarMes(cerrarMes rec, CerrarMes modc, Unidades moduni, PantallaPrincipal1 panta1, GastoComun modgac, CuotasEspeciales modcuo, Sancion modsan, Interes modin, catalogoCierreMes catac) {
-        this.rec = rec;
-        this.modc = modc;
-        this.moduni = moduni;
-        this.panta1 = panta1;
-        this.modgac = modgac;
-        this.modcuo = modcuo;
-        this.modsan = modsan;
-        this.modin = modin;
-        this.catac = catac;
+    public controladorCerrarMes() {
+        
+        this.rec = new cerrarMes();
+        this.modc = new CerrarMes();
+        this.moduni = new Unidades();
+        
+        this.modgac = new GastoComun();
+        this.modcuo = new CuotasEspeciales();
+        this.modsan = new Sancion();
+        this.modin = new Interes();
+        this.catac = new catalogoCierreMes();
         rec.jButton1.addActionListener(this);
         catac.btnNuevo.addActionListener(this);
         catac.txtBuscar.addKeyListener(this);
         catac.addWindowListener(this);
+        this.catac.setVisible(true);
 
     }
 
@@ -506,7 +508,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
 
     @Override
     public void windowOpened(WindowEvent e) {
-        modc.setId_condominio(panta1.rif.getText());
+     
         Llenartabla(catac.jTable1);
     }
 

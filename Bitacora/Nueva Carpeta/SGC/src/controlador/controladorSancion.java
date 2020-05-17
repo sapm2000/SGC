@@ -48,12 +48,12 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
     ArrayList<Sancion> listaunimod;
     DefaultTableModel dm;
 
-    public controladorSancion(sancion san, catalogoSancion catasan, Sancion modsan, PantallaPrincipal1 panta1, CerrarMes modc) {
-        this.san = san;
-        this.catasan = catasan;
-        this.modsan = modsan;
-        this.panta1 = panta1;
-        this.modc = modc;
+    public controladorSancion() {
+        this.san = new sancion();
+        this.catasan = new catalogoSancion();
+        this.modsan = new Sancion();
+
+        this.modc = new CerrarMes();
 
         this.catasan.jButton2.addActionListener(this);
         this.catasan.addWindowListener(this);
@@ -67,6 +67,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         this.san.btnModificar.addActionListener(this);
         san.txtmonto.addKeyListener(this);
         san.txaDescripcion.addKeyListener(this);
+        this.catasan.setVisible(true);
 
     }
 
@@ -173,7 +174,6 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
             @Override
             public boolean isCellEditable(int row, int column) {
 
-               
                 return false;
             }
         };
@@ -206,6 +206,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
     }
+
     public void llenartablaunidades(JTable tablaD) {
 
         listaunidades = modsan.listar();
@@ -277,7 +278,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                         modsan.setEstado("Pendiente");
                         modc.setMes_cierre(san.jMonthChooser1.getMonth() + 1);
                         modc.setAño_cierre(san.jYearChooser1.getYear());
-                        modc.setId_condominio(panta1.rif.getText());
+                     
                         for (int i = 0; i < san.jTable1.getRowCount(); i++) {
                             if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
 
@@ -299,12 +300,11 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                                     if (modsan.registrarsancion(modsan)) {
                                         JOptionPane.showMessageDialog(null, "Registro Guardado");
                                         modsan.buscId(modsan);
-                                          listaunidades = modsan.listar();
+                                        listaunidades = modsan.listar();
 
                                         for (int i = 0; i < san.jTable1.getRowCount(); i++) {
                                             if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
 
-                                                
                                                 modsan.setId(listaunidades.get(i).getId());
 
                                                 modsan.registrar_sancion_unidad(modsan);
@@ -350,7 +350,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
                         modc.setMes_cierre(san.jMonthChooser1.getMonth() + 1);
                         modc.setAño_cierre(san.jYearChooser1.getYear());
-                        modc.setId_condominio(panta1.rif.getText());
+                    
                         for (int i = 0; i < san.jTable1.getRowCount(); i++) {
                             if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
 
@@ -371,7 +371,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                                         JOptionPane.showMessageDialog(null, "Registro Modificado");
 
                                         modsan.borrarpuentesancion(modsan);
-                                         listaunimod = modsan.listarunidadesmod();
+                                        listaunimod = modsan.listarunidadesmod();
                                         for (int i = 0; i < san.jTable1.getRowCount(); i++) {
                                             if (valueOf(san.jTable1.getValueAt(i, 1)).equals("true")) {
 
@@ -434,7 +434,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
         String dato = String.valueOf(this.catasan.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
         modsan.setId_sancion(Integer.parseInt(dato));
-        
+
         String estado = String.valueOf(this.catasan.jTable1.getValueAt(fila, 6)); // por ultimo, obtengo el valor de la celda
         modsan.setEstado(estado);
 
@@ -450,11 +450,11 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         san.jMonthChooser1.setMonth(mes);
         san.jYearChooser1.setYear(modsan.getAño());
         if (modsan.getEstado().equals("Pendiente")) {
-        llenartablaunidadesmod(san.jTable1);
-        addCheckBox(1, san.jTable1);
+            llenartablaunidadesmod(san.jTable1);
+            addCheckBox(1, san.jTable1);
         } else {
             llenartablaunidadesmodprocesadas(san.jTable1);
-             addCheckBox(1, san.jTable1);
+            addCheckBox(1, san.jTable1);
         }
         if (modsan.getEstado().equals("Procesado")) {
             san.btnEliminar.setEnabled(false);
