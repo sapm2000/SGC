@@ -142,7 +142,7 @@ public class asambleas extends javax.swing.JFrame {
         txaDescripcion.setWrapStyleWord(true);
         jScrollPane4.setViewportView(txaDescripcion);
 
-        jPanel4.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 65, 350, 110));
+        jPanel4.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 65, 360, 110));
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator5.setOpaque(true);
@@ -202,8 +202,8 @@ public class asambleas extends javax.swing.JFrame {
         jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, 320));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel17.setText("Registro de Asambleas");
-        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
+        jLabel17.setText(" Asambleas");
+        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 

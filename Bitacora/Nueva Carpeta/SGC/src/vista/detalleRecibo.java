@@ -96,6 +96,9 @@ public class detalleRecibo extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator8 = new javax.swing.JSeparator();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -145,8 +148,8 @@ public class detalleRecibo extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("N° de Unidad:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, -1));
+        jLabel1.setText("<html>\nN° de <br> Unidad:\n</html>");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 60, 30));
 
         txtUnidad.setBackground(new java.awt.Color(0, 94, 159));
         txtUnidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -154,17 +157,17 @@ public class detalleRecibo extends javax.swing.JFrame {
         txtUnidad.setToolTipText("No se puede modificar este dato");
         txtUnidad.setBorder(null);
         txtUnidad.setEnabled(false);
-        jPanel2.add(txtUnidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 240, 20));
+        jPanel2.add(txtUnidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 260, 20));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Areá:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 40, 20));
+        jLabel4.setText("Área:");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 40, 20));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Alicuota:");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 60, 30));
+        jLabel5.setText("Alícuota:");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 60, 20));
 
         txtAlicuota.setBackground(new java.awt.Color(0, 94, 159));
         txtAlicuota.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -172,7 +175,7 @@ public class detalleRecibo extends javax.swing.JFrame {
         txtAlicuota.setToolTipText("No se puede modificar este dato");
         txtAlicuota.setBorder(null);
         txtAlicuota.setEnabled(false);
-        jPanel2.add(txtAlicuota, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 240, 20));
+        jPanel2.add(txtAlicuota, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 260, 20));
 
         txtArea.setBackground(new java.awt.Color(0, 94, 159));
         txtArea.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -180,7 +183,7 @@ public class detalleRecibo extends javax.swing.JFrame {
         txtArea.setToolTipText("No se puede modificar este dato");
         txtArea.setBorder(null);
         txtArea.setEnabled(false);
-        jPanel2.add(txtArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 240, 20));
+        jPanel2.add(txtArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 260, 20));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -190,12 +193,12 @@ public class detalleRecibo extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("<html>\nMes <br> Relacionado:\n</html>");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 64, 90, 30));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 90, 30));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Total a Pagar:");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 100, -1));
+        jLabel7.setText("<html>\nTotal <br> a Pagar:\n</html>");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, 60, -1));
 
         txtTotal.setBackground(new java.awt.Color(0, 94, 159));
         txtTotal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -222,16 +225,16 @@ public class detalleRecibo extends javax.swing.JFrame {
         jPanel2.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 230, 20));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 240, 20));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 260, 20));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 230, 20));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 240, 20));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 260, 20));
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 240, 20));
+        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 260, 20));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 230, 20));
@@ -337,6 +340,21 @@ public class detalleRecibo extends javax.swing.JFrame {
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 280, 10, 350));
         jPanel1.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 930, 20));
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setText("Intereses");
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 460, -1, -1));
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel21.setText("Sanciones");
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 460, -1, -1));
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel22.setText("Gastos");
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
@@ -446,6 +464,9 @@ public class detalleRecibo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
