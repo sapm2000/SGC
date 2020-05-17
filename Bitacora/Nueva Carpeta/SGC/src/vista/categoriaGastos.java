@@ -122,7 +122,7 @@ public class categoriaGastos extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("<html>\nNombre de <br> Categoría:\n</html>");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
         txtnombre.setBackground(new java.awt.Color(0, 94, 159));
         txtnombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
