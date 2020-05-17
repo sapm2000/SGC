@@ -17,16 +17,17 @@ import sgc.SGC;
  *
  * @author rma
  */
-public class GastoComun extends ModeloConceptoGastos {
+public class GastoComun extends ConexionBD {
 
+    private int id;
     private String tipo_gasto;
     private int mes;
     private int año;
     private double monto;
     private String numero_factura;
     private java.sql.Date fecha;
-    private int id_concepto;
-    private String id_proveedor;
+    private ModeloConceptoGastos concep = new ModeloConceptoGastos();
+    private Proveedores prov = new Proveedores();
     private String observaciones;
     private String estado;
   
@@ -38,6 +39,14 @@ public class GastoComun extends ModeloConceptoGastos {
 
     public void setSaldo(double saldo) {
         this.saldo = saldo;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
    
@@ -89,21 +98,7 @@ public class GastoComun extends ModeloConceptoGastos {
         this.fecha = fecha;
     }
 
-    public int getId_concepto() {
-        return id_concepto;
-    }
-
-    public void setId_concepto(int id_concepto) {
-        this.id_concepto = id_concepto;
-    }
-
-    public String getId_proveedor() {
-        return id_proveedor;
-    }
-
-    public void setId_proveedor(String id_proveedor) {
-        this.id_proveedor = id_proveedor;
-    }
+   
 
     public String getObservaciones() {
         return observaciones;
@@ -136,8 +131,8 @@ public class GastoComun extends ModeloConceptoGastos {
             ps.setInt(3, getAño());
             ps.setDouble(4, getMonto());
             ps.setString(5, getNumero_factura());
-            ps.setString(6, getId_proveedor());
-            ps.setInt(7, getId_concepto());
+            ps.setString(6, prov.getCedula());
+            ps.setInt(7, concep.getId());
             ps.setString(8, getObservaciones());
             ps.setDate(9, getFecha());
             ps.setString(10, getEstado());
@@ -199,8 +194,8 @@ public class GastoComun extends ModeloConceptoGastos {
                 modgac.setAño(rs.getInt(4));
                 modgac.setMonto(rs.getDouble(5));
                 modgac.setNumero_factura(rs.getString(6));
-                modgac.setId_proveedor(rs.getString(7));
-                modgac.setNombre_Concepto(rs.getString(8));
+                modgac.prov.setCedula(rs.getString(7));
+                modgac.concep.setNombre_Concepto(rs.getString(8));
                 modgac.setObservaciones(rs.getString(9));
                 modgac.setFecha(rs.getDate(10));
                 modgac.setEstado(rs.getString(11));
@@ -251,8 +246,8 @@ public class GastoComun extends ModeloConceptoGastos {
                 modgac.setAño(rs.getInt(4));
                 modgac.setMonto(rs.getDouble(5));
                 modgac.setNumero_factura(rs.getString(6));
-                modgac.setId_proveedor(rs.getString(7));
-                modgac.setNombre_Concepto(rs.getString(8));
+                modgac.prov.setCedula(rs.getString(7));
+                modgac.concep.setNombre_Concepto(rs.getString(8));
                 modgac.setObservaciones(rs.getString(9));
                 modgac.setFecha(rs.getDate(10));
                 modgac.setEstado(rs.getString(11));
@@ -296,8 +291,8 @@ public class GastoComun extends ModeloConceptoGastos {
                 modgac.setAño(rs.getInt("anio"));
                 modgac.setMonto(rs.getDouble("monto"));
                 modgac.setNumero_factura(rs.getString("n_factura"));
-                modgac.setId_proveedor(rs.getString("cedula"));
-                modgac.setNombre_Concepto(rs.getString("nom_concepto"));
+                modgac.prov.setCedula(rs.getString("cedula"));
+                modgac.concep.setNombre_Concepto(rs.getString("nom_concepto"));
                 modgac.setObservaciones(rs.getString("observaciones"));
                 modgac.setFecha(rs.getDate("fecha"));
                 modgac.setEstado(rs.getString("estado"));
@@ -342,8 +337,8 @@ public class GastoComun extends ModeloConceptoGastos {
             ps.setInt(3, getAño());
             ps.setDouble(4, getMonto());
             ps.setString(5, getNumero_factura());
-            ps.setString(6, getId_proveedor());
-            ps.setInt(7, getId_concepto());
+            ps.setString(6, prov.getCedula());
+            ps.setInt(7, concep.getId());
             ps.setString(8, getObservaciones());
             ps.setDate(9, getFecha());
             ps.setDouble(10, getSaldo());

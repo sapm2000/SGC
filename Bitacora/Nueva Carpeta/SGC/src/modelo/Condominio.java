@@ -12,7 +12,8 @@ public class Condominio extends ConexionBD {
     private String razonS;
     private String telefono;
     private String correoElectro;
-    private String id_cuenta;
+    private Cuenta cuen = new Cuenta();
+   
 
     public String getRif() {
         return rif;
@@ -46,13 +47,7 @@ public class Condominio extends ConexionBD {
         this.correoElectro = correoElectro;
     }
 
-    public String getId_cuenta() {
-        return id_cuenta;
-    }
-
-    public void setId_cuenta(String id_cuenta) {
-        this.id_cuenta = id_cuenta;
-    }
+    
 
     public boolean registrar(Condominio cond) {
         PreparedStatement ps = null;
@@ -547,7 +542,7 @@ public class Condominio extends ConexionBD {
                 //prs = new Persona();
                 Condominio.setRif(rs.getString("rif"));
                 Condominio.setRazonS(rs.getString("razon_social"));
-                Condominio.setId_cuenta(rs.getString("cuenta"));
+                Condominio.cuen.setN_cuenta(rs.getString("cuenta"));
 
                 listaPersona.add(Condominio);
             }
@@ -586,7 +581,7 @@ public class Condominio extends ConexionBD {
                 //prs = new Persona();
                 Condominio.setRif(rs.getString("rif"));
                 Condominio.setRazonS(rs.getString("razon_social"));
-                Condominio.setId_cuenta(rs.getString("prop"));
+                Condominio.cuen.setN_cuenta(rs.getString("prop"));
 
                 listaPersona.add(Condominio);
             }

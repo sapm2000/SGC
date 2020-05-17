@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-public class ModeloConceptoGastos extends CategoriaGasto {
+public class ModeloConceptoGastos extends ConexionBD {
 
     private int id;
     private String nombre_Concepto;
     private String descripcion;
-    private int id_categoria;
-    private String nombreCategoria;
+    private CategoriaGasto cate = new CategoriaGasto();
+    
 
     public int getId() {
         return id;
@@ -40,21 +40,7 @@ public class ModeloConceptoGastos extends CategoriaGasto {
         this.descripcion = descripcion;
     }
 
-    public int getId_categoria() {
-        return id_categoria;
-    }
-
-    public void setId_categoria(int id_categoria) {
-        this.id_categoria = id_categoria;
-    }
-
-    public String getNombreCategoria() {
-        return nombreCategoria;
-    }
-
-    public void setNombreCategoria(String nombreCategoria) {
-        this.nombreCategoria = nombreCategoria;
-    }
+   
 
     public boolean registrarConcepto(ModeloConceptoGastos modConGas) {
 
@@ -69,7 +55,7 @@ public class ModeloConceptoGastos extends CategoriaGasto {
 
             ps.setString(1, getNombre_Concepto());
             ps.setString(2, getDescripcion());
-            ps.setInt(3, getId_categoria());
+            ps.setInt(3, cate.getId());
 
             ps.execute();
 
@@ -107,7 +93,7 @@ public class ModeloConceptoGastos extends CategoriaGasto {
 
             ps.setString(1, getNombre_Concepto());
             ps.setString(2, getDescripcion());
-            ps.setInt(3, getId_categoria());
+            ps.setInt(3, cate.getId());
             ps.setInt(4, getId());
             ps.execute();
 
@@ -227,7 +213,7 @@ public class ModeloConceptoGastos extends CategoriaGasto {
                 setId(rs.getInt("id"));
                 setNombre_Concepto(rs.getString("nom_concepto"));
                 setDescripcion(rs.getString("descripcion"));
-                setNombreCategoria(rs.getString("nombre"));
+                cate.setNombre(rs.getString("nombre"));
 
                 return true;
 
@@ -274,7 +260,7 @@ public class ModeloConceptoGastos extends CategoriaGasto {
                 modConGas.setId(rs.getInt(1));
                 modConGas.setNombre_Concepto(rs.getString(2));
                 modConGas.setDescripcion(rs.getString(3));
-                modConGas.setNombreCategoria(rs.getString(4));
+                modConGas.cate.setNombre(rs.getString(4));
 
                 listaPersona.add(modConGas);
             }
@@ -384,7 +370,7 @@ public class ModeloConceptoGastos extends CategoriaGasto {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setInt(1, modCatGas.getId_categoria());
+            ps.setInt(1, modCatGas.cate.getId());
 
             rs = ps.executeQuery();
 
@@ -430,8 +416,8 @@ public class ModeloConceptoGastos extends CategoriaGasto {
                 modConGas.setId(rs.getInt(1));
                 modConGas.setNombre_Concepto(rs.getString(2));
                 modConGas.setDescripcion(rs.getString(3));
-                modConGas.setNombreCategoria(rs.getString(4));
-                 modConGas.setId_categoria(rs.getInt(5));
+                modConGas.cate.setNombre(rs.getString(4));
+                 modConGas.cate.setId(rs.getInt(5));
 
                 listaPersona.add(modConGas);
             }

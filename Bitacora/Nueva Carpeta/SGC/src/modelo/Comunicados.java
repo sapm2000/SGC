@@ -21,8 +21,9 @@ public class Comunicados extends CrudUsuario {
     private int id;
     private String asunto;
     private String mensaje;
+    private Usuario usu = new Usuario();
    
-    private String id_usuario;
+   
     private int leido;
     private int enviado;
 
@@ -42,13 +43,7 @@ public class Comunicados extends CrudUsuario {
         this.leido = leido;
     }
 
-    public String getId_usuario() {
-        return id_usuario;
-    }
-
-    public void setId_usuario(String id_usuario) {
-        this.id_usuario = id_usuario;
-    }
+   
 
     public int getId() {
         return id;
@@ -163,7 +158,7 @@ public class Comunicados extends CrudUsuario {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_usuario());
+            ps.setString(1, usu.getUsuario());
             ps.setInt(2, getId());
             ps.setInt(3, getLeido());
 

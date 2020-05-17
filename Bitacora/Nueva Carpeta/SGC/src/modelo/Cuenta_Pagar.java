@@ -16,13 +16,12 @@ public class Cuenta_Pagar extends ConexionBD {
     private String descripcion;
     private float monto;
     private Date fecha;
-    private String id_proveedor;
-    private String id_cuenta;
-    private int id_fondo;
-    private String nom_proveedor;
+    
+   
     private Cuenta modCuenta = new Cuenta();
     private Fondo modFondo = new Fondo();
     private Banco modBanco = new Banco();
+    private Proveedores modpro = new Proveedores();
 
     public Banco getModBanco() {
         return modBanco;
@@ -32,13 +31,7 @@ public class Cuenta_Pagar extends ConexionBD {
         this.modBanco = modBanco;
     }
     
-    public String getNom_proveedor() {
-        return nom_proveedor;
-    }
-
-    public void setNom_proveedor(String nom_proveedor) {
-        this.nom_proveedor = nom_proveedor;
-    }
+   
 
     public int getId() {
         return id;
@@ -88,29 +81,7 @@ public class Cuenta_Pagar extends ConexionBD {
         this.fecha = fecha;
     }
 
-    public String getId_proveedor() {
-        return id_proveedor;
-    }
-
-    public void setId_proveedor(String id_proveedor) {
-        this.id_proveedor = id_proveedor;
-    }
-
-    public String getId_cuenta() {
-        return id_cuenta;
-    }
-
-    public void setId_cuenta(String id_cuenta) {
-        this.id_cuenta = id_cuenta;
-    }
-
-    public int getId_fondo() {
-        return id_fondo;
-    }
-
-    public void setId_fondo(int id_fondo) {
-        this.id_fondo = id_fondo;
-    }
+    
 
     public boolean registrarPago(Cuenta_Pagar modCuentaPa) {
 
@@ -126,7 +97,7 @@ public class Cuenta_Pagar extends ConexionBD {
             ps.setString(3, getDescripcion());
             ps.setFloat(4, getMonto());
             ps.setDate(5, getFecha());
-            ps.setString(6, getId_proveedor());
+            ps.setString(6, modpro.getCedula());
             ps.setString(7, getModCuenta().getN_cuenta());
             ps.setInt(8, getModFondo().getId());
             ps.execute();
@@ -160,8 +131,8 @@ public class Cuenta_Pagar extends ConexionBD {
 
             if (rs.next()) {
 
-                setId_proveedor(rs.getString(1));
-                setNom_proveedor(rs.getString(2));
+                modpro.setCedula(rs.getString(1));
+                modpro.setNombre(rs.getString(2));
                 return true;
 
             }
@@ -204,7 +175,7 @@ public class Cuenta_Pagar extends ConexionBD {
                 modPagar.setDescripcion(rs.getString("descripcion"));
                 modPagar.setMonto(rs.getFloat("monto"));
                 modPagar.setFecha(rs.getDate("fecha"));
-                modPagar.setNom_proveedor(rs.getString("nombre"));
+                modPagar.modpro.setNombre(rs.getString("nombre"));
                 modPagar.modCuenta.setN_cuenta(rs.getString("n_cuenta"));
                 modPagar.modBanco.setNombre_banco(rs.getString("nombre_banco"));
                 modPagar.modFondo.setTipo(rs.getString("tipo"));

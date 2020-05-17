@@ -23,17 +23,17 @@ public class Sancion extends ConexionBD {
     private int año;
     private double monto;
     private String descripcion;
-
+    private Unidades uni = new Unidades();
     private int cantidad_de_unidades;
     private String estado;
-    private int id_sancion;
+    private int id;
 
-    public int getId_sancion() {
-        return id_sancion;
+    public int getId() {
+        return id;
     }
 
-    public void setId_sancion(int id_sancion) {
-        this.id_sancion = id_sancion;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEstado() {
@@ -141,7 +141,7 @@ public class Sancion extends ConexionBD {
             rs = ps.executeQuery();
             if (rs.next()) {
 
-                modsan.setId_sancion(rs.getInt("id"));
+                modsan.setId(rs.getInt("id"));
 
                 return true;
             }
@@ -178,7 +178,7 @@ public class Sancion extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId_sancion());
+            ps.setInt(1, getId());
             ps.setInt(2, getId());
 
             ps.execute();
@@ -273,7 +273,7 @@ public class Sancion extends ConexionBD {
 
                 modsan = new Sancion();
 
-                modsan.setId_sancion(rs.getInt(1));
+                modsan.setId(rs.getInt(1));
                 modsan.setId(rs.getInt(2));
                 modsan.setTipo(rs.getString(3));
                 modsan.setMonto(rs.getDouble(4));
@@ -307,7 +307,7 @@ public class Sancion extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setInt(1, modsan.getId_sancion());
+            ps.setInt(1, modsan.getId());
             rs = ps.executeQuery();
             if (rs.next()) {
 
@@ -360,7 +360,7 @@ public class Sancion extends ConexionBD {
             rs = ps.executeQuery();
             if (rs.next()) {
 
-                modsan.setId_sancion(rs.getInt("id"));
+                modsan.setId(rs.getInt("id"));
 
                 return true;
             }
@@ -398,7 +398,7 @@ public class Sancion extends ConexionBD {
         String sql = "select unidades.id, unidades.n_unidad, puente_sancion_unidad.id_sancion from unidades left join puente_sancion_unidad on puente_sancion_unidad.id_unidad=unidades.id and puente_sancion_unidad.id_sancion=?  where unidades.id_condominio=? and unidades.activo=1";
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId_sancion());
+            ps.setInt(1, getId());
 
             ps.setString(2, SGC.condominioActual.getRif());
 
@@ -408,9 +408,9 @@ public class Sancion extends ConexionBD {
                 modsan = new Sancion();
 
                 //prs = new Persona();
-                modsan.setN_unidad(rs.getString("n_unidad"));
-                modsan.setId(rs.getInt("id"));
-                modsan.setId_sancion(rs.getInt("id_sancion"));
+                modsan.uni.setN_unidad(rs.getString("n_unidad"));
+                modsan.uni.setId(rs.getInt("id"));
+                modsan.setId(rs.getInt("id_sancion"));
 
                 listaunimod.add(modsan);
             }
@@ -439,7 +439,7 @@ public class Sancion extends ConexionBD {
         String sql = "select unidades.id, unidades.n_unidad, puente_sancion_unidad.id_sancion from unidades left join puente_sancion_unidad on puente_sancion_unidad.id_unidad=unidades.id and puente_sancion_unidad.id_sancion=?  where unidades.id_condominio=?";
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId_sancion());
+            ps.setInt(1, getId());
 
             ps.setString(2, SGC.condominioActual.getRif());
 
@@ -449,9 +449,9 @@ public class Sancion extends ConexionBD {
                 modsan = new Sancion();
 
                 //prs = new Persona();
-                modsan.setN_unidad(rs.getString("n_unidad"));
-                modsan.setId(rs.getInt("id"));
-                modsan.setId_sancion(rs.getInt("id_sancion"));
+                modsan.uni.setN_unidad(rs.getString("n_unidad"));
+                modsan.uni.setId(rs.getInt("id"));
+                modsan.setId(rs.getInt("id_sancion"));
 
                 listaunimod.add(modsan);
             }
@@ -484,7 +484,7 @@ public class Sancion extends ConexionBD {
             ps.setInt(3, getAño());
             ps.setDouble(4, getMonto());
             ps.setString(5, getDescripcion());
-            ps.setInt(6, getId_sancion());
+            ps.setInt(6, getId());
 
             ps.execute();
 
@@ -519,7 +519,7 @@ public class Sancion extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId_sancion());
+            ps.setInt(1, getId());
             ps.execute();
 
             return true;

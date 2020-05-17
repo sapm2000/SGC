@@ -24,8 +24,8 @@ public class Asambleas extends ConexionBD {
     private String nombre_asamblea;
     private java.sql.Date fecha;
     private String descripcion;
-
-    private String id_propietario;
+    private Propietarios modpro = new Propietarios();
+   
     private int n_asistentes;
 
     public int getId() {
@@ -60,13 +60,7 @@ public class Asambleas extends ConexionBD {
         this.fecha = fecha;
     }
 
-    public String getId_propietario() {
-        return id_propietario;
-    }
-
-    public void setId_propietario(String id_propietario) {
-        this.id_propietario = id_propietario;
-    }
+   
 
     public int getN_asistentes() {
         return n_asistentes;
@@ -162,7 +156,7 @@ public class Asambleas extends ConexionBD {
 
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
-            ps.setString(2, getId_propietario());
+            ps.setString(2, modasa.modpro.getCedula());
 
             ps.execute();
 
@@ -199,7 +193,7 @@ public class Asambleas extends ConexionBD {
         String sql = "SELECT asambleas.id, nombre, fecha, descripcion, count(id_asamblea) as nº FROM asambleas inner join puente_asamblea_propietario on puente_asamblea_propietario.id_asamblea=asambleas.id where id_condominio=? group by puente_asamblea_propietario.id_asamblea, asambleas.id";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_condominio());
+            ps.setString(1, SGC.condominioActual.getRif());
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -286,18 +280,18 @@ public class Asambleas extends ConexionBD {
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
-            ps.setString(2, getId_condominio());    
+            ps.setString(2, SGC.condominioActual.getRif());    
             rs = ps.executeQuery();
 
             while (rs.next()) {
                 modasa = new Asambleas();
 
                 //prs = new Persona();
-                modasa.setCedula(rs.getString("cedula"));
-                modasa.setNombre(rs.getString("nombre"));
-                modasa.setApellido(rs.getString("apellido"));
-                modasa.setTelefono(rs.getString("telefono"));
-                modasa.setCorreo(rs.getString("correo"));
+                modasa.modpro.setCedula(rs.getString("cedula"));
+                modasa.modpro.setpNombre(rs.getString("nombre"));
+                modasa.modpro.setpApellido(rs.getString("apellido"));
+                modasa.modpro.setTelefono(rs.getString("telefono"));
+                modasa.modpro.setCorreo(rs.getString("correo"));
                 modasa.setId(rs.getInt("id_asamblea"));
 
                 listapropmod.add(modasa);
@@ -406,7 +400,7 @@ public class Asambleas extends ConexionBD {
             conectar = getConexion();
             //Preparamos la consulta SQL
             pst = conectar.prepareStatement(SSQL);
-            pst.setString(1, getId_condominio());
+            pst.setString(1, SGC.condominioActual.getRif());
             //Ejecutamos la consulta
             result = pst.executeQuery();
 
@@ -457,7 +451,7 @@ public class Asambleas extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, modasa.getNombre());
+            ps.setString(1, modasa.modpro.getpApellido());
             rs = ps.executeQuery();
             if (rs.next()) {
 

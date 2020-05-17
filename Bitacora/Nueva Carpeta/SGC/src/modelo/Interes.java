@@ -21,6 +21,7 @@ public class Interes extends ConexionBD {
     private String nombre;
     private double factor;
     private String estado;
+    private Condominio modcon = new Condominio();
   
     private int n_condominios;
 
@@ -371,9 +372,9 @@ public class Interes extends ConexionBD {
                 modin = new Interes();
 
                 //prs = new Persona();
-                modin.setRif(rs.getString("rif"));
+                modin.modcon.setRif(rs.getString("rif"));
 
-                modin.setRazonS(rs.getString("razon_social"));
+                modin.modcon.setRazonS(rs.getString("razon_social"));
                 modin.setN_condominios(rs.getInt("cuenta"));
 
                 listainteresmod.add(modin);

@@ -17,7 +17,7 @@ import java.sql.SQLException;
 public class CuentasPorCobrar extends ConexionBD {
 
     private int id;
-    private int id_unidad;
+  private Unidades uni = new Unidades();
     private double monto;
     private String descripcion;
     private String id_cuenta;
@@ -39,13 +39,7 @@ public class CuentasPorCobrar extends ConexionBD {
         this.id = id;
     }
 
-    public int getId_unidad() {
-        return id_unidad;
-    }
-
-    public void setId_unidad(int id_unidad) {
-        this.id_unidad = id_unidad;
-    }
+  
 
   
 
@@ -117,7 +111,7 @@ public class CuentasPorCobrar extends ConexionBD {
             ps = con.prepareStatement(sql);
             ps.setDouble(1, getMonto());
             ps.setString(2, getDescripcion());
-            ps.setInt(3, getId_unidad());
+            ps.setInt(3, uni.getId());
             ps.setString(4, getId_cuenta());
             ps.setString(5, getForma_pago());
             ps.setString(6, getReferencia());

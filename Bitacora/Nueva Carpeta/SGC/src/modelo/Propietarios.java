@@ -10,7 +10,7 @@ import sgc.SGC;
 
 public class Propietarios extends Persona {
 
-    private String id;
+   
     
    
     private int cantidad;
@@ -49,13 +49,6 @@ public class Propietarios extends Persona {
     
 
    
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public boolean registrar() {
         PreparedStatement ps = null;
@@ -197,8 +190,8 @@ public class Propietarios extends Persona {
                 modpro = new Propietarios();
 
                 modpro.setCedula(rs.getString(1));
-                modpro.setNombre(rs.getString(2));
-                modpro.setApellido(rs.getString(3));
+                modpro.setpNombre(rs.getString(2));
+                modpro.setpApellido(rs.getString(3));
                 modpro.setTelefono(rs.getString(4));
                 modpro.setCorreo(rs.getString(5));
                 
