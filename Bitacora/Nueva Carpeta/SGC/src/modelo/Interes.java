@@ -15,7 +15,7 @@ import sgc.SGC;
  *
  * @author rma
  */
-public class Interes extends Condominio {
+public class Interes extends ConexionBD {
 
     private int id;
     private String nombre;

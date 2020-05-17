@@ -267,7 +267,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
             this.as.setVisible(true);
 //            this.as.btnModificar.setEnabled(false);
             this.as.btnGuardar.setEnabled(true);
-            modpro.setId_condominio(panta1.rif.getText());
+           
             Llenartabla(as.jTable1);
             addCheckBox(5, as.jTable1);
             as.txtNombreAsamblea.setText("");
@@ -281,7 +281,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
                 int j = 0;
                 modasa.setNombre_asamblea(as.txtNombreAsamblea.getText());
                 modasa.setDescripcion(as.txaDescripcion.getText());
-                modasa.setId_condominio(panta1.rif.getText());
+             
 
                 java.sql.Date sqlDate = convert(as.jDateChooser2.getDate());
                 modasa.setFecha(sqlDate);
@@ -331,7 +331,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
                 modasa.setNombre_asamblea(as.txtNombreAsamblea.getText());
                 modasa.setDescripcion(as.txaDescripcion.getText());
-                modasa.setId_condominio(panta1.rif.getText());
+               
                 modasa.setId(Integer.parseInt(as.txtid.getText()));
 
                 java.sql.Date sqlDate = convert(as.jDateChooser2.getDate());
@@ -406,7 +406,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         int columna = this.cataa.jTable1.getSelectedColumn(); // luego, obtengo la columna seleccionada
         String dato = String.valueOf(this.cataa.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
         modasa.setId(Integer.parseInt(dato));
-        modasa.setId_condominio(panta1.rif.getText());
+       
         modasa.buscarAsambleas(modasa);
         this.as.setVisible(true);
         as.txtid.setVisible(false);

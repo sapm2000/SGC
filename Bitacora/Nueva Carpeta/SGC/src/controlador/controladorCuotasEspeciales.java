@@ -196,7 +196,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             this.cuotae.btnEliminar.setEnabled(false);
             modcuo.setEstado("Pendiente");
             this.cuotae.jCalcular.setEnabled(true);
-            modasa.setId_condominio(panta1.rif.getText());
+           
             cuotae.jAsamblea.removeAllItems();
             cuotae.jConcepto.removeAllItems();
             listaasambleas = modasa.listarAsambleas();
@@ -291,7 +291,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                                 if (modcuo.registrar_cuota_especial(modcuo)) {
 
                                     JOptionPane.showMessageDialog(null, "Registro Guardado");
-                                    modcuo.setId_condominio(panta1.rif.getText());
+                                  
                                     llenartablaCuotasEspeciales(catacuoe.jTable1);
 
                                 } else {
@@ -311,7 +311,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
         if (e.getSource() == cuotae.btnModificar) {
             if (validar()) {
-                modasa.setId_condominio(panta1.rif.getText());
+               
                 modcon.setNombre_Concepto(cuotae.jConcepto.getSelectedItem().toString());
                 if (modcon.getNombre_Concepto().equals("Seleccione el Concepto")) {
                     JOptionPane.showMessageDialog(null, "seleccione un concepto");
@@ -342,7 +342,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                             int var1 = 0;
                             int bre = 0;
                             var1 = modcuo.getMes();
-                            modc.setId_condominio(panta1.rif.getText());
+                         
                             for (int i = 0; i < modcuo.getN_meses(); i++) {
 
                                 if (var1 + i > 12) {
@@ -378,7 +378,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                                 if (modcuo.modificar_cuota_especial(modcuo)) {
 
                                     JOptionPane.showMessageDialog(null, "Registro Modificado");
-                                    modcuo.setId_condominio(panta1.rif.getText());
+                                 
                                     llenartablaCuotasEspeciales(catacuoe.jTable1);
                                     this.cuotae.dispose();
 
@@ -399,7 +399,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
         if (e.getSource() == cuotae.btnEliminar) {
 
-            modcuo.setId_condominio(panta1.rif.getText());
+        
             modcuo.setId(Integer.parseInt(cuotae.txtid.getText()));
 
             if (modcuo.eliminar_cuotas_especiales(modcuo)) {
@@ -464,7 +464,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             if (cuotae.si.isSelected()) {
                 if (modcuo.getEstado().equals("Pendiente")) {
                     cuotae.jAsamblea.setVisible(true);
-                     modasa.setId_condominio(panta1.rif.getText());
+                   
                     listaasambleas = modasa.listarAsambleas();
                     cuotae.jAsamblea.removeAllItems();
                     crearCbxAsamblea(listaasambleas);
@@ -488,7 +488,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             int fila = this.catacuoe.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
             String dato = String.valueOf(this.catacuoe.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
             modcuo.setId(Integer.parseInt(dato));
-            modcuo.setId_condominio(panta1.rif.getText());
+           
             modcuo.buscarCuotaEspecial(modcuo);
             this.cuotae.setVisible(true);
             cuotae.btnBuscarproveedor.setVisible(true);
@@ -497,7 +497,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             cuotae.jAsamblea.removeAllItems();
             cuotae.jConcepto.removeAllItems();
 
-            modasa.setId_condominio(panta1.rif.getText());
+            
 
             cuotae.txtProveedor.setText(modcuo.getId_proveedor());
 

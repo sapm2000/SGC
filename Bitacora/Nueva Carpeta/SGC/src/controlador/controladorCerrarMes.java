@@ -134,7 +134,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                         JOptionPane.showMessageDialog(null, "Este mes ya se ha cerrado");
                     } else {
 
-                        modc.setId_condominio(panta1.rif.getText());
+                    
                         
                         modc.setMes_cierre(rec.jMonthChooser1.getMonth() + 1);
                         modc.setAño_cierre(rec.jYearChooser1.getYear());
@@ -173,7 +173,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
 
                         }
 
-                        modgac.setId_condominio(panta1.rif.getText());
+                       
                         modgac.setMes(modc.getMes_cierre());
                         modgac.setAño(modc.getAño_cierre());
                         listagastocomun = modgac.listarGastoComuncierremes();
@@ -223,7 +223,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
 
                             }
                         }
-                        modcuo.setId_condominio(panta1.rif.getText());
+                     
                         listacuotasespeciales = modcuo.listarCuotasEspecialescerrarmes();
                         int numCuotas = listacuotasespeciales.size();
                         Object[] tipo_cuota = new Object[numCuotas];
@@ -376,7 +376,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                 }
                             }
                         }
-                        modin.setId_condominio(panta1.rif.getText());
+                       
                         listainteres = modin.listarInteresCerrames();
                         int numInteres = listainteres.size();
                         Object[] id_interes = new Object[numInteres];
@@ -421,7 +421,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                         }
 
                         for (int m = 0; m < numRegistro; m++) {
-                            modc.setId_condominio(panta1.rif.getText());
+                        
                             modc.setId(Integer.parseInt(String.valueOf(id_factura[m])));
                             modc.setTipo_gasto("Gasto comun");
                             if (modc.buscartotal(modc)) {
@@ -461,14 +461,14 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                 modc.setMonto(totalfinal);
                                 modc.setAlicuota(Double.parseDouble(String.valueOf(alicuota[m])));
                                 modc.setEstado("Pendiente de Pago");
-                                modc.setId_condominio(panta1.rif.getText());
+                             
 
                                 modc.actualizartotalcierre(modc);
 
                             }
                         }
                         if (numGastos > 0 || numReales > 0) {
-                            modc.setId_condominio(panta1.rif.getText());
+                           
                             modc.cerrar_mes(modc);
 
                             JOptionPane.showMessageDialog(null, "Cierre satisfactorio");

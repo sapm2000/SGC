@@ -233,10 +233,10 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
                         java.sql.Date sqlDate = convert(gc.jDateChooser1.getDate());
                         modgac.setFecha(sqlDate);
                         modgac.setEstado("Pendiente");
-                        modgac.setId_condominio(panta1.rif.getText());
+                      
                         modc.setMes_cierre(gc.jMonthChooser1.getMonth() + 1);
                         modc.setAño_cierre(gc.jYearChooser1.getYear());
-                        modc.setId_condominio(panta1.rif.getText());
+                       
 
                         if (modc.buscarfechas(modc)) {
                             JOptionPane.showMessageDialog(null, "no puede registrar gastos a un periodo ya cerrado");
@@ -245,7 +245,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
                             if (modgac.registrar_gasto_comun(modgac)) {
 
                                 JOptionPane.showMessageDialog(null, "Registro Guardado");
-                                modgac.setId_condominio(panta1.rif.getText());
+                             
                                 LlenartablaGastocomun(catagc.jTable1);
                             } else {
 
@@ -281,7 +281,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
                         modgac.setId(Integer.parseInt(gc.txtid.getText()));
                         modc.setMes_cierre(gc.jMonthChooser1.getMonth() + 1);
                         modc.setAño_cierre(gc.jYearChooser1.getYear());
-                        modc.setId_condominio(panta1.rif.getText());
+                      
 
                         if (modc.buscarfechas(modc)) {
                             JOptionPane.showMessageDialog(null, "no puede registrar gastos a un periodo ya cerrado");
@@ -290,7 +290,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
                             java.sql.Date sqlDate = convert(gc.jDateChooser1.getDate());
                             modgac.setFecha(sqlDate);
                             modgac.setEstado("Pendiente");
-                            modgac.setId_condominio(panta1.rif.getText());
+                    
 
                             double var1 = Double.parseDouble(gc.txtMonto.getText());
                             double var2 = var1 - montoi;
@@ -301,7 +301,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
                                 if (modgac.modificar_gasto_comun(modgac)) {
 
                                     JOptionPane.showMessageDialog(null, "Registro Modificado");
-                                    modgac.setId_condominio(panta1.rif.getText());
+                                  
                                     LlenartablaGastocomun(catagc.jTable1);
                                     this.gc.dispose();
 
@@ -323,7 +323,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
 
         if (e.getSource() == gc.btnEliminar) {
 
-            modgac.setId_condominio(panta1.rif.getText());
+         
             modgac.setId(Integer.parseInt(gc.txtid.getText()));
 
             if (modgac.eliminar_gasto_comun(modgac)) {
@@ -395,7 +395,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
             int fila = this.catagc.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
             String dato = String.valueOf(this.catagc.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
             modgac.setId(Integer.parseInt(dato));
-            modgac.setId_condominio(panta1.rif.getText());
+         
             modgac.buscargastoComun(modgac);
              gc.btnBuscarproveedor.setVisible(true);
             this.gc.setVisible(true);
