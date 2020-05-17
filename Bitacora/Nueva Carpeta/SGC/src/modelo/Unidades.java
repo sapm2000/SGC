@@ -200,7 +200,6 @@ public class Unidades extends ConexionBD {
 //        return listaPropietario;
 //
 //    }
-
     public boolean registrar() {
         ps = null;
         Connection con = getConexion();
@@ -505,7 +504,7 @@ public class Unidades extends ConexionBD {
             ps = con.prepareStatement(sql);
 
             ps.setInt(1, getId());
-
+ 
             rs = ps.executeQuery();
 
             ArrayList<Propietarios> prop;
@@ -513,16 +512,19 @@ public class Unidades extends ConexionBD {
 
             while (rs.next()) {
                 prop.add(new Propietarios(rs.getString("cedula")));
-
+               
             }
 
             boolean encontrado = false;
 
-            System.out.println(prop.size());
+           
             System.out.println(getPropietario().size());
-            for (int k = 0; k < getPropietario().size(); k++) {
-                for (int j = 0; j < prop.size(); j++) {
-                    if (prop.get(j).getCedula().equals(getPropietario().get(k).getCedula())) {
+             System.out.println(prop.size());
+            for (int k = 0; k <  prop.size(); k++) {  
+                for (int j = 0; j <getPropietario().size(); j++) {
+                   
+                  
+                    if (prop.get(k).getCedula().equals(getPropietario().get(j).getCedula())) {
                         encontrado = true;
                         break;
 
@@ -530,15 +532,16 @@ public class Unidades extends ConexionBD {
                         encontrado = false;
                     }
                 }
-
+                JOptionPane.showMessageDialog(null, encontrado);
                 if (encontrado == false) {
-                    sql = "UPDATE puente_unidad_propietarios SET fecha_hasta = LOCALTIMESTAMP(0), activo = 0 WHERE id = ? AND cedula = ?";
+                    sql = "UPDATE puente_unidad_propietarios SET fecha_hasta = LOCALTIMESTAMP(0), activo = false WHERE id_unidad = ? AND ci_propietario = ?";
 
                     ps = con.prepareStatement(sql);
 
                     ps.setInt(1, getId());
-                    ps.setString(2, propietario.get(k).getCedula());
-
+                     JOptionPane.showMessageDialog(null, getId());
+                    ps.setString(2, prop.get(k).getCedula());
+                    JOptionPane.showMessageDialog(null, prop.get(k).getCedula());
                     ps.execute();
 
                 }
@@ -596,7 +599,6 @@ public class Unidades extends ConexionBD {
 //        }
 //
 //    }
-
     public boolean retirarpropietario(Unidades moduni) {
 
         PreparedStatement ps = null;
