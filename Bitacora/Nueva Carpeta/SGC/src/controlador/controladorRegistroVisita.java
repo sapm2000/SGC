@@ -32,10 +32,10 @@ public class controladorRegistroVisita implements ActionListener, ItemListener, 
     ArrayList<Registro_visitas> listaRegistroVisita;
     DefaultTableModel dm;
 
-    public controladorRegistroVisita(registroVisitas Rvis, Registro_visitas modRvtas) {
+    public controladorRegistroVisita() {
 
-        this.visRvis = Rvis;
-        this.modRvtas = modRvtas;
+        this.visRvis = new registroVisitas();
+        this.modRvtas = new Registro_visitas();
         this.modUni = new Unidades();
         this.modRvisitante = new Registro_visitante();
         this.visRvis.txtCedula.addActionListener(this);
@@ -47,6 +47,7 @@ public class controladorRegistroVisita implements ActionListener, ItemListener, 
         crearCbxUnidad(listaUnidad);
 
         llenarTabla(visRvis.jTable);
+        this.visRvis.setVisible(true);
 
     }
 

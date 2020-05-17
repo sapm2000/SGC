@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import sgc.SGC;
 
 /**
  *
@@ -23,7 +24,7 @@ public class CerrarMes extends ConexionBD {
     private double monto;
     private int id_unidad;
     private int id_gasto;
-    private String id_condominio;
+    
     private double alicuota;
     private String estado;
     private int meses_res;
@@ -123,13 +124,7 @@ public class CerrarMes extends ConexionBD {
         this.id_gasto = id_gasto;
     }
 
-    public String getId_condominio() {
-        return id_condominio;
-    }
-
-    public void setId_condominio(String id_condominio) {
-        this.id_condominio = id_condominio;
-    }
+    
 
     public double getAlicuota() {
         return alicuota;
@@ -225,7 +220,7 @@ public class CerrarMes extends ConexionBD {
 
             ps.setInt(1, getMes_cierre());
             ps.setInt(2, getAño_cierre());
-            ps.setString(3, getId_condominio());
+            ps.setString(3, SGC.condominioActual.getRif());
 
             ps.execute();
 
@@ -739,7 +734,7 @@ public class CerrarMes extends ConexionBD {
         String sql = "SELECT id, mes, anio FROM cierre_de_mes where id_condominio=?;";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_condominio());
+            ps.setString(1, SGC.condominioActual.getRif());
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -782,11 +777,11 @@ public class CerrarMes extends ConexionBD {
 
             ps.setInt(1, modc.getMes_cierre());
             ps.setInt(2, modc.getAño_cierre());
-            ps.setString(3, modc.getId_condominio());
+            ps.setString(3, SGC.condominioActual.getRif());
             rs = ps.executeQuery();
             if (rs.next()) {
 
-                modc.setId_condominio(rs.getString("id_condominio"));
+               
 
                 return true;
             }

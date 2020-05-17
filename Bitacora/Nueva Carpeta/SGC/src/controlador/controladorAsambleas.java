@@ -47,12 +47,12 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
     private Propietarios modpro;
     private PantallaPrincipal1 panta1;
 
-    public controladorAsambleas(catalogoAsambleas cataa, asambleas as, Asambleas modasa, Propietarios modpro, PantallaPrincipal1 panta1) {
-        this.cataa = cataa;
-        this.as = as;
-        this.modasa = modasa;
-        this.modpro = modpro;
-        this.panta1 = panta1;
+    public controladorAsambleas() {
+        this.cataa = new catalogoAsambleas();
+        this.as = new asambleas();
+        this.modasa = new Asambleas();
+        this.modpro = new Propietarios();
+       
         this.cataa.jTable1.addMouseListener(this);
 
         this.cataa.addWindowListener(this);
@@ -60,6 +60,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         this.as.txtBuscarPropietarios.addKeyListener(this);
 
         this.as.btnGuardar.addActionListener(this);
+          cataa.setVisible(true);
 
         //this.as.btnModificar.addActionListener(this);
     }
@@ -441,7 +442,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
     @Override
     public void windowOpened(WindowEvent e) {
-        modasa.setId_condominio(panta1.rif.getText());
+   
         Llenartablaasambleas(cataa.jTable1);
         
         Component[] components =as.jPanel4.getComponents();

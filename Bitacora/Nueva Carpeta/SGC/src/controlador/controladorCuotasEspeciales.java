@@ -54,16 +54,16 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
     ArrayList<ModeloConceptoGastos> listaConGas;
     ArrayList<Asambleas> listaasambleas;
 
-    public controladorCuotasEspeciales(cuotasEspeciales cuotae, catalogoCuotasEspeciales catacuoe, Proveedores modpro, ModeloConceptoGastos modcon, Asambleas modasa, PantallaPrincipal1 panta1, CuotasEspeciales modcuo, CerrarMes modc, buscarProveedor buscpro) {
-        this.cuotae = cuotae;
-        this.catacuoe = catacuoe;
-        this.modcon = modcon;
-        this.modpro = modpro;
-        this.modasa = modasa;
-        this.panta1 = panta1;
-        this.modcuo = modcuo;
-        this.modc = modc;
-        this.buscpro = buscpro;
+    public controladorCuotasEspeciales() {
+        this.cuotae = new cuotasEspeciales();
+        this.catacuoe = new catalogoCuotasEspeciales();
+        this.modcon = new ModeloConceptoGastos();
+        this.modpro = new Proveedores();
+        this.modasa = new Asambleas();
+        
+        this.modcuo = new CuotasEspeciales();
+        this.modc = new CerrarMes();
+        this.buscpro = new buscarProveedor();
 
         this.catacuoe.jButton2.addActionListener(this);
         this.catacuoe.jTable1.addMouseListener(this);
@@ -82,6 +82,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
         cuotae.txaObservaciones.addKeyListener(this);
         listaConGas = modcon.listarConcepto();
         listaasambleas = modasa.listarAsambleas();
+        this.catacuoe.setVisible(true);
     }
 
     public void llenartablaCuotasEspeciales(JTable tablaD) {
@@ -608,7 +609,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
     @Override
     public void windowOpened(WindowEvent e) {
-        modcuo.setId_condominio(panta1.rif.getText());
+       
         llenartablaCuotasEspeciales(catacuoe.jTable1);
 
         Component[] components = cuotae.jPanel2.getComponents();

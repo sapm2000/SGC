@@ -38,19 +38,19 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
     private catalogoComunicados catacom;
     private comunicados com;
     private Comunicados modco;
-    private PantallaPrincipal1 panta1;
+   
     ArrayList<CrudUsuario> listausuarios;
     private CrudUsuario modus;
     ArrayList<Comunicados> listacomunicados;
     DefaultTableModel dm;
     ArrayList<Comunicados> listausuariosmod;
 
-    public controladorComunicados(catalogoComunicados catacom, comunicados com, Comunicados modco, PantallaPrincipal1 panta1, CrudUsuario modus) {
-        this.catacom = catacom;
-        this.com = com;
-        this.modco = modco;
-        this.panta1 = panta1;
-        this.modus = modus;
+    public controladorComunicados() {
+        this.catacom = new catalogoComunicados();
+        this.com = new comunicados();
+        this.modco = new Comunicados();
+      
+        this.modus = new CrudUsuario();
         this.catacom.addWindowListener(this);
         this.catacom.jTable1.addMouseListener(this);
         this.com.txtBuscarPropietarios.addKeyListener(this);
@@ -59,6 +59,7 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
         this.catacom.jTextField1.addKeyListener(this);
 
         this.com.btnEnviar.addActionListener(this);
+        this.catacom.setVisible(true);
 
     }
 
@@ -257,7 +258,7 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
                 int j = 0;
                 modco.setAsunto(com.txtAsunto.getText());
                 modco.setMensaje(com.txaMensaje.getText());
-                modco.setId_condominio(panta1.rif.getText());
+              
                 for (int i = 0; i < com.jTable1.getRowCount(); i++) {
                     if (valueOf(com.jTable1.getValueAt(i, 5)) == "true") {
 
@@ -355,7 +356,7 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
 
     @Override
     public void windowOpened(WindowEvent e) {
-        modco.setId_condominio(panta1.rif.getText());
+       
         llenartablaComunicado(catacom.jTable1);
     }
 
@@ -395,7 +396,7 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
 
         String dato = String.valueOf(this.catacom.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
         modco.setId(Integer.parseInt(dato));
-        modco.setId_condominio(panta1.rif.getText());
+       
         modco.buscarComunicado(modco);
         this.com.setVisible(true);
         com.txtid.setVisible(false);

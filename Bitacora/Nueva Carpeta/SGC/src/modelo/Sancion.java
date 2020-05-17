@@ -16,7 +16,7 @@ import sgc.SGC;
  *
  * @author rma
  */
-public class Sancion extends Unidades {
+public class Sancion extends ConexionBD {
 
     private String tipo;
     private int mes;

@@ -28,7 +28,7 @@ public class Fondo extends ConexionBD {
     private String observacion;
     private String descripcion;
     private double saldo;
-    private String id_condominio;
+   
 
     public int getId() {
         return id;
@@ -86,13 +86,7 @@ public class Fondo extends ConexionBD {
         this.saldo = saldo;
     }
 
-    public String getId_condominio() {
-        return id_condominio;
-    }
-
-    public void setId_condominio(String id_condominio) {
-        this.id_condominio = id_condominio;
-    }
+ 
 
     public boolean registrar(Fondo modfon) {
 
@@ -110,7 +104,7 @@ public class Fondo extends ConexionBD {
             ps.setString(4, getObservacion());
             ps.setDouble(5, getMonto_inicial());
             ps.setDouble(6, getMonto_inicial());
-            ps.setString(7, getId_condominio());
+            ps.setString(7,  SGC.condominioActual.getRif());
             ps.execute();
 
             return true;
@@ -200,7 +194,7 @@ public class Fondo extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, modfon.getId_condominio());
+            ps.setString(1,  SGC.condominioActual.getRif());
             ps.setString(2, modfon.getTipo());
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -246,7 +240,7 @@ public class Fondo extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, modfon.getId_condominio());
+            ps.setString(1,  SGC.condominioActual.getRif());
             ps.setString(2, modfon.getTipo());
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -444,7 +438,7 @@ public class Fondo extends ConexionBD {
             conectar = getConexion();
             //Preparamos la consulta SQL
             pst = conectar.prepareStatement(SSQL);
-            pst.setString(1, getId_condominio());
+            pst.setString(1, SGC.condominioActual.getRif());
             //Ejecutamos la consulta
             result = pst.executeQuery();
 

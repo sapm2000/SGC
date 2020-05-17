@@ -56,15 +56,15 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
     ArrayList<CerrarMes> listadetalleinteres;
     DefaultTableModel dm;
 
-    public controladorUnidades(unidades uni, catalogoUnidades catauni, detallecuenta detacun, detalleRecibo detare, Unidades moduni, PantallaPrincipal1 panta1, CerrarMes modc, catalogoInactivoUnidades cataiuni, unidadesInactivas unii) {
-        this.vista = uni;
-        this.catalogo = catauni;
-        this.detacun = detacun;
-        this.detare = detare;
-        this.modelo = moduni;
-        this.cataiuni = cataiuni;
-        this.unii = unii;
-        this.modc = modc;
+    public controladorUnidades() {
+        this.vista = new unidades();
+        this.catalogo = new catalogoUnidades();
+        this.detacun = new detallecuenta();
+        this.detare = new detalleRecibo();
+        this.modelo = new Unidades();
+        this.cataiuni = new catalogoInactivoUnidades();
+        this.unii = new unidadesInactivas();
+        this.modc = new CerrarMes();
         modPropietario = new Propietarios();
 
         this.unii.btnDesactivar.addActionListener(this);
@@ -86,6 +86,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         this.vista.btnModificar.addActionListener(this);
         this.detacun.txtBuscar.addKeyListener(this);
         this.detacun.jTable1.addMouseListener(this);
+        this.catalogo.setVisible(true);
     }
 
     public void llenarTablaPropietarios(JTable tablaD, String accion) {
