@@ -29,7 +29,7 @@ public class GastoComun extends ModeloConceptoGastos {
     private String id_proveedor;
     private String observaciones;
     private String estado;
-    private String id_condominio;
+  
     private double saldo;
 
     public double getSaldo() {
@@ -40,14 +40,7 @@ public class GastoComun extends ModeloConceptoGastos {
         this.saldo = saldo;
     }
 
-    public String getId_condominio() {
-        return id_condominio;
-    }
-
-    public void setId_condominio(String id_condominio) {
-        this.id_condominio = id_condominio;
-    }
-
+   
     public String getTipo_gasto() {
         return tipo_gasto;
     }
@@ -148,7 +141,7 @@ public class GastoComun extends ModeloConceptoGastos {
             ps.setString(8, getObservaciones());
             ps.setDate(9, getFecha());
             ps.setString(10, getEstado());
-            ps.setString(11, getId_condominio());
+            ps.setString(11, SGC.condominioActual.getRif());
             ps.setDouble(12, getSaldo());
             ps.execute();
 
@@ -243,7 +236,7 @@ public class GastoComun extends ModeloConceptoGastos {
         String sql = "SELECT gasto_comun.id, tipo, mes, anio, monto, n_factura, proveedores.cedula,  concepto_gasto.nom_concepto, observaciones, fecha, estado, saldo FROM gasto_comun inner join proveedores on proveedores.cedula=gasto_comun.id_proveedor INNER join concepto_gasto on concepto_gasto.id = gasto_comun.id_concepto where gasto_comun.id_condominio=? and mes=? and anio=?  ORDER by tipo desc, mes, anio;";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_condominio());
+            ps.setString(1, SGC.condominioActual.getRif());
             ps.setInt(2, getMes());
             ps.setInt(3, getAño());
             rs = ps.executeQuery();

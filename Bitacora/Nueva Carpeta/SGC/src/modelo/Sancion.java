@@ -16,7 +16,7 @@ import sgc.SGC;
  *
  * @author rma
  */
-public class Sancion extends Unidades {
+public class Sancion extends ConexionBD {
 
     private String tipo;
     private int mes;
@@ -441,7 +441,7 @@ public class Sancion extends Unidades {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId_sancion());
 
-            ps.setString(2, getId_condominio());
+            ps.setString(2, SGC.condominioActual.getRif());
 
             rs = ps.executeQuery();
 

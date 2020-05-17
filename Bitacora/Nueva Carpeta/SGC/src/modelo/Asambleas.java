@@ -18,7 +18,7 @@ import sgc.SGC;
  *
  * @author rma
  */
-public class Asambleas extends Propietarios {
+public class Asambleas extends ConexionBD {
 
     private int id;
     private String nombre_asamblea;
@@ -88,7 +88,7 @@ public class Asambleas extends Propietarios {
             ps.setString(1, modasa.getNombre_asamblea());
             ps.setDate(2, modasa.getFecha());
             ps.setString(3, modasa.getDescripcion());
-            ps.setString(4, modasa.getId_condominio());
+            ps.setString(4, SGC.condominioActual.getRif());
 
             ps.execute();
             return true;
@@ -284,7 +284,7 @@ public class Asambleas extends Propietarios {
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
-            ps.setString(2, getId_condominio());    
+            ps.setString(2, SGC.condominioActual.getRif());    
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -404,7 +404,7 @@ public class Asambleas extends Propietarios {
             conectar = getConexion();
             //Preparamos la consulta SQL
             pst = conectar.prepareStatement(SSQL);
-            pst.setString(1, getId_condominio());
+            pst.setString(1, SGC.condominioActual.getRif());
             //Ejecutamos la consulta
             result = pst.executeQuery();
 

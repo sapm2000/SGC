@@ -28,7 +28,7 @@ public class Fondo extends ConexionBD {
     private String observacion;
     private String descripcion;
     private double saldo;
-    private String id_condominio;
+   
 
     public int getId() {
         return id;
@@ -86,13 +86,7 @@ public class Fondo extends ConexionBD {
         this.saldo = saldo;
     }
 
-    public String getId_condominio() {
-        return id_condominio;
-    }
-
-    public void setId_condominio(String id_condominio) {
-        this.id_condominio = id_condominio;
-    }
+ 
 
     public boolean registrar(Fondo modfon) {
 
@@ -444,7 +438,7 @@ public class Fondo extends ConexionBD {
             conectar = getConexion();
             //Preparamos la consulta SQL
             pst = conectar.prepareStatement(SSQL);
-            pst.setString(1, getId_condominio());
+            pst.setString(1, SGC.condominioActual.getRif());
             //Ejecutamos la consulta
             result = pst.executeQuery();
 

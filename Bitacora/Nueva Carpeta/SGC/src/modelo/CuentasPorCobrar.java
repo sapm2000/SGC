@@ -25,15 +25,9 @@ public class CuentasPorCobrar extends ConexionBD {
     private String referencia;
     private int id_fondo;
     private java.sql.Date fecha;
-    private String id_condominio;
+   
 
-    public String getId_condominio() {
-        return id_condominio;
-    }
-
-    public void setId_condominio(String id_condominio) {
-        this.id_condominio = id_condominio;
-    }
+   
     
     
 

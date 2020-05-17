@@ -12,19 +12,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import sgc.SGC;
 
 /**
  *
  * @author rma
  */
-public class Cuenta extends Banco {
+public class Cuenta extends ConexionBD {
 
     private String cedula;
     private String n_cuenta;
     private String beneficiario;
     private String tipo;
     private int id_banco;
-    private String id_condominio;
+    
     private int cantidad;
 
     public String getCedula() {
@@ -67,13 +68,7 @@ public class Cuenta extends Banco {
         this.id_banco = id_banco;
     }
 
-    public String getId_condominio() {
-        return id_condominio;
-    }
-
-    public void setId_condominio(String id_condominio) {
-        this.id_condominio = id_condominio;
-    }
+    
 
     public int getCantidad() {
         return cantidad;
@@ -190,7 +185,7 @@ public class Cuenta extends Banco {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_condominio());
+            ps.setString(1, SGC.condominioActual.getRif());
             ps.setString(2, getN_cuenta());
 
             ps.execute();
@@ -578,7 +573,7 @@ public class Cuenta extends Banco {
             conectar = getConexion();
             //Preparamos la consulta SQL
             pst = conectar.prepareStatement(SSQL);
-            pst.setString(1, getId_condominio());
+            pst.setString(1, SGC.condominioActual.getRif());
             //Ejecutamos la consulta
             result = pst.executeQuery();
 

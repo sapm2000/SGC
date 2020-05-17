@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import static sgc.SGC.condominioActual;
+import sgc.SGC;
 
 /**
  *
@@ -31,7 +32,7 @@ public class CuotasEspeciales extends ConexionBD {
     private int id_asamblea;
     private String observacion;
     private String estado;
-    private String id_condominio;
+    
     private String nombre_Concepto;
     private String nombre_asamble;
     private int n_meses_restantes;
@@ -60,7 +61,7 @@ public class CuotasEspeciales extends ConexionBD {
             ps.setInt(10, getId_asamblea());
             ps.setString(11, getObservacion());
             ps.setString(12, getEstado());
-            ps.setString(13, getId_condominio());
+            ps.setString(13, SGC.condominioActual.getRif());
             ps.execute();
 
             return true;
@@ -167,7 +168,7 @@ public class CuotasEspeciales extends ConexionBD {
         try {
             ps = con.prepareStatement(sql);
 
-            ps.setString(1, getId_condominio());
+            ps.setString(1, SGC.condominioActual.getRif());
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -484,13 +485,7 @@ public class CuotasEspeciales extends ConexionBD {
         this.estado = estado;
     }
 
-    public String getId_condominio() {
-        return id_condominio;
-    }
-
-    public void setId_condominio(String id_condominio) {
-        this.id_condominio = id_condominio;
-    }
+ 
 
     public String getNombre_Concepto() {
         return nombre_Concepto;

@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+import sgc.SGC;
 /**
  *
  * @author rma
@@ -21,7 +21,7 @@ public class Interes extends Condominio {
     private String nombre;
     private double factor;
     private String estado;
-    private String id_condominio;
+  
     private int n_condominios;
 
     public int getId() {
@@ -56,13 +56,7 @@ public class Interes extends Condominio {
         this.estado = estado;
     }
 
-    public String getId_condominio() {
-        return id_condominio;
-    }
-
-    public void setId_condominio(String id_condominio) {
-        this.id_condominio = id_condominio;
-    }
+   
 
     public int getN_condominios() {
         return n_condominios;
@@ -162,7 +156,7 @@ public class Interes extends Condominio {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_condominio());
+            ps.setString(1, SGC.condominioActual.getRif());
             ps.setInt(2, getId());
 
             ps.execute();
@@ -284,7 +278,7 @@ public class Interes extends Condominio {
         String sql = "select interes.id, interes.nombre, interes.factor, interes.estado from interes inner join puente_interes_condominio on interes.id=puente_interes_condominio.id_interes where puente_interes_condominio.id_condominio=? and interes.activo=1 group by interes.id,puente_interes_condominio.id_condominio";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_condominio());
+            ps.setString(1, SGC.condominioActual.getRif());
             rs = ps.executeQuery();
 
             while (rs.next()) {
