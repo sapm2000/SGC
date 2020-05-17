@@ -17,19 +17,20 @@ import sgc.SGC;
  *
  * @author rma
  */
-public class GastoComun extends ModeloConceptoGastos {
+public class GastoComun extends ConexionBD {
 
+    private int id;
     private String tipo_gasto;
     private int mes;
     private int año;
     private double monto;
     private String numero_factura;
     private java.sql.Date fecha;
-    private int id_concepto;
-    private String id_proveedor;
+    private ModeloConceptoGastos concep = new ModeloConceptoGastos();
+    private Proveedores prov = new Proveedores();
     private String observaciones;
     private String estado;
-    private String id_condominio;
+  
     private double saldo;
 
     public double getSaldo() {
@@ -40,14 +41,15 @@ public class GastoComun extends ModeloConceptoGastos {
         this.saldo = saldo;
     }
 
-    public String getId_condominio() {
-        return id_condominio;
+    public int getId() {
+        return id;
     }
 
-    public void setId_condominio(String id_condominio) {
-        this.id_condominio = id_condominio;
+    public void setId(int id) {
+        this.id = id;
     }
 
+   
     public String getTipo_gasto() {
         return tipo_gasto;
     }
@@ -96,21 +98,7 @@ public class GastoComun extends ModeloConceptoGastos {
         this.fecha = fecha;
     }
 
-    public int getId_concepto() {
-        return id_concepto;
-    }
-
-    public void setId_concepto(int id_concepto) {
-        this.id_concepto = id_concepto;
-    }
-
-    public String getId_proveedor() {
-        return id_proveedor;
-    }
-
-    public void setId_proveedor(String id_proveedor) {
-        this.id_proveedor = id_proveedor;
-    }
+   
 
     public String getObservaciones() {
         return observaciones;
@@ -143,12 +131,12 @@ public class GastoComun extends ModeloConceptoGastos {
             ps.setInt(3, getAño());
             ps.setDouble(4, getMonto());
             ps.setString(5, getNumero_factura());
-            ps.setString(6, getId_proveedor());
-            ps.setInt(7, getId_concepto());
+            ps.setString(6, prov.getCedula());
+            ps.setInt(7, concep.getId());
             ps.setString(8, getObservaciones());
             ps.setDate(9, getFecha());
             ps.setString(10, getEstado());
-            ps.setString(11, getId_condominio());
+            ps.setString(11, SGC.condominioActual.getRif());
             ps.setDouble(12, getSaldo());
             ps.execute();
 
@@ -206,8 +194,8 @@ public class GastoComun extends ModeloConceptoGastos {
                 modgac.setAño(rs.getInt(4));
                 modgac.setMonto(rs.getDouble(5));
                 modgac.setNumero_factura(rs.getString(6));
-                modgac.setId_proveedor(rs.getString(7));
-                modgac.setNombre_Concepto(rs.getString(8));
+                modgac.prov.setCedula(rs.getString(7));
+                modgac.concep.setNombre_Concepto(rs.getString(8));
                 modgac.setObservaciones(rs.getString(9));
                 modgac.setFecha(rs.getDate(10));
                 modgac.setEstado(rs.getString(11));
@@ -243,7 +231,7 @@ public class GastoComun extends ModeloConceptoGastos {
         String sql = "SELECT gasto_comun.id, tipo, mes, anio, monto, n_factura, proveedores.cedula,  concepto_gasto.nom_concepto, observaciones, fecha, estado, saldo FROM gasto_comun inner join proveedores on proveedores.cedula=gasto_comun.id_proveedor INNER join concepto_gasto on concepto_gasto.id = gasto_comun.id_concepto where gasto_comun.id_condominio=? and mes=? and anio=?  ORDER by tipo desc, mes, anio;";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_condominio());
+            ps.setString(1, SGC.condominioActual.getRif());
             ps.setInt(2, getMes());
             ps.setInt(3, getAño());
             rs = ps.executeQuery();
@@ -258,8 +246,8 @@ public class GastoComun extends ModeloConceptoGastos {
                 modgac.setAño(rs.getInt(4));
                 modgac.setMonto(rs.getDouble(5));
                 modgac.setNumero_factura(rs.getString(6));
-                modgac.setId_proveedor(rs.getString(7));
-                modgac.setNombre_Concepto(rs.getString(8));
+                modgac.prov.setCedula(rs.getString(7));
+                modgac.concep.setNombre_Concepto(rs.getString(8));
                 modgac.setObservaciones(rs.getString(9));
                 modgac.setFecha(rs.getDate(10));
                 modgac.setEstado(rs.getString(11));
@@ -303,8 +291,8 @@ public class GastoComun extends ModeloConceptoGastos {
                 modgac.setAño(rs.getInt("anio"));
                 modgac.setMonto(rs.getDouble("monto"));
                 modgac.setNumero_factura(rs.getString("n_factura"));
-                modgac.setId_proveedor(rs.getString("cedula"));
-                modgac.setNombre_Concepto(rs.getString("nom_concepto"));
+                modgac.prov.setCedula(rs.getString("cedula"));
+                modgac.concep.setNombre_Concepto(rs.getString("nom_concepto"));
                 modgac.setObservaciones(rs.getString("observaciones"));
                 modgac.setFecha(rs.getDate("fecha"));
                 modgac.setEstado(rs.getString("estado"));
@@ -349,8 +337,8 @@ public class GastoComun extends ModeloConceptoGastos {
             ps.setInt(3, getAño());
             ps.setDouble(4, getMonto());
             ps.setString(5, getNumero_factura());
-            ps.setString(6, getId_proveedor());
-            ps.setInt(7, getId_concepto());
+            ps.setString(6, prov.getCedula());
+            ps.setInt(7, concep.getId());
             ps.setString(8, getObservaciones());
             ps.setDate(9, getFecha());
             ps.setDouble(10, getSaldo());

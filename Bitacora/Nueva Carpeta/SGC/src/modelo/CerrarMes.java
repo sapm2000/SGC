@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import sgc.SGC;
 
 /**
  *
@@ -21,27 +22,27 @@ public class CerrarMes extends ConexionBD {
     private int mes_cierre;
     private int año_cierre;
     private double monto;
-    private int id_unidad;
-    private int id_gasto;
-    private String id_condominio;
+    private Unidades uni = new Unidades();
+    private GastoComun gas = new GastoComun();
+    private Sancion san = new Sancion();
     private double alicuota;
     private String estado;
-    private int meses_res;
+    private CuotasEspeciales cuo = new CuotasEspeciales();
+    private ModeloConceptoGastos concep = new ModeloConceptoGastos();
+    private Proveedores prove = new Proveedores();
     private int meses_deuda;
-    private String nom_concepto;
-    private String cedula;
-    private String nom_proveedor;
-    private String tipo;
     private double saldo_restante;
     private String tipo_gasto;
 
-    public int getId_unidad() {
-        return id_unidad;
+    public int getMeses_deuda() {
+        return meses_deuda;
     }
 
-    public void setId_unidad(int id_unidad) {
-        this.id_unidad = id_unidad;
+    public void setMeses_deuda(int meses_deuda) {
+        this.meses_deuda = meses_deuda;
     }
+
+   
 
     public int getId() {
         return id;
@@ -67,29 +68,9 @@ public class CerrarMes extends ConexionBD {
         this.saldo_restante = saldo_restante;
     }
 
-    public int getMeses_deuda() {
-        return meses_deuda;
-    }
+   
 
-    public void setMeses_deuda(int meses_deuda) {
-        this.meses_deuda = meses_deuda;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public int getMeses_res() {
-        return meses_res;
-    }
-
-    public void setMeses_res(int meses_res) {
-        this.meses_res = meses_res;
-    }
+   
 
     public int getMes_cierre() {
         return mes_cierre;
@@ -115,21 +96,9 @@ public class CerrarMes extends ConexionBD {
         this.monto = monto;
     }
 
-    public int getId_gasto() {
-        return id_gasto;
-    }
+   
 
-    public void setId_gasto(int id_gasto) {
-        this.id_gasto = id_gasto;
-    }
-
-    public String getId_condominio() {
-        return id_condominio;
-    }
-
-    public void setId_condominio(String id_condominio) {
-        this.id_condominio = id_condominio;
-    }
+    
 
     public double getAlicuota() {
         return alicuota;
@@ -147,29 +116,7 @@ public class CerrarMes extends ConexionBD {
         this.estado = estado;
     }
 
-    public String getNom_concepto() {
-        return nom_concepto;
-    }
-
-    public void setNom_concepto(String nom_concepto) {
-        this.nom_concepto = nom_concepto;
-    }
-
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
-
-    public String getNom_proveedor() {
-        return nom_proveedor;
-    }
-
-    public void setNom_proveedor(String nom_proveedor) {
-        this.nom_proveedor = nom_proveedor;
-    }
+   
 
     public boolean registrarGasto(CerrarMes modc) {
 
@@ -185,7 +132,7 @@ public class CerrarMes extends ConexionBD {
             ps.setInt(1, getMes_cierre());
             ps.setInt(2, getAño_cierre());
             ps.setDouble(3, getMonto());
-            ps.setInt(4, getId_gasto());
+            ps.setInt(4, gas.getId());
             ps.setInt(5, getId());
             ps.setString(6, getTipo_gasto());
             ps.execute();
@@ -225,7 +172,7 @@ public class CerrarMes extends ConexionBD {
 
             ps.setInt(1, getMes_cierre());
             ps.setInt(2, getAño_cierre());
-            ps.setString(3, getId_condominio());
+            ps.setString(3, SGC.condominioActual.getRif());
 
             ps.execute();
 
@@ -262,7 +209,7 @@ public class CerrarMes extends ConexionBD {
 
             ps = con.prepareStatement(sql);
 
-            ps.setInt(1, getId_gasto());
+            ps.setInt(1, gas.getId());
             ps.setInt(2, getMes_cierre());
             ps.setInt(3, getAño_cierre());
             ps.setInt(4, getId());
@@ -390,7 +337,7 @@ public class CerrarMes extends ConexionBD {
 
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
-            ps.setInt(2, getId_gasto());
+            ps.setInt(2, gas.getId());
             ps.setInt(3, getMes_cierre());
             ps.setInt(4, getAño_cierre());
 
@@ -432,7 +379,7 @@ public class CerrarMes extends ConexionBD {
 
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
-            ps.setInt(2, getId_gasto());
+            ps.setInt(2, gas.getId());
             ps.setInt(3, getMes_cierre());
             ps.setInt(4, getAño_cierre());
 
@@ -510,7 +457,7 @@ public class CerrarMes extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId_unidad());
+            ps.setInt(1, uni.getId());
             ps.setDouble(2, getMonto());
             ps.setInt(3, getMes_cierre());
             ps.setInt(4, getAño_cierre());
@@ -594,7 +541,7 @@ public class CerrarMes extends ConexionBD {
             ps = con.prepareStatement(sql);
             ps.setString(1, getEstado());
 
-            ps.setInt(2, getId_gasto());
+            ps.setInt(2, gas.getId());
             ps.execute();
 
             return true;
@@ -630,8 +577,8 @@ public class CerrarMes extends ConexionBD {
             ps = con.prepareStatement(sql);
             ps.setString(1, getEstado());
 
-            ps.setInt(2, getMeses_res());
-            ps.setInt(3, getId_gasto());
+            ps.setInt(2, cuo.getN_meses_restantes());
+            ps.setInt(3, cuo.getId());
             ps.execute();
 
             return true;
@@ -667,7 +614,7 @@ public class CerrarMes extends ConexionBD {
             ps = con.prepareStatement(sql);
             ps.setString(1, getEstado());
 
-            ps.setInt(2, getId_gasto());
+            ps.setInt(2, san.getId());
             ps.execute();
 
             return true;
@@ -704,7 +651,7 @@ public class CerrarMes extends ConexionBD {
             ps.setDouble(1, getSaldo_restante());
             ps.setString(2, getEstado());
 
-            ps.setInt(3, getId_gasto());
+            ps.setInt(3, getId());
             ps.execute();
 
             return true;
@@ -739,14 +686,14 @@ public class CerrarMes extends ConexionBD {
         String sql = "SELECT id, mes, anio FROM cierre_de_mes where id_condominio=?;";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_condominio());
+            ps.setString(1, SGC.condominioActual.getRif());
             rs = ps.executeQuery();
 
             while (rs.next()) {
 
                 modc = new CerrarMes();
 
-                modc.setId_gasto(rs.getInt(1));
+                modc.setId(rs.getInt(1));
                 modc.setMes_cierre(rs.getInt(2));
                 modc.setAño_cierre(rs.getInt(3));
 
@@ -782,11 +729,11 @@ public class CerrarMes extends ConexionBD {
 
             ps.setInt(1, modc.getMes_cierre());
             ps.setInt(2, modc.getAño_cierre());
-            ps.setString(3, modc.getId_condominio());
+            ps.setString(3, SGC.condominioActual.getRif());
             rs = ps.executeQuery();
             if (rs.next()) {
 
-                modc.setId_condominio(rs.getString("id_condominio"));
+               
 
                 return true;
             }
@@ -824,7 +771,7 @@ public class CerrarMes extends ConexionBD {
         String sql = "SELECT id, monto, mes, anio, alicuota, estado, saldo_restante FROM factura_unidad where id_unidad=? order by anio,mes";
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId_unidad());
+            ps.setInt(1, uni.getId());
 
             rs = ps.executeQuery();
 
@@ -832,7 +779,7 @@ public class CerrarMes extends ConexionBD {
 
                 modc = new CerrarMes();
 
-                modc.setId_gasto(rs.getInt(1));
+                modc.gas.setId(rs.getInt(1));
                 modc.setMonto(rs.getDouble(2));
                 modc.setMes_cierre(rs.getInt(3));
                 modc.setAño_cierre(rs.getInt(4));
@@ -870,7 +817,7 @@ public class CerrarMes extends ConexionBD {
         String sql = "SELECT id, monto, mes, anio, alicuota, estado, saldo_restante FROM factura_unidad where id_unidad=? and estado='Pendiente de Pago' order by anio,mes";
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId_unidad());
+            ps.setInt(1, uni.getId());
 
             rs = ps.executeQuery();
 
@@ -878,7 +825,7 @@ public class CerrarMes extends ConexionBD {
 
                 modc = new CerrarMes();
 
-                modc.setId_gasto(rs.getInt(1));
+                modc.gas.setId(rs.getInt(1));
                 modc.setMonto(rs.getDouble(2));
                 modc.setMes_cierre(rs.getInt(3));
                 modc.setAño_cierre(rs.getInt(4));
@@ -916,7 +863,7 @@ public class CerrarMes extends ConexionBD {
         String sql = "SELECT id, monto, mes, anio, alicuota, estado, saldo_restante FROM factura_unidad where id_unidad=? and estado='Pagado' order by anio,mes";
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId_unidad());
+            ps.setInt(1, uni.getId());
 
             rs = ps.executeQuery();
 
@@ -924,7 +871,7 @@ public class CerrarMes extends ConexionBD {
 
                 modc = new CerrarMes();
 
-                modc.setId_gasto(rs.getInt(1));
+                modc.gas.setId(rs.getInt(1));
                 modc.setMonto(rs.getDouble(2));
                 modc.setMes_cierre(rs.getInt(3));
                 modc.setAño_cierre(rs.getInt(4));
@@ -962,7 +909,7 @@ public class CerrarMes extends ConexionBD {
 
             ps = con.prepareStatement(sql);
 
-            ps.setInt(1, getId_unidad());
+            ps.setInt(1, uni.getId());
 
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -1015,11 +962,11 @@ public class CerrarMes extends ConexionBD {
 
                 modc = new CerrarMes();
 
-                modc.setNom_concepto(rs.getString(1));
+                modc.concep.setNombre_Concepto(rs.getString(1));
                 modc.setMonto(rs.getDouble(2));
-                modc.setCedula(rs.getString(3));
-                modc.setNom_proveedor(rs.getString(4));
-                modc.setTipo(rs.getString(5));
+                modc.prove.setCedula(rs.getString(3));
+                modc.prove.setNombre(rs.getString(4));
+                modc.gas.setTipo_gasto(rs.getString(5));
 
                 listadetallegasto.add(modc);
             }
@@ -1061,11 +1008,11 @@ public class CerrarMes extends ConexionBD {
 
                 modc = new CerrarMes();
 
-                modc.setNom_concepto(rs.getString(1));
+                modc.concep.setNombre_Concepto(rs.getString(1));
                 modc.setMonto(rs.getDouble(2));
-                modc.setCedula(rs.getString(3));
-                modc.setNom_proveedor(rs.getString(4));
-                modc.setMeses_res(rs.getInt(5));
+                modc.prove.setCedula(rs.getString(3));
+                modc.prove.setNombre(rs.getString(4));
+                modc.cuo.setN_meses_restantes(rs.getInt(5));
 
                 listadetallecuotas.add(modc);
             }
@@ -1109,7 +1056,7 @@ public class CerrarMes extends ConexionBD {
 
                 modc.setMonto(rs.getDouble(1));
                 modc.setAlicuota(rs.getDouble(2));
-                modc.setTipo(rs.getString(3));
+                modc.san.setTipo(rs.getString(3));
                 modc.setEstado(rs.getString(4));
 
                 listadetallesancion.add(modc);
@@ -1186,7 +1133,7 @@ public class CerrarMes extends ConexionBD {
 
             ps = con.prepareStatement(sql);
 
-            ps.setInt(1, getId_unidad());
+            ps.setInt(1, uni.getId());
             ps.setInt(2, getMes_cierre());
             ps.setInt(3, getAño_cierre());
 
@@ -1272,7 +1219,7 @@ public class CerrarMes extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId_gasto());
+            ps.setInt(1, gas.getId());
             ps.setInt(2, getId());
             ps.setDouble(3, getSaldo_restante());
 

@@ -12,19 +12,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import sgc.SGC;
 
 /**
  *
  * @author rma
  */
-public class Cuenta extends Banco {
+public class Cuenta extends ConexionBD {
 
     private String cedula;
     private String n_cuenta;
     private String beneficiario;
     private String tipo;
-    private int id_banco;
-    private String id_condominio;
+   private Banco ban = new Banco();
+    
     private int cantidad;
 
     public String getCedula() {
@@ -59,21 +60,9 @@ public class Cuenta extends Banco {
         this.tipo = tipo;
     }
 
-    public int getId_banco() {
-        return id_banco;
-    }
+    
 
-    public void setId_banco(int id_banco) {
-        this.id_banco = id_banco;
-    }
-
-    public String getId_condominio() {
-        return id_condominio;
-    }
-
-    public void setId_condominio(String id_condominio) {
-        this.id_condominio = id_condominio;
-    }
+    
 
     public int getCantidad() {
         return cantidad;
@@ -154,7 +143,7 @@ public class Cuenta extends Banco {
             ps.setString(2, getN_cuenta());
             ps.setString(3, getBeneficiario());
             ps.setString(4, getTipo());
-            ps.setInt(5, getId_banco());
+            ps.setInt(5, ban.getId());
 
             ps.execute();
 
@@ -190,7 +179,7 @@ public class Cuenta extends Banco {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_condominio());
+            ps.setString(1, SGC.condominioActual.getRif());
             ps.setString(2, getN_cuenta());
 
             ps.execute();
@@ -238,7 +227,7 @@ public class Cuenta extends Banco {
                 modcu.setN_cuenta(rs.getString(2));
                 modcu.setBeneficiario(rs.getString(3));
                 modcu.setTipo(rs.getString(4));
-                modcu.setNombre_banco(rs.getString(5));
+                modcu.ban.setNombre_banco(rs.getString(5));
                 modcu.setCantidad(rs.getInt(6));
 
                 listaCuenta.add(modcu);
@@ -281,9 +270,9 @@ public class Cuenta extends Banco {
                 modcu.setN_cuenta(rs.getString(2));
                 modcu.setBeneficiario(rs.getString(3));
                 modcu.setTipo(rs.getString(4));
-                modcu.setNombre_banco(rs.getString(5));
+                modcu.ban.setNombre_banco(rs.getString(5));
                 modcu.setCantidad(rs.getInt(6));
-                modcu.setId(rs.getInt(7));
+                modcu.ban.setId(rs.getInt(7));
                 listaCuenta.add(modcu);
             }
         } catch (Exception e) {
@@ -320,7 +309,7 @@ public class Cuenta extends Banco {
                 modcun.setCedula(rs.getString("cedula"));
                 modcun.setBeneficiario(rs.getString("beneficiario"));
                 modcun.setTipo(rs.getString("tipo"));
-                modcun.setNombre_banco(rs.getString("nombre_banco"));
+                modcun.ban.setNombre_banco(rs.getString("nombre_banco"));
 
                 return true;
             }
@@ -360,7 +349,7 @@ public class Cuenta extends Banco {
             ps.setString(1, getCedula());
             ps.setString(2, getBeneficiario());
             ps.setString(3, getTipo());
-            ps.setInt(4, getId_banco());
+            ps.setInt(4, ban.getId());
 
             ps.setString(5, getN_cuenta());
             ps.execute();
@@ -578,7 +567,7 @@ public class Cuenta extends Banco {
             conectar = getConexion();
             //Preparamos la consulta SQL
             pst = conectar.prepareStatement(SSQL);
-            pst.setString(1, getId_condominio());
+            pst.setString(1, SGC.condominioActual.getRif());
             //Ejecutamos la consulta
             result = pst.executeQuery();
 

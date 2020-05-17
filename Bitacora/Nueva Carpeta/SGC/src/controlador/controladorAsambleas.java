@@ -47,12 +47,12 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
     private Propietarios modpro;
     private PantallaPrincipal1 panta1;
 
-    public controladorAsambleas(catalogoAsambleas cataa, asambleas as, Asambleas modasa, Propietarios modpro, PantallaPrincipal1 panta1) {
-        this.cataa = cataa;
-        this.as = as;
-        this.modasa = modasa;
-        this.modpro = modpro;
-        this.panta1 = panta1;
+    public controladorAsambleas() {
+        this.cataa = new catalogoAsambleas();
+        this.as = new asambleas();
+        this.modasa = new Asambleas();
+        this.modpro = new Propietarios();
+       
         this.cataa.jTable1.addMouseListener(this);
 
         this.cataa.addWindowListener(this);
@@ -60,6 +60,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         this.as.txtBuscarPropietarios.addKeyListener(this);
 
         this.as.btnGuardar.addActionListener(this);
+          cataa.setVisible(true);
 
         //this.as.btnModificar.addActionListener(this);
     }
@@ -266,7 +267,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
             this.as.setVisible(true);
 //            this.as.btnModificar.setEnabled(false);
             this.as.btnGuardar.setEnabled(true);
-            modpro.setId_condominio(panta1.rif.getText());
+           
             Llenartabla(as.jTable1);
             addCheckBox(5, as.jTable1);
             as.txtNombreAsamblea.setText("");
@@ -280,7 +281,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
                 int j = 0;
                 modasa.setNombre_asamblea(as.txtNombreAsamblea.getText());
                 modasa.setDescripcion(as.txaDescripcion.getText());
-                modasa.setId_condominio(panta1.rif.getText());
+             
 
                 java.sql.Date sqlDate = convert(as.jDateChooser2.getDate());
                 modasa.setFecha(sqlDate);
@@ -330,7 +331,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
                 modasa.setNombre_asamblea(as.txtNombreAsamblea.getText());
                 modasa.setDescripcion(as.txaDescripcion.getText());
-                modasa.setId_condominio(panta1.rif.getText());
+               
                 modasa.setId(Integer.parseInt(as.txtid.getText()));
 
                 java.sql.Date sqlDate = convert(as.jDateChooser2.getDate());
@@ -405,7 +406,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         int columna = this.cataa.jTable1.getSelectedColumn(); // luego, obtengo la columna seleccionada
         String dato = String.valueOf(this.cataa.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
         modasa.setId(Integer.parseInt(dato));
-        modasa.setId_condominio(panta1.rif.getText());
+       
         modasa.buscarAsambleas(modasa);
         this.as.setVisible(true);
         as.txtid.setVisible(false);
@@ -441,7 +442,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
     @Override
     public void windowOpened(WindowEvent e) {
-        modasa.setId_condominio(panta1.rif.getText());
+   
         Llenartablaasambleas(cataa.jTable1);
         
         Component[] components =as.jPanel4.getComponents();

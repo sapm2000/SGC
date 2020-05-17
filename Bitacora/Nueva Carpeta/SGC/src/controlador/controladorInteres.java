@@ -344,8 +344,7 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
                             if (valueOf(in.jTable1.getValueAt(i, 2)) == "true") {
 
                                 String valor = String.valueOf(in.jTable1.getValueAt(i, 0));
-                                modin.setId_condominio(valor);
-
+                             
                                 modin.registrar_interes_condominio(modin);
 
                             }
@@ -384,7 +383,7 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
                             if (valueOf(in.jTable1.getValueAt(i, 2)) == "true") {
 
                                 String valor = String.valueOf(in.jTable1.getValueAt(i, 0));
-                                modin.setId_condominio(valor);
+                                
 
                                 modin.registrar_interes_condominio(modin);
 

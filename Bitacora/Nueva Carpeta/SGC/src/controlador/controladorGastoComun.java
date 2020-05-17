@@ -8,8 +8,6 @@ package controlador;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -25,7 +23,6 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import modelo.CategoriaGasto;
 import modelo.CerrarMes;
 import modelo.GastoComun;
 import modelo.ModeloConceptoGastos;
@@ -56,15 +53,15 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
     double montoi;
     double saldo;
 
-    public controladorGastoComun(gastoComun gc, catalogoGastoComun gatagc, GastoComun modgac, Proveedores modpro, ModeloConceptoGastos modcon, PantallaPrincipal1 panta1, CerrarMes modc, buscarProveedor buscpro) {
-        this.gc = gc;
-        this.catagc = gatagc;
-        this.modgac = modgac;
-        this.modpro = modpro;
-        this.modcon = modcon;
-        this.panta1 = panta1;
-        this.modc = modc;
-        this.buscpro = buscpro;
+    public controladorGastoComun() {
+        this.gc = new gastoComun();
+        this.catagc = new catalogoGastoComun();
+        this.modgac = new GastoComun();
+        this.modpro = new Proveedores();
+        this.modcon = new ModeloConceptoGastos();
+        
+        this.modc = new CerrarMes();
+        this.buscpro = new buscarProveedor();
         this.catagc.addWindowListener(this);
 
         this.catagc.jButton2.addActionListener(this);
@@ -81,6 +78,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
         gc.txtMonto.addKeyListener(this);
         gc.txaObservaciones.addKeyListener(this);
         listaConGas = modcon.listarConcepto();
+        this.catagc.setVisible(true);
     }
 
     public void Llenartabla(JTable tablaD) {
@@ -232,10 +230,10 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
                         java.sql.Date sqlDate = convert(gc.jDateChooser1.getDate());
                         modgac.setFecha(sqlDate);
                         modgac.setEstado("Pendiente");
-                        modgac.setId_condominio(panta1.rif.getText());
+                      
                         modc.setMes_cierre(gc.jMonthChooser1.getMonth() + 1);
                         modc.setAño_cierre(gc.jYearChooser1.getYear());
-                        modc.setId_condominio(panta1.rif.getText());
+                       
 
                         if (modc.buscarfechas(modc)) {
                             JOptionPane.showMessageDialog(null, "no puede registrar gastos a un periodo ya cerrado");
@@ -244,7 +242,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
                             if (modgac.registrar_gasto_comun(modgac)) {
 
                                 JOptionPane.showMessageDialog(null, "Registro Guardado");
-                                modgac.setId_condominio(panta1.rif.getText());
+                             
                                 LlenartablaGastocomun(catagc.jTable1);
                             } else {
 
@@ -280,7 +278,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
                         modgac.setId(Integer.parseInt(gc.txtid.getText()));
                         modc.setMes_cierre(gc.jMonthChooser1.getMonth() + 1);
                         modc.setAño_cierre(gc.jYearChooser1.getYear());
-                        modc.setId_condominio(panta1.rif.getText());
+                      
 
                         if (modc.buscarfechas(modc)) {
                             JOptionPane.showMessageDialog(null, "no puede registrar gastos a un periodo ya cerrado");
@@ -289,7 +287,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
                             java.sql.Date sqlDate = convert(gc.jDateChooser1.getDate());
                             modgac.setFecha(sqlDate);
                             modgac.setEstado("Pendiente");
-                            modgac.setId_condominio(panta1.rif.getText());
+                    
 
                             double var1 = Double.parseDouble(gc.txtMonto.getText());
                             double var2 = var1 - montoi;
@@ -300,7 +298,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
                                 if (modgac.modificar_gasto_comun(modgac)) {
 
                                     JOptionPane.showMessageDialog(null, "Registro Modificado");
-                                    modgac.setId_condominio(panta1.rif.getText());
+                                  
                                     LlenartablaGastocomun(catagc.jTable1);
                                     this.gc.dispose();
 
@@ -322,7 +320,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
 
         if (e.getSource() == gc.btnEliminar) {
 
-            modgac.setId_condominio(panta1.rif.getText());
+         
             modgac.setId(Integer.parseInt(gc.txtid.getText()));
 
             if (modgac.eliminar_gasto_comun(modgac)) {
@@ -394,7 +392,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
             int fila = this.catagc.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
             String dato = String.valueOf(this.catagc.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
             modgac.setId(Integer.parseInt(dato));
-            modgac.setId_condominio(panta1.rif.getText());
+         
             modgac.buscargastoComun(modgac);
              gc.btnBuscarproveedor.setVisible(true);
             this.gc.setVisible(true);
@@ -500,7 +498,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
 
     @Override
     public void windowOpened(WindowEvent e) {
-        modgac.setId_condominio(panta1.rif.getText());
+       
         LlenartablaGastocomun(catagc.jTable1);
 
         Component[] components = gc.jPanel2.getComponents();

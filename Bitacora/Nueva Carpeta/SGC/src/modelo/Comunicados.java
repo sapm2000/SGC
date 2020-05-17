@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import sgc.SGC;
 
 /**
  *
@@ -20,8 +21,9 @@ public class Comunicados extends CrudUsuario {
     private int id;
     private String asunto;
     private String mensaje;
-    private String id_condominio;
-    private String id_usuario;
+    private Usuario usu = new Usuario();
+   
+   
     private int leido;
     private int enviado;
 
@@ -41,13 +43,7 @@ public class Comunicados extends CrudUsuario {
         this.leido = leido;
     }
 
-    public String getId_usuario() {
-        return id_usuario;
-    }
-
-    public void setId_usuario(String id_usuario) {
-        this.id_usuario = id_usuario;
-    }
+   
 
     public int getId() {
         return id;
@@ -73,13 +69,6 @@ public class Comunicados extends CrudUsuario {
         this.mensaje = mensaje;
     }
 
-    public String getId_condominio() {
-        return id_condominio;
-    }
-
-    public void setId_condominio(String id_condominio) {
-        this.id_condominio = id_condominio;
-    }
 
     public boolean registrarcomunicados(Comunicados modco) {
 
@@ -93,7 +82,7 @@ public class Comunicados extends CrudUsuario {
             ps = con.prepareStatement(sql);
             ps.setString(1, getAsunto());
             ps.setString(2, getMensaje());
-            ps.setString(3, getId_condominio());
+            ps.setString(3, SGC.condominioActual.getRif());
             ps.execute();
 
             return true;
@@ -169,7 +158,7 @@ public class Comunicados extends CrudUsuario {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_usuario());
+            ps.setString(1, usu.getUsuario());
             ps.setInt(2, getId());
             ps.setInt(3, getLeido());
 
@@ -208,7 +197,7 @@ public class Comunicados extends CrudUsuario {
         String sql = "SELECT id_comunicado, comunicados.asunto, count(id_usuario) as enviado, SUM(leido) as leido FROM puente_comunicado_usuario inner join comunicados on comunicados.id = puente_comunicado_usuario.id_comunicado where comunicados.id_condominio=? group by id_comunicado, comunicados.asunto;";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_condominio());
+            ps.setString(1, SGC.condominioActual.getRif());
             rs = ps.executeQuery();
 
             while (rs.next()) {

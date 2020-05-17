@@ -29,7 +29,6 @@ import modelo.Condominio;
 import modelo.Unidades;
 import sgc.SGC;
 import vista.PantallaPrincipal;
-import vista.PantallaPrincipal1;
 import vista.catalogoCondominio;
 import vista.catalogoInactivoCondominio;
 import vista.condominio;
@@ -42,7 +41,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
 
     private catalogoCondominio cataco;
     private condominio condo;
-    private PantallaPrincipal1 panta1;
+   
     private PantallaPrincipal panta;
     private Unidades moduni;
     DefaultTableModel dm;
@@ -57,6 +56,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         this.panta = new PantallaPrincipal();
         this.co = new Condominio();
         this.moduni = new Unidades();
+       
         this.cataico = new catalogoInactivoCondominio();
         this.cataco.btnActivar.addActionListener(this);
         this.cataico.btnActivar.addActionListener(this);
@@ -330,10 +330,12 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
             String dato = String.valueOf(this.cataco.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
             co.setRif(String.valueOf(dato));
             SGC.condominioActual = co;
-            this.cataco.dispose();
-            this.panta1 = new PantallaPrincipal1();
-            this.panta1.setVisible(true);
-            panta1.rif.setText(dato);
+           
+           this.cataco.dispose();
+           controladorMenuInterno ctrlMenuinterno = new controladorMenuInterno();
+             this.panta.dispose();
+             
+           
 
         }
         if (result == 1) {

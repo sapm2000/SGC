@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import static sgc.SGC.condominioActual;
+import sgc.SGC;
 
 /**
  *
@@ -20,20 +21,18 @@ import static sgc.SGC.condominioActual;
 public class CuotasEspeciales extends ConexionBD {
 
     private int id;
-    private String id_proveedor;
-    private int id_concepto;
+    private Proveedores prov = new Proveedores();
+    private ModeloConceptoGastos concep = new ModeloConceptoGastos();
     private String Calcular;
     private int mes;
     private int año;
     private Double monto;
     private Double saldo;
     private int n_meses;
-    private int id_asamblea;
+    private Asambleas asa = new Asambleas();
     private String observacion;
     private String estado;
-    private String id_condominio;
-    private String nombre_Concepto;
-    private String nombre_asamble;
+   
     private int n_meses_restantes;
     private java.sql.Date fecha;
     private String pagado;
@@ -48,19 +47,19 @@ public class CuotasEspeciales extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_proveedor());
+            ps.setString(1, prov.getCedula());
             ps.setInt(2, getN_meses_restantes());
-            ps.setInt(3, getId_concepto());
+            ps.setInt(3, concep.getId());
             ps.setString(4, getCalcular());
             ps.setDouble(5, getMes());
             ps.setInt(6, getAño());
             ps.setDouble(7, getMonto());
             ps.setDouble(8, getSaldo());
             ps.setInt(9, getN_meses());
-            ps.setInt(10, getId_asamblea());
+            ps.setInt(10, asa.getId());
             ps.setString(11, getObservacion());
             ps.setString(12, getEstado());
-            ps.setString(13, getId_condominio());
+            ps.setString(13, SGC.condominioActual.getRif());
             ps.execute();
 
             return true;
@@ -122,15 +121,15 @@ public class CuotasEspeciales extends ConexionBD {
                 modcuo = new CuotasEspeciales();
 
                 modcuo.setId(rs.getInt(i++));
-                modcuo.setId_proveedor(rs.getString(i++));
-                modcuo.setNombre_Concepto(rs.getString(i++));
+                modcuo.prov.setCedula(rs.getString(i++));
+                modcuo.concep.setNombre_Concepto(rs.getString(i++));
                 modcuo.setCalcular(rs.getString(i++));
                 modcuo.setMes(rs.getInt(i++));
                 modcuo.setAño(rs.getInt(i++));
                 modcuo.setMonto(rs.getDouble(i++));
                 modcuo.setSaldo(rs.getDouble(i++));
                 modcuo.setN_meses(rs.getInt(i++));
-                modcuo.setNombre_asamble(rs.getString(i++));
+                modcuo.asa.setNombre_asamblea(rs.getString(i++));
                 modcuo.setObservacion(rs.getString(i++));
                 modcuo.setEstado(rs.getString(i++));
                 modcuo.setN_meses_restantes(rs.getInt(i++));
@@ -167,7 +166,7 @@ public class CuotasEspeciales extends ConexionBD {
         try {
             ps = con.prepareStatement(sql);
 
-            ps.setString(1, getId_condominio());
+            ps.setString(1, SGC.condominioActual.getRif());
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -175,15 +174,15 @@ public class CuotasEspeciales extends ConexionBD {
                 modcuo = new CuotasEspeciales();
 
                 modcuo.setId(rs.getInt(1));
-                modcuo.setId_proveedor(rs.getString(2));
-                modcuo.setNombre_Concepto(rs.getString(3));
+                modcuo.prov.setCedula(rs.getString(2));
+                modcuo.concep.setNombre_Concepto(rs.getString(3));
                 modcuo.setCalcular(rs.getString(4));
                 modcuo.setMes(rs.getInt(5));
                 modcuo.setAño(rs.getInt(6));
                 modcuo.setMonto(rs.getDouble(7));
                 modcuo.setSaldo(rs.getDouble(8));
                 modcuo.setN_meses(rs.getInt(9));
-                modcuo.setNombre_asamble(rs.getString(10));
+                modcuo.asa.setNombre_asamblea(rs.getString(10));
                 modcuo.setObservacion(rs.getString(11));
                 modcuo.setEstado(rs.getString(12));
                 modcuo.setN_meses_restantes(rs.getInt(13));
@@ -221,15 +220,15 @@ public class CuotasEspeciales extends ConexionBD {
             rs = ps.executeQuery();
             if (rs.next()) {
 
-                modcuo.setId_proveedor(rs.getString("id_proveedor"));
-                modcuo.setNombre_Concepto(rs.getString("nom_concepto"));
+                modcuo.prov.setCedula(rs.getString("id_proveedor"));
+                modcuo.concep.setNombre_Concepto(rs.getString("nom_concepto"));
                 modcuo.setCalcular(rs.getString("calcular"));
                 modcuo.setMes(rs.getInt("mes"));
                 modcuo.setAño(rs.getInt("anio"));
                 modcuo.setMonto(rs.getDouble("monto"));
                 modcuo.setSaldo(rs.getDouble("saldo"));
                 modcuo.setN_meses(rs.getInt("n_meses"));
-                modcuo.setNombre_asamble(rs.getString("nombre"));
+                modcuo.asa.setNombre_asamblea(rs.getString("nombre"));
                 modcuo.setObservacion(rs.getString("observacion"));
                 modcuo.setEstado(rs.getString("estado"));
                 modcuo.setFecha(rs.getDate("fecha"));
@@ -268,16 +267,16 @@ public class CuotasEspeciales extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_proveedor());
+            ps.setString(1, prov.getCedula());
             ps.setInt(2, getN_meses_restantes());
-            ps.setInt(3, getId_concepto());
+            ps.setInt(3, concep.getId());
             ps.setString(4, getCalcular());
             ps.setInt(5, getMes());
             ps.setInt(6, getAño());
             ps.setDouble(7, getMonto());
             ps.setDouble(8, getSaldo());
             ps.setInt(9, getN_meses());
-            ps.setInt(10, getId_asamblea());
+            ps.setInt(10, asa.getId());
             ps.setString(11, getObservacion());
             ps.setInt(12, getId());
 
@@ -396,21 +395,7 @@ public class CuotasEspeciales extends ConexionBD {
         this.id = id;
     }
 
-    public String getId_proveedor() {
-        return id_proveedor;
-    }
-
-    public void setId_proveedor(String id_proveedor) {
-        this.id_proveedor = id_proveedor;
-    }
-
-    public int getId_concepto() {
-        return id_concepto;
-    }
-
-    public void setId_concepto(int id_concepto) {
-        this.id_concepto = id_concepto;
-    }
+    
 
     public String getCalcular() {
         return Calcular;
@@ -460,14 +445,7 @@ public class CuotasEspeciales extends ConexionBD {
         this.n_meses = n_meses;
     }
 
-    public int getId_asamblea() {
-        return id_asamblea;
-    }
-
-    public void setId_asamblea(int id_asamblea) {
-        this.id_asamblea = id_asamblea;
-    }
-
+   
     public String getObservacion() {
         return observacion;
     }
@@ -484,29 +462,9 @@ public class CuotasEspeciales extends ConexionBD {
         this.estado = estado;
     }
 
-    public String getId_condominio() {
-        return id_condominio;
-    }
+ 
 
-    public void setId_condominio(String id_condominio) {
-        this.id_condominio = id_condominio;
-    }
-
-    public String getNombre_Concepto() {
-        return nombre_Concepto;
-    }
-
-    public void setNombre_Concepto(String nombre_Concepto) {
-        this.nombre_Concepto = nombre_Concepto;
-    }
-
-    public String getNombre_asamble() {
-        return nombre_asamble;
-    }
-
-    public void setNombre_asamble(String nombre_asamble) {
-        this.nombre_asamble = nombre_asamble;
-    }
+  
 
     public String getPagado() {
         return pagado;

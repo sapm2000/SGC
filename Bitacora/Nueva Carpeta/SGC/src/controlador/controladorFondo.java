@@ -26,7 +26,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.Fondo;
-import vista.PantallaPrincipal1;
 import vista.catalogoFondo;
 import vista.catalogoInactivoFondo;
 import vista.fondo;
@@ -40,19 +39,19 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
     private fondo fon;
     private catalogoFondo catafon;
     private Fondo modfon;
-    private PantallaPrincipal1 panta1;
+  
     private catalogoInactivoFondo cataifon;
     ArrayList<Fondo> listafondo;
     DefaultTableModel dm;
     double montoi;
     double saldo;
 
-    public controladorFondo(fondo fon, catalogoFondo catafon, Fondo modfon, PantallaPrincipal1 panta1, catalogoInactivoFondo cataifon) {
-        this.fon = fon;
-        this.catafon = catafon;
-        this.modfon = modfon;
-        this.panta1 = panta1;
-        this.cataifon = cataifon;
+    public controladorFondo() {
+        this.fon = new fondo();
+        this.catafon = new catalogoFondo();
+        this.modfon = new Fondo();
+       
+        this.cataifon = new catalogoInactivoFondo();
         this.catafon.addWindowListener(this);
         this.cataifon.btnActivar.addActionListener(this);
         this.catafon.jButton2.addActionListener(this);
@@ -64,6 +63,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
         this.fon.btnModificar.addActionListener(this);
         this.fon.btnEliminar.addActionListener(this);
         this.fon.txtMontoInicial.addKeyListener(this);
+        this.catafon.setVisible(true);
     }
 
     public void Llenartabla(JTable tablaD) {
@@ -235,7 +235,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
                     modfon.setDescripcion(fon.txaDescripcion.getText());
                     modfon.setObservacion(fon.txaObservaciones.getText());
                     modfon.setMonto_inicial(Double.parseDouble(fon.txtMontoInicial.getText()));
-                    modfon.setId_condominio(panta1.rif.getText());
+                   
                     if (modfon.buscar(modfon)) {
                         JOptionPane.showMessageDialog(null, "este fondo ya esta registrado");
                     } else {
@@ -264,7 +264,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
                 modfon.setDescripcion(fon.txaDescripcion.getText());
                 modfon.setObservacion(fon.txaObservaciones.getText());
                 modfon.setMonto_inicial(Double.parseDouble(fon.txtMontoInicial.getText()));
-                modfon.setId_condominio(panta1.rif.getText());
+              
                 modfon.setId(Integer.parseInt(fon.txtId.getText()));
                 int var7 = 0;
                 var7 = modfon.getId();
@@ -325,7 +325,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
 
         if (e.getSource() == fon.btnEliminar) {
 
-            modfon.setId_condominio(panta1.rif.getText());
+          
             modfon.setTipo(fon.txtTipo.getText());
 
             if (saldo == 0) {
@@ -399,7 +399,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
         String dato = String.valueOf(this.catafon.jTable1.getValueAt(fila, 1)); // por ultimo, obtengo el valor de la celda
 
         modfon.setTipo(String.valueOf(dato));
-        modfon.setId_condominio(panta1.rif.getText());
+    
         this.fon.setVisible(true);
         fon.txtTipo.setEnabled(true);
         fon.btnGuardar.setEnabled(false);
@@ -467,7 +467,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
 
     @Override
     public void windowOpened(WindowEvent e) {
-        modfon.setId_condominio(panta1.rif.getText());
+       
         Llenartabla(catafon.jTable1);
 
         Component[] components = fon.jPanel2.getComponents();

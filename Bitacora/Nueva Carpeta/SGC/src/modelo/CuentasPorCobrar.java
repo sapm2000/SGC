@@ -17,7 +17,7 @@ import java.sql.SQLException;
 public class CuentasPorCobrar extends ConexionBD {
 
     private int id;
-    private int id_unidad;
+  private Unidades uni = new Unidades();
     private double monto;
     private String descripcion;
     private String id_cuenta;
@@ -25,15 +25,9 @@ public class CuentasPorCobrar extends ConexionBD {
     private String referencia;
     private int id_fondo;
     private java.sql.Date fecha;
-    private String id_condominio;
+   
 
-    public String getId_condominio() {
-        return id_condominio;
-    }
-
-    public void setId_condominio(String id_condominio) {
-        this.id_condominio = id_condominio;
-    }
+   
     
     
 
@@ -45,13 +39,7 @@ public class CuentasPorCobrar extends ConexionBD {
         this.id = id;
     }
 
-    public int getId_unidad() {
-        return id_unidad;
-    }
-
-    public void setId_unidad(int id_unidad) {
-        this.id_unidad = id_unidad;
-    }
+  
 
   
 
@@ -123,7 +111,7 @@ public class CuentasPorCobrar extends ConexionBD {
             ps = con.prepareStatement(sql);
             ps.setDouble(1, getMonto());
             ps.setString(2, getDescripcion());
-            ps.setInt(3, getId_unidad());
+            ps.setInt(3, uni.getId());
             ps.setString(4, getId_cuenta());
             ps.setString(5, getForma_pago());
             ps.setString(6, getReferencia());

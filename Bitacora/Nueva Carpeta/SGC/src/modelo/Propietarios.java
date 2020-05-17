@@ -6,12 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import sgc.SGC;
 
 public class Propietarios extends Persona {
 
-    private String id;
+   
     
-    private String id_condominio;
+   
     private int cantidad;
     private java.sql.Date fecha_hasta;
 
@@ -47,21 +48,7 @@ public class Propietarios extends Persona {
     
     
 
-    public String getId_condominio() {
-        return id_condominio;
-    }
-
-    public void setId_condominio(String id_condominio) {
-        this.id_condominio = id_condominio;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+   
 
     public boolean registrar() {
         PreparedStatement ps = null;
@@ -194,7 +181,7 @@ public class Propietarios extends Persona {
         String sql = "SELECT cedula, nombre, apellido, telefono, correo FROM propietarios inner join puente_unidad_propietarios on propietarios.cedula=puente_unidad_propietarios.id_propietario inner join unidades on puente_unidad_propietarios.id_unidad=unidades.id where id_condominio=? and propietarios.activo=1 group by cedula";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_condominio());
+            ps.setString(1, SGC.condominioActual.getRif());
           
             rs = ps.executeQuery();
 
@@ -203,8 +190,8 @@ public class Propietarios extends Persona {
                 modpro = new Propietarios();
 
                 modpro.setCedula(rs.getString(1));
-                modpro.setNombre(rs.getString(2));
-                modpro.setApellido(rs.getString(3));
+                modpro.setpNombre(rs.getString(2));
+                modpro.setpApellido(rs.getString(3));
                 modpro.setTelefono(rs.getString(4));
                 modpro.setCorreo(rs.getString(5));
                 

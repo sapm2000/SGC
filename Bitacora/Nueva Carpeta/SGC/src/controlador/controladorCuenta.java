@@ -357,7 +357,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
                             for (int i = 0; i < cu.jTable1.getRowCount(); i++) {
                                 if (valueOf(cu.jTable1.getValueAt(i, 2)) == "true") {
                                     String valor = String.valueOf(cu.jTable1.getValueAt(i, 0));
-                                    modcu.setId_condominio(valor);
+                               
                                     modcu.setN_cuenta(cu.txtN_cuenta.getText());
                                     modcu.registrar_cuenta_condominio(modcu);
 
@@ -411,7 +411,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
 
                                 if (valueOf(cu.jTable1.getValueAt(i, 2)) == "true") {
                                     String valor = String.valueOf(cu.jTable1.getValueAt(i, 0));
-                                    modcu.setId_condominio(valor);
+                                   
                                     modcu.setN_cuenta(cu.txtN_cuenta.getText());
                                     modcu.registrar_cuenta_condominio(modcu);
                                 } else {

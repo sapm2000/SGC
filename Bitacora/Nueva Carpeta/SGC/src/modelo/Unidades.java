@@ -77,47 +77,47 @@ public class Unidades extends ConexionBD {
 
     }
 
-    public boolean registrar_propietario_unidad(Unidades moduni) {
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+//    public boolean registrar_propietario_unidad(Unidades moduni) {
+//        PreparedStatement ps = null;
+//        Connection con = getConexion();
+//
+//        String sql = "INSERT INTO puente_unidad_propietarios(id_propietario, id_unidad, fecha_desde, documento, estado, activo) VALUES (?, ?, ?, ?, ?, 1);";
+//
+//        try {
+//
+//            ps = con.prepareStatement(sql);
+//            ps.setString(1, getCedula());
+//            ps.setInt(2, getId());
+//            ps.setDate(3, getFecha_desde());
+//
+//            ps.setString(4, getDocumento());
+//            ps.setInt(5, getEstatus());
+//
+//            ps.execute();
+//
+//            return true;
+//
+//        } catch (SQLException e) {
+//
+//            System.err.println(e);
+//            return false;
+//
+//        } finally {
+//            try {
+//
+//                con.close();
+//
+//            } catch (SQLException e) {
+//
+//                System.err.println(e);
+//
+//            }
+//
+//        }
+//
+//    }
 
-        String sql = "INSERT INTO puente_unidad_propietarios(id_propietario, id_unidad, fecha_desde, documento, estado, activo) VALUES (?, ?, ?, ?, ?, 1);";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-            ps.setString(1, getCedula());
-            ps.setInt(2, getId());
-            ps.setDate(3, getFecha_desde());
-
-            ps.setString(4, getDocumento());
-            ps.setInt(5, getEstatus());
-
-            ps.execute();
-
-            return true;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-    }
-
-    public ArrayList<Unidades> buscarPropietario() {
+    /*public ArrayList<Unidades> buscarPropietario() {
         ArrayList listaPropietario = new ArrayList();
         Unidades Unidades = new Unidades();
 
@@ -154,53 +154,52 @@ public class Unidades extends ConexionBD {
 
         return listaPropietario;
 
-    }
-
-    public ArrayList<Unidades> buscarPropietariomod() {
-        ArrayList listaPropietario = new ArrayList();
-        Unidades Unidades = new Unidades();
-
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
-        String sql = "SELECT id, cedula, nombre, telefono, correo, id_unidad, fecha_desde, fecha_hasta, estado, documento FROM propietarios left join puente_unidad_propietarios on puente_unidad_propietarios.id_propietario=propietarios.cedula  and  id_unidad=? and not estado=0 where propietarios.activo=1";
-
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Unidades = new Unidades();
-
-                //prs = new Persona();
-                Unidades.setId_puente(rs.getInt("id"));
-                Unidades.setCedula(rs.getString("cedula"));
-                Unidades.setNombre(rs.getString("nombre"));
-                Unidades.setTelefono(rs.getString("telefono"));
-                Unidades.setCorreo(rs.getString("correo"));
-                Unidades.setId(rs.getInt("id_unidad"));
-                Unidades.setFecha_desde(rs.getDate("fecha_desde"));
-                Unidades.setFecha_hasta(rs.getDate("fecha_hasta"));
-                Unidades.setEstatus(rs.getInt("estado"));
-                Unidades.setDocumento(rs.getString("documento"));
-
-                listaPropietario.add(Unidades);
-            }
-
-        } catch (Exception e) {
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                System.err.println(e);
-            }
-        }
-
-        return listaPropietario;
-
-    }
+    }*/
+//    public ArrayList<Unidades> buscarPropietariomod() {
+//        ArrayList listaPropietario = new ArrayList();
+//        Unidades Unidades = new Unidades();
+//
+//        Connection con = getConexion();
+//        PreparedStatement ps = null;
+//        ResultSet rs = null;
+//
+//        String sql = "SELECT id, cedula, nombre, telefono, correo, id_unidad, fecha_desde, fecha_hasta, estado, documento FROM propietarios left join puente_unidad_propietarios on puente_unidad_propietarios.id_propietario=propietarios.cedula  and  id_unidad=? and not estado=0 where propietarios.activo=1";
+//
+//        try {
+//            ps = con.prepareStatement(sql);
+//            ps.setInt(1, getId());
+//            rs = ps.executeQuery();
+//
+//            while (rs.next()) {
+//                Unidades = new Unidades();
+//
+//                //prs = new Persona();
+//                Unidades.setId_puente(rs.getInt("id"));
+//                Unidades.propietario.get(id).setCedula(rs.getString("cedula"));
+//                Unidades.setNombre(rs.getString("nombre"));
+//                Unidades.setTelefono(rs.getString("telefono"));
+//                Unidades.setCorreo(rs.getString("correo"));
+//                Unidades.setId(rs.getInt("id_unidad"));
+//                Unidades.setFecha_desde(rs.getDate("fecha_desde"));
+//                Unidades.setFecha_hasta(rs.getDate("fecha_hasta"));
+//                Unidades.setEstatus(rs.getInt("estado"));
+//                Unidades.setDocumento(rs.getString("documento"));
+//
+//                listaPropietario.add(Unidades);
+//            }
+//
+//        } catch (Exception e) {
+//        } finally {
+//            try {
+//                con.close();
+//            } catch (SQLException e) {
+//                System.err.println(e);
+//            }
+//        }
+//
+//        return listaPropietario;
+//
+//    }
 
     public boolean registrar() {
         ps = null;
@@ -484,78 +483,119 @@ public class Unidades extends ConexionBD {
 
     }
 
-    public boolean modificarUnidades(Unidades moduni) {
+    public boolean modificar() {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE unidades SET direccion=?, area=? WHERE id=?;";
+        String sql = "UPDATE unidad SET direccion=?, area=? WHERE id=?;";
 
         try {
-
+            int i;
+            i = 1;
             ps = con.prepareStatement(sql);
-            ps.setString(1, getDireccion());
-            ps.setDouble(2, getArea());
-
-            ps.setInt(3, getId());
+            ps.setString(i++, getDireccion());
+            ps.setDouble(i++, getArea());
+            ps.setInt(i++, getId());
 
             ps.execute();
+
+            sql = "SELECT cedula FROM v_unidad_propietario WHERE id = ?;";
+
+            ps = con.prepareStatement(sql);
+
+            ps.setInt(1, getId());
+
+            rs = ps.executeQuery();
+
+            ArrayList<Propietarios> prop;
+            prop = new ArrayList();
+
+            while (rs.next()) {
+                prop.add(new Propietarios(rs.getString("cedula")));
+
+            }
+
+            boolean encontrado = false;
+
+            System.out.println(prop.size());
+            System.out.println(getPropietario().size());
+            for (int k = 0; k < getPropietario().size(); k++) {
+                for (int j = 0; j < prop.size(); j++) {
+                    if (prop.get(j).getCedula().equals(getPropietario().get(k).getCedula())) {
+                        encontrado = true;
+                        break;
+
+                    } else {
+                        encontrado = false;
+                    }
+                }
+
+                if (encontrado == false) {
+                    sql = "UPDATE puente_unidad_propietarios SET fecha_hasta = LOCALTIMESTAMP(0), activo = 0 WHERE id = ? AND cedula = ?";
+
+                    ps = con.prepareStatement(sql);
+
+                    ps.setInt(1, getId());
+                    ps.setString(2, propietario.get(k).getCedula());
+
+                    ps.execute();
+
+                }
+            }
 
             return true;
 
         } catch (SQLException e) {
-
             System.err.println(e);
             return false;
+
         } finally {
             try {
-
                 con.close();
 
             } catch (SQLException e) {
-
                 System.err.println(e);
 
             }
-
         }
     }
 
-    public boolean actualizardocumento(Unidades moduni) {
-
-        PreparedStatement ps = null;
-        Connection con = getConexion();
-
-        String sql = "UPDATE puente_unidad_propietarios SET documento=?, activo=1 WHERE id=?;";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-            ps.setString(1, getDocumento());
-            ps.setInt(2, getId_puente());
-
-            ps.execute();
-
-            return true;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-    }
+//    public boolean actualizardocumento(Unidades moduni) {
+//
+//        PreparedStatement ps = null;
+//        Connection con = getConexion();
+//
+//        String sql = "UPDATE puente_unidad_propietarios SET documento=?, activo=1 WHERE id=?;";
+//
+//        try {
+//
+//            ps = con.prepareStatement(sql);
+//            ps.setString(1, getDocumento());
+//            ps.setInt(2, getId_puente());
+//
+//            ps.execute();
+//
+//            return true;
+//
+//        } catch (SQLException e) {
+//
+//            System.err.println(e);
+//            return false;
+//        } finally {
+//            try {
+//
+//                con.close();
+//
+//            } catch (SQLException e) {
+//
+//                System.err.println(e);
+//
+//            }
+//
+//        }
+//
+//    }
 
     public boolean retirarpropietario(Unidades moduni) {
 
@@ -714,7 +754,7 @@ public class Unidades extends ConexionBD {
 
             //Establecemos conexión con la BD 
             ps = con.prepareStatement(sql);
-            ps.setString(1, getId_condominio());
+            ps.setString(1, SGC.condominioActual.getRif());
             //Ejecutamos la consulta
             rs = ps.executeQuery();
 
@@ -749,9 +789,8 @@ public class Unidades extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT n_unidad, nombre, apellido FROM unidades "
-                + "INNER JOIN propietarios ON id_propietario = cedula "
-                + "WHERE unidades.id_condominio = ?;";
+        String sql = "SELECT n_unidad FROM unidad "
+                + "WHERE unidad.id_condominio = ?;";
 
         try {
             ps = con.prepareStatement(sql);
@@ -761,8 +800,8 @@ public class Unidades extends ConexionBD {
             while (rs.next()) {
                 uni = new Unidades();
                 uni.setN_unidad(rs.getString("n_unidad"));
-                uni.setNombre(rs.getString("nombre"));
-                uni.setApellido(rs.getString("apellido"));
+//                uni.setNombre(rs.getString("nombre"));
+//                uni.setApellido(rs.getString("apellido"));
 
                 listaUnidad.add(uni);
             }
