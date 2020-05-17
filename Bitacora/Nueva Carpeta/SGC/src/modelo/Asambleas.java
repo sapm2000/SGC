@@ -83,12 +83,14 @@ public class Asambleas extends ConexionBD {
         String sql = "INSERT INTO asambleas(nombre, fecha, descripcion, id_condominio) VALUES (?, ?, ?, ?);";
 
         try {
-
+            int i;
+            i=1;
+            
             ps = con.prepareStatement(sql);
-            ps.setString(1, modasa.getNombre_asamblea());
-            ps.setDate(2, modasa.getFecha());
-            ps.setString(3, modasa.getDescripcion());
-            ps.setString(4, SGC.condominioActual.getRif());
+            ps.setString(i++, modasa.getNombre_asamblea());
+            ps.setDate(i++, modasa.getFecha());
+            ps.setString(i++, modasa.getDescripcion());
+            ps.setString(i++, SGC.condominioActual.getRif());
 
             ps.execute();
             return true;
@@ -197,7 +199,7 @@ public class Asambleas extends ConexionBD {
         String sql = "SELECT asambleas.id, nombre, fecha, descripcion, count(id_asamblea) as nº FROM asambleas inner join puente_asamblea_propietario on puente_asamblea_propietario.id_asamblea=asambleas.id where id_condominio=? group by puente_asamblea_propietario.id_asamblea, asambleas.id";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, SGC.condominioActual.getRif());
+            ps.setString(1, getId_condominio());
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -284,7 +286,7 @@ public class Asambleas extends ConexionBD {
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
-            ps.setString(2, SGC.condominioActual.getRif());    
+            ps.setString(2, getId_condominio());    
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -404,7 +406,7 @@ public class Asambleas extends ConexionBD {
             conectar = getConexion();
             //Preparamos la consulta SQL
             pst = conectar.prepareStatement(SSQL);
-            pst.setString(1, SGC.condominioActual.getRif());
+            pst.setString(1, getId_condominio());
             //Ejecutamos la consulta
             result = pst.executeQuery();
 

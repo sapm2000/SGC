@@ -196,7 +196,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             this.cuotae.btnEliminar.setEnabled(false);
             modcuo.setEstado("Pendiente");
             this.cuotae.jCalcular.setEnabled(true);
-           
+
             cuotae.jAsamblea.removeAllItems();
             cuotae.jConcepto.removeAllItems();
             listaasambleas = modasa.listarAsambleas();
@@ -281,7 +281,6 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                                     modcuo.setId_asamblea(0);
                                 } else {
                                     int ind1 = cuotae.jAsamblea.getSelectedIndex() - 1;
-                                     modasa.setId_condominio(panta1.rif.getText());
                                      listaasambleas = modasa.listarAsambleas();
                                   
                                     
