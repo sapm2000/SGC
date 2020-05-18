@@ -641,7 +641,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             modcuo.setId(Integer.parseInt(cuotae.txtid.getText()));
 
             if (modcuo.eliminar_cuotas_especiales(modcuo)) {
-
+                modcuo.eliminar_puente(modcuo);
                 JOptionPane.showMessageDialog(null, "Registro Eliminado");
                 llenartablaCuotasEspeciales(catacuoe.jTable1);
                 this.cuotae.dispose();
