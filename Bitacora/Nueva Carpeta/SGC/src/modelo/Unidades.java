@@ -201,7 +201,6 @@ public class Unidades extends ConexionBD {
 //        return listaPropietario;
 //
 //    }
-<<<<<<< HEAD
     public Boolean reactivar() throws SQLException {
         ps = null;
         con = getConexion();
@@ -226,8 +225,6 @@ public class Unidades extends ConexionBD {
 
         }
     }
-=======
->>>>>>> parent of 2b78246... listp
 
     public boolean registrar() {
         ps = null;
@@ -598,7 +595,6 @@ public class Unidades extends ConexionBD {
             propietariosViejos = new ArrayList();
 
             while (rs.next()) {
-<<<<<<< HEAD
                 propietariosViejos.add(new Propietarios(rs.getString("cedula")));
 
             }
@@ -617,25 +613,10 @@ public class Unidades extends ConexionBD {
                         numNuevos--;
                         propietariosViejos.remove(i);
                         numViejos--;
-=======
-                prop.add(new Propietarios(rs.getString("cedula")));
-
-            }
-
-            boolean encontrado = false;
-
-            System.out.println(prop.size());
-            System.out.println(getPropietario().size());
-            for (int k = 0; k < getPropietario().size(); k++) {
-                for (int j = 0; j < prop.size(); j++) {
-                    if (prop.get(j).getCedula().equals(getPropietario().get(k).getCedula())) {
-                        encontrado = true;
->>>>>>> parent of 2b78246... listp
                         break;
 
                     }
                 }
-<<<<<<< HEAD
 
                 // Si el propietario nuevo no está en la lista de viejos
                 if (getPropietario().size() >= 0) {
@@ -644,18 +625,6 @@ public class Unidades extends ConexionBD {
                     getPropietario().remove(j);
                     numNuevos--;
                     j--;
-=======
-
-                if (encontrado == false) {
-                    sql = "UPDATE puente_unidad_propietarios SET fecha_hasta = LOCALTIMESTAMP(0), activo = 0 WHERE id = ? AND cedula = ?";
-
-                    ps = con.prepareStatement(sql);
-
-                    ps.setInt(1, getId());
-                    ps.setString(2, propietario.get(k).getCedula());
-
-                    ps.execute();
->>>>>>> parent of 2b78246... listp
 
                 }
             }
@@ -715,7 +684,6 @@ public class Unidades extends ConexionBD {
 //        }
 //
 //    }
-<<<<<<< HEAD
     private Boolean retirarPropietarios(ArrayList<Propietarios> propietarios) throws SQLException {
         ps = null;
         con = getConexion();
@@ -771,10 +739,6 @@ public class Unidades extends ConexionBD {
     }
 
     /*public boolean retirarpropietario(Unidades moduni) {
-=======
-
-    public boolean retirarpropietario(Unidades moduni) {
->>>>>>> parent of 2b78246... listp
 
         PreparedStatement ps = null;
         Connection con = getConexion();
