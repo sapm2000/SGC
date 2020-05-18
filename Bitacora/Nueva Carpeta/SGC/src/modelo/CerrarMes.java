@@ -570,7 +570,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE cuotas_especiales SET estado=?, n_mese_restante=? WHERE id=?;";
+        String sql = "UPDATE facturas_proveedores SET estado=?, n_mese_restante=? WHERE id=?;";
 
         try {
 
@@ -995,7 +995,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT concepto_gasto.nom_concepto, detalle_pagos.monto, proveedores.cedula, proveedores.nombre, cuotas_especiales.n_mese_restante FROM detalle_pagos inner join cuotas_especiales on detalle_pagos.id_gasto=cuotas_especiales.id  and tipo_gasto='Cuota especial' inner join concepto_gasto on cuotas_especiales.id_concepto=concepto_gasto.id inner join proveedores on proveedores.cedula=cuotas_especiales.id_proveedor where id_factura=?  and detalle_pagos.mes=? and detalle_pagos.anio=?";
+        String sql = "SELECT concepto_gasto.nom_concepto, detalle_pagos.monto, proveedores.cedula, proveedores.nombre, facturas_proveedores.n_mese_restante FROM detalle_pagos inner join facturas_proveedores on detalle_pagos.id_gasto=facturas_proveedores.id  and tipo_gasto='Cuota especial' inner join concepto_gasto on facturas_proveedores.id_concepto=concepto_gasto.id inner join proveedores on proveedores.cedula=facturas_proveedores.id_proveedor where id_factura=?  and detalle_pagos.mes=? and detalle_pagos.anio=?";
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());

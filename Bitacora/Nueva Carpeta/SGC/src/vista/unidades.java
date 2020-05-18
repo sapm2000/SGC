@@ -63,7 +63,6 @@ public class unidades extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         txtArea = new javax.swing.JTextField();
         txtNumeroUnidad = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
@@ -72,6 +71,10 @@ public class unidades extends javax.swing.JFrame {
         txtDireccion = new javax.swing.JTextArea();
         txtId = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtDocumento = new javax.swing.JTextField();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         btnMinimizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
@@ -125,20 +128,15 @@ public class unidades extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Dirección:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, 30));
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Área (mts 2):");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 100, 20));
+        jLabel4.setText("<HTML>Número de <BR>Documento:</HTML>");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, 30));
 
         txtArea.setBackground(new java.awt.Color(0, 94, 159));
         txtArea.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtArea.setForeground(new java.awt.Color(255, 255, 255));
         txtArea.setToolTipText("Ingrese los metros cuadrados que tiene la unidad");
         txtArea.setBorder(null);
-        jPanel2.add(txtArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 300, 20));
+        jPanel2.add(txtArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 300, 20));
 
         txtNumeroUnidad.setBackground(new java.awt.Color(0, 94, 159));
         txtNumeroUnidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -148,10 +146,10 @@ public class unidades extends javax.swing.JFrame {
         jPanel2.add(txtNumeroUnidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 300, 20));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 300, 10));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 300, 10));
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 300, 10));
+        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 300, 10));
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -165,7 +163,7 @@ public class unidades extends javax.swing.JFrame {
         txtDireccion.setWrapStyleWord(true);
         jScrollPane1.setViewportView(txtDireccion);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 300, 110));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 300, 70));
 
         txtId.setEditable(false);
         jPanel2.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 20, -1));
@@ -174,6 +172,26 @@ public class unidades extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Seleccione al o los propietarios");
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Dirección:");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, 30));
+
+        txtDocumento.setBackground(new java.awt.Color(0, 94, 159));
+        txtDocumento.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtDocumento.setForeground(new java.awt.Color(255, 255, 255));
+        txtDocumento.setToolTipText("Ingrese el número de la unidad");
+        txtDocumento.setBorder(null);
+        jPanel2.add(txtDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 300, 20));
+
+        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 300, 10));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Área (mts 2):");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 100, 20));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 480, 260));
 
@@ -367,6 +385,7 @@ public class unidades extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -378,12 +397,14 @@ public class unidades extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     public javax.swing.JTable tablaPropietarios;
     public javax.swing.JTextField txtArea;
     public javax.swing.JTextArea txtDireccion;
+    public javax.swing.JTextField txtDocumento;
     public javax.swing.JTextField txtId;
     public javax.swing.JTextField txtNumeroUnidad;
     // End of variables declaration//GEN-END:variables
