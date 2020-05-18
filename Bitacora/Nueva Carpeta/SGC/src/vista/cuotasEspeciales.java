@@ -62,18 +62,18 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         jConcepto = new javax.swing.JComboBox<>();
         txtMonto = new javax.swing.JTextField();
         txtNmeses = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        labelmense = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
+        barritahorizontal = new javax.swing.JSeparator();
+        barrita = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
-        jLabel13 = new javax.swing.JLabel();
+        labelAsamblea = new javax.swing.JLabel();
         jAsamblea = new javax.swing.JComboBox<>();
         jScrollPane4 = new javax.swing.JScrollPane();
         txaObservaciones = new javax.swing.JTextArea();
         no = new javax.swing.JRadioButton();
-        jLabel15 = new javax.swing.JLabel();
+        fue_elegido = new javax.swing.JLabel();
         si = new javax.swing.JRadioButton();
         jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
         jYearChooser1 = new com.toedter.calendar.JYearChooser();
@@ -130,36 +130,36 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         btnBuscarproveedor.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
         btnBuscarproveedor.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
         btnBuscarproveedor.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
-        jPanel2.add(btnBuscarproveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 40, 40));
+        jPanel2.add(btnBuscarproveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, 40, 40));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Proveedor:");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, 20));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, -1, 20));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Concepto:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 80, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 80, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Calcular Por:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 90, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 90, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("<html>\nComienzo de <br> Cobro (Mes):\n</html>");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, -1, -1));
 
         jCalcular.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCalcular.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alicuota", "Total de Inmuebles" }));
         jCalcular.setToolTipText("Calcular la cuota especial por...");
-        jPanel2.add(jCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 260, -1));
+        jPanel2.add(jCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 260, -1));
 
         jConcepto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jConcepto.setToolTipText("Seleccione un concepto");
-        jPanel2.add(jConcepto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 260, -1));
+        jPanel2.add(jConcepto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 260, -1));
 
         txtMonto.setBackground(new java.awt.Color(0, 94, 159));
         txtMonto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -171,7 +171,7 @@ public class cuotasEspeciales extends javax.swing.JFrame {
                 txtMontoActionPerformed(evt);
             }
         });
-        jPanel2.add(txtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 260, 20));
+        jPanel2.add(txtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 260, 20));
 
         txtNmeses.setBackground(new java.awt.Color(0, 94, 159));
         txtNmeses.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -185,36 +185,36 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         });
         jPanel2.add(txtNmeses, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 230, 20));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("<html> Número de Meses <br> que Aplica: </html>");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 130, -1));
+        labelmense.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelmense.setForeground(new java.awt.Color(255, 255, 255));
+        labelmense.setText("<html> Número de Meses <br> que Aplica: </html>");
+        jPanel2.add(labelmense, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 130, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Monto Total:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 90, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 90, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Observaciones:");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 110, -1));
 
-        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, 230, 20));
+        barritahorizontal.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(barritahorizontal, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, 230, 20));
 
-        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jSeparator2.setOpaque(true);
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 90, -1, 20));
+        barrita.setForeground(new java.awt.Color(255, 255, 255));
+        barrita.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        barrita.setOpaque(true);
+        jPanel2.add(barrita, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 90, -1, 20));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 240, 20));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 240, 20));
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Asamblea:");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 80, 20));
+        labelAsamblea.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelAsamblea.setForeground(new java.awt.Color(255, 255, 255));
+        labelAsamblea.setText("Asamblea:");
+        jPanel2.add(labelAsamblea, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 80, 20));
 
         jAsamblea.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jAsamblea.setToolTipText("Seleccione una asamblea");
@@ -247,10 +247,10 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         no.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button.png"))); // NOI18N
         jPanel2.add(no, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 90, -1, -1));
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("¿Fué elegido en una asamblea?");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, -1, -1));
+        fue_elegido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        fue_elegido.setForeground(new java.awt.Color(255, 255, 255));
+        fue_elegido.setText("¿Fué elegido en una asamblea?");
+        jPanel2.add(fue_elegido, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, -1, -1));
 
         GrupoBotones.add(si);
         si.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -265,31 +265,31 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         jPanel2.add(si, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, -1, -1));
 
         jMonthChooser1.setToolTipText("Seleccione el mes");
-        jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 130, 30));
+        jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 130, 30));
 
         jYearChooser1.setToolTipText("Seleccione el año");
         jYearChooser1.setDayChooser(null);
-        jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 70, 30));
+        jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 70, 30));
 
         txtProveedor.setEditable(false);
         txtProveedor.setBackground(new java.awt.Color(0, 94, 159));
         txtProveedor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtProveedor.setForeground(new java.awt.Color(255, 255, 255));
         txtProveedor.setBorder(null);
-        jPanel2.add(txtProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 240, 20));
+        jPanel2.add(txtProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 240, 20));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 260, 20));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, 260, 20));
 
         jcombotipo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jcombotipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ordinario", "Extraordinario" }));
+        jcombotipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Extraordinario", "Ordinario" }));
         jcombotipo.setToolTipText("Seleccione el tipo de gasto");
-        jPanel2.add(jcombotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 260, -1));
+        jPanel2.add(jcombotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 260, -1));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("<html>\nTipo de <br> Gasto:\n</html>");
-        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 60, -1));
+        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 770, 340));
 
@@ -473,13 +473,13 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNmesesActionPerformed
 
-    private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMontoActionPerformed
-
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMontoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -518,6 +518,8 @@ public class cuotasEspeciales extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup GrupoBotones;
+    public javax.swing.JSeparator barrita;
+    public javax.swing.JSeparator barritahorizontal;
     public javax.swing.JButton btnBuscarproveedor;
     public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnGuardar;
@@ -525,6 +527,7 @@ public class cuotasEspeciales extends javax.swing.JFrame {
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnModificar;
     public javax.swing.JButton btnSalir;
+    public javax.swing.JLabel fue_elegido;
     public javax.swing.JComboBox<String> jAsamblea;
     private javax.swing.JButton jButton4;
     public javax.swing.JComboBox<String> jCalcular;
@@ -534,9 +537,7 @@ public class cuotasEspeciales extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -546,7 +547,6 @@ public class cuotasEspeciales extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -557,9 +557,7 @@ public class cuotasEspeciales extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator8;
@@ -567,6 +565,8 @@ public class cuotasEspeciales extends javax.swing.JFrame {
     public javax.swing.JTable jTable;
     public com.toedter.calendar.JYearChooser jYearChooser1;
     public javax.swing.JComboBox<String> jcombotipo;
+    public javax.swing.JLabel labelAsamblea;
+    public javax.swing.JLabel labelmense;
     public javax.swing.JRadioButton no;
     public javax.swing.JRadioButton si;
     public javax.swing.JTextArea txaObservaciones;
