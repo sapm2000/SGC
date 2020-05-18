@@ -111,13 +111,13 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
             //se sigue buscando a partir de la posición siguiente a la encontrada
             posicion = cadena.indexOf(caracter, posicion + 1);
         }
-        System.out.println(contador);
+       
         return contador;
     }
 
     public static void soloUnPunto(java.awt.event.KeyEvent e, String cadena) {
 
-        System.out.println(cadena);
+        
         int contador = contarCaracteres(cadena, '.');
         if (contador < 1) {
 

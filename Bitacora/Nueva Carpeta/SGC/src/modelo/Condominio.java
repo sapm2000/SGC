@@ -318,7 +318,7 @@ public class Condominio extends ConexionBD {
         ResultSet rs = null;
         Connection con = getConexion();
 
-        String sql = "SELECT * FROM cuotas_especiales where id_condominio=? and estado='Pendiente'";
+        String sql = "SELECT * FROM facturas_proveedores where id_condominio=? and estado='Pendiente'";
 
         try {
 

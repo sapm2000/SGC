@@ -55,15 +55,11 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnBuscarproveedor = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jCalcular = new javax.swing.JComboBox<>();
-        jConcepto = new javax.swing.JComboBox<>();
-        txtMonto = new javax.swing.JTextField();
         txtNmeses = new javax.swing.JTextField();
         labelmense = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         barritahorizontal = new javax.swing.JSeparator();
         barrita = new javax.swing.JSeparator();
@@ -78,7 +74,6 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
         jYearChooser1 = new com.toedter.calendar.JYearChooser();
         txtProveedor = new javax.swing.JTextField();
-        jSeparator4 = new javax.swing.JSeparator();
         jcombotipo = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -137,11 +132,6 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         jLabel9.setText("Proveedor:");
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, -1, 20));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Concepto:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 80, -1));
-
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Calcular Por:");
@@ -156,22 +146,6 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         jCalcular.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alicuota", "Total de Inmuebles" }));
         jCalcular.setToolTipText("Calcular la cuota especial por...");
         jPanel2.add(jCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 260, -1));
-
-        jConcepto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jConcepto.setToolTipText("Seleccione un concepto");
-        jPanel2.add(jConcepto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 260, -1));
-
-        txtMonto.setBackground(new java.awt.Color(0, 94, 159));
-        txtMonto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtMonto.setForeground(new java.awt.Color(255, 255, 255));
-        txtMonto.setToolTipText("Ingrese el monto total");
-        txtMonto.setBorder(null);
-        txtMonto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMontoActionPerformed(evt);
-            }
-        });
-        jPanel2.add(txtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 260, 20));
 
         txtNmeses.setBackground(new java.awt.Color(0, 94, 159));
         txtNmeses.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -189,11 +163,6 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         labelmense.setForeground(new java.awt.Color(255, 255, 255));
         labelmense.setText("<html> Número de Meses <br> que Aplica: </html>");
         jPanel2.add(labelmense, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 130, -1));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Monto Total:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 90, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -277,9 +246,6 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         txtProveedor.setForeground(new java.awt.Color(255, 255, 255));
         txtProveedor.setBorder(null);
         jPanel2.add(txtProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 240, 20));
-
-        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, 260, 20));
 
         jcombotipo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jcombotipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Extraordinario", "Ordinario" }));
@@ -477,10 +443,6 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMontoActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -532,7 +494,6 @@ public class cuotasEspeciales extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     public javax.swing.JComboBox<String> jCalcular;
     private javax.swing.JComboBox<String> jComboBox3;
-    public javax.swing.JComboBox<String> jConcepto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -542,10 +503,8 @@ public class cuotasEspeciales extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -559,7 +518,6 @@ public class cuotasEspeciales extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     public javax.swing.JTable jTable;
@@ -570,7 +528,6 @@ public class cuotasEspeciales extends javax.swing.JFrame {
     public javax.swing.JRadioButton no;
     public javax.swing.JRadioButton si;
     public javax.swing.JTextArea txaObservaciones;
-    public javax.swing.JTextField txtMonto;
     public javax.swing.JTextField txtNmeses;
     public javax.swing.JTextField txtProveedor;
     public javax.swing.JTextField txtid;

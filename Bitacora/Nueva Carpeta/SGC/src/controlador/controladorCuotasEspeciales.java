@@ -16,6 +16,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -85,7 +86,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
         this.cuotae.jTable.addKeyListener(this);
         this.cuotae.jcombotipo.addItemListener(this);
         cuotae.txtNmeses.addKeyListener(this);
-        cuotae.txtMonto.addKeyListener(this);
+
         cuotae.txaObservaciones.addKeyListener(this);
         listaConGas = modcon.listarConcepto();
         listaasambleas = modasa.listarAsambleas();
@@ -109,7 +110,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
         modeloT.addColumn("<html>Nº de <br> Cuota Especial</html>");
         modeloT.addColumn("Proveedor");
-        modeloT.addColumn("Concepto");
+
         modeloT.addColumn("<html>Calcular <br> Por</html>");
         modeloT.addColumn("<html>Comienzo de <br> Cobro</html>");
         modeloT.addColumn("<html>Monto <br> Inicial</html>");
@@ -130,7 +131,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             ind = 0;
             columna[ind++] = listacuotasEspeciales.get(i).getId();
             columna[ind++] = listacuotasEspeciales.get(i).prov.getCedula();
-            columna[ind++] = listacuotasEspeciales.get(i).concep.getNombre_Concepto();
+
             String fecha = String.valueOf(listacuotasEspeciales.get(i).getMes()) + "-" + listacuotasEspeciales.get(i).getAño();
             columna[ind++] = listacuotasEspeciales.get(i).getCalcular();
             columna[ind++] = fecha;
@@ -260,14 +261,14 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             Llenartablaconcepto(cuotae.jTable);
             addCheckBox(2, cuotae.jTable);
             cuotae.jAsamblea.removeAllItems();
-            cuotae.jConcepto.removeAllItems();
+
             listaasambleas = modasa.listarAsambleas();
             listaConGas = modcon.listarConcepto();
-            crearCbxConcepto(listaConGas);
+
             crearCbxAsamblea(listaasambleas);
             this.cuotae.txtid.setVisible(false);
             cuotae.txaObservaciones.setText("");
-            cuotae.txtMonto.setText("");
+
             cuotae.txtNmeses.setText("");
             cuotae.txtid.setText("");
             cuotae.txtProveedor.setText("");
@@ -281,96 +282,135 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
         if (e.getSource() == cuotae.btnGuardar) {
             if (validar()) {
-
-                modcon.setNombre_Concepto(cuotae.jConcepto.getSelectedItem().toString());
-                if (modcon.getNombre_Concepto().equals("Seleccione el Concepto")) {
-                    JOptionPane.showMessageDialog(null, "seleccione un concepto");
+                if (cuotae.jTable.isEditing()) {//si se esta edtando la tabla
+                    cuotae.jTable.getCellEditor().stopCellEditing();//detenga la edicion
+                }
+                String var10 = cuotae.jCalcular.getSelectedItem().toString();
+                if (var10.equals("Total de Inmuebles")) {
+                    var10 = "Total de Inmuebles";
+                }
+                modasa.setNombre_asamblea(cuotae.jAsamblea.getSelectedItem().toString());
+                if (modasa.getNombre_asamblea().equals("Seleccione la Asamblea") && cuotae.si.isSelected()) {
+                    JOptionPane.showMessageDialog(null, "seleccione una asamblea");
                 } else {
-                    int ind = cuotae.jConcepto.getSelectedIndex() - 1;
-                    modcuo.concep.setId(listaConGas.get(ind).getId());
-                    String var10 = cuotae.jCalcular.getSelectedItem().toString();
-                    if (var10.equals("Total de Inmuebles")) {
-                        var10 = "Total de Inmuebles";
-                    }
-                    modasa.setNombre_asamblea(cuotae.jAsamblea.getSelectedItem().toString());
-                    if (modasa.getNombre_asamblea().equals("Seleccione la Asamblea") && cuotae.si.isSelected()) {
-                        JOptionPane.showMessageDialog(null, "seleccione una asamblea");
-                    } else {
-                        modcuo.setTipo(cuotae.jcombotipo.getSelectedItem().toString());
-                        if (modcuo.getTipo().equals("Ordinario")) {
-                             modcuo.setN_meses(1);
+                    modcuo.setTipo(cuotae.jcombotipo.getSelectedItem().toString());
+                    if (modcuo.getTipo().equals("Ordinario")) {
+                        modcuo.setN_meses(1);
                         modcuo.setN_meses_restantes(1);
+                    } else {
+                        if (cuotae.txtNmeses.getText().equals("")) {
+                            modcuo.setN_meses(1);
+                            modcuo.setN_meses_restantes(1);
                         } else {
-                             modcuo.setN_meses(Integer.parseInt(cuotae.txtNmeses.getText()));
-                        modcuo.setN_meses_restantes(Integer.parseInt(cuotae.txtNmeses.getText()));
+                            modcuo.setN_meses(Integer.parseInt(cuotae.txtNmeses.getText()));
+                            modcuo.setN_meses_restantes(Integer.parseInt(cuotae.txtNmeses.getText()));
                         }
-                        modcuo.setCalcular(var10);
-                        modcuo.prov.setCedula(cuotae.txtProveedor.getText());
-                        modcuo.setMes(cuotae.jMonthChooser1.getMonth() + 1);
-                        modcuo.setAño(cuotae.jYearChooser1.getYear());
-                        modcuo.setMonto(Double.parseDouble(cuotae.txtMonto.getText()));
-                        modcuo.setSaldo(Double.parseDouble(cuotae.txtMonto.getText()));
-                       
-                        if (modcuo.getN_meses() > 20) {
-                            JOptionPane.showMessageDialog(null, "El maximo de meses para dividir el pago es 20");
-                        } else {
+                    }
+                    modcuo.setCalcular(var10);
+                    modcuo.prov.setCedula(cuotae.txtProveedor.getText());
+                    modcuo.setMes(cuotae.jMonthChooser1.getMonth() + 1);
+                    modcuo.setAño(cuotae.jYearChooser1.getYear());
 
-                            modcuo.setObservacion(cuotae.txaObservaciones.getText());
-                            modcuo.setEstado("Pendiente");
+                    if (modcuo.getN_meses() > 20) {
+                        JOptionPane.showMessageDialog(null, "El maximo de meses para dividir el pago es 20");
+                    } else {
 
-                            int var1 = 0;
-                            int bre = 0;
-                            var1 = modcuo.getMes();
+                        modcuo.setObservacion(cuotae.txaObservaciones.getText());
+                        modcuo.setEstado("Pendiente");
 
-                            for (int i = 0; i < modcuo.getN_meses(); i++) {
+                        int var1 = 0;
+                        int bre = 0;
+                        var1 = modcuo.getMes();
 
-                                if (var1 + i > 12) {
+                        for (int i = 0; i < modcuo.getN_meses(); i++) {
+
+                            if (var1 + i > 12) {
+                                var1 = var1 - 12;
+                                if (var1 + 1 > 24) {
                                     var1 = var1 - 12;
-                                    if (var1 + 1 > 24) {
-                                        var1 = var1 - 12;
-                                    }
-                                }
-
-                                modc.setMes_cierre(var1 + i);
-
-                                modc.setAño_cierre(modcuo.getAño());
-                                if (modc.buscarfechas(modc)) {
-                                    bre = 1;
-                                } else {
                                 }
                             }
 
-                            if (bre == 1) {
-                                JOptionPane.showMessageDialog(null, "no puede registrar cuotas especiales que incluyan un periodo ya cerrado");
+                            modc.setMes_cierre(var1 + i);
 
+                            modc.setAño_cierre(modcuo.getAño());
+                            if (modc.buscarfechas(modc)) {
+                                bre = 1;
                             } else {
+                            }
+                        }
 
-                                if (cuotae.jAsamblea.getSelectedItem().toString() == "Seleccione la Asamblea") {
-                                    modcuo.setId(0);
-                                } else {
-                                    int ind1 = cuotae.jAsamblea.getSelectedIndex() - 1;
-                                    listaasambleas = modasa.listarAsambleas();
+                        if (bre == 1) {
+                            JOptionPane.showMessageDialog(null, "no puede registrar cuotas especiales que incluyan un periodo ya cerrado");
 
-                                    modcuo.setId(listaasambleas.get(ind1).getId());
+                        } else {
+
+                            if (cuotae.jAsamblea.getSelectedItem().toString() == "Seleccione la Asamblea") {
+                                modcuo.setId(0);
+                            } else {
+                                int ind1 = cuotae.jAsamblea.getSelectedIndex() - 1;
+                                listaasambleas = modasa.listarAsambleas();
+
+                                modcuo.setId(listaasambleas.get(ind1).getId());
+                            }
+                            int j = 0;
+                            int x = 0;
+                            int l = 0;
+                            double monto = 0;
+                            for (int i = 0; i < cuotae.jTable.getRowCount(); i++) {
+                                if (valueOf(cuotae.jTable.getValueAt(i, 2)) == "true") {
+                                    j = j + 1;
+
+                                    if (!valueOf(cuotae.jTable.getValueAt(i, 3)).equals("")) {
+                                        x = x + 1;
+                                        String numero = valueOf(cuotae.jTable.getValueAt(i, 3));
+                                        if (isValidDouble(numero)) {
+                                            l = l + 1;
+                                            monto = monto + Double.parseDouble(valueOf(cuotae.jTable.getValueAt(i, 3)));
+                                        }
+                                    }
+
                                 }
-
-                                if (modcuo.registrar_cuota_especial(modcuo)) {
-
-                                    JOptionPane.showMessageDialog(null, "Registro Guardado");
-
-                                    llenartablaCuotasEspeciales(catacuoe.jTable1);
-
+                            }
+                            if (j == 0) {
+                                JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
+                            } else {
+                                if (j != x) {
+                                    JOptionPane.showMessageDialog(null, "debe ingresar el monto al concepto seleccionado");
                                 } else {
+                                    if (l != x) {
+                                        JOptionPane.showMessageDialog(null, "por favor ingrese solo numeros en la tabla");
+                                    } else {
+                                        modcuo.setMonto(monto);
+                                        modcuo.setSaldo(monto);
+                                        if (modcuo.registrar_cuota_especial(modcuo)) {
+                                            modcuo.buscId(modcuo);
+                                            listaConcepto = modcon.listarConcepto();
 
-                                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                                            for (int i = 0; i < cuotae.jTable.getRowCount(); i++) {
 
+                                                if (valueOf(cuotae.jTable.getValueAt(i, 2)) == "true") {
+                                                    modcuo.concep.setId(listaConcepto.get(i).getId());
+                                                    modcuo.setMonto(Double.parseDouble(valueOf(cuotae.jTable.getValueAt(i, 3))));
+                                                    modcuo.registrar_puente(modcuo);
+                                                }
+
+                                                llenartablaCuotasEspeciales(catacuoe.jTable1);
+
+                                            }
+                                            JOptionPane.showMessageDialog(null, "Registro Guardado");
+                                        } else {
+
+                                            JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                                        }
+
+                                    }
                                 }
-
                             }
                         }
                     }
                 }
-
             }
 
         }
@@ -378,87 +418,79 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
         if (e.getSource() == cuotae.btnModificar) {
             if (validar()) {
 
-                modcon.setNombre_Concepto(cuotae.jConcepto.getSelectedItem().toString());
-                if (modcon.getNombre_Concepto().equals("Seleccione el Concepto")) {
-                    JOptionPane.showMessageDialog(null, "seleccione un concepto");
+                modasa.setNombre_asamblea(cuotae.jAsamblea.getSelectedItem().toString());
+                if (modasa.getNombre_asamblea().equals("Seleccione la Asamblea") && cuotae.si.isSelected()) {
+                    JOptionPane.showMessageDialog(null, "seleccione una asamblea");
                 } else {
-                    modcon.buscarid(modcon);
-                    modasa.setNombre_asamblea(cuotae.jAsamblea.getSelectedItem().toString());
-                    if (modasa.getNombre_asamblea().equals("Seleccione la Asamblea") && cuotae.si.isSelected()) {
-                        JOptionPane.showMessageDialog(null, "seleccione una asamblea");
+
+                    modcuo.setCalcular(cuotae.jCalcular.getSelectedItem().toString());
+                    modcuo.setMes(cuotae.jMonthChooser1.getMonth() + 1);
+                    modcuo.setAño(cuotae.jYearChooser1.getYear());
+
+                    modcuo.setN_meses(Integer.parseInt(cuotae.txtNmeses.getText()));
+                    modcuo.setN_meses_restantes(Integer.parseInt(cuotae.txtNmeses.getText()));
+                    modcuo.prov.setCedula(cuotae.txtProveedor.getText());
+                    if (modcuo.getN_meses() > 20) {
+                        JOptionPane.showMessageDialog(null, "El maximo de meses para dividir el pago es 20");
                     } else {
 
-                        int ind = cuotae.jConcepto.getSelectedIndex() - 1;
-                        modcuo.concep.setId(listaConGas.get(ind).getId());
-                        modcuo.setCalcular(cuotae.jCalcular.getSelectedItem().toString());
-                        modcuo.setMes(cuotae.jMonthChooser1.getMonth() + 1);
-                        modcuo.setAño(cuotae.jYearChooser1.getYear());
-                        modcuo.setMonto(Double.parseDouble(cuotae.txtMonto.getText()));
-                        modcuo.setSaldo(Double.parseDouble(cuotae.txtMonto.getText()));
-                        modcuo.setN_meses(Integer.parseInt(cuotae.txtNmeses.getText()));
-                        modcuo.setN_meses_restantes(Integer.parseInt(cuotae.txtNmeses.getText()));
-                        modcuo.prov.setCedula(cuotae.txtProveedor.getText());
-                        if (modcuo.getN_meses() > 20) {
-                            JOptionPane.showMessageDialog(null, "El maximo de meses para dividir el pago es 20");
-                        } else {
+                        modcuo.setObservacion(cuotae.txaObservaciones.getText());
+                        modcuo.setEstado("Pendiente");
+                        modcuo.setId(Integer.parseInt(cuotae.txtid.getText()));
+                        int var1 = 0;
+                        int bre = 0;
+                        var1 = modcuo.getMes();
 
-                            modcuo.setObservacion(cuotae.txaObservaciones.getText());
-                            modcuo.setEstado("Pendiente");
-                            modcuo.setId(Integer.parseInt(cuotae.txtid.getText()));
-                            int var1 = 0;
-                            int bre = 0;
-                            var1 = modcuo.getMes();
+                        for (int i = 0; i < modcuo.getN_meses(); i++) {
 
-                            for (int i = 0; i < modcuo.getN_meses(); i++) {
-
-                                if (var1 + i > 12) {
+                            if (var1 + i > 12) {
+                                var1 = var1 - 12;
+                                if (var1 + 1 > 24) {
                                     var1 = var1 - 12;
-                                    if (var1 + 1 > 24) {
-                                        var1 = var1 - 12;
-                                    }
-                                }
-
-                                modc.setMes_cierre(var1 + i);
-
-                                modc.setAño_cierre(modcuo.getAño());
-                                if (modc.buscarfechas(modc)) {
-                                    bre = 1;
-                                } else {
                                 }
                             }
 
-                            if (bre == 1) {
-                                JOptionPane.showMessageDialog(null, "no puede registrar cuotas especiales que incluyan un periodo ya cerrado");
+                            modc.setMes_cierre(var1 + i);
 
+                            modc.setAño_cierre(modcuo.getAño());
+                            if (modc.buscarfechas(modc)) {
+                                bre = 1;
                             } else {
-                                if (cuotae.jAsamblea.getSelectedItem().toString() == "Seleccione la Asamblea") {
-                                    modcuo.asa.setId(0);
-                                } else {
-                                    listaasambleas = modasa.listarAsambleas();
-                                    int ind1 = cuotae.jAsamblea.getSelectedIndex() - 1;
-                                    JOptionPane.showMessageDialog(null, ind1);
-                                    JOptionPane.showMessageDialog(null, listaasambleas.get(ind1).getId());
-                                    modcuo.asa.setId(listaasambleas.get(ind1).getId());
-                                }
-
-                                if (modcuo.modificar_cuota_especial(modcuo)) {
-
-                                    JOptionPane.showMessageDialog(null, "Registro Modificado");
-
-                                    llenartablaCuotasEspeciales(catacuoe.jTable1);
-                                    this.cuotae.dispose();
-
-                                } else {
-
-                                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
-
-                                }
-
                             }
                         }
 
+                        if (bre == 1) {
+                            JOptionPane.showMessageDialog(null, "no puede registrar cuotas especiales que incluyan un periodo ya cerrado");
+
+                        } else {
+                            if (cuotae.jAsamblea.getSelectedItem().toString() == "Seleccione la Asamblea") {
+                                modcuo.asa.setId(0);
+                            } else {
+                                listaasambleas = modasa.listarAsambleas();
+                                int ind1 = cuotae.jAsamblea.getSelectedIndex() - 1;
+                                JOptionPane.showMessageDialog(null, ind1);
+                                JOptionPane.showMessageDialog(null, listaasambleas.get(ind1).getId());
+                                modcuo.asa.setId(listaasambleas.get(ind1).getId());
+                            }
+
+                            if (modcuo.modificar_cuota_especial(modcuo)) {
+
+                                JOptionPane.showMessageDialog(null, "Registro Modificado");
+
+                                llenartablaCuotasEspeciales(catacuoe.jTable1);
+                                this.cuotae.dispose();
+
+                            } else {
+
+                                JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                            }
+
+                        }
                     }
+
                 }
+
             }
 
         }
@@ -488,10 +520,10 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
     public void limpiar() {
 
         cuotae.txtNmeses.setText(null);
-        cuotae.txtMonto.setText(null);
+
         cuotae.txaObservaciones.setText(null);
         cuotae.jAsamblea.setSelectedItem("Seleccione la Asamblea");
-        cuotae.jConcepto.setSelectedItem("Seleccione el Concepto");
+
         cuotae.jMonthChooser1.setMonth(0);
         cuotae.txtProveedor.setText(null);
         cuotae.jYearChooser1.setYear(0);
@@ -502,18 +534,6 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
         Boolean resultado = true;
         String msj = "";
-
-        if (cuotae.txtMonto.getText().isEmpty()) {
-
-            msj += "El campo número de Cuenta no puede estar vacío\n";
-            resultado = false;
-        }
-
-        if (cuotae.txtNmeses.getText().isEmpty()) {
-
-            msj += "El campo N° de meses no puede estar vacío\n";
-            resultado = false;
-        }
 
         if (!resultado) {
 
@@ -560,7 +580,6 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             cuotae.txtid.setVisible(false);
             cuotae.txtid.setText(dato);
             cuotae.jAsamblea.removeAllItems();
-            cuotae.jConcepto.removeAllItems();
 
             cuotae.txtProveedor.setText(modcuo.prov.getCedula());
 
@@ -569,7 +588,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             cuotae.jMonthChooser1.setMonth(modcuo.getMes() - 1);
             cuotae.jYearChooser1.setYear(modcuo.getAño());
             cuotae.txaObservaciones.setText(modcuo.getObservacion());
-            cuotae.txtMonto.setText(String.valueOf(Validacion.formato1.format(modcuo.getMonto())));
+
             cuotae.txtNmeses.setText(String.valueOf(modcuo.getN_meses()));
             if (modcuo.getEstado().equals("Pendiente")) {
                 cuotae.btnEliminar.setEnabled(true);
@@ -577,7 +596,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                 cuotae.btnGuardar.setEnabled(false);
                 listaasambleas = modasa.listarAsambleas();
                 listaConGas = modcon.listarConcepto();
-                crearCbxConcepto(listaConGas);
+
                 crearCbxAsamblea(listaasambleas);
                 if (modcuo.asa.getNombre_asamblea() == null) {
                     cuotae.jAsamblea.setSelectedItem("Seleccione la Asamblea");
@@ -610,10 +629,8 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                 cuotae.btnBuscarproveedor.setVisible(false);
                 JOptionPane.showMessageDialog(null, "las cuotas especiales en proceso no puenden ser modificadas ni eliminadas");
 
-                cuotae.jConcepto.addItem(modcuo.concep.getNombre_Concepto());
             }
 
-            cuotae.jConcepto.setSelectedItem(modcuo.concep.getNombre_Concepto());
         }
         if (e.getSource() == buscpro.jTable1) {
             int fila1 = this.buscpro.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
@@ -662,22 +679,15 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             Validacion.soloNumeros(e);
             Validacion.limite(e, cuotae.txtNmeses.getText(), 2);
         }
-        if (e.getSource() == cuotae.txtMonto) {
 
-            Validacion.Espacio(e);
-            Validacion.soloUnPunto(e, cuotae.txtMonto.getText());
-
-        }
         if (e.getSource() == cuotae.jTable) {
-           
-             
-            
+
             int fila = this.cuotae.jTable.getSelectedRow(); // primero, obtengo la fila seleccionada
             String pepe = String.valueOf(this.cuotae.jTable.getValueAt(fila, 3));
             System.out.println(pepe);
-             
+
             Validacion.soloUnPunto(e, pepe);
-            
+
         }
     }
 
@@ -701,7 +711,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
         Component[] components = cuotae.jPanel2.getComponents();
         JComponent[] com = {
-            cuotae.txtNmeses, cuotae.txaObservaciones, cuotae.txtMonto
+            cuotae.txtNmeses, cuotae.txaObservaciones
         };
         Validacion.copiar(components);
         Validacion.pegar(com);
@@ -743,18 +753,6 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
         jtableBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));
 
-    }
-
-    private void crearCbxConcepto(ArrayList<ModeloConceptoGastos> datos) {
-        cuotae.jConcepto.addItem("Seleccione el Concepto");
-
-        if (datos != null) {
-            for (ModeloConceptoGastos datosX : datos) {
-                modcon = datosX;
-                cuotae.jConcepto.addItem(modcon.getNombre_Concepto());
-            }
-
-        }
     }
 
     private void crearCbxAsamblea(ArrayList<Asambleas> datos) {
@@ -802,5 +800,17 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
         TableColumn tc = table.getColumnModel().getColumn(column);
         tc.setCellEditor(table.getDefaultEditor(Boolean.class));
         tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
+    }
+
+    private static boolean isValidDouble(String s) {
+        boolean isValid = true;
+
+        try {
+            Double.parseDouble(s);
+        } catch (NumberFormatException nfe) {
+            isValid = false;
+        }
+
+        return isValid;
     }
 }
