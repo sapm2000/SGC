@@ -21,15 +21,15 @@ import sgc.SGC;
 public class CuotasEspeciales extends ConexionBD {
 
     private int id;
-    private Proveedores prov = new Proveedores();
-    private ModeloConceptoGastos concep = new ModeloConceptoGastos();
+    public Proveedores prov = new Proveedores();
+    public ModeloConceptoGastos concep = new ModeloConceptoGastos();
     private String Calcular;
     private int mes;
     private int año;
     private Double monto;
     private Double saldo;
     private int n_meses;
-    private Asambleas asa = new Asambleas();
+    public Asambleas asa = new Asambleas();
     private String observacion;
     private String estado;
    

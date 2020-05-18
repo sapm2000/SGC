@@ -122,14 +122,14 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
         for (int i = 0; i < numRegistro; i++) {
             ind = 0;
             columna[ind++] = listacuotasEspeciales.get(i).getId();
-            columna[ind++] = listacuotasEspeciales.get(i).getId_proveedor();
-            columna[ind++] = listacuotasEspeciales.get(i).getNombre_Concepto();
+            columna[ind++] = listacuotasEspeciales.get(i).prov.getCedula();
+            columna[ind++] = listacuotasEspeciales.get(i).concep.getNombre_Concepto();
             String fecha = String.valueOf(listacuotasEspeciales.get(i).getMes()) + "-" + listacuotasEspeciales.get(i).getAño();
             columna[ind++] = listacuotasEspeciales.get(i).getCalcular();
             columna[ind++] = fecha;
             columna[ind++] = Validacion.formato1.format(listacuotasEspeciales.get(i).getMonto());
             columna[ind++] = Validacion.formato1.format(listacuotasEspeciales.get(i).getSaldo());
-            columna[ind++] = listacuotasEspeciales.get(i).getNombre_asamble();
+            columna[ind++] = listacuotasEspeciales.get(i).asa.getNombre_asamblea();
             columna[ind++] = listacuotasEspeciales.get(i).getN_meses();
             columna[ind++] = listacuotasEspeciales.get(i).getN_meses_restantes();
             columna[ind++] = listacuotasEspeciales.get(i).getObservacion();
@@ -225,17 +225,17 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                     JOptionPane.showMessageDialog(null, "seleccione un concepto");
                 } else {
                     int ind = cuotae.jConcepto.getSelectedIndex() - 1;
-                    modcuo.setId_concepto(listaConGas.get(ind).getId());
+                    modcuo.concep.setId(listaConGas.get(ind).getId());
                     String var10 = cuotae.jCalcular.getSelectedItem().toString();
                     if (var10.equals("Total de Inmuebles")) {
                         var10 = "Total de Inmuebles";
                     }
-                    modasa.setNombre(cuotae.jAsamblea.getSelectedItem().toString());
-                    if (modasa.getNombre().equals("Seleccione la Asamblea") && cuotae.si.isSelected()) {
+                    modasa.setNombre_asamblea(cuotae.jAsamblea.getSelectedItem().toString());
+                    if (modasa.getNombre_asamblea().equals("Seleccione la Asamblea") && cuotae.si.isSelected()) {
                         JOptionPane.showMessageDialog(null, "seleccione una asamblea");
                     } else {
                         modcuo.setCalcular(var10);
-                        modcuo.setId_proveedor(cuotae.txtProveedor.getText());
+                        modcuo.prov.setCedula(cuotae.txtProveedor.getText());
                         modcuo.setMes(cuotae.jMonthChooser1.getMonth() + 1);
                         modcuo.setAño(cuotae.jYearChooser1.getYear());
                         modcuo.setMonto(Double.parseDouble(cuotae.txtMonto.getText()));
@@ -248,12 +248,12 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
                             modcuo.setObservacion(cuotae.txaObservaciones.getText());
                             modcuo.setEstado("Pendiente");
-                            modcuo.setId_condominio(panta1.rif.getText());
+                          
 
                             int var1 = 0;
                             int bre = 0;
                             var1 = modcuo.getMes();
-                            modc.setId_condominio(panta1.rif.getText());
+                        
                             for (int i = 0; i < modcuo.getN_meses(); i++) {
 
                                 if (var1 + i > 12) {
@@ -278,13 +278,13 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                             } else {
 
                                 if (cuotae.jAsamblea.getSelectedItem().toString() == "Seleccione la Asamblea") {
-                                    modcuo.setId_asamblea(0);
+                                    modcuo.setId(0);
                                 } else {
                                     int ind1 = cuotae.jAsamblea.getSelectedIndex() - 1;
                                      listaasambleas = modasa.listarAsambleas();
                                   
                                     
-                                    modcuo.setId_asamblea(listaasambleas.get(ind1).getId());
+                                    modcuo.setId(listaasambleas.get(ind1).getId());
                                 }
 
                                 if (modcuo.registrar_cuota_especial(modcuo)) {
@@ -316,13 +316,13 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                     JOptionPane.showMessageDialog(null, "seleccione un concepto");
                 } else {
                     modcon.buscarid(modcon);
-                    modasa.setNombre(cuotae.jAsamblea.getSelectedItem().toString());
-                    if (modasa.getNombre().equals("Seleccione la Asamblea") && cuotae.si.isSelected()) {
+                    modasa.setNombre_asamblea(cuotae.jAsamblea.getSelectedItem().toString());
+                    if (modasa.getNombre_asamblea().equals("Seleccione la Asamblea") && cuotae.si.isSelected()) {
                         JOptionPane.showMessageDialog(null, "seleccione una asamblea");
                     } else {
 
                         int ind = cuotae.jConcepto.getSelectedIndex() - 1;
-                        modcuo.setId_concepto(listaConGas.get(ind).getId());
+                        modcuo.concep.setId(listaConGas.get(ind).getId());
                         modcuo.setCalcular(cuotae.jCalcular.getSelectedItem().toString());
                         modcuo.setMes(cuotae.jMonthChooser1.getMonth() + 1);
                         modcuo.setAño(cuotae.jYearChooser1.getYear());
@@ -330,7 +330,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                         modcuo.setSaldo(Double.parseDouble(cuotae.txtMonto.getText()));
                         modcuo.setN_meses(Integer.parseInt(cuotae.txtNmeses.getText()));
                         modcuo.setN_meses_restantes(Integer.parseInt(cuotae.txtNmeses.getText()));
-                        modcuo.setId_proveedor(cuotae.txtProveedor.getText());
+                        modcuo.prov.setCedula(cuotae.txtProveedor.getText());
                         if (modcuo.getN_meses() > 20) {
                             JOptionPane.showMessageDialog(null, "El maximo de meses para dividir el pago es 20");
                         } else {
@@ -365,13 +365,13 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
                             } else {
                                 if (cuotae.jAsamblea.getSelectedItem().toString() == "Seleccione la Asamblea") {
-                                    modcuo.setId_asamblea(0);
+                                    modcuo.asa.setId(0);
                                 } else {
                                     listaasambleas = modasa.listarAsambleas();
                                     int ind1 = cuotae.jAsamblea.getSelectedIndex() - 1;
                                     JOptionPane.showMessageDialog(null, ind1);
                                     JOptionPane.showMessageDialog(null, listaasambleas.get(ind1).getId());
-                                    modcuo.setId_asamblea(listaasambleas.get(ind1).getId());
+                                    modcuo.asa.setId(listaasambleas.get(ind1).getId());
                                 }
 
                                 if (modcuo.modificar_cuota_especial(modcuo)) {
@@ -498,7 +498,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
             
 
-            cuotae.txtProveedor.setText(modcuo.getId_proveedor());
+            cuotae.txtProveedor.setText(modcuo.prov.getCedula());
 
             cuotae.jCalcular.setSelectedItem(modcuo.getCalcular());
 
@@ -515,18 +515,18 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                 listaConGas = modcon.listarConcepto();
                 crearCbxConcepto(listaConGas);
                 crearCbxAsamblea(listaasambleas);
-                if (modcuo.getNombre_asamble() == null) {
+                if (modcuo.asa.getNombre_asamblea()== null) {
                     cuotae.jAsamblea.setSelectedItem("Seleccione la Asamblea");
                     cuotae.jAsamblea.setVisible(false);
                     cuotae.no.setSelected(true);
                 } else {
-                    cuotae.jAsamblea.setSelectedItem(modcuo.getNombre_asamble() + " " + modcuo.getFecha());
+                    cuotae.jAsamblea.setSelectedItem(modcuo.asa.getNombre_asamblea() + " " + modcuo.getFecha());
                     cuotae.si.setSelected(true);
                     cuotae.jAsamblea.setVisible(true);
                 }
 
             } else {
-                if (modcuo.getNombre_asamble() == null) {
+                if (modcuo.asa.getNombre_asamblea() == null) {
                     cuotae.jAsamblea.addItem("Seleccione la Asamblea");
                     cuotae.jAsamblea.setSelectedItem("Seleccione la Asamblea");
                     cuotae.jAsamblea.setVisible(false);
@@ -534,8 +534,8 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                     cuotae.no.setEnabled(false);
                     cuotae.si.setEnabled(false);
                 } else {
-                    cuotae.jAsamblea.addItem(modcuo.getNombre_asamble() + " " + modcuo.getFecha());
-                    cuotae.jAsamblea.setSelectedItem(modcuo.getNombre_asamble() + " " + modcuo.getFecha());
+                    cuotae.jAsamblea.addItem(modcuo.asa.getNombre_asamblea() + " " + modcuo.getFecha());
+                    cuotae.jAsamblea.setSelectedItem(modcuo.asa.getNombre_asamblea() + " " + modcuo.getFecha());
                     cuotae.si.setSelected(true);
                     cuotae.si.setEnabled(false);
                     cuotae.no.setEnabled(false);
@@ -546,10 +546,10 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                 cuotae.btnBuscarproveedor.setVisible(false);
                 JOptionPane.showMessageDialog(null, "las cuotas especiales en proceso no puenden ser modificadas ni eliminadas");
 
-                cuotae.jConcepto.addItem(modcuo.getNombre_Concepto());
+                cuotae.jConcepto.addItem(modcuo.concep.getNombre_Concepto());
             }
 
-            cuotae.jConcepto.setSelectedItem(modcuo.getNombre_Concepto());
+            cuotae.jConcepto.setSelectedItem(modcuo.concep.getNombre_Concepto());
         }
         if (e.getSource() == buscpro.jTable1) {
             int fila1 = this.buscpro.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
