@@ -208,16 +208,49 @@ public class Unidades extends ConexionBD {
         if (vaciarPropietarios()) {
             int ind;
 
-            String sql = "UPDATE unidad SET activo = true WHERE n_unidad = ? AND id_condominio = ?";
+            String sql = "UPDATE unidad SET activo = true, n_documento = ? WHERE n_unidad = ? AND id_condominio = ?";
 
             ps = con.prepareStatement(sql);
 
             ind = 1;
+            ps.setString(ind++, getDocumento());
             ps.setString(ind++, getN_unidad());
             ps.setString(ind++, SGC.condominioActual.getRif());
             
             ps.execute();
 
+            //Se selecciona el id de la unidad que se acaba de registrar
+            sql = "SELECT id FROM v_unidad WHERE n_unidad = ? AND id_condominio = ?";
+
+            ps = con.prepareStatement(sql);
+
+            ind = 1;
+
+            ps.setString(ind++, getN_unidad());
+            ps.setString(ind++, SGC.condominioActual.getRif());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                setId(rs.getInt(1));
+
+            }
+
+            //Registro de los datos del puente
+            sql = "INSERT INTO puente_unidad_propietarios(ci_propietario, id_unidad, estado) VALUES (?,?,?);";
+
+            ps = con.prepareStatement(sql);
+
+            for (int i = 0; i < getPropietario().size(); i++) {
+                ind = 1;
+                ps.setString(ind++, getPropietario().get(i).getCedula());
+                ps.setInt(ind++, getId());
+                ps.setInt(ind++, getEstatus());
+
+                ps.execute();
+
+            }
+            
             return true;
 
         } else {
@@ -229,6 +262,8 @@ public class Unidades extends ConexionBD {
     public boolean registrar() {
         ps = null;
         Connection con = getConexion();
+        
+        int ind;
 
         //Registro de los datos de la tabla unidad
         String sql = "INSERT INTO unidad(n_unidad, n_documento, direccion, area, id_condominio) VALUES (?,?,?,?,?);";
@@ -236,13 +271,13 @@ public class Unidades extends ConexionBD {
         try {
             ps = con.prepareStatement(sql);
 
-            int i = 1;
+            ind = 1;
 
-            ps.setString(i++, getN_unidad());
-            ps.setString(i++, getDocumento());
-            ps.setString(i++, getDireccion());
-            ps.setDouble(i++, getArea());
-            ps.setString(i++, SGC.condominioActual.getRif());
+            ps.setString(ind++, getN_unidad());
+            ps.setString(ind++, getDocumento());
+            ps.setString(ind++, getDireccion());
+            ps.setDouble(ind++, getArea());
+            ps.setString(ind++, SGC.condominioActual.getRif());
 
             ps.execute();
 
@@ -251,10 +286,10 @@ public class Unidades extends ConexionBD {
 
             ps = con.prepareStatement(sql);
 
-            i = 1;
+            ind = 1;
 
-            ps.setString(i++, getN_unidad());
-            ps.setString(i++, SGC.condominioActual.getRif());
+            ps.setString(ind++, getN_unidad());
+            ps.setString(ind++, SGC.condominioActual.getRif());
 
             rs = ps.executeQuery();
 
@@ -269,14 +304,15 @@ public class Unidades extends ConexionBD {
             ps = con.prepareStatement(sql);
 
             for (int j = 0; j < getPropietario().size(); j++) {
-                i = 1;
-                ps.setString(i++, getPropietario().get(j).getCedula());
-                ps.setInt(i++, getId());
-                ps.setInt(i++, getEstatus());
+                ind = 1;
+                ps.setString(ind++, getPropietario().get(j).getCedula());
+                ps.setInt(ind++, getId());
+                ps.setInt(ind++, getEstatus());
 
                 ps.execute();
 
             }
+            
             return true;
 
         } catch (SQLException e) {
@@ -304,14 +340,11 @@ public class Unidades extends ConexionBD {
 
         ps = con.prepareStatement(sql);
 
-        for (int j = 0; j < getPropietario().size(); j++) {
             ind = 1;
             ps.setString(ind++, cedula);
             ps.setInt(ind++, getId());
 
             ps.execute();
-
-        }
 
         return true;
 
@@ -538,7 +571,7 @@ public class Unidades extends ConexionBD {
 
         int ind;
 
-        String sql = "UPDATE n_documento = ?, unidad SET direccion = ?, area = ? WHERE id = ? AND id_condominio = ?;";
+        String sql = "UPDATE unidad SET n_documento = ?, direccion = ?, area = ? WHERE id = ? AND id_condominio = ?;";
 
         try {
             ps = con.prepareStatement(sql);
@@ -619,7 +652,7 @@ public class Unidades extends ConexionBD {
                 }
 
                 // Si el propietario nuevo no está en la lista de viejos
-                if (getPropietario().size() >= 0) {
+                if (getPropietario().size() > 0) {
                     // Se agrega como nuevo propietario y se elimina del arreglo de nuevos
                     agregarPropietario(getPropietario().get(j).getCedula());
                     getPropietario().remove(j);
@@ -822,13 +855,12 @@ public class Unidades extends ConexionBD {
             ps.setString(ind++, SGC.condominioActual.getRif());
             ps.execute();
 
-            sql = "UPDATE puente_unidad_propietarios SET fecha_hasta = LOCALTIMESTAMP(0) WHERE fecha_hasta = null AND id_unidad = ? AND id_condominio = ?;";
+            sql = "UPDATE puente_unidad_propietarios SET fecha_hasta = LOCALTIMESTAMP(0), estado = 0 WHERE fecha_hasta IS null AND id_unidad = ?;";
 
             ps = con.prepareStatement(sql);
 
             ind = 1;
             ps.setInt(ind++, getId());
-            ps.setString(ind++, SGC.condominioActual.getRif());
 
             ps.execute();
 

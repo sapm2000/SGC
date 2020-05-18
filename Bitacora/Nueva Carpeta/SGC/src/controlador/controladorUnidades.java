@@ -606,7 +606,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                 modelo = new Unidades();
                 modelo.setId(Integer.parseInt(vista.txtId.getText()));
                 modelo.setN_unidad(vista.txtNumeroUnidad.getText());
-                modelo.setDocumento(vista.txtNumeroUnidad.getText());
+                modelo.setDocumento(vista.txtDocumento.getText());
                 modelo.setArea(Double.parseDouble(vista.txtArea.getText()));
                 modelo.setDireccion(vista.txtDireccion.getText());
 
@@ -636,7 +636,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                         if (modelo.modificar()) {
                             JOptionPane.showMessageDialog(null, "Registro Modificado");
                             llenarTabla(catalogo.tabla);
-
                             vista.dispose();
 
                         } else {
