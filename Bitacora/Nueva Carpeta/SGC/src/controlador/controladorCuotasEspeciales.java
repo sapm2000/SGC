@@ -58,6 +58,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
     ArrayList<ModeloConceptoGastos> listaConGas;
     ArrayList<Asambleas> listaasambleas;
     ArrayList<ModeloConceptoGastos> listaConcepto;
+    ArrayList<CuotasEspeciales> listaConceptomod;
 
     public controladorCuotasEspeciales() {
         this.cuotae = new cuotasEspeciales();
@@ -197,6 +198,76 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
             columna[0] = listaConcepto.get(i).cate.getNombre();
             columna[1] = listaConcepto.get(i).getNombre_Concepto();
+
+            modeloT.addRow(columna);
+
+        }
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+
+    }
+
+    public void Llenartablaconceptomodificar(JTable tablaD, int x) {
+
+        if (x == 0) {
+            listaConceptomod = modcuo.listarconceptosmodificar(0);
+        }
+        if (x == 1) {
+            listaConceptomod = modcuo.listarconceptosmodificar(1);
+        }
+
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                boolean resu = false;
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+                if (column == 2) {
+                    resu = true;
+                }
+                if (column == 3) {
+                    resu = true;
+                }
+
+                return resu;
+            }
+
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
+
+        modeloT.addColumn("Categoria");
+        modeloT.addColumn("Concepto");
+        modeloT.addColumn("Seleccione");
+        modeloT.addColumn("Monto");
+
+        Object[] columna = new Object[4];
+
+        int numRegistro = listaConceptomod.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listaConceptomod.get(i).cate.getNombre();
+            columna[1] = listaConceptomod.get(i).concep.getNombre_Concepto();
+            if (listaConceptomod.get(i).concep.getId() == 0) {
+                columna[2] = Boolean.FALSE;
+            } else {
+                columna[2] = Boolean.TRUE;
+            }
+            if (listaConceptomod.get(i).getMonto() == 0) {
+                columna[3] = "";
+            } else {
+                columna[3] = listaConceptomod.get(i).getMonto();
+            }
 
             modeloT.addRow(columna);
 
@@ -350,12 +421,12 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                             } else {
                                 int ind1 = cuotae.jAsamblea.getSelectedIndex() - 1;
                                 listaasambleas = modasa.listarAsambleas();
-
                                 modcuo.setId(listaasambleas.get(ind1).getId());
                             }
                             int j = 0;
                             int x = 0;
                             int l = 0;
+                            int xd = 0;
                             double monto = 0;
                             for (int i = 0; i < cuotae.jTable.getRowCount(); i++) {
                                 if (valueOf(cuotae.jTable.getValueAt(i, 2)) == "true") {
@@ -367,6 +438,9 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                                         if (isValidDouble(numero)) {
                                             l = l + 1;
                                             monto = monto + Double.parseDouble(valueOf(cuotae.jTable.getValueAt(i, 3)));
+                                            if (Double.parseDouble(valueOf(cuotae.jTable.getValueAt(i, 3))) == 0) {
+                                                xd = xd + 1;
+                                            }
                                         }
                                     }
 
@@ -381,30 +455,34 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                                     if (l != x) {
                                         JOptionPane.showMessageDialog(null, "por favor ingrese solo numeros en la tabla");
                                     } else {
-                                        modcuo.setMonto(monto);
-                                        modcuo.setSaldo(monto);
-                                        if (modcuo.registrar_cuota_especial(modcuo)) {
-                                            modcuo.buscId(modcuo);
-                                            listaConcepto = modcon.listarConcepto();
+                                        if (xd >= 1) {
+                                            JOptionPane.showMessageDialog(null, "0 no es un monto valido");
+                                        } else {
+                                            modcuo.setMonto(monto);
+                                            modcuo.setSaldo(monto);
+                                            if (modcuo.registrar_cuota_especial(modcuo)) {
+                                                modcuo.buscId(modcuo);
+                                                listaConcepto = modcon.listarConcepto();
 
-                                            for (int i = 0; i < cuotae.jTable.getRowCount(); i++) {
+                                                for (int i = 0; i < cuotae.jTable.getRowCount(); i++) {
 
-                                                if (valueOf(cuotae.jTable.getValueAt(i, 2)) == "true") {
-                                                    modcuo.concep.setId(listaConcepto.get(i).getId());
-                                                    modcuo.setMonto(Double.parseDouble(valueOf(cuotae.jTable.getValueAt(i, 3))));
-                                                    modcuo.registrar_puente(modcuo);
+                                                    if (valueOf(cuotae.jTable.getValueAt(i, 2)) == "true") {
+                                                        modcuo.concep.setId(listaConcepto.get(i).getId());
+                                                        modcuo.setMonto(Double.parseDouble(valueOf(cuotae.jTable.getValueAt(i, 3))));
+                                                        modcuo.registrar_puente(modcuo);
+                                                    }
+
+                                                    llenartablaCuotasEspeciales(catacuoe.jTable1);
+
                                                 }
+                                                JOptionPane.showMessageDialog(null, "Registro Guardado");
+                                            } else {
 
-                                                llenartablaCuotasEspeciales(catacuoe.jTable1);
+                                                JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
 
                                             }
-                                            JOptionPane.showMessageDialog(null, "Registro Guardado");
-                                        } else {
-
-                                            JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
 
                                         }
-
                                     }
                                 }
                             }
@@ -417,7 +495,9 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
         if (e.getSource() == cuotae.btnModificar) {
             if (validar()) {
-
+                if (cuotae.jTable.isEditing()) {//si se esta edtando la tabla
+                    cuotae.jTable.getCellEditor().stopCellEditing();//detenga la edicion
+                }
                 modasa.setNombre_asamblea(cuotae.jAsamblea.getSelectedItem().toString());
                 if (modasa.getNombre_asamblea().equals("Seleccione la Asamblea") && cuotae.si.isSelected()) {
                     JOptionPane.showMessageDialog(null, "seleccione una asamblea");
@@ -427,8 +507,19 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                     modcuo.setMes(cuotae.jMonthChooser1.getMonth() + 1);
                     modcuo.setAño(cuotae.jYearChooser1.getYear());
 
-                    modcuo.setN_meses(Integer.parseInt(cuotae.txtNmeses.getText()));
-                    modcuo.setN_meses_restantes(Integer.parseInt(cuotae.txtNmeses.getText()));
+                    modcuo.setTipo(cuotae.jcombotipo.getSelectedItem().toString());
+                    if (modcuo.getTipo().equals("Ordinario")) {
+                        modcuo.setN_meses(1);
+                        modcuo.setN_meses_restantes(1);
+                    } else {
+                        if (cuotae.txtNmeses.getText().equals("")) {
+                            modcuo.setN_meses(1);
+                            modcuo.setN_meses_restantes(1);
+                        } else {
+                            modcuo.setN_meses(Integer.parseInt(cuotae.txtNmeses.getText()));
+                            modcuo.setN_meses_restantes(Integer.parseInt(cuotae.txtNmeses.getText()));
+                        }
+                    }
                     modcuo.prov.setCedula(cuotae.txtProveedor.getText());
                     if (modcuo.getN_meses() > 20) {
                         JOptionPane.showMessageDialog(null, "El maximo de meses para dividir el pago es 20");
@@ -472,27 +563,77 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                                 JOptionPane.showMessageDialog(null, listaasambleas.get(ind1).getId());
                                 modcuo.asa.setId(listaasambleas.get(ind1).getId());
                             }
+                            int j = 0;
+                            int x = 0;
+                            int l = 0;
+                            int xd = 0;
+                            double monto = 0;
+                            for (int i = 0; i < cuotae.jTable.getRowCount(); i++) {
+                                if (valueOf(cuotae.jTable.getValueAt(i, 2)) == "true") {
+                                    j = j + 1;
 
-                            if (modcuo.modificar_cuota_especial(modcuo)) {
+                                    if (!valueOf(cuotae.jTable.getValueAt(i, 3)).equals("")) {
+                                        x = x + 1;
+                                        String numero = valueOf(cuotae.jTable.getValueAt(i, 3));
+                                        if (isValidDouble(numero)) {
+                                            l = l + 1;
+                                            monto = monto + Double.parseDouble(valueOf(cuotae.jTable.getValueAt(i, 3)));
+                                            if (Double.parseDouble(valueOf(cuotae.jTable.getValueAt(i, 3))) == 0) {
+                                                xd = xd + 1;
+                                            }
+                                        }
+                                    }
 
-                                JOptionPane.showMessageDialog(null, "Registro Modificado");
-
-                                llenartablaCuotasEspeciales(catacuoe.jTable1);
-                                this.cuotae.dispose();
-
+                                }
+                            }
+                            if (j == 0) {
+                                JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
                             } else {
+                                if (j != x) {
+                                    JOptionPane.showMessageDialog(null, "debe ingresar el monto al concepto seleccionado");
+                                } else {
+                                    if (l != x) {
+                                        JOptionPane.showMessageDialog(null, "por favor ingrese solo numeros en la tabla");
+                                    } else {
+                                        if (xd >= 1) {
+                                            JOptionPane.showMessageDialog(null, "0 no es un monto valido");
+                                        } else {
+                                            modcuo.setMonto(monto);
+                                            modcuo.setSaldo(monto);
 
-                                JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                                            if (modcuo.modificar_cuota_especial(modcuo)) {
+                                                modcuo.eliminar_puente(modcuo);
+                                                listaConcepto = modcon.listarConcepto();
+
+                                                for (int i = 0; i < cuotae.jTable.getRowCount(); i++) {
+
+                                                    if (valueOf(cuotae.jTable.getValueAt(i, 2)) == "true") {
+                                                        modcuo.concep.setId(listaConcepto.get(i).getId());
+                                                        modcuo.setMonto(Double.parseDouble(valueOf(cuotae.jTable.getValueAt(i, 3))));
+                                                        modcuo.registrar_puente(modcuo);
+                                                    }
+
+                                                }
+                                                JOptionPane.showMessageDialog(null, "registro modificado");
+                                                llenartablaCuotasEspeciales(catacuoe.jTable1);
+                                                this.cuotae.dispose();
+                                            } else {
+
+                                                JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                                            }
+
+                                        }
+                                    }
+
+                                }
 
                             }
 
                         }
                     }
-
                 }
-
             }
-
         }
 
         if (e.getSource() == cuotae.btnEliminar) {
@@ -500,7 +641,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             modcuo.setId(Integer.parseInt(cuotae.txtid.getText()));
 
             if (modcuo.eliminar_cuotas_especiales(modcuo)) {
-
+                modcuo.eliminar_puente(modcuo);
                 JOptionPane.showMessageDialog(null, "Registro Eliminado");
                 llenartablaCuotasEspeciales(catacuoe.jTable1);
                 this.cuotae.dispose();
@@ -562,6 +703,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                 if (modcuo.getEstado().equals("Pendiente")) {
                     cuotae.jAsamblea.setVisible(false);
                     cuotae.jAsamblea.setSelectedItem("Seleccione la Asamblea");
+
                 }
             }
         }
@@ -595,7 +737,8 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                 cuotae.btnModificar.setEnabled(true);
                 cuotae.btnGuardar.setEnabled(false);
                 listaasambleas = modasa.listarAsambleas();
-                listaConGas = modcon.listarConcepto();
+                Llenartablaconceptomodificar(cuotae.jTable, 0);
+                addCheckBox(2, cuotae.jTable);
 
                 crearCbxAsamblea(listaasambleas);
                 if (modcuo.asa.getNombre_asamblea() == null) {
@@ -609,6 +752,8 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                 }
 
             } else {
+                Llenartablaconceptomodificar(cuotae.jTable, 1);
+                addCheckBox(2, cuotae.jTable);
                 if (modcuo.asa.getNombre_asamblea() == null) {
                     cuotae.jAsamblea.addItem("Seleccione la Asamblea");
                     cuotae.jAsamblea.setSelectedItem("Seleccione la Asamblea");
