@@ -296,14 +296,21 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                     if (modasa.getNombre_asamblea().equals("Seleccione la Asamblea") && cuotae.si.isSelected()) {
                         JOptionPane.showMessageDialog(null, "seleccione una asamblea");
                     } else {
+                        modcuo.setTipo(cuotae.jcombotipo.getSelectedItem().toString());
+                        if (modcuo.getTipo().equals("Ordinario")) {
+                             modcuo.setN_meses(1);
+                        modcuo.setN_meses_restantes(1);
+                        } else {
+                             modcuo.setN_meses(Integer.parseInt(cuotae.txtNmeses.getText()));
+                        modcuo.setN_meses_restantes(Integer.parseInt(cuotae.txtNmeses.getText()));
+                        }
                         modcuo.setCalcular(var10);
                         modcuo.prov.setCedula(cuotae.txtProveedor.getText());
                         modcuo.setMes(cuotae.jMonthChooser1.getMonth() + 1);
                         modcuo.setAño(cuotae.jYearChooser1.getYear());
                         modcuo.setMonto(Double.parseDouble(cuotae.txtMonto.getText()));
                         modcuo.setSaldo(Double.parseDouble(cuotae.txtMonto.getText()));
-                        modcuo.setN_meses(Integer.parseInt(cuotae.txtNmeses.getText()));
-                        modcuo.setN_meses_restantes(Integer.parseInt(cuotae.txtNmeses.getText()));
+                       
                         if (modcuo.getN_meses() > 20) {
                             JOptionPane.showMessageDialog(null, "El maximo de meses para dividir el pago es 20");
                         } else {

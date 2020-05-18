@@ -32,7 +32,7 @@ public class CuotasEspeciales extends ConexionBD {
     public Asambleas asa = new Asambleas();
     private String observacion;
     private String estado;
-   
+   private String tipo;
     private int n_meses_restantes;
     private java.sql.Date fecha;
     private String pagado;
@@ -460,6 +460,14 @@ public class CuotasEspeciales extends ConexionBD {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
  
