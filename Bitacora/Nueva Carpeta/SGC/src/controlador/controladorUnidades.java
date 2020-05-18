@@ -213,7 +213,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = listapagos.get(i).gas.getId();
+            columna[0] = listapagos.get(i).getId_gasto();
             columna[1] = listapagos.get(i).getMes_cierre();
             columna[2] = listapagos.get(i).getAño_cierre();
             columna[3] = Validacion.formato1.format(listapagos.get(i).getMonto());
@@ -260,10 +260,10 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = listadetallegasto.get(i).gas.getTipo_gasto();
-            columna[1] = listadetallegasto.get(i).prove.getCedula();
-            columna[2] = listadetallegasto.get(i).prove.getNombre();
-            columna[3] = listadetallegasto.get(i).concep.getNombre_Concepto();
+            columna[0] = listadetallegasto.get(i).getTipo();
+            columna[1] = listadetallegasto.get(i).getCedula();
+            columna[2] = listadetallegasto.get(i).getNom_proveedor();
+            columna[3] = listadetallegasto.get(i).getNom_concepto();
             columna[4] = Validacion.formato1.format(listadetallegasto.get(i).getMonto());
 
             modeloT.addRow(columna);
@@ -345,11 +345,11 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = listadetallecuotas.get(i).prove.getCedula();
-            columna[1] = listadetallecuotas.get(i).prove.getNombre();
-            columna[2] = listadetallecuotas.get(i).concep.getNombre_Concepto();
+            columna[0] = listadetallecuotas.get(i).getCedula();
+            columna[1] = listadetallecuotas.get(i).getNom_proveedor();
+            columna[2] = listadetallecuotas.get(i).getNom_concepto();
             columna[3] = Validacion.formato1.format(listadetallecuotas.get(i).getMonto());
-            columna[4] = listadetallecuotas.get(i).cuo.getN_meses_restantes();
+            columna[4] = listadetallecuotas.get(i).getMeses_res();
 
             modeloT.addRow(columna);
 
@@ -389,9 +389,9 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = listadetallesancion.get(i).san.getTipo();
+            columna[0] = listadetallesancion.get(i).getTipo();
             columna[1] = listadetallesancion.get(i).getEstado();
-            if (listadetallesancion.get(i).san.getTipo().equals("Interes de mora")) {
+            if (listadetallesancion.get(i).getTipo().equals("Interes de mora")) {
                 String var4 = listadetallesancion.get(i).getAlicuota() + "%";
                 columna[2] = var4;
             } else {
@@ -842,7 +842,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
                 String dato2 = String.valueOf(this.catalogo.tabla.getValueAt(fila, 2)); // por ultimo, obtengo el valor de la celda
                 detacun.setVisible(true);
-                modc.uni.setId(listaUnidades.get(fila).getId());
+                modc.setId_unidad(listaUnidades.get(fila).getId());
                 detacun.txtArea.setText(dato2);
                 llenartablapagos(detacun.jTable1);
                 detacun.txtUnidad.setText(dato);
