@@ -1,7 +1,7 @@
 package modelo;
 
-class Persona extends ConexionBD{
-    
+class Persona extends ConexionBD {
+
     private String cedula;
     private String pNombre;
     private String sNombre;
@@ -9,6 +9,7 @@ class Persona extends ConexionBD{
     private String sApellido;
     private String correo;
     private String telefono;
+    private Condominio[] condominio;
 
     public Persona() {
     }
@@ -82,6 +83,13 @@ class Persona extends ConexionBD{
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    
-    
+
+    public Condominio[] getCondominio() {
+        return condominio;
+    }
+
+    public void setCondominio(Condominio[] condominio) {
+        this.condominio = condominio;
+    }
+
 }

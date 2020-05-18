@@ -22,7 +22,6 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
 
     Propietario vista;
     Propietarios modelo;
-
     CatPropietario catalogo;
 
     DefaultTableModel dm;
@@ -318,7 +317,6 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
 
         }
         if (e.getSource() == vista.txtCorreo) {
-            Validacion.soloLetras(e);
             Validacion.Espacio(e);
             Validacion.limite(e, vista.txtCorreo.getText(), 60);
         }

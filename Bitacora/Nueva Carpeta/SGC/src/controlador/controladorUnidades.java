@@ -10,8 +10,10 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import static java.lang.String.valueOf;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -124,7 +126,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         modeloT.addColumn("Teléfono");
         modeloT.addColumn("Correo");
         modeloT.addColumn("Seleccione");
-        modeloT.addColumn("Nº documento");
         addCheckBox(4, tablaD);
 
         Object[] columna = new Object[modeloT.getColumnCount()];
@@ -159,15 +160,13 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
                 for (int j = 0; j < modelo.getPropietario().size(); j++) {
                     ind = 4;
-                    
-                    if (modelo.getPropietario().get(j).getCedula().equals(listaPropietarios.get(i).getCedula())) {
+
+                    if (listaPropietarios.get(i).getCedula().equals(modelo.getPropietario().get(j).getCedula())) {
                         columna[ind++] = Boolean.TRUE;
-                        columna[ind++] = modelo.getDocumento().get(j);
                         break;
 
                     } else {
                         columna[ind++] = Boolean.FALSE;
-                        columna[ind++] = "";
 
                     }
                 }
@@ -185,79 +184,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
         }
     }
-
-//    public void llenartablapropietariosmod(JTable tablaD) {
-//
-//        listaPropietarios = modelo.buscarPropietariomod();
-//        DefaultTableModel modeloT = new DefaultTableModel() {
-//            @Override
-//            public boolean isCellEditable(int row, int column) {
-//
-//                boolean resu = false;
-//                if (column == 0) {
-//                    resu = false;
-//                }
-//                if (column == 1) {
-//                    resu = false;
-//                }
-//                if (column == 2) {
-//                    resu = false;
-//                }
-//                if (column == 3) {
-//                    resu = false;
-//                }
-//                if (column == 4) {
-//                    resu = true;
-//                }
-//                if (column == 5) {
-//                    resu = true;
-//                }
-//                return resu;
-//            }
-//
-//        };
-//
-//        tablaD.setModel(modeloT);
-//
-//        tablaD.getTableHeader().setReorderingAllowed(false);
-//        tablaD.getTableHeader().setResizingAllowed(false);
-//
-//        modeloT.addColumn("Cédula");
-//        modeloT.addColumn("Nombre");
-//        modeloT.addColumn("Teléfono");
-//        modeloT.addColumn("Correo");
-//        modeloT.addColumn("Seleccione");
-//        modeloT.addColumn("Nº documento");
-//
-//        Object[] columna = new Object[10];
-//
-//        int numRegistro = listaPropietarios.size();
-//
-//        for (int i = 0; i < numRegistro; i++) {
-//
-//            columna[0] = listaPropietarios.get(i).getCedula();
-//            columna[1] = listaPropietarios.get(i).getNombre();
-//            columna[2] = listaPropietarios.get(i).getTelefono();
-//            columna[3] = listaPropietarios.get(i).getCorreo();
-//            if (listaPropietarios.get(i).getId() != 0) {
-//                columna[4] = Boolean.TRUE;
-//            } else {
-//                columna[4] = Boolean.FALSE;
-//            }
-//            columna[5] = listaPropietarios.get(i).getDocumento();
-//            modeloT.addRow(columna);
-//
-//        }
-//        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-//        tcr.setHorizontalAlignment(SwingConstants.CENTER);
-//        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
-//        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
-//        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-//        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
-//
-//        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
-//
-//    }
 
     public void llenartablapagos(JTable tablaD) {
 
@@ -504,6 +430,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         modeloT.addColumn("<html>Número de <br> Unidad</html>");
         modeloT.addColumn("Dirección");
         modeloT.addColumn("Área (mts2)");
+        modeloT.addColumn("<HTML>Número de <BR>Documento</HTML>");
 
         Object[] columna = new Object[modeloT.getColumnCount()];
 
@@ -516,6 +443,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             columna[ind++] = listaUnidades.get(i).getN_unidad();
             columna[ind++] = listaUnidades.get(i).getDireccion();
             columna[ind++] = listaUnidades.get(i).getArea();
+            columna[ind++] = listaUnidades.get(i).getDocumento();
 
             modeloT.addRow(columna);
 
@@ -585,7 +513,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 //        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
 //
 //    }
-
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == catalogo.btnNuevo) {
             this.vista.setVisible(true);
@@ -606,68 +533,65 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                     vista.tablaPropietarios.getCellEditor().stopCellEditing();//detenga la edicion
                 }
 
+                modelo = new Unidades();
                 modelo.setN_unidad(vista.txtNumeroUnidad.getText());
+                modelo.setDocumento(vista.txtDocumento.getText());
                 modelo.setArea(Double.parseDouble(vista.txtArea.getText()));
                 modelo.setDireccion(vista.txtDireccion.getText());
 
                 int j = 0;
-                int x = 0;
 
                 for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
                     if (valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
                         j = j + 1;
 
-                        if (!valueOf(vista.tablaPropietarios.getValueAt(i, 5)).equals("")) {
-                            x = x + 1;
-                        }
                     }
                 }
 
                 if (j == 0) {
                     JOptionPane.showMessageDialog(null, "Debe seleccionar al menos 1 registro de la tabla");
+
                 } else {
-                    if (j != x) {
-                        JOptionPane.showMessageDialog(null, "Debe ingresar el número de documento en la tabla");
-                    } else {
+                    for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
+                        if (valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
+                            modelo.getPropietario().add(new Propietarios(vista.tablaPropietarios.getValueAt(i, 0).toString()));
+                            modelo.setEstatus(1);
 
-                        if (modelo.buscarepe(modelo)) {
-                            JOptionPane.showMessageDialog(null, "Este condiminio ya tiene este número de unidad asignado");
-                        } else {
-                            for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
-                                if (valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
-                                    modelo.getPropietario().add(new Propietarios(vista.tablaPropietarios.getValueAt(i, 0).toString()));
-                                    modelo.getDocumento().add(vista.tablaPropietarios.getValueAt(i, 5).toString());
-                                    modelo.setEstatus(1);
-                                    //modelo.registrar_propietario_unidad(modelo);
+                        }
+                    }
 
-                                }
+                    if (modelo.existeInactivo()) {
+                        JOptionPane.showMessageDialog(null, "Este número de únidad ya existe en la BD, se recuperarán los datos para el nuevo registro");
+
+                        try {
+                            if (modelo.reactivar()) {
+                                JOptionPane.showMessageDialog(null, "Registro Guardado");
+                                vista.dispose();
+                                llenarTabla(catalogo.tabla);
+
                             }
 
+                        } catch (SQLException ex) {
+                            Logger.getLogger(controladorUnidades.class.getName()).log(Level.SEVERE, null, ex);
+                            JOptionPane.showMessageDialog(null, "No se pudo reactivar");
+
+                        }
+
+                    } else {
+                        if (modelo.buscarepe(modelo)) {
+                            JOptionPane.showMessageDialog(null, "Este condiminio ya tiene este número de unidad asignado");
+
+                        } else {
                             if (modelo.registrar()) {
-                                //modelo.buscId(modelo);
-
                                 JOptionPane.showMessageDialog(null, "Registro Guardado");
-
-//                                int k = 0;
-//                                
-//                                for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
-//                                    if (valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
-//                                        modelo.getPropietario().add(new Propietarios(valueOf(vista.tablaPropietarios.getValueAt(i, 0))));
-//                                        modelo.getDocumento().add(valueOf(vista.tablaPropietarios.getValueAt(i, 5)));
-//                                        modelo.setEstatus(1);
-//                                        modelo.registrar_propietario_unidad(modelo);
-//
-//                                    }
-//                                }
+                                vista.dispose();
                                 llenarTabla(catalogo.tabla);
 
                             } else {
-
-                                JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
+                                JOptionPane.showMessageDialog(null, "Este Registro ya existe");
 
                             }
                         }
-
                     }
                 }
             }
@@ -679,96 +603,66 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                     vista.tablaPropietarios.getCellEditor().stopCellEditing();//detenga la edicion
                 }
 
-                java.util.Date fecha = new Date();
-                java.sql.Date sqlDate = Validacion.convert(fecha);
+                modelo = new Unidades();
+                modelo.setId(Integer.parseInt(vista.txtId.getText()));
                 modelo.setN_unidad(vista.txtNumeroUnidad.getText());
+                modelo.setDocumento(vista.txtNumeroUnidad.getText());
                 modelo.setArea(Double.parseDouble(vista.txtArea.getText()));
                 modelo.setDireccion(vista.txtDireccion.getText());
-                modelo.setId(Integer.parseInt(vista.txtId.getText()));
+
                 int j = 0;
-                int x = 0;
+
                 for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
                     if (valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
                         j = j + 1;
-
-                        if (!valueOf(vista.tablaPropietarios.getValueAt(i, 5)).equals("")) {
-                            x = x + 1;
-                        }
 
                     }
                 }
                 if (j == 0) {
                     JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
                 } else {
-                    if (j != x) {
-                        JOptionPane.showMessageDialog(null, "debe ingresar el numero de documento en la tabla");
+                    if (modelo.buscarepe(modelo) && !modelo.getN_unidad().equals(vista.txtNumeroUnidad.getText())) {
+                        JOptionPane.showMessageDialog(null, "Este condiminio ya tiene este numero de unidad asignada");
                     } else {
+                        modelo.getPropietario().clear();
 
-                        if (modelo.buscarepe(modelo) && !modelo.getN_unidad().equals(vista.txtNumeroUnidad.getText())) {
-                            JOptionPane.showMessageDialog(null, "Este condiminio ya tiene este numero de unidad asignada");
+                        for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
+                            if (valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
+                                modelo.getPropietario().add(new Propietarios(vista.tablaPropietarios.getValueAt(i, 0).toString()));
+
+                            }
+                        }
+
+                        if (modelo.modificar()) {
+                            JOptionPane.showMessageDialog(null, "Registro Modificado");
+                            llenarTabla(catalogo.tabla);
+
+                            vista.dispose();
+
                         } else {
-                            modelo.getPropietario().clear();
-                            
-                            for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
-                                if (valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
-                                    modelo.getPropietario().add(new Propietarios(vista.tablaPropietarios.getValueAt(i, 0).toString()));
-                                    modelo.getDocumento().add(vista.tablaPropietarios.getValueAt(i, 5).toString());
+                            JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
 
-                                }
-                            }
-
-                            if (modelo.modificar()) {
-                                /*listaPropietarios = modelo.buscarPropietariomod();
-                                for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
-
-                                    if (listaPropietarios.get(i).getId() != 0 && valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
-                                        if (!listaPropietarios.get(i).getDocumento().equals(valueOf(vista.tablaPropietarios.getValueAt(i, 5)))) {
-                                            modelo.setDocumento(String.valueOf(vista.tablaPropietarios.getValueAt(i, 5)));
-                                            modelo.setId_puente(listaPropietarios.get(i).getId_puente());
-                                            modelo.actualizardocumento(modelo);
-
-                                        }
-                                    }
-
-                                    if (listaPropietarios.get(i).getId() != 0 && valueOf(vista.tablaPropietarios.getValueAt(i, 4)).equals("false")) {
-                                        modelo.setFecha_hasta(sqlDate);
-                                        modelo.setEstatus(0);
-                                        modelo.setId_puente(listaPropietarios.get(i).getId_puente());
-                                        modelo.retirarpropietario(modelo);
-                                    }
-
-                                    if (listaPropietarios.get(i).getId() == 0 && valueOf(vista.tablaPropietarios.getValueAt(i, 4)).equals("true")) {
-                                        modelo.setCedula(valueOf(vista.tablaPropietarios.getValueAt(i, 0)));
-                                        modelo.setDocumento(valueOf(vista.tablaPropietarios.getValueAt(i, 5)));
-                                        modelo.setFecha_desde(sqlDate);
-                                        modelo.setEstatus(1);
-                                        modelo.registrar_propietario_unidad(modelo);
-                                    }
-
-                                }*/
-
-                                JOptionPane.showMessageDialog(null, "Registro Modificado");
-                                llenarTabla(catalogo.tabla);
-
-                                vista.dispose();
-
-                            } else {
-
-                                JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
-
-                            }
                         }
                     }
                 }
             }
         }
 
-//        if (e.getSource() == vista.btnEliminar) {
+        if (e.getSource() == vista.btnEliminar) {
+            if (modelo.eliminar()) {
+                JOptionPane.showMessageDialog(null, "Registro eliminado");
+                vista.dispose();
+                llenarTabla(catalogo.tabla);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo eliminar");
+
+            }
 //            if (modelo.buscarsancion(modelo)) {
 //                JOptionPane.showMessageDialog(null, "No puede eliminar unidades que tengan sanciones pendientes");
 //            } else {
 //                if (vista.tablaPropietarios.isEditing()) {//si se esta edtando la tabla
-//                    vista.tablaPropietarios.getCellEditor().stopCellEditing();//detenga la edicion
+//                    vista.tablaPropietarios.getCellEditor().stopCehumllEditing();//detenga la edicion
 //                }
 //                java.util.Date fecha = new Date();
 //                java.sql.Date sqlDate = Validacion.convert(fecha);
@@ -853,7 +747,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 //
 //            }
 //
-//        }
+        }
 //        if (e.getSource() == unii.btnDesactivar) {
 //            if (unii.jTable1.isEditing()) {//si se esta edtando la tabla
 //                unii.jTable1.getCellEditor().stopCellEditing();//detenga la edicion
@@ -918,7 +812,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 //            }
 //
 //        }
-
         if (e.getSource() == vista.btnLimpiar) {
 
             limpiar();
@@ -929,8 +822,8 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
     public void limpiar() {
 
         vista.txtNumeroUnidad.setText(null);
+        vista.txtDocumento.setText(null);
         vista.txtArea.setText(null);
-
         vista.txtDireccion.setText(null);
 
     }
@@ -958,15 +851,14 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             }
 
             if (result == 1) {
-                int fila = this.catalogo.tabla.getSelectedRow(); //Primero, obtengo la fila seleccionada
-                //String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); //Por último, obtengo el valor de la celda
+                // Obtengo la fila seleccionada
+                int fila = this.catalogo.tabla.getSelectedRow();
 
                 modelo = listaUnidades.get(fila);
-                //modelo.setN_unidad(String.valueOf(dato));
                 vista.setVisible(true);
-                //modelo.buscarUnidad();
 
                 vista.txtNumeroUnidad.setText(modelo.getN_unidad());
+                vista.txtDocumento.setText(modelo.getDocumento());
                 vista.txtDireccion.setText(modelo.getDireccion());
                 vista.txtArea.setText(String.valueOf(modelo.getArea()));
 
@@ -980,7 +872,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                 vista.btnGuardar.setEnabled(false);
 
                 llenarTablaPropietarios(vista.tablaPropietarios, "Modificar");
-                //llenartablapropietariosmod(vista.tablaPropietarios);
                 addCheckBox(4, vista.tablaPropietarios);
             }
         }
@@ -1161,7 +1052,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
         if (vista.txtNumeroUnidad.getText().isEmpty()) {
 
-            msj += "El campo numero de unidad no puede estar vacio\n";
+            msj += "El campo número de unidad no puede estar vacio\n";
             resultado = false;
         }
 
@@ -1174,6 +1065,12 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         if (vista.txtDireccion.getText().isEmpty()) {
 
             msj += "El campo dirección no puede estar vacio\n";
+            resultado = false;
+        }
+
+        if (vista.txtDocumento.getText().isEmpty()) {
+
+            msj += "El campo número de documento no puede estar vacio\n";
             resultado = false;
         }
 
