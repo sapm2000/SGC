@@ -343,7 +343,7 @@ public class CuotasEspeciales extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT id_proveedor, calcular, mes, anio, monto, saldo, n_meses, asambleas.nombre, asambleas.fecha, observacion, estado FROM facturas_proveedores inner join proveedores on proveedores.cedula=facturas_proveedores.id_proveedor left join asambleas on asambleas.id = facturas_proveedores.id_asamblea where facturas_proveedores.id=?;";
+        String sql = "SELECT proveedores.nombre as prov, id_proveedor, calcular, mes, anio, monto, saldo, n_meses, asambleas.nombre, asambleas.fecha, observacion, estado FROM facturas_proveedores inner join proveedores on proveedores.cedula=facturas_proveedores.id_proveedor left join asambleas on asambleas.id = facturas_proveedores.id_asamblea where facturas_proveedores.id=?;";
 
         try {
 
@@ -353,7 +353,7 @@ public class CuotasEspeciales extends ConexionBD {
             if (rs.next()) {
 
                 modcuo.prov.setCedula(rs.getString("id_proveedor"));
-              
+                modcuo.prov.setNombre(rs.getString("prov"));
                 modcuo.setCalcular(rs.getString("calcular"));
                 modcuo.setMes(rs.getInt("mes"));
                 modcuo.setAño(rs.getInt("anio"));
