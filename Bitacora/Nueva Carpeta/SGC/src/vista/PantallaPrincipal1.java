@@ -1,6 +1,6 @@
 package vista;
 
-import controlador.ControladorPagarCuotasEsp;
+import controlador.controladorPagarCuotasEsp;
 import controlador.controladorRegistroVisita;
 import controlador.controladorAsambleas;
 import controlador.controladorCerrarMes;

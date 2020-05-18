@@ -13,7 +13,7 @@ public class ModeloConceptoGastos extends ConexionBD {
     private int id;
     private String nombre_Concepto;
     private String descripcion;
-    private CategoriaGasto cate = new CategoriaGasto();
+    public CategoriaGasto cate = new CategoriaGasto();
     
 
     public int getId() {

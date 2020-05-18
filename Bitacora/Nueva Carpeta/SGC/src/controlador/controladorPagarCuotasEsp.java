@@ -22,7 +22,7 @@ import vista.catalogoCuotasEspecialesPagadas;
 import vista.catalogoPagosCuotasEspeciales;
 import vista.pagoCuotasEspeciales;
 
-public class ControladorPagarCuotasEsp implements ActionListener, MouseListener, KeyListener, WindowListener {
+public class controladorPagarCuotasEsp implements ActionListener, MouseListener, KeyListener, WindowListener {
 
     private pagoCuotasEspeciales vista;
     private catalogoCuotasEspecialesPagadas vistaCatPagadas;
@@ -39,7 +39,7 @@ public class ControladorPagarCuotasEsp implements ActionListener, MouseListener,
 
     int fila = 0;
 
-    public ControladorPagarCuotasEsp() {
+    public controladorPagarCuotasEsp() {
         this.vista = new pagoCuotasEspeciales();
         this.modPagarCuoE = new PagarCuotaEspecial();
         this.modCuotaEsp = new CuotasEspeciales();
