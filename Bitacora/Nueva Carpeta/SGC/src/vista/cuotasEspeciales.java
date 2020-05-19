@@ -76,6 +76,7 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         txtProveedor = new javax.swing.JTextField();
         jcombotipo = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
@@ -256,6 +257,9 @@ public class cuotasEspeciales extends javax.swing.JFrame {
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("<html>\nTipo de <br> Gasto:\n</html>");
         jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, -1));
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 150, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 770, 340));
 
@@ -503,6 +507,7 @@ public class cuotasEspeciales extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    public javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel4;
