@@ -15,12 +15,15 @@ public class Usuario extends ConexionBD {
     private String password;
     private String pregunta;
     private String respuesta;
-    private String tipo;
+    private TipoUsuario tipoU;
     private Persona persona;
 
     Connection con;
-    PreparedStatement ps;
-    ResultSet rs;
+
+    public Usuario() {
+        tipoU = new TipoUsuario();
+        
+    }
 
     public ArrayList<Usuario> listar() {
         try {
@@ -121,7 +124,7 @@ public class Usuario extends ConexionBD {
 
             int ind;
 
-            String sql = "UPDATE usuario SET activo = true, password = ?, pregunta = ?, respuesta = ? WHERE ci_persona = ?";
+            String sql = "UPDATE usuario SET activo = true, password = ?, pregunta = ?, respuesta = ?, id_tipo_usuario = ? WHERE ci_persona = ?";
 
             ps = con.prepareStatement(sql);
 
@@ -129,6 +132,7 @@ public class Usuario extends ConexionBD {
             ps.setString(ind++, getPassword());
             ps.setString(ind++, getPregunta());
             ps.setString(ind++, getRespuesta());
+            ps.setInt(ind++, getTipoU().getId());
             ps.setString(ind++, getPersona().getCedula());
 
             ps.execute();
@@ -148,7 +152,7 @@ public class Usuario extends ConexionBD {
         Connection con = getConexion();
         PreparedStatement ps = null;
         
-        String sql = "INSERT INTO usuario(usuario, password, pregunta, respuesta, ci_persona) VALUES(?,?,?,?,?);";
+        String sql = "INSERT INTO usuario(usuario, password, pregunta, respuesta, ci_persona, id_tipo_usuario) VALUES(?,?,?,?,?,?);";
         
         try {
             
@@ -161,6 +165,8 @@ public class Usuario extends ConexionBD {
             ps.setString(i++, getPregunta());
             ps.setString(i++, getRespuesta());
             ps.setString(i++, getPersona().getCedula());
+            ps.setInt(i++, getTipoU().getId());
+            
             ps.execute();
             
             return true;
@@ -359,5 +365,15 @@ public class Usuario extends ConexionBD {
     public void setPersona(Persona persona) {
         this.persona = persona;
     }
+
+    public TipoUsuario getTipoU() {
+        return tipoU;
+    }
+
+    public void setTipoU(TipoUsuario tipoU) {
+        this.tipoU = tipoU;
+    }
+    
+    
 
 }

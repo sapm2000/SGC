@@ -232,7 +232,7 @@ public class catalogoTipoUsuario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable tabla;
+    public javax.swing.JTable tabla;
     public javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
     static public class Headercolor extends DefaultTableCellHeaderRenderer {

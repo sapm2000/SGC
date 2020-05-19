@@ -15,6 +15,7 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Persona;
+import modelo.TipoUsuario;
 import modelo.Usuario;
 import vista.GestionarUsuario;
 import vista.catalogoUsuario;
@@ -28,27 +29,32 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
     private Persona modPersona;
     private ArrayList<Usuario> listaUsu;
     private ArrayList<Persona> listaPersona;
+    private ArrayList<TipoUsuario> listaTipo;
+    private TipoUsuario modTipo;
     private DefaultTableModel dm;
 
-    //Constructor de inicializacion de variables. Desde la linea 16 a la 26
+    //Constructor de inicializacion de variables
     public CtrlUsuario() {
 
         this.modelo = new Usuario();
         this.vistaGU = new GestionarUsuario();
         this.catausu = new catalogoUsuario();
         this.modPersona = new Persona();
+        this.modTipo = new TipoUsuario();
+        
         this.vistaGU.btnGuardar.addActionListener(this);
         this.vistaGU.btnLimpiar.addActionListener(this);
         this.catausu.btnNuevo.addActionListener(this);
         this.vistaGU.txtCedula.addKeyListener(this);
         this.vistaGU.txtUsuario.addKeyListener(this);
         this.vistaGU.txtClave.addKeyListener(this);
-        this.vistaGU.txtPregunta.addKeyListener(this);
         this.vistaGU.txtClave2.addKeyListener(this);
+        this.vistaGU.txtPregunta.addKeyListener(this);
         this.vistaGU.txtRespuesta.addKeyListener(this);
         this.catausu.txtBuscar.addKeyListener(this);
         this.catausu.jtable.addMouseListener(this);
         this.catausu.addWindowListener(this);
+        this.vistaGU.addWindowListener(this);
         this.catausu.setVisible(true);
         this.vistaGU.jTable.addMouseListener(this);
 
@@ -66,13 +72,15 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
                 modelo.setPassword(claveSegura);
                 modelo.setPregunta(vistaGU.txtPregunta.getText());
                 modelo.setRespuesta(vistaGU.txtRespuesta.getText());
+                int ind = vistaGU.cbxTipo.getSelectedIndex() - 1;
+                modelo.getTipoU().setId(listaTipo.get(ind).getId());
 
                 if (modelo.existeInactivo()) {
                     JOptionPane.showMessageDialog(null, "Esta persona ya tiene un usuario en la BD, se recuperarán los datos");
 
                     if (modelo.reactivar()) {
                         JOptionPane.showMessageDialog(null, "Usuario habilitado");
-                        Llenartabla(catausu.jtable);
+                        llenarTabla(catausu.jtable);
                         vistaGU.dispose();
 
                     } else {
@@ -85,12 +93,12 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
 
                     } else {
                         if (modelo.existe()) {
-                                JOptionPane.showMessageDialog(null, "Este nombre de usuario ya existe");
+                            JOptionPane.showMessageDialog(null, "Este nombre de usuario ya existe");
                         } else {
 
                             if (modelo.registrar()) {
                                 JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
-                                Llenartabla(catausu.jtable);
+                                llenarTabla(catausu.jtable);
                                 vistaGU.dispose();
 
                             } else {
@@ -117,6 +125,18 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
         }
     }
 
+    private void crearCbxTipoU() {
+        listaTipo = modTipo.listar();
+        vistaGU.cbxTipo.addItem("Seleccione...");
+
+        if (listaTipo != null) {
+            for (TipoUsuario datosX : listaTipo) {
+                vistaGU.cbxTipo.addItem(datosX.getNombre());
+            }
+        
+        }
+    }
+
     public void limpiar() {
 
         vistaGU.txtCedula.setText(null);
@@ -139,7 +159,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
             int result = JOptionPane.showConfirmDialog(catausu, "¿Desea Eliminar Usuario?", "ELIMINAR USUARIO", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
             if (result == 0) {
                 modelo.eliminar();
-                Llenartabla(catausu.jtable);
+                llenarTabla(catausu.jtable);
             }
         }
         if (e.getSource() == vistaGU.jTable) {
@@ -276,7 +296,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
         tr.setRowFilter(RowFilter.regexFilter(consulta));
     }
 
-    public void Llenartabla(JTable tablaD) {
+    public void llenarTabla(JTable tablaD) {
 
         listaUsu = modelo.listar();
 
@@ -333,7 +353,10 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
 
     @Override
     public void windowOpened(WindowEvent e) {
-        Llenartabla(catausu.jtable);
+        llenarTabla(catausu.jtable);
+        if (e.getSource() == vistaGU) {
+            crearCbxTipoU();
+        }
     }
 
     @Override

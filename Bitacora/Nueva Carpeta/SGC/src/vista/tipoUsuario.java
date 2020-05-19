@@ -312,7 +312,7 @@ public class tipoUsuario extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator8;
-    private javax.swing.JTable tabla;
+    public javax.swing.JTable tabla;
     public javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
     static public class Headercolor extends DefaultTableCellHeaderRenderer {

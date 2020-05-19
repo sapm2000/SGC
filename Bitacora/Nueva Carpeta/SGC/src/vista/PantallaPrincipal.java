@@ -10,7 +10,7 @@ import controlador.controladorCondominio;
 import controlador.controladorCuenta;
 import controlador.controladorInteres;
 import controlador.controladorProveedores;
-import controlador.controladorTipoUsuario;
+import controlador.CtrlTipoUsuario;
 import java.awt.Color;
 import static java.awt.Color.gray;
 import java.awt.Font;
