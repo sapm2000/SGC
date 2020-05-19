@@ -72,14 +72,14 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
 
         if (vistaU.txtUsuario.getText().isEmpty() || pass.isEmpty()) {
 
-            JOptionPane.showMessageDialog(null, "Debe Digitar un Usuario y una contrasenia", "Error en la operacion", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Debe Digitar un Usuario y una contraseña", "Error en la operacion", JOptionPane.ERROR_MESSAGE);
 
         } else {
 
             String user = vistaU.txtUsuario.getText();
             Usuario usu = new Usuario();
             usu.setUsuario(user);
-            usu.setPassword(pass);
+            usu.setPassword(Validacion.encriptar(pass));
 
             if (usu.login()) {
                

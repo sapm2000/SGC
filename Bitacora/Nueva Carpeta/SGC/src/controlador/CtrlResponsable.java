@@ -75,14 +75,43 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
                 modelo.setCorreo(vista.txtCorreo.getText());
                 modelo.setTelefono(vista.txtTelefono.getText());
 
-                if (modelo.registrar()) {
-                    JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
-                    vista.dispose();
-                    llenarTabla();
+                if (modelo.existeInactivo()) {
+                    JOptionPane.showMessageDialog(null, "Este responsable ya existe en la BD, se recuperarán los datos para el nuevo registro");
 
+                    if (modelo.reactivar()) {
+                        JOptionPane.showMessageDialog(null, "Registro Guardado");
+                        vista.dispose();
+                        llenarTabla();
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se pudo reactivar");
+
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(null, "ERROR AL REGISTAR");
+                    if (modelo.existePersona()) {
+                        JOptionPane.showMessageDialog(null, "Esta persona está registrada en la BD como propietario, se utilizarán los datos de ese registro");
 
+                        if (modelo.registrar(true)) {
+                            JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
+                            vista.dispose();
+                            llenarTabla();
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "ERROR AL REGISTAR");
+
+                        }
+
+                    } else {
+                        if (modelo.registrar(false)) {
+                            JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
+                            vista.dispose();
+                            llenarTabla();
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "ERROR AL REGISTAR");
+
+                        }
+                    }
                 }
             }
         }
@@ -317,7 +346,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
         }
         if (e.getSource() == vista.txtCorreo) {
-            Validacion.soloLetras(e);
+
             Validacion.Espacio(e);
             Validacion.limite(e, vista.txtCorreo.getText(), 60);
         }

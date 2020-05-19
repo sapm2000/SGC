@@ -1,6 +1,14 @@
 package modelo;
 
-class Persona extends ConexionBD {
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class Persona extends ConexionBD {
 
     private String cedula;
     private String pNombre;
@@ -10,6 +18,8 @@ class Persona extends ConexionBD {
     private String correo;
     private String telefono;
     private Condominio[] condominio;
+
+    Connection con;
 
     public Persona() {
     }
@@ -26,6 +36,149 @@ class Persona extends ConexionBD {
         this.sApellido = sApellido;
         this.correo = correo;
         this.telefono = telefono;
+    }
+
+    public Boolean existePersona() {
+        try {
+            rs = null;
+            ps = null;
+            con = getConexion();
+
+            int ind;
+
+            String sql = "SELECT cedula FROM persona WHERE cedula = ?";
+
+            ps = con.prepareStatement(sql);
+
+            ind = 1;
+            ps.setString(ind++, getCedula());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return true;
+
+            } else {
+                return false;
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+
+        }
+    }
+
+    public ArrayList<Persona> listarP() {
+
+        ResultSet rs = null;
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+
+        ArrayList<Persona> personas = new ArrayList();
+        Persona mod;
+
+        String sql = "SELECT cedula, p_nombre, p_apellido, correo, telefono FROM persona";
+
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            int ind;
+
+            while (rs.next()) {
+                mod = new Persona();
+                ind = 1;
+                mod.setCedula(rs.getString(ind++));
+                mod.setpNombre(rs.getString(ind++));
+                mod.setpApellido(rs.getString(ind++));
+                mod.setCorreo(rs.getString(ind++));
+                mod.setTelefono(rs.getString(ind++));
+                personas.add(mod);
+            }
+            return personas;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+            return null;
+
+        }
+    }
+
+    public boolean modificar() {
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE persona SET p_nombre = ?, s_nombre = ?, p_apellido = ?, s_apellido = ?, correo = ?, telefono = ? WHERE cedula = ?";
+
+        try {
+            int i = 1;
+
+            ps = con.prepareStatement(sql);
+            ps.setString(i++, getpNombre());
+            ps.setString(i++, getsNombre());
+            ps.setString(i++, getpApellido());
+            ps.setString(i++, getsApellido());
+            ps.setString(i++, getCorreo());
+            ps.setString(i++, getTelefono());
+            ps.setString(i++, getCedula());
+
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+
+            }
+        }
+    }
+
+    protected Boolean registrarPersona() {
+        try {
+            con = getConexion();
+            ps = null;
+
+            String sql = "INSERT INTO persona(cedula, p_nombre, s_nombre, p_apellido, s_apellido, telefono, correo) VALUES (?,?,?,?,?,?,?);";
+
+            int i = 1;
+
+            ps = con.prepareStatement(sql);
+
+            ps.setString(i++, getCedula());
+            ps.setString(i++, getpNombre());
+            ps.setString(i++, getsNombre());
+            ps.setString(i++, getpApellido());
+            ps.setString(i++, getsApellido());
+            ps.setString(i++, getTelefono());
+            ps.setString(i++, getCorreo());
+
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+
+            }
+        }
     }
 
     public String getCedula() {

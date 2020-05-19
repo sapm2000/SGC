@@ -569,11 +569,13 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                                 vista.dispose();
                                 llenarTabla(catalogo.tabla);
 
+                            } else {
+                                JOptionPane.showMessageDialog(null, "No se pudo reactivar");
+
                             }
 
                         } catch (SQLException ex) {
                             Logger.getLogger(controladorUnidades.class.getName()).log(Level.SEVERE, null, ex);
-                            JOptionPane.showMessageDialog(null, "No se pudo reactivar");
 
                         }
 

@@ -65,7 +65,7 @@ public class catalogoUsuario extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnMinimizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
-        btnNuevoUsuario = new javax.swing.JButton();
+        btnNuevo = new javax.swing.JButton();
         txtBuscar = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
@@ -86,13 +86,10 @@ public class catalogoUsuario extends javax.swing.JFrame {
 
         jtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {"", null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Usuario", "Nombre", "Apellido", "Teléfono", "Tipo de Usuario"
+
             }
         ));
         jtable.setGridColor(new java.awt.Color(102, 102, 102));
@@ -113,7 +110,7 @@ public class catalogoUsuario extends javax.swing.JFrame {
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
@@ -129,7 +126,7 @@ public class catalogoUsuario extends javax.swing.JFrame {
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
@@ -140,19 +137,19 @@ public class catalogoUsuario extends javax.swing.JFrame {
         });
         jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, -1, 30));
 
-        btnNuevoUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnNuevoUsuario.setForeground(new java.awt.Color(0, 94, 159));
-        btnNuevoUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (2).png"))); // NOI18N
-        btnNuevoUsuario.setText("Nuevo Usuario");
-        btnNuevoUsuario.setToolTipText("Registrar un nuevo usuario");
-        btnNuevoUsuario.setBorder(null);
-        btnNuevoUsuario.setBorderPainted(false);
-        btnNuevoUsuario.setContentAreaFilled(false);
-        btnNuevoUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnNuevoUsuario.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
-        btnNuevoUsuario.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
-        btnNuevoUsuario.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
-        jPanel1.add(btnNuevoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, -1, -1));
+        btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(0, 94, 159));
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (2).png"))); // NOI18N
+        btnNuevo.setText("Nuevo Usuario");
+        btnNuevo.setToolTipText("Registrar un nuevo usuario");
+        btnNuevo.setBorder(null);
+        btnNuevo.setBorderPainted(false);
+        btnNuevo.setContentAreaFilled(false);
+        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNuevo.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
+        btnNuevo.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
+        btnNuevo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
+        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, -1, -1));
 
         txtBuscar.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         txtBuscar.setToolTipText("Buscador");
@@ -230,7 +227,7 @@ public class catalogoUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnMinimizar;
-    public javax.swing.JButton btnNuevoUsuario;
+    public javax.swing.JButton btnNuevo;
     public javax.swing.JButton btnSalir;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;

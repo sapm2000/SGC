@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sgc.SGC;
 
 public class Propietarios extends Persona {
@@ -44,24 +46,83 @@ public class Propietarios extends Persona {
         this.cantidad = cantidad;
     }
 
-    public boolean registrar() {
+    public Boolean existeInactivo() {
+        Connection con = getConexion();
         ps = null;
-        con = getConexion();
+        rs = null;
 
-        String sql = "INSERT INTO propietario (cedula, p_nombre, s_nombre, p_apellido, s_apellido, telefono, correo) VALUES (?,?,?,?,?,?,?);";
+        int ind;
 
-        int i = 1;
+        String sql = "SELECT ci_persona FROM v_propietario_inactivo WHERE ci_persona = ?;";
 
         try {
             ps = con.prepareStatement(sql);
 
+            ind = 1;
+            ps.setString(ind++, getCedula());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return true;
+
+            } else {
+                return false;
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+
+        }
+    }
+
+    public Boolean reactivar() {
+        try {
+            ps = null;
+            con = getConexion();
+            
+            int ind;
+            
+            String sql = "UPDATE propietario SET activo = true WHERE ci_persona = ?";
+            
+            ps = con.prepareStatement(sql);
+            
+            ind = 1;
+            ps.setString(ind++, getCedula());
+            
+            ps.execute();
+            
+            return true;
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Propietarios.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+            
+        }
+
+    }
+
+    public boolean registrar(Boolean existe) {
+        try {
+            con = getConexion();
+            ps = null;
+
+            if (!existe) {
+                if (!registrarPersona()) {
+                    return false;
+
+                }
+            }
+
+            String sql = "INSERT INTO propietario (ci_persona) VALUES (?);";
+
+            int i = 1;
+
+            ps = con.prepareStatement(sql);
+
             ps.setString(i++, getCedula());
-            ps.setString(i++, getpNombre());
-            ps.setString(i++, getsNombre());
-            ps.setString(i++, getpApellido());
-            ps.setString(i++, getsApellido());
-            ps.setString(i++, getTelefono());
-            ps.setString(i++, getCorreo());
 
             ps.execute();
 
@@ -280,48 +341,11 @@ public class Propietarios extends Persona {
 
     }
 
-    public boolean modificar() {
-        PreparedStatement ps = null;
-        Connection con = getConexion();
-
-        String sql = "UPDATE propietario SET p_nombre = ?, s_nombre = ?, p_apellido = ?, s_apellido = ?, correo = ?, telefono = ? WHERE cedula = ?";
-
-        try {
-            int i = 1;
-
-            ps = con.prepareStatement(sql);
-            ps.setString(i++, getpNombre());
-            ps.setString(i++, getsNombre());
-            ps.setString(i++, getpApellido());
-            ps.setString(i++, getsApellido());
-            ps.setString(i++, getCorreo());
-            ps.setString(i++, getTelefono());
-            ps.setString(i++, getCedula());
-
-            ps.execute();
-
-            return true;
-
-        } catch (SQLException e) {
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-                con.close();
-
-            } catch (SQLException e) {
-                System.err.println(e);
-
-            }
-        }
-    }
-
     public boolean eliminar() {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE propietario SET activo = false WHERE cedula = ?";
+        String sql = "UPDATE propietario SET activo = false WHERE ci_persona = ?";
 
         try {
             int i = 1;
