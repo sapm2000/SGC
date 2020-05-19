@@ -10,12 +10,12 @@ CREATE TABLE persona(
 );
 
 CREATE TABLE responsable(
-	ci_persona character varying(10) NOT null REFERENCES persona (cedula),
+	ci_persona character varying(10) NOT null PRIMARY KEY REFERENCES persona (cedula),
 	activo boolean DEFAULT true
 );
 
 CREATE TABLE propietario(
-	ci_persona character varying(10) NOT null REFERENCES persona (cedula),
+	ci_persona character varying(10) NOT null PRIMARY KEY REFERENCES persona (cedula),
 	activo boolean DEFAULT true
 );
 
@@ -37,7 +37,7 @@ CREATE TABLE puente_persona_condominio (
 
 CREATE TABLE puente_unidad_propietarios(
 	id serial NOT NULL PRIMARY KEY,
-    ci_propietario character varying(15) NOT NULL REFERENCES propietario (cedula),
+    ci_propietario character varying(15) NOT NULL REFERENCES propietario (ci_persona),
     id_unidad bigint NOT NULL REFERENCES unidad (id),
     fecha_desde date NOT NULL DEFAULT LOCALTIMESTAMP(0),
     fecha_hasta date,
