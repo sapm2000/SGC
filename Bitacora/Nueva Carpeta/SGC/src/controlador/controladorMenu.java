@@ -23,7 +23,7 @@ public class controladorMenu implements ActionListener {
     private controladorConceptoGasto conco;
     private controladorCuenta concu;
     private controladorProveedores conprov;
-    private controladorTipoUsuario controti;
+    private CtrlTipoUsuario controti;
     private CtrlUsuario ctrl;
     private controladorInteres controin;
     private CtrlPropietario ctrlp;
@@ -75,7 +75,7 @@ public class controladorMenu implements ActionListener {
         }
 
         if (e.getSource() == vista.jTipo) {
-            controti = new controladorTipoUsuario();
+            controti = new CtrlTipoUsuario();
         }
 
         if (e.getSource() == vista.jUsuario) {

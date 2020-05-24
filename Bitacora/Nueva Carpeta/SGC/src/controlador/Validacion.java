@@ -156,7 +156,7 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
         }
     }
 
-    public String encriptar(String textoSinEncriptar) {
+    public static String encriptar(String textoSinEncriptar) {
         return DigestUtils.md5Hex(textoSinEncriptar);
     }
 
