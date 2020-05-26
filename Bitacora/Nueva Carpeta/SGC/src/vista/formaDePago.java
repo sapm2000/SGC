@@ -13,11 +13,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
-
-/**
- *
- * @author Maryo
- */
 public class formaDePago extends javax.swing.JFrame {
 
     /**
@@ -25,6 +20,7 @@ public class formaDePago extends javax.swing.JFrame {
      */
     public formaDePago() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
