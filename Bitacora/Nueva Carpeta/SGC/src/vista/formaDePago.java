@@ -5,10 +5,14 @@
  */
 package vista;
 
-/**
- *
- * @author Maryo
- */
+import java.awt.Color;
+import java.awt.Font;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 public class formaDePago extends javax.swing.JFrame {
 
     /**
@@ -16,6 +20,7 @@ public class formaDePago extends javax.swing.JFrame {
      */
     public formaDePago() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
