@@ -28,6 +28,7 @@ public class controladorMenu implements ActionListener {
     private controladorInteres controin;
     private CtrlPropietario ctrlp;
     private CtrlResponsable ctrlr;
+    private controladorForma_pago controfor;
 
     public controladorMenu() {
         //this.concondo = new controladorCondominio();
@@ -46,6 +47,7 @@ public class controladorMenu implements ActionListener {
         vista.jInteres.addActionListener(this);
         vista.jPropietarios.addActionListener(this);
         vista.jResponsable.addActionListener(this);
+        vista.jFormaPago.addActionListener(this);
     }
 
     @Override
@@ -90,6 +92,9 @@ public class controladorMenu implements ActionListener {
         }
           if (e.getSource() == vista.jResponsable) {
             ctrlr = new CtrlResponsable();
+        }
+          if (e.getSource() == vista.jFormaPago) {
+            controfor = new controladorForma_pago();
         }
     }
 
