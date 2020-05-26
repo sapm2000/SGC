@@ -220,6 +220,47 @@ public class Banco extends ConexionBD {
         }
 
     }
+    
+     public boolean buscarInactivo(Banco modban) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT * FROM banco WHERE nombre_banco=? and activo=false";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getNombre_banco());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
 
     public boolean eliminar(Banco modban) {
 
@@ -262,14 +303,14 @@ public class Banco extends ConexionBD {
        PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE banco SET activo=true WHERE id=?";
+        String sql = "UPDATE banco SET activo=true WHERE nombre_banco=?";
 
         try {
 
             ps = con.prepareStatement(sql);
             
 
-            ps.setInt(1, getId());
+            ps.setString(1, getNombre_banco());
             ps.execute();
 
             return true;
