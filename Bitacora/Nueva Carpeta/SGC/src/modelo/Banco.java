@@ -32,7 +32,7 @@ public class Banco extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO banco (nombre_banco, activo) VALUES(?,1);";
+        String sql = "INSERT INTO banco (nombre_banco, activo) VALUES(?,true);";
 
         try {
 
@@ -70,7 +70,7 @@ public class Banco extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM banco where activo=1";
+        String sql = "SELECT * FROM banco where activo=true";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -226,7 +226,7 @@ public class Banco extends ConexionBD {
        PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE banco SET activo=0 WHERE id=?";
+        String sql = "UPDATE banco SET activo=false WHERE id=?";
 
         try {
 
@@ -262,7 +262,7 @@ public class Banco extends ConexionBD {
        PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE banco SET activo=1 WHERE id=?";
+        String sql = "UPDATE banco SET activo=true WHERE id=?";
 
         try {
 
