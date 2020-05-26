@@ -28,7 +28,6 @@ import javax.swing.JComponent;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
-import vista.catalogoInactivoCategoriaGastos;
 
 /**
  *
@@ -37,7 +36,7 @@ import vista.catalogoInactivoCategoriaGastos;
 public class controladorCategoriaGastos implements ActionListener, MouseListener, KeyListener, WindowListener {
 
     private catalogoCategoriaGastos catacg;
-    private catalogoInactivoCategoriaGastos cataicg;
+
     private categoriaGastos cg;
     private CategoriaGasto modcg;
     DefaultTableModel dm;
@@ -47,10 +46,10 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         this.catacg = new catalogoCategoriaGastos();
         this.cg = new categoriaGastos();
         this.modcg = new CategoriaGasto();
-        this.cataicg = new catalogoInactivoCategoriaGastos();
+
         this.catacg.btn_nuevaCategoriaGasto.addActionListener(this);
         this.catacg.btnActivar.addActionListener(this);
-        this.cataicg.btnActivar.addActionListener(this);
+
         this.cg.btnModificar.addActionListener(this);
         this.cg.btnGuardar.addActionListener(this);
         this.cg.btnLimpiar.addActionListener(this);
@@ -155,29 +154,6 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == catacg.btnActivar) {
-
-            this.cataicg.setVisible(true);
-            Llenartablai(cataicg.jTable1);
-            addCheckBox(2, cataicg.jTable1);
-        }
-
-        if (e.getSource() == cataicg.btnActivar) {
-            listaCatGas = modcg.lCategGasi();
-
-            for (int i = 0; i < cataicg.jTable1.getRowCount(); i++) {
-                if (valueOf(cataicg.jTable1.getValueAt(i, 2)) == "true") {
-
-                    modcg.setId(listaCatGas.get(i).getId());
-                    modcg.activar(modcg);
-
-                }
-            }
-            Llenartablai(cataicg.jTable1);
-            addCheckBox(2, cataicg.jTable1);
-            Llenartabla(catacg.tabla_categoria_gastos);
-        }
-
         if (e.getSource() == catacg.btn_nuevaCategoriaGasto) {
             this.cg.setVisible(true);
             this.cg.btnEliminar.setEnabled(false);
@@ -195,19 +171,27 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
                 modcg.setNombre(cg.txtnombre.getText());
                 modcg.setDescripcion(cg.txtdescripcion.getText());
 
-                if (modcg.registrar(modcg)) {
-
+                if (modcg.buscarInactivo(modcg)) {
+                    modcg.activar(modcg);
+                    modcg.modificar(modcg);
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
                     Llenartabla(catacg.tabla_categoria_gastos);
-                    cg.dispose();
 
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "Registro Duplicado");
+                    if (modcg.registrar(modcg)) {
 
+                        JOptionPane.showMessageDialog(null, "Registro Guardado");
+                        Llenartabla(catacg.tabla_categoria_gastos);
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Registro Duplicado");
+
+                    }
                 }
-            }
 
+            }
         }
 
         if (e.getSource() == cg.btnEliminar) {
@@ -236,16 +220,22 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
                 modcg.setDescripcion(cg.txtdescripcion.getText());
                 modcg.setId(Integer.parseInt(cg.txtId.getText()));
 
-                if (modcg.modificar(modcg)) {
+                if (modcg.buscarInactivo(modcg)) {
 
-                    JOptionPane.showMessageDialog(null, "Registro modificado");
-                    cg.dispose();
-                    Llenartabla(catacg.tabla_categoria_gastos);
+                    JOptionPane.showMessageDialog(null, "no puede colocar el nombre de una categoria que ya existio, si quiere colocar este nombre debe registrarlo nuevamente");
 
                 } else {
+                    if (modcg.modificar(modcg)) {
 
-                    JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
+                        JOptionPane.showMessageDialog(null, "Registro modificado");
+                        cg.dispose();
+                        Llenartabla(catacg.tabla_categoria_gastos);
 
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
+
+                    }
                 }
             }
         }

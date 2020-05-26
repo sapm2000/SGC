@@ -47,7 +47,7 @@ public class ModeloConceptoGastos extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO concepto_Gasto (nom_concepto, descripcion, id_Categoria, activo) VALUES (?, ?, ?, 1);";
+        String sql = "INSERT INTO concepto_Gasto (nom_concepto, descripcion, id_Categoria, activo) VALUES (?, ?, ?, true);";
         
         try {
 
@@ -124,7 +124,7 @@ public class ModeloConceptoGastos extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE concepto_gasto SET activo=0 WHERE id=? ";
+        String sql = "UPDATE concepto_gasto SET activo=false WHERE id=? ";
 
         try {
 
@@ -154,13 +154,54 @@ public class ModeloConceptoGastos extends ConexionBD {
         }
 
     }
+    
+     public boolean buscarInactivo(ModeloConceptoGastos modConGas) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT * FROM concepto_gasto WHERE nom_concepto=? and activo=false";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getNombre_Concepto());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                modConGas.setId(rs.getInt("id"));
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
 
     public boolean activar(ModeloConceptoGastos modConGas) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE concepto_gasto SET activo=1 WHERE id=? ";
+        String sql = "UPDATE concepto_gasto SET activo=true WHERE id=? ";
 
         try {
 
@@ -249,7 +290,7 @@ public class ModeloConceptoGastos extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
         String sql = "SELECT concepto_gasto.id, nom_concepto, concepto_gasto.descripcion, categoriagasto.nombre FROM concepto_gasto "
-                + "INNER JOIN categoriagasto ON concepto_gasto.id_categoria=categoriagasto.id where concepto_gasto.activo=1 ";
+                + "INNER JOIN categoriagasto ON concepto_gasto.id_categoria=categoriagasto.id where concepto_gasto.activo=true ";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -327,7 +368,7 @@ public class ModeloConceptoGastos extends ConexionBD {
         ResultSet rs = null;
         Connection con = getConexion();
 
-        String sql = "SELECT * FROM facturas_proveedores where id_concepto=? and estado='Pendiente'";
+        String sql = "SELECT * from puente_concepto_factura  inner join facturas_proveedores on puente_concepto_factura.id_factura_proveedor = facturas_proveedores.id where id_concepto=? and estado='Pendiente'";
 
         try {
 
@@ -365,7 +406,7 @@ public class ModeloConceptoGastos extends ConexionBD {
         ResultSet rs = null;
         Connection con = getConexion();
 
-        String sql = "SELECT * FROM categoriagasto where id=? and activo=1;";
+        String sql = "SELECT * FROM categoriagasto where id=? and activo=true;";
 
         try {
 
@@ -406,7 +447,7 @@ public class ModeloConceptoGastos extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
         String sql = "SELECT concepto_gasto.id, nom_concepto, concepto_gasto.descripcion, categoriagasto.nombre, categoriagasto.id FROM concepto_gasto "
-                + "INNER JOIN categoriagasto ON concepto_gasto.id_categoria=categoriagasto.id where concepto_gasto.activo=0";
+                + "INNER JOIN categoriagasto ON concepto_gasto.id_categoria=categoriagasto.id where concepto_gasto.activo=false";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();

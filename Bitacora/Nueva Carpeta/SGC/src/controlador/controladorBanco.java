@@ -24,7 +24,6 @@ import modelo.Banco;
 import vista.banco;
 import vista.catalogoBanco;
 
-
 /**
  *
  * @author rma
@@ -34,7 +33,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     private banco ban;
     private catalogoBanco cban;
     private Banco modban;
-    
+
     DefaultTableModel dm;
     DefaultComboBoxModel dmCbx;
     ArrayList<Banco> listaBanco;
@@ -43,11 +42,9 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         this.ban = new banco();
         this.cban = new catalogoBanco();
         this.modban = new Banco();
-       
 
         //crearCbxBanco(modban.listar());
         //CrearCbx(ban.cbxBanco, modban.listar());      
-       
         this.cban.btnNuevo_banco.addActionListener(this);
         this.cban.btnDesactivar.addActionListener(this);
         this.ban.btnGuardar.addActionListener(this);
@@ -100,13 +97,8 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
                 .getColumn(0).setCellRenderer(tcr);
     }
 
-  
-
-   
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-       
 
         if (e.getSource() == cban.btnNuevo_banco) {
 
@@ -125,19 +117,22 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
                 modban.setNombre_banco(ban.txtnombre_banco.getText());
                 if (modban.buscarInactivo(modban)) {
                     modban.activar(modban);
-                    } else {
-
-                if (modban.registrar(modban)) {
-
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
                     Llenartabla(cban.tabla_bancos);
                     limpiar();
-
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                    if (modban.registrar(modban)) {
 
-                }
+                        JOptionPane.showMessageDialog(null, "Registro Guardado");
+                        Llenartabla(cban.tabla_bancos);
+                        limpiar();
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+
+                    }
                 }
             }
 
@@ -171,17 +166,23 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
                 modban.setNombre_banco(ban.txtnombre_banco.getText());
                 modban.setId(Integer.parseInt(ban.txtid.getText()));
 
-                if (modban.modificar(modban)) {
-
-                    JOptionPane.showMessageDialog(null, "Registro modificado");
-                    ban.dispose();
-                    Llenartabla(cban.tabla_bancos);
-                    limpiar();
-
+                if (modban.buscarInactivo(modban)) {
+                  
+                    JOptionPane.showMessageDialog(null, "no puede colocar el nombre de un banco que ya existio, si quiere colocar este nombre debe registrarlo nuevamente");
+                   
                 } else {
+                    if (modban.modificar(modban)) {
 
-                    JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
+                        JOptionPane.showMessageDialog(null, "Registro modificado");
+                        ban.dispose();
+                        Llenartabla(cban.tabla_bancos);
+                        limpiar();
 
+                    } else {
+
+                        JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
+
+                    }
                 }
             }
 
@@ -197,7 +198,6 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
     public void limpiar() {
 
-        
         ban.txtnombre_banco.setText(null);
 
     }
@@ -341,13 +341,11 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
         return resultado;
     }
-    
-    
+
     public void addCheckBox(int column, JTable table) {
         TableColumn tc = table.getColumnModel().getColumn(column);
         tc.setCellEditor(table.getDefaultEditor(Boolean.class));
         tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
     }
-
 
 }
