@@ -184,7 +184,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         jMenu2.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/file (1).png"))); // NOI18N
         jMenu2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/file (1).png"))); // NOI18N
 
-        jAsamblea.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jAsamblea.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jAsamblea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mesa-redonda.png"))); // NOI18N
         jAsamblea.setText("Asambleas");
         jAsamblea.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -195,7 +195,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         });
         jMenu2.add(jAsamblea);
 
-        jCuotas.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jCuotas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCuotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/presupuesto.png"))); // NOI18N
         jCuotas.setText("Cuotas Especiales");
         jCuotas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -206,7 +206,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         });
         jMenu2.add(jCuotas);
 
-        jGastos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jGastos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jGastos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alquiler-de-casa.png"))); // NOI18N
         jGastos.setText("Gastos Comunes");
         jGastos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -217,7 +217,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         });
         jMenu2.add(jGastos);
 
-        jSancion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jSancion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jSancion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/no-stopping.png"))); // NOI18N
         jSancion.setText("Sanciones");
         jSancion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -228,7 +228,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         });
         jMenu2.add(jSancion);
 
-        jUnidades.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jUnidades.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jUnidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casa.png"))); // NOI18N
         jUnidades.setText("Unidades");
         jUnidades.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -239,7 +239,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         });
         jMenu2.add(jUnidades);
 
-        jFondo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jFondo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/hucha.png"))); // NOI18N
         jFondo.setText("Fondo");
         jFondo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -250,7 +250,7 @@ public class PantallaPrincipal1 extends javax.swing.JFrame {
         });
         jMenu2.add(jFondo);
 
-        jComunicados.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jComunicados.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jComunicados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mensaje.png"))); // NOI18N
         jComunicados.setText("Comunicados");
         jComunicados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
