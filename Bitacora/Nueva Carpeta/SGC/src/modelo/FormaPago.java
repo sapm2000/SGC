@@ -41,7 +41,7 @@ public class FormaPago extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO forma_pago (forma_pago, activo) VALUES(?,TRUE);";
+        String sql = "INSERT INTO forma_pago (forma_pago, activo) VALUES(?,true);";
 
         try {
 
@@ -79,7 +79,7 @@ public class FormaPago extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM forma_pago where activo=TRUE";
+        String sql = "SELECT * FROM forma_pago where activo=true";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -156,7 +156,7 @@ public class FormaPago extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT * FROM forma_pago WHERE forma_pago=? and activo=FALSE";
+        String sql = "SELECT * FROM forma_pago WHERE forma_pago=? and activo=false";
 
         try {
 
@@ -233,7 +233,7 @@ public class FormaPago extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE forma_pago SET activo=FALSE WHERE id=?";
+        String sql = "UPDATE forma_pago SET activo=false WHERE id=?";
 
         try {
 
@@ -268,7 +268,7 @@ public class FormaPago extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE forma_pago SET activo=TRUE WHERE forma_pago=?";
+        String sql = "UPDATE forma_pago SET activo=true WHERE forma_pago=?";
 
         try {
 
