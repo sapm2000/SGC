@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package modelo;
 
 import java.sql.Connection;
@@ -6,10 +11,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Banco extends ConexionBD {
+/**
+ *
+ * @author rma
+ */
+public class FormaPago extends ConexionBD {
 
     private int id;
-    private String nombre_banco;
+    private String forma_pago;
 
     public int getId() {
         return id;
@@ -19,25 +28,25 @@ public class Banco extends ConexionBD {
         this.id = id;
     }
 
-    public String getNombre_banco() {
-        return nombre_banco;
+    public String getForma_pago() {
+        return forma_pago;
     }
 
-    public void setNombre_banco(String nombre_banco) {
-        this.nombre_banco = nombre_banco;
+    public void setForma_pago(String forma_pago) {
+        this.forma_pago = forma_pago;
     }
 
-    public boolean registrar(Banco modban) {
+    public boolean registrar(FormaPago modfor) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO banco (nombre_banco, activo) VALUES(?,1);";
+        String sql = "INSERT INTO forma_pago (forma_pago, activo) VALUES(?,TRUE);";
 
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, getNombre_banco());
+            ps.setString(1, getForma_pago());
             ps.execute();
 
             return true;
@@ -62,27 +71,27 @@ public class Banco extends ConexionBD {
 
     }
 
-    public ArrayList<Banco> listar() {
-        ArrayList listaBanco = new ArrayList();
-        Banco modban;
+    public ArrayList<FormaPago> listar() {
+        ArrayList listaFormaPago = new ArrayList();
+        FormaPago modfor;
 
         Connection con = getConexion();
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM banco where activo=1";
+        String sql = "SELECT * FROM forma_pago where activo=TRUE";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
 
             while (rs.next()) {
 
-                modban = new Banco();
+                modfor = new FormaPago();
 
-                modban.setId(rs.getInt(1));
-                modban.setNombre_banco(rs.getString(2));
+                modfor.setId(rs.getInt(1));
+                modfor.setForma_pago(rs.getString(2));
 
-                listaBanco.add(modban);
+                listaFormaPago.add(modfor);
             }
         } catch (Exception e) {
         } finally {
@@ -96,28 +105,26 @@ public class Banco extends ConexionBD {
 
             }
 
-            return listaBanco;
+            return listaFormaPago;
         }
     }
-    
-    
 
-    public boolean buscar(Banco modban) {
+    public boolean buscar(FormaPago modfor) {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT * FROM banco WHERE nombre_banco=?";
+        String sql = "SELECT * FROM forma_pago WHERE forma_pago=?";
 
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, modban.getNombre_banco());
+            ps.setString(1, getForma_pago());
             rs = ps.executeQuery();
             if (rs.next()) {
 
-                modban.setId(rs.getInt("id"));
-                modban.setNombre_banco(rs.getString("nombre_banco"));
+                modfor.setId(rs.getInt("id"));
+                modfor.setForma_pago(rs.getString("forma_pago"));
 
                 return true;
             }
@@ -144,21 +151,21 @@ public class Banco extends ConexionBD {
 
     }
     
-    public boolean buscacuentas(Banco modban) {
+     public boolean buscarInactivo(FormaPago modfor) {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT * FROM cuenta where id_banco=?;";
+        String sql = "SELECT * FROM forma_pago WHERE forma_pago=? and activo=FALSE";
 
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setInt(1, modban.getId());
+            ps.setString(1, getForma_pago());
             rs = ps.executeQuery();
             if (rs.next()) {
 
-               
+                
 
                 return true;
             }
@@ -185,17 +192,17 @@ public class Banco extends ConexionBD {
 
     }
 
-    public boolean modificar(Banco modban) {
+    public boolean modificar(FormaPago modfor) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE banco SET nombre_banco=? WHERE id=?";
+        String sql = "UPDATE forma_pago SET forma_pago=? WHERE id=?";
 
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, getNombre_banco());
+            ps.setString(1, getForma_pago());
 
             ps.setInt(2, getId());
             ps.execute();
@@ -221,17 +228,16 @@ public class Banco extends ConexionBD {
 
     }
 
-    public boolean eliminar(Banco modban) {
+    public boolean eliminar(FormaPago modfor) {
 
-       PreparedStatement ps = null;
+        PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE banco SET activo=0 WHERE id=?";
+        String sql = "UPDATE forma_pago SET activo=FALSE WHERE id=?";
 
         try {
 
             ps = con.prepareStatement(sql);
-            
 
             ps.setInt(1, getId());
             ps.execute();
@@ -256,20 +262,19 @@ public class Banco extends ConexionBD {
         }
 
     }
-    
-     public boolean activar(Banco modban) {
 
-       PreparedStatement ps = null;
+    public boolean activar(FormaPago modfor) {
+
+        PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE banco SET activo=1 WHERE id=?";
+        String sql = "UPDATE forma_pago SET activo=TRUE WHERE forma_pago=?";
 
         try {
 
             ps = con.prepareStatement(sql);
-            
 
-            ps.setInt(1, getId());
+            ps.setString(1, getForma_pago());
             ps.execute();
 
             return true;

@@ -91,6 +91,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jProveedores = new javax.swing.JMenuItem();
         jResponsable = new javax.swing.JMenuItem();
         jTipo = new javax.swing.JMenuItem();
+        jFormaPago = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
@@ -115,7 +116,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         btnMinimizar2.setBorder(null);
         btnMinimizar2.setBorderPainted(false);
         btnMinimizar2.setContentAreaFilled(false);
-        btnMinimizar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar2.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
@@ -131,7 +132,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         btnSalir2.setBorder(null);
         btnSalir2.setBorderPainted(false);
         btnSalir2.setContentAreaFilled(false);
-        btnSalir2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalir2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir2.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
@@ -164,14 +165,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/file (1).png"))); // NOI18N
         jMenu2.setText("Archivos");
         jMenu2.setToolTipText("Gestiones del sistema");
-        jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenu2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jBanco.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jBanco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banco.png"))); // NOI18N
         jBanco.setText("Bancos");
         jBanco.setToolTipText("Gestionar bancos");
-        jBanco.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBanco.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jBanco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBancoActionPerformed(evt);
@@ -183,7 +184,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gastos.png"))); // NOI18N
         jCategoria.setText("Categoría Gastos");
         jCategoria.setToolTipText("Gestionar las categorias de los gastos");
-        jCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCategoriaActionPerformed(evt);
@@ -195,7 +196,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jConcepto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/analisis.png"))); // NOI18N
         jConcepto.setText("Concepto Gastos");
         jConcepto.setToolTipText("Gestionar los conceptos de los gastos");
-        jConcepto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jConcepto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jConcepto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jConceptoActionPerformed(evt);
@@ -207,7 +208,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jCondominio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/condominio.png"))); // NOI18N
         jCondominio.setText("Condominio");
         jCondominio.setToolTipText("Gestionar los condominios");
-        jCondominio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCondominio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jCondominio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCondominioActionPerformed(evt);
@@ -219,7 +220,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cuota.png"))); // NOI18N
         jCuenta.setText("Cuentas Bancarias");
         jCuenta.setToolTipText("Gestionar las cuentas bancarias");
-        jCuenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCuenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCuentaActionPerformed(evt);
@@ -231,7 +232,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/administracion.png"))); // NOI18N
         jUsuario.setText("Gestionar Usuarios");
         jUsuario.setToolTipText("Gestionar los usuarios");
-        jUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jUsuarioActionPerformed(evt);
@@ -242,7 +243,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jInteres.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caro.png"))); // NOI18N
         jInteres.setText("Interes");
         jInteres.setToolTipText("Gestionar los intereses de los condominios");
-        jInteres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jInteres.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jInteres.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jInteresMouseClicked(evt);
@@ -258,7 +259,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jPropietarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton-cuadrado-de-la-llave-de-la-casa.png"))); // NOI18N
         jPropietarios.setText("Propietarios");
         jPropietarios.setToolTipText("Gestionar los propietarios de las unidades");
-        jPropietarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPropietarios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPropietarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPropietariosActionPerformed(evt);
@@ -270,7 +271,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/proveedor.png"))); // NOI18N
         jProveedores.setText("Proveedores");
         jProveedores.setToolTipText("Gestionar los proveedores");
-        jProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jProveedoresActionPerformed(evt);
@@ -281,7 +282,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jResponsable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/responsibility.png"))); // NOI18N
         jResponsable.setText("Responsable");
         jResponsable.setToolTipText("Gestionar el responsable");
-        jResponsable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jResponsable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jResponsable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jResponsableActionPerformed(evt);
@@ -293,7 +294,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jTipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/team.png"))); // NOI18N
         jTipo.setText("Tipos de Usuarios");
         jTipo.setToolTipText("Gestionar los tipos de usuario");
-        jTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTipoActionPerformed(evt);
@@ -301,25 +302,28 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jTipo);
 
+        jFormaPago.setText("forma de pago");
+        jMenu2.add(jFormaPago);
+
         jMenuBar1.add(jMenu2);
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/data-analytics.png"))); // NOI18N
         jMenu4.setText("Reportes");
         jMenu4.setToolTipText("Reportes del sistema");
-        jMenu4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenu4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jMenuBar1.add(jMenu4);
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/educacion.png"))); // NOI18N
         jMenu5.setText("Ayudas");
         jMenu5.setToolTipText("");
-        jMenu5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenu5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jMenuBar1.add(jMenu5);
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user (1).png"))); // NOI18N
         jMenu6.setText("Perfil");
-        jMenu6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenu6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jMenuBar1.add(jMenu6);
 
@@ -455,6 +459,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public javax.swing.JMenuItem jConcepto;
     public javax.swing.JMenuItem jCondominio;
     public javax.swing.JMenuItem jCuenta;
+    public javax.swing.JMenuItem jFormaPago;
     public javax.swing.JMenuItem jInteres;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
