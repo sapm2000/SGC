@@ -123,6 +123,9 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         if (e.getSource() == ban.btnGuardar) {
             if (validar()) {
                 modban.setNombre_banco(ban.txtnombre_banco.getText());
+                if (modban.buscarInactivo(modban)) {
+                    modban.activar(modban);
+                    } else {
 
                 if (modban.registrar(modban)) {
 
@@ -134,6 +137,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
                     JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
 
+                }
                 }
             }
 
