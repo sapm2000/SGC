@@ -28,6 +28,15 @@ public class Funcion extends ConexionBD {
         this.id = id;
         this.nombre = nombre;
     }
+
+    public Funcion(Integer id, String nombre, Boolean registrar, Boolean modificar, Boolean eliminar, Boolean todo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.registrar = registrar;
+        this.modificar = modificar;
+        this.eliminar = eliminar;
+        this.todo = todo;
+    }
     
     public ArrayList<Funcion> listar() {
         try {

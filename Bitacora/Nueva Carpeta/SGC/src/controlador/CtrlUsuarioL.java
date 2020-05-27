@@ -6,6 +6,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
+import sgc.SGC;
 import vista.InicioUsuario;
 import vista.PantallaPrincipal;
 
@@ -15,17 +16,6 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
     //private MetodosUsuario modelo = new MetodosUsuario();
 
     PantallaPrincipal pp = new PantallaPrincipal();
-
-    public void eventos() {
-
-        vistaU.btnEnviar.addActionListener(this);
-        vistaU.txtUsuario.addActionListener(this);
-        vistaU.txtPassword.addActionListener(this);
-        vistaU.checkViewPass.addActionListener(this);
-        vistaU.txtUsuario.addFocusListener(this);
-        vistaU.txtPassword.addFocusListener(this);
-
-    }
 
     public CtrlUsuarioL(InicioUsuario vistau) {
 
@@ -65,6 +55,22 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
 
     }
 
+    @Override
+    public void focusGained(FocusEvent e) {
+        if (e.getSource() == vistaU.txtUsuario) {
+            vistaU.txtUsuario.setText("");
+            vistaU.txtUsuario.removeFocusListener(this);
+        }
+        if (e.getSource() == vistaU.txtPassword) {
+            vistaU.txtPassword.setText("");
+            vistaU.txtPassword.removeFocusListener(this);
+        }
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+    }
+
     public void enter() {
 
         char p[] = vistaU.txtPassword.getPassword();
@@ -82,14 +88,12 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
             usu.setPassword(Validacion.encriptar(pass));
 
             if (usu.login()) {
-               
-
+                //usu.setPassword("");
+                SGC.usuarioActual = usu;
                 vistaU.dispose();
                 controladorMenu ctrlMenu = new controladorMenu();
-                //pp.setVisible(true);
 
             } else {
-
                 JOptionPane.showMessageDialog(null, "Acceso Denegado", "Error", JOptionPane.ERROR_MESSAGE);
 
             }
@@ -97,20 +101,15 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
         }
     }
 
-    @Override
-    public void focusGained(FocusEvent e) {
-        if (e.getSource() == vistaU.txtUsuario) {
-            vistaU.txtUsuario.setText("");
-            vistaU.txtUsuario.removeFocusListener(this);
-        }
-        if (e.getSource() == vistaU.txtPassword) {
-            vistaU.txtPassword.setText("");
-            vistaU.txtPassword.removeFocusListener(this);
-        }
-    }
+    public void eventos() {
 
-    @Override
-    public void focusLost(FocusEvent e) {
+        vistaU.btnEnviar.addActionListener(this);
+        vistaU.txtUsuario.addActionListener(this);
+        vistaU.txtPassword.addActionListener(this);
+        vistaU.checkViewPass.addActionListener(this);
+        vistaU.txtUsuario.addFocusListener(this);
+        vistaU.txtPassword.addFocusListener(this);
+
     }
 
 }

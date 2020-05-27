@@ -22,38 +22,41 @@ public class Usuario extends ConexionBD {
 
     public Usuario() {
         tipoU = new TipoUsuario();
-        
+        persona = new Persona();
+
     }
 
-    public ArrayList<Usuario> listar() {
+    private Boolean consultarPermisos() {
         try {
-            ArrayList<Usuario> listarUsu = new ArrayList();
             con = getConexion();
             ps = null;
-            Usuario usu;
-            
-            String sql = "SELECT * FROM v_usuario;";
-            
+            ArrayList<Funcion> funciones = new ArrayList();
+
+            String sql = "SELECT * FROM v_permisos WHERE usuario = ?;";
+
             ps = con.prepareStatement(sql);
-            
+
+            ps.setString(1, getUsuario());
+
             rs = ps.executeQuery();
-            
-            while(rs.next()) {
-                usu = new Usuario();
-                usu.setId(rs.getInt("id"));
-                usu.setUsuario(rs.getString("usuario"));
-                usu.setPersona(new Persona(rs.getString("ci_persona")));
-                listarUsu.add(usu);
-                
-            }
-            return listarUsu;
+
+            rs.next();
+            setTipoU(new TipoUsuario(rs.getInt("id"), rs.getString("tipo"), funciones));
+
+            do {
+                funciones.add(new Funcion(rs.getInt("id_funcion"), rs.getString("funcion"), rs.getBoolean("registrar"), rs.getBoolean("modificar"), rs.getBoolean("eliminar"), rs.getBoolean("todo")));
+
+            } while (rs.next());
+
+            return true;
+
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
             return null;
-            
+
         }
     }
-    
+
     public Boolean existe() {
         Connection con = getConexion();
         ps = null;
@@ -85,6 +88,7 @@ public class Usuario extends ConexionBD {
 
         }
     }
+
     public Boolean existeInactivo() {
         Connection con = getConexion();
         ps = null;
@@ -117,6 +121,84 @@ public class Usuario extends ConexionBD {
         }
     }
 
+    public ArrayList<Usuario> listar() {
+        try {
+            ArrayList<Usuario> listarUsu = new ArrayList();
+            con = getConexion();
+            ps = null;
+            Usuario usu;
+
+            String sql = "SELECT * FROM v_usuario;";
+
+            ps = con.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                usu = new Usuario();
+                usu.setId(rs.getInt("id"));
+                usu.setUsuario(rs.getString("usuario"));
+                usu.setPersona(new Persona(rs.getString("ci_persona")));
+                listarUsu.add(usu);
+
+            }
+
+            return listarUsu;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+
+        }
+    }
+
+    public boolean login() {
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT login(?,?)";
+
+        try {
+
+            int i = 1;
+
+            ps = con.prepareStatement(sql);
+            ps.setString(i++, getUsuario());
+            ps.setString(i++, getPassword());
+
+            rs = ps.executeQuery();
+
+            boolean result = false;
+
+            while (rs.next()) {
+                result = rs.getBoolean(1);
+
+            }
+
+            if (result) {
+                setPassword(null);
+                consultarPermisos();
+
+            }
+
+            return result;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }
+
     public Boolean reactivar() {
         try {
             ps = null;
@@ -147,18 +229,18 @@ public class Usuario extends ConexionBD {
 
     }
 
-    public boolean registrar(){
-        
+    public boolean registrar() {
+
         Connection con = getConexion();
         PreparedStatement ps = null;
-        
+
         String sql = "INSERT INTO usuario(usuario, password, pregunta, respuesta, ci_persona, id_tipo_usuario) VALUES(?,?,?,?,?,?);";
-        
+
         try {
-            
+
             int i;
             i = 1;
-            
+
             ps = con.prepareStatement(sql);
             ps.setString(i++, getUsuario());
             ps.setString(i++, getPassword());
@@ -166,14 +248,14 @@ public class Usuario extends ConexionBD {
             ps.setString(i++, getRespuesta());
             ps.setString(i++, getPersona().getCedula());
             ps.setInt(i++, getTipoU().getId());
-            
+
             ps.execute();
-            
+
             return true;
         } catch (SQLException e) {
             System.err.println(e);
             return false;
-        }finally{
+        } finally {
             try {
                 con.close();
             } catch (SQLException e) {
@@ -181,7 +263,7 @@ public class Usuario extends ConexionBD {
             }
         }
     }
-        
+
     public Boolean tieneUsuario() {
         Connection con = getConexion();
         ps = null;
@@ -213,106 +295,64 @@ public class Usuario extends ConexionBD {
 
         }
     }
-    
-    public boolean modificar(){
-        
+
+    public boolean modificar() {
+
         Connection con = getConexion();
         PreparedStatement ps = null;
-        
+
         String sql = "UPDATE usuario SET password=?, pregunta=?, respuesta=? WHERE id=?;";
-        
+
         try {
-            
+
             int i;
             i = 1;
-            
+
             ps = con.prepareStatement(sql);
             ps.setString(i++, getPassword());
             ps.setString(i++, getPregunta());
             ps.setString(i++, getRespuesta());
             ps.setInt(i++, getId());
             ps.execute();
-            
+
             return true;
         } catch (SQLException e) {
             System.err.println(e);
             return false;
-        }finally{
+        } finally {
             try {
                 con.close();
             } catch (SQLException e) {
                 System.err.println(e);
             }
         }
-        
+
     }
-    
-    public boolean eliminar(){
-        
+
+    public boolean eliminar() {
+
         con = getConexion();
         ps = null;
-        
-        String sql="UPDATE usuario SET activo = false WHERE id=?;";
-        
+
+        String sql = "UPDATE usuario SET activo = false WHERE id=?;";
+
         try {
             int i;
             i = 1;
             ps = con.prepareStatement(sql);
             ps.setInt(i++, id);
             ps.execute();
-            
+
             return true;
-                    
+
         } catch (SQLException e) {
             System.err.println(e);
             return false;
-        } finally{
+        } finally {
             try {
                 con.close();
             } catch (SQLException e) {
                 System.err.println(e);
-            }
-        }
-        
-    }
-    
-
-    public boolean login() {
-
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
-        String sql = "SELECT login(?,?)";
-
-        try {
-
-            int i = 1;
-
-            ps = con.prepareStatement(sql);
-            ps.setString(i++, getUsuario());
-            ps.setString(i++, getPassword());
-
-            rs = ps.executeQuery();
-
-            boolean result = false;
-
-            while (rs.next()) {
-
-                result = rs.getBoolean(1);
-
-            }
-
-            return result;
-        } catch (SQLException e) {
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -373,7 +413,5 @@ public class Usuario extends ConexionBD {
     public void setTipoU(TipoUsuario tipoU) {
         this.tipoU = tipoU;
     }
-    
-    
 
 }

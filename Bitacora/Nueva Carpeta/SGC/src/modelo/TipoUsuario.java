@@ -19,6 +19,12 @@ public class TipoUsuario extends ConexionBD {
 
     }
 
+    public TipoUsuario(Integer id, String nombre, ArrayList<Funcion> funciones) {
+        this.id = id;
+        this.nombre = nombre;
+        this.funciones = funciones;
+    }
+
     public ArrayList<TipoUsuario> listar() {
         try {
             ArrayList<TipoUsuario> listar = new ArrayList();
