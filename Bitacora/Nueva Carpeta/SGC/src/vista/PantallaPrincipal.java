@@ -168,7 +168,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenu2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        jBanco.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jBanco.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jBanco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banco.png"))); // NOI18N
         jBanco.setText("Bancos");
         jBanco.setToolTipText("Gestionar bancos");
@@ -180,7 +180,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jBanco);
 
-        jCategoria.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jCategoria.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gastos.png"))); // NOI18N
         jCategoria.setText("Categoría Gastos");
         jCategoria.setToolTipText("Gestionar las categorias de los gastos");
@@ -192,7 +192,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jCategoria);
 
-        jConcepto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jConcepto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jConcepto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/analisis.png"))); // NOI18N
         jConcepto.setText("Concepto Gastos");
         jConcepto.setToolTipText("Gestionar los conceptos de los gastos");
@@ -204,7 +204,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jConcepto);
 
-        jCondominio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jCondominio.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCondominio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/condominio.png"))); // NOI18N
         jCondominio.setText("Condominio");
         jCondominio.setToolTipText("Gestionar los condominios");
@@ -216,7 +216,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jCondominio);
 
-        jCuenta.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jCuenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cuota.png"))); // NOI18N
         jCuenta.setText("Cuentas Bancarias");
         jCuenta.setToolTipText("Gestionar las cuentas bancarias");
@@ -228,7 +228,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jCuenta);
 
-        jUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/administracion.png"))); // NOI18N
         jUsuario.setText("Gestionar Usuarios");
         jUsuario.setToolTipText("Gestionar los usuarios");
@@ -240,6 +240,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jUsuario);
 
+        jInteres.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jInteres.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caro.png"))); // NOI18N
         jInteres.setText("Interes");
         jInteres.setToolTipText("Gestionar los intereses de los condominios");
@@ -256,6 +257,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jInteres);
 
+        jPropietarios.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jPropietarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton-cuadrado-de-la-llave-de-la-casa.png"))); // NOI18N
         jPropietarios.setText("Propietarios");
         jPropietarios.setToolTipText("Gestionar los propietarios de las unidades");
@@ -267,7 +269,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jPropietarios);
 
-        jProveedores.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jProveedores.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/proveedor.png"))); // NOI18N
         jProveedores.setText("Proveedores");
         jProveedores.setToolTipText("Gestionar los proveedores");
@@ -279,6 +281,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jProveedores);
 
+        jResponsable.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jResponsable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/responsibility.png"))); // NOI18N
         jResponsable.setText("Responsable");
         jResponsable.setToolTipText("Gestionar el responsable");
@@ -290,7 +293,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jResponsable);
 
-        jTipo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTipo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/team.png"))); // NOI18N
         jTipo.setText("Tipos de Usuarios");
         jTipo.setToolTipText("Gestionar los tipos de usuario");
@@ -302,7 +305,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jTipo);
 
-        jFormaPago.setText("forma de pago");
+        jFormaPago.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jFormaPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pattern (2) (1) (1).png"))); // NOI18N
+        jFormaPago.setText("Forma de Pago");
         jMenu2.add(jFormaPago);
 
         jMenuBar1.add(jMenu2);
