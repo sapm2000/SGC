@@ -72,7 +72,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jAsamblea">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="0"/>
+                  <Font name="Tahoma" size="12" style="1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/img/mesa-redonda.png"/>
@@ -92,7 +92,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jCuotas">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="0"/>
+                  <Font name="Tahoma" size="12" style="1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/img/presupuesto.png"/>
@@ -112,7 +112,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jGastos">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="0"/>
+                  <Font name="Tahoma" size="12" style="1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/img/alquiler-de-casa.png"/>
@@ -132,7 +132,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jSancion">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="0"/>
+                  <Font name="Tahoma" size="12" style="1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/img/no-stopping.png"/>
@@ -152,7 +152,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jUnidades">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="0"/>
+                  <Font name="Tahoma" size="12" style="1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/img/casa.png"/>
@@ -172,7 +172,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jFondo">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="0"/>
+                  <Font name="Tahoma" size="12" style="1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/img/hucha.png"/>
@@ -192,7 +192,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jComunicados">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="12" style="0"/>
+                  <Font name="Tahoma" size="12" style="1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/img/mensaje.png"/>

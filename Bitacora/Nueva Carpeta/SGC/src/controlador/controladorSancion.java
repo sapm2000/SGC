@@ -43,6 +43,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
     private Sancion modsan;
     private PantallaPrincipal1 panta1;
     private CerrarMes modc;
+    private Unidades moduni;
     ArrayList<Unidades> listaunidades;
     ArrayList<Sancion> listaSancion;
     ArrayList<Sancion> listaunimod;
@@ -52,7 +53,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         this.san = new sancion();
         this.catasan = new catalogoSancion();
         this.modsan = new Sancion();
-
+        this.moduni= new Unidades();
         this.modc = new CerrarMes();
 
         this.catasan.jButton2.addActionListener(this);
@@ -151,9 +152,9 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = listaunimod.get(i).getN_unidad();
+            columna[0] = listaunimod.get(i).uni.getN_unidad();
 
-            if (listaunimod.get(i).getId_sancion() != 0) {
+            if (listaunimod.get(i).getId()!= 0) {
                 columna[1] = Boolean.TRUE;
             } else {
                 columna[1] = Boolean.FALSE;
@@ -190,9 +191,9 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = listaunimod.get(i).getN_unidad();
+            columna[0] = listaunimod.get(i).uni.getN_unidad();
 
-            if (listaunimod.get(i).getId_sancion() != 0) {
+            if (listaunimod.get(i).getId()!= 0) {
                 columna[1] = Boolean.TRUE;
             } else {
                 columna[1] = Boolean.FALSE;
@@ -209,7 +210,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
     public void llenartablaunidades(JTable tablaD) {
 
-        listaunidades = modsan.listar();
+        listaunidades = moduni.listar();
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -300,7 +301,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                                     if (modsan.registrarsancion(modsan)) {
                                         JOptionPane.showMessageDialog(null, "Registro Guardado");
                                         modsan.buscId(modsan);
-                                        listaunidades = modsan.listar();
+                                        listaunidades = moduni.listar();
 
                                         for (int i = 0; i < san.jTable1.getRowCount(); i++) {
                                             if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
@@ -339,12 +340,12 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                         JOptionPane.showMessageDialog(null, "seleccione un tipo de deuda");
                     } else {
                         modsan.setDescripcion(san.txaDescripcion.getText());
-                        modsan.setId_sancion(Integer.parseInt(san.txtId.getText()));
+                        modsan.setId(Integer.parseInt(san.txtId.getText()));
                         modsan.setMonto(Double.parseDouble(san.txtmonto.getText()));
 
                         int x = 0;
                         if (modsan.buscarSancionRepetido(modsan)) {
-                            x = modsan.getId_sancion();
+                            x = modsan.getId();
 
                         }
 
@@ -366,7 +367,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                                 JOptionPane.showMessageDialog(null, "no puede registrar Sanciones a un periodo ya cerrado");
                             } else {
 
-                                if (x == 0 || x == modsan.getId_sancion()) {
+                                if (x == 0 || x == modsan.getId()) {
                                     if (modsan.modificarSancion(modsan)) {
                                         JOptionPane.showMessageDialog(null, "Registro Modificado");
 
@@ -433,7 +434,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         int fila = this.catasan.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
 
         String dato = String.valueOf(this.catasan.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
-        modsan.setId_sancion(Integer.parseInt(dato));
+        modsan.setId(Integer.parseInt(dato));
 
         String estado = String.valueOf(this.catasan.jTable1.getValueAt(fila, 6)); // por ultimo, obtengo el valor de la celda
         modsan.setEstado(estado);

@@ -40,7 +40,7 @@ public class CategoriaGasto extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO categoriagasto (nombre, descripcion, activo) VALUES(?,?,1)";
+        String sql = "INSERT INTO categoriagasto (nombre, descripcion, activo) VALUES(?,?,true)";
 
         try {
 
@@ -74,7 +74,7 @@ public class CategoriaGasto extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT id, nombre, descripcion FROM categoriagasto where activo=1;";
+        String sql = "SELECT id, nombre, descripcion FROM categoriagasto where activo=true;";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -111,7 +111,7 @@ public class CategoriaGasto extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT id, nombre, descripcion FROM categoriagasto where activo=0;";
+        String sql = "SELECT id, nombre, descripcion FROM categoriagasto where activo=false;";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -146,7 +146,7 @@ public class CategoriaGasto extends ConexionBD {
         ResultSet rs = null;
         Connection con = getConexion();
 
-        String sql = "SELECT * FROM categoriagasto WHERE nombre=? and activo=1 ";
+        String sql = "SELECT * FROM categoriagasto WHERE nombre=? and activo=true ";
 
         try {
 
@@ -187,7 +187,7 @@ public class CategoriaGasto extends ConexionBD {
         ResultSet rs = null;
         Connection con = getConexion();
 
-        String sql = "SELECT id, nom_concepto, descripcion, id_categoria, activo FROM concepto_gasto where id_categoria=? and activo=1;";
+        String sql = "SELECT id, nom_concepto, descripcion, id_categoria FROM concepto_gasto where id_categoria=? and activo=true;";
 
         try {
 
@@ -256,12 +256,53 @@ public class CategoriaGasto extends ConexionBD {
         }
 
     }
+    
+     public boolean buscarInactivo(CategoriaGasto modcg) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT * FROM categoriagasto WHERE nombre=? and activo=false";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getNombre());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                modcg.setId(rs.getInt("id"));
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
 
     public boolean eliminar(CategoriaGasto prs) {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE categoriagasto SET activo=0 WHERE id=?";
+        String sql = "UPDATE categoriagasto SET activo=false WHERE id=?";
 
         try {
 
@@ -289,12 +330,12 @@ public class CategoriaGasto extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE categoriagasto SET activo=1 WHERE id=?";
+        String sql = "UPDATE categoriagasto SET activo=true WHERE nombre=?";
 
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setInt(1, prs.getId());
+            ps.setString(1, prs.getNombre());
             ps.execute();
             return true;
 

@@ -26,6 +26,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Asambleas;
 import modelo.CerrarMes;
@@ -151,6 +152,12 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         
+        TableColumnModel columnModel = tablaD.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(30);
+        columnModel.getColumn(1).setPreferredWidth(90);
+        columnModel.getColumn(2).setPreferredWidth(100);
+        columnModel.getColumn(10).setPreferredWidth(140);
+        
         for (int i = 0; i < modeloT.getColumnCount(); i++) {
             tablaD.getColumnModel().getColumn(i).setCellRenderer(tcr);
         }
@@ -185,7 +192,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
         
-        modeloT.addColumn("Categoria");
+        modeloT.addColumn("Categoría");
         modeloT.addColumn("Concepto");
         modeloT.addColumn("Seleccione");
         modeloT.addColumn("Monto");
@@ -245,7 +252,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
         
-        modeloT.addColumn("Categoria");
+        modeloT.addColumn("Categoría");
         modeloT.addColumn("Concepto");
         modeloT.addColumn("Seleccione");
         modeloT.addColumn("Monto");

@@ -24,7 +24,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.CategoriaGasto;
-import vista.catalogoInactivoConceptoGastos;
 
 public class controladorConceptoGasto implements ActionListener, MouseListener, KeyListener, WindowListener {
 
@@ -32,7 +31,7 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
     private conceptoGasto cga;
     private ModeloConceptoGastos modCatGas;
     private CategoriaGasto modCat;
-    private catalogoInactivoConceptoGastos cataicga;
+
     ArrayList<ModeloConceptoGastos> listaConGas;
     ArrayList<CategoriaGasto> listaCatGas;
     DefaultTableModel dm;
@@ -43,9 +42,9 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
         this.cga = new conceptoGasto();
         this.modCatGas = new ModeloConceptoGastos();
         this.modCat = new CategoriaGasto();
-        this.cataicga = new catalogoInactivoConceptoGastos();
+
         this.catacga.btnActivar.addActionListener(this);
-        this.cataicga.btnActivar.addActionListener(this);
+
         this.catacga.btnNuevoRegistro.addActionListener(this);
         this.cga.btnGuardar.addActionListener(this);
         this.cga.btnLimpiar.addActionListener(this);
@@ -56,54 +55,43 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
         this.catacga.addWindowListener(this);
         this.catacga.jTable.addMouseListener(this);
         this.catacga.txtBuscar.addKeyListener(this);
-        listaCatGas = modCat.lCategGas();
-        crearCbxCategoria(listaCatGas);
+
         this.catacga.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == catacga.btnActivar) {
-            this.cataicga.setVisible(true);
-            Llenartabla1(cataicga.jTable1);
-            addCheckBox(3, cataicga.jTable1);
-        }
 
-        if (e.getSource() == cataicga.btnActivar) {
-            listaConGas = modCatGas.listarConcepto1();
-
-            for (int i = 0; i < cataicga.jTable1.getRowCount(); i++) {
-                if (valueOf(cataicga.jTable1.getValueAt(i, 3)) == "true") {
-
-                    modCatGas.setId(listaConGas.get(i).getId());
-                    modCatGas.activar(modCatGas);
-                    modCat.setId(listaConGas.get(i).getId_categoria());
-
-                    modCat.activar(modCat);
-
-                }
-            }
-            Llenartabla1(cataicga.jTable1);
-            addCheckBox(3, cataicga.jTable1);
-            Llenartabla(catacga.jTable);
-
-        }
         if (e.getSource() == cga.btnGuardar) {
             if (validar()) {
+
                 modCatGas.setNombre_Concepto(cga.txtNombreC.getText());
                 modCatGas.setDescripcion(cga.txtDescripcion.getText());
                 int ind = cga.cbxCategoria.getSelectedIndex() - 1;
-                modCatGas.setId_categoria(listaCatGas.get(ind).getId());
-
-                if (modCatGas.registrarConcepto(modCatGas)) {
-
-                    JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
-                    Llenartabla(catacga.jTable);
-
+                modCatGas.cate.setId(listaCatGas.get(ind).getId());
+                if (ind == -1) {
+                    JOptionPane.showMessageDialog(null, "por favor seleccione una categoria");
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "Registro Duplicado");
+                    if (modCatGas.buscarInactivo(modCatGas)) {
+                        modCatGas.activar(modCatGas);
+                        modCatGas.modificarConcepto(modCatGas);
+                        JOptionPane.showMessageDialog(null, "Registro Guardado");
+                        Llenartabla(catacga.jTable);
 
+                    } else {
+
+                        if (modCatGas.registrarConcepto(modCatGas)) {
+
+                            JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
+                            Llenartabla(catacga.jTable);
+
+                        } else {
+
+                            JOptionPane.showMessageDialog(null, "Registro Duplicado");
+
+                        }
+                    }
                 }
             }
         }
@@ -114,24 +102,35 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
                 modCatGas.setNombre_Concepto(cga.txtNombreC.getText());
                 modCatGas.setDescripcion(cga.txtDescripcion.getText());
                 int ind = cga.cbxCategoria.getSelectedIndex() - 1;
-                modCatGas.setId_categoria(listaCatGas.get(ind).getId());
-
-                if (modCatGas.modificarConcepto(modCatGas)) {
-
-                    JOptionPane.showMessageDialog(null, "Registro modificado");
-                    cga.dispose();
-                    Llenartabla(catacga.jTable);
-                    limpiar();
-
+                modCatGas.cate.setId(listaCatGas.get(ind).getId());
+                if (ind == -1) {
+                    JOptionPane.showMessageDialog(null, "por favor seleccione una categoria");
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
+                    if (modCatGas.buscarInactivo(modCatGas)) {
 
+                        JOptionPane.showMessageDialog(null, "no puede colocar un concepto que ya existio, si quiere colocar este concepto debe registrarlo nuevamente");
+
+                    } else {
+
+                        if (modCatGas.modificarConcepto(modCatGas)) {
+
+                            JOptionPane.showMessageDialog(null, "Registro modificado");
+                            cga.dispose();
+                            Llenartabla(catacga.jTable);
+                            limpiar();
+
+                        } else {
+
+                            JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
+
+                        }
+                    }
                 }
             }
         }
         if (e.getSource() == cga.btnEliminar) {
-            if (modCatGas.Buscargas(modCatGas) || modCatGas.Buscarcuo(modCatGas)) {
+            if (modCatGas.Buscarcuo(modCatGas)) {
                 JOptionPane.showMessageDialog(null, "no se puede eliminar si tiene gastos por procesar asignados");
             } else {
                 if (modCatGas.eliminar(modCatGas)) {
@@ -161,7 +160,9 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
             this.cga.btnGuardar.setEnabled(true);
             this.cga.btnEliminar.setEnabled(false);
             this.cga.txtNombreC.setEnabled(true);
-
+            cga.cbxCategoria.removeAllItems();
+            listaCatGas = modCat.lCategGas();
+            crearCbxCategoria(listaCatGas);
         }
 
     }
@@ -202,7 +203,7 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
 
             columna[0] = listaConGas.get(i).getNombre_Concepto();
             columna[1] = listaConGas.get(i).getDescripcion();
-            columna[2] = listaConGas.get(i).getNombreCategoria();
+            columna[2] = listaConGas.get(i).cate.getNombre();
 
             modeloT.addRow(columna);
 
@@ -257,7 +258,7 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
 
             columna[0] = listaConGas.get(i).getNombre_Concepto();
             columna[1] = listaConGas.get(i).getDescripcion();
-            columna[2] = listaConGas.get(i).getNombreCategoria();
+            columna[2] = listaConGas.get(i).cate.getNombre();
 
             modeloT.addRow(columna);
 
@@ -320,22 +321,25 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
         String dato = String.valueOf(this.catacga.jTable.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
         Boolean resultado = true;
         String msj = "";
+        cga.cbxCategoria.removeAllItems();
 
         modCatGas.setNombre_Concepto(String.valueOf(dato));
 
         modCatGas.buscarC(modCatGas);
 
         cga.setVisible(true);
-
+        listaCatGas = modCat.lCategGas();
+        crearCbxCategoria(listaCatGas);
         cga.txtId.setText(modCatGas.getId() + "");
         cga.txtNombreC.setText(modCatGas.getNombre_Concepto());
         cga.txtDescripcion.setText(modCatGas.getDescripcion());
-        cga.cbxCategoria.setSelectedItem(modCatGas.getNombreCategoria());
+        cga.cbxCategoria.setSelectedItem(modCatGas.cate.getNombre());
         cga.txtId.setEnabled(false);
         cga.txtId.setVisible(false);
         cga.btnGuardar.setEnabled(false);
         cga.btnModificar.setEnabled(true);
         cga.btnEliminar.setEnabled(true);
+
     }
 
     @Override

@@ -12,18 +12,26 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JTable;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
-import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.basic.BasicScrollBarUI;
-import javax.swing.table.DefaultTableCellRenderer;
-public class catalogoInactivoCategoriaGastos extends javax.swing.JFrame {
+
+/**
+ *
+ * @author Maryo
+ */
+public class catalogoFormaDePago extends javax.swing.JFrame {
 
     /**
-     * Creates new form catalogoInactivoCategoriaGastos
+     * Creates new form catalogoFormaDePago
      */
     //Aquí cambias la trasparencia de la barra mientras el cursor está encima. Mientras mál alto el valor, menos transparente
     private static final int SCROLL_BAR_ALPHA_ROLLOVER = 150;
@@ -34,10 +42,9 @@ public class catalogoInactivoCategoriaGastos extends javax.swing.JFrame {
     private static final int THUMB_SIZE = 8;
     //Aquí cambias el color de la barra
     private static final Color THUMB_COLOR = Color.BLUE;
-    
-    public catalogoInactivoCategoriaGastos() {
+    public catalogoFormaDePago() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
+        TablaFormaPago.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         setLocationRelativeTo(null);
     }
@@ -53,57 +60,49 @@ public class catalogoInactivoCategoriaGastos extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        btnSalir = new javax.swing.JButton();
+        TablaFormaPago = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
         btnMinimizar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
+        btnSalir = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        btnActivar = new javax.swing.JButton();
+        btnNueva_formaPago = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        txtBuscarFormaPago = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 54, 159), 5, true));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 94, 159), 5, true));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaFormaPago.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "<html>Nombre de <br> la Categoría</html>", "Descripción", "Seleccione"
+                "Nombre de la Forma de Pago"
             }
         ));
-        jTable1.setRowHeight(35);
-        jScrollPane1.setViewportView(jTable1);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 460, 275));
-
-        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
-        btnSalir.setToolTipText("Cerrar");
-        btnSalir.setBorder(null);
-        btnSalir.setBorderPainted(false);
-        btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
-        btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
-        btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
+        TablaFormaPago.setRowHeight(35);
+        TablaFormaPago.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaFormaPagoMouseClicked(evt);
             }
         });
-        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, -1, 30));
+        jScrollPane1.setViewportView(TablaFormaPago);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 460, 260));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
         btnMinimizar.setToolTipText("Minimizar");
@@ -119,52 +118,91 @@ public class catalogoInactivoCategoriaGastos extends javax.swing.JFrame {
                 btnMinimizarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 40, 30));
+        jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 40, 30));
+
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
+        btnSalir.setToolTipText("Cerrar");
+        btnSalir.setBorder(null);
+        btnSalir.setBorderPainted(false);
+        btnSalir.setContentAreaFilled(false);
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
+        btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
+        btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, 30));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setText("Formas de Pago");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
+
+        btnNueva_formaPago.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnNueva_formaPago.setForeground(new java.awt.Color(0, 94, 159));
+        btnNueva_formaPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (2).png"))); // NOI18N
+        btnNueva_formaPago.setText("Nueva Forma de Pago");
+        btnNueva_formaPago.setToolTipText("Haga click aquí para regisrar una nueva forma de pago");
+        btnNueva_formaPago.setBorder(null);
+        btnNueva_formaPago.setBorderPainted(false);
+        btnNueva_formaPago.setContentAreaFilled(false);
+        btnNueva_formaPago.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNueva_formaPago.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
+        btnNueva_formaPago.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
+        btnNueva_formaPago.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
+        btnNueva_formaPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNueva_formaPagoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnNueva_formaPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Listado de Categoría Gastos Inactivos");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, -1));
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setText("Buscar:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 70, 20));
-
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jTextField1.setToolTipText("Buscador\n");
-        jTextField1.setBorder(null);
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 190, 20));
+        jLabel1.setText("Buscar:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 70, -1));
 
         jSeparator1.setBackground(new java.awt.Color(0, 94, 159));
         jSeparator1.setForeground(new java.awt.Color(0, 94, 159));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 190, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 190, 10));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 510, -1));
+        txtBuscarFormaPago.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtBuscarFormaPago.setToolTipText("Buscar");
+        txtBuscarFormaPago.setBorder(null);
+        jPanel1.add(txtBuscarFormaPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 190, 20));
 
-        btnActivar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnActivar.setForeground(new java.awt.Color(0, 54, 159));
-        btnActivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by.png"))); // NOI18N
-        btnActivar.setText("Activar Categoría Gastos");
-        btnActivar.setToolTipText("Activar los bancos seleccionados");
-        btnActivar.setBorder(null);
-        btnActivar.setBorderPainted(false);
-        btnActivar.setContentAreaFilled(false);
-        btnActivar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnActivar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by (1).png"))); // NOI18N
-        btnActivar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by (1).png"))); // NOI18N
-        btnActivar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by.png"))); // NOI18N
-        jPanel1.add(btnActivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, -1, -1));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 450));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void TablaFormaPagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaFormaPagoMouseClicked
+
+    }//GEN-LAST:event_TablaFormaPagoMouseClicked
+
+    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
+        this.setState(vista.InicioUsuario.ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarActionPerformed
+
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         try {
 
+            UIManager UI=new UIManager();
+
+            UI.put("OptionPane.border",createLineBorder(new Color(0,94,159), 5));
+            UI.put("Panel.background",new ColorUIResource(255,255,255));
+
             int botonDialogo = JOptionPane.YES_NO_OPTION;
-            int result = JOptionPane.showConfirmDialog(null, "DESEA CERRAR LA VENTANA?", "SALIR", botonDialogo);
+
+            Icon p = new ImageIcon(getClass().getResource("/img/pregunta.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            int result = JOptionPane.showConfirmDialog(null, "¿Desea cerrar la ventana de bancos?", "Salir", botonDialogo, JOptionPane.INFORMATION_MESSAGE,p);
             if (result == 0) {
 
                 this.dispose();
@@ -176,9 +214,9 @@ public class catalogoInactivoCategoriaGastos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
-        this.setState(vista.InicioUsuario.ICONIFIED);
-    }//GEN-LAST:event_btnMinimizarActionPerformed
+    private void btnNueva_formaPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNueva_formaPagoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNueva_formaPagoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,38 +235,38 @@ public class catalogoInactivoCategoriaGastos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(catalogoInactivoCategoriaGastos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(catalogoFormaDePago.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(catalogoInactivoCategoriaGastos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(catalogoFormaDePago.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(catalogoInactivoCategoriaGastos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(catalogoFormaDePago.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(catalogoInactivoCategoriaGastos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(catalogoFormaDePago.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new catalogoInactivoCategoriaGastos().setVisible(true);
+                new catalogoFormaDePago().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnActivar;
+    public javax.swing.JTable TablaFormaPago;
     public javax.swing.JButton btnMinimizar;
+    public javax.swing.JButton btnNueva_formaPago;
     public javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    public javax.swing.JTable jTable1;
-    public javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField txtBuscarFormaPago;
     // End of variables declaration//GEN-END:variables
-static public class Headercolor extends DefaultTableCellHeaderRenderer {
+ static public class Headercolor extends DefaultTableCellHeaderRenderer {
 
         public Headercolor() {
             setOpaque(true);
