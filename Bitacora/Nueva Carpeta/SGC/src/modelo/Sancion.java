@@ -179,7 +179,7 @@ public class Sancion extends ConexionBD {
 
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
-            ps.setInt(2, getId());
+            ps.setInt(2, uni.getId());
 
             ps.execute();
 

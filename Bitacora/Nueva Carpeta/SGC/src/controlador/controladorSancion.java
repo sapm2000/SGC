@@ -306,7 +306,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                                         for (int i = 0; i < san.jTable1.getRowCount(); i++) {
                                             if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
 
-                                                modsan.setId(listaunidades.get(i).getId());
+                                                modsan.uni.setId(listaunidades.get(i).getId());
 
                                                 modsan.registrar_sancion_unidad(modsan);
 
