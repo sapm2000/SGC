@@ -385,7 +385,7 @@ public class Unidades extends ConexionBD {
                 rs2 = ps.executeQuery();
 
                 while (rs2.next()) {
-                    unidad.getPropietario().add(new Propietarios(rs2.getString("cedula"), rs2.getString("p_nombre"), rs2.getString("s_nombre"), rs2.getString("p_apellido"), rs2.getString("s_apellido"), rs2.getString("telefono"), rs2.getString("correo")));
+                    unidad.getPropietario().add(new Propietarios(rs2.getString("ci_persona"), rs2.getString("p_nombre"), rs2.getString("s_nombre"), rs2.getString("p_apellido"), rs2.getString("s_apellido"), rs2.getString("telefono"), rs2.getString("correo")));
 
                 }
 
