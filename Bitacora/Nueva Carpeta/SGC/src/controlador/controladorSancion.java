@@ -53,7 +53,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         this.san = new sancion();
         this.catasan = new catalogoSancion();
         this.modsan = new Sancion();
-        this.moduni= new Unidades();
+        this.moduni = new Unidades();
         this.modc = new CerrarMes();
 
         this.catasan.jButton2.addActionListener(this);
@@ -154,7 +154,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
             columna[0] = listaunimod.get(i).uni.getN_unidad();
 
-            if (listaunimod.get(i).getId()!= 0) {
+            if (listaunimod.get(i).getId() != 0) {
                 columna[1] = Boolean.TRUE;
             } else {
                 columna[1] = Boolean.FALSE;
@@ -193,7 +193,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
             columna[0] = listaunimod.get(i).uni.getN_unidad();
 
-            if (listaunimod.get(i).getId()!= 0) {
+            if (listaunimod.get(i).getId() != 0) {
                 columna[1] = Boolean.TRUE;
             } else {
                 columna[1] = Boolean.FALSE;
@@ -279,7 +279,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                         modsan.setEstado("Pendiente");
                         modc.setMes_cierre(san.jMonthChooser1.getMonth() + 1);
                         modc.setAño_cierre(san.jYearChooser1.getYear());
-                     
+
                         for (int i = 0; i < san.jTable1.getRowCount(); i++) {
                             if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
 
@@ -351,7 +351,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
                         modc.setMes_cierre(san.jMonthChooser1.getMonth() + 1);
                         modc.setAño_cierre(san.jYearChooser1.getYear());
-                    
+
                         for (int i = 0; i < san.jTable1.getRowCount(); i++) {
                             if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
 
@@ -376,7 +376,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                                         for (int i = 0; i < san.jTable1.getRowCount(); i++) {
                                             if (valueOf(san.jTable1.getValueAt(i, 1)).equals("true")) {
 
-                                                modsan.setId(listaunimod.get(i).getId());
+                                                modsan.uni.setId(listaunidades.get(i).getId());
 
                                                 modsan.registrar_sancion_unidad(modsan);
 
