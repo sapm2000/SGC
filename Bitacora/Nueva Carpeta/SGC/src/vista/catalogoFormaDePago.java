@@ -44,7 +44,7 @@ public class catalogoFormaDePago extends javax.swing.JFrame {
     private static final Color THUMB_COLOR = Color.BLUE;
     public catalogoFormaDePago() {
         initComponents();
-        TablaFormaPago.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
+        JTablaFormaPago.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         setLocationRelativeTo(null);
     }
@@ -60,7 +60,7 @@ public class catalogoFormaDePago extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TablaFormaPago = new javax.swing.JTable();
+        JTablaFormaPago = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         btnMinimizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
@@ -80,7 +80,7 @@ public class catalogoFormaDePago extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
-        TablaFormaPago.setModel(new javax.swing.table.DefaultTableModel(
+        JTablaFormaPago.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -91,13 +91,13 @@ public class catalogoFormaDePago extends javax.swing.JFrame {
                 "Nombre de la Forma de Pago"
             }
         ));
-        TablaFormaPago.setRowHeight(35);
-        TablaFormaPago.addMouseListener(new java.awt.event.MouseAdapter() {
+        JTablaFormaPago.setRowHeight(35);
+        JTablaFormaPago.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TablaFormaPagoMouseClicked(evt);
+                JTablaFormaPagoMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(TablaFormaPago);
+        jScrollPane1.setViewportView(JTablaFormaPago);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 460, 260));
 
@@ -177,9 +177,9 @@ public class catalogoFormaDePago extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TablaFormaPagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaFormaPagoMouseClicked
+    private void JTablaFormaPagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTablaFormaPagoMouseClicked
 
-    }//GEN-LAST:event_TablaFormaPagoMouseClicked
+    }//GEN-LAST:event_JTablaFormaPagoMouseClicked
 
     private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
         this.setState(vista.InicioUsuario.ICONIFIED);
@@ -254,7 +254,7 @@ public class catalogoFormaDePago extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTable TablaFormaPago;
+    public javax.swing.JTable JTablaFormaPago;
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnNueva_formaPago;
     public javax.swing.JButton btnSalir;
