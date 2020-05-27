@@ -1,0 +1,231 @@
+CREATE TABLE public.banco (
+    id integer NOT NULL,
+    nombre_banco character varying(30) NOT NULL,
+    activo boolean
+);
+
+
+ALTER TABLE public.banco OWNER TO postgres;
+
+--
+-- TOC entry 205 (class 1259 OID 27257)
+-- Name: banco_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.banco_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.banco_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3339 (class 0 OID 0)
+-- Dependencies: 205
+-- Name: banco_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.banco_id_seq OWNED BY public.banco.id;
+
+
+--
+-- TOC entry 206 (class 1259 OID 27259)
+-- Name: categoriagasto; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.categoriagasto (
+    id integer NOT NULL,
+    nombre character varying(120) NOT NULL,
+    descripcion character varying(120) NOT NULL,
+    activo boolean
+);
+
+
+ALTER TABLE public.categoriagasto OWNER TO postgres;
+
+--
+-- TOC entry 207 (class 1259 OID 27262)
+-- Name: categoriagasto_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.categoriagasto_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.categoriagasto_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3340 (class 0 OID 0)
+-- Dependencies: 207
+-- Name: categoriagasto_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.categoriagasto_id_seq OWNED BY public.categoriagasto.id;
+
+
+CREATE TABLE public.concepto_gasto (
+    id integer NOT NULL,
+    nom_concepto character varying(120) NOT NULL,
+    descripcion character varying(120) NOT NULL,
+    id_categoria integer NOT NULL,
+    activo boolean
+);
+
+
+ALTER TABLE public.concepto_gasto OWNER TO postgres;
+
+--
+-- TOC entry 215 (class 1259 OID 27288)
+-- Name: concepto_gasto_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.concepto_gasto_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.concepto_gasto_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3344 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: concepto_gasto_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.concepto_gasto_id_seq OWNED BY public.concepto_gasto.id;
+
+CREATE TABLE public.forma_pago (
+    id integer NOT NULL,
+    forma_pago character varying NOT NULL,
+    activo boolean
+);
+
+
+ALTER TABLE public.forma_pago OWNER TO postgres;
+
+--
+-- TOC entry 282 (class 1259 OID 36257)
+-- Name: forma_pago_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.forma_pago_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.forma_pago_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3350 (class 0 OID 0)
+-- Dependencies: 282
+-- Name: forma_pago_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.forma_pago_id_seq OWNED BY public.forma_pago.id;
+
+ALTER TABLE ONLY public.banco ALTER COLUMN id SET DEFAULT nextval('public.banco_id_seq'::regclass);
+
+
+--
+-- TOC entry 2963 (class 2604 OID 27473)
+-- Name: categoriagasto id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categoriagasto ALTER COLUMN id SET DEFAULT nextval('public.categoriagasto_id_seq'::regclass);
+
+ALTER TABLE ONLY public.concepto_gasto ALTER COLUMN id SET DEFAULT nextval('public.concepto_gasto_id_seq'::regclass);
+
+ALTER TABLE ONLY public.forma_pago ALTER COLUMN id SET DEFAULT nextval('public.forma_pago_id_seq'::regclass);
+
+INSERT INTO public.banco VALUES (3, 'Caribe', NULL);
+INSERT INTO public.banco VALUES (4, 'Provincial', NULL);
+INSERT INTO public.banco VALUES (6, 'Venezuela', NULL);
+INSERT INTO public.banco VALUES (1, 'Banesco', NULL);
+INSERT INTO public.banco VALUES (5, 'Mercantil', NULL);
+INSERT INTO public.banco VALUES (7, 'BOD', NULL);
+INSERT INTO public.banco VALUES (8, 'Fondo Comun', NULL);
+INSERT INTO public.banco VALUES (10, 'Fuerzas Armadas', NULL);
+INSERT INTO public.banco VALUES (11, 'Venezolana de Credito', NULL);
+INSERT INTO public.banco VALUES (9, 'Banplus', NULL);
+
+
+--
+-- TOC entry 3266 (class 0 OID 27259)
+-- Dependencies: 206
+-- Data for Name: categoriagasto; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.categoriagasto VALUES (3, 'Reparaciones', 'Conjunto de conceptos de reparaciones', true);
+INSERT INTO public.categoriagasto VALUES (4, 'Uso comun', 'Conjunto de conceptos de uso comun y consumo', true);
+INSERT INTO public.categoriagasto VALUES (6, 'asda', 'ddasda', true);
+INSERT INTO public.categoriagasto VALUES (1, 'Administrativo', 'Conjunto de conceptos administrativos', true);
+INSERT INTO public.categoriagasto VALUES (2, 'Mantenimiento', 'Conjunto de conceptos de mantenimiento', true);
+INSERT INTO public.categoriagasto VALUES (5, 'fsfsfdsfs', 'Conjunto de conceptos administrativo', true);
+
+
+--
+
+
+INSERT INTO public.concepto_gasto VALUES (11, 'Provisión utilidades ', 'Utilidades del trabajador', 1, true);
+INSERT INTO public.concepto_gasto VALUES (10, 'Liquidación ', 'Liquidacion trabajador', 1, true);
+INSERT INTO public.concepto_gasto VALUES (12, 'Provisión vacaciones ', 'Vacaciones trabajador', 1, true);
+INSERT INTO public.concepto_gasto VALUES (13, 'Ley de alimentación', 'Pago alimentación', 1, true);
+INSERT INTO public.concepto_gasto VALUES (14, 'FAHO', 'Fondo de ahorro obligatorio de la vivienda', 1, true);
+INSERT INTO public.concepto_gasto VALUES (15, 'Caja chica', 'Caja chica', 1, true);
+INSERT INTO public.concepto_gasto VALUES (16, 'Mant. ascensores', 'Mantenimiento de los asecensores', 2, true);
+INSERT INTO public.concepto_gasto VALUES (17, 'Mant. hidroneumatico', 'Mantenimiento del hidroneumatico', 2, true);
+INSERT INTO public.concepto_gasto VALUES (18, 'Mant. porton electrico', 'Mantenimiento del porton electrico', 2, true);
+INSERT INTO public.concepto_gasto VALUES (19, 'Mant. cerco electrico', 'Mantenimiento del cerco electrico', 2, true);
+INSERT INTO public.concepto_gasto VALUES (20, 'Mant. areas verdes', 'Mantenimiento de areas verdes', 2, true);
+INSERT INTO public.concepto_gasto VALUES (21, 'Mant. piscina', 'Mantenimiento de la piscina', 2, true);
+INSERT INTO public.concepto_gasto VALUES (22, 'Mant. parque infantil', 'Mantenimiento del parque infantil', 2, true);
+INSERT INTO public.concepto_gasto VALUES (23, 'Mant. camaras vigilancia', 'Mantenimiento camaras de vigilancia', 2, true);
+INSERT INTO public.concepto_gasto VALUES (24, 'Mant. tuberias', 'Mantenimiento de tuberias ', 2, true);
+INSERT INTO public.concepto_gasto VALUES (25, 'Mant. estacionamiento', 'Mantenimiento del estacionamiento ', 2, true);
+INSERT INTO public.concepto_gasto VALUES (26, 'Mant. pintura edif. ', 'Pintura de areas comunes ', 2, true);
+INSERT INTO public.concepto_gasto VALUES (27, 'Mant. alumbrado elect. ', 'Mantenimiento del alumbrado elect.', 2, true);
+INSERT INTO public.concepto_gasto VALUES (28, 'Mant. compra prod. limp.', 'Gastos productos de limpieza', 2, true);
+INSERT INTO public.concepto_gasto VALUES (29, 'Mant. prod. limpieza ', 'Gasto otros productos', 2, true);
+INSERT INTO public.concepto_gasto VALUES (30, 'Repar. ascensores', 'Reparacion de los asecensores', 3, true);
+INSERT INTO public.concepto_gasto VALUES (31, 'Repar. tuberia', 'Reparacion de tuberias de aguas', 3, true);
+INSERT INTO public.concepto_gasto VALUES (32, 'Repar. porton', 'Reparacion del porton electrico', 3, true);
+INSERT INTO public.concepto_gasto VALUES (33, 'Repar. cerco elect.', 'Reparacion del cerco electrico', 3, true);
+INSERT INTO public.concepto_gasto VALUES (34, 'Repar. hidroneumatico.', 'Reparacion la bomba de agua', 3, true);
+INSERT INTO public.concepto_gasto VALUES (35, 'Repar. camaras.', 'Reparacion de camaras', 3, true);
+INSERT INTO public.concepto_gasto VALUES (36, 'Repar. electricas.', 'Reparacion/Sustitucion de componentes electricos', 3, true);
+INSERT INTO public.concepto_gasto VALUES (37, 'Consumo de electricidad', 'Consumo de electricidad', 3, true);
+INSERT INTO public.concepto_gasto VALUES (40, 'HidroCapital', 'Consumo de agua', 4, true);
+INSERT INTO public.concepto_gasto VALUES (41, 'Vigilancia', 'Gastos por vigilancia', 4, true);
+INSERT INTO public.concepto_gasto VALUES (2, 'Salario conserje', 'Salario del conserje del condominio', 1, true);
+INSERT INTO public.concepto_gasto VALUES (3, 'Honorarios administradora', 'Honorarios administradora del condominio', 1, true);
+INSERT INTO public.concepto_gasto VALUES (4, 'Gastos oficina', 'Gastos en material de oficina', 1, true);
+INSERT INTO public.concepto_gasto VALUES (9, 'Bono Vacacional ', 'Bono vacacional trabajador', 1, true);
+INSERT INTO public.concepto_gasto VALUES (7, 'Prestaciones soc.', 'Prestaciones sociales trabajador', 1, true);
+INSERT INTO public.concepto_gasto VALUES (8, 'Seguro social', 'Seguro social trabajador', 1, true);
+INSERT INTO public.concepto_gasto VALUES (5, 'Gastos varios', 'Gastos fotocopias, impresiones, internet', 1, true);
+INSERT INTO public.concepto_gasto VALUES (6, 'Retiro prestaciones', 'Retiro de prestaciones sociales', 1, true);
+INSERT INTO public.concepto_gasto VALUES (1, 'Honorarios administrador', 'Honorarios del administrador del condominio', 1, true);
+INSERT INTO public.concepto_gasto VALUES (39, 'Cantv', 'sad', 4, true);
+
+-
+
+INSERT INTO public.forma_pago VALUES (1, 'dsfsdf', true);
+INSERT INTO public.forma_pago VALUES (2, 'td', true);
+
