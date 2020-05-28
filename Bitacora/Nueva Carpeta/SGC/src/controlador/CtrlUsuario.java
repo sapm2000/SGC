@@ -82,7 +82,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
                         JOptionPane.showMessageDialog(null, "Usuario habilitado");
                         llenarTabla(catausu.jtable);
                         vistaGU.dispose();
-
+                        limpiar();
                     } else {
                         JOptionPane.showMessageDialog(null, "No se pudo habilitar el usuario");
 
@@ -100,7 +100,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
                                 JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
                                 llenarTabla(catausu.jtable);
                                 vistaGU.dispose();
-
+                                limpiar();
                             } else {
                                 JOptionPane.showMessageDialog(null, "Error al Registrar Usuario");
 

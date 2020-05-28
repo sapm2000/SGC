@@ -14,7 +14,9 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import modelo.Funcion;
 import modelo.Responsable;
+import sgc.SGC;
 import vista.CatResponsable;
 
 public class CtrlResponsable implements ActionListener, MouseListener, KeyListener {
@@ -25,20 +27,28 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
     CatResponsable catalogo;
 
     DefaultTableModel dm;
+    Funcion permiso;
 
     ArrayList<Responsable> listaResponsable;
 
     int fila;
 
     public CtrlResponsable() {
+        
         catalogo = new CatResponsable();
         modelo = new modelo.Responsable();
-
+        
         catalogo.btnNuevo.addActionListener(this);
         catalogo.tabla.addMouseListener(this);
         catalogo.txtBuscar.addKeyListener(this);
-
+        
         llenarTabla();
+        permisoBtn();
+        
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
+        
         catalogo.setVisible(true);
 
     }
@@ -48,6 +58,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
         if (e.getSource() == catalogo.btnNuevo) {
             vista = new vista.Responsable();
 
+            vista.btnGuardar.setEnabled(true);
             vista.btnModificar.setEnabled(false);
             vista.btnEliminar.setEnabled(false);
 
@@ -151,6 +162,18 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
         }
     }
 
+    private void permisoBtn() {
+
+        for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
+            if (funcionbtn.getNombre().equals("Responsables")) {
+                permiso = funcionbtn;
+
+            }
+
+        }
+
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == catalogo.tabla) {
@@ -158,7 +181,12 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
             modelo = new Responsable(listaResponsable.get(fila).getCedula(), listaResponsable.get(fila).getpNombre(), listaResponsable.get(fila).getsNombre(), listaResponsable.get(fila).getpApellido(), listaResponsable.get(fila).getsApellido(), listaResponsable.get(fila).getCorreo(), listaResponsable.get(fila).getTelefono());
             vista = new vista.Responsable();
-
+            if (permiso.getModificar()) {
+                vista.btnModificar.setEnabled(true);
+            }
+            if (permiso.getEliminar()) {
+                vista.btnEliminar.setEnabled(true);
+            }
             vista.cbxCedula.setSelectedItem(modelo.getCedula().split("-")[0]);
             vista.txtCedula.setText(modelo.getCedula().split("-")[1]);
             vista.txtPnombre.setText(modelo.getpNombre());
@@ -168,7 +196,6 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
             vista.txtCorreo.setText(modelo.getCorreo());
             vista.txtTelefono.setText(modelo.getTelefono());
 
-            vista.cbxCedula.setEnabled(false);
             vista.txtCedula.setEditable(false);
             vista.btnGuardar.setEnabled(false);
             vista.btnLimpiar.setEnabled(false);

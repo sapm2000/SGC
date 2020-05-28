@@ -1,19 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import modelo.Funcion;
 import sgc.SGC;
 import vista.PantallaPrincipal;
 
-/**
- *
- * @author rma
- */
 public class controladorMenu implements ActionListener {
 
     private controladorCondominio concondo;
@@ -31,11 +23,12 @@ public class controladorMenu implements ActionListener {
     private controladorForma_pago controfor;
 
     public controladorMenu() {
-        //this.concondo = new controladorCondominio();
-        //this.catacon= new catalogoCondominio();
         SGC.panta = new PantallaPrincipal();
         vista = SGC.panta;
+        filtrarMenu();
+        
         vista.setVisible(true);
+
         vista.jCondominio.addActionListener(this);
         vista.jBanco.addActionListener(this);
         vista.jCategoria.addActionListener(this);
@@ -54,7 +47,6 @@ public class controladorMenu implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.jCondominio) {
             concondo = new controladorCondominio();
-            //catacon.setVisible(true);
         }
         if (e.getSource() == vista.jBanco) {
             conban = new controladorBanco();
@@ -90,11 +82,53 @@ public class controladorMenu implements ActionListener {
         if (e.getSource() == vista.jPropietarios) {
             ctrlp = new CtrlPropietario();
         }
-          if (e.getSource() == vista.jResponsable) {
+        if (e.getSource() == vista.jResponsable) {
             ctrlr = new CtrlResponsable();
         }
           if (e.getSource() == vista.jFormaPago) {
             controfor = new controladorForma_pago();
+        }
+    }
+
+    private void filtrarMenu() {
+        // Primero se vacía el menú archivo
+        vista.menuArchivo.removeAll();
+        
+        // Se consulta cada función del usuario actual y se añaden las opciones al menú correspondientes
+        for (Funcion funcionesX : SGC.usuarioActual.getTipoU().getFunciones()) {
+            if ("Banco".equals(funcionesX.getNombre())) {
+                vista.menuArchivo.add(vista.jBanco);
+            }
+            if ("Categoria Gastos".equals(funcionesX.getNombre())) {
+                vista.menuArchivo.add(vista.jCategoria);
+            }
+            if ("Concepto Gastos".equals(funcionesX.getNombre())) {
+                vista.menuArchivo.add(vista.jConcepto);
+            }
+            if ("Condominio".equals(funcionesX.getNombre())) {
+                vista.menuArchivo.add(vista.jCondominio);
+            }
+            if ("Cuenta".equals(funcionesX.getNombre())) {
+                vista.menuArchivo.add(vista.jCuenta);
+            }
+            if ("Gestionar Usuario".equals(funcionesX.getNombre())) {
+                vista.menuArchivo.add(vista.jUsuario);
+            }
+            if ("Intereses".equals(funcionesX.getNombre())) {
+                vista.menuArchivo.add(vista.jInteres);
+            }
+            if ("Propietarios".equals(funcionesX.getNombre())) {
+                vista.menuArchivo.add(vista.jPropietarios);
+            }
+            if ("Proveedores".equals(funcionesX.getNombre())) {
+                vista.menuArchivo.add(vista.jProveedores);
+            }
+            if ("Responsables".equals(funcionesX.getNombre())) {
+                vista.menuArchivo.add(vista.jResponsable);
+            }
+            if ("Tipo de usuario".equals(funcionesX.getNombre())) {
+                vista.menuArchivo.add(vista.jTipo);
+            }
         }
     }
 

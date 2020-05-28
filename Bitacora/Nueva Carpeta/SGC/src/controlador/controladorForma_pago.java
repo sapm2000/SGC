@@ -48,7 +48,7 @@ public class controladorForma_pago implements ActionListener, KeyListener, Mouse
         this.vfor.btnModificar.addActionListener(this);
         this.catafor.btnNueva_formaPago.addActionListener(this);
         this.catafor.addWindowListener(this);
-        this.catafor.TablaFormaPago.addMouseListener(this);
+        this.catafor.JTablaFormaPago.addMouseListener(this);
         this.catafor.txtBuscarFormaPago.addKeyListener(this);
         catafor.setVisible(true);
 
@@ -112,14 +112,14 @@ public class controladorForma_pago implements ActionListener, KeyListener, Mouse
                 if (modfor.buscarInactivo(modfor)) {
                     modfor.activar(modfor);
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
-                    Llenartabla(catafor.TablaFormaPago);
+                    Llenartabla(catafor.JTablaFormaPago);
                     limpiar();
                 } else {
 
                     if (modfor.registrar(modfor)) {
 
                         JOptionPane.showMessageDialog(null, "Registro Guardado");
-                        Llenartabla(catafor.TablaFormaPago);
+                        Llenartabla(catafor.JTablaFormaPago);
                         limpiar();
 
                     } else {
@@ -143,7 +143,7 @@ public class controladorForma_pago implements ActionListener, KeyListener, Mouse
 
                         JOptionPane.showMessageDialog(null, "Registro modificado");
                         vfor.dispose();
-                        Llenartabla(catafor.TablaFormaPago);
+                        Llenartabla(catafor.JTablaFormaPago);
                         limpiar();
 
                     } else {
@@ -163,7 +163,7 @@ public class controladorForma_pago implements ActionListener, KeyListener, Mouse
 
                 JOptionPane.showMessageDialog(null, "Registro Eliminado");
                 vfor.dispose();
-                Llenartabla(catafor.TablaFormaPago);
+                Llenartabla(catafor.JTablaFormaPago);
 
             } else {
 
@@ -221,7 +221,7 @@ public class controladorForma_pago implements ActionListener, KeyListener, Mouse
     public void keyReleased(KeyEvent e) {
         if (e.getSource() == catafor.txtBuscarFormaPago) {
 
-            filtro(catafor.txtBuscarFormaPago.getText(), catafor.TablaFormaPago);
+            filtro(catafor.txtBuscarFormaPago.getText(), catafor.JTablaFormaPago);
         } else {
 
         }
@@ -229,9 +229,9 @@ public class controladorForma_pago implements ActionListener, KeyListener, Mouse
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int fila = this.catafor.TablaFormaPago.getSelectedRow(); // primero, obtengo la fila seleccionada
-        int columna = this.catafor.TablaFormaPago.getSelectedColumn(); // luego, obtengo la columna seleccionada
-        String dato = String.valueOf(this.catafor.TablaFormaPago.getValueAt(fila, columna)); // por ultimo, obtengo el valor de la celda
+        int fila = this.catafor.JTablaFormaPago.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int columna = this.catafor.JTablaFormaPago.getSelectedColumn(); // luego, obtengo la columna seleccionada
+        String dato = String.valueOf(this.catafor.JTablaFormaPago.getValueAt(fila, columna)); // por ultimo, obtengo el valor de la celda
 
         modfor.setForma_pago(String.valueOf(dato));
 
@@ -270,7 +270,7 @@ public class controladorForma_pago implements ActionListener, KeyListener, Mouse
 
     @Override
     public void windowOpened(WindowEvent e) {
-        Llenartabla(catafor.TablaFormaPago);
+        Llenartabla(catafor.JTablaFormaPago);
     }
 
     @Override

@@ -67,7 +67,6 @@ public class catalogoCuenta extends javax.swing.JFrame {
         txtBuscarCuenta = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel9 = new javax.swing.JLabel();
-        btnActivar = new javax.swing.JButton();
 
         jButton3.setText("jButton3");
 
@@ -115,7 +114,7 @@ public class catalogoCuenta extends javax.swing.JFrame {
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
@@ -131,7 +130,7 @@ public class catalogoCuenta extends javax.swing.JFrame {
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
@@ -154,7 +153,7 @@ public class catalogoCuenta extends javax.swing.JFrame {
         btn_nuevaCuenta.setBorder(null);
         btn_nuevaCuenta.setBorderPainted(false);
         btn_nuevaCuenta.setContentAreaFilled(false);
-        btn_nuevaCuenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_nuevaCuenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_nuevaCuenta.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btn_nuevaCuenta.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btn_nuevaCuenta.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
@@ -186,20 +185,6 @@ public class catalogoCuenta extends javax.swing.JFrame {
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
-
-        btnActivar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnActivar.setForeground(new java.awt.Color(0, 94, 159));
-        btnActivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by.png"))); // NOI18N
-        btnActivar.setText("Cuentas Inactivas");
-        btnActivar.setToolTipText("Ir a la pantalla de cuentas inactivas");
-        btnActivar.setBorder(null);
-        btnActivar.setBorderPainted(false);
-        btnActivar.setContentAreaFilled(false);
-        btnActivar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnActivar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by (1).png"))); // NOI18N
-        btnActivar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by (1).png"))); // NOI18N
-        btnActivar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by.png"))); // NOI18N
-        jPanel1.add(btnActivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 440));
 
@@ -296,7 +281,6 @@ public class catalogoCuenta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnActivar;
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnSalir;
     public javax.swing.JButton btn_nuevaCuenta;

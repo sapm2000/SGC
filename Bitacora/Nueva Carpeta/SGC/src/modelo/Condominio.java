@@ -12,7 +12,7 @@ public class Condominio extends ConexionBD {
     private String razonS;
     private String telefono;
     private String correoElectro;
-    private Cuenta cuen = new Cuenta();
+    public Cuenta cuen = new Cuenta();
    
 
     public String getRif() {
