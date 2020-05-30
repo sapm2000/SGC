@@ -211,6 +211,7 @@ public class comunicados extends javax.swing.JFrame {
         btnEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enviar.png"))); // NOI18N
         btnEnviar.setText("Enviar el Mensaje");
         btnEnviar.setToolTipText("Enviar el mensaje a los usuarios seleccionados");
+        btnEnviar.setBorder(null);
         btnEnviar.setBorderPainted(false);
         btnEnviar.setContentAreaFilled(false);
         btnEnviar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -222,7 +223,7 @@ public class comunicados extends javax.swing.JFrame {
                 btnEnviarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 180, -1));
+        jPanel2.add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 160, 20));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 320, 10));

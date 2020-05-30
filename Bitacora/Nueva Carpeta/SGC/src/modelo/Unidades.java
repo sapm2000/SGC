@@ -359,15 +359,15 @@ public class Unidades extends ConexionBD {
         rs = null;
         ResultSet rs2 = null;
 
-        String sql = "SELECT * FROM v_unidad WHERE id_condominio=?;";
+        String sql = "SELECT * FROM v_unidad";
 
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, SGC.condominioActual.getRif());
+            
 
             rs = ps.executeQuery();
 
-            sql = "SELECT * FROM v_unidad_propietario WHERE id_condominio = ? AND id = ?";
+            sql = "SELECT * FROM v_unidad_propietario WHERE id = ?";
             ps = con.prepareStatement(sql);
 
             while (rs.next()) {
@@ -379,8 +379,8 @@ public class Unidades extends ConexionBD {
                 unidad.setDireccion(rs.getString("direccion"));
                 unidad.setArea(rs.getInt("area"));
 
-                ps.setString(1, SGC.condominioActual.getRif());
-                ps.setInt(2, unidad.getId());
+           
+                ps.setInt(1, unidad.getId());
 
                 rs2 = ps.executeQuery();
 
@@ -417,10 +417,10 @@ public class Unidades extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "select id from unidades where id_condominio=?";
+        String sql = "select id from unidades";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, SGC.condominioActual.getRif());
+           
 
             rs = ps.executeQuery();
 

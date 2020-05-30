@@ -184,9 +184,15 @@ public class catalogoBanco extends javax.swing.JFrame {
         btnDesactivar.setBorderPainted(false);
         btnDesactivar.setContentAreaFilled(false);
         btnDesactivar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDesactivar.setEnabled(false);
         btnDesactivar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by (1).png"))); // NOI18N
         btnDesactivar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by (1).png"))); // NOI18N
         btnDesactivar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by.png"))); // NOI18N
+        btnDesactivar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDesactivarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnDesactivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 450));
@@ -230,6 +236,10 @@ public class catalogoBanco extends javax.swing.JFrame {
     private void tabla_bancosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_bancosMouseClicked
 
     }//GEN-LAST:event_tabla_bancosMouseClicked
+
+    private void btnDesactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesactivarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDesactivarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -183,6 +183,7 @@ public class catalogoCondominio extends javax.swing.JFrame {
         btnActivar.setBorderPainted(false);
         btnActivar.setContentAreaFilled(false);
         btnActivar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnActivar.setEnabled(false);
         btnActivar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by (1).png"))); // NOI18N
         btnActivar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by (1).png"))); // NOI18N
         btnActivar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/stand-by.png"))); // NOI18N
