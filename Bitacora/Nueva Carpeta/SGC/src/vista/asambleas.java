@@ -194,7 +194,7 @@ public class asambleas extends javax.swing.JFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel4.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 170, 30));
+        jPanel4.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 160, -1));
 
         jDateChooser2.setToolTipText("Fecha en la que se realizó la asamblea");
         jDateChooser2.setMinSelectableDate(new java.util.Date(-62135751509000L));
