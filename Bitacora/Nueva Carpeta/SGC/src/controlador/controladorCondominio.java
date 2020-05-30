@@ -14,7 +14,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -30,7 +29,6 @@ import modelo.Unidades;
 import sgc.SGC;
 import vista.PantallaPrincipal;
 import vista.catalogoCondominio;
-import vista.catalogoInactivoCondominio;
 import vista.condominio;
 
 /**
@@ -46,7 +44,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
     private Unidades moduni;
     DefaultTableModel dm;
     private Condominio co;
-    private catalogoInactivoCondominio cataico;
+//    private catalogoInactivoCondominio cataico;
     ArrayList<Condominio> listaCondo;
     ArrayList<Unidades> listaunidades;
 
@@ -56,10 +54,10 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         this.panta = new PantallaPrincipal();
         this.co = new Condominio();
         this.moduni = new Unidades();
+//        this.cataico = new catalogoInactivoCondominio();
        
-        this.cataico = new catalogoInactivoCondominio();
         this.cataco.btnActivar.addActionListener(this);
-        this.cataico.btnActivar.addActionListener(this);
+//        this.cataico.btnActivar.addActionListener(this);
         this.cataco.jButton2.addActionListener(this);
         this.condo.btnGuardar.addActionListener(this);
         this.condo.btnEliminar.addActionListener(this);
@@ -193,27 +191,27 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
             condo.txtCorreo.setText("");
         }
 
-        if (e.getSource() == cataico.btnActivar) {
-            listaCondo = co.lPersoni();
+//        if (e.getSource() == cataico.btnActivar) {
+//            listaCondo = co.lPersoni();
+//
+//            for (int i = 0; i < cataico.jTable1.getRowCount(); i++) {
+//                if (valueOf(cataico.jTable1.getValueAt(i, 4)) == "true") {
+//
+//                    co.setRif(listaCondo.get(i).getRif());
+//                    co.activar(co);
+//
+//                }
+//            }
+//            Llenartablainactivos(cataico.jTable1);
+//            addCheckBox(4, cataico.jTable1);
+//            Llenartabla(cataco.jTable1);
+//        }
 
-            for (int i = 0; i < cataico.jTable1.getRowCount(); i++) {
-                if (valueOf(cataico.jTable1.getValueAt(i, 4)) == "true") {
-
-                    co.setRif(listaCondo.get(i).getRif());
-                    co.activar(co);
-
-                }
-            }
-            Llenartablainactivos(cataico.jTable1);
-            addCheckBox(4, cataico.jTable1);
-            Llenartabla(cataco.jTable1);
-        }
-
-        if (e.getSource() == cataco.btnActivar) {
-            this.cataico.setVisible(true);
-            Llenartablainactivos(cataico.jTable1);
-            addCheckBox(4, cataico.jTable1);
-        }
+//        if (e.getSource() == cataco.btnActivar) {
+//            this.cataico.setVisible(true);
+//            Llenartablainactivos(cataico.jTable1);
+//            addCheckBox(4, cataico.jTable1);
+//        }
 
         if (e.getSource() == condo.btnGuardar) {
             if (validar()) {

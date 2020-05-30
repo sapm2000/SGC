@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vista;
 
 import java.awt.Color;
@@ -14,8 +9,8 @@ import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.JScrollBar;
+import javax.swing.JTable;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 
@@ -59,17 +54,19 @@ public class cuenta extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbxBanco = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         txtN_cuenta = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtBeneficiario = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
         txtCedula = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
+        cbxTipo = new javax.swing.JComboBox<>();
+        cbxCedula = new javax.swing.JComboBox<>();
+        btnCedula = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
@@ -113,16 +110,16 @@ public class cuenta extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Banco:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 60, 30));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 50, 20));
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox1.setToolTipText("Seleccione el banco");
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 310, 30));
+        cbxBanco.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cbxBanco.setToolTipText("Seleccione el banco");
+        jPanel2.add(cbxBanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 310, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Tipo:");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 50, 30));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 40, 20));
 
         txtN_cuenta.setBackground(new java.awt.Color(0, 94, 159));
         txtN_cuenta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -134,7 +131,7 @@ public class cuenta extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("<html>\nN° de <br> Cuenta:\n</html>");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 60, 30));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 60, 30));
 
         txtBeneficiario.setBackground(new java.awt.Color(0, 94, 159));
         txtBeneficiario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -146,38 +143,54 @@ public class cuenta extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Beneficiario:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, 20));
-
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ahorro", "Corriente" }));
-        jComboBox2.setToolTipText("Seleccione el tipo de cuenta");
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
-        jComboBox2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jComboBox2PropertyChange(evt);
-            }
-        });
-        jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 310, 30));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, 20));
 
         txtCedula.setBackground(new java.awt.Color(0, 94, 159));
         txtCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCedula.setForeground(new java.awt.Color(255, 255, 255));
         txtCedula.setToolTipText("Ingrese la cédula o el rif");
         txtCedula.setBorder(null);
-        jPanel2.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 310, 20));
+        jPanel2.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 230, 20));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 310, 10));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 310, 10));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 260, 10));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 310, 10));
+
+        cbxTipo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cbxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ahorro", "Corriente" }));
+        cbxTipo.setToolTipText("Seleccione el tipo de cuenta");
+        cbxTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxTipoActionPerformed(evt);
+            }
+        });
+        cbxTipo.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                cbxTipoPropertyChange(evt);
+            }
+        });
+        jPanel2.add(cbxTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 310, 30));
+
+        cbxCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cbxCedula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "V", "E" }));
+        cbxCedula.setToolTipText("Seleccione el tipo de cuenta");
+        cbxCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxCedulaActionPerformed(evt);
+            }
+        });
+        cbxCedula.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                cbxCedulaPropertyChange(evt);
+            }
+        });
+        jPanel2.add(cbxCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, 30));
+        jPanel2.add(btnCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 30, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 480, 280));
 
@@ -296,13 +309,13 @@ public class cuenta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBox2PropertyChange
+    private void cbxCedulaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cbxCedulaPropertyChange
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2PropertyChange
+    }//GEN-LAST:event_cbxCedulaPropertyChange
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void cbxCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCedulaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_cbxCedulaActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         try {
@@ -327,6 +340,14 @@ public class cuenta extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void cbxTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxTipoActionPerformed
+
+    private void cbxTipoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cbxTipoPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxTipoPropertyChange
 
     /**
      * @param args the command line arguments
@@ -365,16 +386,18 @@ public class cuenta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnCedula;
     public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnMinimizar;
     public javax.swing.JButton btnModificar;
     public javax.swing.JButton btnSalir;
+    public javax.swing.JComboBox<String> cbxBanco;
+    public javax.swing.JComboBox<String> cbxCedula;
+    public javax.swing.JComboBox<String> cbxTipo;
     private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckBox6;
-    public javax.swing.JComboBox<String> jComboBox1;
-    public javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
