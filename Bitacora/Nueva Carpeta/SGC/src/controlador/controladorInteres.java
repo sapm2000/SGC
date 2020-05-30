@@ -24,8 +24,9 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Condominio;
+import modelo.Funcion;
 import modelo.Interes;
-
+import sgc.SGC;
 import vista.catalogoInteres;
 import vista.interes;
 
@@ -35,33 +36,35 @@ import vista.interes;
  */
 public class controladorInteres implements ActionListener, MouseListener, KeyListener, WindowListener {
 
-    private interes in;
-    private catalogoInteres catain;
+    private interes vista;
+    private catalogoInteres catalogo;
     ArrayList<Condominio> listaCondo;
 
     private Interes modin;
+
+    Funcion permiso;
 
     DefaultTableModel dm;
     ArrayList<Interes> listainteres;
     ArrayList<Interes> listainteresmod;
 
     public controladorInteres() {
-        this.in = new interes();
-        this.catain = new catalogoInteres();
-        this.catain.setVisible(true);
+        this.vista = new interes();
+        this.catalogo = new catalogoInteres();
+        this.catalogo.setVisible(true);
         this.modin = new Interes();
 
-        this.catain.btnNuevoInteres.addActionListener(this);
-        this.catain.jTable1.addMouseListener(this);
-        this.catain.jTextField1.addKeyListener(this);
-        this.catain.addWindowListener(this);
+        this.catalogo.btnNuevo.addActionListener(this);
+        this.catalogo.jTable1.addMouseListener(this);
+        this.catalogo.jTextField1.addKeyListener(this);
+        this.catalogo.addWindowListener(this);
 
-        this.in.btnGuardar.addActionListener(this);
-        this.in.btnLimpiar.addActionListener(this);
-        this.in.btnModificar.addActionListener(this);
-        this.in.btnEliminar.addActionListener(this);
-        in.txtNombreinteres.addKeyListener(this);
-        in.txtFactor.addKeyListener(this);
+        this.vista.btnGuardar.addActionListener(this);
+        this.vista.btnLimpiar.addActionListener(this);
+        this.vista.btnModificar.addActionListener(this);
+        this.vista.btnEliminar.addActionListener(this);
+        vista.txtNombreinteres.addKeyListener(this);
+        vista.txtFactor.addKeyListener(this);
 
     }
 
@@ -107,21 +110,21 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
 
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == catain.btnNuevoInteres) {
-            this.in.setVisible(true);
-            this.in.btnModificar.setEnabled(false);
-            this.in.btnGuardar.setEnabled(true);
-            this.in.btnEliminar.setEnabled(false);
+        if (e.getSource() == catalogo.btnNuevo) {
+            this.vista.setVisible(true);
+            this.vista.btnModificar.setEnabled(false);
+            this.vista.btnGuardar.setEnabled(true);
+            this.vista.btnEliminar.setEnabled(false);
 
-            in.txtId.setVisible(false);
-            in.txtFactor.setText("");
-            in.txtNombreinteres.setText("");
+            vista.txtId.setVisible(false);
+            vista.txtFactor.setText("");
+            vista.txtNombreinteres.setText("");
         }
 
-        if (e.getSource() == in.btnGuardar) {
+        if (e.getSource() == vista.btnGuardar) {
             if (validar()) {
-                modin.setNombre(in.txtNombreinteres.getText());
-                modin.setFactor(Integer.parseInt(in.txtFactor.getText()));
+                modin.setNombre(vista.txtNombreinteres.getText());
+                modin.setFactor(Integer.parseInt(vista.txtFactor.getText()));
                 if (modin.buscarduplicados(modin)) {
                     JOptionPane.showMessageDialog(null, "este registro ya existe");
                 } else {
@@ -129,13 +132,13 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
                     if (modin.buscarInactivo(modin)) {
                         modin.activarInteres(modin);
                         JOptionPane.showMessageDialog(null, "Registro Guardado");
-                        Llenartablainteres(catain.jTable1);
+                        Llenartablainteres(catalogo.jTable1);
                         limpiar();
                     } else {
 
                         if (modin.registrarinteres(modin)) {
                             JOptionPane.showMessageDialog(null, "Registro Guardado");
-                            Llenartablainteres(catain.jTable1);
+                            Llenartablainteres(catalogo.jTable1);
                         }
 
                     }
@@ -144,13 +147,13 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
 
         }
 
-        if (e.getSource() == in.btnModificar) {
+        if (e.getSource() == vista.btnModificar) {
             if (validar()) {
 
-                modin.setNombre(in.txtNombreinteres.getText());
-                modin.setFactor(Double.parseDouble(in.txtFactor.getText()));
+                modin.setNombre(vista.txtNombreinteres.getText());
+                modin.setFactor(Double.parseDouble(vista.txtFactor.getText()));
 
-                modin.setId(Integer.parseInt(in.txtId.getText()));
+                modin.setId(Integer.parseInt(vista.txtId.getText()));
                 int x = modin.getId();
                 if (modin.buscarduplicados(modin) && modin.getId() != x) {
                     JOptionPane.showMessageDialog(null, "este registro ya existe");
@@ -163,8 +166,8 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
 
                             JOptionPane.showMessageDialog(null, "Registro Modificado");
 
-                            Llenartablainteres(catain.jTable1);
-                            in.dispose();
+                            Llenartablainteres(catalogo.jTable1);
+                            vista.dispose();
                         }
 
                     }
@@ -172,15 +175,15 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
             }
         }
 
-        if (e.getSource() == in.btnEliminar) {
-            modin.setId(Integer.parseInt(in.txtId.getText()));
+        if (e.getSource() == vista.btnEliminar) {
+            modin.setId(Integer.parseInt(vista.txtId.getText()));
 
             modin.eliminarInteres(modin);
             JOptionPane.showMessageDialog(null, "registro eliminado");
-            in.dispose();
-            Llenartablainteres(catain.jTable1);
+            vista.dispose();
+            Llenartablainteres(catalogo.jTable1);
         }
-        if (e.getSource() == in.btnLimpiar) {
+        if (e.getSource() == vista.btnLimpiar) {
 
             limpiar();
 
@@ -189,8 +192,20 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
 
     public void limpiar() {
 
-        in.txtNombreinteres.setText(null);
-        in.txtFactor.setText(null);
+        vista.txtNombreinteres.setText(null);
+        vista.txtFactor.setText(null);
+
+    }
+
+    private void permisoBtn() {
+
+        for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
+            if (funcionbtn.getNombre().equals("Responsables")) {
+                permiso = funcionbtn;
+
+            }
+
+        }
 
     }
 
@@ -199,13 +214,13 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
         Boolean resultado = true;
         String msj = "";
 
-        if (in.txtFactor.getText().isEmpty()) {
+        if (vista.txtFactor.getText().isEmpty()) {
 
             msj += "El campo factor de interes no puede estar vacio\n";
             resultado = false;
         }
 
-        if (in.txtNombreinteres.getText().isEmpty()) {
+        if (vista.txtNombreinteres.getText().isEmpty()) {
 
             msj += "El campo nombre de interes no puede estar vacio\n";
             resultado = false;
@@ -229,23 +244,29 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int fila = this.catain.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int fila = this.catalogo.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+        if (permiso.getModificar()) {
+            vista.btnModificar.setEnabled(true);
+        }
+        if (permiso.getEliminar()) {
+            vista.btnEliminar.setEnabled(true);
+        }
 
-        String dato = String.valueOf(this.catain.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+        String dato = String.valueOf(this.catalogo.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
 
         modin.setId(Integer.parseInt(String.valueOf(dato)));
 
         modin.buscarInteres(modin);
 
-        in.setVisible(true);
-        in.btnEliminar.setEnabled(true);
-        in.btnGuardar.setEnabled(false);
-        in.btnModificar.setEnabled(true);
+        vista.setVisible(true);
+        vista.btnEliminar.setEnabled(true);
+        vista.btnGuardar.setEnabled(false);
+        vista.btnModificar.setEnabled(true);
 
-        in.txtFactor.setText(String.valueOf(modin.getFactor()));
-        in.txtNombreinteres.setText(modin.getNombre());
-        in.txtId.setText(dato);
-        in.txtId.setVisible(false);
+        vista.txtFactor.setText(String.valueOf(modin.getFactor()));
+        vista.txtNombreinteres.setText(modin.getNombre());
+        vista.txtId.setText(dato);
+        vista.txtId.setVisible(false);
 
     }
 
@@ -271,13 +292,13 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
 
     @Override
     public void keyTyped(KeyEvent e) {
-        if (e.getSource() == in.txtFactor) {
-            Validacion.limite(e, in.txtFactor.getText(), 6);
+        if (e.getSource() == vista.txtFactor) {
+            Validacion.limite(e, vista.txtFactor.getText(), 6);
             Validacion.Espacio(e);
-            Validacion.soloUnPunto(e, in.txtFactor.getText());
+            Validacion.soloUnPunto(e, vista.txtFactor.getText());
         }
-        if (e.getSource() == in.txtNombreinteres) {
-            Validacion.limite(e, in.txtNombreinteres.getText(), 100);
+        if (e.getSource() == vista.txtNombreinteres) {
+            Validacion.limite(e, vista.txtNombreinteres.getText(), 100);
         }
     }
 
@@ -288,9 +309,9 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getSource() == catain.jTextField1) {
+        if (e.getSource() == catalogo.jTextField1) {
 
-            filtro(catain.jTextField1.getText(), catain.jTable1);
+            filtro(catalogo.jTextField1.getText(), catalogo.jTable1);
         } else {
 
         }
@@ -298,11 +319,17 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
 
     @Override
     public void windowOpened(WindowEvent e) {
-        Llenartablainteres(catain.jTable1);
+        Llenartablainteres(catalogo.jTable1);
 
-        Component[] components = in.jPanel2.getComponents();
+        permisoBtn();
+
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
+
+        Component[] components = vista.jPanel2.getComponents();
         JComponent[] com = {
-            in.txtFactor, in.txtNombreinteres
+            vista.txtFactor, vista.txtNombreinteres
         };
         Validacion.copiar(components);
         Validacion.pegar(com);

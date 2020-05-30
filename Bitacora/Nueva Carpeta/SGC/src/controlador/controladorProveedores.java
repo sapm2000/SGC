@@ -26,7 +26,9 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
+import modelo.Funcion;
 import modelo.Proveedores;
+import sgc.SGC;
 import vista.catalogoInactivoProveedores;
 import vista.catalogoProveedores;
 import vista.proveedores;
@@ -37,38 +39,40 @@ import vista.proveedores;
  */
 public class controladorProveedores implements ActionListener, WindowListener, KeyListener, MouseListener {
 
-    private catalogoProveedores cataprov;
-    private proveedores prov;
+    private catalogoProveedores catalogo;
+    private proveedores vista;
     private Proveedores modpro;
     private catalogoInactivoProveedores cataiprov;
+
+    Funcion permiso;
 
     ArrayList<Proveedores> listaProveedores;
     DefaultTableModel dm;
     DefaultComboBoxModel dmCbx;
 
     public controladorProveedores() {
-        this.cataprov = new catalogoProveedores();
-        this.prov = new proveedores();
+        this.catalogo = new catalogoProveedores();
+        this.vista = new proveedores();
         this.modpro = new Proveedores();
         this.cataiprov = new catalogoInactivoProveedores();
-        this.cataprov.btnActivar.addActionListener(this);
+        this.catalogo.btnActivar.addActionListener(this);
         this.cataiprov.btnActivar.addActionListener(this);
-        this.cataprov.addWindowListener(this);
-        this.cataprov.btn_NuevoProveedor.addActionListener(this);
-        this.cataprov.TablaProveedores.addMouseListener(this);
-        this.cataprov.txtBuscarProveedores.addKeyListener(this);
+        this.catalogo.addWindowListener(this);
+        this.catalogo.btnNuevo.addActionListener(this);
+        this.catalogo.TablaProveedores.addMouseListener(this);
+        this.catalogo.txtBuscarProveedores.addKeyListener(this);
 
-        this.prov.btnGuardar.addActionListener(this);
-        this.prov.btnLimpiar.addActionListener(this);
-        this.prov.btnModificar.addActionListener(this);
-        this.prov.btnEliminar.addActionListener(this);
-        prov.txtCedula.addKeyListener(this);
-        prov.txtNombre.addKeyListener(this);
-        prov.txtContacto.addKeyListener(this);
-        prov.txtTelefono.addKeyListener(this);
-        prov.txtCorreo.addKeyListener(this);
-        prov.txaDireccion.addKeyListener(this);
-        this.cataprov.setVisible(true);
+        this.vista.btnGuardar.addActionListener(this);
+        this.vista.btnLimpiar.addActionListener(this);
+        this.vista.btnModificar.addActionListener(this);
+        this.vista.btnEliminar.addActionListener(this);
+        vista.txtCedula.addKeyListener(this);
+        vista.txtNombre.addKeyListener(this);
+        vista.txtContacto.addKeyListener(this);
+        vista.txtTelefono.addKeyListener(this);
+        vista.txtCorreo.addKeyListener(this);
+        vista.txaDireccion.addKeyListener(this);
+        this.catalogo.setVisible(true);
     }
 
     public void Llenartabla(JTable tablaD) {
@@ -194,7 +198,7 @@ public class controladorProveedores implements ActionListener, WindowListener, K
 
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == cataprov.btnActivar) {
+        if (e.getSource() == catalogo.btnActivar) {
             this.cataiprov.setVisible(true);
             Llenartablainactivos(cataiprov.jTable1);
             addCheckBox(6, cataiprov.jTable1);
@@ -213,37 +217,37 @@ public class controladorProveedores implements ActionListener, WindowListener, K
             }
             Llenartablainactivos(cataiprov.jTable1);
             addCheckBox(6, cataiprov.jTable1);
-            Llenartabla(cataprov.TablaProveedores);
+            Llenartabla(catalogo.TablaProveedores);
         }
 
-        if (e.getSource() == cataprov.btn_NuevoProveedor) {
-            this.prov.setVisible(true);
-            this.prov.btnModificar.setEnabled(false);
-            this.prov.btnGuardar.setEnabled(true);
-            this.prov.btnEliminar.setEnabled(false);
-            this.prov.txtCedula.setEnabled(true);
-            prov.txtCedula.setText("");
-            prov.txtContacto.setText("");
-            prov.txtCorreo.setText("");
-            prov.txtNombre.setText("");
-            prov.txtTelefono.setText("");
-            prov.txaDireccion.setText("");
+        if (e.getSource() == catalogo.btnNuevo) {
+            this.vista.setVisible(true);
+            this.vista.btnModificar.setEnabled(false);
+            this.vista.btnGuardar.setEnabled(true);
+            this.vista.btnEliminar.setEnabled(false);
+            this.vista.txtCedula.setEnabled(true);
+            vista.txtCedula.setText("");
+            vista.txtContacto.setText("");
+            vista.txtCorreo.setText("");
+            vista.txtNombre.setText("");
+            vista.txtTelefono.setText("");
+            vista.txaDireccion.setText("");
 
         }
 
-        if (e.getSource() == prov.btnGuardar) {
+        if (e.getSource() == vista.btnGuardar) {
             if (validar()) {
-                modpro.setCedula(prov.txtCedula.getText());
-                modpro.setNombre(prov.txtNombre.getText());
-                modpro.setContacto(prov.txtContacto.getText());
-                modpro.setCorreo(prov.txtCorreo.getText());
-                modpro.setTelefono(prov.txtTelefono.getText());
-                modpro.setDireccion(prov.txaDireccion.getText());
+                modpro.setCedula(vista.txtCedula.getText());
+                modpro.setNombre(vista.txtNombre.getText());
+                modpro.setContacto(vista.txtContacto.getText());
+                modpro.setCorreo(vista.txtCorreo.getText());
+                modpro.setTelefono(vista.txtTelefono.getText());
+                modpro.setDireccion(vista.txaDireccion.getText());
 
                 if (modpro.registrar(modpro)) {
 
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
-                    Llenartabla(cataprov.TablaProveedores);
+                    Llenartabla(catalogo.TablaProveedores);
 
                 } else {
 
@@ -254,20 +258,20 @@ public class controladorProveedores implements ActionListener, WindowListener, K
 
         }
 
-        if (e.getSource() == prov.btnModificar) {
+        if (e.getSource() == vista.btnModificar) {
             if (validar()) {
-                modpro.setCedula(prov.txtCedula.getText());
-                modpro.setNombre(prov.txtNombre.getText());
-                modpro.setContacto(prov.txtContacto.getText());
-                modpro.setCorreo(prov.txtCorreo.getText());
-                modpro.setTelefono(prov.txtTelefono.getText());
-                modpro.setDireccion(prov.txaDireccion.getText());
+                modpro.setCedula(vista.txtCedula.getText());
+                modpro.setNombre(vista.txtNombre.getText());
+                modpro.setContacto(vista.txtContacto.getText());
+                modpro.setCorreo(vista.txtCorreo.getText());
+                modpro.setTelefono(vista.txtTelefono.getText());
+                modpro.setDireccion(vista.txaDireccion.getText());
 
                 if (modpro.modificar(modpro)) {
 
                     JOptionPane.showMessageDialog(null, "Registro Modificado");
-                    Llenartabla(cataprov.TablaProveedores);
-                    prov.dispose();
+                    Llenartabla(catalogo.TablaProveedores);
+                    vista.dispose();
 
                 } else {
 
@@ -278,16 +282,16 @@ public class controladorProveedores implements ActionListener, WindowListener, K
 
         }
 
-        if (e.getSource() == prov.btnEliminar) {
-            modpro.setCedula(prov.txtCedula.getText());
+        if (e.getSource() == vista.btnEliminar) {
+            modpro.setCedula(vista.txtCedula.getText());
             if (modpro.Buscargas(modpro) || modpro.Buscarcuo(modpro)) {
                 JOptionPane.showMessageDialog(null, "no se puede eliminar si tiene gastos por procesar asignados");
             } else {
                 if (modpro.eliminar(modpro)) {
 
                     JOptionPane.showMessageDialog(null, "Registro Eliminado");
-                    prov.dispose();
-                    Llenartabla(cataprov.TablaProveedores);
+                    vista.dispose();
+                    Llenartabla(catalogo.TablaProveedores);
 
                 } else {
 
@@ -297,7 +301,7 @@ public class controladorProveedores implements ActionListener, WindowListener, K
             }
 
         }
-        if (e.getSource() == prov.btnLimpiar) {
+        if (e.getSource() == vista.btnLimpiar) {
 
             limpiar();
 
@@ -306,12 +310,24 @@ public class controladorProveedores implements ActionListener, WindowListener, K
 
     public void limpiar() {
 
-        prov.txtCedula.setText(null);
-        prov.txtNombre.setText(null);
-        prov.txtContacto.setText(null);
-        prov.txtTelefono.setText(null);
-        prov.txtCorreo.setText(null);
-        prov.txaDireccion.setText(null);
+        vista.txtCedula.setText(null);
+        vista.txtNombre.setText(null);
+        vista.txtContacto.setText(null);
+        vista.txtTelefono.setText(null);
+        vista.txtCorreo.setText(null);
+        vista.txaDireccion.setText(null);
+    }
+
+    private void permisoBtn() {
+
+        for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
+            if (funcionbtn.getNombre().equals("Responsables")) {
+                permiso = funcionbtn;
+
+            }
+
+        }
+
     }
 
     private Boolean validar() {
@@ -319,37 +335,37 @@ public class controladorProveedores implements ActionListener, WindowListener, K
         Boolean resultado = true;
         String msj = "";
 
-        if (prov.txtCedula.getText().isEmpty()) {
+        if (vista.txtCedula.getText().isEmpty()) {
 
             msj += "El campo C.I./RIF. no puede estar vacío\n";
             resultado = false;
         }
 
-        if (prov.txtNombre.getText().isEmpty()) {
+        if (vista.txtNombre.getText().isEmpty()) {
 
             msj += "El campo nombre no puede estar vacío\n";
             resultado = false;
         }
 
-        if (prov.txtTelefono.getText().isEmpty()) {
+        if (vista.txtTelefono.getText().isEmpty()) {
 
             msj += "El campo teléfono no puede estar vacío\n";
             resultado = false;
         }
 
-        if (prov.txtCorreo.getText().isEmpty()) {
+        if (vista.txtCorreo.getText().isEmpty()) {
 
             msj += "El campo correo electrónico no puede estar vacío\n";
             resultado = false;
         }
 
-        if (prov.txtContacto.getText().isEmpty()) {
+        if (vista.txtContacto.getText().isEmpty()) {
 
             msj += "El campo contanto no puede estar vacío\n";
             resultado = false;
         }
 
-        if (prov.txaDireccion.getText().isEmpty()) {
+        if (vista.txaDireccion.getText().isEmpty()) {
 
             msj += "El campo dirección no puede estar vacío\n";
             resultado = false;
@@ -365,11 +381,16 @@ public class controladorProveedores implements ActionListener, WindowListener, K
 
     @Override
     public void windowOpened(WindowEvent e) {
-        Llenartabla(cataprov.TablaProveedores);
+        Llenartabla(catalogo.TablaProveedores);
+        permisoBtn();
 
-        Component[] components = prov.jPanel2.getComponents();
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
+
+        Component[] components = vista.jPanel2.getComponents();
         JComponent[] com = {
-            prov.txtCedula, prov.txtNombre, prov.txtContacto, prov.txtTelefono, prov.txtCorreo
+            vista.txtCedula, vista.txtNombre, vista.txtContacto, vista.txtTelefono, vista.txtCorreo
         };
         Validacion.copiar(components);
         Validacion.pegar(com);
@@ -408,32 +429,32 @@ public class controladorProveedores implements ActionListener, WindowListener, K
     @Override
     public void keyTyped(KeyEvent ke) {
 
-        if (ke.getSource() == prov.txtCedula) {
+        if (ke.getSource() == vista.txtCedula) {
 
             Validacion.Espacio(ke);
-            Validacion.limite(ke, prov.txtCedula.getText(), 15);
+            Validacion.limite(ke, vista.txtCedula.getText(), 15);
         }
-        if (ke.getSource() == prov.txtNombre) {
+        if (ke.getSource() == vista.txtNombre) {
 
-            Validacion.limite(ke, prov.txtNombre.getText(), 100);
+            Validacion.limite(ke, vista.txtNombre.getText(), 100);
         }
-        if (ke.getSource() == prov.txtContacto) {
+        if (ke.getSource() == vista.txtContacto) {
 
-            Validacion.limite(ke, prov.txtContacto.getText(), 60);
+            Validacion.limite(ke, vista.txtContacto.getText(), 60);
         }
-        if (ke.getSource() == prov.txaDireccion) {
+        if (ke.getSource() == vista.txaDireccion) {
 
-            Validacion.limite(ke, prov.txaDireccion.getText(), 60);
+            Validacion.limite(ke, vista.txaDireccion.getText(), 60);
         }
-        if (ke.getSource() == prov.txtTelefono) {
+        if (ke.getSource() == vista.txtTelefono) {
             Validacion.Espacio(ke);
             Validacion.soloNumeros(ke);
-            Validacion.limite(ke, prov.txtTelefono.getText(), 15);
+            Validacion.limite(ke, vista.txtTelefono.getText(), 15);
         }
-        if (ke.getSource() == prov.txtCorreo) {
+        if (ke.getSource() == vista.txtCorreo) {
 
             Validacion.Espacio(ke);
-            Validacion.limite(ke, prov.txtCorreo.getText(), 40);
+            Validacion.limite(ke, vista.txtCorreo.getText(), 40);
 
         }
     }
@@ -445,9 +466,9 @@ public class controladorProveedores implements ActionListener, WindowListener, K
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getSource() == cataprov.txtBuscarProveedores) {
+        if (e.getSource() == catalogo.txtBuscarProveedores) {
 
-            filtro(cataprov.txtBuscarProveedores.getText(), cataprov.TablaProveedores);
+            filtro(catalogo.txtBuscarProveedores.getText(), catalogo.TablaProveedores);
         } else {
 
         }
@@ -455,28 +476,36 @@ public class controladorProveedores implements ActionListener, WindowListener, K
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int fila = this.cataprov.TablaProveedores.getSelectedRow(); // primero, obtengo la fila seleccionada
-        int columna = this.cataprov.TablaProveedores.getSelectedColumn(); // luego, obtengo la columna seleccionada
-        String dato = String.valueOf(this.cataprov.TablaProveedores.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
-        cataprov.txtBuscarProveedores.setText(String.valueOf(dato));
+        int fila = this.catalogo.TablaProveedores.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int columna = this.catalogo.TablaProveedores.getSelectedColumn(); // luego, obtengo la columna seleccionada
+
+        if (permiso.getModificar()) {
+            vista.btnModificar.setEnabled(true);
+        }
+        if (permiso.getEliminar()) {
+            vista.btnEliminar.setEnabled(true);
+        }
+
+        String dato = String.valueOf(this.catalogo.TablaProveedores.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+        catalogo.txtBuscarProveedores.setText(String.valueOf(dato));
 
         modpro.setCedula(String.valueOf(dato));
 
         modpro.buscar(modpro);
 
-        prov.setVisible(true);
-        prov.txtCedula.setText(modpro.getCedula());
-        prov.txtContacto.setText(modpro.getContacto());
-        prov.txtCorreo.setText(modpro.getCorreo());
-        prov.txtNombre.setText(modpro.getNombre());
-        prov.txtTelefono.setText(modpro.getTelefono());
-        prov.txaDireccion.setText(modpro.getDireccion());
-        prov.txtCedula.setEnabled(false);
+        vista.setVisible(true);
+        vista.txtCedula.setText(modpro.getCedula());
+        vista.txtContacto.setText(modpro.getContacto());
+        vista.txtCorreo.setText(modpro.getCorreo());
+        vista.txtNombre.setText(modpro.getNombre());
+        vista.txtTelefono.setText(modpro.getTelefono());
+        vista.txaDireccion.setText(modpro.getDireccion());
+        vista.txtCedula.setEnabled(false);
 
-        prov.btnGuardar.setEnabled(false);
+        vista.btnGuardar.setEnabled(false);
 
-        prov.btnModificar.setEnabled(true);
-        prov.btnEliminar.setEnabled(true);
+        vista.btnModificar.setEnabled(true);
+        vista.btnEliminar.setEnabled(true);
 
     }
 

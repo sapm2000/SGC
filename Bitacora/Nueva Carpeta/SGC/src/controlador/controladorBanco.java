@@ -21,18 +21,17 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.Banco;
+import modelo.Funcion;
+import sgc.SGC;
 import vista.banco;
 import vista.catalogoBanco;
 
-/**
- *
- * @author rma
- */
 public class controladorBanco implements ActionListener, MouseListener, KeyListener, WindowListener {
 
     private banco ban;
     private catalogoBanco cban;
     private Banco modban;
+    private Funcion permiso;
 
     DefaultTableModel dm;
     DefaultComboBoxModel dmCbx;
@@ -167,9 +166,9 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
                 modban.setId(Integer.parseInt(ban.txtid.getText()));
 
                 if (modban.buscarInactivo(modban)) {
-                  
+
                     JOptionPane.showMessageDialog(null, "no puede colocar el nombre de un banco que ya existio, si quiere colocar este nombre debe registrarlo nuevamente");
-                   
+
                 } else {
                     if (modban.modificar(modban)) {
 
@@ -208,6 +207,12 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
         int fila = this.cban.tabla_bancos.getSelectedRow(); // primero, obtengo la fila seleccionada
         int columna = this.cban.tabla_bancos.getSelectedColumn(); // luego, obtengo la columna seleccionada
+        if (permiso.getModificar()) {
+            ban.btnModificar.setEnabled(true);
+        }
+        if (permiso.getEliminar()) {
+            ban.btnEliminar.setEnabled(true);
+        }
         String dato = String.valueOf(this.cban.tabla_bancos.getValueAt(fila, columna)); // por ultimo, obtengo el valor de la celda
         cban.txtBuscar_banco.setText(String.valueOf(dato));
 
@@ -224,6 +229,18 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         ban.txtid.setVisible(false);
         ban.btnModificar.setEnabled(true);
         ban.btnEliminar.setEnabled(true);
+    }
+    
+        private void permisoBtn() {
+
+        for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
+            if (funcionbtn.getNombre().equals("Responsables")) {
+                permiso = funcionbtn;
+
+            }
+
+        }
+
     }
 
     @Override
@@ -284,7 +301,11 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     @Override
     public void windowOpened(WindowEvent e) {
         Llenartabla(cban.tabla_bancos);
+        permisoBtn();
 
+        if (permiso.getRegistrar()) {
+            cban.btnNuevo_banco.setEnabled(true);
+        }
         Component[] components = ban.jPanel2.getComponents();
         JComponent[] com = {
             ban.txtnombre_banco

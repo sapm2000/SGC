@@ -20,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Banco;
 import modelo.Cuenta;
+import modelo.Funcion;
+import sgc.SGC;
 import vista.catalogoCuenta;
 import vista.cuenta;
 
@@ -29,6 +31,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     private cuenta vista;
     private Cuenta modelo;
     private Banco modBanco;
+    Funcion permiso;
 
     private ArrayList<Cuenta> lista;
     private ArrayList<Banco> listaBanco;
@@ -63,7 +66,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
 
         if (e.getSource() == catalogo.btn_nuevaCuenta) {
             limpiar();
-            
+
             vista.txtN_cuenta.setEditable(true);
 
             this.vista.btnGuardar.setEnabled(true);
@@ -167,14 +170,33 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
         }
     }
 
+    private void permisoBtn() {
+
+        for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
+            if (funcionbtn.getNombre().equals("Responsables")) {
+                permiso = funcionbtn;
+
+            }
+
+        }
+
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == catalogo.tabla) {
             int fila;
-
+          
             fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
             modelo = lista.get(fila);
-
+            
+             if (permiso.getModificar()) {
+                vista.btnModificar.setEnabled(true);
+            }
+            if (permiso.getEliminar()) {
+                vista.btnEliminar.setEnabled(true);
+            }
+            
             vista.cbxCedula.setSelectedItem(modelo.getBeneficiario().getCedula().split("-")[0]);
             vista.txtCedula.setText(modelo.getBeneficiario().getCedula().split("-")[1]);
             vista.cbxBanco.setSelectedItem(modelo.getBanco().getNombre_banco());
@@ -250,6 +272,11 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     public void windowOpened(WindowEvent e) {
         if (e.getSource() == catalogo) {
             llenarTabla(catalogo.tabla);
+                    permisoBtn();
+        
+        if (permiso.getRegistrar()) {
+            catalogo.btn_nuevaCuenta.setEnabled(true);
+        }
         }
 
         if (e.getSource() == vista) {

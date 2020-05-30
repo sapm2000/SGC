@@ -28,6 +28,7 @@ import javax.swing.table.TableRowSorter;
 import modelo.Asambleas;
 import modelo.Funcion;
 import modelo.Propietarios;
+import sgc.SGC;
 import vista.PantallaPrincipal1;
 import vista.asambleas;
 import vista.catalogoAsambleas;
@@ -378,6 +379,18 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         }
 */
     }
+    
+        private void permisoBtn() {
+
+        for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
+            if (funcionbtn.getNombre().equals("Responsables")) {
+                permiso = funcionbtn;
+
+            }
+
+        }
+
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -445,10 +458,11 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
     @Override
     public void windowOpened(WindowEvent e) {
    
-        Llenartablaasambleas(cataa.jTable1);permisoBtn();
+        Llenartablaasambleas(cataa.jTable1);
+        permisoBtn();
         
         if (permiso.getRegistrar()) {
-            cataa.btn.setEnabled(true);
+            cataa.btnNuevo.setEnabled(true);
         }
         
         Component[] components =as.jPanel4.getComponents();

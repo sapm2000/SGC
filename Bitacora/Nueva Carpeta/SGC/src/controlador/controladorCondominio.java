@@ -25,6 +25,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.Condominio;
+import modelo.Funcion;
 import modelo.Unidades;
 import sgc.SGC;
 import vista.PantallaPrincipal;
@@ -37,41 +38,43 @@ import vista.condominio;
  */
 public class controladorCondominio implements ActionListener, MouseListener, KeyListener, WindowListener {
 
-    private catalogoCondominio cataco;
-    private condominio condo;
-   
+    private catalogoCondominio catalogo;
+    private condominio vista;
+
     private PantallaPrincipal panta;
     private Unidades moduni;
     DefaultTableModel dm;
     private Condominio co;
 //    private catalogoInactivoCondominio cataico;
+
+    Funcion permiso;
     ArrayList<Condominio> listaCondo;
     ArrayList<Unidades> listaunidades;
 
     public controladorCondominio() {
-        this.cataco = new catalogoCondominio();
-        this.condo = new condominio();
+        this.catalogo = new catalogoCondominio();
+        this.vista = new condominio();
         this.panta = new PantallaPrincipal();
         this.co = new Condominio();
         this.moduni = new Unidades();
 //        this.cataico = new catalogoInactivoCondominio();
-       
-        this.cataco.btnActivar.addActionListener(this);
-//        this.cataico.btnActivar.addActionListener(this);
-        this.cataco.jButton2.addActionListener(this);
-        this.condo.btnGuardar.addActionListener(this);
-        this.condo.btnEliminar.addActionListener(this);
-        this.condo.btnModificar.addActionListener(this);
-        this.condo.btnLimpiar.addActionListener(this);
-        this.cataco.jTable1.addMouseListener(this);
-        this.cataco.txtBuscar.addKeyListener(this);
-        this.cataco.addWindowListener(this);
-        this.condo.txtRif.addKeyListener(this);
-        this.condo.txtRazonS.addKeyListener(this);
-        this.condo.txtTelefono.addKeyListener(this);
-        this.condo.txtCorreo.addKeyListener(this);
 
-        cataco.setVisible(true);
+        this.catalogo.btnActivar.addActionListener(this);
+//        this.cataico.btnActivar.addActionListener(this);
+        this.catalogo.btnNuevo.addActionListener(this);
+        this.vista.btnGuardar.addActionListener(this);
+        this.vista.btnEliminar.addActionListener(this);
+        this.vista.btnModificar.addActionListener(this);
+        this.vista.btnLimpiar.addActionListener(this);
+        this.catalogo.jTable1.addMouseListener(this);
+        this.catalogo.txtBuscar.addKeyListener(this);
+        this.catalogo.addWindowListener(this);
+        this.vista.txtRif.addKeyListener(this);
+        this.vista.txtRazonS.addKeyListener(this);
+        this.vista.txtTelefono.addKeyListener(this);
+        this.vista.txtCorreo.addKeyListener(this);
+
+        catalogo.setVisible(true);
     }
 
     public void Llenartabla(JTable tablaD) {
@@ -179,16 +182,16 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
 
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == cataco.jButton2) {
-            this.condo.setVisible(true);
-            this.condo.btnModificar.setEnabled(false);
-            this.condo.btnGuardar.setEnabled(true);
-            this.condo.btnEliminar.setEnabled(false);
-            this.condo.txtRif.setEnabled(true);
-            condo.txtRif.setText("");
-            condo.txtRazonS.setText("");
-            condo.txtTelefono.setText("");
-            condo.txtCorreo.setText("");
+        if (e.getSource() == catalogo.btnNuevo) {
+            this.vista.setVisible(true);
+            this.vista.btnModificar.setEnabled(false);
+            this.vista.btnGuardar.setEnabled(true);
+            this.vista.btnEliminar.setEnabled(false);
+            this.vista.txtRif.setEnabled(true);
+            vista.txtRif.setText("");
+            vista.txtRazonS.setText("");
+            vista.txtTelefono.setText("");
+            vista.txtCorreo.setText("");
         }
 
 //        if (e.getSource() == cataico.btnActivar) {
@@ -206,24 +209,22 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
 //            addCheckBox(4, cataico.jTable1);
 //            Llenartabla(cataco.jTable1);
 //        }
-
 //        if (e.getSource() == cataco.btnActivar) {
 //            this.cataico.setVisible(true);
 //            Llenartablainactivos(cataico.jTable1);
 //            addCheckBox(4, cataico.jTable1);
 //        }
-
-        if (e.getSource() == condo.btnGuardar) {
+        if (e.getSource() == vista.btnGuardar) {
             if (validar()) {
-                co.setRif(condo.txtRif.getText());
-                co.setRazonS(condo.txtRazonS.getText());
-                co.setTelefono(condo.txtTelefono.getText());
-                co.setCorreoElectro(condo.txtCorreo.getText());
+                co.setRif(vista.txtRif.getText());
+                co.setRazonS(vista.txtRazonS.getText());
+                co.setTelefono(vista.txtTelefono.getText());
+                co.setCorreoElectro(vista.txtCorreo.getText());
 
                 if (co.registrar(co)) {
 
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
-                    Llenartabla(cataco.jTable1);
+                    Llenartabla(catalogo.jTable1);
 
                 } else {
 
@@ -234,18 +235,18 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
 
         }
 
-        if (e.getSource() == condo.btnModificar) {
+        if (e.getSource() == vista.btnModificar) {
             if (validar()) {
-                co.setRif(condo.txtRif.getText());
-                co.setRazonS(condo.txtRazonS.getText());
-                co.setTelefono(condo.txtTelefono.getText());
-                co.setCorreoElectro(condo.txtCorreo.getText());
+                co.setRif(vista.txtRif.getText());
+                co.setRazonS(vista.txtRazonS.getText());
+                co.setTelefono(vista.txtTelefono.getText());
+                co.setCorreoElectro(vista.txtCorreo.getText());
 
                 if (co.modificar(co)) {
 
                     JOptionPane.showMessageDialog(null, "Registro modificado");
-                    condo.dispose();
-                    Llenartabla(cataco.jTable1);
+                    vista.dispose();
+                    Llenartabla(catalogo.jTable1);
 
                 } else {
 
@@ -255,8 +256,8 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
             }
         }
 
-        if (e.getSource() == condo.btnEliminar) {
-            co.setRif(condo.txtRif.getText());
+        if (e.getSource() == vista.btnEliminar) {
+            co.setRif(vista.txtRif.getText());
             if (co.Buscargas(co) || co.Buscarcuo(co)) {
                 JOptionPane.showMessageDialog(null, "no se puede eliminar si tiene gastos por procesar asignados");
 
@@ -272,7 +273,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
                         } else {
                             if (co.eliminar(co)) {
                                 co.eliminarunidadcondominio(co);
-                                
+
                                 listaunidades = moduni.buscar();
                                 int q = listaunidades.size();
 
@@ -282,8 +283,8 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
                                 }
 
                                 JOptionPane.showMessageDialog(null, "Registro Eliminado");
-                                condo.dispose();
-                                Llenartabla(cataco.jTable1);
+                                vista.dispose();
+                                Llenartabla(catalogo.jTable1);
 
                             } else {
 
@@ -296,12 +297,24 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
 
         }
 
-        if (e.getSource() == condo.btnLimpiar) {
+        if (e.getSource() == vista.btnLimpiar) {
 
-            condo.txtRif.setText("");
-            condo.txtRazonS.setText("");
-            condo.txtTelefono.setText("");
-            condo.txtCorreo.setText("");
+            vista.txtRif.setText("");
+            vista.txtRazonS.setText("");
+            vista.txtTelefono.setText("");
+            vista.txtCorreo.setText("");
+
+        }
+
+    }
+
+    private void permisoBtn() {
+
+        for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
+            if (funcionbtn.getNombre().equals("Responsables")) {
+                permiso = funcionbtn;
+
+            }
 
         }
 
@@ -309,10 +322,10 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
 
     public void limpiar() {
 
-        condo.txtRif.setText(null);
-        condo.txtRazonS.setText(null);
-        condo.txtTelefono.setText(null);
-        condo.txtCorreo.setText(null);
+        vista.txtRif.setText(null);
+        vista.txtRazonS.setText(null);
+        vista.txtTelefono.setText(null);
+        vista.txtCorreo.setText(null);
 
     }
 
@@ -323,39 +336,45 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         String[] options = {"Entrar al menu", "Modificar datos"};
         int result = JOptionPane.showOptionDialog(null, "Seleccione si desea entrar al menu o modificar datos", "MENU", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
         if (result == 0) {
-            int fila = this.cataco.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
-            int columna = this.cataco.jTable1.getSelectedColumn(); // luego, obtengo la columna seleccionada
-            String dato = String.valueOf(this.cataco.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+            int fila = this.catalogo.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+            int columna = this.catalogo.jTable1.getSelectedColumn(); // luego, obtengo la columna seleccionada
+            String dato = String.valueOf(this.catalogo.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
             co.setRif(String.valueOf(dato));
             SGC.condominioActual = co;
-           
-           this.cataco.dispose();
-           controladorMenuInterno ctrlMenuinterno = new controladorMenuInterno();
-             this.panta.dispose();
-             
-           
+
+            this.catalogo.dispose();
+            controladorMenuInterno ctrlMenuinterno = new controladorMenuInterno();
+            this.panta.dispose();
 
         }
         if (result == 1) {
 
-            int fila = this.cataco.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
-            int columna = this.cataco.jTable1.getSelectedColumn(); // luego, obtengo la columna seleccionada
-            String dato = String.valueOf(this.cataco.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+            int fila = this.catalogo.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+            int columna = this.catalogo.jTable1.getSelectedColumn(); // luego, obtengo la columna seleccionada
+            
+            if (permiso.getModificar()) {
+                vista.btnModificar.setEnabled(true);
+            }
+            if (permiso.getEliminar()) {
+                vista.btnEliminar.setEnabled(true);
+            }
+            
+            String dato = String.valueOf(this.catalogo.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
             co.setRif(String.valueOf(dato));
 
             co.Buscar(co);
 
-            condo.setVisible(true);
-            condo.txtRif.setText(co.getRif());
-            condo.txtRazonS.setText(co.getRazonS());
-            condo.txtTelefono.setText(co.getTelefono());
-            condo.txtCorreo.setText(co.getCorreoElectro());
-            condo.txtRif.setEnabled(false);
+            vista.setVisible(true);
+            vista.txtRif.setText(co.getRif());
+            vista.txtRazonS.setText(co.getRazonS());
+            vista.txtTelefono.setText(co.getTelefono());
+            vista.txtCorreo.setText(co.getCorreoElectro());
+            vista.txtRif.setEnabled(false);
 
-            condo.btnGuardar.setEnabled(false);
+            vista.btnGuardar.setEnabled(false);
 
-            condo.btnModificar.setEnabled(true);
-            condo.btnEliminar.setEnabled(true);
+            vista.btnModificar.setEnabled(true);
+            vista.btnEliminar.setEnabled(true);
         } else {
 
         }
@@ -391,24 +410,24 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
 
     @Override
     public void keyTyped(KeyEvent ke) {
-        if (ke.getSource() == condo.txtRif) {
+        if (ke.getSource() == vista.txtRif) {
 
             Validacion.Espacio(ke);
-            Validacion.limite(ke, condo.txtRif.getText(), 15);
+            Validacion.limite(ke, vista.txtRif.getText(), 15);
         }
-        if (ke.getSource() == condo.txtRazonS) {
+        if (ke.getSource() == vista.txtRazonS) {
 
-            Validacion.limite(ke, condo.txtRazonS.getText(), 150);
+            Validacion.limite(ke, vista.txtRazonS.getText(), 150);
         }
-        if (ke.getSource() == condo.txtTelefono) {
+        if (ke.getSource() == vista.txtTelefono) {
             Validacion.Espacio(ke);
             Validacion.soloNumeros(ke);
-            Validacion.limite(ke, condo.txtTelefono.getText(), 11);
+            Validacion.limite(ke, vista.txtTelefono.getText(), 11);
         }
-        if (ke.getSource() == condo.txtCorreo) {
+        if (ke.getSource() == vista.txtCorreo) {
 
             Validacion.Espacio(ke);
-            Validacion.limite(ke, condo.txtCorreo.getText(), 70);
+            Validacion.limite(ke, vista.txtCorreo.getText(), 70);
 
         }
 
@@ -421,8 +440,8 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getSource() == cataco.txtBuscar) {
-            filtro(cataco.txtBuscar.getText(), cataco.jTable1);
+        if (e.getSource() == catalogo.txtBuscar) {
+            filtro(catalogo.txtBuscar.getText(), catalogo.jTable1);
         } else {
 
         }
@@ -430,11 +449,15 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
 
     @Override
     public void windowOpened(WindowEvent e) {
-        Llenartabla(cataco.jTable1);
+        Llenartabla(catalogo.jTable1);
+        permisoBtn();
 
-        Component[] components = condo.jPanel2.getComponents();
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
+        Component[] components = vista.jPanel2.getComponents();
         JComponent[] com = {
-            condo.txtRif, condo.txtRazonS, condo.txtTelefono, condo.txtCorreo
+            vista.txtRif, vista.txtRazonS, vista.txtTelefono, vista.txtCorreo
         };
         Validacion.copiar(components);
         Validacion.pegar(com);
@@ -475,22 +498,22 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
         Boolean resultado = true;
         String msj = "";
 
-        if (condo.txtRif.getText().isEmpty()) {
+        if (vista.txtRif.getText().isEmpty()) {
 
             msj += "El campo rif no puede estar vacío\n";
             resultado = false;
         }
-        if (condo.txtRazonS.getText().isEmpty()) {
+        if (vista.txtRazonS.getText().isEmpty()) {
 
             msj += "El campo razón social no puede estar vacío\n";
             resultado = false;
         }
-        if (condo.txtTelefono.getText().isEmpty()) {
+        if (vista.txtTelefono.getText().isEmpty()) {
 
             msj += "El campo teléfono no puede estar vacío\n";
             resultado = false;
         }
-        if (condo.txtCorreo.getText().isEmpty()) {
+        if (vista.txtCorreo.getText().isEmpty()) {
 
             msj += "El campo correo electrónico no puede estar vacío\n";
             resultado = false;

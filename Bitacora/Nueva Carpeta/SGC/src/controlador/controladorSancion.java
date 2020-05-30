@@ -26,8 +26,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.CerrarMes;
+import modelo.Funcion;
 import modelo.Sancion;
 import modelo.Unidades;
+import sgc.SGC;
 import vista.PantallaPrincipal1;
 import vista.catalogoSancion;
 import vista.sancion;
@@ -38,37 +40,40 @@ import vista.sancion;
  */
 public class controladorSancion implements ActionListener, MouseListener, KeyListener, WindowListener {
 
-    private sancion san;
-    private catalogoSancion catasan;
+    private sancion vista;
+    private catalogoSancion catalogo;
     private Sancion modsan;
     private PantallaPrincipal1 panta1;
     private CerrarMes modc;
     private Unidades moduni;
+
+    Funcion permiso;
+
     ArrayList<Unidades> listaunidades;
     ArrayList<Sancion> listaSancion;
     ArrayList<Sancion> listaunimod;
     DefaultTableModel dm;
 
     public controladorSancion() {
-        this.san = new sancion();
-        this.catasan = new catalogoSancion();
+        this.vista = new sancion();
+        this.catalogo = new catalogoSancion();
         this.modsan = new Sancion();
         this.moduni = new Unidades();
         this.modc = new CerrarMes();
 
-        this.catasan.jButton2.addActionListener(this);
-        this.catasan.addWindowListener(this);
-        this.catasan.jTextField1.addKeyListener(this);
-        this.catasan.jTable1.addMouseListener(this);
-        this.san.btnEliminar.addActionListener(this);
-        this.san.jYearChooser1.addKeyListener(this);
+        this.catalogo.btnNuevo.addActionListener(this);
+        this.catalogo.addWindowListener(this);
+        this.catalogo.jTextField1.addKeyListener(this);
+        this.catalogo.jTable1.addMouseListener(this);
+        this.vista.btnEliminar.addActionListener(this);
+        this.vista.jYearChooser1.addKeyListener(this);
 
-        this.san.btnGuardar.addActionListener(this);
-        this.san.btnLimpiar.addActionListener(this);
-        this.san.btnModificar.addActionListener(this);
-        san.txtmonto.addKeyListener(this);
-        san.txaDescripcion.addKeyListener(this);
-        this.catasan.setVisible(true);
+        this.vista.btnGuardar.addActionListener(this);
+        this.vista.btnLimpiar.addActionListener(this);
+        this.vista.btnModificar.addActionListener(this);
+        vista.txtmonto.addKeyListener(this);
+        vista.txaDescripcion.addKeyListener(this);
+        this.catalogo.setVisible(true);
 
     }
 
@@ -251,37 +256,37 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == catasan.jButton2) {
-            this.san.setVisible(true);
-            this.san.btnModificar.setEnabled(false);
-            this.san.btnGuardar.setEnabled(true);
-            this.san.btnEliminar.setEnabled(false);
-            san.txtId.setVisible(false);
-            llenartablaunidades(san.jTable1);
-            addCheckBox(1, san.jTable1);
+        if (e.getSource() == catalogo.btnNuevo) {
+            this.vista.setVisible(true);
+            this.vista.btnModificar.setEnabled(false);
+            this.vista.btnGuardar.setEnabled(true);
+            this.vista.btnEliminar.setEnabled(false);
+            vista.txtId.setVisible(false);
+            llenartablaunidades(vista.jTable1);
+            addCheckBox(1, vista.jTable1);
 
         }
 
-        if (e.getSource() == san.btnGuardar) {
+        if (e.getSource() == vista.btnGuardar) {
             if (validar()) {
                 int j = 0;
-                modsan.setMes(san.jMonthChooser1.getMonth() + 1);
-                modsan.setAño(san.jYearChooser1.getYear());
+                modsan.setMes(vista.jMonthChooser1.getMonth() + 1);
+                modsan.setAño(vista.jYearChooser1.getYear());
                 if (modsan.getAño() < 2000 || modsan.getAño() > 2100) {
                     JOptionPane.showMessageDialog(null, "seleccione un año valido");
                 } else {
-                    modsan.setTipo(san.jComboBox1.getSelectedItem().toString());
+                    modsan.setTipo(vista.jComboBox1.getSelectedItem().toString());
                     if (modsan.getTipo().equals("Seleccione el Tipo de Deuda")) {
                         JOptionPane.showMessageDialog(null, "seleccione un tipo de deuda");
                     } else {
-                        modsan.setDescripcion(san.txaDescripcion.getText());
-                        modsan.setMonto(Double.parseDouble(san.txtmonto.getText()));
+                        modsan.setDescripcion(vista.txaDescripcion.getText());
+                        modsan.setMonto(Double.parseDouble(vista.txtmonto.getText()));
                         modsan.setEstado("Pendiente");
-                        modc.setMes_cierre(san.jMonthChooser1.getMonth() + 1);
-                        modc.setAño_cierre(san.jYearChooser1.getYear());
+                        modc.setMes_cierre(vista.jMonthChooser1.getMonth() + 1);
+                        modc.setAño_cierre(vista.jYearChooser1.getYear());
 
-                        for (int i = 0; i < san.jTable1.getRowCount(); i++) {
-                            if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
+                        for (int i = 0; i < vista.jTable1.getRowCount(); i++) {
+                            if (valueOf(vista.jTable1.getValueAt(i, 1)) == "true") {
 
                                 j = j + 1;
 
@@ -303,8 +308,8 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
                                         modsan.buscId(modsan);
                                         listaunidades = moduni.listar();
 
-                                        for (int i = 0; i < san.jTable1.getRowCount(); i++) {
-                                            if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
+                                        for (int i = 0; i < vista.jTable1.getRowCount(); i++) {
+                                            if (valueOf(vista.jTable1.getValueAt(i, 1)) == "true") {
 
                                                 modsan.uni.setId(listaunidades.get(i).getId());
 
@@ -312,7 +317,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
                                             }
                                         }
-                                        LlenartablaSancion(catasan.jTable1);
+                                        LlenartablaSancion(catalogo.jTable1);
                                     } else {
 
                                         JOptionPane.showMessageDialog(null, "error al guardar");
@@ -327,21 +332,21 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
             }
         }
 
-        if (e.getSource() == san.btnModificar) {
+        if (e.getSource() == vista.btnModificar) {
             if (validar()) {
                 int j = 0;
-                modsan.setMes(san.jMonthChooser1.getMonth() + 1);
-                modsan.setAño(san.jYearChooser1.getYear());
+                modsan.setMes(vista.jMonthChooser1.getMonth() + 1);
+                modsan.setAño(vista.jYearChooser1.getYear());
                 if (modsan.getAño() < 2000 || modsan.getAño() > 2100) {
                     JOptionPane.showMessageDialog(null, "seleccione un año valido");
                 } else {
-                    modsan.setTipo(san.jComboBox1.getSelectedItem().toString());
+                    modsan.setTipo(vista.jComboBox1.getSelectedItem().toString());
                     if (modsan.getTipo().equals("Seleccione el Tipo de Deuda")) {
                         JOptionPane.showMessageDialog(null, "seleccione un tipo de deuda");
                     } else {
-                        modsan.setDescripcion(san.txaDescripcion.getText());
-                        modsan.setId(Integer.parseInt(san.txtId.getText()));
-                        modsan.setMonto(Double.parseDouble(san.txtmonto.getText()));
+                        modsan.setDescripcion(vista.txaDescripcion.getText());
+                        modsan.setId(Integer.parseInt(vista.txtId.getText()));
+                        modsan.setMonto(Double.parseDouble(vista.txtmonto.getText()));
 
                         int x = 0;
                         if (modsan.buscarSancionRepetido(modsan)) {
@@ -349,11 +354,11 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
                         }
 
-                        modc.setMes_cierre(san.jMonthChooser1.getMonth() + 1);
-                        modc.setAño_cierre(san.jYearChooser1.getYear());
+                        modc.setMes_cierre(vista.jMonthChooser1.getMonth() + 1);
+                        modc.setAño_cierre(vista.jYearChooser1.getYear());
 
-                        for (int i = 0; i < san.jTable1.getRowCount(); i++) {
-                            if (valueOf(san.jTable1.getValueAt(i, 1)) == "true") {
+                        for (int i = 0; i < vista.jTable1.getRowCount(); i++) {
+                            if (valueOf(vista.jTable1.getValueAt(i, 1)) == "true") {
 
                                 j = j + 1;
 
@@ -373,8 +378,8 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
                                         modsan.borrarpuentesancion(modsan);
                                         listaunimod = modsan.listarunidadesmod();
-                                        for (int i = 0; i < san.jTable1.getRowCount(); i++) {
-                                            if (valueOf(san.jTable1.getValueAt(i, 1)).equals("true")) {
+                                        for (int i = 0; i < vista.jTable1.getRowCount(); i++) {
+                                            if (valueOf(vista.jTable1.getValueAt(i, 1)).equals("true")) {
 
                                                 modsan.uni.setId(listaunimod.get(i).uni.getId());
 
@@ -382,8 +387,8 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
                                             }
                                         }
-                                        LlenartablaSancion(catasan.jTable1);
-                                        this.san.dispose();
+                                        LlenartablaSancion(catalogo.jTable1);
+                                        this.vista.dispose();
                                     } else {
 
                                         JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
@@ -401,15 +406,15 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
             }
         }
 
-        if (e.getSource() == san.btnEliminar) {
-            modsan.setId(Integer.parseInt(san.txtId.getText()));
+        if (e.getSource() == vista.btnEliminar) {
+            modsan.setId(Integer.parseInt(vista.txtId.getText()));
             modsan.borrarpuentesancion(modsan);
             modsan.eliminarsancion(modsan);
             JOptionPane.showMessageDialog(null, "registro eliminado");
-            san.dispose();
-            LlenartablaSancion(catasan.jTable1);
+            vista.dispose();
+            LlenartablaSancion(catalogo.jTable1);
         }
-        if (e.getSource() == san.btnLimpiar) {
+        if (e.getSource() == vista.btnLimpiar) {
 
             limpiar();
 
@@ -418,54 +423,73 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
     public void limpiar() {
 
-        san.txtmonto.setText(null);
-        san.txaDescripcion.setText(null);
-        san.jComboBox1.setSelectedItem("Seleccione el Tipo de Deuda");
-        san.jMonthChooser1.setMonth(0);
-        san.jYearChooser1.setYear(0);
-        llenartablaunidadesmod(san.jTable1);
-        addCheckBox(1, san.jTable1);
+        vista.txtmonto.setText(null);
+        vista.txaDescripcion.setText(null);
+        vista.jComboBox1.setSelectedItem("Seleccione el Tipo de Deuda");
+        vista.jMonthChooser1.setMonth(0);
+        vista.jYearChooser1.setYear(0);
+        llenartablaunidadesmod(vista.jTable1);
+        addCheckBox(1, vista.jTable1);
+
+    }
+
+    private void permisoBtn() {
+
+        for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
+            if (funcionbtn.getNombre().equals("Responsables")) {
+                permiso = funcionbtn;
+
+            }
+
+        }
 
     }
 
     @Override
     public void mouseClicked(MouseEvent e
     ) {
-        int fila = this.catasan.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int fila = this.catalogo.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
 
-        String dato = String.valueOf(this.catasan.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+        String dato = String.valueOf(this.catalogo.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
         modsan.setId(Integer.parseInt(dato));
 
-        String estado = String.valueOf(this.catasan.jTable1.getValueAt(fila, 6)); // por ultimo, obtengo el valor de la celda
+        String estado = String.valueOf(this.catalogo.jTable1.getValueAt(fila, 6)); // por ultimo, obtengo el valor de la celda
         modsan.setEstado(estado);
+
+        if (permiso.getModificar()) {
+            vista.btnModificar.setEnabled(true);
+        }
+        if (permiso.getEliminar()) {
+            vista.btnEliminar.setEnabled(true);
+        }
 
         modsan.buscarSancion(modsan);
 
-        this.san.setVisible(true);
-        san.txtId.setVisible(false);
-        san.txtId.setText(dato);
-        san.txaDescripcion.setText(modsan.getDescripcion());
-        san.txtmonto.setText(String.valueOf(modsan.getMonto()));
-        san.jComboBox1.setSelectedItem(modsan.getTipo());
+        this.vista.setVisible(true);
+        vista.txtId.setVisible(false);
+        vista.txtId.setText(dato);
+        vista.txaDescripcion.setText(modsan.getDescripcion());
+        vista.txtmonto.setText(String.valueOf(modsan.getMonto()));
+        vista.jComboBox1.setSelectedItem(modsan.getTipo());
         int mes = modsan.getMes() - 1;
-        san.jMonthChooser1.setMonth(mes);
-        san.jYearChooser1.setYear(modsan.getAño());
+        vista.jMonthChooser1.setMonth(mes);
+        vista.jYearChooser1.setYear(modsan.getAño());
         if (modsan.getEstado().equals("Pendiente")) {
-            llenartablaunidadesmod(san.jTable1);
-            addCheckBox(1, san.jTable1);
+            llenartablaunidadesmod(vista.jTable1);
+            addCheckBox(1, vista.jTable1);
         } else {
-            llenartablaunidadesmodprocesadas(san.jTable1);
-            addCheckBox(1, san.jTable1);
+            llenartablaunidadesmodprocesadas(vista.jTable1);
+            addCheckBox(1, vista.jTable1);
         }
         if (modsan.getEstado().equals("Procesado")) {
-            san.btnEliminar.setEnabled(false);
-            san.btnModificar.setEnabled(false);
-            san.btnGuardar.setEnabled(false);
+            vista.btnEliminar.setEnabled(false);
+            vista.btnModificar.setEnabled(false);
+            vista.btnGuardar.setEnabled(false);
             JOptionPane.showMessageDialog(null, "las sanciones procesadas no pueden ser modificados ni eliminados");
         } else {
-            san.btnEliminar.setEnabled(true);
-            san.btnModificar.setEnabled(true);
-            san.btnGuardar.setEnabled(false);
+            vista.btnEliminar.setEnabled(true);
+            vista.btnModificar.setEnabled(true);
+            vista.btnGuardar.setEnabled(false);
         }
 
     }
@@ -496,16 +520,16 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
     @Override
     public void keyTyped(KeyEvent e) {
-        if (e.getSource() == san.txtmonto) {
-            Validacion.limite(e, san.txtmonto.getText(), 20);
+        if (e.getSource() == vista.txtmonto) {
+            Validacion.limite(e, vista.txtmonto.getText(), 20);
             Validacion.Espacio(e);
-            Validacion.soloUnPunto(e, san.txtmonto.getText());
+            Validacion.soloUnPunto(e, vista.txtmonto.getText());
         }
-        if (e.getSource() == san.txaDescripcion) {
-            Validacion.limite(e, san.txaDescripcion.getText(), 200);
+        if (e.getSource() == vista.txaDescripcion) {
+            Validacion.limite(e, vista.txaDescripcion.getText(), 200);
         }
-        if (e.getSource() == san.jYearChooser1) {
-            Validacion.limite(e, String.valueOf(san.jYearChooser1.getYear()), 4);
+        if (e.getSource() == vista.jYearChooser1) {
+            Validacion.limite(e, String.valueOf(vista.jYearChooser1.getYear()), 4);
             Validacion.soloNumeros(e);
         }
     }
@@ -519,9 +543,9 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
     @Override
     public void keyReleased(KeyEvent e
     ) {
-        if (e.getSource() == catasan.jTextField1) {
+        if (e.getSource() == catalogo.jTextField1) {
 
-            filtro(catasan.jTextField1.getText(), catasan.jTable1);
+            filtro(catalogo.jTextField1.getText(), catalogo.jTable1);
 
         }
     }
@@ -529,11 +553,16 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
     @Override
     public void windowOpened(WindowEvent e
     ) {
-        LlenartablaSancion(catasan.jTable1);
+        LlenartablaSancion(catalogo.jTable1);
+        permisoBtn();
 
-        Component[] components = san.jPanel2.getComponents();
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
+
+        Component[] components = vista.jPanel2.getComponents();
         JComponent[] com = {
-            san.txtmonto
+            vista.txtmonto
         };
         Validacion.copiar(components);
         Validacion.pegar(com);
@@ -586,13 +615,13 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         Boolean resultado = true;
         String msj = "";
 
-        if (san.txtmonto.getText().isEmpty()) {
+        if (vista.txtmonto.getText().isEmpty()) {
 
             msj += "El campo monto no puede estar vacio\n";
             resultado = false;
         }
 
-        if (san.txaDescripcion.getText().isEmpty()) {
+        if (vista.txaDescripcion.getText().isEmpty()) {
 
             msj += "El campo descripción no puede estar vacio\n";
             resultado = false;

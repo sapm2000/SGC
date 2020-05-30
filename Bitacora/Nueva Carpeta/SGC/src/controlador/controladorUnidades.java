@@ -24,8 +24,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.CerrarMes;
+import modelo.Funcion;
 import modelo.Propietarios;
 import modelo.Unidades;
+import sgc.SGC;
 import vista.catalogoInactivoUnidades;
 import vista.catalogoUnidades;
 import vista.detalleRecibo;
@@ -48,6 +50,8 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
     ArrayList<Unidades> listaUnidades;
     ArrayList<Propietarios> listaPropietarios;
+
+    Funcion permiso;
 
     private CerrarMes modc;
     ArrayList<CerrarMes> listapagos;
@@ -409,6 +413,18 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+    }
+
+    private void permisoBtn() {
+
+        for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
+            if (funcionbtn.getNombre().equals("Responsables")) {
+                permiso = funcionbtn;
+
+            }
+
+        }
+
     }
 
     public void llenarTabla(JTable tablaD) {
@@ -854,6 +870,12 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             if (result == 1) {
                 // Obtengo la fila seleccionada
                 int fila = this.catalogo.tabla.getSelectedRow();
+                if (permiso.getModificar()) {
+                    vista.btnModificar.setEnabled(true);
+                }
+                if (permiso.getEliminar()) {
+                    vista.btnEliminar.setEnabled(true);
+                }
 
                 modelo = listaUnidades.get(fila);
 
@@ -866,14 +888,12 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                 vista.txtId.setText(String.valueOf(modelo.getId()));
 
                 vista.txtNumeroUnidad.setEnabled(false);
-
-                vista.btnEliminar.setEnabled(true);
-                vista.btnModificar.setEnabled(true);
+                
                 vista.btnGuardar.setEnabled(false);
 
                 llenarTablaPropietarios(vista.tablaPropietarios, "Modificar");
                 addCheckBox(4, vista.tablaPropietarios);
-                
+
                 vista.setVisible(true);
             }
         }
@@ -1000,6 +1020,11 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
     @Override
     public void windowOpened(WindowEvent e) {
         llenarTabla(catalogo.tabla);
+        permisoBtn();
+
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
 
         Component[] components = vista.jPanel2.getComponents();
         JComponent[] com = {
