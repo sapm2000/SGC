@@ -140,7 +140,7 @@ public class catalogoCuenta extends javax.swing.JFrame {
         btn_nuevaCuenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btn_nuevaCuenta.setForeground(new java.awt.Color(0, 94, 159));
         btn_nuevaCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (2).png"))); // NOI18N
-        btn_nuevaCuenta.setText("Nuevo");
+        btn_nuevaCuenta.setText("Nueva Cuenta");
         btn_nuevaCuenta.setToolTipText("Registrar una nueva cuenta");
         btn_nuevaCuenta.setBorder(null);
         btn_nuevaCuenta.setBorderPainted(false);
