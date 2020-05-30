@@ -44,7 +44,6 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
         llenarTabla();
 
         permisoBtn();
-
         if (permiso.getRegistrar()) {
             catalogo.btnNuevo.setEnabled(true);
         }

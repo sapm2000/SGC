@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.Asambleas;
+import modelo.Funcion;
 import modelo.Propietarios;
 import vista.PantallaPrincipal1;
 import vista.asambleas;
@@ -43,6 +44,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
     ArrayList<Propietarios> listaPropietarios;
     ArrayList<Asambleas> listaasambleas;
     ArrayList<Asambleas> listapropmod;
+    Funcion permiso;
     private Asambleas modasa;
     private Propietarios modpro;
     private PantallaPrincipal1 panta1;
@@ -56,7 +58,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         this.cataa.jTable1.addMouseListener(this);
 
         this.cataa.addWindowListener(this);
-        this.cataa.jButton2.addActionListener(this);
+        this.cataa.btnNuevo.addActionListener(this);
         this.as.txtBuscarPropietarios.addKeyListener(this);
 
         this.as.btnGuardar.addActionListener(this);
@@ -263,7 +265,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == cataa.jButton2) {
+        if (e.getSource() == cataa.btnNuevo) {
             this.as.setVisible(true);
 //            this.as.btnModificar.setEnabled(false);
             this.as.btnGuardar.setEnabled(true);
@@ -443,7 +445,11 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
     @Override
     public void windowOpened(WindowEvent e) {
    
-        Llenartablaasambleas(cataa.jTable1);
+        Llenartablaasambleas(cataa.jTable1);permisoBtn();
+        
+        if (permiso.getRegistrar()) {
+            cataa.btn.setEnabled(true);
+        }
         
         Component[] components =as.jPanel4.getComponents();
         JComponent[] com = {

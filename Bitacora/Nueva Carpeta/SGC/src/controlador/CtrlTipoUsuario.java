@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import modelo.Funcion;
 import modelo.TipoUsuario;
+import sgc.SGC;
 import vista.catalogoTipoUsuario;
 import vista.tipoUsuario;
 
@@ -21,6 +22,7 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener {
     private TipoUsuario modelo;
 
     private Funcion modFuncion;
+    private Funcion permiso;
 
     private ArrayList<TipoUsuario> lista;
     private ArrayList<Funcion> listaFuncion;
@@ -37,12 +39,17 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener {
         this.vista.tabla.addMouseListener(this);
 
         llenarTabla();
+        permisoBtn();
+
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
 
         this.catalogo.setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {
-
+        
         if (e.getSource() == catalogo.btnNuevo) {
             this.vista.setVisible(true);
             this.vista.btnGuardar.setVisible(true);
@@ -160,6 +167,18 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener {
         if (e.getSource() == vista.btnModificar) {
 
         }
+    }
+    
+        private void permisoBtn() {
+
+        for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
+            if (funcionbtn.getNombre().equals("Responsables")) {
+                permiso = funcionbtn;
+
+            }
+
+        }
+
     }
 
     @Override
