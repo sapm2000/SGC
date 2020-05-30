@@ -721,7 +721,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT id_condominio FROM cierre_de_mes where mes=? and anio=? and id_condominio=?;";
+        String sql = "SELECT id_condominio FROM cierre_de_mes where mes=? and anio=?";
 
         try {
 
@@ -729,7 +729,7 @@ public class CerrarMes extends ConexionBD {
 
             ps.setInt(1, modc.getMes_cierre());
             ps.setInt(2, modc.getAño_cierre());
-            ps.setString(3, SGC.condominioActual.getRif());
+            
             rs = ps.executeQuery();
             if (rs.next()) {
 
