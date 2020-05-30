@@ -856,7 +856,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                 int fila = this.catalogo.tabla.getSelectedRow();
 
                 modelo = listaUnidades.get(fila);
-                vista.setVisible(true);
 
                 vista.txtNumeroUnidad.setText(modelo.getN_unidad());
                 vista.txtDocumento.setText(modelo.getDocumento());
@@ -874,6 +873,8 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
                 llenarTablaPropietarios(vista.tablaPropietarios, "Modificar");
                 addCheckBox(4, vista.tablaPropietarios);
+                
+                vista.setVisible(true);
             }
         }
 

@@ -39,7 +39,7 @@ public class catalogoCuenta extends javax.swing.JFrame {
 
     public catalogoCuenta() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
+        tabla.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         setLocationRelativeTo(null);
 
@@ -57,7 +57,7 @@ public class catalogoCuenta extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         btnMinimizar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
@@ -80,29 +80,21 @@ public class catalogoCuenta extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Banco", "Cuenta", "CI / RIF", "Beneficiario", "Tipo", "Condominio"
+
             }
         ));
-        jTable1.setRowHeight(35);
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
-            }
-        });
-        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+        tabla.setRowHeight(35);
+        tabla.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTable1KeyPressed(evt);
+                tablaKeyPressed(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabla);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 680, 280));
 
@@ -148,7 +140,7 @@ public class catalogoCuenta extends javax.swing.JFrame {
         btn_nuevaCuenta.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btn_nuevaCuenta.setForeground(new java.awt.Color(0, 94, 159));
         btn_nuevaCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (2).png"))); // NOI18N
-        btn_nuevaCuenta.setText("Nueva Cuenta");
+        btn_nuevaCuenta.setText("Nuevo");
         btn_nuevaCuenta.setToolTipText("Registrar una nueva cuenta");
         btn_nuevaCuenta.setBorder(null);
         btn_nuevaCuenta.setBorderPainted(false);
@@ -157,7 +149,7 @@ public class catalogoCuenta extends javax.swing.JFrame {
         btn_nuevaCuenta.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btn_nuevaCuenta.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btn_nuevaCuenta.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
-        jPanel1.add(btn_nuevaCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, -1, -1));
+        jPanel1.add(btn_nuevaCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Buscar:");
@@ -222,16 +214,9 @@ public class catalogoCuenta extends javax.swing.JFrame {
     }
 
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        int fila = this.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
-        int columna = this.jTable1.getSelectedColumn(); // luego, obtengo la columna seleccionada
-        String dato = String.valueOf(this.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
-        txtBuscarCuenta.setText(String.valueOf(dato));
-    }//GEN-LAST:event_jTable1MouseClicked
-
-    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+    private void tablaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTable1KeyPressed
+    }//GEN-LAST:event_tablaKeyPressed
 
     private void txtBuscarCuentaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCuentaKeyPressed
 
@@ -242,7 +227,7 @@ public class catalogoCuenta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarCuentaKeyTyped
 
     private void txtBuscarCuentaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCuentaKeyReleased
-        filtro(txtBuscarCuenta.getText(), jTable1);
+        filtro(txtBuscarCuenta.getText(), tabla);
     }//GEN-LAST:event_txtBuscarCuentaKeyReleased
 
     /**
@@ -292,7 +277,7 @@ public class catalogoCuenta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    public javax.swing.JTable jTable1;
+    public javax.swing.JTable tabla;
     public javax.swing.JTextField txtBuscarCuenta;
     // End of variables declaration//GEN-END:variables
     static public class Headercolor extends DefaultTableCellHeaderRenderer {
