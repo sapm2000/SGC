@@ -14,7 +14,9 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import modelo.Funcion;
 import modelo.Propietarios;
+import sgc.SGC;
 import vista.CatPropietario;
 import vista.Propietario;
 
@@ -23,6 +25,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
     Propietario vista;
     Propietarios modelo;
     CatPropietario catalogo;
+    Funcion permiso;
 
     DefaultTableModel dm;
 
@@ -39,6 +42,12 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
         catalogo.txtBuscar.addKeyListener(this);
 
         llenarTabla();
+
+        permisoBtn();
+
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
         catalogo.setVisible(true);
 
     }
@@ -151,6 +160,18 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
         }
     }
 
+    private void permisoBtn() {
+
+        for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
+            if (funcionbtn.getNombre().equals("Propietarios")) {
+                permiso = funcionbtn;
+
+            }
+
+        }
+
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == catalogo.tabla) {
@@ -158,6 +179,12 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
 
             modelo = new Propietarios(listaPropietarios.get(fila).getCedula(), listaPropietarios.get(fila).getpNombre(), listaPropietarios.get(fila).getsNombre(), listaPropietarios.get(fila).getpApellido(), listaPropietarios.get(fila).getsApellido(), listaPropietarios.get(fila).getCorreo(), listaPropietarios.get(fila).getTelefono());
             vista = new Propietario();
+            if (permiso.getModificar()) {
+                vista.btnModificar.setEnabled(true);
+            }
+            if (permiso.getEliminar()) {
+                vista.btnEliminar.setEnabled(true);
+            }
 
             vista.cbxCedula.setSelectedItem(modelo.getCedula().split("-")[0]);
             vista.txtCedula.setText(modelo.getCedula().split("-")[1]);

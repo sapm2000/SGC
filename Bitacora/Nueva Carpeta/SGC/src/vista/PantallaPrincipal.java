@@ -53,18 +53,31 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         barraMenu = new javax.swing.JMenuBar();
         menuArchivo = new javax.swing.JMenu();
+        jAsamblea = new javax.swing.JMenuItem();
         jBanco = new javax.swing.JMenuItem();
         jCategoria = new javax.swing.JMenuItem();
+        jComunicados = new javax.swing.JMenuItem();
         jConcepto = new javax.swing.JMenuItem();
         jCondominio = new javax.swing.JMenuItem();
         jCuenta = new javax.swing.JMenuItem();
+        jCuotas = new javax.swing.JMenuItem();
+        jFondo = new javax.swing.JMenuItem();
+        jFormaPago = new javax.swing.JMenuItem();
+        jGastos = new javax.swing.JMenuItem();
         jUsuario = new javax.swing.JMenuItem();
         jInteres = new javax.swing.JMenuItem();
         jPropietarios = new javax.swing.JMenuItem();
         jProveedores = new javax.swing.JMenuItem();
         jResponsable = new javax.swing.JMenuItem();
+        jSancion = new javax.swing.JMenuItem();
         jTipo = new javax.swing.JMenuItem();
-        jFormaPago = new javax.swing.JMenuItem();
+        jUnidades = new javax.swing.JMenuItem();
+        menuProceso = new javax.swing.JMenu();
+        pCuentasporCobrar = new javax.swing.JMenuItem();
+        pCuentapagar = new javax.swing.JMenuItem();
+        pVisitas = new javax.swing.JMenuItem();
+        pCuotas = new javax.swing.JMenuItem();
+        pCerrarMes = new javax.swing.JMenuItem();
         menuReporte = new javax.swing.JMenu();
         menuAyudas = new javax.swing.JMenu();
         menuPerfil = new javax.swing.JMenu();
@@ -137,6 +150,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         menuArchivo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         menuArchivo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
+        jAsamblea.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jAsamblea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mesa-redonda.png"))); // NOI18N
+        jAsamblea.setText("Asambleas");
+        jAsamblea.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jAsamblea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAsambleaActionPerformed(evt);
+            }
+        });
+        menuArchivo.add(jAsamblea);
+
         jBanco.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jBanco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banco.png"))); // NOI18N
         jBanco.setText("Bancos");
@@ -160,6 +184,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
         menuArchivo.add(jCategoria);
+
+        jComunicados.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jComunicados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mensaje.png"))); // NOI18N
+        jComunicados.setText("Comunicados");
+        jComunicados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jComunicados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComunicadosActionPerformed(evt);
+            }
+        });
+        menuArchivo.add(jComunicados);
 
         jConcepto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jConcepto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/analisis.png"))); // NOI18N
@@ -196,6 +231,44 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
         menuArchivo.add(jCuenta);
+
+        jCuotas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jCuotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/presupuesto.png"))); // NOI18N
+        jCuotas.setText("Cuotas Especiales");
+        jCuotas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jCuotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCuotasActionPerformed(evt);
+            }
+        });
+        menuArchivo.add(jCuotas);
+
+        jFondo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/hucha.png"))); // NOI18N
+        jFondo.setText("Fondo");
+        jFondo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jFondo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFondoActionPerformed(evt);
+            }
+        });
+        menuArchivo.add(jFondo);
+
+        jFormaPago.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jFormaPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pattern (2) (1) (1).png"))); // NOI18N
+        jFormaPago.setText("Forma de Pago");
+        menuArchivo.add(jFormaPago);
+
+        jGastos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jGastos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alquiler-de-casa.png"))); // NOI18N
+        jGastos.setText("Gastos Comunes");
+        jGastos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jGastos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jGastosActionPerformed(evt);
+            }
+        });
+        menuArchivo.add(jGastos);
 
         jUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/administracion.png"))); // NOI18N
@@ -262,6 +335,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         menuArchivo.add(jResponsable);
 
+        jSancion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jSancion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/no-stopping.png"))); // NOI18N
+        jSancion.setText("Sanciones");
+        jSancion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jSancion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSancionActionPerformed(evt);
+            }
+        });
+        menuArchivo.add(jSancion);
+
         jTipo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/team.png"))); // NOI18N
         jTipo.setText("Tipos de Usuarios");
@@ -274,12 +358,84 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         menuArchivo.add(jTipo);
 
-        jFormaPago.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jFormaPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pattern (2) (1) (1).png"))); // NOI18N
-        jFormaPago.setText("Forma de Pago");
-        menuArchivo.add(jFormaPago);
+        jUnidades.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jUnidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casa.png"))); // NOI18N
+        jUnidades.setText("Unidades");
+        jUnidades.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jUnidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jUnidadesActionPerformed(evt);
+            }
+        });
+        menuArchivo.add(jUnidades);
 
         barraMenu.add(menuArchivo);
+
+        menuProceso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cogwheel (1).png"))); // NOI18N
+        menuProceso.setText("Procesos");
+        menuProceso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        menuProceso.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        menuProceso.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cogwheel.png"))); // NOI18N
+        menuProceso.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cogwheel (1).png"))); // NOI18N
+        menuProceso.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cogwheel (1).png"))); // NOI18N
+        menuProceso.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cogwheel (1).png"))); // NOI18N
+
+        pCuentasporCobrar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        pCuentasporCobrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dar-dinero.png"))); // NOI18N
+        pCuentasporCobrar.setText("Cuentas por Cobrar");
+        pCuentasporCobrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pCuentasporCobrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pCuentasporCobrarActionPerformed(evt);
+            }
+        });
+        menuProceso.add(pCuentasporCobrar);
+
+        pCuentapagar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        pCuentapagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/metodo-de-pago.png"))); // NOI18N
+        pCuentapagar.setText("Cuentas por Pagar");
+        pCuentapagar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pCuentapagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pCuentapagarActionPerformed(evt);
+            }
+        });
+        menuProceso.add(pCuentapagar);
+
+        pVisitas.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        pVisitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/autorizacion.png"))); // NOI18N
+        pVisitas.setText("Visitas Autorizadas");
+        pVisitas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pVisitas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pVisitasActionPerformed(evt);
+            }
+        });
+        menuProceso.add(pVisitas);
+
+        pCuotas.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        pCuotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cuota.png"))); // NOI18N
+        pCuotas.setText("Pago de Cuotas Especiales");
+        pCuotas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pCuotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pCuotasActionPerformed(evt);
+            }
+        });
+        menuProceso.add(pCuotas);
+
+        pCerrarMes.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        pCerrarMes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/factura.png"))); // NOI18N
+        pCerrarMes.setText("Generar Recibo");
+        pCerrarMes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pCerrarMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pCerrarMesActionPerformed(evt);
+            }
+        });
+        menuProceso.add(pCerrarMes);
+
+        barraMenu.add(menuProceso);
 
         menuReporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/data-analytics.png"))); // NOI18N
         menuReporte.setText("Reportes");
@@ -390,6 +546,54 @@ public class PantallaPrincipal extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jResponsableActionPerformed
 
+    private void jAsambleaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAsambleaActionPerformed
+
+    }//GEN-LAST:event_jAsambleaActionPerformed
+
+    private void jCuotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCuotasActionPerformed
+
+    }//GEN-LAST:event_jCuotasActionPerformed
+
+    private void jGastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGastosActionPerformed
+
+    }//GEN-LAST:event_jGastosActionPerformed
+
+    private void jSancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSancionActionPerformed
+
+    }//GEN-LAST:event_jSancionActionPerformed
+
+    private void jUnidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUnidadesActionPerformed
+
+    }//GEN-LAST:event_jUnidadesActionPerformed
+
+    private void jFondoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFondoActionPerformed
+
+    }//GEN-LAST:event_jFondoActionPerformed
+
+    private void jComunicadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComunicadosActionPerformed
+
+    }//GEN-LAST:event_jComunicadosActionPerformed
+
+    private void pCuentasporCobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pCuentasporCobrarActionPerformed
+
+    }//GEN-LAST:event_pCuentasporCobrarActionPerformed
+
+    private void pCuentapagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pCuentapagarActionPerformed
+
+    }//GEN-LAST:event_pCuentapagarActionPerformed
+
+    private void pVisitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pVisitasActionPerformed
+
+    }//GEN-LAST:event_pVisitasActionPerformed
+
+    private void pCuotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pCuotasActionPerformed
+
+    }//GEN-LAST:event_pCuotasActionPerformed
+
+    private void pCerrarMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pCerrarMesActionPerformed
+
+    }//GEN-LAST:event_pCerrarMesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -429,12 +633,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public javax.swing.JMenuBar barraMenu;
     private javax.swing.JButton btnMinimizar2;
     private javax.swing.JButton btnSalir2;
+    public javax.swing.JMenuItem jAsamblea;
     public javax.swing.JMenuItem jBanco;
     public javax.swing.JMenuItem jCategoria;
+    public javax.swing.JMenuItem jComunicados;
     public javax.swing.JMenuItem jConcepto;
     public javax.swing.JMenuItem jCondominio;
     public javax.swing.JMenuItem jCuenta;
+    public javax.swing.JMenuItem jCuotas;
+    public javax.swing.JMenuItem jFondo;
     public javax.swing.JMenuItem jFormaPago;
+    public javax.swing.JMenuItem jGastos;
     public javax.swing.JMenuItem jInteres;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
@@ -443,12 +652,20 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public javax.swing.JMenuItem jPropietarios;
     public javax.swing.JMenuItem jProveedores;
     public javax.swing.JMenuItem jResponsable;
+    public javax.swing.JMenuItem jSancion;
     public javax.swing.JMenuItem jTipo;
+    public javax.swing.JMenuItem jUnidades;
     public javax.swing.JMenuItem jUsuario;
     public javax.swing.JMenu menuArchivo;
     public javax.swing.JMenu menuAyudas;
     public javax.swing.JMenu menuPerfil;
+    public javax.swing.JMenu menuProceso;
     public javax.swing.JMenu menuReporte;
+    public javax.swing.JMenuItem pCerrarMes;
+    public javax.swing.JMenuItem pCuentapagar;
+    public javax.swing.JMenuItem pCuentasporCobrar;
+    public javax.swing.JMenuItem pCuotas;
+    public javax.swing.JMenuItem pVisitas;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
 import java.sql.Connection;
@@ -10,60 +5,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import sgc.SGC;
 
-/**
- *
- * @author rma
- */
 public class Cuenta extends ConexionBD {
 
-    private String cedula;
     private String n_cuenta;
-    private String beneficiario;
+    private Persona beneficiario = new Persona();
     private String tipo;
-   public Banco ban = new Banco();
-    
-   
+    private Banco banco = new Banco();
 
-    public String getCedula() {
-        return cedula;
-    }
+    Connection con = getConexion();
 
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
-
-    public String getN_cuenta() {
-        return n_cuenta;
-    }
-
-    public void setN_cuenta(String n_cuenta) {
-        this.n_cuenta = n_cuenta;
-    }
-
-    public String getBeneficiario() {
-        return beneficiario;
-    }
-
-    public void setBeneficiario(String beneficiario) {
-        this.beneficiario = beneficiario;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    
-
-     public boolean buscarInactivo(Cuenta modcu) {
-
+    public boolean buscarInactivo(Cuenta modcu) {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
@@ -103,7 +60,35 @@ public class Cuenta extends ConexionBD {
 
     }
 
-   
+    public Boolean existeInactivo() {
+        try {
+            Connection con = getConexion();
+            ps = null;
+            rs = null;
+
+            int ind;
+
+            String sql = "SELECT n_cuenta FROM v_usuario_inactivo WHERE n_cuenta = ?;";
+
+            ps = con.prepareStatement(sql);
+
+            ind = 1;
+            ps.setString(ind++, getN_cuenta());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return true;
+
+            } else {
+                return false;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 
     public void llenar_banco(JComboBox banco) {
 
@@ -162,21 +147,47 @@ public class Cuenta extends ConexionBD {
 
     }
 
-    public boolean registrar(Cuenta modcu) {
-
-        PreparedStatement ps = null;
-        Connection con = getConexion();
-
-        String sql = "INSERT INTO cuenta (cedula, n_cuenta, beneficiario, tipo, id_banco, activo) VALUES (?, ?, ?, ?, ?, true);";
-
+    public Boolean reactivar() {
         try {
+            ps = null;
+            con = getConexion();
+
+            int ind;
+
+            String sql = "UPDATE cuenta SET activo = true WHERE n_cuenta = ?";
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, getCedula());
-            ps.setString(2, getN_cuenta());
-            ps.setString(3, getBeneficiario());
-            ps.setString(4, getTipo());
-            ps.setInt(5, ban.getId());
+
+            ind = 1;
+            ps.setString(ind++, getN_cuenta());
+
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Propietarios.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+    public Boolean registrar() {
+
+        ps = null;
+        Connection con = getConexion();
+        int ind;
+
+        String sql = "INSERT INTO cuenta (n_cuenta, tipo, id_banco, ci_persona) VALUES (?,?,?,?);";
+
+        try {
+            ind = 1;
+
+            ps = con.prepareStatement(sql);
+
+            ps.setString(ind++, getN_cuenta());
+            ps.setString(ind++, getTipo());
+            ps.setInt(ind++, getBanco().getId());
+            ps.setString(ind++, getBeneficiario().getCedula());
 
             ps.execute();
 
@@ -202,71 +213,110 @@ public class Cuenta extends ConexionBD {
 
     }
 
-    
-
     public ArrayList<Cuenta> listarcuenta() {
         ArrayList listaCuenta = new ArrayList();
         Cuenta modcu;
 
         Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+        ps = null;
+        rs = null;
+        int ind;
 
-        String sql = "SELECT cedula, n_cuenta, beneficiario, tipo, banco.nombre_banco  FROM cuenta inner join banco on banco.id=cuenta.id_banco where cuenta.activo=true;";
+        String sql = "SELECT * FROM v_cuenta;";
+
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
+
+            ind = 1;
 
             while (rs.next()) {
 
                 modcu = new Cuenta();
 
-                modcu.setCedula(rs.getString(1));
-                modcu.setN_cuenta(rs.getString(2));
-                modcu.setBeneficiario(rs.getString(3));
-                modcu.setTipo(rs.getString(4));
-                modcu.ban.setNombre_banco(rs.getString(5));
-              
+                modcu.setN_cuenta(rs.getString(ind++));
+                modcu.setTipo(rs.getString(ind++));
+                modcu.banco.setId(rs.getInt(ind++));
+                modcu.banco.setNombre_banco(rs.getString(ind++));
+                modcu.getBeneficiario().setCedula(rs.getString(ind++));
+                modcu.getBeneficiario().setpNombre(rs.getString(ind++));
+                modcu.getBeneficiario().setpApellido(rs.getString(ind++));
 
                 listaCuenta.add(modcu);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.err.println(e);
+
         } finally {
             try {
-
                 con.close();
 
             } catch (SQLException e) {
-
                 System.err.println(e);
-
             }
-
         }
 
         return listaCuenta;
+
     }
-    
-   
 
-    public boolean buscarcuenta(Cuenta modcun) {
-
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
-        String sql = "SELECT cuenta.*, banco.* FROM cuenta inner join banco on cuenta.id_banco=banco.id WHERE n_cuenta=?";
-
+//    public boolean buscarcuenta(Cuenta modcun) {
+//
+//        PreparedStatement ps = null;
+//        ResultSet rs = null;
+//        Connection con = getConexion();
+//        String sql = "SELECT cuenta.*, banco.* FROM cuenta inner join banco on cuenta.id_banco=banco.id WHERE n_cuenta=?";
+//
+//        try {
+//
+//            ps = con.prepareStatement(sql);
+//            ps.setString(1, modcun.getN_cuenta());
+//            rs = ps.executeQuery();
+//            if (rs.next()) {
+//
+//                modcun.setCedula(rs.getString("cedula"));
+//                modcun.setBeneficiario(rs.getString("beneficiario"));
+//                modcun.setTipo(rs.getString("tipo"));
+//                modcun.banco.setNombre_banco(rs.getString("nombre_banco"));
+//
+//                return true;
+//            }
+//
+//            return false;
+//
+//        } catch (SQLException e) {
+//
+//            System.err.println(e);
+//            return false;
+//
+//        } finally {
+//            try {
+//
+//                con.close();
+//
+//            } catch (SQLException e) {
+//
+//                System.err.println(e);
+//
+//            }
+//
+//        }
+//
+//    }
+    public Boolean buscarPersona(String cedula) {
         try {
+            ps = null;
+            rs = null;
+            Connection con = getConexion();
+            String sql = "SELECT p_nombre, p_apellido FROM persona WHERE cedula=?";
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, modcun.getN_cuenta());
+            ps.setString(1, cedula);
             rs = ps.executeQuery();
-            if (rs.next()) {
 
-                modcun.setCedula(rs.getString("cedula"));
-                modcun.setBeneficiario(rs.getString("beneficiario"));
-                modcun.setTipo(rs.getString("tipo"));
-                modcun.ban.setNombre_banco(rs.getString("nombre_banco"));
+            if (rs.next()) {
+                getBeneficiario().setpNombre(rs.getString("p_nombre"));
+                getBeneficiario().setpApellido(rs.getString("p_apellido"));
 
                 return true;
             }
@@ -274,75 +324,60 @@ public class Cuenta extends ConexionBD {
             return false;
 
         } catch (SQLException e) {
-
             System.err.println(e);
             return false;
 
         } finally {
             try {
-
                 con.close();
 
             } catch (SQLException e) {
-
                 System.err.println(e);
-
             }
-
         }
-
     }
 
-    public boolean modificarcuenta(Cuenta modcu) {
-
-        PreparedStatement ps = null;
+    public boolean modificar() {
+        ps = null;
         Connection con = getConexion();
+        int ind;
 
-        String sql = "UPDATE cuenta SET cedula=?, beneficiario=?, tipo=?, id_banco=? WHERE n_cuenta=?";
+        String sql = "UPDATE cuenta SET tipo=?, id_banco=?, ci_persona=? WHERE n_cuenta=?";
 
         try {
+            ind = 1;
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, getCedula());
-            ps.setString(2, getBeneficiario());
-            ps.setString(3, getTipo());
-            ps.setInt(4, ban.getId());
-
-            ps.setString(5, getN_cuenta());
+            ps.setString(ind++, getTipo());
+            ps.setInt(ind++, banco.getId());
+            ps.setString(ind++, getBeneficiario().getCedula());
+            ps.setString(ind++, getN_cuenta());
             ps.execute();
 
             return true;
 
         } catch (SQLException e) {
-
             System.err.println(e);
             return false;
+
         } finally {
             try {
-
                 con.close();
 
             } catch (SQLException e) {
-
                 System.err.println(e);
-
             }
-
         }
-
     }
 
-    
-    
-    public boolean eliminarcuenta(Cuenta modcun) {
+    public boolean eliminar() {
 
-        PreparedStatement ps = null;
+        ps = null;
         Connection con = getConexion();
 
         String sql = "UPDATE cuenta SET activo=false WHERE n_cuenta=?";
 
         try {
-
             ps = con.prepareStatement(sql);
             ps.setString(1, getN_cuenta());
             ps.execute();
@@ -350,26 +385,50 @@ public class Cuenta extends ConexionBD {
             return true;
 
         } catch (SQLException e) {
-
             System.err.println(e);
             return false;
 
         } finally {
             try {
-
                 con.close();
 
             } catch (SQLException e) {
-
                 System.err.println(e);
+            }
+        }
+    }
+
+    public Boolean existe() {
+        Connection con = getConexion();
+        ps = null;
+        rs = null;
+
+        int ind;
+
+        String sql = "SELECT n_cuenta FROM v_cuenta WHERE n_cuenta = ?;";
+
+        try {
+            ps = con.prepareStatement(sql);
+
+            ind = 1;
+            ps.setString(ind++, getN_cuenta());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return true;
+
+            } else {
+                return false;
 
             }
 
-        }
+        } catch (SQLException ex) {
+            Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
 
+        }
     }
-    
-     
 
     public boolean activarcuenta(Cuenta modcun) {
 
@@ -397,17 +456,12 @@ public class Cuenta extends ConexionBD {
                 con.close();
 
             } catch (SQLException e) {
-
                 System.err.println(e);
-
             }
-
         }
-
     }
 
     public void llenar_cuentas(JComboBox Cuentas) {
-
 //Creamos objeto tipo Connection    
         java.sql.Connection conectar = null;
         PreparedStatement pst = null;
@@ -431,21 +485,15 @@ public class Cuenta extends ConexionBD {
             Cuentas.addItem("Seleccione la cuenta depositada");
 
             while (result.next()) {
-
                 Cuentas.addItem(result.getString("id_cuenta"));
-
             }
 
         } catch (SQLException e) {
-
             JOptionPane.showMessageDialog(null, e);
 
         } finally {
-
             if (conectar != null) {
-
                 try {
-
                     conectar.close();
                     result.close();
 
@@ -453,15 +501,42 @@ public class Cuenta extends ConexionBD {
                     result = null;
 
                 } catch (SQLException ex) {
-
                     JOptionPane.showMessageDialog(null, ex);
-
                 }
-
             }
-
         }
+    }
 
+    public String getN_cuenta() {
+        return n_cuenta;
+    }
+
+    public void setN_cuenta(String n_cuenta) {
+        this.n_cuenta = n_cuenta;
+    }
+
+    public Persona getBeneficiario() {
+        return beneficiario;
+    }
+
+    public void setBeneficiario(Persona beneficiario) {
+        this.beneficiario = beneficiario;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Banco getBanco() {
+        return banco;
+    }
+
+    public void setBanco(Banco banco) {
+        this.banco = banco;
     }
 
 }

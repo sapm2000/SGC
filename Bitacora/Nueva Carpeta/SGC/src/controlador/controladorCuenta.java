@@ -9,283 +9,187 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.Banco;
-import modelo.Condominio;
 import modelo.Cuenta;
 import vista.catalogoCuenta;
 import vista.cuenta;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
 
 public class controladorCuenta implements ActionListener, MouseListener, KeyListener, WindowListener {
 
-    private catalogoCuenta catacu;
-    private cuenta cu;
-    private Cuenta modcu;
-    private Banco modban;
-    private Condominio modcon;
+    private catalogoCuenta catalogo;
+    private cuenta vista;
+    private Cuenta modelo;
+    private Banco modBanco;
 
-    DefaultTableModel dm;
-    ArrayList<Banco> listaBanco;
-    ArrayList<Cuenta> listaCuenta;
-    ArrayList<Condominio> listaCondo;
+    private ArrayList<Cuenta> lista;
+    private ArrayList<Banco> listaBanco;
 
     public controladorCuenta() {
-        this.catacu = new catalogoCuenta();
-        this.cu = new cuenta();
-        this.modcu = new Cuenta();
-        this.modban = new Banco();
-        this.modcon = new Condominio();
+        this.catalogo = new catalogoCuenta();
+        this.vista = new cuenta();
+        this.modelo = new Cuenta();
+        this.modBanco = new Banco();
 
-        this.catacu.btn_nuevaCuenta.addActionListener(this);
-        this.cu.btnGuardar.addActionListener(this);
-        this.cu.btnLimpiar.addActionListener(this);
-        this.cu.btnModificar.addActionListener(this);
-        this.catacu.addWindowListener(this);
-        this.catacu.jTable1.addMouseListener(this);
-        this.cu.btnEliminar.addActionListener(this);
-        this.cu.txtCedula.addKeyListener(this);
-        this.cu.txtN_cuenta.addKeyListener(this);
-        this.cu.txtBeneficiario.addKeyListener(this);
+        this.catalogo.btn_nuevaCuenta.addActionListener(this);
+        this.catalogo.tabla.addMouseListener(this);
+        this.catalogo.addWindowListener(this);
 
-        this.catacu.setVisible(true);
-    }
+        crearCbxBanco();
 
-    public void Llenartabla(JTable tablaD) {
+        this.vista.txtCedula.addActionListener(this);
+        this.vista.btnCedula.addActionListener(this);
+        this.vista.btnGuardar.addActionListener(this);
+        this.vista.btnModificar.addActionListener(this);
+        this.vista.btnEliminar.addActionListener(this);
+        this.vista.btnLimpiar.addActionListener(this);
+        this.vista.txtCedula.addKeyListener(this);
+        this.vista.txtN_cuenta.addKeyListener(this);
+        this.vista.txtBeneficiario.addKeyListener(this);
+        this.vista.addWindowListener(this);
 
-        listaCuenta = modcu.listarcuenta();
-        DefaultTableModel modeloT = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-
-                return false;
-            }
-
-        };
-        tablaD.setModel(modeloT);
-        tablaD.getTableHeader().setReorderingAllowed(false);
-        tablaD.getTableHeader().setResizingAllowed(false);
-
-        modeloT.addColumn("Banco");
-        modeloT.addColumn("Cuenta");
-        modeloT.addColumn("CI/RIF");
-        modeloT.addColumn("Beneficiario");
-        modeloT.addColumn("Tipo");
-
-        Object[] columna = new Object[6];
-
-        int numRegistro = listaCuenta.size();
-
-        for (int i = 0; i < numRegistro; i++) {
-
-            columna[0] = listaCuenta.get(i).ban.getNombre_banco();
-            columna[1] = listaCuenta.get(i).getN_cuenta();
-            columna[2] = listaCuenta.get(i).getCedula();
-            columna[3] = listaCuenta.get(i).getBeneficiario();
-            columna[4] = listaCuenta.get(i).getTipo();
-
-            modeloT.addRow(columna);
-
-        }
-        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-        tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
-
+        this.catalogo.setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == catacu.btn_nuevaCuenta) {
-            cu.jComboBox1.removeAllItems();
-            modcu.llenar_banco(cu.jComboBox1);
-            this.cu.setVisible(true);
-            this.cu.btnEliminar.setEnabled(false);
-            this.cu.btnGuardar.setEnabled(true);
+        if (e.getSource() == catalogo.btn_nuevaCuenta) {
+            limpiar();
+            
+            vista.txtN_cuenta.setEditable(true);
 
-            this.cu.btnModificar.setEnabled(false);
-            cu.txtN_cuenta.setText("");
-            cu.txtN_cuenta.setEnabled(true);
-            cu.txtBeneficiario.setText("");
-            cu.txtCedula.setText("");
+            this.vista.btnGuardar.setEnabled(true);
+            this.vista.btnModificar.setEnabled(false);
+            this.vista.btnEliminar.setEnabled(false);
 
+            this.vista.setVisible(true);
         }
 
-        if (e.getSource() == cu.btnGuardar) {
+        if (e.getSource() == vista.btnGuardar) {
             if (validar()) {
-                modcu.setCedula(cu.txtCedula.getText());
-                modcu.setBeneficiario(cu.txtBeneficiario.getText());
-                modcu.setN_cuenta(cu.txtN_cuenta.getText());
-                modcu.setTipo(cu.jComboBox2.getSelectedItem().toString());
-                modban.setNombre_banco(cu.jComboBox1.getSelectedItem().toString());
+                int ind;
+                String cedula;
 
-                if (modban.getNombre_banco().equals("Seleccione el Banco")) {
-                    JOptionPane.showMessageDialog(null, "seleccione un banco");
-                } else {
-                    modban.buscar(modban);
-                    modcu.ban.setId(modban.getId());
-                    if (modcu.buscarInactivo(modcu)) {
-                        modcu.activarcuenta(modcu);
-                        modcu.modificarcuenta(modcu);
-                        JOptionPane.showMessageDialog(null, "Registro Guardado");
-                        Llenartabla(catacu.jTable1);
+                modelo.setN_cuenta(vista.txtN_cuenta.getText());
+                cedula = vista.cbxCedula.getSelectedItem() + "-" + vista.txtCedula.getText();
+                modelo.getBeneficiario().setCedula(cedula);
+                modelo.setTipo(vista.cbxTipo.getSelectedItem().toString());
+                ind = vista.cbxBanco.getSelectedIndex() - 1;
+                modelo.getBanco().setId(listaBanco.get(ind).getId());
+
+                if (modelo.buscarInactivo(modelo)) {
+                    JOptionPane.showMessageDialog(null, "Esta cuenta ya está registrada en la BD, se recuperarán los datos");
+
+                    if (modelo.reactivar()) {
+                        JOptionPane.showMessageDialog(null, "Cuenta habilitada");
+                        llenarTabla(catalogo.tabla);
+                        vista.dispose();
+                        limpiar();
 
                     } else {
+                        JOptionPane.showMessageDialog(null, "No se pudo habilitar la cuenta");
+                    }
 
-                        if (modcu.registrar(modcu)) {
-
-                            JOptionPane.showMessageDialog(null, "Registro Guardado");
-
-                            Llenartabla(catacu.jTable1);
-                            cu.dispose();
+                } else {
+                    if (modelo.existe()) {
+                        if (modelo.registrar()) {
+                            JOptionPane.showMessageDialog(null, "Registro guardado");
+                            llenarTabla(catalogo.tabla);
+                            vista.dispose();
                             limpiar();
+
                         } else {
-
-                            JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
-
+                            JOptionPane.showMessageDialog(null, "No se pudo registrar");
                         }
-                    }
-
-                }
-
-            }
-        }
-
-        if (e.getSource() == cu.btnModificar) {
-            if (validar()) {
-
-                modcu.setCedula(cu.txtCedula.getText());
-                modcu.setBeneficiario(cu.txtBeneficiario.getText());
-                modcu.setN_cuenta(cu.txtN_cuenta.getText());
-                String j = modcu.getN_cuenta();
-
-                modcu.setTipo(cu.jComboBox2.getSelectedItem().toString());
-                modban.setNombre_banco(cu.jComboBox1.getSelectedItem().toString());
-                if (modban.getNombre_banco().equals("Seleccione el Banco")) {
-                    JOptionPane.showMessageDialog(null, "seleccione un banco");
-                } else {
-                    modban.buscar(modban);
-                    modcu.ban.setId(modban.getId());
-
-                    if (modcu.buscarInactivo(modcu)&&modcu.getN_cuenta().equals(j)) {
-                        
-                       JOptionPane.showMessageDialog(null, "no puede colocar un numero de cuenta que ya existio, si quiere colocar este numero de cuenta debe registrarlo nuevamente");
-
-                       
 
                     } else {
-
-                        if (modcu.modificarcuenta(modcu)) {
-
-                            JOptionPane.showMessageDialog(null, "Registro modificado");
-
-                            Llenartabla(catacu.jTable1);
-                            cu.dispose();
-                        } else {
-
-                            JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
-
-                        }}
+                        JOptionPane.showMessageDialog(null, "Este número de cuenta ya existe");
                     }
                 }
             }
+        }
 
-            if (e.getSource() == cu.btnEliminar) {
-                modcu.setN_cuenta(cu.txtN_cuenta.getText());
+        if (e.getSource() == vista.btnModificar) {
+            if (validar()) {
+                int ind;
+                String cedula;
 
-                modcu.eliminarcuenta(modcu);
-                JOptionPane.showMessageDialog(null, "registro eliminado");
-                cu.dispose();
-                Llenartabla(catacu.jTable1);
+                modelo.setN_cuenta(vista.txtN_cuenta.getText());
+                cedula = vista.cbxCedula.getSelectedItem() + "-" + vista.txtCedula.getText();
+                modelo.getBeneficiario().setCedula(cedula);
+                modelo.setTipo(vista.cbxTipo.getSelectedItem().toString());
+                ind = vista.cbxBanco.getSelectedIndex() - 1;
+                modelo.getBanco().setId(listaBanco.get(ind).getId());
+
+                String j = modelo.getN_cuenta();
+
+                if (modelo.modificar()) {
+                    JOptionPane.showMessageDialog(null, "Registro modificado");
+                    llenarTabla(catalogo.tabla);
+                    vista.dispose();
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo modificar");
+                }
             }
+        }
 
-            if (e.getSource() == cu.btnLimpiar) {
-                limpiar();
+        if (e.getSource() == vista.btnEliminar) {
+            modelo.setN_cuenta(vista.txtN_cuenta.getText());
+
+            modelo.eliminar();
+            JOptionPane.showMessageDialog(null, "registro eliminado");
+            vista.dispose();
+            llenarTabla(catalogo.tabla);
+        }
+
+        if (e.getSource() == vista.btnLimpiar) {
+            limpiar();
+        }
+
+        if (e.getSource() == vista.txtCedula || e.getSource() == vista.btnCedula) {
+            String cedula = vista.cbxCedula.getSelectedItem() + "-" + vista.txtCedula.getText();
+
+            if (modelo.buscarPersona(cedula)) {
+                vista.txtBeneficiario.setText(modelo.getBeneficiario().getpNombre() + " " + modelo.getBeneficiario().getpApellido());
+
+            } else {
+                JOptionPane.showMessageDialog(vista, "No se ha encontrado una persona con esta cédula");
             }
         }
-
-    
-
-    
-
-    public void limpiar() {
-
-        cu.txtCedula.setText(null);
-        cu.txtN_cuenta.setText(null);
-        cu.txtBeneficiario.setText(null);
-        cu.jComboBox1.setSelectedItem(0);
-        cu.jComboBox2.setSelectedItem(0);
-
-    }
-
-    private Boolean validar() {
-
-        Boolean resultado = true;
-        String msj = "";
-
-        if (cu.txtN_cuenta.getText().isEmpty()) {
-
-            msj += "El campo número de cuenta no puede estar vacio\n";
-            resultado = false;
-        }
-
-        if (cu.txtBeneficiario.getText().isEmpty()) {
-
-            msj += "El campo beneficiario no puede estar vacío\n";
-            resultado = false;
-        }
-
-        if (cu.txtCedula.getText().isEmpty()) {
-
-            msj += "El campo rif/cédula no puede estar vacío\n";
-            resultado = false;
-        }
-
-        if (!resultado) {
-
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
-        }
-
-        return resultado;
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int fila = this.catacu.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
-        int columna = this.catacu.jTable1.getSelectedColumn(); // luego, obtengo la columna seleccionada
-        String dato = String.valueOf(this.catacu.jTable1.getValueAt(fila, 1)); // por ultimo, obtengo el valor de la celda
+        if (e.getSource() == catalogo.tabla) {
+            int fila;
 
-        modcu.setN_cuenta(String.valueOf(dato));
+            fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
+            modelo = lista.get(fila);
 
-        modcu.buscarcuenta(modcu);
+            vista.cbxCedula.setSelectedItem(modelo.getBeneficiario().getCedula().split("-")[0]);
+            vista.txtCedula.setText(modelo.getBeneficiario().getCedula().split("-")[1]);
+            vista.cbxBanco.setSelectedItem(modelo.getBanco().getNombre_banco());
+            vista.cbxTipo.setSelectedItem(modelo.getTipo());
+            vista.txtBeneficiario.setText(modelo.getBeneficiario().getpNombre() + " " + modelo.getBeneficiario().getpApellido());
+            vista.txtN_cuenta.setText(modelo.getN_cuenta());
 
-        cu.setVisible(true);
-        cu.jComboBox1.removeAllItems();
-        modcu.llenar_banco(cu.jComboBox1);
+            vista.txtN_cuenta.setEditable(false);
 
-        cu.txtCedula.setText(modcu.getCedula());
-        cu.txtBeneficiario.setText(modcu.getBeneficiario());
-        cu.txtN_cuenta.setText(modcu.getN_cuenta());
-        cu.txtN_cuenta.setEnabled(false);
-        cu.jComboBox1.setSelectedItem(modcu.ban.getNombre_banco());
-        cu.jComboBox2.setSelectedItem(modcu.getTipo());
-        modcon.setRif(modcu.getN_cuenta());
-        cu.btnGuardar.setEnabled(false);
-        cu.btnModificar.setEnabled(true);
-        cu.btnEliminar.setEnabled(true);
+            vista.btnGuardar.setEnabled(false);
+            vista.btnModificar.setEnabled(true);
+            vista.btnEliminar.setEnabled(true);
 
+            vista.setVisible(true);
+        }
     }
 
     @Override
@@ -311,21 +215,21 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     @Override
     public void keyTyped(KeyEvent ke) {
 
-        if (ke.getSource() == cu.txtCedula) {
+        if (ke.getSource() == vista.txtCedula) {
 
             Validacion.Espacio(ke);
-            Validacion.limite(ke, cu.txtCedula.getText(), 8);
+            Validacion.limite(ke, vista.txtCedula.getText(), 8);
         }
-        if (ke.getSource() == cu.txtN_cuenta) {
+        if (ke.getSource() == vista.txtN_cuenta) {
 
             Validacion.soloNumeros(ke);
             Validacion.Espacio(ke);
-            Validacion.limite(ke, cu.txtN_cuenta.getText(), 20);
+            Validacion.limite(ke, vista.txtN_cuenta.getText(), 20);
         }
-        if (ke.getSource() == cu.txtBeneficiario) {
+        if (ke.getSource() == vista.txtBeneficiario) {
 
             Validacion.soloLetras(ke);
-            Validacion.limite(ke, cu.txtBeneficiario.getText(), 50);
+            Validacion.limite(ke, vista.txtBeneficiario.getText(), 50);
         }
 
     }
@@ -337,24 +241,27 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getSource() == catacu.txtBuscarCuenta) {
-
-            filtro(catacu.txtBuscarCuenta.getText(), catacu.jTable1);
-        } else {
-
+        if (e.getSource() == catalogo.txtBuscarCuenta) {
+            filtro(catalogo.txtBuscarCuenta.getText(), catalogo.tabla);
         }
     }
 
     @Override
     public void windowOpened(WindowEvent e) {
-        Llenartabla(catacu.jTable1);
+        if (e.getSource() == catalogo) {
+            llenarTabla(catalogo.tabla);
+        }
 
-        Component[] components = cu.jPanel2.getComponents();
-        JComponent[] com = {
-            cu.txtCedula, cu.txtN_cuenta, cu.txtBeneficiario
-        };
-        Validacion.copiar(components);
-        Validacion.pegar(com);
+        if (e.getSource() == vista) {
+            Component[] components = vista.jPanel2.getComponents();
+
+            JComponent[] com = {
+                vista.txtCedula, vista.txtN_cuenta, vista.txtBeneficiario
+            };
+
+            Validacion.copiar(components);
+            Validacion.pegar(com);
+        }
     }
 
     @Override
@@ -387,12 +294,104 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
 
     }
 
+    private void crearCbxBanco() {
+        listaBanco = modBanco.listar();
+        vista.cbxBanco.addItem("Seleccione...");
+
+        if (listaBanco != null) {
+            for (Banco item : listaBanco) {
+                vista.cbxBanco.addItem(item.getNombre_banco());
+            }
+
+        }
+    }
+
     private void filtro(String consulta, JTable jtableBuscar) {
-        dm = (DefaultTableModel) jtableBuscar.getModel();
+        DefaultTableModel dm = (DefaultTableModel) jtableBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
         jtableBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));
+    }
 
+    public void limpiar() {
+        vista.cbxCedula.setSelectedIndex(0);
+        vista.txtCedula.setText("");
+        vista.cbxBanco.setSelectedIndex(0);
+        vista.cbxTipo.setSelectedIndex(0);
+        vista.txtN_cuenta.setText("");
+        vista.txtBeneficiario.setText("");
+    }
+
+    public void llenarTabla(JTable tablaD) {
+        lista = modelo.listarcuenta();
+        int ind;
+
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                return false;
+            }
+        };
+
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
+
+        modeloT.addColumn("Banco");
+        modeloT.addColumn("Cuenta");
+        modeloT.addColumn("CI/RIF");
+        modeloT.addColumn("Beneficiario");
+        modeloT.addColumn("Tipo");
+
+        Object[] columna = new Object[modeloT.getColumnCount()];
+
+        int numRegistro = lista.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+            ind = 0;
+            columna[ind++] = lista.get(i).getBanco().getNombre_banco();
+            columna[ind++] = lista.get(i).getN_cuenta();
+            columna[ind++] = lista.get(i).getBeneficiario().getCedula();
+            columna[ind++] = lista.get(i).getBeneficiario().getpNombre() + " " + lista.get(i).getBeneficiario().getpApellido();
+            columna[ind++] = lista.get(i).getTipo();
+
+            modeloT.addRow(columna);
+        }
+
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < modeloT.getColumnCount(); i++) {
+            tablaD.getColumnModel().getColumn(i).setCellRenderer(tcr);
+        }
+    }
+
+    private Boolean validar() {
+
+        Boolean resultado = true;
+        String msj = "";
+
+        if (vista.cbxBanco.getSelectedIndex() == 0) {
+            msj += "Debe seleccionar un Banco\n";
+            resultado = false;
+        }
+
+        if (vista.txtN_cuenta.getText().isEmpty()) {
+            msj += "El campo N° de Cuenta no puede estar vacío\n";
+            resultado = false;
+        }
+
+        if (vista.txtBeneficiario.getText().isEmpty()) {
+            msj += "El campo Beneficiario no puede estar vacío\n";
+            resultado = false;
+        }
+
+        if (!resultado) {
+            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+
+        return resultado;
     }
 
 }

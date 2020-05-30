@@ -52,12 +52,18 @@ public class controladorMenuInterno implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //Maestros
         if (e.getSource() == vista.jAsamblea) {
             controa = new controladorAsambleas();
         }
-
+        if (e.getSource() == vista.jComunicados) {
+            controcom = new controladorComunicados();
+        }
         if (e.getSource() == vista.jCuotas) {
             controce = new controladorCuotasEspeciales();
+        }
+        if (e.getSource() == vista.jFondo) {
+            controfon = new controladorFondo();
         }
         if (e.getSource() == vista.jGastos) {
             controgc = new controladorGastoComun();
@@ -65,43 +71,33 @@ public class controladorMenuInterno implements ActionListener {
         if (e.getSource() == vista.jSancion) {
             controsan = new controladorSancion();
         }
-
         if (e.getSource() == vista.jUnidades) {
             controuni = new controladorUnidades();
         }
-        if (e.getSource() == vista.jFondo) {
-            controfon = new controladorFondo();
-        }
-        if (e.getSource() == vista.jComunicados) {
-            controcom = new controladorComunicados();
-        }
 
+        //Procesos
         if (e.getSource() == vista.pCuentasporCobrar) {
             controcpc = new controladorCuentasPorCobrar();
         }
-
         if (e.getSource() == vista.pCuentapagar) {
             ctrlCuentaP = new controladorCuenta_Pagar();
         }
-
         if (e.getSource() == vista.pVisitas) {
             contVisita = new controladorRegistroVisita();
         }
-        
-         if (e.getSource() == vista.pCuotas) {
+        if (e.getSource() == vista.pCuotas) {
             controPagarCE = new controladorPagarCuotasEsp();
         }
-          if (e.getSource() == vista.pCerrarMes) {
+        if (e.getSource() == vista.pCerrarMes) {
             controc = new controladorCerrarMes();
         }
     }
-    
-    
-        private void filtrarMenu() {
-        // Primero se vacía el menú archivo
+
+    private void filtrarMenu() {
+        // Primero se vacían los menú
         vista.menuArchivo.removeAll();
         vista.menuProceso.removeAll();
-        
+
         // Se consulta cada función del usuario actual y se añaden las opciones al menú correspondientes
         for (Funcion funcionesX : SGC.usuarioActual.getTipoU().getFunciones()) {
             if ("Asambleas".equals(funcionesX.getNombre())) {
