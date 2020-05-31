@@ -22,12 +22,12 @@ import modelo.Banco;
 import modelo.Cuenta;
 import modelo.Funcion;
 import sgc.SGC;
-import vista.catalogoCuenta;
+import vista.Catalogo;
 import vista.cuenta;
 
 public class controladorCuenta implements ActionListener, MouseListener, KeyListener, WindowListener {
 
-    private catalogoCuenta catalogo;
+    private Catalogo catalogo;
     private cuenta vista;
     private Cuenta modelo;
     private Banco modBanco;
@@ -37,7 +37,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     private ArrayList<Banco> listaBanco;
 
     public controladorCuenta() {
-        this.catalogo = new catalogoCuenta();
+        this.catalogo = new Catalogo();
         this.vista = new cuenta();
         this.modelo = new Cuenta();
         this.modBanco = new Banco();
@@ -263,8 +263,8 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getSource() == catalogo.txtBuscarCuenta) {
-            filtro(catalogo.txtBuscarCuenta.getText(), catalogo.tabla);
+        if (e.getSource() == catalogo.txtBuscar) {
+            filtro(catalogo.txtBuscar.getText(), catalogo.tabla);
         }
     }
 

@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 
-public class catalogoCuenta extends javax.swing.JFrame {
+public class Catalogo extends javax.swing.JFrame {
 
     /**
      * Creates new form catalogoCuenta
@@ -37,7 +37,7 @@ public class catalogoCuenta extends javax.swing.JFrame {
     //Aquí cambias el color de la barra
     private static final Color THUMB_COLOR = Color.BLUE;
 
-    public catalogoCuenta() {
+    public Catalogo() {
         initComponents();
         tabla.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
@@ -64,9 +64,10 @@ public class catalogoCuenta extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         btnNuevo = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        txtBuscarCuenta = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         jButton3.setText("jButton3");
 
@@ -96,10 +97,10 @@ public class catalogoCuenta extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 680, 280));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 1120, 280));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 950, -1));
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
         btnMinimizar.setToolTipText("Minimizar");
@@ -115,7 +116,7 @@ public class catalogoCuenta extends javax.swing.JFrame {
                 btnMinimizarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, 40, 30));
+        jPanel1.add(btnMinimizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 10, 40, 30));
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
         btnSalir.setToolTipText("Cerrar");
@@ -131,12 +132,12 @@ public class catalogoCuenta extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, -1, 30));
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 10, -1, 30));
 
         lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Cuentas");
-        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 740, -1));
+        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1190, -1));
 
         btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnNuevo.setForeground(new java.awt.Color(0, 94, 159));
@@ -150,36 +151,39 @@ public class catalogoCuenta extends javax.swing.JFrame {
         btnNuevo.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btnNuevo.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btnNuevo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
-        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, -1, -1));
+        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 50, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Buscar:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 70, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, 70, -1));
 
-        txtBuscarCuenta.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        txtBuscarCuenta.setToolTipText("Buscador");
-        txtBuscarCuenta.setBorder(null);
-        txtBuscarCuenta.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtBuscar.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        txtBuscar.setToolTipText("Buscador");
+        txtBuscar.setBorder(null);
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtBuscarCuentaKeyPressed(evt);
+                txtBuscarKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtBuscarCuentaKeyReleased(evt);
+                txtBuscarKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtBuscarCuentaKeyTyped(evt);
+                txtBuscarKeyTyped(evt);
             }
         });
-        jPanel1.add(txtBuscarCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 190, 20));
+        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, 190, 20));
 
         jSeparator1.setBackground(new java.awt.Color(0, 94, 159));
         jSeparator1.setForeground(new java.awt.Color(0, 94, 159));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 190, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, 190, 10));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 440));
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 110, 950, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -219,17 +223,17 @@ public class catalogoCuenta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tablaKeyPressed
 
-    private void txtBuscarCuentaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCuentaKeyPressed
+    private void txtBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyPressed
 
-    }//GEN-LAST:event_txtBuscarCuentaKeyPressed
+    }//GEN-LAST:event_txtBuscarKeyPressed
 
-    private void txtBuscarCuentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCuentaKeyTyped
+    private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
 
-    }//GEN-LAST:event_txtBuscarCuentaKeyTyped
+    }//GEN-LAST:event_txtBuscarKeyTyped
 
-    private void txtBuscarCuentaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarCuentaKeyReleased
-        filtro(txtBuscarCuenta.getText(), tabla);
-    }//GEN-LAST:event_txtBuscarCuentaKeyReleased
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        filtro(txtBuscar.getText(), tabla);
+    }//GEN-LAST:event_txtBuscarKeyReleased
 
     /**
      * @param args the command line arguments
@@ -248,20 +252,21 @@ public class catalogoCuenta extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(catalogoCuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(catalogoCuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(catalogoCuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(catalogoCuenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new catalogoCuenta().setVisible(true);
+                new Catalogo().setVisible(true);
             }
         });
     }
@@ -271,6 +276,7 @@ public class catalogoCuenta extends javax.swing.JFrame {
     public javax.swing.JButton btnNuevo;
     public javax.swing.JButton btnSalir;
     private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -279,7 +285,7 @@ public class catalogoCuenta extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     public javax.swing.JLabel lblTitulo;
     public javax.swing.JTable tabla;
-    public javax.swing.JTextField txtBuscarCuenta;
+    public javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
     static public class Headercolor extends DefaultTableCellHeaderRenderer {
 

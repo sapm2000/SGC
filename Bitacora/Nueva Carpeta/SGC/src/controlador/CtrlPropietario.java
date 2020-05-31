@@ -17,14 +17,14 @@ import javax.swing.table.TableRowSorter;
 import modelo.Funcion;
 import modelo.Propietarios;
 import sgc.SGC;
-import vista.CatPropietario;
+import vista.Catalogo;
 import vista.Propietario;
 
 public class CtrlPropietario implements ActionListener, MouseListener, KeyListener {
 
     Propietario vista;
     Propietarios modelo;
-    CatPropietario catalogo;
+    Catalogo catalogo;
     Funcion permiso;
 
     DefaultTableModel dm;
@@ -34,8 +34,10 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
     int fila;
 
     public CtrlPropietario() {
-        catalogo = new CatPropietario();
+        catalogo = new Catalogo();
         modelo = new Propietarios();
+        
+        catalogo.lblTitulo.setText("Gestionar Propietario.");
 
         catalogo.btnNuevo.addActionListener(this);
         catalogo.tabla.addMouseListener(this);
