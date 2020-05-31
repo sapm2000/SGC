@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JOptionPane;
+import modelo.Condominio;
 import modelo.Usuario;
 import sgc.SGC;
 import vista.InicioUsuario;
@@ -16,6 +17,8 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
     //private MetodosUsuario modelo = new MetodosUsuario();
 
     PantallaPrincipal pp = new PantallaPrincipal();
+    private controladorCondominio condominio;
+    private Condominio modCondominio;
 
     public CtrlUsuarioL(InicioUsuario vistau) {
 
@@ -91,7 +94,20 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
                 //usu.setPassword("");
                 SGC.usuarioActual = usu;
                 vistaU.dispose();
-                controladorMenu ctrlMenu = new controladorMenu();
+
+                modCondominio = new Condominio();
+
+                if (modCondominio.existe()) {
+                    modCondominio.buscar();
+                    SGC.condominioActual = modCondominio;
+                    
+                    controladorMenu ctrlMenu = new controladorMenu();
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Los datos del condominio no están configurados\nIngrese los datos a continuación", "Información", JOptionPane.INFORMATION_MESSAGE);
+                    condominio = new controladorCondominio(false);
+                    
+                }
 
             } else {
                 JOptionPane.showMessageDialog(null, "Acceso Denegado", "Error", JOptionPane.ERROR_MESSAGE);

@@ -27,7 +27,7 @@ public class controladorMenuInterno implements ActionListener {
     private controladorComunicados controcom;
     private controladorCuentasPorCobrar controcpc;
     private controladorCuenta_Pagar ctrlCuentaP;
-    private controladorRegistroVisita contVisita;
+    private CtrlVisita contVisita;
     private controladorPagarCuotasEsp controPagarCE;
     private controladorCerrarMes controc;
 
@@ -83,7 +83,7 @@ public class controladorMenuInterno implements ActionListener {
             ctrlCuentaP = new controladorCuenta_Pagar();
         }
         if (e.getSource() == vista.pVisitas) {
-            contVisita = new controladorRegistroVisita();
+            contVisita = new CtrlVisita();
         }
         if (e.getSource() == vista.pCuotas) {
             controPagarCE = new controladorPagarCuotasEsp();

@@ -42,7 +42,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
         this.modelo = new Cuenta();
         this.modBanco = new Banco();
 
-        this.catalogo.btn_nuevaCuenta.addActionListener(this);
+        this.catalogo.btnNuevo.addActionListener(this);
         this.catalogo.tabla.addMouseListener(this);
         this.catalogo.addWindowListener(this);
 
@@ -64,7 +64,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
 
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == catalogo.btn_nuevaCuenta) {
+        if (e.getSource() == catalogo.btnNuevo) {
             limpiar();
 
             vista.txtN_cuenta.setEditable(true);
@@ -102,7 +102,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
                     }
 
                 } else {
-                    if (modelo.existe()) {
+                    if (!modelo.existe()) {
                         if (modelo.registrar()) {
                             JOptionPane.showMessageDialog(null, "Registro guardado");
                             llenarTabla(catalogo.tabla);
@@ -149,7 +149,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
             modelo.setN_cuenta(vista.txtN_cuenta.getText());
 
             modelo.eliminar();
-            JOptionPane.showMessageDialog(null, "registro eliminado");
+            JOptionPane.showMessageDialog(null, "Registro eliminado");
             vista.dispose();
             llenarTabla(catalogo.tabla);
         }
@@ -186,17 +186,17 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == catalogo.tabla) {
             int fila;
-          
+
             fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
             modelo = lista.get(fila);
-            
-             if (permiso.getModificar()) {
+
+            if (permiso.getModificar()) {
                 vista.btnModificar.setEnabled(true);
             }
             if (permiso.getEliminar()) {
                 vista.btnEliminar.setEnabled(true);
             }
-            
+
             vista.cbxCedula.setSelectedItem(modelo.getBeneficiario().getCedula().split("-")[0]);
             vista.txtCedula.setText(modelo.getBeneficiario().getCedula().split("-")[1]);
             vista.cbxBanco.setSelectedItem(modelo.getBanco().getNombre_banco());
@@ -272,11 +272,11 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     public void windowOpened(WindowEvent e) {
         if (e.getSource() == catalogo) {
             llenarTabla(catalogo.tabla);
-                    permisoBtn();
-        
-        if (permiso.getRegistrar()) {
-            catalogo.btn_nuevaCuenta.setEnabled(true);
-        }
+            permisoBtn();
+
+            if (permiso.getRegistrar()) {
+                catalogo.btnNuevo.setEnabled(true);
+            }
         }
 
         if (e.getSource() == vista) {

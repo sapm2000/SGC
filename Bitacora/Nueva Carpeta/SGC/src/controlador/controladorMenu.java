@@ -8,31 +8,8 @@ import vista.PantallaPrincipal;
 
 public class controladorMenu implements ActionListener {
 
-    private controladorCondominio concondo;
     private PantallaPrincipal vista;
-    private controladorBanco conban;
-    private controladorCategoriaGastos cataga;
-    private controladorConceptoGasto conco;
-    private controladorCuenta concu;
-    private controladorProveedores conprov;
-    private CtrlTipoUsuario controti;
-    private CtrlUsuario ctrl;
-    private controladorInteres controin;
-    private CtrlPropietario ctrlp;
-    private CtrlResponsable ctrlr;
-    private controladorForma_pago controfor;
-    private controladorAsambleas controa;
-    private controladorCuotasEspeciales controce;
-    private controladorGastoComun controgc;
-    private controladorSancion controsan;
-    private controladorUnidades controuni;
-    private controladorFondo controfon;
-    private controladorComunicados controcom;
-    private controladorCuentasPorCobrar controcpc;
-    private controladorCuenta_Pagar ctrlCuentaP;
-    private controladorRegistroVisita contVisita;
-    private controladorPagarCuotasEsp controPagarCE;
-    private controladorCerrarMes controc;
+    private Object ctrl;
 
     public controladorMenu() {
         SGC.panta = new PantallaPrincipal();
@@ -47,6 +24,7 @@ public class controladorMenu implements ActionListener {
         vista.jConcepto.addActionListener(this);
         vista.jCuenta.addActionListener(this);
         vista.jProveedores.addActionListener(this);
+        vista.jTipoUnidad.addActionListener(this);
         vista.jTipo.addActionListener(this);
         vista.jUsuario.addActionListener(this);
         vista.jInteres.addActionListener(this);
@@ -71,78 +49,81 @@ public class controladorMenu implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         //Maestros
         if (e.getSource() == vista.jAsamblea) {
-            controa = new controladorAsambleas();
+            ctrl = new controladorAsambleas();
         }
         if (e.getSource() == vista.jBanco) {
-            conban = new controladorBanco();
+            ctrl = new controladorBanco();
         }
         if (e.getSource() == vista.jCategoria) {
-            cataga = new controladorCategoriaGastos();
+            ctrl = new controladorCategoriaGastos();
         }
         if (e.getSource() == vista.jComunicados) {
-            controcom = new controladorComunicados();
+            ctrl = new controladorComunicados();
         }
         if (e.getSource() == vista.jConcepto) {
-            conco = new controladorConceptoGasto();
+            ctrl = new controladorConceptoGasto();
         }
         if (e.getSource() == vista.jCondominio) {
-            concondo = new controladorCondominio();
+            ctrl = new controladorCondominio();
         }
         if (e.getSource() == vista.jCuenta) {
-            concu = new controladorCuenta();
+            ctrl = new controladorCuenta();
         }
         if (e.getSource() == vista.jCuotas) {
-            controce = new controladorCuotasEspeciales();
+            ctrl = new controladorCuotasEspeciales();
         }
         if (e.getSource() == vista.jFondo) {
-            controfon = new controladorFondo();
+            ctrl = new controladorFondo();
         }
         if (e.getSource() == vista.jFormaPago) {
-            controfor = new controladorForma_pago();
+            ctrl = new controladorForma_pago();
         }
         if (e.getSource() == vista.jGastos) {
-            controgc = new controladorGastoComun();
+            ctrl = new controladorGastoComun();
         }
         if (e.getSource() == vista.jUsuario) {
             ctrl = new CtrlUsuario();
         }
         if (e.getSource() == vista.jInteres) {
-            controin = new controladorInteres();
+            ctrl = new controladorInteres();
         }
         if (e.getSource() == vista.jPropietarios) {
-            ctrlp = new CtrlPropietario();
+            ctrl = new CtrlPropietario();
         }
         if (e.getSource() == vista.jProveedores) {
-            conprov = new controladorProveedores();
+            ctrl = new controladorProveedores();
         }
         if (e.getSource() == vista.jResponsable) {
-            ctrlr = new CtrlResponsable();
+            ctrl = new CtrlResponsable();
         }
         if (e.getSource() == vista.jSancion) {
-            controsan = new controladorSancion();
+            ctrl = new controladorSancion();
         }
-        if (e.getSource() == vista.jUnidades) {
-            controuni = new controladorUnidades();
+        if (e.getSource() == vista.jTipoUnidad) {
+            ctrl = new CtrlTipoUnidad();
         }
         if (e.getSource() == vista.jTipo) {
-            controti = new CtrlTipoUsuario();
+            ctrl = new CtrlTipoUsuario();
         }
-        
+        if (e.getSource() == vista.jUnidades) {
+            ctrl = new controladorUnidades();
+        }
+
         //Procesos
         if (e.getSource() == vista.pCuentasporCobrar) {
-            controcpc = new controladorCuentasPorCobrar();
+            ctrl = new controladorCuentasPorCobrar();
         }
         if (e.getSource() == vista.pCuentapagar) {
-            ctrlCuentaP = new controladorCuenta_Pagar();
+            ctrl = new controladorCuenta_Pagar();
         }
         if (e.getSource() == vista.pVisitas) {
-            contVisita = new controladorRegistroVisita();
+            ctrl = new CtrlVisita();
         }
         if (e.getSource() == vista.pCuotas) {
-            controPagarCE = new controladorPagarCuotasEsp();
+            ctrl = new controladorPagarCuotasEsp();
         }
         if (e.getSource() == vista.pCerrarMes) {
-            controc = new controladorCerrarMes();
+            ctrl = new controladorCerrarMes();
         }
     }
 
@@ -185,6 +166,9 @@ public class controladorMenu implements ActionListener {
             }
             if ("Responsables".equals(funcionesX.getNombre())) {
                 vista.menuArchivo.add(vista.jResponsable);
+            }
+            if ("Tipo de unidad".equals(funcionesX.getNombre())) {
+                vista.menuArchivo.add(vista.jTipoUnidad);
             }
             if ("Tipo de usuario".equals(funcionesX.getNombre())) {
                 vista.menuArchivo.add(vista.jTipo);
