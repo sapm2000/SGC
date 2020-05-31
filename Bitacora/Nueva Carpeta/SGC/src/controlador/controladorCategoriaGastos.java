@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import java.awt.Component;
@@ -27,37 +22,34 @@ import javax.swing.table.TableRowSorter;
 import modelo.CategoriaGasto;
 import modelo.Funcion;
 import sgc.SGC;
-import vista.catalogoCategoriaGastos;
+import vista.Catalogo;
 import vista.categoriaGastos;
 
-/**
- *
- * @author rma
- */
 public class controladorCategoriaGastos implements ActionListener, MouseListener, KeyListener, WindowListener {
 
-    private catalogoCategoriaGastos catalogo;
+    private Catalogo catalogo;
 
     private categoriaGastos vista;
-    private CategoriaGasto modcg;
+    private CategoriaGasto modelo;
     DefaultTableModel dm;
     Funcion permiso;
     ArrayList<CategoriaGasto> listaCatGas;
 
     public controladorCategoriaGastos() {
-        this.catalogo = new catalogoCategoriaGastos();
+        this.catalogo = new Catalogo();
         this.vista = new categoriaGastos();
-        this.modcg = new CategoriaGasto();
-
-        this.catalogo.btn_nuevaCategoriaGasto.addActionListener(this);
-        this.catalogo.btnActivar.addActionListener(this);
+        this.modelo = new CategoriaGasto();
+        
+        
+        catalogo.lblTitulo.setText("Categoría Gastos");
+        this.catalogo.btnNuevo.addActionListener(this);
 
         this.vista.btnModificar.addActionListener(this);
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
         this.vista.btnEliminar.addActionListener(this);
-        this.catalogo.tabla_categoria_gastos.addMouseListener(this);
-        this.catalogo.txt_buscarCategoriaGasto.addKeyListener(this);
+        this.catalogo.tabla.addMouseListener(this);
+        this.catalogo.txtBuscar.addKeyListener(this);
         this.catalogo.addWindowListener(this);
         this.vista.txtnombre.addKeyListener(this);
         this.vista.txtdescripcion.addKeyListener(this);
@@ -67,7 +59,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
     public void Llenartabla(JTable tablaD) {
 
-        listaCatGas = modcg.lCategGas();
+        listaCatGas = modelo.lCategGas();
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -105,7 +97,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
     public void Llenartablai(JTable tablaD) {
 
-        listaCatGas = modcg.lCategGasi();
+        listaCatGas = modelo.lCategGasi();
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -156,7 +148,7 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == catalogo.btn_nuevaCategoriaGasto) {
+        if (e.getSource() == catalogo.btnNuevo) {
             this.vista.setVisible(true);
             this.vista.btnEliminar.setEnabled(false);
             this.vista.btnGuardar.setEnabled(true);
@@ -170,21 +162,21 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
         if (e.getSource() == vista.btnGuardar) {
             if (validar()) {
-                modcg.setNombre(vista.txtnombre.getText());
-                modcg.setDescripcion(vista.txtdescripcion.getText());
+                modelo.setNombre(vista.txtnombre.getText());
+                modelo.setDescripcion(vista.txtdescripcion.getText());
 
-                if (modcg.buscarInactivo(modcg)) {
-                    modcg.activar(modcg);
-                    modcg.modificar(modcg);
+                if (modelo.buscarInactivo(modelo)) {
+                    modelo.activar(modelo);
+                    modelo.modificar(modelo);
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
-                    Llenartabla(catalogo.tabla_categoria_gastos);
+                    Llenartabla(catalogo.tabla);
 
                 } else {
 
-                    if (modcg.registrar(modcg)) {
+                    if (modelo.registrar(modelo)) {
 
                         JOptionPane.showMessageDialog(null, "Registro Guardado");
-                        Llenartabla(catalogo.tabla_categoria_gastos);
+                        Llenartabla(catalogo.tabla);
 
                     } else {
 
@@ -197,15 +189,15 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         }
 
         if (e.getSource() == vista.btnEliminar) {
-            modcg.setId(Integer.parseInt(vista.txtId.getText()));
-            if (modcg.Buscarcon(modcg)) {
+            modelo.setId(Integer.parseInt(vista.txtId.getText()));
+            if (modelo.Buscarcon(modelo)) {
                 JOptionPane.showMessageDialog(null, "no se puede eliminar si tiene conceptos asignados");
             } else {
-                if (modcg.eliminar(modcg)) {
+                if (modelo.eliminar(modelo)) {
 
                     JOptionPane.showMessageDialog(null, "Registro Eliminado");
                     vista.dispose();
-                    Llenartabla(catalogo.tabla_categoria_gastos);
+                    Llenartabla(catalogo.tabla);
 
                 } else {
 
@@ -218,20 +210,20 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
         if (e.getSource() == vista.btnModificar) {
             if (validar()) {
-                modcg.setNombre(vista.txtnombre.getText());
-                modcg.setDescripcion(vista.txtdescripcion.getText());
-                modcg.setId(Integer.parseInt(vista.txtId.getText()));
+                modelo.setNombre(vista.txtnombre.getText());
+                modelo.setDescripcion(vista.txtdescripcion.getText());
+                modelo.setId(Integer.parseInt(vista.txtId.getText()));
 
-                if (modcg.buscarInactivo(modcg)) {
+                if (modelo.buscarInactivo(modelo)) {
 
                     JOptionPane.showMessageDialog(null, "no puede colocar el nombre de una categoria que ya existio, si quiere colocar este nombre debe registrarlo nuevamente");
 
                 } else {
-                    if (modcg.modificar(modcg)) {
+                    if (modelo.modificar(modelo)) {
 
                         JOptionPane.showMessageDialog(null, "Registro modificado");
                         vista.dispose();
-                        Llenartabla(catalogo.tabla_categoria_gastos);
+                        Llenartabla(catalogo.tabla);
 
                     } else {
 
@@ -262,9 +254,9 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
     public void mouseClicked(MouseEvent e) {
         // primero, obtengo la fila seleccionada
 
-        int fila = this.catalogo.tabla_categoria_gastos.getSelectedRow(); // primero, obtengo la fila seleccionada
-        int columna = this.catalogo.tabla_categoria_gastos.getSelectedColumn(); // luego, obtengo la columna seleccionada
-        String dato = String.valueOf(this.catalogo.tabla_categoria_gastos.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+        int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int columna = this.catalogo.tabla.getSelectedColumn(); // luego, obtengo la columna seleccionada
+        String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
 
         if (permiso.getModificar()) {
             vista.btnModificar.setEnabled(true);
@@ -273,15 +265,15 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
             vista.btnEliminar.setEnabled(true);
         }
 
-        modcg.setNombre(String.valueOf(dato));
+        modelo.setNombre(String.valueOf(dato));
 
-        modcg.Buscar(modcg);
+        modelo.Buscar(modelo);
 
         vista.setVisible(true);
-        vista.txtnombre.setText(modcg.getNombre());
+        vista.txtnombre.setText(modelo.getNombre());
 
-        vista.txtdescripcion.setText(modcg.getDescripcion());
-        vista.txtId.setText(Integer.toString(modcg.getId()));
+        vista.txtdescripcion.setText(modelo.getDescripcion());
+        vista.txtId.setText(Integer.toString(modelo.getId()));
 
         vista.btnGuardar.setEnabled(false);
         vista.txtId.setVisible(false);
@@ -333,9 +325,9 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getSource() == catalogo.txt_buscarCategoriaGasto) {
+        if (e.getSource() == catalogo.txtBuscar) {
 
-            filtro(catalogo.txt_buscarCategoriaGasto.getText(), catalogo.tabla_categoria_gastos);
+            filtro(catalogo.txtBuscar.getText(), catalogo.tabla);
         } else {
 
         }
@@ -343,11 +335,11 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
     @Override
     public void windowOpened(WindowEvent e) {
-        Llenartabla(catalogo.tabla_categoria_gastos);
+        Llenartabla(catalogo.tabla);
                 permisoBtn();
         
         if (permiso.getRegistrar()) {
-            catalogo.btn_nuevaCategoriaGasto.setEnabled(true);
+            catalogo.btnNuevo.setEnabled(true);
         }
 
         Component[] components = vista.jPanel2.getComponents();

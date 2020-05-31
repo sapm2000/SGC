@@ -23,14 +23,14 @@ import modelo.CategoriaGasto;
 import modelo.Funcion;
 import modelo.ModeloConceptoGastos;
 import sgc.SGC;
-import vista.catalogoConceptoGasto;
+import vista.Catalogo;
 import vista.conceptoGasto;
 
 public class controladorConceptoGasto implements ActionListener, MouseListener, KeyListener, WindowListener {
 
-    private catalogoConceptoGasto catalogo;
+    private Catalogo catalogo;
     private conceptoGasto vista;
-    private ModeloConceptoGastos modCatGas;
+    private ModeloConceptoGastos modelo;
     private CategoriaGasto modCat;
 
     Funcion permiso;
@@ -40,14 +40,13 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
 
     public controladorConceptoGasto() {
 
-        this.catalogo = new catalogoConceptoGasto();
+        this.catalogo = new Catalogo();
         this.vista = new conceptoGasto();
-        this.modCatGas = new ModeloConceptoGastos();
+        this.modelo = new ModeloConceptoGastos();
         this.modCat = new CategoriaGasto();
 
-        this.catalogo.btnActivar.addActionListener(this);
-
-        this.catalogo.btnNuevoRegistro.addActionListener(this);
+        catalogo.lblTitulo.setText("Concepto Gasto");
+        this.catalogo.btnNuevo.addActionListener(this);
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
         this.vista.btnModificar.addActionListener(this);
@@ -55,7 +54,7 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
         this.vista.txtDescripcion.addKeyListener(this);
         this.vista.btnEliminar.addActionListener(this);
         this.catalogo.addWindowListener(this);
-        this.catalogo.jTable.addMouseListener(this);
+        this.catalogo.tabla.addMouseListener(this);
         this.catalogo.txtBuscar.addKeyListener(this);
 
         this.catalogo.setVisible(true);
@@ -67,26 +66,26 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
         if (e.getSource() == vista.btnGuardar) {
             if (validar()) {
 
-                modCatGas.setNombre_Concepto(vista.txtNombreC.getText());
-                modCatGas.setDescripcion(vista.txtDescripcion.getText());
+                modelo.setNombre_Concepto(vista.txtNombreC.getText());
+                modelo.setDescripcion(vista.txtDescripcion.getText());
                 int ind = vista.cbxCategoria.getSelectedIndex() - 1;
-                modCatGas.cate.setId(listaCatGas.get(ind).getId());
+                modelo.cate.setId(listaCatGas.get(ind).getId());
                 if (ind == -1) {
                     JOptionPane.showMessageDialog(null, "por favor seleccione una categoria");
                 } else {
 
-                    if (modCatGas.buscarInactivo(modCatGas)) {
-                        modCatGas.activar(modCatGas);
-                        modCatGas.modificarConcepto(modCatGas);
+                    if (modelo.buscarInactivo(modelo)) {
+                        modelo.activar(modelo);
+                        modelo.modificarConcepto(modelo);
                         JOptionPane.showMessageDialog(null, "Registro Guardado");
-                        Llenartabla(catalogo.jTable);
+                        Llenartabla(catalogo.tabla);
 
                     } else {
 
-                        if (modCatGas.registrarConcepto(modCatGas)) {
+                        if (modelo.registrarConcepto(modelo)) {
 
                             JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
-                            Llenartabla(catalogo.jTable);
+                            Llenartabla(catalogo.tabla);
 
                         } else {
 
@@ -100,26 +99,26 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
 
         if (e.getSource() == vista.btnModificar) {
             if (validar()) {
-                modCatGas.setId(Integer.parseInt(vista.txtId.getText()));
-                modCatGas.setNombre_Concepto(vista.txtNombreC.getText());
-                modCatGas.setDescripcion(vista.txtDescripcion.getText());
+                modelo.setId(Integer.parseInt(vista.txtId.getText()));
+                modelo.setNombre_Concepto(vista.txtNombreC.getText());
+                modelo.setDescripcion(vista.txtDescripcion.getText());
                 int ind = vista.cbxCategoria.getSelectedIndex() - 1;
-                modCatGas.cate.setId(listaCatGas.get(ind).getId());
+                modelo.cate.setId(listaCatGas.get(ind).getId());
                 if (ind == -1) {
                     JOptionPane.showMessageDialog(null, "por favor seleccione una categoria");
                 } else {
 
-                    if (modCatGas.buscarInactivo(modCatGas)) {
+                    if (modelo.buscarInactivo(modelo)) {
 
                         JOptionPane.showMessageDialog(null, "no puede colocar un concepto que ya existio, si quiere colocar este concepto debe registrarlo nuevamente");
 
                     } else {
 
-                        if (modCatGas.modificarConcepto(modCatGas)) {
+                        if (modelo.modificarConcepto(modelo)) {
 
                             JOptionPane.showMessageDialog(null, "Registro modificado");
                             vista.dispose();
-                            Llenartabla(catalogo.jTable);
+                            Llenartabla(catalogo.tabla);
                             limpiar();
 
                         } else {
@@ -132,14 +131,14 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
             }
         }
         if (e.getSource() == vista.btnEliminar) {
-            if (modCatGas.Buscarcuo(modCatGas)) {
+            if (modelo.Buscarcuo(modelo)) {
                 JOptionPane.showMessageDialog(null, "no se puede eliminar si tiene gastos por procesar asignados");
             } else {
-                if (modCatGas.eliminar(modCatGas)) {
-                    modCatGas.setId(Integer.parseInt(vista.txtId.getText()));
+                if (modelo.eliminar(modelo)) {
+                    modelo.setId(Integer.parseInt(vista.txtId.getText()));
                     JOptionPane.showMessageDialog(null, "Registro Eliminado");
                     vista.dispose();
-                    Llenartabla(catalogo.jTable);
+                    Llenartabla(catalogo.tabla);
 
                 } else {
 
@@ -154,7 +153,7 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
             limpiar();
         }
 
-        if (e.getSource() == catalogo.btnNuevoRegistro) {
+        if (e.getSource() == catalogo.btnNuevo) {
             limpiar();
             this.vista.setVisible(true);
             vista.txtId.setVisible(false);
@@ -179,7 +178,7 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
 
     public void Llenartabla(JTable tablaD) {
 
-        listaConGas = modCatGas.listarConcepto();
+        listaConGas = modelo.listarConcepto();
 
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
@@ -219,7 +218,7 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
 
     public void Llenartabla1(JTable tablaD) {
 
-        listaConGas = modCatGas.listarConcepto1();
+        listaConGas = modelo.listarConcepto1();
 
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
@@ -309,10 +308,10 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
         }
     }
 
-    private void filtro(String consulta, JTable jTableBuscar) {
-        dm = (DefaultTableModel) jTableBuscar.getModel();
+    private void filtro(String consulta, JTable tablaBuscar) {
+        dm = (DefaultTableModel) tablaBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
-        jTableBuscar.setRowSorter(tr);
+        tablaBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));
     }
 
@@ -330,8 +329,8 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int fila = this.catalogo.jTable.getSelectedRow(); // primero, obtengo la fila seleccionada
-        int columna = this.catalogo.jTable.getSelectedColumn(); // luego, obtengo la columna seleccionada
+        int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int columna = this.catalogo.tabla.getSelectedColumn(); // luego, obtengo la columna seleccionada
 
         if (permiso.getModificar()) {
             vista.btnModificar.setEnabled(true);
@@ -340,22 +339,22 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
             vista.btnEliminar.setEnabled(true);
         }
 
-        String dato = String.valueOf(this.catalogo.jTable.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+        String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
         Boolean resultado = true;
         String msj = "";
         vista.cbxCategoria.removeAllItems();
 
-        modCatGas.setNombre_Concepto(String.valueOf(dato));
+        modelo.setNombre_Concepto(String.valueOf(dato));
 
-        modCatGas.buscarC(modCatGas);
+        modelo.buscarC(modelo);
 
         vista.setVisible(true);
         listaCatGas = modCat.lCategGas();
         crearCbxCategoria(listaCatGas);
-        vista.txtId.setText(modCatGas.getId() + "");
-        vista.txtNombreC.setText(modCatGas.getNombre_Concepto());
-        vista.txtDescripcion.setText(modCatGas.getDescripcion());
-        vista.cbxCategoria.setSelectedItem(modCatGas.cate.getNombre());
+        vista.txtId.setText(modelo.getId() + "");
+        vista.txtNombreC.setText(modelo.getNombre_Concepto());
+        vista.txtDescripcion.setText(modelo.getDescripcion());
+        vista.cbxCategoria.setSelectedItem(modelo.cate.getNombre());
         vista.txtId.setEnabled(false);
         vista.txtId.setVisible(false);
         vista.btnGuardar.setEnabled(false);
@@ -399,18 +398,18 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
     @Override
     public void keyReleased(KeyEvent e) {
         if (e.getSource() == catalogo.txtBuscar) {
-            filtro(catalogo.txtBuscar.getText(), catalogo.jTable);
+            filtro(catalogo.txtBuscar.getText(), catalogo.tabla);
         } else {
         }
     }
 
     @Override
     public void windowOpened(WindowEvent e) {
-        Llenartabla(catalogo.jTable);
+        Llenartabla(catalogo.tabla);
         permisoBtn();
 
         if (permiso.getRegistrar()) {
-            catalogo.btnNuevoRegistro.setEnabled(true);
+            catalogo.btnNuevo.setEnabled(true);
         }
 
         Component[] components = vista.jPanel2.getComponents();

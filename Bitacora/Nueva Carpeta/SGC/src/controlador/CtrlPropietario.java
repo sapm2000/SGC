@@ -37,7 +37,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
         catalogo = new Catalogo();
         modelo = new Propietarios();
         
-        catalogo.lblTitulo.setText("Gestionar Propietario.");
+        catalogo.lblTitulo.setText("Propietario");
 
         catalogo.btnNuevo.addActionListener(this);
         catalogo.tabla.addMouseListener(this);
