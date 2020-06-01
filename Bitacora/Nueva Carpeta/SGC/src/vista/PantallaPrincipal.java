@@ -70,6 +70,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jProveedores = new javax.swing.JMenuItem();
         jResponsable = new javax.swing.JMenuItem();
         jSancion = new javax.swing.JMenuItem();
+        jTipoUnidad = new javax.swing.JMenuItem();
         jTipo = new javax.swing.JMenuItem();
         jUnidades = new javax.swing.JMenuItem();
         menuProceso = new javax.swing.JMenu();
@@ -345,6 +346,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
         menuArchivo.add(jSancion);
+
+        jTipoUnidad.setText("Tipos de Unidades");
+        menuArchivo.add(jTipoUnidad);
 
         jTipo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/team.png"))); // NOI18N
@@ -654,6 +658,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public javax.swing.JMenuItem jResponsable;
     public javax.swing.JMenuItem jSancion;
     public javax.swing.JMenuItem jTipo;
+    public javax.swing.JMenuItem jTipoUnidad;
     public javax.swing.JMenuItem jUnidades;
     public javax.swing.JMenuItem jUsuario;
     public javax.swing.JMenu menuArchivo;

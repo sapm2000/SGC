@@ -26,10 +26,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.Asambleas;
+import modelo.Funcion;
 import modelo.Propietarios;
-import vista.PantallaPrincipal1;
+import sgc.SGC;
+import vista.Catalogo;
 import vista.asambleas;
-import vista.catalogoAsambleas;
 
 /**
  *
@@ -37,30 +38,32 @@ import vista.catalogoAsambleas;
  */
 public class controladorAsambleas implements ActionListener, KeyListener, MouseListener, WindowListener {
 
-    private catalogoAsambleas cataa;
-    private asambleas as;
+    private Catalogo catalogo;
+    private asambleas vista;
     DefaultTableModel dm;
     ArrayList<Propietarios> listaPropietarios;
     ArrayList<Asambleas> listaasambleas;
     ArrayList<Asambleas> listapropmod;
+    Funcion permiso;
     private Asambleas modasa;
     private Propietarios modpro;
-    private PantallaPrincipal1 panta1;
 
     public controladorAsambleas() {
-        this.cataa = new catalogoAsambleas();
-        this.as = new asambleas();
+        this.catalogo = new Catalogo();
+        this.vista = new asambleas();
         this.modasa = new Asambleas();
         this.modpro = new Propietarios();
+        
+        catalogo.lblTitulo.setText("Asambleas");
        
-        this.cataa.jTable1.addMouseListener(this);
+        this.catalogo.tabla.addMouseListener(this);
 
-        this.cataa.addWindowListener(this);
-        this.cataa.jButton2.addActionListener(this);
-        this.as.txtBuscarPropietarios.addKeyListener(this);
+        this.catalogo.addWindowListener(this);
+        this.catalogo.btnNuevo.addActionListener(this);
+        this.vista.txtBuscarPropietarios.addKeyListener(this);
 
-        this.as.btnGuardar.addActionListener(this);
-          cataa.setVisible(true);
+        this.vista.btnGuardar.addActionListener(this);
+          catalogo.setVisible(true);
 
         //this.as.btnModificar.addActionListener(this);
     }
@@ -263,30 +266,30 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == cataa.jButton2) {
-            this.as.setVisible(true);
+        if (e.getSource() == catalogo.btnNuevo) {
+            this.vista.setVisible(true);
 //            this.as.btnModificar.setEnabled(false);
-            this.as.btnGuardar.setEnabled(true);
+            this.vista.btnGuardar.setEnabled(true);
            
-            Llenartabla(as.jTable1);
-            addCheckBox(5, as.jTable1);
-            as.txtNombreAsamblea.setText("");
-            as.txaDescripcion.setText("");
-            as.jDateChooser2.setDate(null);
+            Llenartabla(vista.jTable1);
+            addCheckBox(5, vista.jTable1);
+            vista.txtNombreAsamblea.setText("");
+            vista.txaDescripcion.setText("");
+            vista.jDateChooser2.setDate(null);
 
         }
 
-        if (e.getSource() == as.btnGuardar) {
+        if (e.getSource() == vista.btnGuardar) {
             if (validar()) {
                 int j = 0;
-                modasa.setNombre_asamblea(as.txtNombreAsamblea.getText());
-                modasa.setDescripcion(as.txaDescripcion.getText());
+                modasa.setNombre_asamblea(vista.txtNombreAsamblea.getText());
+                modasa.setDescripcion(vista.txaDescripcion.getText());
              
 
-                java.sql.Date sqlDate = convert(as.jDateChooser2.getDate());
+                java.sql.Date sqlDate = convert(vista.jDateChooser2.getDate());
                 modasa.setFecha(sqlDate);
-                for (int i = 0; i < as.jTable1.getRowCount(); i++) {
-                    if (valueOf(as.jTable1.getValueAt(i, 5)) == "true") {
+                for (int i = 0; i < vista.jTable1.getRowCount(); i++) {
+                    if (valueOf(vista.jTable1.getValueAt(i, 5)) == "true") {
 
                         j = j + 1;
 
@@ -302,18 +305,18 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
                         modasa.buscId(modasa);
 
-                        for (int i = 0; i < as.jTable1.getRowCount(); i++) {
-                            if (valueOf(as.jTable1.getValueAt(i, 5)) == "true") {
+                        for (int i = 0; i < vista.jTable1.getRowCount(); i++) {
+                            if (valueOf(vista.jTable1.getValueAt(i, 5)) == "true") {
 
-                                String valor = String.valueOf(as.jTable1.getValueAt(i, 0));
+                                String valor = String.valueOf(vista.jTable1.getValueAt(i, 0));
                                 modasa.setId_propietario(valor);
 
                                 modasa.registrar_asamblea_propietario(modasa);
 
                             }
                         }
-                        Llenartablaasambleas(cataa.jTable1);
-                        as.dispose();
+                        Llenartablaasambleas(catalogo.tabla);
+                        vista.dispose();
 
                     } else {
 
@@ -336,8 +339,8 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
                 java.sql.Date sqlDate = convert(as.jDateChooser2.getDate());
                 modasa.setFecha(sqlDate);
-                for (int i = 0; i < as.jTable1.getRowCount(); i++) {
-                    if (valueOf(as.jTable1.getValueAt(i, 5)) == "true") {
+                for (int i = 0; i < as.tabla.getRowCount(); i++) {
+                    if (valueOf(as.tabla.getValueAt(i, 5)) == "true") {
 
                         j = j + 1;
 
@@ -353,17 +356,17 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
                         modasa.borrarpuenteasamblea(modasa);
 
-                        for (int i = 0; i < as.jTable1.getRowCount(); i++) {
-                            if (valueOf(as.jTable1.getValueAt(i, 5)) == "true") {
+                        for (int i = 0; i < as.tabla.getRowCount(); i++) {
+                            if (valueOf(as.tabla.getValueAt(i, 5)) == "true") {
 
-                                String valor = String.valueOf(as.jTable1.getValueAt(i, 0));
+                                String valor = String.valueOf(as.tabla.getValueAt(i, 0));
                                 modasa.setId_propietario(valor);
 
                                 modasa.registrar_asamblea_propietario(modasa);
 
                             }
                         }
-                        Llenartablaasambleas(cataa.jTable1);
+                        Llenartablaasambleas(cataa.tabla);
                         as.dispose();
 
                     } else {
@@ -375,6 +378,18 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
             }
         }
 */
+    }
+    
+        private void permisoBtn() {
+
+        for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
+            if (funcionbtn.getNombre().equals("Responsables")) {
+                permiso = funcionbtn;
+
+            }
+
+        }
+
     }
 
     @Override
@@ -389,34 +404,34 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getSource() == as.txtBuscarPropietarios) {
+        if (e.getSource() == vista.txtBuscarPropietarios) {
 
-            filtro(as.txtBuscarPropietarios.getText(), as.jTable1);
+            filtro(vista.txtBuscarPropietarios.getText(), vista.jTable1);
         }
-        if (e.getSource() == cataa.jTextField1) {
+        if (e.getSource() == catalogo.txtBuscar) {
 
-            filtro(cataa.jTextField1.getText(), cataa.jTable1);
+            filtro(catalogo.txtBuscar.getText(), catalogo.tabla);
 
         }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int fila = this.cataa.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
-        int columna = this.cataa.jTable1.getSelectedColumn(); // luego, obtengo la columna seleccionada
-        String dato = String.valueOf(this.cataa.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+        int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int columna = this.catalogo.tabla.getSelectedColumn(); // luego, obtengo la columna seleccionada
+        String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
         modasa.setId(Integer.parseInt(dato));
        
         modasa.buscarAsambleas(modasa);
-        this.as.setVisible(true);
-        as.txtid.setVisible(false);
-        as.txtid.setText(dato);
-        as.txtNombreAsamblea.setText(modasa.getNombre_asamblea());
-        as.txaDescripcion.setText(modasa.getDescripcion());
-        as.jDateChooser2.setDate(modasa.getFecha());
-        llenartablapropietariomodificar(as.jTable1);
-        addCheckBox(5, as.jTable1);;
-        as.btnGuardar.setEnabled(false);
+        this.vista.setVisible(true);
+        vista.txtid.setVisible(false);
+        vista.txtid.setText(dato);
+        vista.txtNombreAsamblea.setText(modasa.getNombre_asamblea());
+        vista.txaDescripcion.setText(modasa.getDescripcion());
+        vista.jDateChooser2.setDate(modasa.getFecha());
+        llenartablapropietariomodificar(vista.jTable1);
+        addCheckBox(5, vista.jTable1);;
+        vista.btnGuardar.setEnabled(false);
 //        as.btnModificar.setEnabled(true);
     }
 
@@ -443,11 +458,16 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
     @Override
     public void windowOpened(WindowEvent e) {
    
-        Llenartablaasambleas(cataa.jTable1);
+        Llenartablaasambleas(catalogo.tabla);
+        permisoBtn();
         
-        Component[] components =as.jPanel4.getComponents();
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
+        
+        Component[] components =vista.jPanel4.getComponents();
         JComponent[] com = {
-            as.txtNombreAsamblea, as.jDateChooser2
+            vista.txtNombreAsamblea, vista.jDateChooser2
         };
         Validacion.copiar(components);
         Validacion.pegar(com);
@@ -489,10 +509,10 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
     }
 
-    private void filtro(String consulta, JTable jtableBuscar) {
-        dm = (DefaultTableModel) jtableBuscar.getModel();
+    private void filtro(String consulta, JTable tablaBuscar) {
+        dm = (DefaultTableModel) tablaBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
-        jtableBuscar.setRowSorter(tr);
+        tablaBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));
 
     }
@@ -502,12 +522,12 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         Boolean resultado = true;
         String msj = "";
 
-        if (as.txtNombreAsamblea.getText().isEmpty()) {
+        if (vista.txtNombreAsamblea.getText().isEmpty()) {
 
             msj += "El campo nombre de la asamblea no puede estar vacio\n";
             resultado = false;
         }
-        if (as.txaDescripcion.getText().isEmpty()) {
+        if (vista.txaDescripcion.getText().isEmpty()) {
 
             msj += "El campo descripción no puede estar vacio\n";
             resultado = false;

@@ -20,26 +20,30 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Banco;
 import modelo.Cuenta;
-import vista.catalogoCuenta;
+import modelo.Funcion;
+import sgc.SGC;
+import vista.Catalogo;
 import vista.cuenta;
 
 public class controladorCuenta implements ActionListener, MouseListener, KeyListener, WindowListener {
 
-    private catalogoCuenta catalogo;
+    private Catalogo catalogo;
     private cuenta vista;
     private Cuenta modelo;
     private Banco modBanco;
+    Funcion permiso;
 
     private ArrayList<Cuenta> lista;
     private ArrayList<Banco> listaBanco;
 
     public controladorCuenta() {
-        this.catalogo = new catalogoCuenta();
+        this.catalogo = new Catalogo();
         this.vista = new cuenta();
         this.modelo = new Cuenta();
         this.modBanco = new Banco();
-
-        this.catalogo.btn_nuevaCuenta.addActionListener(this);
+        
+        catalogo.lblTitulo.setText("Cuenta");
+        this.catalogo.btnNuevo.addActionListener(this);
         this.catalogo.tabla.addMouseListener(this);
         this.catalogo.addWindowListener(this);
 
@@ -61,9 +65,9 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
 
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == catalogo.btn_nuevaCuenta) {
+        if (e.getSource() == catalogo.btnNuevo) {
             limpiar();
-            
+
             vista.txtN_cuenta.setEditable(true);
 
             this.vista.btnGuardar.setEnabled(true);
@@ -99,7 +103,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
                     }
 
                 } else {
-                    if (modelo.existe()) {
+                    if (!modelo.existe()) {
                         if (modelo.registrar()) {
                             JOptionPane.showMessageDialog(null, "Registro guardado");
                             llenarTabla(catalogo.tabla);
@@ -146,7 +150,7 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
             modelo.setN_cuenta(vista.txtN_cuenta.getText());
 
             modelo.eliminar();
-            JOptionPane.showMessageDialog(null, "registro eliminado");
+            JOptionPane.showMessageDialog(null, "Registro eliminado");
             vista.dispose();
             llenarTabla(catalogo.tabla);
         }
@@ -167,6 +171,18 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
         }
     }
 
+    private void permisoBtn() {
+
+        for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
+            if (funcionbtn.getNombre().equals("Responsables")) {
+                permiso = funcionbtn;
+
+            }
+
+        }
+
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == catalogo.tabla) {
@@ -174,6 +190,13 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
 
             fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
             modelo = lista.get(fila);
+
+            if (permiso.getModificar()) {
+                vista.btnModificar.setEnabled(true);
+            }
+            if (permiso.getEliminar()) {
+                vista.btnEliminar.setEnabled(true);
+            }
 
             vista.cbxCedula.setSelectedItem(modelo.getBeneficiario().getCedula().split("-")[0]);
             vista.txtCedula.setText(modelo.getBeneficiario().getCedula().split("-")[1]);
@@ -241,8 +264,8 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getSource() == catalogo.txtBuscarCuenta) {
-            filtro(catalogo.txtBuscarCuenta.getText(), catalogo.tabla);
+        if (e.getSource() == catalogo.txtBuscar) {
+            filtro(catalogo.txtBuscar.getText(), catalogo.tabla);
         }
     }
 
@@ -250,6 +273,11 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
     public void windowOpened(WindowEvent e) {
         if (e.getSource() == catalogo) {
             llenarTabla(catalogo.tabla);
+            permisoBtn();
+
+            if (permiso.getRegistrar()) {
+                catalogo.btnNuevo.setEnabled(true);
+            }
         }
 
         if (e.getSource() == vista) {

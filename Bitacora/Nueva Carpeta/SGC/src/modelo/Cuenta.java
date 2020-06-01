@@ -14,16 +14,17 @@ import sgc.SGC;
 public class Cuenta extends ConexionBD {
 
     private String n_cuenta;
-    private Persona beneficiario = new Persona();
     private String tipo;
     private Banco banco = new Banco();
+    private Persona beneficiario = new Persona();
+    private Condominio condominio = new Condominio();
 
     Connection con = getConexion();
 
     public boolean buscarInactivo(Cuenta modcu) {
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
         String sql = "SELECT * FROM cuenta WHERE n_cuenta=? and activo=false";
 
         try {
@@ -172,12 +173,11 @@ public class Cuenta extends ConexionBD {
     }
 
     public Boolean registrar() {
-
         ps = null;
         Connection con = getConexion();
         int ind;
 
-        String sql = "INSERT INTO cuenta (n_cuenta, tipo, id_banco, ci_persona) VALUES (?,?,?,?);";
+        String sql = "INSERT INTO cuenta (n_cuenta, tipo, id_banco, ci_persona, rif_condominio) VALUES (?,?,?,?,?);";
 
         try {
             ind = 1;
@@ -188,13 +188,13 @@ public class Cuenta extends ConexionBD {
             ps.setString(ind++, getTipo());
             ps.setInt(ind++, getBanco().getId());
             ps.setString(ind++, getBeneficiario().getCedula());
+            ps.setString(ind++, SGC.condominioActual.getRif());
 
             ps.execute();
 
             return true;
 
         } catch (SQLException e) {
-
             System.err.println(e);
             return false;
 
@@ -215,12 +215,11 @@ public class Cuenta extends ConexionBD {
 
     public ArrayList<Cuenta> listarcuenta() {
         ArrayList listaCuenta = new ArrayList();
-        Cuenta modcu;
+        Cuenta cuenta;
 
         Connection con = getConexion();
         ps = null;
         rs = null;
-        int ind;
 
         String sql = "SELECT * FROM v_cuenta;";
 
@@ -228,22 +227,21 @@ public class Cuenta extends ConexionBD {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
 
-            ind = 1;
-
             while (rs.next()) {
+                cuenta = new Cuenta();
 
-                modcu = new Cuenta();
+                cuenta.setN_cuenta(rs.getString("n_cuenta"));
+                cuenta.setTipo(rs.getString("tipo"));
+                cuenta.banco.setId(rs.getInt("id_banco"));
+                cuenta.banco.setNombre_banco(rs.getString("banco"));
+                cuenta.getBeneficiario().setCedula(rs.getString("ci_persona"));
+                cuenta.getBeneficiario().setpNombre(rs.getString("nombre"));
+                cuenta.getBeneficiario().setpApellido(rs.getString("apellido"));
+                cuenta.getCondominio().setRif(rs.getString("rif_condominio"));
 
-                modcu.setN_cuenta(rs.getString(ind++));
-                modcu.setTipo(rs.getString(ind++));
-                modcu.banco.setId(rs.getInt(ind++));
-                modcu.banco.setNombre_banco(rs.getString(ind++));
-                modcu.getBeneficiario().setCedula(rs.getString(ind++));
-                modcu.getBeneficiario().setpNombre(rs.getString(ind++));
-                modcu.getBeneficiario().setpApellido(rs.getString(ind++));
-
-                listaCuenta.add(modcu);
+                listaCuenta.add(cuenta);
             }
+
         } catch (SQLException e) {
             System.err.println(e);
 
@@ -338,13 +336,13 @@ public class Cuenta extends ConexionBD {
     }
 
     public boolean modificar() {
-        ps = null;
-        Connection con = getConexion();
-        int ind;
-
-        String sql = "UPDATE cuenta SET tipo=?, id_banco=?, ci_persona=? WHERE n_cuenta=?";
-
         try {
+            ps = null;
+            Connection con = getConexion();
+            int ind;
+
+            String sql = "UPDATE cuenta SET tipo=?, id_banco=?, ci_persona=? WHERE n_cuenta=?";
+
             ind = 1;
 
             ps = con.prepareStatement(sql);
@@ -537,6 +535,14 @@ public class Cuenta extends ConexionBD {
 
     public void setBanco(Banco banco) {
         this.banco = banco;
+    }
+
+    public Condominio getCondominio() {
+        return condominio;
+    }
+
+    public void setCondominio(Condominio condominio) {
+        this.condominio = condominio;
     }
 
 }

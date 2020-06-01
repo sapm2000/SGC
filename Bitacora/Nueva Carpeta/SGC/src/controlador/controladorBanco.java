@@ -21,42 +21,40 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.Banco;
+import modelo.Funcion;
+import sgc.SGC;
+import vista.Catalogo;
 import vista.banco;
-import vista.catalogoBanco;
 
-/**
- *
- * @author rma
- */
 public class controladorBanco implements ActionListener, MouseListener, KeyListener, WindowListener {
 
-    private banco ban;
-    private catalogoBanco cban;
+    private banco vista;
+    private Catalogo catalogo;
     private Banco modban;
+    private Funcion permiso;
 
     DefaultTableModel dm;
     DefaultComboBoxModel dmCbx;
     ArrayList<Banco> listaBanco;
 
     public controladorBanco() {
-        this.ban = new banco();
-        this.cban = new catalogoBanco();
+        this.vista = new banco();
+        this.catalogo = new Catalogo();
         this.modban = new Banco();
 
-        //crearCbxBanco(modban.listar());
-        //CrearCbx(ban.cbxBanco, modban.listar());      
-        this.cban.btnNuevo_banco.addActionListener(this);
-        this.cban.btnDesactivar.addActionListener(this);
-        this.ban.btnGuardar.addActionListener(this);
-        this.ban.btnLimpiar.addActionListener(this);
-        this.ban.btnEliminar.addActionListener(this);
-        this.ban.btnModificar.addActionListener(this);
-        this.cban.tabla_bancos.addMouseListener(this);
-        this.cban.tabla_bancos.addKeyListener(this);
-        this.cban.txtBuscar_banco.addKeyListener(this);
-        this.cban.addWindowListener(this);
-        this.ban.txtnombre_banco.addKeyListener(this);
-        cban.setVisible(true);
+        catalogo.lblTitulo.setText("Banco");
+        
+        this.catalogo.btnNuevo.addActionListener(this);
+        this.vista.btnGuardar.addActionListener(this);
+        this.vista.btnLimpiar.addActionListener(this);
+        this.vista.btnEliminar.addActionListener(this);
+        this.vista.btnModificar.addActionListener(this);
+        this.catalogo.tabla.addMouseListener(this);
+        this.catalogo.tabla.addKeyListener(this);
+        this.catalogo.txtBuscar.addKeyListener(this);
+        this.catalogo.addWindowListener(this);
+        this.vista.txtnombre_banco.addKeyListener(this);
+        catalogo.setVisible(true);
 
     }
 
@@ -100,32 +98,32 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == cban.btnNuevo_banco) {
+        if (e.getSource() == catalogo.btnNuevo) {
 
-            this.ban.setVisible(true);
-            this.ban.btnEliminar.setEnabled(false);
-            this.ban.btnGuardar.setEnabled(true);
-            this.ban.txtid.setVisible(false);
-            this.ban.btnModificar.setEnabled(false);
-            ban.txtnombre_banco.setText("");
-            ban.txtid.setText("");
+            this.vista.setVisible(true);
+            this.vista.btnEliminar.setEnabled(false);
+            this.vista.btnGuardar.setEnabled(true);
+            this.vista.txtid.setVisible(false);
+            this.vista.btnModificar.setEnabled(false);
+            vista.txtnombre_banco.setText("");
+            vista.txtid.setText("");
 
         }
 
-        if (e.getSource() == ban.btnGuardar) {
+        if (e.getSource() == vista.btnGuardar) {
             if (validar()) {
-                modban.setNombre_banco(ban.txtnombre_banco.getText());
+                modban.setNombre_banco(vista.txtnombre_banco.getText());
                 if (modban.buscarInactivo(modban)) {
                     modban.activar(modban);
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
-                    Llenartabla(cban.tabla_bancos);
+                    Llenartabla(catalogo.tabla);
                     limpiar();
                 } else {
 
                     if (modban.registrar(modban)) {
 
                         JOptionPane.showMessageDialog(null, "Registro Guardado");
-                        Llenartabla(cban.tabla_bancos);
+                        Llenartabla(catalogo.tabla);
                         limpiar();
 
                     } else {
@@ -138,9 +136,9 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
         }
 
-        if (e.getSource() == ban.btnEliminar) {
+        if (e.getSource() == vista.btnEliminar) {
 
-            modban.setId(Integer.parseInt(ban.txtid.getText()));
+            modban.setId(Integer.parseInt(vista.txtid.getText()));
 
             if (modban.buscacuentas(modban)) {
                 JOptionPane.showMessageDialog(null, "No puede eliminar el banco porque tiene cuentas asignadas");
@@ -149,8 +147,8 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
                 if (modban.eliminar(modban)) {
 
                     JOptionPane.showMessageDialog(null, "Registro Eliminado");
-                    ban.dispose();
-                    Llenartabla(cban.tabla_bancos);
+                    vista.dispose();
+                    Llenartabla(catalogo.tabla);
 
                 } else {
 
@@ -161,21 +159,21 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
             }
         }
 
-        if (e.getSource() == ban.btnModificar) {
+        if (e.getSource() == vista.btnModificar) {
             if (validar()) {
-                modban.setNombre_banco(ban.txtnombre_banco.getText());
-                modban.setId(Integer.parseInt(ban.txtid.getText()));
+                modban.setNombre_banco(vista.txtnombre_banco.getText());
+                modban.setId(Integer.parseInt(vista.txtid.getText()));
 
                 if (modban.buscarInactivo(modban)) {
-                  
+
                     JOptionPane.showMessageDialog(null, "no puede colocar el nombre de un banco que ya existio, si quiere colocar este nombre debe registrarlo nuevamente");
-                   
+
                 } else {
                     if (modban.modificar(modban)) {
 
                         JOptionPane.showMessageDialog(null, "Registro modificado");
-                        ban.dispose();
-                        Llenartabla(cban.tabla_bancos);
+                        vista.dispose();
+                        Llenartabla(catalogo.tabla);
                         limpiar();
 
                     } else {
@@ -188,7 +186,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
         }
 
-        if (e.getSource() == ban.btnLimpiar) {
+        if (e.getSource() == vista.btnLimpiar) {
 
             limpiar();
 
@@ -198,7 +196,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
     public void limpiar() {
 
-        ban.txtnombre_banco.setText(null);
+        vista.txtnombre_banco.setText(null);
 
     }
 
@@ -206,24 +204,42 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     public void mouseClicked(MouseEvent e) {
         // primero, obtengo la fila seleccionada
 
-        int fila = this.cban.tabla_bancos.getSelectedRow(); // primero, obtengo la fila seleccionada
-        int columna = this.cban.tabla_bancos.getSelectedColumn(); // luego, obtengo la columna seleccionada
-        String dato = String.valueOf(this.cban.tabla_bancos.getValueAt(fila, columna)); // por ultimo, obtengo el valor de la celda
-        cban.txtBuscar_banco.setText(String.valueOf(dato));
+        int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int columna = this.catalogo.tabla.getSelectedColumn(); // luego, obtengo la columna seleccionada
+        if (permiso.getModificar()) {
+            vista.btnModificar.setEnabled(true);
+        }
+        if (permiso.getEliminar()) {
+            vista.btnEliminar.setEnabled(true);
+        }
+        String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, columna)); // por ultimo, obtengo el valor de la celda
+        catalogo.txtBuscar.setText(String.valueOf(dato));
 
         modban.setNombre_banco(String.valueOf(dato));
 
         modban.buscar(modban);
 
-        ban.setVisible(true);
-        ban.txtnombre_banco.setText(modban.getNombre_banco());
+        vista.setVisible(true);
+        vista.txtnombre_banco.setText(modban.getNombre_banco());
 
-        ban.txtid.setText(Integer.toString(modban.getId()));
+        vista.txtid.setText(Integer.toString(modban.getId()));
 
-        ban.btnGuardar.setEnabled(false);
-        ban.txtid.setVisible(false);
-        ban.btnModificar.setEnabled(true);
-        ban.btnEliminar.setEnabled(true);
+        vista.btnGuardar.setEnabled(false);
+        vista.txtid.setVisible(false);
+        vista.btnModificar.setEnabled(true);
+        vista.btnEliminar.setEnabled(true);
+    }
+    
+        private void permisoBtn() {
+
+        for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
+            if (funcionbtn.getNombre().equals("Responsables")) {
+                permiso = funcionbtn;
+
+            }
+
+        }
+
     }
 
     @Override
@@ -257,9 +273,9 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     @Override
     public void keyTyped(KeyEvent ke) {
 
-        if (ke.getSource() == ban.txtnombre_banco) {
+        if (ke.getSource() == vista.txtnombre_banco) {
             Validacion.soloLetras(ke);
-            Validacion.limite(ke, ban.txtnombre_banco.getText(), 30);
+            Validacion.limite(ke, vista.txtnombre_banco.getText(), 30);
 
         }
 
@@ -273,9 +289,9 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
     @Override
     public void keyReleased(KeyEvent e) {
 
-        if (e.getSource() == cban.txtBuscar_banco) {
+        if (e.getSource() == catalogo.txtBuscar) {
 
-            filtro(cban.txtBuscar_banco.getText(), cban.tabla_bancos);
+            filtro(catalogo.txtBuscar.getText(), catalogo.tabla);
         } else {
 
         }
@@ -283,11 +299,15 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
     @Override
     public void windowOpened(WindowEvent e) {
-        Llenartabla(cban.tabla_bancos);
+        Llenartabla(catalogo.tabla);
+        permisoBtn();
 
-        Component[] components = ban.jPanel2.getComponents();
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
+        Component[] components = vista.jPanel2.getComponents();
         JComponent[] com = {
-            ban.txtnombre_banco
+            vista.txtnombre_banco
         };
         Validacion.copiar(components);
         Validacion.pegar(com);
@@ -328,7 +348,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         Boolean resultado = true;
         String msj = "";
 
-        if (ban.txtnombre_banco.getText().isEmpty()) {
+        if (vista.txtnombre_banco.getText().isEmpty()) {
 
             msj += "El campo nombre del banco no puede estar vacío\n";
             resultado = false;

@@ -213,11 +213,10 @@ public class Sancion extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT sancion.id, tipo, mes, anio, monto, descripcion, count(id_sancion) as total, estado FROM sancion inner join puente_sancion_unidad on puente_sancion_unidad.id_sancion=sancion.id inner join unidades on puente_sancion_unidad.id_unidad=unidades.id where unidades.id_condominio=? group by sancion.id, id_condominio";
+        String sql = "SELECT sancion.id, tipo, mes, anio, monto, descripcion, count(id_sancion) as total, estado FROM sancion inner join puente_sancion_unidad on puente_sancion_unidad.id_sancion=sancion.id inner join unidad on puente_sancion_unidad.id_unidad=unidad.id group by sancion.id, id_condominio";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, SGC.condominioActual.getRif());
-
+           
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -348,7 +347,7 @@ public class Sancion extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT sancion.id FROM sancion inner join puente_sancion_unidad on puente_sancion_unidad.id_sancion=sancion.id inner join unidades on puente_sancion_unidad.id_unidad=unidades.id where tipo='Interes de mora' and mes=? and anio=? and id_condominio=?";
+        String sql = "SELECT sancion.id FROM sancion inner join puente_sancion_unidad on puente_sancion_unidad.id_sancion=sancion.id inner join unidad on puente_sancion_unidad.id_unidad=unidad.id where tipo='Interes de mora' and mes=? and anio=?";
 
         try {
 
@@ -356,7 +355,7 @@ public class Sancion extends ConexionBD {
 
             ps.setInt(1, modsan.getMes());
             ps.setInt(2, modsan.getAño());
-            ps.setString(3, SGC.condominioActual.getRif());
+            
             rs = ps.executeQuery();
             if (rs.next()) {
 
@@ -395,12 +394,12 @@ public class Sancion extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "select unidades.id, unidades.n_unidad, puente_sancion_unidad.id_sancion from unidades left join puente_sancion_unidad on puente_sancion_unidad.id_unidad=unidades.id and puente_sancion_unidad.id_sancion=?  where unidades.id_condominio=? and unidades.activo=1";
+        String sql = "select unidad.id, unidad.n_unidad, puente_sancion_unidad.id_sancion from unidad left join puente_sancion_unidad on puente_sancion_unidad.id_unidad=unidad.id and puente_sancion_unidad.id_sancion=?  where  unidad.activo=true";
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
 
-            ps.setString(2, SGC.condominioActual.getRif());
+         
 
             rs = ps.executeQuery();
 

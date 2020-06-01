@@ -11,38 +11,46 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import modelo.Funcion;
 import modelo.TipoUsuario;
-import vista.catalogoTipoUsuario;
+import sgc.SGC;
+import vista.Catalogo;
 import vista.tipoUsuario;
 
 public class CtrlTipoUsuario implements ActionListener, MouseListener {
 
     private tipoUsuario vista;
-    private catalogoTipoUsuario catalogo;
+    private Catalogo catalogo;
     private TipoUsuario modelo;
 
     private Funcion modFuncion;
+    private Funcion permiso;
 
     private ArrayList<TipoUsuario> lista;
     private ArrayList<Funcion> listaFuncion;
 
     public CtrlTipoUsuario() {
-        this.catalogo = new catalogoTipoUsuario();
+        this.catalogo = new Catalogo();
         this.vista = new tipoUsuario();
         this.modelo = new TipoUsuario();
         this.modFuncion = new Funcion();
-
+        
+        catalogo.lblTitulo.setText("Tipo Usuario");
         this.catalogo.btnNuevo.addActionListener(this);
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnModificar.addActionListener(this);
         this.vista.tabla.addMouseListener(this);
 
         llenarTabla();
+        permisoBtn();
+
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
 
         this.catalogo.setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {
-
+        
         if (e.getSource() == catalogo.btnNuevo) {
             this.vista.setVisible(true);
             this.vista.btnGuardar.setVisible(true);
@@ -160,6 +168,18 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener {
         if (e.getSource() == vista.btnModificar) {
 
         }
+    }
+    
+        private void permisoBtn() {
+
+        for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
+            if (funcionbtn.getNombre().equals("Responsables")) {
+                permiso = funcionbtn;
+
+            }
+
+        }
+
     }
 
     @Override

@@ -17,14 +17,14 @@ import javax.swing.table.TableRowSorter;
 import modelo.Funcion;
 import modelo.Responsable;
 import sgc.SGC;
-import vista.CatResponsable;
+import vista.Catalogo;
 
 public class CtrlResponsable implements ActionListener, MouseListener, KeyListener {
 
     vista.Responsable vista;
     modelo.Responsable modelo;
 
-    CatResponsable catalogo;
+    Catalogo catalogo;
 
     DefaultTableModel dm;
     Funcion permiso;
@@ -35,9 +35,9 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
     public CtrlResponsable() {
         
-        catalogo = new CatResponsable();
+        catalogo = new Catalogo();
         modelo = new modelo.Responsable();
-        
+        catalogo.lblTitulo.setText("Responsable");
         catalogo.btnNuevo.addActionListener(this);
         catalogo.tabla.addMouseListener(this);
         catalogo.txtBuscar.addKeyListener(this);

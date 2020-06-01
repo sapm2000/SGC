@@ -18,15 +18,14 @@ import modelo.Cuenta;
 import modelo.CuotasEspeciales;
 import modelo.Fondo;
 import modelo.PagarCuotaEspecial;
-import vista.catalogoCuotasEspecialesPagadas;
-import vista.catalogoPagosCuotasEspeciales;
+import vista.Catalogo;
 import vista.pagoCuotasEspeciales;
 
 public class controladorPagarCuotasEsp implements ActionListener, MouseListener, KeyListener, WindowListener {
 
     private pagoCuotasEspeciales vista;
-    private catalogoCuotasEspecialesPagadas vistaCatPagadas;
-    private catalogoPagosCuotasEspeciales vistaCatPagos;
+    private Catalogo vistaCatPagadas;
+    private Catalogo vistaCatPagos;
     private PagarCuotaEspecial modPagarCuoE;
 
     private CuotasEspeciales modCuotaEsp;
@@ -87,14 +86,20 @@ public class controladorPagarCuotasEsp implements ActionListener, MouseListener,
             }
         }
         if (e.getSource() == vista.btnPagado) {
-            vistaCatPagadas = new catalogoCuotasEspecialesPagadas();
+            vistaCatPagadas = new Catalogo();
+            vistaCatPagadas.lblTitulo.setText("Cuotas Especiales Pagadas");
+
+            vistaCatPagadas.btnNuevo.setVisible(false);
             vistaCatPagadas.setVisible(true);
             vistaCatPagadas.addWindowListener(this);
         }
         if (e.getSource() == vista.btnPagos) {
-            vistaCatPagos = new catalogoPagosCuotasEspeciales();
-            vistaCatPagos.setVisible(true);
+            vistaCatPagos = new Catalogo();
+            vistaCatPagos.lblTitulo.setText("Pago Cuotas Especiales");
+
             vistaCatPagos.addWindowListener(this);
+            vistaCatPagos.btnNuevo.setVisible(false);
+            vistaCatPagos.setVisible(true);
         }
     }
 
@@ -277,7 +282,7 @@ public class controladorPagarCuotasEsp implements ActionListener, MouseListener,
 
     private void llenarTablaPagos(JTable tablaD) {
         listaPagos = modPagarCuoE.listar();
-        
+
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
