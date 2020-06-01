@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Funcion;
 import modelo.TipoUnidad;
+import modelo.Unidades;
 import sgc.SGC;
 import vista.Catalogo;
 import vista.tipoUnidad;
@@ -18,16 +19,16 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener {
     private tipoUnidad vista;
     private Catalogo catalogo;
     private TipoUnidad modelo;
-
+    private Unidades unidades;
     private Funcion permiso;
-
+    private ArrayList<Unidades> listaunidades;
     private ArrayList<TipoUnidad> lista;
 
     public CtrlTipoUnidad() {
         this.catalogo = new Catalogo();
         this.vista = new tipoUnidad();
         this.modelo = new TipoUnidad();
-
+        this.unidades = new Unidades();
         catalogo.lblTitulo.setText("Tipo de Unidad");
 
         this.catalogo.btnNuevo.addActionListener(this);
@@ -65,6 +66,18 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener {
 
                     if (modelo.reactivar()) {
                         JOptionPane.showMessageDialog(null, "Tipo de unidad habilitado");
+                        modelo.areaTotal();
+                        float area = modelo.getArea();
+
+                        listaunidades = unidades.listarArea();
+                        int x = listaunidades.size();
+                        for (int i = 0; i < x; i++) {
+                            float total = listaunidades.get(i).tipo_Unidad.getArea() / area;
+                            unidades.setAlicuota(total);
+
+                            unidades.setId(listaunidades.get(i).getId());
+                            unidades.actualizarAlicuota(unidades);
+                        }
                         llenarTabla();
                         vista.dispose();
 
@@ -80,6 +93,18 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener {
                         if (modelo.registrar()) {
                             JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
                             llenarTabla();
+                            modelo.areaTotal();
+                            float area = modelo.getArea();
+
+                            listaunidades = unidades.listarArea();
+                            int x = listaunidades.size();
+                            for (int i = 0; i < x; i++) {
+                                float total = listaunidades.get(i).tipo_Unidad.getArea() / area;
+                                unidades.setAlicuota(total);
+
+                                unidades.setId(listaunidades.get(i).getId());
+                                unidades.actualizarAlicuota(unidades);
+                            }
                             vista.dispose();
                             vista.txtNombre.setText("");
                             vista.txtArea.setText("");
@@ -99,6 +124,18 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener {
 
                 if (modelo.modificar()) {
                     JOptionPane.showMessageDialog(null, "Registro modificado");
+                    modelo.areaTotal();
+                    float area = modelo.getArea();
+
+                    listaunidades = unidades.listarArea();
+                    int x = listaunidades.size();
+                    for (int i = 0; i < x; i++) {
+                        float total = listaunidades.get(i).tipo_Unidad.getArea() / area;
+                        unidades.setAlicuota(total);
+
+                        unidades.setId(listaunidades.get(i).getId());
+                        unidades.actualizarAlicuota(unidades);
+                    }
                     llenarTabla();
                     vista.dispose();
 

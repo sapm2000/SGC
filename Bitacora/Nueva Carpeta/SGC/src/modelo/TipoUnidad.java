@@ -49,6 +49,39 @@ public class TipoUnidad extends ConexionBD {
             }
         }
     }
+    
+      public boolean areaTotal() {
+        try {
+            ps = null;
+            rs = null;
+            con = getConexion();
+
+            String sql = "SELECT sum(area) as area from tipo_unidad inner join unidad ON unidad.id_tipo = tipo_unidad.id where unidad.activo=true";
+
+            ps = con.prepareStatement(sql);
+           
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                setArea(rs.getFloat("area"));
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+    }
 
     public boolean eliminar() {
         try {
