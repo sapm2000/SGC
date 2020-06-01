@@ -140,6 +140,16 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                             if (modelo.reactivar()) {
                                 JOptionPane.showMessageDialog(null, "Unidad reactivada");
                                 vista.dispose();
+                                tipoUnidad.areaTotal();
+                                float area = tipoUnidad.getArea();
+                                listaUnidades = modelo.listarArea();
+                                int x = listaUnidades.size();
+                                for (int i = 0; i < x; i++) {
+                                    float total = listaUnidades.get(i).tipo_Unidad.getArea() / area;
+                                    modelo.setAlicuota(total);
+                                    modelo.setId(listaUnidades.get(i).getId());
+                                    modelo.actualizarAlicuota(modelo);
+                                }
                                 llenarTabla(catalogo.tabla);
 
                             } else {
@@ -157,6 +167,18 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                         } else {
                             if (modelo.registrar()) {
                                 JOptionPane.showMessageDialog(null, "Registro Guardado");
+                                tipoUnidad.areaTotal();
+                                float area = tipoUnidad.getArea();
+                                
+                                listaUnidades = modelo.listarArea();
+                                int x = listaUnidades.size();
+                                for (int i = 0; i < x; i++) {
+                                    float total = listaUnidades.get(i).tipo_Unidad.getArea() / area;
+                                    modelo.setAlicuota(total);
+                                    
+                                    modelo.setId(listaUnidades.get(i).getId());
+                                    modelo.actualizarAlicuota(modelo);
+                                }
                                 vista.dispose();
                                 llenarTabla(catalogo.tabla);
 
@@ -203,6 +225,16 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
                     if (modelo.modificar()) {
                         JOptionPane.showMessageDialog(null, "Registro Modificado");
+                        tipoUnidad.areaTotal();
+                        float area = tipoUnidad.getArea();
+                        listaUnidades = modelo.listarArea();
+                        int x = listaUnidades.size();
+                        for (int i = 0; i < x; i++) {
+                            float total = listaUnidades.get(i).tipo_Unidad.getArea() / area;
+                            modelo.setAlicuota(total);
+                            modelo.setId(listaUnidades.get(i).getId());
+                            modelo.actualizarAlicuota(modelo);
+                        }
                         llenarTabla(catalogo.tabla);
                         vista.dispose();
 
@@ -217,6 +249,16 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         if (e.getSource() == vista.btnEliminar) {
             if (modelo.eliminar()) {
                 JOptionPane.showMessageDialog(null, "Registro eliminado");
+                tipoUnidad.areaTotal();
+                float area = tipoUnidad.getArea();
+                listaUnidades = modelo.listarArea();
+                int x = listaUnidades.size();
+                for (int i = 0; i < x; i++) {
+                    float total = listaUnidades.get(i).tipo_Unidad.getArea() / area;
+                    modelo.setAlicuota(total);
+                    modelo.setId(listaUnidades.get(i).getId());
+                    modelo.actualizarAlicuota(modelo);
+                }
                 vista.dispose();
                 llenarTabla(catalogo.tabla);
 
@@ -292,7 +334,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                 vista.tablaPropietarios.editCellAt(fila, 5);
             }
         }
-
 
         if (e.getSource() == detacun.jTable1) {
 
@@ -772,6 +813,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         modeloT.addColumn("<html>Tipo de <br> Unidad</html>");
         modeloT.addColumn("Área (mts2)");
         modeloT.addColumn("<HTML>Número de <BR>Documento</HTML>");
+        modeloT.addColumn("Alicuota");
 
         Object[] columna = new Object[modeloT.getColumnCount()];
 
@@ -786,6 +828,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             columna[ind++] = listaUnidades.get(i).getTipo_Unidad().getNombre();
             columna[ind++] = listaUnidades.get(i).getTipo_Unidad().getArea();
             columna[ind++] = listaUnidades.get(i).getDocumento();
+            columna[ind++] = listaUnidades.get(i).getAlicuota();
 
             modeloT.addRow(columna);
 

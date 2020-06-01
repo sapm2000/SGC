@@ -16,11 +16,12 @@ public class Unidades extends ConexionBD {
     private String N_unidad;
     private String documento;
     private String direccion;
+    private float alicuota;
     private Condominio condominio;
     private ArrayList<Propietarios> propietario;
     private java.sql.Date fecha_desde;
     private java.sql.Date fecha_hasta;
-    private TipoUnidad tipo_Unidad = new TipoUnidad();
+    public TipoUnidad tipo_Unidad = new TipoUnidad();
 
     private Connection con = getConexion();
 
@@ -245,6 +246,7 @@ public class Unidades extends ConexionBD {
                 unidad.setN_unidad(rs.getString("n_unidad"));
                 unidad.setDocumento(rs.getString("n_documento"));
                 unidad.setDireccion(rs.getString("direccion"));
+                
                 unidad.getTipo_Unidad().setId(rs.getInt("id_tipo"));
                 unidad.getTipo_Unidad().setNombre(rs.getString("tipo"));
                 unidad.getTipo_Unidad().setArea(rs.getFloat("area"));
@@ -300,6 +302,42 @@ public class Unidades extends ConexionBD {
             System.err.println(e);
             return false;
 
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+    
+    public boolean actualizarAlicuota(Unidades modelo) {
+
+        PreparedStatement ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE unidad SET alicuota=? WHERE id=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setFloat(1, getAlicuota());
+            ps.setInt(2, getId());
+           
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
         } finally {
             try {
 
@@ -691,6 +729,45 @@ public class Unidades extends ConexionBD {
         return listaUnidad;
 
     }
+    
+     public ArrayList<Unidades> listarArea() {
+        ArrayList listaUnidad = new ArrayList();
+        Unidades uni;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT area, unidad.id FROM unidad inner join tipo_unidad ON tipo_unidad.id = unidad.id_tipo where unidad.activo=true";
+
+        try {
+            ps = con.prepareStatement(sql);
+           
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                uni = new Unidades();
+                uni.tipo_Unidad.setArea(rs.getFloat(1));
+                uni.setId(rs.getInt(2));
+
+                listaUnidad.add(uni);
+            }
+
+        } catch (Exception e) {
+
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+
+            }
+        }
+
+        return listaUnidad;
+
+    }
 
     public int getId_puente() {
         return id_puente;
@@ -779,5 +856,15 @@ public class Unidades extends ConexionBD {
     public void setDocumento(String documento) {
         this.documento = documento;
     }
+
+    public float getAlicuota() {
+        return alicuota;
+    }
+
+    public void setAlicuota(float alicuota) {
+        this.alicuota = alicuota;
+    }
+    
+    
 
 }

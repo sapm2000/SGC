@@ -351,6 +351,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         menuArchivo.add(jSancion);
 
+        jTipoUnidad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jTipoUnidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pattern (1) (2).png"))); // NOI18N
         jTipoUnidad.setText("Tipos de Unidades");
         menuArchivo.add(jTipoUnidad);
 
