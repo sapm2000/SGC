@@ -28,7 +28,7 @@ import modelo.Cuenta;
 import modelo.CuentasPorCobrar;
 import modelo.Fondo;
 import modelo.Unidades;
-import vista.PantallaPrincipal1;
+import vista.PantallaPrincipal;
 import vista.cuentasPorCobrar;
 
 /**
@@ -43,7 +43,7 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
     private Fondo modfon;
     private Cuenta modcu;
     private CerrarMes modc;
-    private PantallaPrincipal1 panta1;
+    private PantallaPrincipal panta1;
     ArrayList<CerrarMes> listaCierremes;
     ArrayList<Unidades> listaunidades;
     ArrayList<Fondo> listafondo;

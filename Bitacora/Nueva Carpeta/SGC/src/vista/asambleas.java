@@ -47,7 +47,6 @@ public class asambleas extends javax.swing.JFrame {
     
     public asambleas() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new Catalogo.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         jScrollPane4.getVerticalScrollBar().setUI(new MyScrollBarUI());
         txaDescripcion.setLineWrap(true);

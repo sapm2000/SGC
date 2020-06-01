@@ -40,7 +40,6 @@ public class comunicados extends javax.swing.JFrame {
 
     public comunicados() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new Catalogo.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         jScrollPane2.getVerticalScrollBar().setUI(new MyScrollBarUI());
         txaMensaje.setLineWrap(true);

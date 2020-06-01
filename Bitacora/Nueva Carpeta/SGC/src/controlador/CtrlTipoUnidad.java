@@ -29,6 +29,8 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener {
         this.vista = new tipoUnidad();
         this.modelo = new TipoUnidad();
         this.unidades = new Unidades();
+        
+        CtrlVentana.cambiarVista(catalogo);
         catalogo.lblTitulo.setText("Tipo de Unidad");
 
         this.catalogo.btnNuevo.addActionListener(this);

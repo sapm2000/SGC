@@ -43,7 +43,15 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         this.modban = new Banco();
 
         catalogo.lblTitulo.setText("Banco");
-        
+        CtrlVentana.cambiarVista(catalogo);
+        Llenartabla(catalogo.tabla);
+
+        permisoBtn();
+
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
+
         this.catalogo.btnNuevo.addActionListener(this);
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
@@ -52,7 +60,6 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         this.catalogo.tabla.addMouseListener(this);
         this.catalogo.tabla.addKeyListener(this);
         this.catalogo.txtBuscar.addKeyListener(this);
-        this.catalogo.addWindowListener(this);
         this.vista.txtnombre_banco.addKeyListener(this);
         catalogo.setVisible(true);
 
@@ -229,8 +236,8 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
         vista.btnModificar.setEnabled(true);
         vista.btnEliminar.setEnabled(true);
     }
-    
-        private void permisoBtn() {
+
+    private void permisoBtn() {
 
         for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
             if (funcionbtn.getNombre().equals("Responsables")) {
@@ -299,12 +306,7 @@ public class controladorBanco implements ActionListener, MouseListener, KeyListe
 
     @Override
     public void windowOpened(WindowEvent e) {
-        Llenartabla(catalogo.tabla);
-        permisoBtn();
 
-        if (permiso.getRegistrar()) {
-            catalogo.btnNuevo.setEnabled(true);
-        }
         Component[] components = vista.jPanel2.getComponents();
         JComponent[] com = {
             vista.txtnombre_banco

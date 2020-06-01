@@ -58,9 +58,17 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
         this.modsan = new Sancion();
         this.moduni = new Unidades();
         this.modc = new CerrarMes();
+
         catalogo.lblTitulo.setText("Sanciones");
+        CtrlVentana.cambiarVista(catalogo);
+        LlenartablaSancion(catalogo.tabla);
+        permisoBtn();
+
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
+
         this.catalogo.btnNuevo.addActionListener(this);
-        this.catalogo.addWindowListener(this);
         this.catalogo.txtBuscar.addKeyListener(this);
         this.catalogo.tabla.addMouseListener(this);
         this.vista.btnEliminar.addActionListener(this);
@@ -551,12 +559,6 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
     @Override
     public void windowOpened(WindowEvent e
     ) {
-        LlenartablaSancion(catalogo.tabla);
-        permisoBtn();
-
-        if (permiso.getRegistrar()) {
-            catalogo.btnNuevo.setEnabled(true);
-        }
 
         Component[] components = vista.jPanel2.getComponents();
         JComponent[] com = {

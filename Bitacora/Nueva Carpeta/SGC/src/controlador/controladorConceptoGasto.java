@@ -46,6 +46,14 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
         this.modCat = new CategoriaGasto();
 
         catalogo.lblTitulo.setText("Concepto Gasto");
+        CtrlVentana.cambiarVista(catalogo);
+        Llenartabla(catalogo.tabla);
+                permisoBtn();
+
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
+        
         this.catalogo.btnNuevo.addActionListener(this);
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
@@ -53,7 +61,6 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
         this.vista.txtNombreC.addKeyListener(this);
         this.vista.txtDescripcion.addKeyListener(this);
         this.vista.btnEliminar.addActionListener(this);
-        this.catalogo.addWindowListener(this);
         this.catalogo.tabla.addMouseListener(this);
         this.catalogo.txtBuscar.addKeyListener(this);
 
@@ -216,61 +223,61 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
     }
 
-    public void Llenartabla1(JTable tablaD) {
-
-        listaConGas = modelo.listarConcepto1();
-
-        DefaultTableModel modeloT = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-
-                boolean resu = false;
-                if (column == 0) {
-                    resu = false;
-                }
-                if (column == 1) {
-                    resu = false;
-                }
-
-                if (column == 2) {
-                    resu = false;
-                }
-                if (column == 3) {
-                    resu = true;
-                }
-                return resu;
-            }
-
-        };
-        tablaD.setModel(modeloT);
-        tablaD.getTableHeader().setReorderingAllowed(false);
-        tablaD.getTableHeader().setResizingAllowed(false);
-
-        modeloT.addColumn("Concepto");
-        modeloT.addColumn("Descripción");
-        modeloT.addColumn("Categoría");
-        modeloT.addColumn("Seleccione");
-
-        Object[] columna = new Object[4];
-
-        int numRegistro = listaConGas.size();
-
-        for (int i = 0; i < numRegistro; i++) {
-
-            columna[0] = listaConGas.get(i).getNombre_Concepto();
-            columna[1] = listaConGas.get(i).getDescripcion();
-            columna[2] = listaConGas.get(i).cate.getNombre();
-
-            modeloT.addRow(columna);
-
-        }
-        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-        tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
-    }
+//    public void Llenartabla1(JTable tablaD) {
+//
+//        listaConGas = modelo.listarConcepto1();
+//
+//        DefaultTableModel modeloT = new DefaultTableModel() {
+//            @Override
+//            public boolean isCellEditable(int row, int column) {
+//
+//                boolean resu = false;
+//                if (column == 0) {
+//                    resu = false;
+//                }
+//                if (column == 1) {
+//                    resu = false;
+//                }
+//
+//                if (column == 2) {
+//                    resu = false;
+//                }
+//                if (column == 3) {
+//                    resu = true;
+//                }
+//                return resu;
+//            }
+//
+//        };
+//        tablaD.setModel(modeloT);
+//        tablaD.getTableHeader().setReorderingAllowed(false);
+//        tablaD.getTableHeader().setResizingAllowed(false);
+//
+//        modeloT.addColumn("Concepto");
+//        modeloT.addColumn("Descripción");
+//        modeloT.addColumn("Categoría");
+//        modeloT.addColumn("Seleccione");
+//
+//        Object[] columna = new Object[4];
+//
+//        int numRegistro = listaConGas.size();
+//
+//        for (int i = 0; i < numRegistro; i++) {
+//
+//            columna[0] = listaConGas.get(i).getNombre_Concepto();
+//            columna[1] = listaConGas.get(i).getDescripcion();
+//            columna[2] = listaConGas.get(i).cate.getNombre();
+//
+//            modeloT.addRow(columna);
+//
+//        }
+//        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+//        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+//        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+//        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+//        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+//        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+//    }
 
     private Boolean validar() {
 
@@ -405,12 +412,7 @@ public class controladorConceptoGasto implements ActionListener, MouseListener, 
 
     @Override
     public void windowOpened(WindowEvent e) {
-        Llenartabla(catalogo.tabla);
-        permisoBtn();
 
-        if (permiso.getRegistrar()) {
-            catalogo.btnNuevo.setEnabled(true);
-        }
 
         Component[] components = vista.jPanel2.getComponents();
         JComponent[] com = {

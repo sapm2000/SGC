@@ -36,7 +36,6 @@ public class buscarProveedor extends javax.swing.JFrame {
     private static final Color THUMB_COLOR = Color.BLUE;
     public buscarProveedor() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new Catalogo.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         setLocationRelativeTo(null);
 

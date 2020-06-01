@@ -42,7 +42,6 @@ public class tipoUsuario extends javax.swing.JFrame {
 
     public tipoUsuario() {
         initComponents();
-        tabla.getTableHeader().setDefaultRenderer(new Catalogo.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         setLocationRelativeTo(null);
 

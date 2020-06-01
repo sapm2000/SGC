@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import java.awt.Component;
@@ -31,10 +26,6 @@ import vista.Catalogo;
 import vista.buscarProveedor;
 import vista.gastoComun;
 
-/**
- *
- * @author rma
- */
 public class controladorGastoComun implements ActionListener, MouseListener, KeyListener, WindowListener {
 
     private gastoComun vista;
@@ -57,11 +48,12 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
         this.modgac = new GastoComun();
         this.modpro = new Proveedores();
         this.modcon = new ModeloConceptoGastos();
-        
+
         this.modc = new CerrarMes();
         this.buscpro = new buscarProveedor();
         catalogo.lblTitulo.setText("Gasto Común");
-        this.catalogo.addWindowListener(this);
+        CtrlVentana.cambiarVista(catalogo);
+        LlenartablaGastocomun(catalogo.tabla);
 
         this.catalogo.btnNuevo.addActionListener(this);
         this.buscpro.jTable1.addMouseListener(this);
@@ -215,24 +207,22 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
                 modgac.setId_proveedor(vista.txtProveedor.getText());
                 modcon.setNombre_Concepto(vista.jcomboconcepto.getSelectedItem().toString());
                 int ind = vista.jcomboconcepto.getSelectedIndex() - 1;
-              
 
                 modgac.setObservaciones(vista.txaObservaciones.getText());
                 modgac.setSaldo(Double.parseDouble(vista.txtMonto.getText()));
                 if (modgac.getId_proveedor().equals("Seleccione el Proveedor")) {
                     JOptionPane.showMessageDialog(null, "seleccione un proveedor");
                 } else {
-                    if (ind==-1) {
+                    if (ind == -1) {
                         JOptionPane.showMessageDialog(null, "seleccione un concepto");
                     } else {
-                          modgac.setId_concepto(listaConGas.get(ind).getId());
+                        modgac.setId_concepto(listaConGas.get(ind).getId());
                         java.sql.Date sqlDate = convert(vista.jDateChooser1.getDate());
                         modgac.setFecha(sqlDate);
                         modgac.setEstado("Pendiente");
-                      
+
                         modc.setMes_cierre(vista.jMonthChooser1.getMonth() + 1);
                         modc.setAño_cierre(vista.jYearChooser1.getYear());
-                       
 
                         if (modc.buscarfechas(modc)) {
                             JOptionPane.showMessageDialog(null, "no puede registrar gastos a un periodo ya cerrado");
@@ -241,7 +231,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
                             if (modgac.registrar_gasto_comun(modgac)) {
 
                                 JOptionPane.showMessageDialog(null, "Registro Guardado");
-                             
+
                                 LlenartablaGastocomun(catalogo.tabla);
                             } else {
 
@@ -277,7 +267,6 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
                         modgac.setId(Integer.parseInt(vista.txtid.getText()));
                         modc.setMes_cierre(vista.jMonthChooser1.getMonth() + 1);
                         modc.setAño_cierre(vista.jYearChooser1.getYear());
-                      
 
                         if (modc.buscarfechas(modc)) {
                             JOptionPane.showMessageDialog(null, "no puede registrar gastos a un periodo ya cerrado");
@@ -286,7 +275,6 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
                             java.sql.Date sqlDate = convert(vista.jDateChooser1.getDate());
                             modgac.setFecha(sqlDate);
                             modgac.setEstado("Pendiente");
-                    
 
                             double var1 = Double.parseDouble(vista.txtMonto.getText());
                             double var2 = var1 - montoi;
@@ -297,7 +285,7 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
                                 if (modgac.modificar_gasto_comun(modgac)) {
 
                                     JOptionPane.showMessageDialog(null, "Registro Modificado");
-                                  
+
                                     LlenartablaGastocomun(catalogo.tabla);
                                     this.vista.dispose();
 
@@ -319,7 +307,6 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
 
         if (e.getSource() == vista.btnEliminar) {
 
-         
             modgac.setId(Integer.parseInt(vista.txtid.getText()));
 
             if (modgac.eliminar_gasto_comun(modgac)) {
@@ -391,9 +378,9 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
             int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
             String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
             modgac.setId(Integer.parseInt(dato));
-         
+
             modgac.buscargastoComun(modgac);
-             vista.btnBuscarproveedor.setVisible(true);
+            vista.btnBuscarproveedor.setVisible(true);
             this.vista.setVisible(true);
             vista.txtid.setVisible(false);
             vista.txtid.setText(dato);
@@ -497,8 +484,6 @@ public class controladorGastoComun implements ActionListener, MouseListener, Key
 
     @Override
     public void windowOpened(WindowEvent e) {
-       
-        LlenartablaGastocomun(catalogo.tabla);
 
         Component[] components = vista.jPanel2.getComponents();
         JComponent[] com = {

@@ -54,11 +54,17 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         this.modasa = new Asambleas();
         this.modpro = new Propietarios();
         
+        CtrlVentana.cambiarVista(catalogo);
         catalogo.lblTitulo.setText("Asambleas");
-       
+        Llenartablaasambleas(catalogo.tabla);
+        
+                permisoBtn();
+        
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
         this.catalogo.tabla.addMouseListener(this);
 
-        this.catalogo.addWindowListener(this);
         this.catalogo.btnNuevo.addActionListener(this);
         this.vista.txtBuscarPropietarios.addKeyListener(this);
 
@@ -458,13 +464,6 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
     @Override
     public void windowOpened(WindowEvent e) {
    
-        Llenartablaasambleas(catalogo.tabla);
-        permisoBtn();
-        
-        if (permiso.getRegistrar()) {
-            catalogo.btnNuevo.setEnabled(true);
-        }
-        
         Component[] components =vista.jPanel4.getComponents();
         JComponent[] com = {
             vista.txtNombreAsamblea, vista.jDateChooser2

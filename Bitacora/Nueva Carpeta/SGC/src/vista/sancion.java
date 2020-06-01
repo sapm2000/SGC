@@ -40,7 +40,6 @@ public class sancion extends javax.swing.JFrame {
 
     public sancion() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new Catalogo.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         jScrollPane2.getVerticalScrollBar().setUI(new MyScrollBarUI());
         txaDescripcion.setLineWrap(true);

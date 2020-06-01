@@ -41,11 +41,19 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
         this.vista = new cuenta();
         this.modelo = new Cuenta();
         this.modBanco = new Banco();
-        
+
         catalogo.lblTitulo.setText("Cuenta");
+        CtrlVentana.cambiarVista(catalogo);
+        
+        llenarTabla(catalogo.tabla);
+
+        permisoBtn();
+
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
         this.catalogo.btnNuevo.addActionListener(this);
         this.catalogo.tabla.addMouseListener(this);
-        this.catalogo.addWindowListener(this);
 
         crearCbxBanco();
 
@@ -271,14 +279,6 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
 
     @Override
     public void windowOpened(WindowEvent e) {
-        if (e.getSource() == catalogo) {
-            llenarTabla(catalogo.tabla);
-            permisoBtn();
-
-            if (permiso.getRegistrar()) {
-                catalogo.btnNuevo.setEnabled(true);
-            }
-        }
 
         if (e.getSource() == vista) {
             Component[] components = vista.jPanel2.getComponents();

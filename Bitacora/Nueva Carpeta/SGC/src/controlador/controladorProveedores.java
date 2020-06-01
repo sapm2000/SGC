@@ -51,8 +51,16 @@ public class controladorProveedores implements ActionListener, WindowListener, K
         this.catalogo = new Catalogo();
         this.vista = new proveedores();
         this.modpro = new Proveedores();
+        
         catalogo.lblTitulo.setText("Proveedores");
-        this.catalogo.addWindowListener(this);
+        CtrlVentana.cambiarVista(catalogo);
+        Llenartabla(catalogo.tabla);
+        permisoBtn();
+
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
+
         this.catalogo.btnNuevo.addActionListener(this);
         this.catalogo.tabla.addMouseListener(this);
         this.catalogo.txtBuscar.addKeyListener(this);
@@ -192,8 +200,6 @@ public class controladorProveedores implements ActionListener, WindowListener, K
     }
 
     public void actionPerformed(ActionEvent e) {
-
-        
 
         if (e.getSource() == catalogo.btnNuevo) {
             this.vista.setVisible(true);
@@ -356,12 +362,6 @@ public class controladorProveedores implements ActionListener, WindowListener, K
 
     @Override
     public void windowOpened(WindowEvent e) {
-        Llenartabla(catalogo.tabla);
-        permisoBtn();
-
-        if (permiso.getRegistrar()) {
-            catalogo.btnNuevo.setEnabled(true);
-        }
 
         Component[] components = vista.jPanel2.getComponents();
         JComponent[] com = {

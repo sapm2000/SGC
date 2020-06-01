@@ -9,8 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,15 +25,15 @@ import modelo.GastoComun;
 import modelo.Interes;
 import modelo.Sancion;
 import modelo.Unidades;
-import vista.PantallaPrincipal1;
-import vista.catalogoCierreMes;
+import vista.Catalogo;
+import vista.PantallaPrincipal;
 import vista.cerrarMes;
 
 /**
  *
  * @author rma
  */
-public class controladorCerrarMes implements ActionListener, KeyListener, WindowListener {
+public class controladorCerrarMes implements ActionListener, KeyListener{
 
     private cerrarMes rec;
     private CerrarMes modc;
@@ -46,30 +44,33 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
     ArrayList<Sancion> listasanciones;
     ArrayList<Interes> listainteres;
     ArrayList<CerrarMes> listaCierremes;
-    private PantallaPrincipal1 panta1;
+    private PantallaPrincipal panta1;
     private GastoComun modgac;
     private CuotasEspeciales modcuo;
     private Sancion modsan;
     private Interes modin;
-    private catalogoCierreMes catac;
+    private Catalogo catalogo;
     DefaultTableModel dm;
 
     public controladorCerrarMes() {
-        
+
         this.rec = new cerrarMes();
         this.modc = new CerrarMes();
         this.moduni = new Unidades();
-        
+
         this.modgac = new GastoComun();
         this.modcuo = new CuotasEspeciales();
         this.modsan = new Sancion();
         this.modin = new Interes();
-        this.catac = new catalogoCierreMes();
+        this.catalogo = new Catalogo();
+        catalogo.lblTitulo.setText("Cerrar mes");
+
+        CtrlVentana.cambiarVista(catalogo);
+        Llenartabla(catalogo.tabla);
         rec.jButton1.addActionListener(this);
-        catac.btnNuevo.addActionListener(this);
-        catac.txtBuscar.addKeyListener(this);
-        catac.addWindowListener(this);
-        this.catac.setVisible(true);
+        catalogo.btnNuevo.addActionListener(this);
+        catalogo.txtBuscar.addKeyListener(this);
+        this.catalogo.setVisible(true);
 
     }
 
@@ -115,7 +116,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == catac.btnNuevo) {
+        if (e.getSource() == catalogo.btnNuevo) {
             this.rec.setVisible(true);
         }
         if (e.getSource() == rec.jButton1) {
@@ -166,12 +167,11 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                             modc.setEstado("Pendiente de Pago");
                             modc.guardartotal(modc);
                             modc.buscaultimo(modc);
-                           
+
                             id_factura[i] = modc.getId();
 
                         }
 
-                       
                         modgac.setMes(modc.getMes_cierre());
                         modgac.setAño(modc.getAño_cierre());
                         listagastocomun = modgac.listarGastoComuncierremes();
@@ -204,16 +204,16 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                     modc.setId_gasto(Integer.parseInt(String.valueOf(id_gasto[f])));
 
                                     modc.setId(Integer.parseInt(String.valueOf(id_factura[x])));
-                                     
+
                                     if (listagastocomun.get(f).getEstado().equals("Pendiente")) {
                                         modc.setEstado("Procesado");
-                                       
+
                                     }
                                     if (listagastocomun.get(f).getEstado().equals("Pagado")) {
                                         modc.setEstado("Procesado y pagado");
                                     }
                                     modc.setTipo_gasto("Gasto comun");
-                                     
+
                                     modc.registrarGasto(modc);
                                     modc.actualizarGasto(modc);
 
@@ -221,7 +221,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
 
                             }
                         }
-                     
+
                         listacuotasespeciales = modcuo.listarCuotasEspecialescerrarmes();
                         int numCuotas = listacuotasespeciales.size();
                         Object[] tipo_cuota = new Object[numCuotas];
@@ -243,7 +243,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                 tipo_cuota[z] = listacuotasespeciales.get(z).getCalcular();
                                 int var1 = mes_c + meses_r;
                                 double monto_t = listacuotasespeciales.get(z).getMonto();
-                                
+
                                 double parte_periodo = monto_t / meses_r;
 
                                 if (año >= año_c) {
@@ -360,20 +360,20 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                 }
 
                                 if (var.equals("Multa")) {
-                                  int id_fac = listasanciones.get(j).getId();
+                                    int id_fac = listasanciones.get(j).getId();
                                     modc.setId(id_fac);
                                     modc.setMonto(listasanciones.get(j).getMonto());
                                     modc.setId_gasto(Integer.parseInt(String.valueOf(id_sancion[j])));
-                                     modc.setTipo_gasto("Sancion");
+                                    modc.setTipo_gasto("Sancion");
                                     modc.guardarsancionpro(modc);
                                     modc.setEstado("Procesado");
-                                    
+
                                     modc.actualizarSancion(modc);
 
                                 }
                             }
                         }
-                       
+
                         listainteres = modin.listarInteresCerrames();
                         int numInteres = listainteres.size();
                         Object[] id_interes = new Object[numInteres];
@@ -418,7 +418,7 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                         }
 
                         for (int m = 0; m < numRegistro; m++) {
-                        
+
                             modc.setId(Integer.parseInt(String.valueOf(id_factura[m])));
                             modc.setTipo_gasto("Gasto comun");
                             if (modc.buscartotal(modc)) {
@@ -458,21 +458,20 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
                                 modc.setMonto(totalfinal);
                                 modc.setAlicuota(Double.parseDouble(String.valueOf(alicuota[m])));
                                 modc.setEstado("Pendiente de Pago");
-                             
 
                                 modc.actualizartotalcierre(modc);
 
                             }
                         }
                         if (numGastos > 0 || numReales > 0) {
-                           
+
                             modc.cerrar_mes(modc);
 
                             JOptionPane.showMessageDialog(null, "Cierre satisfactorio");
-                            Llenartabla(catac.jTable1);
+                            Llenartabla(catalogo.tabla);
                             this.rec.dispose();
                         } else {
-                           
+
                             modc.borrarnulo(modc);
                             JOptionPane.showMessageDialog(null, "No hay gastos por cerrar");
                         }
@@ -498,49 +497,14 @@ public class controladorCerrarMes implements ActionListener, KeyListener, Window
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getSource() == catac.txtBuscar) {
+        if (e.getSource() == catalogo.txtBuscar) {
 
-            filtro(catac.txtBuscar.getText(), catac.jTable1);
+            filtro(catalogo.txtBuscar.getText(), catalogo.tabla);
         } else {
 
         }
     }
 
-    @Override
-    public void windowOpened(WindowEvent e) {
-     
-        Llenartabla(catac.jTable1);
-    }
-
-    @Override
-    public void windowClosing(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowClosed(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowIconified(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowDeiconified(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowActivated(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent e) {
-
-    }
 
     private void filtro(String consulta, JTable jtableBuscar) {
         dm = (DefaultTableModel) jtableBuscar.getModel();

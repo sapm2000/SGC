@@ -55,10 +55,18 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
         this.modin = new Interes();
 
         catalogo.lblTitulo.setText("Interés");
+        CtrlVentana.cambiarVista(catalogo);
+        Llenartablainteres(catalogo.tabla);
+
+        permisoBtn();
+
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
+
         this.catalogo.btnNuevo.addActionListener(this);
         this.catalogo.tabla.addMouseListener(this);
         this.catalogo.txtBuscar.addKeyListener(this);
-        this.catalogo.addWindowListener(this);
 
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
@@ -320,13 +328,6 @@ public class controladorInteres implements ActionListener, MouseListener, KeyLis
 
     @Override
     public void windowOpened(WindowEvent e) {
-        Llenartablainteres(catalogo.tabla);
-
-        permisoBtn();
-
-        if (permiso.getRegistrar()) {
-            catalogo.btnNuevo.setEnabled(true);
-        }
 
         Component[] components = vista.jPanel2.getComponents();
         JComponent[] com = {

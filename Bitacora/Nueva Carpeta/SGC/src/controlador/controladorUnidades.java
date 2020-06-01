@@ -62,7 +62,16 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
         this.catalogo = new Catalogo();
         this.vista = new unidades();
         this.modelo = new Unidades();
+
         catalogo.lblTitulo.setText("Unidades");
+        CtrlVentana.cambiarVista(catalogo);
+        llenarTabla(catalogo.tabla);
+        permisoBtn();
+
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
+
         tipoUnidad = new TipoUnidad();
         this.detacun = new detallecuenta();
         this.detare = new detalleRecibo();
@@ -71,7 +80,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
         crearCbxTipoU();
 
-        this.catalogo.addWindowListener(this);
         this.catalogo.btnNuevo.addActionListener(this);
 
         this.vista.txtNumeroUnidad.addKeyListener(this);
@@ -169,13 +177,13 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
                                 JOptionPane.showMessageDialog(null, "Registro Guardado");
                                 tipoUnidad.areaTotal();
                                 float area = tipoUnidad.getArea();
-                                
+
                                 listaUnidades = modelo.listarArea();
                                 int x = listaUnidades.size();
                                 for (int i = 0; i < x; i++) {
                                     float total = listaUnidades.get(i).tipo_Unidad.getArea() / area;
                                     modelo.setAlicuota(total);
-                                    
+
                                     modelo.setId(listaUnidades.get(i).getId());
                                     modelo.actualizarAlicuota(modelo);
                                 }
@@ -414,12 +422,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
 
     @Override
     public void windowOpened(WindowEvent e) {
-        llenarTabla(catalogo.tabla);
-        permisoBtn();
-
-        if (permiso.getRegistrar()) {
-            catalogo.btnNuevo.setEnabled(true);
-        }
 
         Component[] components = vista.jPanel2.getComponents();
         JComponent[] com = {

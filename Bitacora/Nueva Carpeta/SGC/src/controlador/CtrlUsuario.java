@@ -42,6 +42,8 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
         this.modPersona = new Persona();
         this.modTipo = new TipoUsuario();
         
+        llenarTabla(catalogo.tabla);
+        CtrlVentana.cambiarVista(catalogo);
         catalogo.lblTitulo.setText("Usuario");
         this.vistaGU.btnGuardar.addActionListener(this);
         this.vistaGU.btnLimpiar.addActionListener(this);
@@ -54,7 +56,6 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
         this.vistaGU.txtRespuesta.addKeyListener(this);
         this.catalogo.txtBuscar.addKeyListener(this);
         this.catalogo.tabla.addMouseListener(this);
-        this.catalogo.addWindowListener(this);
         this.vistaGU.addWindowListener(this);
         this.catalogo.setVisible(true);
         this.vistaGU.jTable.addMouseListener(this);
@@ -354,7 +355,6 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
 
     @Override
     public void windowOpened(WindowEvent e) {
-        llenarTabla(catalogo.tabla);
         if (e.getSource() == vistaGU) {
             crearCbxTipoU();
         }

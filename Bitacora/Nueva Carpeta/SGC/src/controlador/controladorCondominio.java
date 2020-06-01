@@ -239,7 +239,7 @@ public class controladorCondominio implements ActionListener, MouseListener, Key
                         vista.dispose();
                         SGC.condominioActual = modelo;
 
-                        controladorMenu ctrlMenu = new controladorMenu();
+                        CtrlVentana ctrlMenu = new CtrlVentana();
 
                         //                    Llenartabla(catalogo.jTable1);
                         //                } else {

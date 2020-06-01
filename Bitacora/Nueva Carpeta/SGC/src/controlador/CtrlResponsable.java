@@ -21,36 +21,34 @@ import vista.Catalogo;
 
 public class CtrlResponsable implements ActionListener, MouseListener, KeyListener {
 
-    vista.Responsable vista;
-    modelo.Responsable modelo;
+    private Catalogo catalogo;
+    private vista.Responsable vista;
+    private modelo.Responsable modelo;
 
-    Catalogo catalogo;
+    private ArrayList<Responsable> lista;
 
-    DefaultTableModel dm;
-    Funcion permiso;
-
-    ArrayList<Responsable> listaResponsable;
+    private Funcion permiso;
 
     int fila;
 
     public CtrlResponsable() {
-        
         catalogo = new Catalogo();
         modelo = new modelo.Responsable();
+
         catalogo.lblTitulo.setText("Responsable");
+        
         catalogo.btnNuevo.addActionListener(this);
         catalogo.tabla.addMouseListener(this);
         catalogo.txtBuscar.addKeyListener(this);
-        
+
         llenarTabla();
         permisoBtn();
-        
+
         if (permiso.getRegistrar()) {
             catalogo.btnNuevo.setEnabled(true);
         }
-        
-        catalogo.setVisible(true);
 
+        CtrlVentana.cambiarVista(catalogo);
     }
 
     @Override
@@ -179,7 +177,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
         if (e.getSource() == catalogo.tabla) {
             fila = catalogo.tabla.getSelectedRow();
 
-            modelo = new Responsable(listaResponsable.get(fila).getCedula(), listaResponsable.get(fila).getpNombre(), listaResponsable.get(fila).getsNombre(), listaResponsable.get(fila).getpApellido(), listaResponsable.get(fila).getsApellido(), listaResponsable.get(fila).getCorreo(), listaResponsable.get(fila).getTelefono());
+            modelo = new Responsable(lista.get(fila).getCedula(), lista.get(fila).getpNombre(), lista.get(fila).getsNombre(), lista.get(fila).getpApellido(), lista.get(fila).getsApellido(), lista.get(fila).getCorreo(), lista.get(fila).getTelefono());
             vista = new vista.Responsable();
             if (permiso.getModificar()) {
                 vista.btnModificar.setEnabled(true);
@@ -227,7 +225,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
     }
 
     private void filtro(String consulta, JTable jtableBuscar) {
-        dm = (DefaultTableModel) jtableBuscar.getModel();
+        DefaultTableModel dm = (DefaultTableModel) jtableBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
         jtableBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));
@@ -235,7 +233,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
     }
 
     private void llenarTabla() {
-        listaResponsable = modelo.listar();
+        lista = modelo.listar();
 
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
@@ -258,19 +256,19 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
         Object[] columna = new Object[modeloT.getColumnCount()];
 
-        int numRegistro = listaResponsable.size();
+        int numRegistro = lista.size();
         int ind;
 
         for (int i = 0; i < numRegistro; i++) {
             ind = 0;
 
-            columna[ind++] = listaResponsable.get(i).getCedula();
-            String nombre = listaResponsable.get(i).getpNombre() + " " + listaResponsable.get(i).getsNombre();
+            columna[ind++] = lista.get(i).getCedula();
+            String nombre = lista.get(i).getpNombre() + " " + lista.get(i).getsNombre();
             columna[ind++] = nombre;
-            String apellido = listaResponsable.get(i).getpApellido() + " " + listaResponsable.get(i).getsApellido();
+            String apellido = lista.get(i).getpApellido() + " " + lista.get(i).getsApellido();
             columna[ind++] = apellido;
-            columna[ind++] = listaResponsable.get(i).getCorreo();
-            columna[ind++] = listaResponsable.get(i).getTelefono();
+            columna[ind++] = lista.get(i).getCorreo();
+            columna[ind++] = lista.get(i).getTelefono();
 
             modeloT.addRow(columna);
 

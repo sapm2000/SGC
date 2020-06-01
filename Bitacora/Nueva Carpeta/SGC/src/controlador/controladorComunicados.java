@@ -42,7 +42,10 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
       
         this.modus = new CrudUsuario();
         catalogo.lblTitulo.setText("Comunicados");
-        this.catalogo.addWindowListener(this);
+        CtrlVentana.cambiarVista(catalogo);
+        llenartablaComunicado(catalogo.tabla);
+
+        
         this.catalogo.tabla.addMouseListener(this);
         this.vista.txtBuscarPropietarios.addKeyListener(this);
 
@@ -238,8 +241,8 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
             this.vista.setVisible(true);
             vista.txtid.setVisible(false);
 
-            Llenartabla(vista.tabla);
-            addCheckBox(5, vista.tabla);
+            Llenartabla(vista.jTable1);
+            addCheckBox(5, vista.jTable1);
 
         }
 
@@ -250,8 +253,8 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
                 modelo.setAsunto(vista.txtAsunto.getText());
                 modelo.setMensaje(vista.txaMensaje.getText());
               
-                for (int i = 0; i < vista.tabla.getRowCount(); i++) {
-                    if (valueOf(vista.tabla.getValueAt(i, 5)) == "true") {
+                for (int i = 0; i < vista.jTable1.getRowCount(); i++) {
+                    if (valueOf(vista.jTable1.getValueAt(i, 5)) == "true") {
 
                         j = j + 1;
 
@@ -267,10 +270,10 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
 
                         modelo.buscId(modelo);
 
-                        for (int i = 0; i < vista.tabla.getRowCount(); i++) {
-                            if (valueOf(vista.tabla.getValueAt(i, 5)) == "true") {
+                        for (int i = 0; i < vista.jTable1.getRowCount(); i++) {
+                            if (valueOf(vista.jTable1.getValueAt(i, 5)) == "true") {
 
-                                String valor = String.valueOf(vista.tabla.getValueAt(i, 0));
+                                String valor = String.valueOf(vista.jTable1.getValueAt(i, 0));
                                 modelo.setId_usuario(valor);
                                 modelo.setLeido(0);
 
@@ -341,14 +344,13 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
 
         if (e.getSource() == vista.txtBuscarPropietarios) {
 
-            filtro(vista.txtBuscarPropietarios.getText(), vista.tabla);
+            filtro(vista.txtBuscarPropietarios.getText(), vista.jTable1);
         }
     }
 
     @Override
     public void windowOpened(WindowEvent e) {
        
-        llenartablaComunicado(catalogo.tabla);
     }
 
     @Override
@@ -394,8 +396,8 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
         vista.txtid.setText(dato);
         vista.txtAsunto.setText(modelo.getAsunto());
         vista.txaMensaje.setText(modelo.getMensaje());
-        Llenartablamod(vista.tabla);
-        addCheckBox(5, vista.tabla);
+        Llenartablamod(vista.jTable1);
+        addCheckBox(5, vista.jTable1);
         vista.btnEnviar.setEnabled(false);
     }
 

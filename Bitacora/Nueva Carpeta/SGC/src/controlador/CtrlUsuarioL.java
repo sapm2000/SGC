@@ -101,7 +101,7 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
                     modCondominio.buscar();
                     SGC.condominioActual = modCondominio;
                     
-                    controladorMenu ctrlMenu = new controladorMenu();
+                    CtrlVentana ctrlMenu = new CtrlVentana();
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Los datos del condominio no están configurados\nIngrese los datos a continuación", "Información", JOptionPane.INFORMATION_MESSAGE);

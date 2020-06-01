@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import java.awt.Component;
@@ -39,10 +34,6 @@ import vista.Catalogo;
 import vista.buscarProveedor;
 import vista.cuotasEspeciales;
 
-/**
- *
- * @author rma
- */
 public class controladorCuotasEspeciales implements ActionListener, MouseListener, KeyListener, WindowListener, ItemListener {
 
     private cuotasEspeciales vista;
@@ -76,11 +67,17 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
         this.buscpro = new buscarProveedor();
 
         catalogo.lblTitulo.setText("Cuotas Especiales");
-            
+
+        llenartablaCuotasEspeciales(catalogo.tabla);
+        permisoBtn();
+
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
+
         this.catalogo.btnNuevo.addActionListener(this);
         this.catalogo.tabla.addMouseListener(this);
         this.catalogo.txtBuscar.addKeyListener(this);
-        this.catalogo.addWindowListener(this);
         this.vista.btnEliminar.addActionListener(this);
         this.buscpro.jTable1.addMouseListener(this);
         this.vista.btnBuscarproveedor.addActionListener(this);
@@ -98,6 +95,8 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
         listaConGas = modcon.listarConcepto();
         listaasambleas = modasa.listarAsambleas();
         this.catalogo.setVisible(true);
+        
+        CtrlVentana.cambiarVista(catalogo);
     }
 
     public void llenartablaCuotasEspeciales(JTable tablaD) {
@@ -739,14 +738,14 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
             int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
             String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
-            
+
             if (permiso.getModificar()) {
                 vista.btnModificar.setEnabled(true);
             }
             if (permiso.getEliminar()) {
                 vista.btnEliminar.setEnabled(true);
             }
-            
+
             modcuo.setId(Integer.parseInt(dato));
 
             modcuo.buscarCuotaEspecial(modcuo);
@@ -887,13 +886,6 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
     @Override
     public void windowOpened(WindowEvent e) {
-
-        llenartablaCuotasEspeciales(catalogo.tabla);
-         permisoBtn();
-        
-        if (permiso.getRegistrar()) {
-            catalogo.btnNuevo.setEnabled(true);
-        }
 
         Component[] components = vista.jPanel2.getComponents();
         JComponent[] com = {

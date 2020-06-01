@@ -33,7 +33,9 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener {
         this.modelo = new TipoUsuario();
         this.modFuncion = new Funcion();
         
+        CtrlVentana.cambiarVista(catalogo);
         catalogo.lblTitulo.setText("Tipo Usuario");
+        
         this.catalogo.btnNuevo.addActionListener(this);
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnModificar.addActionListener(this);

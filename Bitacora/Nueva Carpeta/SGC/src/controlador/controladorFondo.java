@@ -54,7 +54,15 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
         this.modfon = new Fondo();
 
         catalogo.lblTitulo.setText("Fondo");
-        this.catalogo.addWindowListener(this);
+        CtrlVentana.cambiarVista(catalogo);
+        
+        Llenartabla(catalogo.tabla);
+        permisoBtn();
+
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
+        
         this.catalogo.btnNuevo.addActionListener(this);
         this.catalogo.txtBuscar.addKeyListener(this);
         this.catalogo.tabla.addMouseListener(this);
@@ -465,12 +473,6 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
     @Override
     public void windowOpened(WindowEvent e) {
 
-        Llenartabla(catalogo.tabla);
-        permisoBtn();
-
-        if (permiso.getRegistrar()) {
-            catalogo.btnNuevo.setEnabled(true);
-        }
 
         Component[] components = vista.jPanel2.getComponents();
         JComponent[] com = {

@@ -39,9 +39,16 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         this.catalogo = new Catalogo();
         this.vista = new categoriaGastos();
         this.modelo = new CategoriaGasto();
-        
-        
+
         catalogo.lblTitulo.setText("Categoría Gastos");
+        CtrlVentana.cambiarVista(catalogo);
+        Llenartabla(catalogo.tabla);
+
+        permisoBtn();
+
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
         this.catalogo.btnNuevo.addActionListener(this);
 
         this.vista.btnModificar.addActionListener(this);
@@ -50,7 +57,6 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
         this.vista.btnEliminar.addActionListener(this);
         this.catalogo.tabla.addMouseListener(this);
         this.catalogo.txtBuscar.addKeyListener(this);
-        this.catalogo.addWindowListener(this);
         this.vista.txtnombre.addKeyListener(this);
         this.vista.txtdescripcion.addKeyListener(this);
         this.catalogo.setVisible(true);
@@ -335,12 +341,6 @@ public class controladorCategoriaGastos implements ActionListener, MouseListener
 
     @Override
     public void windowOpened(WindowEvent e) {
-        Llenartabla(catalogo.tabla);
-                permisoBtn();
-        
-        if (permiso.getRegistrar()) {
-            catalogo.btnNuevo.setEnabled(true);
-        }
 
         Component[] components = vista.jPanel2.getComponents();
         JComponent[] com = {

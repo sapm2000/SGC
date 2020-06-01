@@ -36,9 +36,7 @@ public class cuentasPorCobrar extends javax.swing.JFrame {
 
     public cuentasPorCobrar() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new Catalogo.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new cuentasPorCobrar.MyScrollBarUI());
-        jTable2.getTableHeader().setDefaultRenderer(new Catalogo.Headercolor());
         jScrollPane2.getVerticalScrollBar().setUI(new cuentasPorCobrar.MyScrollBarUI());
         jScrollPane3.getVerticalScrollBar().setUI(new cuentasPorCobrar.MyScrollBarUI());
         txtDescripcion.setLineWrap(true);

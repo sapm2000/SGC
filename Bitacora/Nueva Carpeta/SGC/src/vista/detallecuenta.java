@@ -40,7 +40,6 @@ public class detallecuenta extends javax.swing.JFrame {
 
     public detallecuenta() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new Catalogo.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         setLocationRelativeTo(null);
     }

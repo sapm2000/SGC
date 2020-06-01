@@ -45,15 +45,21 @@ public class controladorForma_pago implements ActionListener, KeyListener, Mouse
         this.modfor = new FormaPago();
         this.vista = new formaDePago();
         this.catalogo = new Catalogo();
-        
+
         catalogo.lblTitulo.setText("Forma de Pago");
-        
+        CtrlVentana.cambiarVista(catalogo);
+        Llenartabla(catalogo.tabla);
+        permisoBtn();
+
+        if (permiso.getRegistrar()) {
+            catalogo.btnNuevo.setEnabled(true);
+        }
+
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
         this.vista.btnEliminar.addActionListener(this);
         this.vista.btnModificar.addActionListener(this);
         this.catalogo.btnNuevo.addActionListener(this);
-        this.catalogo.addWindowListener(this);
         this.catalogo.tabla.addMouseListener(this);
         this.catalogo.txtBuscar.addKeyListener(this);
         catalogo.setVisible(true);
@@ -296,12 +302,7 @@ public class controladorForma_pago implements ActionListener, KeyListener, Mouse
 
     @Override
     public void windowOpened(WindowEvent e) {
-        Llenartabla(catalogo.tabla);
-        permisoBtn();
 
-        if (permiso.getRegistrar()) {
-            catalogo.btnNuevo.setEnabled(true);
-        }
     }
 
     @Override

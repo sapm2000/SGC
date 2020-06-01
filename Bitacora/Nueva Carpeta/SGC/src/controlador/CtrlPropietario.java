@@ -37,6 +37,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
         catalogo = new Catalogo();
         modelo = new Propietarios();
         
+        CtrlVentana.cambiarVista(catalogo);
         catalogo.lblTitulo.setText("Propietario");
 
         catalogo.btnNuevo.addActionListener(this);
