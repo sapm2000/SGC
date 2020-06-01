@@ -24,19 +24,18 @@ import modelo.Cuenta;
 import modelo.Cuenta_Pagar;
 import modelo.Fondo;
 import modelo.GastoComun;
-import vista.catalogoCuentas_procesada;
-import vista.catalogoPagos_referencias;
+import vista.Catalogo;
 import vista.cuentasPorPagar;
 
 public class controladorCuenta_Pagar implements ActionListener, WindowListener, ItemListener, KeyListener, MouseListener {
 
     private cuentasPorPagar vista;
-    private Cuenta_Pagar modCuentaP;
+    private Cuenta_Pagar modelo;
 
-    private catalogoCuentas_procesada catCuenPro;
+    private Catalogo catCuenPro;
     private GastoComun modGastoC;
 
-    private catalogoPagos_referencias catPagos;
+    private Catalogo catPagos;
 
     private Fondo modFondo;
     private Cuenta modCuenta;
@@ -50,19 +49,22 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
 
     public controladorCuenta_Pagar() {
 
-        catPagos = new catalogoPagos_referencias();
-        this.modCuentaP = new Cuenta_Pagar();
+        catPagos = new Catalogo();
+        catCuenPro = new Catalogo();
+        catCuenPro.lblTitulo.setText("Cuentas Procesadas");
+        catPagos.lblTitulo.setText("Cuentas Pagadas");
+        
+        this.modelo = new Cuenta_Pagar();
         this.vista = new cuentasPorPagar();
         this.modFondo = new Fondo();
         this.modCuenta = new Cuenta();
         this.modGastoC = new GastoComun();
-        this.catCuenPro = new catalogoCuentas_procesada();
         this.vista.btnProcesar.addActionListener(this);
         this.vista.addWindowListener(this);
         this.vista.jTable.addMouseListener(this);
         this.vista.btnMostrar.addActionListener(this);
         this.vista.btnPagos.addActionListener(this);
-        this.catPagos.txtBusqueda.addKeyListener(this);
+        this.catPagos.txtBuscar.addKeyListener(this);
         this.vista.setVisible(true);
     }
 
@@ -72,23 +74,23 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
             System.out.println("poli0");
             if (validar()) {
                 System.out.println("poli1");
-                modCuentaP.setNum_ref(vista.txtReferencia.getText());
-                modCuentaP.setForma_pago(vista.cbxFormaP.getSelectedItem().toString());
+                modelo.setNum_ref(vista.txtReferencia.getText());
+                modelo.setForma_pago(vista.cbxFormaP.getSelectedItem().toString());
                 int ind = vista.cbxCuentaT.getSelectedIndex() - 1;
-                modCuentaP.getModCuenta().setN_cuenta(listaCuenta.get(ind).getN_cuenta());
-                modCuentaP.setDescripcion(vista.txtDescripcion.getText());
+                modelo.getModCuenta().setN_cuenta(listaCuenta.get(ind).getN_cuenta());
+                modelo.setDescripcion(vista.txtDescripcion.getText());
                 java.sql.Date sqlDate = convert(vista.jDate.getDate());
-                modCuentaP.setFecha(sqlDate);
+                modelo.setFecha(sqlDate);
                 ind = vista.cbxFondo.getSelectedIndex() - 1;
-                modCuentaP.getModFondo().setId(listaFondo.get(ind).getId());
-                modCuentaP.getModFondo().setSaldo(listaFondo.get(ind).getSaldo());
+                modelo.getModFondo().setId(listaFondo.get(ind).getId());
+                modelo.getModFondo().setSaldo(listaFondo.get(ind).getSaldo());
                 //int fila = this.vistaCuentaP.jTable.getSelectedRow(); // primero, obtengo la fila seleccionada
-                modCuentaP.setMonto(Float.parseFloat(vista.txtMonto.getText()));
+                modelo.setMonto(Float.parseFloat(vista.txtMonto.getText()));
 
-                if (modCuentaP.registrarPago(modCuentaP)) {
-                    modCuentaP.getModFondo().restarFondo(modCuentaP.getMonto());
+                if (modelo.registrarPago(modelo)) {
+                    modelo.getModFondo().restarFondo(modelo.getMonto());
                     modGastoC.setId(listaGastoC.get(fila).getId());
-                    modGastoC.restarSaldo(modCuentaP.getMonto());
+                    modGastoC.restarSaldo(modelo.getMonto());
                     JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
 
                 } else {
@@ -102,10 +104,12 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
             }
         }
         if (e.getSource() == vista.btnMostrar) {
+            catCuenPro.btnNuevo.setVisible(false);
             catCuenPro.addWindowListener(this);
             this.catCuenPro.setVisible(true);
         }
         if (e.getSource() == vista.btnPagos) {
+            catPagos.btnNuevo.setVisible(false);
             catPagos.addWindowListener(this);
             this.catPagos.setVisible(true);
 
@@ -125,9 +129,9 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
             //addCheckBox(0, vistaCuentaP.jTable);
             
         } else if (e.getSource() == catCuenPro) {
-            Llenartabla(catCuenPro.jTable1, 1);
+            Llenartabla(catCuenPro.tabla, 1);
         } else if (e.getSource() == catPagos) {
-            llenarTablaPagos(catPagos.jTable);
+            llenarTablaPagos(catPagos.tabla);
         }
 
         Component[] components = vista.jPanel.getComponents();
@@ -175,8 +179,8 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getSource() == catPagos.txtBusqueda) {
-            filtro(catPagos.txtBusqueda.getText(), catPagos.jTable);
+        if (e.getSource() == catPagos.txtBuscar) {
+            filtro(catPagos.txtBuscar.getText(), catPagos.tabla);
         }
     }
 
@@ -188,10 +192,10 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
             //Boolean resultado = true;
             //String msj = "";
 
-            modCuentaP.cargarProveedor(listaGastoC.get(fila).getId());
+            modelo.cargarProveedor(listaGastoC.get(fila).getId());
 
             vista.setVisible(true);
-            vista.txtProveedor.setText(modCuentaP.getNom_proveedor());
+            vista.txtProveedor.setText(modelo.getNom_proveedor());
         }
     }
 
@@ -297,7 +301,7 @@ public class controladorCuenta_Pagar implements ActionListener, WindowListener, 
     }
 
     public void llenarTablaPagos(JTable tablaD) {
-        listaPagar = modCuentaP.listar();
+        listaPagar = modelo.listar();
 
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);

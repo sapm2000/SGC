@@ -35,9 +35,8 @@ import modelo.Funcion;
 import modelo.ModeloConceptoGastos;
 import modelo.Proveedores;
 import sgc.SGC;
-import vista.PantallaPrincipal1;
+import vista.Catalogo;
 import vista.buscarProveedor;
-import vista.catalogoCuotasEspeciales;
 import vista.cuotasEspeciales;
 
 /**
@@ -47,11 +46,10 @@ import vista.cuotasEspeciales;
 public class controladorCuotasEspeciales implements ActionListener, MouseListener, KeyListener, WindowListener, ItemListener {
 
     private cuotasEspeciales vista;
-    private catalogoCuotasEspeciales catalogo;
+    private Catalogo catalogo;
     private Proveedores modpro;
     private ModeloConceptoGastos modcon;
     private Asambleas modasa;
-    private PantallaPrincipal1 panta1;
     private CuotasEspeciales modcuo;
     private CerrarMes modc;
     private buscarProveedor buscpro;
@@ -68,7 +66,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
     public controladorCuotasEspeciales() {
         this.vista = new cuotasEspeciales();
-        this.catalogo = new catalogoCuotasEspeciales();
+        this.catalogo = new Catalogo();
         this.modcon = new ModeloConceptoGastos();
         this.modpro = new Proveedores();
         this.modasa = new Asambleas();
@@ -77,9 +75,11 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
         this.modc = new CerrarMes();
         this.buscpro = new buscarProveedor();
 
+        catalogo.lblTitulo.setText("Cuotas Especiales");
+            
         this.catalogo.btnNuevo.addActionListener(this);
-        this.catalogo.jTable1.addMouseListener(this);
-        this.catalogo.jTextField1.addKeyListener(this);
+        this.catalogo.tabla.addMouseListener(this);
+        this.catalogo.txtBuscar.addKeyListener(this);
         this.catalogo.addWindowListener(this);
         this.vista.btnEliminar.addActionListener(this);
         this.buscpro.jTable1.addMouseListener(this);
@@ -485,7 +485,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
                                                         modcuo.registrar_puente(modcuo);
                                                     }
 
-                                                    llenartablaCuotasEspeciales(catalogo.jTable1);
+                                                    llenartablaCuotasEspeciales(catalogo.tabla);
 
                                                 }
                                                 JOptionPane.showMessageDialog(null, "Registro Guardado");
@@ -628,7 +628,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
                                                 }
                                                 JOptionPane.showMessageDialog(null, "registro modificado");
-                                                llenartablaCuotasEspeciales(catalogo.jTable1);
+                                                llenartablaCuotasEspeciales(catalogo.tabla);
                                                 this.vista.dispose();
                                             } else {
 
@@ -656,7 +656,7 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             if (modcuo.eliminar_cuotas_especiales(modcuo)) {
                 modcuo.eliminar_puente(modcuo);
                 JOptionPane.showMessageDialog(null, "Registro Eliminado");
-                llenartablaCuotasEspeciales(catalogo.jTable1);
+                llenartablaCuotasEspeciales(catalogo.tabla);
                 this.vista.dispose();
 
             } else {
@@ -733,12 +733,12 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
             }
         }
 
-        if (e.getSource() == catalogo.jTable1) {
+        if (e.getSource() == catalogo.tabla) {
             vista.si.setEnabled(true);
             vista.no.setEnabled(true);
 
-            int fila = this.catalogo.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
-            String dato = String.valueOf(this.catalogo.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+            int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
+            String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
             
             if (permiso.getModificar()) {
                 vista.btnModificar.setEnabled(true);
@@ -879,16 +879,16 @@ public class controladorCuotasEspeciales implements ActionListener, MouseListene
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getSource() == catalogo.jTextField1) {
+        if (e.getSource() == catalogo.txtBuscar) {
 
-            filtro(catalogo.jTextField1.getText(), catalogo.jTable1);
+            filtro(catalogo.txtBuscar.getText(), catalogo.tabla);
         }
     }
 
     @Override
     public void windowOpened(WindowEvent e) {
 
-        llenartablaCuotasEspeciales(catalogo.jTable1);
+        llenartablaCuotasEspeciales(catalogo.tabla);
          permisoBtn();
         
         if (permiso.getRegistrar()) {

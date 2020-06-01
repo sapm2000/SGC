@@ -30,8 +30,7 @@ import modelo.Funcion;
 import modelo.Sancion;
 import modelo.Unidades;
 import sgc.SGC;
-import vista.PantallaPrincipal1;
-import vista.catalogoSancion;
+import vista.Catalogo;
 import vista.sancion;
 
 /**
@@ -41,9 +40,8 @@ import vista.sancion;
 public class controladorSancion implements ActionListener, MouseListener, KeyListener, WindowListener {
 
     private sancion vista;
-    private catalogoSancion catalogo;
+    private Catalogo catalogo;
     private Sancion modsan;
-    private PantallaPrincipal1 panta1;
     private CerrarMes modc;
     private Unidades moduni;
 
@@ -56,15 +54,15 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
     public controladorSancion() {
         this.vista = new sancion();
-        this.catalogo = new catalogoSancion();
+        this.catalogo = new Catalogo();
         this.modsan = new Sancion();
         this.moduni = new Unidades();
         this.modc = new CerrarMes();
-
+        catalogo.lblTitulo.setText("Sanciones");
         this.catalogo.btnNuevo.addActionListener(this);
         this.catalogo.addWindowListener(this);
-        this.catalogo.jTextField1.addKeyListener(this);
-        this.catalogo.jTable1.addMouseListener(this);
+        this.catalogo.txtBuscar.addKeyListener(this);
+        this.catalogo.tabla.addMouseListener(this);
         this.vista.btnEliminar.addActionListener(this);
         this.vista.jYearChooser1.addKeyListener(this);
 
@@ -317,7 +315,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
                                             }
                                         }
-                                        LlenartablaSancion(catalogo.jTable1);
+                                        LlenartablaSancion(catalogo.tabla);
                                     } else {
 
                                         JOptionPane.showMessageDialog(null, "error al guardar");
@@ -387,7 +385,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
 
                                             }
                                         }
-                                        LlenartablaSancion(catalogo.jTable1);
+                                        LlenartablaSancion(catalogo.tabla);
                                         this.vista.dispose();
                                     } else {
 
@@ -412,7 +410,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
             modsan.eliminarsancion(modsan);
             JOptionPane.showMessageDialog(null, "registro eliminado");
             vista.dispose();
-            LlenartablaSancion(catalogo.jTable1);
+            LlenartablaSancion(catalogo.tabla);
         }
         if (e.getSource() == vista.btnLimpiar) {
 
@@ -448,12 +446,12 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
     @Override
     public void mouseClicked(MouseEvent e
     ) {
-        int fila = this.catalogo.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
 
-        String dato = String.valueOf(this.catalogo.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+        String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
         modsan.setId(Integer.parseInt(dato));
 
-        String estado = String.valueOf(this.catalogo.jTable1.getValueAt(fila, 6)); // por ultimo, obtengo el valor de la celda
+        String estado = String.valueOf(this.catalogo.tabla.getValueAt(fila, 6)); // por ultimo, obtengo el valor de la celda
         modsan.setEstado(estado);
 
         if (permiso.getModificar()) {
@@ -543,9 +541,9 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
     @Override
     public void keyReleased(KeyEvent e
     ) {
-        if (e.getSource() == catalogo.jTextField1) {
+        if (e.getSource() == catalogo.txtBuscar) {
 
-            filtro(catalogo.jTextField1.getText(), catalogo.jTable1);
+            filtro(catalogo.txtBuscar.getText(), catalogo.tabla);
 
         }
     }
@@ -553,7 +551,7 @@ public class controladorSancion implements ActionListener, MouseListener, KeyLis
     @Override
     public void windowOpened(WindowEvent e
     ) {
-        LlenartablaSancion(catalogo.jTable1);
+        LlenartablaSancion(catalogo.tabla);
         permisoBtn();
 
         if (permiso.getRegistrar()) {

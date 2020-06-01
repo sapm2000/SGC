@@ -271,8 +271,8 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 //            this.as.btnModificar.setEnabled(false);
             this.vista.btnGuardar.setEnabled(true);
            
-            Llenartabla(vista.tabla);
-            addCheckBox(5, vista.tabla);
+            Llenartabla(vista.jTable1);
+            addCheckBox(5, vista.jTable1);
             vista.txtNombreAsamblea.setText("");
             vista.txaDescripcion.setText("");
             vista.jDateChooser2.setDate(null);
@@ -288,8 +288,8 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
                 java.sql.Date sqlDate = convert(vista.jDateChooser2.getDate());
                 modasa.setFecha(sqlDate);
-                for (int i = 0; i < vista.tabla.getRowCount(); i++) {
-                    if (valueOf(vista.tabla.getValueAt(i, 5)) == "true") {
+                for (int i = 0; i < vista.jTable1.getRowCount(); i++) {
+                    if (valueOf(vista.jTable1.getValueAt(i, 5)) == "true") {
 
                         j = j + 1;
 
@@ -305,10 +305,10 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
 
                         modasa.buscId(modasa);
 
-                        for (int i = 0; i < vista.tabla.getRowCount(); i++) {
-                            if (valueOf(vista.tabla.getValueAt(i, 5)) == "true") {
+                        for (int i = 0; i < vista.jTable1.getRowCount(); i++) {
+                            if (valueOf(vista.jTable1.getValueAt(i, 5)) == "true") {
 
-                                String valor = String.valueOf(vista.tabla.getValueAt(i, 0));
+                                String valor = String.valueOf(vista.jTable1.getValueAt(i, 0));
                                 modasa.setId_propietario(valor);
 
                                 modasa.registrar_asamblea_propietario(modasa);
@@ -406,7 +406,7 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
     public void keyReleased(KeyEvent e) {
         if (e.getSource() == vista.txtBuscarPropietarios) {
 
-            filtro(vista.txtBuscarPropietarios.getText(), vista.tabla);
+            filtro(vista.txtBuscarPropietarios.getText(), vista.jTable1);
         }
         if (e.getSource() == catalogo.txtBuscar) {
 
@@ -429,8 +429,8 @@ public class controladorAsambleas implements ActionListener, KeyListener, MouseL
         vista.txtNombreAsamblea.setText(modasa.getNombre_asamblea());
         vista.txaDescripcion.setText(modasa.getDescripcion());
         vista.jDateChooser2.setDate(modasa.getFecha());
-        llenartablapropietariomodificar(vista.tabla);
-        addCheckBox(5, vista.tabla);;
+        llenartablapropietariomodificar(vista.jTable1);
+        addCheckBox(5, vista.jTable1);;
         vista.btnGuardar.setEnabled(false);
 //        as.btnModificar.setEnabled(true);
     }

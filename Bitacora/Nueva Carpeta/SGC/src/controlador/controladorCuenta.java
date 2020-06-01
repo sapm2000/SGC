@@ -41,7 +41,8 @@ public class controladorCuenta implements ActionListener, MouseListener, KeyList
         this.vista = new cuenta();
         this.modelo = new Cuenta();
         this.modBanco = new Banco();
-
+        
+        catalogo.lblTitulo.setText("Cuenta");
         this.catalogo.btnNuevo.addActionListener(this);
         this.catalogo.tabla.addMouseListener(this);
         this.catalogo.addWindowListener(this);
