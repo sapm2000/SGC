@@ -14,7 +14,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -28,8 +27,7 @@ import javax.swing.table.TableRowSorter;
 import modelo.Fondo;
 import modelo.Funcion;
 import sgc.SGC;
-import vista.catalogoFondo;
-import vista.catalogoInactivoFondo;
+import vista.Catalogo;
 import vista.fondo;
 
 /**
@@ -39,10 +37,9 @@ import vista.fondo;
 public class controladorFondo implements ActionListener, MouseListener, KeyListener, WindowListener {
 
     private fondo vista;
-    private catalogoFondo catalogo;
+    private Catalogo catalogo;
     private Fondo modfon;
 
-    private catalogoInactivoFondo cataifon;
 
     Funcion permiso;
 
@@ -53,16 +50,14 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
 
     public controladorFondo() {
         this.vista = new fondo();
-        this.catalogo = new catalogoFondo();
+        this.catalogo = new Catalogo();
         this.modfon = new Fondo();
 
-        this.cataifon = new catalogoInactivoFondo();
+        catalogo.lblTitulo.setText("Fondo");
         this.catalogo.addWindowListener(this);
-        this.cataifon.btnActivar.addActionListener(this);
         this.catalogo.btnNuevo.addActionListener(this);
-        this.catalogo.jTextField1.addKeyListener(this);
-        this.catalogo.jTable1.addMouseListener(this);
-        this.catalogo.btnDesactivar.addActionListener(this);
+        this.catalogo.txtBuscar.addKeyListener(this);
+        this.catalogo.tabla.addMouseListener(this);
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
         this.vista.btnModificar.addActionListener(this);
@@ -204,27 +199,6 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == catalogo.btnDesactivar) {
-            this.cataifon.setVisible(true);
-            Llenartablainactivos(cataifon.jTable1);
-            addCheckBox(6, cataifon.jTable1);
-        }
-
-        if (e.getSource() == cataifon.btnActivar) {
-            listafondo = modfon.listar(3);
-
-            for (int i = 0; i < cataifon.jTable1.getRowCount(); i++) {
-                if (valueOf(cataifon.jTable1.getValueAt(i, 6)) == "true") {
-
-                    modfon.setId(listafondo.get(i).getId());
-                    modfon.activar(modfon);
-
-                }
-            }
-            Llenartablainactivos(cataifon.jTable1);
-            addCheckBox(6, cataifon.jTable1);
-            Llenartabla(catalogo.jTable1);
-        }
 
         if (e.getSource() == catalogo.btnNuevo) {
             this.vista.setVisible(true);
@@ -260,7 +234,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
                         if (modfon.registrar(modfon)) {
 
                             JOptionPane.showMessageDialog(null, "Registro Guardado");
-                            Llenartabla(catalogo.jTable1);
+                            Llenartabla(catalogo.tabla);
 
                         } else {
 
@@ -297,7 +271,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
                             if (modfon.modificar(modfon)) {
 
                                 JOptionPane.showMessageDialog(null, "Registro Modificado");
-                                Llenartabla(catalogo.jTable1);
+                                Llenartabla(catalogo.tabla);
                                 vista.dispose();
 
                             } else {
@@ -323,7 +297,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
                         if (modfon.modificar(modfon)) {
 
                             JOptionPane.showMessageDialog(null, "Registro Modificado");
-                            Llenartabla(catalogo.jTable1);
+                            Llenartabla(catalogo.tabla);
                             vista.dispose();
 
                         } else {
@@ -350,7 +324,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
 
                     JOptionPane.showMessageDialog(null, "Registro Eliminado");
                     vista.dispose();
-                    Llenartabla(catalogo.jTable1);
+                    Llenartabla(catalogo.tabla);
 
                 } else {
 
@@ -410,7 +384,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int fila = this.catalogo.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
 
         if (permiso.getModificar()) {
             vista.btnModificar.setEnabled(true);
@@ -419,7 +393,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
             vista.btnEliminar.setEnabled(true);
         }
 
-        String dato = String.valueOf(this.catalogo.jTable1.getValueAt(fila, 1)); // por ultimo, obtengo el valor de la celda
+        String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 1)); // por ultimo, obtengo el valor de la celda
 
         modfon.setTipo(String.valueOf(dato));
 
@@ -480,9 +454,9 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getSource() == catalogo.jTextField1) {
+        if (e.getSource() == catalogo.txtBuscar) {
 
-            filtro(catalogo.jTextField1.getText(), catalogo.jTable1);
+            filtro(catalogo.txtBuscar.getText(), catalogo.tabla);
         } else {
 
         }
@@ -491,7 +465,7 @@ public class controladorFondo implements ActionListener, MouseListener, KeyListe
     @Override
     public void windowOpened(WindowEvent e) {
 
-        Llenartabla(catalogo.jTable1);
+        Llenartabla(catalogo.tabla);
         permisoBtn();
 
         if (permiso.getRegistrar()) {

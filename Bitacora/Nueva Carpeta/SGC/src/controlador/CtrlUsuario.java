@@ -17,14 +17,14 @@ import javax.swing.table.TableRowSorter;
 import modelo.Persona;
 import modelo.TipoUsuario;
 import modelo.Usuario;
+import vista.Catalogo;
 import vista.GestionarUsuario;
-import vista.catalogoUsuario;
 
 public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, WindowListener {
 
     private Usuario modelo;
     private GestionarUsuario vistaGU;
-    private catalogoUsuario catausu;
+    private Catalogo catalogo;
 
     private Persona modPersona;
     private ArrayList<Usuario> listaUsu;
@@ -38,24 +38,25 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
 
         this.modelo = new Usuario();
         this.vistaGU = new GestionarUsuario();
-        this.catausu = new catalogoUsuario();
+        this.catalogo = new Catalogo();
         this.modPersona = new Persona();
         this.modTipo = new TipoUsuario();
         
+        catalogo.lblTitulo.setText("Usuario");
         this.vistaGU.btnGuardar.addActionListener(this);
         this.vistaGU.btnLimpiar.addActionListener(this);
-        this.catausu.btnNuevo.addActionListener(this);
+        this.catalogo.btnNuevo.addActionListener(this);
         this.vistaGU.txtCedula.addKeyListener(this);
         this.vistaGU.txtUsuario.addKeyListener(this);
         this.vistaGU.txtClave.addKeyListener(this);
         this.vistaGU.txtClave2.addKeyListener(this);
         this.vistaGU.txtPregunta.addKeyListener(this);
         this.vistaGU.txtRespuesta.addKeyListener(this);
-        this.catausu.txtBuscar.addKeyListener(this);
-        this.catausu.jtable.addMouseListener(this);
-        this.catausu.addWindowListener(this);
+        this.catalogo.txtBuscar.addKeyListener(this);
+        this.catalogo.tabla.addMouseListener(this);
+        this.catalogo.addWindowListener(this);
         this.vistaGU.addWindowListener(this);
-        this.catausu.setVisible(true);
+        this.catalogo.setVisible(true);
         this.vistaGU.jTable.addMouseListener(this);
 
     }
@@ -80,7 +81,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
 
                     if (modelo.reactivar()) {
                         JOptionPane.showMessageDialog(null, "Usuario habilitado");
-                        llenarTabla(catausu.jtable);
+                        llenarTabla(catalogo.tabla);
                         vistaGU.dispose();
                         limpiar();
                     } else {
@@ -98,7 +99,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
 
                             if (modelo.registrar()) {
                                 JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
-                                llenarTabla(catausu.jtable);
+                                llenarTabla(catalogo.tabla);
                                 vistaGU.dispose();
                                 limpiar();
                             } else {
@@ -115,7 +116,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
             limpiar();
         }
 
-        if (e.getSource() == catausu.btnNuevo) {
+        if (e.getSource() == catalogo.btnNuevo) {
             limpiar();
             llenarTablaPersona();
             this.vistaGU.setVisible(true);
@@ -151,15 +152,15 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getSource() == catausu.jtable) {
+        if (e.getSource() == catalogo.tabla) {
 
-            int fila = this.catausu.jtable.getSelectedRow(); // primero, obtengo la fila seleccionada
+            int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
             modelo = listaUsu.get(fila);
 
-            int result = JOptionPane.showConfirmDialog(catausu, "¿Desea Eliminar Usuario?", "ELIMINAR USUARIO", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            int result = JOptionPane.showConfirmDialog(catalogo, "¿Desea Eliminar Usuario?", "ELIMINAR USUARIO", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
             if (result == 0) {
                 modelo.eliminar();
-                llenarTabla(catausu.jtable);
+                llenarTabla(catalogo.tabla);
             }
         }
         if (e.getSource() == vistaGU.jTable) {
@@ -230,8 +231,8 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
     @Override
     public void keyReleased(KeyEvent e) {
 
-        if (e.getSource() == catausu.txtBuscar) {
-            filtro(catausu.txtBuscar.getText(), catausu.jtable);
+        if (e.getSource() == catalogo.txtBuscar) {
+            filtro(catalogo.txtBuscar.getText(), catalogo.tabla);
         }
     }
 
@@ -289,10 +290,10 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
         return resultado;
     }
 
-    private void filtro(String consulta, JTable jtableBuscar) {
-        dm = (DefaultTableModel) jtableBuscar.getModel();
+    private void filtro(String consulta, JTable tablaBuscar) {
+        dm = (DefaultTableModel) tablaBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
-        jtableBuscar.setRowSorter(tr);
+        tablaBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));
     }
 
@@ -353,7 +354,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
 
     @Override
     public void windowOpened(WindowEvent e) {
-        llenarTabla(catausu.jtable);
+        llenarTabla(catalogo.tabla);
         if (e.getSource() == vistaGU) {
             crearCbxTipoU();
         }

@@ -10,13 +10,13 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Funcion;
 import modelo.TipoUnidad;
 import sgc.SGC;
-import vista.catalogoCuenta;
+import vista.Catalogo;
 import vista.tipoUnidad;
 
 public class CtrlTipoUnidad implements ActionListener, MouseListener {
 
     private tipoUnidad vista;
-    private catalogoCuenta catalogo;
+    private Catalogo catalogo;
     private TipoUnidad modelo;
 
     private Funcion permiso;
@@ -24,7 +24,7 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener {
     private ArrayList<TipoUnidad> lista;
 
     public CtrlTipoUnidad() {
-        this.catalogo = new catalogoCuenta();
+        this.catalogo = new Catalogo();
         this.vista = new tipoUnidad();
         this.modelo = new TipoUnidad();
 

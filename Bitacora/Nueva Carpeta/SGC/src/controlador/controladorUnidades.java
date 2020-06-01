@@ -29,25 +29,21 @@ import modelo.Propietarios;
 import modelo.TipoUnidad;
 import modelo.Unidades;
 import sgc.SGC;
-import vista.catalogoInactivoUnidades;
-import vista.catalogoUnidades;
+import vista.Catalogo;
 import vista.detalleRecibo;
 import vista.detallecuenta;
 import vista.unidades;
-import vista.unidadesInactivas;
 
 public class controladorUnidades implements ActionListener, MouseListener, KeyListener, WindowListener {
 
     private unidades vista;
     private Unidades modelo;
-    private catalogoUnidades catalogo;
+    private Catalogo catalogo;
 
     private Propietarios modPropietario;
     private TipoUnidad tipoUnidad;
     private detallecuenta detacun;
     private detalleRecibo detare;
-    private catalogoInactivoUnidades cataiuni;
-    private unidadesInactivas unii;
 
     private ArrayList<Unidades> listaUnidades;
     private ArrayList<Propietarios> listaPropietarios;
@@ -63,27 +59,22 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
     private ArrayList<CerrarMes> listadetalleinteres;
 
     public controladorUnidades() {
-        this.catalogo = new catalogoUnidades();
+        this.catalogo = new Catalogo();
         this.vista = new unidades();
         this.modelo = new Unidades();
-
+        catalogo.lblTitulo.setText("Unidades");
         tipoUnidad = new TipoUnidad();
         this.detacun = new detallecuenta();
         this.detare = new detalleRecibo();
-        this.cataiuni = new catalogoInactivoUnidades();
-        this.unii = new unidadesInactivas();
         this.modc = new CerrarMes();
         modPropietario = new Propietarios();
 
         crearCbxTipoU();
 
-        this.unii.btnDesactivar.addActionListener(this);
         this.catalogo.addWindowListener(this);
         this.catalogo.btnNuevo.addActionListener(this);
-        this.cataiuni.jTable1.addMouseListener(this);
 
         this.vista.txtNumeroUnidad.addKeyListener(this);
-        this.unii.jTable1.addMouseListener(this);
 
         this.catalogo.tabla.addMouseListener(this);
 
@@ -302,14 +293,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             }
         }
 
-        if (e.getSource() == unii.jTable1) {
-            int fila = this.unii.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
-            String dato = String.valueOf(this.unii.jTable1.getValueAt(fila, 4)); // por ultimo, obtengo el valor de la celda
-
-            if (dato.equals("true")) {
-                unii.jTable1.editCellAt(fila, 5);
-            }
-        }
 
         if (e.getSource() == detacun.jTable1) {
 
@@ -338,21 +321,6 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             detare.txtTotal.setText(String.valueOf(Validacion.formato1.format(modc.getMonto())));
         }
 
-        if (e.getSource() == cataiuni.jTable1) {
-            int fila = this.cataiuni.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
-            String dato = String.valueOf(this.cataiuni.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
-
-            modelo.setN_unidad(String.valueOf(dato));
-            unii.setVisible(true);
-            unii.txtId.setVisible(false);
-            //modelo.buscarUnidad(modelo);
-            unii.txadireccion.setText(modelo.getDireccion());
-
-            unii.txtId.setText(String.valueOf(modelo.getId()));
-            unii.txtNumeroUnidad.setText(modelo.getN_unidad());
-            //llenartablapropietariosmod(unii.jTable1);
-            addCheckBox(4, unii.jTable1);
-        }
     }
 
     @Override

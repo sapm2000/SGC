@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import java.awt.event.ActionEvent;
@@ -25,18 +20,14 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.Comunicados;
 import modelo.CrudUsuario;
-import vista.catalogoComunicados;
+import vista.Catalogo;
 import vista.comunicados;
 
-/**
- *
- * @author rma
- */
 public class controladorComunicados implements ActionListener, KeyListener, WindowListener, MouseListener {
 
-    private catalogoComunicados catacom;
-    private comunicados com;
-    private Comunicados modco;
+    private Catalogo catalogo;
+    private comunicados vista;
+    private Comunicados modelo;
    
     ArrayList<CrudUsuario> listausuarios;
     private CrudUsuario modus;
@@ -45,20 +36,21 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
     ArrayList<Comunicados> listausuariosmod;
 
     public controladorComunicados() {
-        this.catacom = new catalogoComunicados();
-        this.com = new comunicados();
-        this.modco = new Comunicados();
+        this.catalogo = new Catalogo();
+        this.vista = new comunicados();
+        this.modelo = new Comunicados();
       
         this.modus = new CrudUsuario();
-        this.catacom.addWindowListener(this);
-        this.catacom.jTable1.addMouseListener(this);
-        this.com.txtBuscarPropietarios.addKeyListener(this);
+        catalogo.lblTitulo.setText("Comunicados");
+        this.catalogo.addWindowListener(this);
+        this.catalogo.tabla.addMouseListener(this);
+        this.vista.txtBuscarPropietarios.addKeyListener(this);
 
-        this.catacom.jButton2.addActionListener(this);
-        this.catacom.jTextField1.addKeyListener(this);
+        this.catalogo.btnNuevo.addActionListener(this);
+        this.catalogo.txtBuscar.addKeyListener(this);
 
-        this.com.btnEnviar.addActionListener(this);
-        this.catacom.setVisible(true);
+        this.vista.btnEnviar.addActionListener(this);
+        this.catalogo.setVisible(true);
 
     }
 
@@ -128,7 +120,7 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
 
     public void Llenartablamod(JTable tablaD) {
 
-        listausuariosmod = modco.listarmod();
+        listausuariosmod = modelo.listarmod();
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -200,7 +192,7 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
 
     public void llenartablaComunicado(JTable tablaD) {
 
-        listacomunicados = modco.listarComunicado();
+        listacomunicados = modelo.listarComunicado();
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -242,24 +234,24 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
 
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == catacom.jButton2) {
-            this.com.setVisible(true);
-            com.txtid.setVisible(false);
+        if (e.getSource() == catalogo.btnNuevo) {
+            this.vista.setVisible(true);
+            vista.txtid.setVisible(false);
 
-            Llenartabla(com.jTable1);
-            addCheckBox(5, com.jTable1);
+            Llenartabla(vista.tabla);
+            addCheckBox(5, vista.tabla);
 
         }
 
-        if (e.getSource() == com.btnEnviar) {
+        if (e.getSource() == vista.btnEnviar) {
 
             if (validar()) {
                 int j = 0;
-                modco.setAsunto(com.txtAsunto.getText());
-                modco.setMensaje(com.txaMensaje.getText());
+                modelo.setAsunto(vista.txtAsunto.getText());
+                modelo.setMensaje(vista.txaMensaje.getText());
               
-                for (int i = 0; i < com.jTable1.getRowCount(); i++) {
-                    if (valueOf(com.jTable1.getValueAt(i, 5)) == "true") {
+                for (int i = 0; i < vista.tabla.getRowCount(); i++) {
+                    if (valueOf(vista.tabla.getValueAt(i, 5)) == "true") {
 
                         j = j + 1;
 
@@ -269,20 +261,20 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
                     JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
                 } else {
 
-                    if (modco.registrarcomunicados(modco)) {
+                    if (modelo.registrarcomunicados(modelo)) {
 
                         JOptionPane.showMessageDialog(null, "Mensaje Enviado");
 
-                        modco.buscId(modco);
+                        modelo.buscId(modelo);
 
-                        for (int i = 0; i < com.jTable1.getRowCount(); i++) {
-                            if (valueOf(com.jTable1.getValueAt(i, 5)) == "true") {
+                        for (int i = 0; i < vista.tabla.getRowCount(); i++) {
+                            if (valueOf(vista.tabla.getValueAt(i, 5)) == "true") {
 
-                                String valor = String.valueOf(com.jTable1.getValueAt(i, 0));
-                                modco.setId_usuario(valor);
-                                modco.setLeido(0);
+                                String valor = String.valueOf(vista.tabla.getValueAt(i, 0));
+                                modelo.setId_usuario(valor);
+                                modelo.setLeido(0);
 
-                                modco.registrar_comunicados_usuarios(modco);
+                                modelo.registrar_comunicados_usuarios(modelo);
 
                             }
                         }
@@ -304,13 +296,13 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
         Boolean resultado = true;
         String msj = "";
 
-        if (com.txtAsunto.getText().isEmpty()) {
+        if (vista.txtAsunto.getText().isEmpty()) {
 
             msj += "El campo de asunto no puede estar vacío\n";
             resultado = false;
         }
 
-        if (com.txaMensaje.getText().isEmpty()) {
+        if (vista.txaMensaje.getText().isEmpty()) {
 
             msj += "El campo de mensaje no puede estar vacío\n";
             resultado = false;
@@ -342,21 +334,21 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getSource() == catacom.jTextField1) {
+        if (e.getSource() == catalogo.txtBuscar) {
 
-            filtro(catacom.jTextField1.getText(), catacom.jTable1);
+            filtro(catalogo.txtBuscar.getText(), catalogo.tabla);
         }
 
-        if (e.getSource() == com.txtBuscarPropietarios) {
+        if (e.getSource() == vista.txtBuscarPropietarios) {
 
-            filtro(com.txtBuscarPropietarios.getText(), com.jTable1);
+            filtro(vista.txtBuscarPropietarios.getText(), vista.tabla);
         }
     }
 
     @Override
     public void windowOpened(WindowEvent e) {
        
-        llenartablaComunicado(catacom.jTable1);
+        llenartablaComunicado(catalogo.tabla);
     }
 
     @Override
@@ -391,20 +383,20 @@ public class controladorComunicados implements ActionListener, KeyListener, Wind
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int fila = this.catacom.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
 
-        String dato = String.valueOf(this.catacom.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
-        modco.setId(Integer.parseInt(dato));
+        String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+        modelo.setId(Integer.parseInt(dato));
        
-        modco.buscarComunicado(modco);
-        this.com.setVisible(true);
-        com.txtid.setVisible(false);
-        com.txtid.setText(dato);
-        com.txtAsunto.setText(modco.getAsunto());
-        com.txaMensaje.setText(modco.getMensaje());
-        Llenartablamod(com.jTable1);
-        addCheckBox(5, com.jTable1);
-        com.btnEnviar.setEnabled(false);
+        modelo.buscarComunicado(modelo);
+        this.vista.setVisible(true);
+        vista.txtid.setVisible(false);
+        vista.txtid.setText(dato);
+        vista.txtAsunto.setText(modelo.getAsunto());
+        vista.txaMensaje.setText(modelo.getMensaje());
+        Llenartablamod(vista.tabla);
+        addCheckBox(5, vista.tabla);
+        vista.btnEnviar.setEnabled(false);
     }
 
     @Override

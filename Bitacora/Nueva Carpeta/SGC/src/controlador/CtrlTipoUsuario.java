@@ -12,13 +12,13 @@ import javax.swing.table.TableColumn;
 import modelo.Funcion;
 import modelo.TipoUsuario;
 import sgc.SGC;
-import vista.catalogoTipoUsuario;
+import vista.Catalogo;
 import vista.tipoUsuario;
 
 public class CtrlTipoUsuario implements ActionListener, MouseListener {
 
     private tipoUsuario vista;
-    private catalogoTipoUsuario catalogo;
+    private Catalogo catalogo;
     private TipoUsuario modelo;
 
     private Funcion modFuncion;
@@ -28,11 +28,12 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener {
     private ArrayList<Funcion> listaFuncion;
 
     public CtrlTipoUsuario() {
-        this.catalogo = new catalogoTipoUsuario();
+        this.catalogo = new Catalogo();
         this.vista = new tipoUsuario();
         this.modelo = new TipoUsuario();
         this.modFuncion = new Funcion();
-
+        
+        catalogo.lblTitulo.setText("Tipo Usuario");
         this.catalogo.btnNuevo.addActionListener(this);
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnModificar.addActionListener(this);

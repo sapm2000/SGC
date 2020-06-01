@@ -24,7 +24,7 @@ import javax.swing.table.TableRowSorter;
 import modelo.FormaPago;
 import modelo.Funcion;
 import sgc.SGC;
-import vista.catalogoFormaDePago;
+import vista.Catalogo;
 import vista.formaDePago;
 
 /**
@@ -36,7 +36,7 @@ public class controladorForma_pago implements ActionListener, KeyListener, Mouse
     private FormaPago modfor;
     private formaDePago vista;
     Funcion permiso;
-    private catalogoFormaDePago catalogo;
+    private Catalogo catalogo;
     DefaultTableModel dm;
 
     ArrayList<FormaPago> listaFormaPago;
@@ -44,15 +44,18 @@ public class controladorForma_pago implements ActionListener, KeyListener, Mouse
     public controladorForma_pago() {
         this.modfor = new FormaPago();
         this.vista = new formaDePago();
-        this.catalogo = new catalogoFormaDePago();
+        this.catalogo = new Catalogo();
+        
+        catalogo.lblTitulo.setText("Forma de Pago");
+        
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
         this.vista.btnEliminar.addActionListener(this);
         this.vista.btnModificar.addActionListener(this);
         this.catalogo.btnNuevo.addActionListener(this);
         this.catalogo.addWindowListener(this);
-        this.catalogo.JTablaFormaPago.addMouseListener(this);
-        this.catalogo.txtBuscarFormaPago.addKeyListener(this);
+        this.catalogo.tabla.addMouseListener(this);
+        this.catalogo.txtBuscar.addKeyListener(this);
         catalogo.setVisible(true);
 
     }
@@ -115,14 +118,14 @@ public class controladorForma_pago implements ActionListener, KeyListener, Mouse
                 if (modfor.buscarInactivo(modfor)) {
                     modfor.activar(modfor);
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
-                    Llenartabla(catalogo.JTablaFormaPago);
+                    Llenartabla(catalogo.tabla);
                     limpiar();
                 } else {
 
                     if (modfor.registrar(modfor)) {
 
                         JOptionPane.showMessageDialog(null, "Registro Guardado");
-                        Llenartabla(catalogo.JTablaFormaPago);
+                        Llenartabla(catalogo.tabla);
                         limpiar();
 
                     } else {
@@ -146,7 +149,7 @@ public class controladorForma_pago implements ActionListener, KeyListener, Mouse
 
                         JOptionPane.showMessageDialog(null, "Registro modificado");
                         vista.dispose();
-                        Llenartabla(catalogo.JTablaFormaPago);
+                        Llenartabla(catalogo.tabla);
                         limpiar();
 
                     } else {
@@ -166,7 +169,7 @@ public class controladorForma_pago implements ActionListener, KeyListener, Mouse
 
                 JOptionPane.showMessageDialog(null, "Registro Eliminado");
                 vista.dispose();
-                Llenartabla(catalogo.JTablaFormaPago);
+                Llenartabla(catalogo.tabla);
 
             } else {
 
@@ -234,9 +237,9 @@ public class controladorForma_pago implements ActionListener, KeyListener, Mouse
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getSource() == catalogo.txtBuscarFormaPago) {
+        if (e.getSource() == catalogo.txtBuscar) {
 
-            filtro(catalogo.txtBuscarFormaPago.getText(), catalogo.JTablaFormaPago);
+            filtro(catalogo.txtBuscar.getText(), catalogo.tabla);
         } else {
 
         }
@@ -244,8 +247,8 @@ public class controladorForma_pago implements ActionListener, KeyListener, Mouse
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int fila = this.catalogo.JTablaFormaPago.getSelectedRow(); // primero, obtengo la fila seleccionada
-        int columna = this.catalogo.JTablaFormaPago.getSelectedColumn(); // luego, obtengo la columna seleccionada
+        int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int columna = this.catalogo.tabla.getSelectedColumn(); // luego, obtengo la columna seleccionada
 
         if (permiso.getModificar()) {
             vista.btnModificar.setEnabled(true);
@@ -254,7 +257,7 @@ public class controladorForma_pago implements ActionListener, KeyListener, Mouse
             vista.btnEliminar.setEnabled(true);
         }
 
-        String dato = String.valueOf(this.catalogo.JTablaFormaPago.getValueAt(fila, columna)); // por ultimo, obtengo el valor de la celda
+        String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, columna)); // por ultimo, obtengo el valor de la celda
 
         modfor.setForma_pago(String.valueOf(dato));
 
@@ -293,7 +296,7 @@ public class controladorForma_pago implements ActionListener, KeyListener, Mouse
 
     @Override
     public void windowOpened(WindowEvent e) {
-        Llenartabla(catalogo.JTablaFormaPago);
+        Llenartabla(catalogo.tabla);
         permisoBtn();
 
         if (permiso.getRegistrar()) {

@@ -14,7 +14,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComponent;
@@ -29,8 +28,7 @@ import javax.swing.table.TableRowSorter;
 import modelo.Funcion;
 import modelo.Proveedores;
 import sgc.SGC;
-import vista.catalogoInactivoProveedores;
-import vista.catalogoProveedores;
+import vista.Catalogo;
 import vista.proveedores;
 
 /**
@@ -39,10 +37,9 @@ import vista.proveedores;
  */
 public class controladorProveedores implements ActionListener, WindowListener, KeyListener, MouseListener {
 
-    private catalogoProveedores catalogo;
+    private Catalogo catalogo;
     private proveedores vista;
     private Proveedores modpro;
-    private catalogoInactivoProveedores cataiprov;
 
     Funcion permiso;
 
@@ -51,16 +48,14 @@ public class controladorProveedores implements ActionListener, WindowListener, K
     DefaultComboBoxModel dmCbx;
 
     public controladorProveedores() {
-        this.catalogo = new catalogoProveedores();
+        this.catalogo = new Catalogo();
         this.vista = new proveedores();
         this.modpro = new Proveedores();
-        this.cataiprov = new catalogoInactivoProveedores();
-        this.catalogo.btnActivar.addActionListener(this);
-        this.cataiprov.btnActivar.addActionListener(this);
+        catalogo.lblTitulo.setText("Proveedores");
         this.catalogo.addWindowListener(this);
         this.catalogo.btnNuevo.addActionListener(this);
-        this.catalogo.TablaProveedores.addMouseListener(this);
-        this.catalogo.txtBuscarProveedores.addKeyListener(this);
+        this.catalogo.tabla.addMouseListener(this);
+        this.catalogo.txtBuscar.addKeyListener(this);
 
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
@@ -198,27 +193,7 @@ public class controladorProveedores implements ActionListener, WindowListener, K
 
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == catalogo.btnActivar) {
-            this.cataiprov.setVisible(true);
-            Llenartablainactivos(cataiprov.jTable1);
-            addCheckBox(6, cataiprov.jTable1);
-        }
-
-        if (e.getSource() == cataiprov.btnActivar) {
-            listaProveedores = modpro.listarinactivos();
-
-            for (int i = 0; i < cataiprov.jTable1.getRowCount(); i++) {
-                if (valueOf(cataiprov.jTable1.getValueAt(i, 6)) == "true") {
-
-                    modpro.setCedula(listaProveedores.get(i).getCedula());
-                    modpro.activar(modpro);
-
-                }
-            }
-            Llenartablainactivos(cataiprov.jTable1);
-            addCheckBox(6, cataiprov.jTable1);
-            Llenartabla(catalogo.TablaProveedores);
-        }
+        
 
         if (e.getSource() == catalogo.btnNuevo) {
             this.vista.setVisible(true);
@@ -247,7 +222,7 @@ public class controladorProveedores implements ActionListener, WindowListener, K
                 if (modpro.registrar(modpro)) {
 
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
-                    Llenartabla(catalogo.TablaProveedores);
+                    Llenartabla(catalogo.tabla);
 
                 } else {
 
@@ -270,7 +245,7 @@ public class controladorProveedores implements ActionListener, WindowListener, K
                 if (modpro.modificar(modpro)) {
 
                     JOptionPane.showMessageDialog(null, "Registro Modificado");
-                    Llenartabla(catalogo.TablaProveedores);
+                    Llenartabla(catalogo.tabla);
                     vista.dispose();
 
                 } else {
@@ -291,7 +266,7 @@ public class controladorProveedores implements ActionListener, WindowListener, K
 
                     JOptionPane.showMessageDialog(null, "Registro Eliminado");
                     vista.dispose();
-                    Llenartabla(catalogo.TablaProveedores);
+                    Llenartabla(catalogo.tabla);
 
                 } else {
 
@@ -381,7 +356,7 @@ public class controladorProveedores implements ActionListener, WindowListener, K
 
     @Override
     public void windowOpened(WindowEvent e) {
-        Llenartabla(catalogo.TablaProveedores);
+        Llenartabla(catalogo.tabla);
         permisoBtn();
 
         if (permiso.getRegistrar()) {
@@ -466,9 +441,9 @@ public class controladorProveedores implements ActionListener, WindowListener, K
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getSource() == catalogo.txtBuscarProveedores) {
+        if (e.getSource() == catalogo.txtBuscar) {
 
-            filtro(catalogo.txtBuscarProveedores.getText(), catalogo.TablaProveedores);
+            filtro(catalogo.txtBuscar.getText(), catalogo.tabla);
         } else {
 
         }
@@ -476,8 +451,8 @@ public class controladorProveedores implements ActionListener, WindowListener, K
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int fila = this.catalogo.TablaProveedores.getSelectedRow(); // primero, obtengo la fila seleccionada
-        int columna = this.catalogo.TablaProveedores.getSelectedColumn(); // luego, obtengo la columna seleccionada
+        int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
+        int columna = this.catalogo.tabla.getSelectedColumn(); // luego, obtengo la columna seleccionada
 
         if (permiso.getModificar()) {
             vista.btnModificar.setEnabled(true);
@@ -486,8 +461,8 @@ public class controladorProveedores implements ActionListener, WindowListener, K
             vista.btnEliminar.setEnabled(true);
         }
 
-        String dato = String.valueOf(this.catalogo.TablaProveedores.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
-        catalogo.txtBuscarProveedores.setText(String.valueOf(dato));
+        String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+        catalogo.txtBuscar.setText(String.valueOf(dato));
 
         modpro.setCedula(String.valueOf(dato));
 
