@@ -51,6 +51,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        btnCerrar = new javax.swing.JButton();
         barraMenu = new javax.swing.JMenuBar();
         menuArchivo = new javax.swing.JMenu();
         jAsamblea = new javax.swing.JMenuItem();
@@ -137,6 +138,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 94, 159));
         jLabel4.setText("¡Bienvenido al Menú de Datos Compartidos!");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, -1, -1));
+
+        btnCerrar.setText("Cerrar Sesión");
+        jPanel1.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 10, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, 710));
 
@@ -637,6 +641,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JMenuBar barraMenu;
+    public javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnMinimizar2;
     private javax.swing.JButton btnSalir2;
     public javax.swing.JMenuItem jAsamblea;
