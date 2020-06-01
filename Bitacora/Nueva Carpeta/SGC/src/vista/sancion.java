@@ -5,7 +5,6 @@
  */
 package vista;
 
-import javax.swing.JOptionPane;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -14,6 +13,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 import javax.swing.JTable;
 import javax.swing.plaf.basic.BasicScrollBarUI;
@@ -40,7 +40,7 @@ public class sancion extends javax.swing.JFrame {
 
     public sancion() {
         initComponents();
-        jTable1.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
+        jTable1.getTableHeader().setDefaultRenderer(new Catalogo.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         jScrollPane2.getVerticalScrollBar().setUI(new MyScrollBarUI());
         txaDescripcion.setLineWrap(true);

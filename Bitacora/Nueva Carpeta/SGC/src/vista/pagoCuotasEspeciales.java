@@ -31,7 +31,7 @@ public class pagoCuotasEspeciales extends javax.swing.JFrame {
 
     public pagoCuotasEspeciales() {
         initComponents();
-        tabla.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
+        tabla.getTableHeader().setDefaultRenderer(new Catalogo.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         setLocationRelativeTo(null);
     }

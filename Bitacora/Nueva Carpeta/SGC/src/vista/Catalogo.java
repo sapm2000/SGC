@@ -39,7 +39,7 @@ public class Catalogo extends javax.swing.JFrame {
 
     public Catalogo() {
         initComponents();
-        tabla.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
+        tabla.getTableHeader().setDefaultRenderer(new Catalogo.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         setLocationRelativeTo(null);
 

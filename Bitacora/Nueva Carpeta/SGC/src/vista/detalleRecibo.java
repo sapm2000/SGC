@@ -40,13 +40,13 @@ public class detalleRecibo extends javax.swing.JFrame {
 
     public detalleRecibo() {
         initComponents();
-        tablagastos.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
+        tablagastos.getTableHeader().setDefaultRenderer(new Catalogo.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
-        tablacuotas.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
+        tablacuotas.getTableHeader().setDefaultRenderer(new Catalogo.Headercolor());
         jScrollPane2.getVerticalScrollBar().setUI(new MyScrollBarUI());
-        tablasancion.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
+        tablasancion.getTableHeader().setDefaultRenderer(new Catalogo.Headercolor());
         jScrollPane3.getVerticalScrollBar().setUI(new MyScrollBarUI());
-        tablainteres.getTableHeader().setDefaultRenderer(new catalogoUsuario.Headercolor());
+        tablainteres.getTableHeader().setDefaultRenderer(new Catalogo.Headercolor());
         jScrollPane4.getVerticalScrollBar().setUI(new MyScrollBarUI());
         setLocationRelativeTo(null);
     }
