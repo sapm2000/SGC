@@ -92,7 +92,6 @@ public class CtrlVentana implements ActionListener {
             try {
                 UIManager UI = new UIManager();
 
-                System.out.println("1");
                 UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
                 UI.put("Panel.background", new ColorUIResource(255, 255, 255));
 
@@ -106,7 +105,6 @@ public class CtrlVentana implements ActionListener {
 
                 int result = JOptionPane.showConfirmDialog(null, "¿Desea salir del sistema?", "Salir", botonDialogo, JOptionPane.INFORMATION_MESSAGE, p);
 
-                System.out.println("1");
                 if (result == 0) {
                     System.exit(0);
                 }
