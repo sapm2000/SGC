@@ -32,7 +32,7 @@ import vista.VisCuentaPorCobrar;
  *
  * @author rma
  */
-public class CtrkCuentaPorCobrar implements ActionListener, ItemListener, KeyListener {
+public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyListener {
 
     private VisCuentaPorCobrar vista;
     private CuentasPorCobrar modcuen;
@@ -45,7 +45,7 @@ public class CtrkCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
     ArrayList<Fondo> listafondo;
     ArrayList<Cuenta> listaCuenta;
 
-    public CtrkCuentaPorCobrar() {
+    public CtrlCuentaPorCobrar() {
         this.vista = new VisCuentaPorCobrar();
         this.modcuen = new CuentasPorCobrar();
         this.moduni = new Unidades();

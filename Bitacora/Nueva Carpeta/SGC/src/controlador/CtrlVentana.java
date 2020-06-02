@@ -178,7 +178,7 @@ public class CtrlVentana implements ActionListener {
 
         //Procesos
         if (e.getSource() == ventana.pCuentasporCobrar) {
-            ctrl = new CtrkCuentaPorCobrar();
+            ctrl = new CtrlCuentaPorCobrar();
         }
         if (e.getSource() == ventana.pCuentapagar) {
             ctrl = new CtrlCuentaPagar();
