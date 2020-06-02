@@ -6,8 +6,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -18,12 +16,12 @@ import modelo.Persona;
 import modelo.TipoUsuario;
 import modelo.Usuario;
 import vista.Catalogo;
-import vista.GestionarUsuario;
+import vista.VisUsuario;
 
-public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, WindowListener {
+public class CtrlUsuario implements ActionListener, MouseListener, KeyListener {
 
     private Usuario modelo;
-    private GestionarUsuario vistaGU;
+    private VisUsuario vista;
     private Catalogo catalogo;
 
     private Persona modPersona;
@@ -37,28 +35,29 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
     public CtrlUsuario() {
 
         this.modelo = new Usuario();
-        this.vistaGU = new GestionarUsuario();
+        this.vista = new VisUsuario();
         this.catalogo = new Catalogo();
         this.modPersona = new Persona();
         this.modTipo = new TipoUsuario();
-        
+
+        crearCbxTipoU();
         llenarTabla(catalogo.tabla);
         CtrlVentana.cambiarVista(catalogo);
         catalogo.lblTitulo.setText("Usuario");
-        this.vistaGU.btnGuardar.addActionListener(this);
-        this.vistaGU.btnLimpiar.addActionListener(this);
+        this.vista.btnGuardar.addActionListener(this);
+        this.vista.btnLimpiar.addActionListener(this);
         this.catalogo.btnNuevo.addActionListener(this);
-        this.vistaGU.txtCedula.addKeyListener(this);
-        this.vistaGU.txtUsuario.addKeyListener(this);
-        this.vistaGU.txtClave.addKeyListener(this);
-        this.vistaGU.txtClave2.addKeyListener(this);
-        this.vistaGU.txtPregunta.addKeyListener(this);
-        this.vistaGU.txtRespuesta.addKeyListener(this);
+        this.vista.btnSalir.addActionListener(this);
+        this.vista.txtCedula.addKeyListener(this);
+        this.vista.txtUsuario.addKeyListener(this);
+        this.vista.txtClave.addKeyListener(this);
+        this.vista.txtClave2.addKeyListener(this);
+        this.vista.txtPregunta.addKeyListener(this);
+        this.vista.txtRespuesta.addKeyListener(this);
         this.catalogo.txtBuscar.addKeyListener(this);
         this.catalogo.tabla.addMouseListener(this);
-        this.vistaGU.addWindowListener(this);
         this.catalogo.setVisible(true);
-        this.vistaGU.jTable.addMouseListener(this);
+        this.vista.jTable.addMouseListener(this);
 
     }
     //Fin del constructor
@@ -66,15 +65,15 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == vistaGU.btnGuardar) {
+        if (e.getSource() == vista.btnGuardar) {
             if (validar()) {
-                modelo.setPersona(new Persona(vistaGU.txtCedula.getText()));
-                modelo.setUsuario(vistaGU.txtUsuario.getText());
-                String claveSegura = Validacion.encriptar(String.valueOf(vistaGU.txtClave.getPassword()));
+                modelo.setPersona(new Persona(vista.txtCedula.getText()));
+                modelo.setUsuario(vista.txtUsuario.getText());
+                String claveSegura = Validacion.encriptar(String.valueOf(vista.txtClave.getPassword()));
                 modelo.setPassword(claveSegura);
-                modelo.setPregunta(vistaGU.txtPregunta.getText());
-                modelo.setRespuesta(vistaGU.txtRespuesta.getText());
-                int ind = vistaGU.cbxTipo.getSelectedIndex() - 1;
+                modelo.setPregunta(vista.txtPregunta.getText());
+                modelo.setRespuesta(vista.txtRespuesta.getText());
+                int ind = vista.cbxTipo.getSelectedIndex() - 1;
                 modelo.getTipoU().setId(listaTipo.get(ind).getId());
 
                 if (modelo.existeInactivo()) {
@@ -83,7 +82,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
                     if (modelo.reactivar()) {
                         JOptionPane.showMessageDialog(null, "Usuario habilitado");
                         llenarTabla(catalogo.tabla);
-                        vistaGU.dispose();
+                        CtrlVentana.cambiarVista(catalogo);
                         limpiar();
                     } else {
                         JOptionPane.showMessageDialog(null, "No se pudo habilitar el usuario");
@@ -101,7 +100,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
                             if (modelo.registrar()) {
                                 JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
                                 llenarTabla(catalogo.tabla);
-                                vistaGU.dispose();
+                                CtrlVentana.cambiarVista(catalogo);
                                 limpiar();
                             } else {
                                 JOptionPane.showMessageDialog(null, "Error al Registrar Usuario");
@@ -113,41 +112,45 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
             }
         }
 
-        if (e.getSource() == vistaGU.btnLimpiar) {
+        if (e.getSource() == vista.btnLimpiar) {
             limpiar();
         }
 
         if (e.getSource() == catalogo.btnNuevo) {
             limpiar();
             llenarTablaPersona();
-            this.vistaGU.setVisible(true);
-            this.vistaGU.btnGuardar.setEnabled(true);
-            this.vistaGU.txtCedula.setEnabled(true);
+            this.vista.btnGuardar.setEnabled(true);
+            this.vista.txtCedula.setEnabled(true);
 
+            CtrlVentana.cambiarVista(vista);
+        }
+
+        if (e.getSource() == vista.btnSalir) {
+            CtrlVentana.cambiarVista(catalogo);
         }
     }
 
     private void crearCbxTipoU() {
         listaTipo = modTipo.listar();
-        vistaGU.cbxTipo.addItem("Seleccione...");
+        vista.cbxTipo.addItem("Seleccione...");
 
         if (listaTipo != null) {
             for (TipoUsuario datosX : listaTipo) {
-                vistaGU.cbxTipo.addItem(datosX.getNombre());
+                vista.cbxTipo.addItem(datosX.getNombre());
             }
-        
+
         }
     }
 
     public void limpiar() {
 
-        vistaGU.txtCedula.setText(null);
-        vistaGU.txtUsuario.setText(null);
-        vistaGU.txtClave.setText(null);
-        vistaGU.txtPregunta.setText(null);
-        vistaGU.txtClave2.setText(null);
-        vistaGU.cbxTipo.setSelectedItem(0);
-        vistaGU.txtRespuesta.setText(null);
+        vista.txtCedula.setText(null);
+        vista.txtUsuario.setText(null);
+        vista.txtClave.setText(null);
+        vista.txtPregunta.setText(null);
+        vista.txtClave2.setText(null);
+        vista.cbxTipo.setSelectedIndex(0);
+        vista.txtRespuesta.setText(null);
 
     }
 
@@ -164,12 +167,12 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
                 llenarTabla(catalogo.tabla);
             }
         }
-        if (e.getSource() == vistaGU.jTable) {
+        if (e.getSource() == vista.jTable) {
 
-            int fila = this.vistaGU.jTable.getSelectedRow(); // primero, obtengo la fila seleccionada
+            int fila = this.vista.jTable.getSelectedRow(); // primero, obtengo la fila seleccionada
             modPersona = listaPersona.get(fila);
 
-            vistaGU.txtCedula.setText(modPersona.getCedula());
+            vista.txtCedula.setText(modPersona.getCedula());
 
         }
     }
@@ -192,35 +195,35 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
 
     @Override
     public void keyTyped(KeyEvent ke) {
-        if (ke.getSource() == vistaGU.txtCedula) {
+        if (ke.getSource() == vista.txtCedula) {
             Validacion.soloNumeros(ke);
             Validacion.Espacio(ke);
-            Validacion.limite(ke, vistaGU.txtCedula.getText(), 12);
+            Validacion.limite(ke, vista.txtCedula.getText(), 12);
         }
-        if (ke.getSource() == vistaGU.txtUsuario) {
+        if (ke.getSource() == vista.txtUsuario) {
 
             Validacion.Espacio(ke);
-            Validacion.limite(ke, vistaGU.txtUsuario.getText(), 20);
+            Validacion.limite(ke, vista.txtUsuario.getText(), 20);
         }
-        if (ke.getSource() == vistaGU.txtClave) {
+        if (ke.getSource() == vista.txtClave) {
             Validacion.Espacio(ke);
 
-            Validacion.limite(ke, vistaGU.txtClave.getText(), 15);
+            Validacion.limite(ke, vista.txtClave.getText(), 15);
         }
-        if (ke.getSource() == vistaGU.txtPregunta) {
+        if (ke.getSource() == vista.txtPregunta) {
             Validacion.Espacio(ke);
-            Validacion.limite(ke, vistaGU.txtPregunta.getText(), 20);
+            Validacion.limite(ke, vista.txtPregunta.getText(), 20);
 
         }
-        if (ke.getSource() == vistaGU.txtClave2) {
+        if (ke.getSource() == vista.txtClave2) {
 
             Validacion.Espacio(ke);
-            Validacion.limite(ke, vistaGU.txtClave2.getText(), 20);
+            Validacion.limite(ke, vista.txtClave2.getText(), 20);
         }
-        if (ke.getSource() == vistaGU.txtRespuesta) {
+        if (ke.getSource() == vista.txtRespuesta) {
 
             Validacion.Espacio(ke);
-            Validacion.limite(ke, vistaGU.txtRespuesta.getText(), 11);
+            Validacion.limite(ke, vista.txtRespuesta.getText(), 11);
         }
 
     }
@@ -242,42 +245,42 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
         Boolean resultado = true;
         String msj = "";
 
-        if (vistaGU.txtCedula.getText().isEmpty()) {
+        if (vista.txtCedula.getText().isEmpty()) {
 
             msj += "Debe seleccionar una persona\n";
             resultado = false;
         }
-        if (vistaGU.txtUsuario.getText().isEmpty()) {
+        if (vista.txtUsuario.getText().isEmpty()) {
 
             msj += "El campo Usuario no puede estar vacío\n";
             resultado = false;
         }
 
-        if (String.valueOf(vistaGU.txtClave.getPassword()).isEmpty()) {
+        if (String.valueOf(vista.txtClave.getPassword()).isEmpty()) {
 
             msj += "El campo Contraseña no puede estar vacío\n";
             resultado = false;
-        } else if (String.valueOf(vistaGU.txtClave2.getPassword()).isEmpty()) {
+        } else if (String.valueOf(vista.txtClave2.getPassword()).isEmpty()) {
             msj += "El campo Repetir Contraseña no puede estar vacío\n";
             resultado = false;
 
-        } else if (!String.valueOf(vistaGU.txtClave.getPassword()).equals(String.valueOf(vistaGU.txtClave2.getPassword()))) {
-            System.out.println(String.valueOf(vistaGU.txtClave.getPassword()) + " " + vistaGU.txtClave2.getPassword().toString());
+        } else if (!String.valueOf(vista.txtClave.getPassword()).equals(String.valueOf(vista.txtClave2.getPassword()))) {
+            System.out.println(String.valueOf(vista.txtClave.getPassword()) + " " + vista.txtClave2.getPassword().toString());
             msj += "Las Contraseñas no coinciden\n";
             resultado = false;
 
         }
-        if (vistaGU.txtPregunta.getText().isEmpty()) {
+        if (vista.txtPregunta.getText().isEmpty()) {
 
             msj += "El campo Pregunta de Seguridad no puede estar vacío\n";
             resultado = false;
         }
-        if (vistaGU.txtRespuesta.getText().isEmpty()) {
+        if (vista.txtRespuesta.getText().isEmpty()) {
 
             msj += "El campo Respuesta secreta no puede estar vacío\n";
             resultado = false;
         }
-        if (vistaGU.cbxTipo.getSelectedItem() == null) {
+        if (vista.cbxTipo.getSelectedItem() == null) {
 
             msj += "Debe seleccionar Tipo de Usuario";
             resultado = false;
@@ -329,7 +332,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
         listaPersona = modPersona.listarP();
 
         DefaultTableModel modeloT = new DefaultTableModel();
-        vistaGU.jTable.setModel(modeloT);
+        vista.jTable.setModel(modeloT);
 
         modeloT.addColumn("Cédula");
         modeloT.addColumn("Nombre");
@@ -351,37 +354,6 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
 
         }
 
-    }
-
-    @Override
-    public void windowOpened(WindowEvent e) {
-        if (e.getSource() == vistaGU) {
-            crearCbxTipoU();
-        }
-    }
-
-    @Override
-    public void windowClosing(WindowEvent e) {
-    }
-
-    @Override
-    public void windowClosed(WindowEvent e) {
-    }
-
-    @Override
-    public void windowIconified(WindowEvent e) {
-    }
-
-    @Override
-    public void windowDeiconified(WindowEvent e) {
-    }
-
-    @Override
-    public void windowActivated(WindowEvent e) {
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent e) {
     }
 
 }
