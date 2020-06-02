@@ -830,7 +830,7 @@ public class controladorUnidades implements ActionListener, MouseListener, KeyLi
             columna[ind++] = listaUnidades.get(i).getTipo_Unidad().getNombre();
             columna[ind++] = listaUnidades.get(i).getTipo_Unidad().getArea();
             columna[ind++] = listaUnidades.get(i).getDocumento();
-            columna[ind++] = listaUnidades.get(i).getAlicuota();
+            columna[ind++] = Validacion.formatoalicuota.format(listaUnidades.get(i).getAlicuota());
 
             modeloT.addRow(columna);
 

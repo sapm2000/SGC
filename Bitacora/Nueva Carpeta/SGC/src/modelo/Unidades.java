@@ -246,7 +246,7 @@ public class Unidades extends ConexionBD {
                 unidad.setN_unidad(rs.getString("n_unidad"));
                 unidad.setDocumento(rs.getString("n_documento"));
                 unidad.setDireccion(rs.getString("direccion"));
-                
+                 unidad.setAlicuota(rs.getFloat("alicuota"));
                 unidad.getTipo_Unidad().setId(rs.getInt("id_tipo"));
                 unidad.getTipo_Unidad().setNombre(rs.getString("tipo"));
                 unidad.getTipo_Unidad().setArea(rs.getFloat("area"));
