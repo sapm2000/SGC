@@ -100,10 +100,11 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == catalogo.btnNuevo) {
-            this.vista.btnModificar.setEnabled(false);
             this.vista.btnGuardar.setEnabled(true);
+            this.vista.btnModificar.setEnabled(false);
             this.vista.btnEliminar.setEnabled(false);
             this.vista.txtNumeroUnidad.setEnabled(true);
+            
             llenarTablaPropietarios(vista.tablaPropietarios, "Registrar");
             addCheckBox(4, vista.tablaPropietarios);
             limpiar();
@@ -127,7 +128,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
                 int j = 0;
 
                 for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
-                    if (valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
+                    if (valueOf(vista.tablaPropietarios.getValueAt(i, 2)) == "true") {
                         j = j + 1;
                     }
                 }
@@ -137,7 +138,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
                 } else {
                     for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
-                        if (valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
+                        if (valueOf(vista.tablaPropietarios.getValueAt(i, 2)) == "true") {
                             modelo.getPropietario().add(new Propietarios(vista.tablaPropietarios.getValueAt(i, 0).toString()));
                             modelo.setEstatus(1);
                         }
@@ -503,7 +504,6 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
         modeloT.addColumn("Teléfono");
         modeloT.addColumn("Correo");
         modeloT.addColumn("Seleccione");
-        addCheckBox(4, tablaD);
 
         Object[] columna = new Object[modeloT.getColumnCount()];
 

@@ -1,7 +1,10 @@
 package controlador;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static javax.swing.BorderFactory.createLineBorder;
@@ -195,19 +198,28 @@ public class CtrlVentana implements ActionListener {
     }
 
     public static void cambiarVista(JPanel vista) {
-        
+
         if (panelPrincipal != null) {
             marco.panel.remove(panelPrincipal);
         }
 
         vista.setSize(1326, 652);
         vista.setBounds(20, 20, 1326, 652);
+        
         marco.panel.add(vista);
         panelPrincipal = vista;
         ventana.repaint();
         ventana.validate();
+        centreWindow(marco.panel);
+        
     }
 
+     public static void centreWindow(JPanel frame) {
+       Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+       int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+       int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+       frame.setLocation(x, 0);
+}
     private void filtrarMenu() {
         // Primero se vacían todos los menú
         ventana.menuArchivo.removeAll();
@@ -292,5 +304,6 @@ public class CtrlVentana implements ActionListener {
             }
         }
     }
-
 }
+
+   

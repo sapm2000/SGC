@@ -28,6 +28,12 @@ public class Persona extends ConexionBD {
         this.cedula = cedula;
     }
 
+    public Persona(String cedula, String pNombre, String pApellido) {
+        this.cedula = cedula;
+        this.pNombre = pNombre;
+        this.pApellido = pApellido;
+    }
+
     public Persona(String cedula, String pNombre, String sNombre, String pApellido, String sApellido, String correo, String telefono) {
         this.cedula = cedula;
         this.pNombre = pNombre;
