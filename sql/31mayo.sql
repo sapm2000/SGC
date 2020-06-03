@@ -5,7 +5,7 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2020-05-31 22:12:37
+-- Started on 2020-06-01 19:45:17
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -3509,7 +3509,7 @@ ALTER TABLE ONLY public.visitante
     ADD CONSTRAINT visitante_ci_persona_fkey FOREIGN KEY (ci_persona) REFERENCES public.persona(cedula);
 
 
--- Completed on 2020-05-31 22:12:38
+-- Completed on 2020-06-01 19:45:19
 
 --
 -- PostgreSQL database dump complete

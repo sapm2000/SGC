@@ -21,42 +21,41 @@ import vista.Catalogo;
 
 public class CtrlResponsable implements ActionListener, MouseListener, KeyListener {
 
-    vista.Responsable vista;
-    modelo.Responsable modelo;
+    private Catalogo catalogo;
+    private vista.VisResponsable vista;
+    private modelo.Responsable modelo;
 
-    Catalogo catalogo;
+    private ArrayList<Responsable> lista;
 
-    DefaultTableModel dm;
-    Funcion permiso;
-
-    ArrayList<Responsable> listaResponsable;
+    private Funcion permiso;
 
     int fila;
 
     public CtrlResponsable() {
-        
         catalogo = new Catalogo();
         modelo = new modelo.Responsable();
+
         catalogo.lblTitulo.setText("Responsable");
+
         catalogo.btnNuevo.addActionListener(this);
         catalogo.tabla.addMouseListener(this);
         catalogo.txtBuscar.addKeyListener(this);
-        
+
         llenarTabla();
         permisoBtn();
-        
+
         if (permiso.getRegistrar()) {
             catalogo.btnNuevo.setEnabled(true);
         }
-        
-        catalogo.setVisible(true);
 
+        CtrlVentana.cambiarVista(catalogo);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == catalogo.btnNuevo) {
-            vista = new vista.Responsable();
+
+            vista = new vista.VisResponsable();
 
             vista.btnGuardar.setEnabled(true);
             vista.btnModificar.setEnabled(false);
@@ -64,6 +63,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
             vista.btnGuardar.addActionListener(this);
             vista.btnLimpiar.addActionListener(this);
+            vista.btnSalir.addActionListener(this);
             vista.txtCedula.addKeyListener(this);
             vista.txtPnombre.addKeyListener(this);
             vista.txtSnombre.addKeyListener(this);
@@ -72,9 +72,9 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
             vista.txtTelefono.addKeyListener(this);
             vista.txtCorreo.addKeyListener(this);
 
-            vista.setVisible(true);
-
+            CtrlVentana.cambiarVista(vista);
         }
+
         if (e.getSource() == vista.btnGuardar) {
             if (validar()) {
                 String cedula = vista.cbxCedula.getSelectedItem() + "-" + vista.txtCedula.getText();
@@ -91,7 +91,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
                     if (modelo.reactivar()) {
                         JOptionPane.showMessageDialog(null, "Registro Guardado");
-                        vista.dispose();
+                        CtrlVentana.cambiarVista(catalogo);
                         llenarTabla();
 
                     } else {
@@ -104,7 +104,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
                         if (modelo.registrar(true)) {
                             JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
-                            vista.dispose();
+                            CtrlVentana.cambiarVista(catalogo);
                             llenarTabla();
 
                         } else {
@@ -115,7 +115,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
                     } else {
                         if (modelo.registrar(false)) {
                             JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
-                            vista.dispose();
+                            CtrlVentana.cambiarVista(catalogo);
                             llenarTabla();
 
                         } else {
@@ -137,7 +137,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
                 if (modelo.modificar()) {
                     JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
-                    vista.dispose();
+                    CtrlVentana.cambiarVista(catalogo);
                     llenarTabla();
 
                 } else {
@@ -149,7 +149,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
         if (e.getSource() == vista.btnEliminar) {
             if (modelo.eliminar()) {
                 JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
-                vista.dispose();
+                CtrlVentana.cambiarVista(catalogo);
                 llenarTabla();
 
             } else {
@@ -160,6 +160,10 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
         if (e.getSource() == vista.btnLimpiar) {
             limpiar();
         }
+
+        if (e.getSource() == vista.btnSalir) {
+            CtrlVentana.cambiarVista(catalogo);
+        }
     }
 
     private void permisoBtn() {
@@ -167,11 +171,8 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
         for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
             if (funcionbtn.getNombre().equals("Responsables")) {
                 permiso = funcionbtn;
-
             }
-
         }
-
     }
 
     @Override
@@ -179,8 +180,8 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
         if (e.getSource() == catalogo.tabla) {
             fila = catalogo.tabla.getSelectedRow();
 
-            modelo = new Responsable(listaResponsable.get(fila).getCedula(), listaResponsable.get(fila).getpNombre(), listaResponsable.get(fila).getsNombre(), listaResponsable.get(fila).getpApellido(), listaResponsable.get(fila).getsApellido(), listaResponsable.get(fila).getCorreo(), listaResponsable.get(fila).getTelefono());
-            vista = new vista.Responsable();
+            modelo = new Responsable(lista.get(fila).getCedula(), lista.get(fila).getpNombre(), lista.get(fila).getsNombre(), lista.get(fila).getpApellido(), lista.get(fila).getsApellido(), lista.get(fila).getCorreo(), lista.get(fila).getTelefono());
+            vista = new vista.VisResponsable();
             if (permiso.getModificar()) {
                 vista.btnModificar.setEnabled(true);
             }
@@ -203,6 +204,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
             vista.btnModificar.addActionListener(this);
             vista.btnEliminar.addActionListener(this);
             vista.btnLimpiar.addActionListener(this);
+            vista.btnSalir.addActionListener(this);
             vista.txtCedula.addKeyListener(this);
             vista.txtPnombre.addKeyListener(this);
             vista.txtSnombre.addKeyListener(this);
@@ -211,7 +213,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
             vista.txtTelefono.addKeyListener(this);
             vista.txtCorreo.addKeyListener(this);
 
-            vista.setVisible(true);
+            CtrlVentana.cambiarVista(vista);
         }
     }
 
@@ -227,7 +229,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
     }
 
     private void filtro(String consulta, JTable jtableBuscar) {
-        dm = (DefaultTableModel) jtableBuscar.getModel();
+        DefaultTableModel dm = (DefaultTableModel) jtableBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
         jtableBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));
@@ -235,7 +237,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
     }
 
     private void llenarTabla() {
-        listaResponsable = modelo.listar();
+        lista = modelo.listar();
 
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
@@ -258,19 +260,19 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
         Object[] columna = new Object[modeloT.getColumnCount()];
 
-        int numRegistro = listaResponsable.size();
+        int numRegistro = lista.size();
         int ind;
 
         for (int i = 0; i < numRegistro; i++) {
             ind = 0;
 
-            columna[ind++] = listaResponsable.get(i).getCedula();
-            String nombre = listaResponsable.get(i).getpNombre() + " " + listaResponsable.get(i).getsNombre();
+            columna[ind++] = lista.get(i).getCedula();
+            String nombre = lista.get(i).getpNombre() + " " + lista.get(i).getsNombre();
             columna[ind++] = nombre;
-            String apellido = listaResponsable.get(i).getpApellido() + " " + listaResponsable.get(i).getsApellido();
+            String apellido = lista.get(i).getpApellido() + " " + lista.get(i).getsApellido();
             columna[ind++] = apellido;
-            columna[ind++] = listaResponsable.get(i).getCorreo();
-            columna[ind++] = listaResponsable.get(i).getTelefono();
+            columna[ind++] = lista.get(i).getCorreo();
+            columna[ind++] = lista.get(i).getTelefono();
 
             modeloT.addRow(columna);
 

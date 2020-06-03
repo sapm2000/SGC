@@ -40,13 +40,9 @@ public class detalleRecibo extends javax.swing.JFrame {
 
     public detalleRecibo() {
         initComponents();
-        tablagastos.getTableHeader().setDefaultRenderer(new Catalogo.Headercolor());
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
-        tablacuotas.getTableHeader().setDefaultRenderer(new Catalogo.Headercolor());
         jScrollPane2.getVerticalScrollBar().setUI(new MyScrollBarUI());
-        tablasancion.getTableHeader().setDefaultRenderer(new Catalogo.Headercolor());
         jScrollPane3.getVerticalScrollBar().setUI(new MyScrollBarUI());
-        tablainteres.getTableHeader().setDefaultRenderer(new Catalogo.Headercolor());
         jScrollPane4.getVerticalScrollBar().setUI(new MyScrollBarUI());
         setLocationRelativeTo(null);
     }
@@ -386,7 +382,7 @@ public class detalleRecibo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
-        this.setState(vista.InicioUsuario.ICONIFIED);
+        this.setState(vista.VisInicioUsuario.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
