@@ -19,7 +19,7 @@ public class VisAsamblea extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel4 = new javax.swing.JPanel();
-        txtNombreAsamblea = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -29,14 +29,14 @@ public class VisAsamblea extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
-        txtBuscarPropietarios = new javax.swing.JTextField();
+        txtBuscarPropietario = new javax.swing.JTextField();
         jSeparator8 = new javax.swing.JSeparator();
         btnGuardar = new javax.swing.JButton();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        txtFecha = new com.toedter.calendar.JDateChooser();
         jLabel15 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaAsistentes = new javax.swing.JTable();
         jLabel16 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
@@ -48,12 +48,12 @@ public class VisAsamblea extends javax.swing.JPanel {
         jPanel4.setBackground(new java.awt.Color(0, 94, 159));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtNombreAsamblea.setBackground(new java.awt.Color(0, 94, 159));
-        txtNombreAsamblea.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtNombreAsamblea.setForeground(new java.awt.Color(255, 255, 255));
-        txtNombreAsamblea.setToolTipText("Nombre de la asamblea");
-        txtNombreAsamblea.setBorder(null);
-        jPanel4.add(txtNombreAsamblea, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 150, 20));
+        txtNombre.setBackground(new java.awt.Color(0, 94, 159));
+        txtNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(255, 255, 255));
+        txtNombre.setToolTipText("Nombre de la asamblea");
+        txtNombre.setBorder(null);
+        jPanel4.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 150, 20));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -101,12 +101,12 @@ public class VisAsamblea extends javax.swing.JPanel {
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
         jPanel4.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 150, 10));
 
-        txtBuscarPropietarios.setBackground(new java.awt.Color(0, 94, 159));
-        txtBuscarPropietarios.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtBuscarPropietarios.setForeground(new java.awt.Color(255, 255, 255));
-        txtBuscarPropietarios.setToolTipText("Buscador");
-        txtBuscarPropietarios.setBorder(null);
-        jPanel4.add(txtBuscarPropietarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 190, 20));
+        txtBuscarPropietario.setBackground(new java.awt.Color(0, 94, 159));
+        txtBuscarPropietario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtBuscarPropietario.setForeground(new java.awt.Color(255, 255, 255));
+        txtBuscarPropietario.setToolTipText("Buscador");
+        txtBuscarPropietario.setBorder(null);
+        jPanel4.add(txtBuscarPropietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 190, 20));
 
         jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
         jPanel4.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 190, 10));
@@ -125,10 +125,10 @@ public class VisAsamblea extends javax.swing.JPanel {
         btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
         jPanel4.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 160, -1));
 
-        jDateChooser2.setToolTipText("Fecha en la que se realizó la asamblea");
-        jDateChooser2.setMinSelectableDate(new java.util.Date(-62135751509000L));
-        jPanel4.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 150, 30));
-        jDateChooser2.getDateEditor().setEnabled(false);
+        txtFecha.setToolTipText("Fecha en la que se realizó la asamblea");
+        txtFecha.setMinSelectableDate(new java.util.Date(-62135751509000L));
+        jPanel4.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 150, 30));
+        txtFecha.getDateEditor().setEnabled(false);
 
         add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 480, 280));
 
@@ -141,28 +141,17 @@ public class VisAsamblea extends javax.swing.JPanel {
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaAsistentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "<html>Cédula /<br> RIF.</html>", "<html>Nombre / <br> Razón Social</html>", "Apellido", "Teléfono ", "Correo Electrónico", "Seleccione"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-        });
-        jTable1.setToolTipText("Seleccione a las personas que asistieron");
-        jTable1.setRowHeight(20);
-        jScrollPane1.setViewportView(jTable1);
+        ));
+        tablaAsistentes.setToolTipText("Seleccione a las personas que asistieron");
+        tablaAsistentes.setRowHeight(20);
+        jScrollPane1.setViewportView(tablaAsistentes);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 700, 210));
 
@@ -192,7 +181,6 @@ public class VisAsamblea extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnSalir;
-    public com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
@@ -208,10 +196,11 @@ public class VisAsamblea extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator8;
-    public javax.swing.JTable jTable1;
+    public javax.swing.JTable tablaAsistentes;
     public javax.swing.JTextArea txaDescripcion;
-    public javax.swing.JTextField txtBuscarPropietarios;
-    public javax.swing.JTextField txtNombreAsamblea;
+    public javax.swing.JTextField txtBuscarPropietario;
+    public com.toedter.calendar.JDateChooser txtFecha;
+    public javax.swing.JTextField txtNombre;
     public javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables
 }

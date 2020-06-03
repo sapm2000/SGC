@@ -25,7 +25,7 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Asambleas;
 import modelo.CerrarMes;
-import modelo.CuotasEspeciales;
+import modelo.Gasto;
 import modelo.Funcion;
 import modelo.ModeloConceptoGastos;
 import modelo.Proveedores;
@@ -41,7 +41,7 @@ public class CtrlCuotaEspecial implements ActionListener, MouseListener, KeyList
     private Proveedores modpro;
     private ModeloConceptoGastos modcon;
     private Asambleas modasa;
-    private CuotasEspeciales modcuo;
+    private Gasto modcuo;
     private CerrarMes modc;
     private buscarProveedor buscpro;
 
@@ -49,11 +49,11 @@ public class CtrlCuotaEspecial implements ActionListener, MouseListener, KeyList
 
     ArrayList<Proveedores> listaProveedores;
     DefaultTableModel dm;
-    ArrayList<CuotasEspeciales> listacuotasEspeciales;
+    ArrayList<Gasto> listacuotasEspeciales;
     ArrayList<ModeloConceptoGastos> listaConGas;
     ArrayList<Asambleas> listaasambleas;
     ArrayList<ModeloConceptoGastos> listaConcepto;
-    ArrayList<CuotasEspeciales> listaConceptomod;
+    ArrayList<Gasto> listaConceptomod;
 
     public CtrlCuotaEspecial() {
         this.vista = new cuotasEspeciales();
@@ -62,7 +62,7 @@ public class CtrlCuotaEspecial implements ActionListener, MouseListener, KeyList
         this.modpro = new Proveedores();
         this.modasa = new Asambleas();
 
-        this.modcuo = new CuotasEspeciales();
+        this.modcuo = new Gasto();
         this.modc = new CerrarMes();
         this.buscpro = new buscarProveedor();
 
@@ -93,7 +93,7 @@ public class CtrlCuotaEspecial implements ActionListener, MouseListener, KeyList
 
         vista.txaObservaciones.addKeyListener(this);
         listaConGas = modcon.listarConcepto();
-        listaasambleas = modasa.listarAsambleas();
+        listaasambleas = modasa.listar();
         this.catalogo.setVisible(true);
         
         CtrlVentana.cambiarVista(catalogo);
@@ -136,14 +136,14 @@ public class CtrlCuotaEspecial implements ActionListener, MouseListener, KeyList
         for (int i = 0; i < numRegistro; i++) {
             ind = 0;
             columna[ind++] = listacuotasEspeciales.get(i).getId();
-            columna[ind++] = listacuotasEspeciales.get(i).prov.getCedula();
+            columna[ind++] = listacuotasEspeciales.get(i).proveedor.getCedula();
 
             String fecha = String.valueOf(listacuotasEspeciales.get(i).getMes()) + "-" + listacuotasEspeciales.get(i).getAño();
             columna[ind++] = listacuotasEspeciales.get(i).getCalcular();
             columna[ind++] = fecha;
             columna[ind++] = Validacion.formato1.format(listacuotasEspeciales.get(i).getMonto());
             columna[ind++] = Validacion.formato1.format(listacuotasEspeciales.get(i).getSaldo());
-            columna[ind++] = listacuotasEspeciales.get(i).asa.getNombre_asamblea();
+            columna[ind++] = listacuotasEspeciales.get(i).asamblea.getNombre();
             columna[ind++] = listacuotasEspeciales.get(i).getN_meses();
             columna[ind++] = listacuotasEspeciales.get(i).getN_meses_restantes();
             columna[ind++] = listacuotasEspeciales.get(i).getObservacion();
@@ -344,7 +344,7 @@ public class CtrlCuotaEspecial implements ActionListener, MouseListener, KeyList
             addCheckBox(2, vista.jTable);
             vista.jAsamblea.removeAllItems();
 
-            listaasambleas = modasa.listarAsambleas();
+            listaasambleas = modasa.listar();
             listaConGas = modcon.listarConcepto();
 
             crearCbxAsamblea(listaasambleas);
@@ -372,8 +372,8 @@ public class CtrlCuotaEspecial implements ActionListener, MouseListener, KeyList
                 if (var10.equals("Total de Inmuebles")) {
                     var10 = "Total de Inmuebles";
                 }
-                modasa.setNombre_asamblea(vista.jAsamblea.getSelectedItem().toString());
-                if (modasa.getNombre_asamblea().equals("Seleccione la Asamblea") && vista.si.isSelected()) {
+                modasa.setNombre(vista.jAsamblea.getSelectedItem().toString());
+                if (modasa.getNombre().equals("Seleccione la Asamblea") && vista.si.isSelected()) {
                     JOptionPane.showMessageDialog(null, "seleccione una asamblea");
                 } else {
                     modcuo.setTipo(vista.jcombotipo.getSelectedItem().toString());
@@ -390,7 +390,7 @@ public class CtrlCuotaEspecial implements ActionListener, MouseListener, KeyList
                         }
                     }
                     modcuo.setCalcular(var10);
-                    modcuo.prov.setCedula(vista.txtProveedor.getText());
+                    modcuo.proveedor.setCedula(vista.txtProveedor.getText());
                     modcuo.setMes(vista.jMonthChooser1.getMonth() + 1);
                     modcuo.setAño(vista.jYearChooser1.getYear());
 
@@ -432,7 +432,7 @@ public class CtrlCuotaEspecial implements ActionListener, MouseListener, KeyList
                                 modcuo.setId(0);
                             } else {
                                 int ind1 = vista.jAsamblea.getSelectedIndex() - 1;
-                                listaasambleas = modasa.listarAsambleas();
+                                listaasambleas = modasa.listar();
                                 modcuo.setId(listaasambleas.get(ind1).getId());
                             }
                             int j = 0;
@@ -510,8 +510,8 @@ public class CtrlCuotaEspecial implements ActionListener, MouseListener, KeyList
                 if (vista.jTable.isEditing()) {//si se esta edtando la tabla
                     vista.jTable.getCellEditor().stopCellEditing();//detenga la edicion
                 }
-                modasa.setNombre_asamblea(vista.jAsamblea.getSelectedItem().toString());
-                if (modasa.getNombre_asamblea().equals("Seleccione la Asamblea") && vista.si.isSelected()) {
+                modasa.setNombre(vista.jAsamblea.getSelectedItem().toString());
+                if (modasa.getNombre().equals("Seleccione la Asamblea") && vista.si.isSelected()) {
                     JOptionPane.showMessageDialog(null, "seleccione una asamblea");
                 } else {
 
@@ -532,7 +532,7 @@ public class CtrlCuotaEspecial implements ActionListener, MouseListener, KeyList
                             modcuo.setN_meses_restantes(Integer.parseInt(vista.txtNmeses.getText()));
                         }
                     }
-                    modcuo.prov.setCedula(vista.txtProveedor.getText());
+                    modcuo.proveedor.setCedula(vista.txtProveedor.getText());
                     if (modcuo.getN_meses() > 20) {
                         JOptionPane.showMessageDialog(null, "El maximo de meses para dividir el pago es 20");
                     } else {
@@ -567,13 +567,13 @@ public class CtrlCuotaEspecial implements ActionListener, MouseListener, KeyList
 
                         } else {
                             if (vista.jAsamblea.getSelectedItem().toString() == "Seleccione la Asamblea") {
-                                modcuo.asa.setId(0);
+                                modcuo.asamblea.setId(0);
                             } else {
-                                listaasambleas = modasa.listarAsambleas();
+                                listaasambleas = modasa.listar();
                                 int ind1 = vista.jAsamblea.getSelectedIndex() - 1;
                                 JOptionPane.showMessageDialog(null, ind1);
                                 JOptionPane.showMessageDialog(null, listaasambleas.get(ind1).getId());
-                                modcuo.asa.setId(listaasambleas.get(ind1).getId());
+                                modcuo.asamblea.setId(listaasambleas.get(ind1).getId());
                             }
                             int j = 0;
                             int x = 0;
@@ -715,7 +715,7 @@ public class CtrlCuotaEspecial implements ActionListener, MouseListener, KeyList
                 if (modcuo.getEstado().equals("Pendiente")) {
                     vista.jAsamblea.setVisible(true);
 
-                    listaasambleas = modasa.listarAsambleas();
+                    listaasambleas = modasa.listar();
                     vista.jAsamblea.removeAllItems();
                     crearCbxAsamblea(listaasambleas);
                     vista.jAsamblea.setSelectedItem("Seleccione la Asamblea");
@@ -754,9 +754,9 @@ public class CtrlCuotaEspecial implements ActionListener, MouseListener, KeyList
             vista.txtid.setVisible(false);
             vista.txtid.setText(dato);
             vista.jAsamblea.removeAllItems();
-            vista.jLabel2.setText(modcuo.prov.getNombre());
+            vista.jLabel2.setText(modcuo.proveedor.getNombre());
 
-            vista.txtProveedor.setText(modcuo.prov.getCedula());
+            vista.txtProveedor.setText(modcuo.proveedor.getCedula());
 
             vista.jCalcular.setSelectedItem(modcuo.getCalcular());
 
@@ -769,17 +769,17 @@ public class CtrlCuotaEspecial implements ActionListener, MouseListener, KeyList
                 vista.btnEliminar.setEnabled(true);
                 vista.btnModificar.setEnabled(true);
                 vista.btnGuardar.setEnabled(false);
-                listaasambleas = modasa.listarAsambleas();
+                listaasambleas = modasa.listar();
                 Llenartablaconceptomodificar(vista.jTable, 0);
                 addCheckBox(2, vista.jTable);
 
                 crearCbxAsamblea(listaasambleas);
-                if (modcuo.asa.getNombre_asamblea() == null) {
+                if (modcuo.asamblea.getNombre() == null) {
                     vista.jAsamblea.setSelectedItem("Seleccione la Asamblea");
                     vista.jAsamblea.setVisible(false);
                     vista.no.setSelected(true);
                 } else {
-                    vista.jAsamblea.setSelectedItem(modcuo.asa.getNombre_asamblea() + " " + modcuo.getFecha());
+                    vista.jAsamblea.setSelectedItem(modcuo.asamblea.getNombre() + " " + modcuo.getFecha());
                     vista.si.setSelected(true);
                     vista.jAsamblea.setVisible(true);
                 }
@@ -787,7 +787,7 @@ public class CtrlCuotaEspecial implements ActionListener, MouseListener, KeyList
             } else {
                 Llenartablaconceptomodificar(vista.jTable, 1);
                 addCheckBox(2, vista.jTable);
-                if (modcuo.asa.getNombre_asamblea() == null) {
+                if (modcuo.asamblea.getNombre() == null) {
                     vista.jAsamblea.addItem("Seleccione la Asamblea");
                     vista.jAsamblea.setSelectedItem("Seleccione la Asamblea");
                     vista.jAsamblea.setVisible(false);
@@ -795,8 +795,8 @@ public class CtrlCuotaEspecial implements ActionListener, MouseListener, KeyList
                     vista.no.setEnabled(false);
                     vista.si.setEnabled(false);
                 } else {
-                    vista.jAsamblea.addItem(modcuo.asa.getNombre_asamblea() + " " + modcuo.getFecha());
-                    vista.jAsamblea.setSelectedItem(modcuo.asa.getNombre_asamblea() + " " + modcuo.getFecha());
+                    vista.jAsamblea.addItem(modcuo.asamblea.getNombre() + " " + modcuo.getFecha());
+                    vista.jAsamblea.setSelectedItem(modcuo.asamblea.getNombre() + " " + modcuo.getFecha());
                     vista.si.setSelected(true);
                     vista.si.setEnabled(false);
                     vista.no.setEnabled(false);
@@ -939,7 +939,7 @@ public class CtrlCuotaEspecial implements ActionListener, MouseListener, KeyList
         if (datos != null) {
             for (Asambleas datosX : datos) {
                 modasa = datosX;
-                vista.jAsamblea.addItem(modasa.getNombre_asamblea() + " " + modasa.getFecha());
+                vista.jAsamblea.addItem(modasa.getNombre() + " " + modasa.getFecha());
             }
 
         }

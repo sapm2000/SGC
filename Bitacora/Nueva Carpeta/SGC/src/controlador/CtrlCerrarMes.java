@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.CerrarMes;
-import modelo.CuotasEspeciales;
+import modelo.Gasto;
 import modelo.GastoComun;
 import modelo.Interes;
 import modelo.Sancion;
@@ -40,13 +40,13 @@ public class CtrlCerrarMes implements ActionListener, KeyListener {
     private Unidades moduni;
     ArrayList<Unidades> listaunidades;
     ArrayList<GastoComun> listagastocomun;
-    ArrayList<CuotasEspeciales> listacuotasespeciales;
+    ArrayList<Gasto> listacuotasespeciales;
     ArrayList<Sancion> listasanciones;
     ArrayList<Interes> listainteres;
     ArrayList<CerrarMes> listaCierremes;
     private PantallaPrincipal panta1;
     private GastoComun modgac;
-    private CuotasEspeciales modcuo;
+    private Gasto modcuo;
     private Sancion modsan;
     private Interes modin;
     private Catalogo catalogo;
@@ -59,7 +59,7 @@ public class CtrlCerrarMes implements ActionListener, KeyListener {
         this.moduni = new Unidades();
 
         this.modgac = new GastoComun();
-        this.modcuo = new CuotasEspeciales();
+        this.modcuo = new Gasto();
         this.modsan = new Sancion();
         this.modin = new Interes();
         this.catalogo = new Catalogo();
