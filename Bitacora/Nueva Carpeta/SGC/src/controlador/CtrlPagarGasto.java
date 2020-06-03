@@ -13,7 +13,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cuenta;
-import modelo.CuotasEspeciales;
+import modelo.Gasto;
 import modelo.Fondo;
 import modelo.PagarCuotaEspecial;
 import vista.Catalogo;
@@ -26,11 +26,11 @@ public class CtrlPagarGasto implements ActionListener, MouseListener, KeyListene
     private Catalogo vistaCatPagos;
     private PagarCuotaEspecial modPagarCuoE;
 
-    private CuotasEspeciales modCuotaEsp;
+    private Gasto modCuotaEsp;
     private Fondo modFondo;
     private Cuenta modCuenta;
     private ArrayList<PagarCuotaEspecial> listaPagos;
-    private ArrayList<CuotasEspeciales> listaCuotaEspecial;
+    private ArrayList<Gasto> listaCuotaEspecial;
     private ArrayList<Fondo> listaFondo;
     private ArrayList<Cuenta> listaCuenta;
 
@@ -39,7 +39,7 @@ public class CtrlPagarGasto implements ActionListener, MouseListener, KeyListene
     public CtrlPagarGasto() {
         this.vista = new VisPagarGasto();
         this.modPagarCuoE = new PagarCuotaEspecial();
-        this.modCuotaEsp = new CuotasEspeciales();
+        this.modCuotaEsp = new Gasto();
         this.modFondo = new Fondo();
         this.modCuenta = new Cuenta();
         vista.btnProcesar.addActionListener(this);

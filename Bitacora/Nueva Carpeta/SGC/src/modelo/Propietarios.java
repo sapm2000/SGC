@@ -26,6 +26,10 @@ public class Propietarios extends Persona {
         super(cedula);
     }
 
+    public Propietarios(String cedula, String pNombre, String pApellido) {
+        super(cedula, pNombre, pApellido);
+    }
+
     public Propietarios(String cedula, String pNombre, String sNombre, String pApellido, String sApellido, String correo, String telefono) {
         super(cedula, pNombre, sNombre, pApellido, sApellido, correo, telefono);
     }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
 import java.sql.Connection;
@@ -11,34 +6,31 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import static sgc.SGC.condominioActual;
 import sgc.SGC;
+import static sgc.SGC.condominioActual;
 
-/**
- *
- * @author rma
- */
-public class CuotasEspeciales extends ConexionBD {
+public class Gasto extends ConexionBD {
 
-    private int id;
-    public Proveedores prov = new Proveedores();
-    public ModeloConceptoGastos concep = new ModeloConceptoGastos();
+    private Integer id;
+    private String tipo;
+    public Proveedores proveedor = new Proveedores();
     private String Calcular;
     private int mes;
     private int año;
-    private Double monto;
-    private Double saldo;
     private int n_meses;
-    public Asambleas asa = new Asambleas();
+    public Asambleas asamblea = new Asambleas();
     private String observacion;
-    private String estado;
-   private String tipo;
+    public ModeloConceptoGastos concep = new ModeloConceptoGastos();
+    private Double monto;
+    
     private int n_meses_restantes;
+    private Double saldo;
+    private String estado;
     private java.sql.Date fecha;
     private String pagado;
-    public CategoriaGasto cate= new CategoriaGasto();
-    
-     public boolean buscId(CuotasEspeciales modcuo) {
+    public CategoriaGasto cate = new CategoriaGasto();
+
+    public boolean buscId(Gasto modcuo) {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -79,7 +71,7 @@ public class CuotasEspeciales extends ConexionBD {
 
     }
 
-    public boolean registrar_cuota_especial(CuotasEspeciales modcuo) {
+    public boolean registrar_cuota_especial(Gasto modcuo) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
@@ -89,20 +81,20 @@ public class CuotasEspeciales extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, prov.getCedula());
+            ps.setString(1, proveedor.getCedula());
             ps.setInt(2, getN_meses_restantes());
-           
+
             ps.setString(3, getCalcular());
             ps.setDouble(4, getMes());
             ps.setInt(5, getAño());
             ps.setDouble(6, getMonto());
             ps.setDouble(7, getSaldo());
             ps.setInt(8, getN_meses());
-            ps.setInt(9, asa.getId());
+            ps.setInt(9, asamblea.getId());
             ps.setString(10, getObservacion());
             ps.setString(11, getEstado());
             ps.setString(12, SGC.condominioActual.getRif());
-             ps.setString(13, getTipo());
+            ps.setString(13, getTipo());
             ps.execute();
 
             return true;
@@ -126,8 +118,8 @@ public class CuotasEspeciales extends ConexionBD {
         }
 
     }
-    
-     public boolean registrar_puente(CuotasEspeciales modcuo) {
+
+    public boolean registrar_puente(Gasto modcuo) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
@@ -140,9 +132,7 @@ public class CuotasEspeciales extends ConexionBD {
             ps.setInt(1, getId());
             ps.setInt(2, concep.getId());
             ps.setDouble(3, getMonto());
-           
-          
-           
+
             ps.execute();
 
             return true;
@@ -167,9 +157,9 @@ public class CuotasEspeciales extends ConexionBD {
 
     }
 
-    public ArrayList<CuotasEspeciales> listarCuotasEspeciales(String status) {
+    public ArrayList<Gasto> listarCuotasEspeciales(String status) {
         ArrayList listacuotasEspeciales = new ArrayList();
-        CuotasEspeciales modcuo;
+        Gasto modcuo;
 
         Connection con = getConexion();
         PreparedStatement ps = null;
@@ -180,7 +170,6 @@ public class CuotasEspeciales extends ConexionBD {
             sql = "SELECT facturas_proveedores.id, id_proveedor, calcular, mes, anio, monto, saldo, n_meses,"
                     + " asambleas.nombre, observacion, estado, n_mese_restante, pagado "
                     + "FROM facturas_proveedores inner join proveedores on proveedores.cedula=facturas_proveedores.id_proveedor "
-                   
                     + "left join asambleas on asambleas.id = facturas_proveedores.id_asamblea where facturas_proveedores.id_condominio=? "
                     + "AND (pagado = '" + status + "')";
 
@@ -200,18 +189,18 @@ public class CuotasEspeciales extends ConexionBD {
 
             while (rs.next()) {
                 int i = 1;
-                modcuo = new CuotasEspeciales();
+                modcuo = new Gasto();
 
                 modcuo.setId(rs.getInt(i++));
-                modcuo.prov.setCedula(rs.getString(i++));
-               
+                modcuo.proveedor.setCedula(rs.getString(i++));
+
                 modcuo.setCalcular(rs.getString(i++));
                 modcuo.setMes(rs.getInt(i++));
                 modcuo.setAño(rs.getInt(i++));
                 modcuo.setMonto(rs.getDouble(i++));
                 modcuo.setSaldo(rs.getDouble(i++));
                 modcuo.setN_meses(rs.getInt(i++));
-                modcuo.asa.setNombre_asamblea(rs.getString(i++));
+                modcuo.asamblea.setNombre(rs.getString(i++));
                 modcuo.setObservacion(rs.getString(i++));
                 modcuo.setEstado(rs.getString(i++));
                 modcuo.setN_meses_restantes(rs.getInt(i++));
@@ -236,9 +225,9 @@ public class CuotasEspeciales extends ConexionBD {
         return listacuotasEspeciales;
     }
 
-    public ArrayList<CuotasEspeciales> listarCuotasEspecialescerrarmes() {
+    public ArrayList<Gasto> listarCuotasEspecialescerrarmes() {
         ArrayList listacuotasEspeciales = new ArrayList();
-        CuotasEspeciales modcuo;
+        Gasto modcuo;
 
         Connection con = getConexion();
         PreparedStatement ps = null;
@@ -253,18 +242,18 @@ public class CuotasEspeciales extends ConexionBD {
 
             while (rs.next()) {
 
-                modcuo = new CuotasEspeciales();
+                modcuo = new Gasto();
 
                 modcuo.setId(rs.getInt(1));
-                modcuo.prov.setCedula(rs.getString(2));
-              
+                modcuo.proveedor.setCedula(rs.getString(2));
+
                 modcuo.setCalcular(rs.getString(3));
                 modcuo.setMes(rs.getInt(4));
                 modcuo.setAño(rs.getInt(5));
                 modcuo.setMonto(rs.getDouble(6));
                 modcuo.setSaldo(rs.getDouble(7));
                 modcuo.setN_meses(rs.getInt(8));
-                modcuo.asa.setNombre_asamblea(rs.getString(9));
+                modcuo.asamblea.setNombre(rs.getString(9));
                 modcuo.setObservacion(rs.getString(10));
                 modcuo.setEstado(rs.getString(11));
                 modcuo.setN_meses_restantes(rs.getInt(12));
@@ -287,37 +276,36 @@ public class CuotasEspeciales extends ConexionBD {
 
         return listacuotasEspeciales;
     }
-    
-     public ArrayList<CuotasEspeciales> listarconceptosmodificar(int x) {
+
+    public ArrayList<Gasto> listarconceptosmodificar(int x) {
         ArrayList listacuotasEspeciales = new ArrayList();
-        CuotasEspeciales modcuo;
+        Gasto modcuo;
 
         Connection con = getConexion();
         PreparedStatement ps = null;
         ResultSet rs = null;
-         String sql = "";
-        if (x==0) {
-        sql = "SELECT nom_concepto, categoriagasto.nombre, id_concepto, puente_concepto_factura.monto FROM concepto_gasto inner join categoriagasto ON categoriagasto.id = concepto_gasto.id_categoria left join puente_concepto_factura on puente_concepto_factura.id_concepto = concepto_gasto.id and puente_concepto_factura.id_factura_proveedor=?  where concepto_gasto.activo=1  ";
+        String sql = "";
+        if (x == 0) {
+            sql = "SELECT nom_concepto, categoriagasto.nombre, id_concepto, puente_concepto_factura.monto FROM concepto_gasto inner join categoriagasto ON categoriagasto.id = concepto_gasto.id_categoria left join puente_concepto_factura on puente_concepto_factura.id_concepto = concepto_gasto.id and puente_concepto_factura.id_factura_proveedor=?  where concepto_gasto.activo=1  ";
         }
-         if (x==1) {
-        sql = "SELECT nom_concepto, categoriagasto.nombre, id_concepto, puente_concepto_factura.monto FROM concepto_gasto inner join categoriagasto ON categoriagasto.id = concepto_gasto.id_categoria inner join puente_concepto_factura on puente_concepto_factura.id_concepto = concepto_gasto.id and puente_concepto_factura.id_factura_proveedor=?  ";
+        if (x == 1) {
+            sql = "SELECT nom_concepto, categoriagasto.nombre, id_concepto, puente_concepto_factura.monto FROM concepto_gasto inner join categoriagasto ON categoriagasto.id = concepto_gasto.id_categoria inner join puente_concepto_factura on puente_concepto_factura.id_concepto = concepto_gasto.id and puente_concepto_factura.id_factura_proveedor=?  ";
         }
         try {
             ps = con.prepareStatement(sql);
 
             ps.setInt(1, getId());
-           
+
             rs = ps.executeQuery();
 
             while (rs.next()) {
 
-                modcuo = new CuotasEspeciales();
+                modcuo = new Gasto();
 
                 modcuo.concep.setNombre_Concepto(rs.getString(1));
                 modcuo.cate.setNombre(rs.getString(2));
                 modcuo.concep.setId(rs.getInt(3));
                 modcuo.setMonto(rs.getDouble(4));
-               
 
                 listacuotasEspeciales.add(modcuo);
             }
@@ -338,7 +326,7 @@ public class CuotasEspeciales extends ConexionBD {
         return listacuotasEspeciales;
     }
 
-    public boolean buscarCuotaEspecial(CuotasEspeciales modcuo) {
+    public boolean buscarCuotaEspecial(Gasto modcuo) {
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -352,15 +340,15 @@ public class CuotasEspeciales extends ConexionBD {
             rs = ps.executeQuery();
             if (rs.next()) {
 
-                modcuo.prov.setCedula(rs.getString("id_proveedor"));
-                modcuo.prov.setNombre(rs.getString("prov"));
+                modcuo.proveedor.setCedula(rs.getString("id_proveedor"));
+                modcuo.proveedor.setNombre(rs.getString("prov"));
                 modcuo.setCalcular(rs.getString("calcular"));
                 modcuo.setMes(rs.getInt("mes"));
                 modcuo.setAño(rs.getInt("anio"));
                 modcuo.setMonto(rs.getDouble("monto"));
                 modcuo.setSaldo(rs.getDouble("saldo"));
                 modcuo.setN_meses(rs.getInt("n_meses"));
-                modcuo.asa.setNombre_asamblea(rs.getString("nombre"));
+                modcuo.asamblea.setNombre(rs.getString("nombre"));
                 modcuo.setObservacion(rs.getString("observacion"));
                 modcuo.setEstado(rs.getString("estado"));
                 modcuo.setFecha(rs.getDate("fecha"));
@@ -389,7 +377,7 @@ public class CuotasEspeciales extends ConexionBD {
         }
     }
 
-    public boolean modificar_cuota_especial(CuotasEspeciales modcuo) {
+    public boolean modificar_cuota_especial(Gasto modcuo) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
@@ -399,16 +387,16 @@ public class CuotasEspeciales extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, prov.getCedula());
+            ps.setString(1, proveedor.getCedula());
             ps.setInt(2, getN_meses_restantes());
-           
+
             ps.setString(3, getCalcular());
             ps.setInt(4, getMes());
             ps.setInt(5, getAño());
             ps.setDouble(6, getMonto());
             ps.setDouble(7, getSaldo());
             ps.setInt(8, getN_meses());
-            ps.setInt(9, asa.getId());
+            ps.setInt(9, asamblea.getId());
             ps.setString(10, getObservacion());
             ps.setInt(11, getId());
 
@@ -435,7 +423,7 @@ public class CuotasEspeciales extends ConexionBD {
 
     }
 
-    public boolean eliminar_cuotas_especiales(CuotasEspeciales modcuo) {
+    public boolean eliminar_cuotas_especiales(Gasto modcuo) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
@@ -470,8 +458,8 @@ public class CuotasEspeciales extends ConexionBD {
         }
 
     }
-    
-    public boolean eliminar_puente(CuotasEspeciales modcuo) {
+
+    public boolean eliminar_puente(Gasto modcuo) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
@@ -563,8 +551,6 @@ public class CuotasEspeciales extends ConexionBD {
         this.id = id;
     }
 
-    
-
     public String getCalcular() {
         return Calcular;
     }
@@ -613,7 +599,6 @@ public class CuotasEspeciales extends ConexionBD {
         this.n_meses = n_meses;
     }
 
-   
     public String getObservacion() {
         return observacion;
     }
@@ -637,10 +622,6 @@ public class CuotasEspeciales extends ConexionBD {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
- 
-
-  
 
     public String getPagado() {
         return pagado;

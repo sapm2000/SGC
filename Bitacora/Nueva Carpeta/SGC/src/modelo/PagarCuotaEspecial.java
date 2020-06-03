@@ -19,14 +19,14 @@ public class PagarCuotaEspecial extends ConexionBD {
     private Date fecha;
     private Cuenta cuenta;
     private Fondo fondo;
-    private CuotasEspeciales cuo_especial;
+    private Gasto cuo_especial;
     private Proveedores proveedor;
     private Banco banco;
 
     public PagarCuotaEspecial() {
         cuenta = new Cuenta();
         fondo = new Fondo();
-        cuo_especial = new CuotasEspeciales();
+        cuo_especial = new Gasto();
         proveedor = new Proveedores();
         banco = new Banco();
     }
@@ -176,11 +176,11 @@ public class PagarCuotaEspecial extends ConexionBD {
         this.fondo = fondo;
     }
 
-    public CuotasEspeciales getCuo_especial() {
+    public Gasto getCuo_especial() {
         return cuo_especial;
     }
 
-    public void setCuo_especial(CuotasEspeciales cuo_especial) {
+    public void setCuo_especial(Gasto cuo_especial) {
         this.cuo_especial = cuo_especial;
     }
 

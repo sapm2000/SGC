@@ -27,7 +27,7 @@ public class CerrarMes extends ConexionBD {
     public Sancion san = new Sancion();
     private double alicuota;
     private String estado;
-    public CuotasEspeciales cuo = new CuotasEspeciales();
+    public Gasto cuo = new Gasto();
     public ModeloConceptoGastos concep = new ModeloConceptoGastos();
     public Proveedores prove = new Proveedores();
     private int meses_deuda;
