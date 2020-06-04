@@ -187,7 +187,7 @@ public class VisTipoUsuario extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tabla.setToolTipText("Seleccione los modulos a los que tendra acceso el usuario");
+        tabla.setToolTipText("Seleccione los modulos y las acciones a las que tendra acceso el usuario");
         tabla.setRowHeight(35);
         jScrollPane1.setViewportView(tabla);
 

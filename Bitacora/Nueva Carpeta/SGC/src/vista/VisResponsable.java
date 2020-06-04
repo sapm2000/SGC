@@ -89,12 +89,14 @@ public class VisResponsable extends javax.swing.JPanel {
         txtCedula.setBackground(new java.awt.Color(0, 94, 159));
         txtCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCedula.setForeground(new java.awt.Color(255, 255, 255));
+        txtCedula.setToolTipText("Ingrese la cédula del responsable");
         txtCedula.setBorder(null);
         jPanel2.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 280, 20));
 
         txtSnombre.setBackground(new java.awt.Color(0, 94, 159));
         txtSnombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtSnombre.setForeground(new java.awt.Color(255, 255, 255));
+        txtSnombre.setToolTipText("Ingrese el segundo nombre del responsable");
         txtSnombre.setBorder(null);
         txtSnombre.setOpaque(false);
         jPanel2.add(txtSnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 60, 240, 20));
@@ -107,6 +109,7 @@ public class VisResponsable extends javax.swing.JPanel {
         txtPapellido.setBackground(new java.awt.Color(0, 94, 159));
         txtPapellido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPapellido.setForeground(new java.awt.Color(255, 255, 255));
+        txtPapellido.setToolTipText("Ingrese el primer apellido del responsable");
         txtPapellido.setBorder(null);
         txtPapellido.setOpaque(false);
         jPanel2.add(txtPapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 220, 20));
@@ -114,7 +117,7 @@ public class VisResponsable extends javax.swing.JPanel {
         txtSapellido.setBackground(new java.awt.Color(0, 94, 159));
         txtSapellido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtSapellido.setForeground(new java.awt.Color(255, 255, 255));
-        txtSapellido.setToolTipText("");
+        txtSapellido.setToolTipText("Ingrese el segundo apellido del responsable");
         txtSapellido.setBorder(null);
         txtSapellido.setOpaque(false);
         txtSapellido.addActionListener(new java.awt.event.ActionListener() {
@@ -170,6 +173,7 @@ public class VisResponsable extends javax.swing.JPanel {
         txtTelefono.setBackground(new java.awt.Color(0, 94, 159));
         txtTelefono.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtTelefono.setForeground(new java.awt.Color(255, 255, 255));
+        txtTelefono.setToolTipText("Ingrese el número de teléfono del responsable");
         txtTelefono.setBorder(null);
         txtTelefono.setOpaque(false);
         txtTelefono.addActionListener(new java.awt.event.ActionListener() {
@@ -182,6 +186,7 @@ public class VisResponsable extends javax.swing.JPanel {
         txtCorreo.setBackground(new java.awt.Color(0, 94, 159));
         txtCorreo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCorreo.setForeground(new java.awt.Color(255, 255, 255));
+        txtCorreo.setToolTipText("Ingrese el correo electrónico del responsable");
         txtCorreo.setBorder(null);
         txtCorreo.setOpaque(false);
         txtCorreo.addActionListener(new java.awt.event.ActionListener() {
@@ -202,6 +207,7 @@ public class VisResponsable extends javax.swing.JPanel {
         txtPnombre.setBackground(new java.awt.Color(0, 94, 159));
         txtPnombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPnombre.setForeground(new java.awt.Color(255, 255, 255));
+        txtPnombre.setToolTipText("Ingrese el primer nombre del responsable");
         txtPnombre.setBorder(null);
         txtPnombre.setOpaque(false);
         jPanel2.add(txtPnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 220, 20));
