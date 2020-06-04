@@ -1,9 +1,12 @@
 package controlador;
 
+import static controlador.CtrlVentana.centreWindow;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.PopupMenu;
 import java.awt.Toolkit;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static javax.swing.BorderFactory.createLineBorder;
@@ -12,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import modelo.Funcion;
@@ -73,12 +77,13 @@ public class CtrlVentana implements ActionListener {
         ventana.jPropietarios.addActionListener(this);
         ventana.jResponsable.addActionListener(this);
         ventana.jFormaPago.addActionListener(this);
-        ventana.jGasto.addActionListener(this);
+        ventana.jAsamblea.addActionListener(this);
+        ventana.jCuotas.addActionListener(this);
+        ventana.jGastos.addActionListener(this);
         ventana.jSancion.addActionListener(this);
         ventana.jUnidades.addActionListener(this);
         ventana.jFondo.addActionListener(this);
         ventana.jComunicados.addActionListener(this);
-        ventana.pAsamblea.addActionListener(this);
         ventana.pCuentasporCobrar.addActionListener(this);
         ventana.pCuentapagar.addActionListener(this);
         ventana.pVisitas.addActionListener(this);
@@ -119,7 +124,7 @@ public class CtrlVentana implements ActionListener {
         }
 
         //Maestros
-        if (e.getSource() == ventana.pAsamblea) {
+        if (e.getSource() == ventana.jAsamblea) {
             ctrl = new CtrlAsamblea();
         }
         if (e.getSource() == ventana.jBanco) {
@@ -140,14 +145,17 @@ public class CtrlVentana implements ActionListener {
         if (e.getSource() == ventana.jCuenta) {
             ctrl = new CtrlCuenta();
         }
-        if (e.getSource() == ventana.jGasto) {
-            ctrl = new CtrlGasto();
+        if (e.getSource() == ventana.jCuotas) {
+            ctrl = new CtrlCuotaEspecial();
         }
         if (e.getSource() == ventana.jFondo) {
             ctrl = new CtrlFondo();
         }
         if (e.getSource() == ventana.jFormaPago) {
             ctrl = new CtrlFormaPago();
+        }
+        if (e.getSource() == ventana.jGastos) {
+            ctrl = new CtrlGastoComun();
         }
         if (e.getSource() == ventana.jUsuario) {
             ctrl = new CtrlUsuario();
@@ -277,8 +285,14 @@ public class CtrlVentana implements ActionListener {
             if ("Tipo de usuario".equals(funcionesX.getNombre())) {
                 ventana.menuArchivo.add(ventana.jTipo);
             }
-            if ("Gasto".equals(funcionesX.getNombre())) {
-                ventana.menuArchivo.add(ventana.jGasto);
+            if ("Asambleas".equals(funcionesX.getNombre())) {
+                ventana.menuArchivo.add(ventana.jAsamblea);
+            }
+            if ("Cuotas especiales".equals(funcionesX.getNombre())) {
+                ventana.menuArchivo.add(ventana.jCuotas);
+            }
+            if ("Gastos comunes".equals(funcionesX.getNombre())) {
+                ventana.menuArchivo.add(ventana.jGastos);
             }
             if ("Sanciones".equals(funcionesX.getNombre())) {
                 ventana.menuArchivo.add(ventana.jSancion);
@@ -291,9 +305,6 @@ public class CtrlVentana implements ActionListener {
             }
             if ("Comunicados".equals(funcionesX.getNombre())) {
                 ventana.menuArchivo.add(ventana.jComunicados);
-            }
-            if ("Asambleas".equals(funcionesX.getNombre())) {
-                ventana.menuProceso.add(ventana.pAsamblea);
             }
             if ("Cuentas por cobrar".equals(funcionesX.getNombre())) {
                 ventana.menuProceso.add(ventana.pCuentasporCobrar);
