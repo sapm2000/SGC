@@ -94,6 +94,7 @@ public class VisPropietario extends javax.swing.JPanel {
         txtCedula.setBackground(new java.awt.Color(0, 94, 159));
         txtCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCedula.setForeground(new java.awt.Color(255, 255, 255));
+        txtCedula.setToolTipText("Ingrese la cedula del propietario");
         txtCedula.setBorder(null);
         txtCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,6 +106,7 @@ public class VisPropietario extends javax.swing.JPanel {
         txtSnombre.setBackground(new java.awt.Color(0, 94, 159));
         txtSnombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtSnombre.setForeground(new java.awt.Color(255, 255, 255));
+        txtSnombre.setToolTipText("Ingrese el segundo nombre del propuetario");
         txtSnombre.setBorder(null);
         txtSnombre.setOpaque(false);
         txtSnombre.addActionListener(new java.awt.event.ActionListener() {
@@ -122,6 +124,7 @@ public class VisPropietario extends javax.swing.JPanel {
         txtPapellido.setBackground(new java.awt.Color(0, 94, 159));
         txtPapellido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPapellido.setForeground(new java.awt.Color(255, 255, 255));
+        txtPapellido.setToolTipText("Ingrese el primer apellido del propietario");
         txtPapellido.setBorder(null);
         txtPapellido.setOpaque(false);
         jPanel2.add(txtPapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 220, 20));
@@ -129,7 +132,7 @@ public class VisPropietario extends javax.swing.JPanel {
         txtSapellido.setBackground(new java.awt.Color(0, 94, 159));
         txtSapellido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtSapellido.setForeground(new java.awt.Color(255, 255, 255));
-        txtSapellido.setToolTipText("");
+        txtSapellido.setToolTipText("Ingrese el segundo apellido del propietario");
         txtSapellido.setBorder(null);
         txtSapellido.setOpaque(false);
         txtSapellido.addActionListener(new java.awt.event.ActionListener() {
@@ -180,6 +183,7 @@ public class VisPropietario extends javax.swing.JPanel {
         txtTelefono.setBackground(new java.awt.Color(0, 94, 159));
         txtTelefono.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtTelefono.setForeground(new java.awt.Color(255, 255, 255));
+        txtTelefono.setToolTipText("Ingrese el número de teléfono del propierario");
         txtTelefono.setBorder(null);
         txtTelefono.setOpaque(false);
         txtTelefono.addActionListener(new java.awt.event.ActionListener() {
@@ -192,6 +196,7 @@ public class VisPropietario extends javax.swing.JPanel {
         txtCorreo.setBackground(new java.awt.Color(0, 94, 159));
         txtCorreo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCorreo.setForeground(new java.awt.Color(255, 255, 255));
+        txtCorreo.setToolTipText("Ingrese el correo electrónico del propietario");
         txtCorreo.setBorder(null);
         txtCorreo.setOpaque(false);
         txtCorreo.addActionListener(new java.awt.event.ActionListener() {
@@ -212,6 +217,7 @@ public class VisPropietario extends javax.swing.JPanel {
         txtPnombre.setBackground(new java.awt.Color(0, 94, 159));
         txtPnombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPnombre.setForeground(new java.awt.Color(255, 255, 255));
+        txtPnombre.setToolTipText("Ingrese el primer nombre del propietario");
         txtPnombre.setBorder(null);
         txtPnombre.setOpaque(false);
         txtPnombre.addActionListener(new java.awt.event.ActionListener() {

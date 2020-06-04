@@ -61,7 +61,6 @@ public class VisAsamblea extends javax.swing.JPanel {
         jSeparator8 = new javax.swing.JSeparator();
         btnGuardar = new javax.swing.JButton();
         txtFecha = new com.toedter.calendar.JDateChooser();
-        txtid = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaAsistentes = new javax.swing.JTable();
         btnSalir = new javax.swing.JButton();
@@ -69,6 +68,7 @@ public class VisAsamblea extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        txtid = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -163,11 +163,7 @@ public class VisAsamblea extends javax.swing.JPanel {
         jPanel4.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 150, 30));
         txtFecha.getDateEditor().setEnabled(false);
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 480, 280));
-
-        txtid.setEditable(false);
-        txtid.setEnabled(false);
-        jPanel1.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 20, -1));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 480, 280));
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
@@ -180,10 +176,10 @@ public class VisAsamblea extends javax.swing.JPanel {
             }
         ));
         tablaAsistentes.setToolTipText("Seleccione a las personas que asistieron");
-        tablaAsistentes.setRowHeight(20);
+        tablaAsistentes.setRowHeight(35);
         jScrollPane1.setViewportView(tablaAsistentes);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 700, 210));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 700, 210));
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow.png"))); // NOI18N
         btnSalir.setToolTipText("Volver al catálogo");
@@ -198,19 +194,23 @@ public class VisAsamblea extends javax.swing.JPanel {
         jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 510, 300));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 510, 300));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 440, 510, 300));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 510, 300));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel17.setText(" Asambleas");
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, -1, 20));
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, -1, 320));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, -1, 320));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 760, 670));
+        txtid.setEditable(false);
+        txtid.setEnabled(false);
+        jPanel1.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 20, -1));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 760, 600));
     }// </editor-fold>//GEN-END:initComponents
 
 

@@ -126,17 +126,19 @@ public class VisUsuario extends javax.swing.JPanel {
         txtCedula.setBackground(new java.awt.Color(0, 94, 159));
         txtCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCedula.setForeground(new java.awt.Color(255, 255, 255));
+        txtCedula.setToolTipText("Este campo no puede ser editable");
         txtCedula.setBorder(null);
         txtCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCedulaActionPerformed(evt);
             }
         });
-        jPanel2.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 280, 20));
+        jPanel2.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 280, 20));
 
         txtUsuario.setBackground(new java.awt.Color(0, 94, 159));
         txtUsuario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        txtUsuario.setToolTipText("Ingrese el usuario");
         txtUsuario.setBorder(null);
         txtUsuario.setOpaque(false);
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -154,6 +156,7 @@ public class VisUsuario extends javax.swing.JPanel {
         txtPregunta.setBackground(new java.awt.Color(0, 94, 159));
         txtPregunta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPregunta.setForeground(new java.awt.Color(255, 255, 255));
+        txtPregunta.setToolTipText("Ingrese una pregunta de seguridad");
         txtPregunta.setBorder(null);
         txtPregunta.setOpaque(false);
         jPanel2.add(txtPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 230, 20));
@@ -161,6 +164,7 @@ public class VisUsuario extends javax.swing.JPanel {
         txtRespuesta.setBackground(new java.awt.Color(0, 94, 159));
         txtRespuesta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtRespuesta.setForeground(new java.awt.Color(255, 255, 255));
+        txtRespuesta.setToolTipText("Ingrese una respuesta relacionada a la pregunta de seguridad");
         txtRespuesta.setBorder(null);
         txtRespuesta.setOpaque(false);
         txtRespuesta.addActionListener(new java.awt.event.ActionListener() {
@@ -173,6 +177,7 @@ public class VisUsuario extends javax.swing.JPanel {
         txtClave.setBackground(new java.awt.Color(0, 94, 159));
         txtClave.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtClave.setForeground(new java.awt.Color(255, 255, 255));
+        txtClave.setToolTipText("Ingrese su contraseña");
         txtClave.setBorder(null);
         txtClave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,6 +187,7 @@ public class VisUsuario extends javax.swing.JPanel {
         jPanel2.add(txtClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 280, 20));
 
         cbxTipo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cbxTipo.setToolTipText("Seleccione el tipo de usuario");
         cbxTipo.setBorder(null);
         cbxTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cbxTipo.setOpaque(false);
@@ -205,7 +211,7 @@ public class VisUsuario extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Cédula:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -218,7 +224,7 @@ public class VisUsuario extends javax.swing.JPanel {
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 70, -1));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 280, 10));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 280, 10));
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 230, 10));
@@ -243,6 +249,7 @@ public class VisUsuario extends javax.swing.JPanel {
         txtClave2.setBackground(new java.awt.Color(0, 94, 159));
         txtClave2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtClave2.setForeground(new java.awt.Color(255, 255, 255));
+        txtClave2.setToolTipText("Vuelva a ingresar su contraseña");
         txtClave2.setBorder(null);
         jPanel2.add(txtClave2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 280, 20));
 
