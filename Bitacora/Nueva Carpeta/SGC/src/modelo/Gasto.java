@@ -2,49 +2,79 @@ package modelo;
 
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import sgc.SGC;
-import static sgc.SGC.condominioActual;
 
 public class Gasto extends ConexionBD {
 
     private Integer id;
     private String tipo;
-    public Proveedores proveedor = new Proveedores();
-    private String Calcular;
+    private Proveedores proveedor = new Proveedores();
+    private String calcular;
     private int mes;
-    private int año;
-    private int n_meses;
-    public Asambleas asamblea = new Asambleas();
+    private int anio;
+    private Integer numMeses;
+    private Asambleas asamblea;
     private String observacion;
-    public ModeloConceptoGastos concep = new ModeloConceptoGastos();
+    private Integer mesesRestantes;
     private Double monto;
-    
-    private int n_meses_restantes;
     private Double saldo;
     private String estado;
-    private java.sql.Date fecha;
     private String pagado;
-    public CategoriaGasto cate = new CategoriaGasto();
 
-    public boolean buscId(Gasto modcuo) {
+    private ArrayList<ConceptoGasto> conceptos = new ArrayList();
+    private ArrayList<Double> montoConceptos = new ArrayList();
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+    private java.sql.Date fecha;
+
+    private Connection con;
+
+    private Boolean agregarConcepto(Integer id, Double monto) throws SQLException {
+        int ind;
+        ps = null;
         Connection con = getConexion();
-        String sql = "SELECT MAX(id) as id from facturas_proveedores";
 
+        String sql = "INSERT INTO puente_gasto_concepto(id_gasto, id_concepto, monto) VALUES (?,?,?);";
+
+        ps = con.prepareStatement(sql);
+
+        ind = 1;
+        ps.setInt(ind++, getId());
+        ps.setInt(ind++, id);
+        ps.setDouble(ind++, monto);
+
+        ps.execute();
+
+        return true;
+    }
+
+    public boolean buscar() {
         try {
+            ps = null;
+            rs = null;
+            con = getConexion();
+
+            String sql = "SELECT proveedores.nombre as prov, id_proveedor, calcular, mes, anio, monto, saldo, n_meses, asambleas.nombre, asambleas.fecha, observacion, estado FROM facturas_proveedores inner join proveedores on proveedores.cedula=facturas_proveedores.id_proveedor left join asambleas on asambleas.id = facturas_proveedores.id_asamblea where facturas_proveedores.id=?;";
 
             ps = con.prepareStatement(sql);
-
+            ps.setInt(1, getId());
             rs = ps.executeQuery();
+
             if (rs.next()) {
 
-                modcuo.setId(rs.getInt("id"));
+                proveedor.setCedula(rs.getString("id_proveedor"));
+                proveedor.setNombre(rs.getString("prov"));
+                setCalcular(rs.getString("calcular"));
+                setMes(rs.getInt("mes"));
+                setAnio(rs.getInt("anio"));
+                setMonto(rs.getDouble("monto"));
+                setSaldo(rs.getDouble("saldo"));
+                setNumMeses(rs.getInt("n_meses"));
+                asamblea.setNombre(rs.getString("nombre"));
+                setObservacion(rs.getString("observacion"));
+                setEstado(rs.getString("estado"));
+                setFecha(rs.getDate("fecha"));
 
                 return true;
             }
@@ -52,185 +82,232 @@ public class Gasto extends ConexionBD {
             return false;
 
         } catch (SQLException e) {
-
             System.err.println(e);
             return false;
 
         } finally {
             try {
-
                 con.close();
 
             } catch (SQLException e) {
-
                 System.err.println(e);
-
             }
-
         }
-
     }
 
-    public boolean registrar_cuota_especial(Gasto modcuo) {
-
-        PreparedStatement ps = null;
-        Connection con = getConexion();
-
-        String sql = "INSERT INTO facturas_proveedores(id_proveedor, n_mese_restante, calcular, mes, anio, monto, saldo, n_meses, id_asamblea, observacion, estado, id_condominio, tipo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-
+    public boolean buscarId() {
         try {
+            ps = null;
+            rs = null;
+            con = getConexion();
+
+            String sql = "SELECT MAX(id) AS id FROM v_gasto;";
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, proveedor.getCedula());
-            ps.setInt(2, getN_meses_restantes());
-
-            ps.setString(3, getCalcular());
-            ps.setDouble(4, getMes());
-            ps.setInt(5, getAño());
-            ps.setDouble(6, getMonto());
-            ps.setDouble(7, getSaldo());
-            ps.setInt(8, getN_meses());
-            ps.setInt(9, asamblea.getId());
-            ps.setString(10, getObservacion());
-            ps.setString(11, getEstado());
-            ps.setString(12, SGC.condominioActual.getRif());
-            ps.setString(13, getTipo());
-            ps.execute();
-
-            return true;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-    }
-
-    public boolean registrar_puente(Gasto modcuo) {
-
-        PreparedStatement ps = null;
-        Connection con = getConexion();
-
-        String sql = "INSERT INTO puente_concepto_factura(id_factura_proveedor, id_concepto, monto) VALUES (?, ?, ?);";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
-            ps.setInt(2, concep.getId());
-            ps.setDouble(3, getMonto());
-
-            ps.execute();
-
-            return true;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-    }
-
-    public ArrayList<Gasto> listarCuotasEspeciales(String status) {
-        ArrayList listacuotasEspeciales = new ArrayList();
-        Gasto modcuo;
-
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        String sql = "";
-        if (status == "Pendiente" || status == "Pagado") {
-
-            sql = "SELECT facturas_proveedores.id, id_proveedor, calcular, mes, anio, monto, saldo, n_meses,"
-                    + " asambleas.nombre, observacion, estado, n_mese_restante, pagado "
-                    + "FROM facturas_proveedores inner join proveedores on proveedores.cedula=facturas_proveedores.id_proveedor "
-                    + "left join asambleas on asambleas.id = facturas_proveedores.id_asamblea where facturas_proveedores.id_condominio=? "
-                    + "AND (pagado = '" + status + "')";
-
-        } else if (status == "") {
-
-            sql = "SELECT facturas_proveedores.id, id_proveedor, calcular, mes, anio, monto, saldo, n_meses,"
-                    + " asambleas.nombre, observacion, estado, n_mese_restante, pagado "
-                    + "FROM facturas_proveedores inner join proveedores on proveedores.cedula=facturas_proveedores.id_proveedor "
-                    + "left join asambleas on asambleas.id = facturas_proveedores.id_asamblea where facturas_proveedores.id_condominio=? ";
-
-        }
-
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setString(1, condominioActual.getRif());
             rs = ps.executeQuery();
 
-            while (rs.next()) {
-                int i = 1;
-                modcuo = new Gasto();
-
-                modcuo.setId(rs.getInt(i++));
-                modcuo.proveedor.setCedula(rs.getString(i++));
-
-                modcuo.setCalcular(rs.getString(i++));
-                modcuo.setMes(rs.getInt(i++));
-                modcuo.setAño(rs.getInt(i++));
-                modcuo.setMonto(rs.getDouble(i++));
-                modcuo.setSaldo(rs.getDouble(i++));
-                modcuo.setN_meses(rs.getInt(i++));
-                modcuo.asamblea.setNombre(rs.getString(i++));
-                modcuo.setObservacion(rs.getString(i++));
-                modcuo.setEstado(rs.getString(i++));
-                modcuo.setN_meses_restantes(rs.getInt(i++));
-                modcuo.setPagado(rs.getString(i++));
-
-                listacuotasEspeciales.add(modcuo);
+            if (rs.next()) {
+                setId(rs.getInt("id"));
+                return true;
             }
-        } catch (Exception e) {
+
+            return false;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+
         } finally {
             try {
-
                 con.close();
 
             } catch (SQLException e) {
-
                 System.err.println(e);
+            }
+        }
+    }
 
+    public Boolean registrar() {
+        try {
+            int ind;
+
+            ps = null;
+            con = getConexion();
+
+            String sql = "INSERT INTO gasto(tipo, id_proveedor, calcular_por, mes, anio, n_meses, observacion, id_asamblea, meses_restantes, monto, saldo) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+
+            ps = con.prepareStatement(sql);
+            ind = 1;
+            ps.setString(ind++, getTipo());
+            ps.setString(ind++, proveedor.getCedula());
+            ps.setString(ind++, getCalcular());
+            ps.setDouble(ind++, getMes());
+            ps.setInt(ind++, getAnio());
+            ps.setInt(ind++, getNumMeses());
+            ps.setString(ind++, getObservacion());
+
+            if (asamblea != null) {
+                ps.setInt(ind++, asamblea.getId());
+
+            } else {
+                ps.setNull(ind++, java.sql.Types.NULL);
             }
 
-        }
+            ps.setInt(ind++, getMesesRestantes());
+            ps.setDouble(ind++, getMonto());
+            ps.setDouble(ind++, getSaldo());
+            ps.execute();
 
-        return listacuotasEspeciales;
+            if (buscarId()) {
+
+                if (registrarConceptos()) {
+                    return true;
+                }
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+    }
+
+    public Boolean registrarConceptos() {
+        try {
+            int ind;
+            ps = null;
+            con = getConexion();
+
+            String sql = "INSERT INTO puente_gasto_concepto(id_gasto, id_concepto, monto) VALUES (?,?,?);";
+
+            ps = con.prepareStatement(sql);
+            ind = 1;
+            ps.setInt(ind++, getId());
+
+            for (int i = 0; i < conceptos.size(); i++) {
+                ind = 2;
+                ps.setInt(ind++, conceptos.get(i).getId());
+                ps.setDouble(ind++, montoConceptos.get(i));
+                ps.execute();
+            }
+
+            return true;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+    }
+
+    public ArrayList<Gasto> listar(String status) {
+        try {
+            ArrayList<Gasto> lista = new ArrayList();
+            Gasto item;
+            ResultSet rs2;
+
+            con = getConexion();
+            ps = null;
+            rs = null;
+
+            String sql = "";
+
+            if (status == "Pendiente" || status == "Pagado") {
+                sql = "SELECT * FROM v_gasto WHERE pagado = '" + status + "';";
+
+            } else if (status == "") {
+                sql = "SELECT * FROM v_gasto;";
+            }
+
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            sql = "SELECT * FROM v_gasto_concepto WHERE id_gasto = ?";
+            ps = con.prepareStatement(sql);
+
+            while (rs.next()) {
+                item = new Gasto();
+
+                item.setId(rs.getInt("id"));
+                item.setTipo(rs.getString("tipo"));
+                item.proveedor.setCedula(rs.getString("id_proveedor"));
+                item.proveedor.setNombre(rs.getString("proveedor"));
+                item.setCalcular(rs.getString("calcular_por"));
+                item.setMes(rs.getInt("mes"));
+                item.setAnio(rs.getInt("anio"));
+                item.setMonto(rs.getDouble("monto"));
+                item.setSaldo(rs.getDouble("saldo"));
+                item.setNumMeses(rs.getInt("n_meses"));
+                item.setMesesRestantes(rs.getInt("meses_restantes"));
+
+                if (rs.getInt("id_asamblea") != 0) {
+                    item.asamblea = new Asambleas();
+
+                    item.asamblea.setId(rs.getInt("id_asamblea"));
+                    item.asamblea.setNombre(rs.getString("asamblea"));
+                    item.asamblea.setFecha(rs.getDate("fecha_asamblea"));
+
+                } else {
+                    item.asamblea = null;
+                }
+
+                item.setObservacion(rs.getString("observacion"));
+                item.setEstado(rs.getString("estado"));
+                item.setPagado(rs.getString("pagado"));
+
+                ps.setInt(1, item.getId());
+                rs2 = ps.executeQuery();
+
+                while (rs2.next()) {
+                    ConceptoGasto concepto = new ConceptoGasto();
+                    concepto.setId(rs2.getInt("id_concepto"));
+                    concepto.setNombre(rs2.getString("nombre"));
+
+                    item.getConceptos().add(concepto);
+                    item.montoConceptos.add(rs2.getDouble("monto"));
+                }
+
+                lista.add(item);
+            }
+
+            return lista;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+            return null;
+
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
     }
 
     public ArrayList<Gasto> listarCuotasEspecialescerrarmes() {
         ArrayList listacuotasEspeciales = new ArrayList();
         Gasto modcuo;
 
-        Connection con = getConexion();
-        PreparedStatement ps = null;
+        con = getConexion();
+        ps = null;
         ResultSet rs = null;
 
         String sql = "SELECT facturas_proveedores.id, id_proveedor, concepto_gasto.nom_concepto, calcular, mes, anio, monto, saldo, n_meses, asambleas.nombre, observacion, estado, n_mese_restante FROM facturas_proveedores inner join proveedores on proveedores.cedula=facturas_proveedores.id_proveedor  left join asambleas on asambleas.id = facturas_proveedores.id_asamblea where facturas_proveedores.id_condominio=? and facturas_proveedores.n_mese_restante !=0";
@@ -249,14 +326,14 @@ public class Gasto extends ConexionBD {
 
                 modcuo.setCalcular(rs.getString(3));
                 modcuo.setMes(rs.getInt(4));
-                modcuo.setAño(rs.getInt(5));
+                modcuo.setAnio(rs.getInt(5));
                 modcuo.setMonto(rs.getDouble(6));
                 modcuo.setSaldo(rs.getDouble(7));
-                modcuo.setN_meses(rs.getInt(8));
+                modcuo.setNumMeses(rs.getInt(8));
                 modcuo.asamblea.setNombre(rs.getString(9));
                 modcuo.setObservacion(rs.getString(10));
                 modcuo.setEstado(rs.getString(11));
-                modcuo.setN_meses_restantes(rs.getInt(12));
+                modcuo.setMesesRestantes(rs.getInt(12));
 
                 listacuotasEspeciales.add(modcuo);
             }
@@ -277,150 +354,145 @@ public class Gasto extends ConexionBD {
         return listacuotasEspeciales;
     }
 
-    public ArrayList<Gasto> listarconceptosmodificar(int x) {
-        ArrayList listacuotasEspeciales = new ArrayList();
-        Gasto modcuo;
-
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        String sql = "";
-        if (x == 0) {
-            sql = "SELECT nom_concepto, categoriagasto.nombre, id_concepto, puente_concepto_factura.monto FROM concepto_gasto inner join categoriagasto ON categoriagasto.id = concepto_gasto.id_categoria left join puente_concepto_factura on puente_concepto_factura.id_concepto = concepto_gasto.id and puente_concepto_factura.id_factura_proveedor=?  where concepto_gasto.activo=1  ";
-        }
-        if (x == 1) {
-            sql = "SELECT nom_concepto, categoriagasto.nombre, id_concepto, puente_concepto_factura.monto FROM concepto_gasto inner join categoriagasto ON categoriagasto.id = concepto_gasto.id_categoria inner join puente_concepto_factura on puente_concepto_factura.id_concepto = concepto_gasto.id and puente_concepto_factura.id_factura_proveedor=?  ";
-        }
-        try {
-            ps = con.prepareStatement(sql);
-
-            ps.setInt(1, getId());
-
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-
-                modcuo = new Gasto();
-
-                modcuo.concep.setNombre_Concepto(rs.getString(1));
-                modcuo.cate.setNombre(rs.getString(2));
-                modcuo.concep.setId(rs.getInt(3));
-                modcuo.setMonto(rs.getDouble(4));
-
-                listacuotasEspeciales.add(modcuo);
-            }
-        } catch (Exception e) {
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-        return listacuotasEspeciales;
-    }
-
-    public boolean buscarCuotaEspecial(Gasto modcuo) {
-
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
-        String sql = "SELECT proveedores.nombre as prov, id_proveedor, calcular, mes, anio, monto, saldo, n_meses, asambleas.nombre, asambleas.fecha, observacion, estado FROM facturas_proveedores inner join proveedores on proveedores.cedula=facturas_proveedores.id_proveedor left join asambleas on asambleas.id = facturas_proveedores.id_asamblea where facturas_proveedores.id=?;";
+    public boolean modificar() {
 
         try {
+            int ind;
+
+            ps = null;
+            con = getConexion();
+
+            String sql = "UPDATE gasto SET tipo=?, id_proveedor=?, calcular_por=?, mes=?, anio=?, n_meses=?, id_asamblea=?, observacion=?, meses_restantes=?, monto=?, saldo=? WHERE id = ?;";
 
             ps = con.prepareStatement(sql);
-            ps.setInt(1, modcuo.getId());
-            rs = ps.executeQuery();
-            if (rs.next()) {
+            ind = 1;
+            ps.setString(ind++, getTipo());
+            ps.setString(ind++, proveedor.getCedula());
+            ps.setString(ind++, getCalcular());
+            ps.setInt(ind++, getMes());
+            ps.setInt(ind++, getAnio());
+            ps.setInt(ind++, getNumMeses());
 
-                modcuo.proveedor.setCedula(rs.getString("id_proveedor"));
-                modcuo.proveedor.setNombre(rs.getString("prov"));
-                modcuo.setCalcular(rs.getString("calcular"));
-                modcuo.setMes(rs.getInt("mes"));
-                modcuo.setAño(rs.getInt("anio"));
-                modcuo.setMonto(rs.getDouble("monto"));
-                modcuo.setSaldo(rs.getDouble("saldo"));
-                modcuo.setN_meses(rs.getInt("n_meses"));
-                modcuo.asamblea.setNombre(rs.getString("nombre"));
-                modcuo.setObservacion(rs.getString("observacion"));
-                modcuo.setEstado(rs.getString("estado"));
-                modcuo.setFecha(rs.getDate("fecha"));
+            if (asamblea != null) {
+                ps.setInt(ind++, asamblea.getId());
 
+            } else {
+                ps.setNull(ind++, java.sql.Types.NULL);
+            }
+
+            ps.setString(ind++, getObservacion());
+            ps.setInt(ind++, getMesesRestantes());
+            System.out.println("monto total: " + getMonto());
+            ps.setDouble(ind++, getMonto());
+            ps.setDouble(ind++, getSaldo());
+
+            ps.setInt(ind++, getId());
+
+            ps.execute();
+
+            if (modificarConceptos()) {
+                return true;
+
+            } else {
                 return true;
             }
 
-            return false;
-
         } catch (SQLException e) {
-
             System.err.println(e);
             return false;
 
         } finally {
-            try {
 
+            try {
                 con.close();
 
             } catch (SQLException e) {
-
                 System.err.println(e);
 
             }
-
         }
     }
 
-    public boolean modificar_cuota_especial(Gasto modcuo) {
-
-        PreparedStatement ps = null;
-        Connection con = getConexion();
-
-        String sql = "UPDATE facturas_proveedores SET id_proveedor=?, n_mese_restante=?, calcular=?, mes=?, anio=?, monto=?, saldo=?, n_meses=?, id_asamblea=?, observacion=? WHERE id=?;";
+    private Boolean modificarConceptos() {
 
         try {
+            ArrayList<ConceptoGasto> conceptosViejos;
+            ArrayList<Double> montosViejos;
+            ConceptoGasto item;
+            conceptosViejos = new ArrayList();
+            montosViejos = new ArrayList();
+
+            ps = null;
+            con = getConexion();
+
+            int numNuevos;
+            int numViejos;
+
+            String sql = "SELECT id_concepto, monto FROM v_gasto_concepto WHERE id_gasto = ?;";
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, proveedor.getCedula());
-            ps.setInt(2, getN_meses_restantes());
+            ps.setInt(1, getId());
+            rs = ps.executeQuery();
 
-            ps.setString(3, getCalcular());
-            ps.setInt(4, getMes());
-            ps.setInt(5, getAño());
-            ps.setDouble(6, getMonto());
-            ps.setDouble(7, getSaldo());
-            ps.setInt(8, getN_meses());
-            ps.setInt(9, asamblea.getId());
-            ps.setString(10, getObservacion());
-            ps.setInt(11, getId());
+            while (rs.next()) {
+                item = new ConceptoGasto();
+                item.setId(rs.getInt("id_concepto"));
+                conceptosViejos.add(item);
+                montosViejos.add(rs.getDouble("monto"));
+                System.out.println("se obtuvo el id_concepto = " + item.getId() + " con el monto " + rs.getDouble("monto"));
+            }
 
-            ps.execute();
+            numNuevos = getConceptos().size();
+            numViejos = conceptosViejos.size();
+
+            // Ciclo que recorre los conceptos nuevos
+            for (int j = 0; j < numNuevos; j++) {
+
+                // Ciclo que recorre los conceptos viejos
+                for (int i = 0; i < numViejos; i++) {
+
+                    // Si el concepto de la lista de nuevos y su monto coincide con el de la BD
+                    if (getConceptos().get(j).getId().equals(conceptosViejos.get(i).getId()) && getMontoConceptos().get(j).equals(montosViejos.get(i))) {
+                        // No se hace nada con él y se elimina de ambos arreglos junto a su monto para dejar de compararlos
+                        getConceptos().remove(j);
+                        getMontoConceptos().remove(j);
+                        numNuevos--;
+                        conceptosViejos.remove(i);
+                        montosViejos.remove(i);
+                        numViejos--;
+                        break;
+                    }
+                }
+
+                // Si el propietario nuevo no está en la lista de viejos
+                if (getConceptos().size() > 0) {
+                    // Se agrega como nuevo propietario y se elimina del arreglo de nuevos
+                    agregarConcepto(getConceptos().get(j).getId(), getMontoConceptos().get(j));
+                    System.out.println("se agrego el concepto " + getConceptos().get(j).getId() + " con el monto " + getMontoConceptos().get(j));
+                    getConceptos().remove(j);
+                    getMontoConceptos().remove(j);
+                    numNuevos--;
+                    j--;
+                }
+            }
+
+            // Se retiran los viejos propietarios que quedaron en el arreglo de viejos (ya que fueron eliminados)
+            retirarConceptos(conceptosViejos);
 
             return true;
 
         } catch (SQLException e) {
-
             System.err.println(e);
             return false;
+
         } finally {
             try {
-
                 con.close();
 
             } catch (SQLException e) {
-
                 System.err.println(e);
-
             }
-
         }
-
     }
 
     public boolean eliminar_cuotas_especiales(Gasto modcuo) {
@@ -527,36 +599,59 @@ public class Gasto extends ConexionBD {
 
     }
 
-    public Date getFecha() {
-        return fecha;
+    private Boolean retirarConceptos(ArrayList<ConceptoGasto> conceptos) throws SQLException {
+        ps = null;
+        con = getConexion();
+
+        int ind;
+
+        String sql = "DELETE FROM puente_gasto_concepto WHERE id_gasto = ? AND id_concepto = ?";
+
+        ps = con.prepareStatement(sql);
+
+        ind = 1;
+        ps.setInt(ind++, getId());
+
+        for (int i = 0; i < conceptos.size(); i++) {
+            ind = 2;
+            System.out.println("se retiro el concepto con id = " + conceptos.get(i).getId());
+            ps.setInt(ind++, conceptos.get(i).getId());
+            ps.execute();
+        }
+
+        return true;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    public int getN_meses_restantes() {
-        return n_meses_restantes;
-    }
-
-    public void setN_meses_restantes(int n_meses_restantes) {
-        this.n_meses_restantes = n_meses_restantes;
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getCalcular() {
-        return Calcular;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setCalcular(String Calcular) {
-        this.Calcular = Calcular;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Proveedores getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(Proveedores proveedor) {
+        this.proveedor = proveedor;
+    }
+
+    public String getCalcular() {
+        return calcular;
+    }
+
+    public void setCalcular(String calcular) {
+        this.calcular = calcular;
     }
 
     public int getMes() {
@@ -567,12 +662,44 @@ public class Gasto extends ConexionBD {
         this.mes = mes;
     }
 
-    public int getAño() {
-        return año;
+    public int getAnio() {
+        return anio;
     }
 
-    public void setAño(int año) {
-        this.año = año;
+    public void setAnio(int anio) {
+        this.anio = anio;
+    }
+
+    public Integer getNumMeses() {
+        return numMeses;
+    }
+
+    public void setNumMeses(Integer numMeses) {
+        this.numMeses = numMeses;
+    }
+
+    public Asambleas getAsamblea() {
+        return asamblea;
+    }
+
+    public void setAsamblea(Asambleas asamblea) {
+        this.asamblea = asamblea;
+    }
+
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
+    }
+
+    public ArrayList<ConceptoGasto> getConceptos() {
+        return conceptos;
+    }
+
+    public void setConceptos(ArrayList<ConceptoGasto> conceptos) {
+        this.conceptos = conceptos;
     }
 
     public Double getMonto() {
@@ -591,20 +718,12 @@ public class Gasto extends ConexionBD {
         this.saldo = saldo;
     }
 
-    public int getN_meses() {
-        return n_meses;
+    public Integer getMesesRestantes() {
+        return mesesRestantes;
     }
 
-    public void setN_meses(int n_meses) {
-        this.n_meses = n_meses;
-    }
-
-    public String getObservacion() {
-        return observacion;
-    }
-
-    public void setObservacion(String observacion) {
-        this.observacion = observacion;
+    public void setMesesRestantes(Integer mesesRestantes) {
+        this.mesesRestantes = mesesRestantes;
     }
 
     public String getEstado() {
@@ -615,20 +734,28 @@ public class Gasto extends ConexionBD {
         this.estado = estado;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public String getPagado() {
         return pagado;
     }
 
     public void setPagado(String pagado) {
         this.pagado = pagado;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public ArrayList<Double> getMontoConceptos() {
+        return montoConceptos;
+    }
+
+    public void setMontoConceptos(ArrayList<Double> montoConceptos) {
+        this.montoConceptos = montoConceptos;
     }
 
 }
