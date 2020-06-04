@@ -872,25 +872,26 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
         if (e.getSource() == vista.jcombotipo) {
 
             if (vista.jcombotipo.getSelectedItem().equals("Ordinario")) {
-//                vista.panelTipo.setVisible(false);
+                vista.panelTipo.setVisible(false);
+                vista.no.setSelected(true);
 
             } else if (vista.jcombotipo.getSelectedItem().equals("Extraordinario")) {
-//                vista.panelTipo.setVisible(true);
+                vista.panelTipo.setVisible(true);
             }
         }
 
         if (e.getSource() == vista.si) {
 
             if (vista.si.isSelected()) {
-//                vista.panelAsamblea.setVisible(true);
-                vista.jAsamblea.setSelectedIndex(0);
+                vista.panelAsamblea.setVisible(true);
             }
         }
 
         if (e.getSource() == vista.no) {
 
             if (vista.no.isSelected()) {
-//                vista.panelAsamblea.setVisible(false);
+                vista.panelAsamblea.setVisible(false);
+                vista.jAsamblea.setSelectedIndex(0);
             }
         }
     }
