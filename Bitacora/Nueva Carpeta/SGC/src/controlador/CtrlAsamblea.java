@@ -385,7 +385,7 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
 
     private void permisoBtn() {
         for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
-            if (funcionbtn.getNombre().equals("Asamblea")) {
+            if (funcionbtn.getNombre().equals("Asambleas")) {
                 permiso = funcionbtn;
             }
         }
