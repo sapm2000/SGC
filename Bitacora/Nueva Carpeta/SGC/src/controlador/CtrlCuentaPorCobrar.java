@@ -12,8 +12,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import javax.swing.JComponent;
@@ -28,51 +26,53 @@ import modelo.Cuenta;
 import modelo.CuentasPorCobrar;
 import modelo.Fondo;
 import modelo.Unidades;
-import vista.PantallaPrincipal;
-import vista.cuentasPorCobrar;
+import vista.VisCuentaPorCobrar;
 
 /**
  *
  * @author rma
  */
-<<<<<<< HEAD:Bitacora/Nueva Carpeta/SGC/src/controlador/CtrlCuentaPorCobrar.java
 public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyListener {
-=======
-public class controladorCuentasPorCobrar implements ActionListener, WindowListener, ItemListener, KeyListener {
->>>>>>> parent of a9ecd90... Dañe un coñazo de vista.:Bitacora/Nueva Carpeta/SGC/src/controlador/controladorCuentasPorCobrar.java
 
-    private cuentasPorCobrar cuenco;
+    private VisCuentaPorCobrar vista;
     private CuentasPorCobrar modcuen;
     private Unidades moduni;
     private Fondo modfon;
     private Cuenta modcu;
     private CerrarMes modc;
-    private PantallaPrincipal panta1;
     ArrayList<CerrarMes> listaCierremes;
     ArrayList<Unidades> listaunidades;
     ArrayList<Fondo> listafondo;
     ArrayList<Cuenta> listaCuenta;
 
-<<<<<<< HEAD:Bitacora/Nueva Carpeta/SGC/src/controlador/CtrlCuentaPorCobrar.java
     public CtrlCuentaPorCobrar() {
         this.vista = new VisCuentaPorCobrar();
-=======
-    public controladorCuentasPorCobrar() {
-        this.cuenco = new cuentasPorCobrar();
->>>>>>> parent of a9ecd90... Dañe un coñazo de vista.:Bitacora/Nueva Carpeta/SGC/src/controlador/controladorCuentasPorCobrar.java
         this.modcuen = new CuentasPorCobrar();
         this.moduni = new Unidades();
         this.modfon = new Fondo();
         this.modcu = new Cuenta();
         this.modc = new CerrarMes();
-        
-        cuenco.addWindowListener(this);
-        cuenco.jComboUnidad.addItemListener(this);
-        cuenco.btnGuardar.addActionListener(this);
-        cuenco.txtMonto.addKeyListener(this);
-        cuenco.txtDescripcion.addKeyListener(this);
-        cuenco.txtReferencia.addKeyListener(this);
-        this.cuenco.setVisible(true);
+
+        vista.jComboUnidad.addItemListener(this);
+        vista.btnGuardar.addActionListener(this);
+        vista.txtMonto.addKeyListener(this);
+        vista.txtDescripcion.addKeyListener(this);
+        vista.txtReferencia.addKeyListener(this);
+        CtrlVentana.cambiarVista(vista);
+
+        listaunidades = moduni.listar();
+        crearCbxUnidad(listaunidades);
+        listafondo = modfon.listar(2);
+        crearCbxFondo(listafondo);
+        listaCuenta = modcu.listarcuenta();
+        crearCbxCuenta(listaCuenta);
+
+        Component[] components = vista.jPanel2.getComponents();
+        JComponent[] com = {
+            vista.txtReferencia, vista.txtDescripcion, vista.txtMonto
+        };
+        Validacion.copiar(components);
+        Validacion.pegar(com);
     }
 
     public void Llenartabla(JTable tablaD) {
@@ -239,19 +239,19 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == cuenco.btnGuardar) {
+        if (e.getSource() == vista.btnGuardar) {
             if (validar()) {
                 listaunidades = moduni.listar();
                 listafondo = modfon.listar(2);
                 listaCuenta = modcu.listarcuenta();
 
                 int j = 0;
-                modcuen.setDescripcion(cuenco.txtDescripcion.getText());
-                modcuen.setForma_pago(cuenco.jComboForma.getSelectedItem().toString());
-                int ind2 = cuenco.jComboCuenta.getSelectedIndex() - 1;
+                modcuen.setDescripcion(vista.txtDescripcion.getText());
+                modcuen.setForma_pago(vista.jComboForma.getSelectedItem().toString());
+                int ind2 = vista.jComboCuenta.getSelectedIndex() - 1;
 
-                for (int i = 0; i < cuenco.jTable1.getRowCount(); i++) {
-                    if (valueOf(cuenco.jTable1.getValueAt(i, 7)) == "true") {
+                for (int i = 0; i < vista.jTable1.getRowCount(); i++) {
+                    if (valueOf(vista.jTable1.getValueAt(i, 7)) == "true") {
 
                         j = j + 1;
 
@@ -265,29 +265,29 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                     } else {
                         modcuen.setId_cuenta(listaCuenta.get(ind2).getN_cuenta());
 
-                        int ind1 = cuenco.jComboFondo.getSelectedIndex() - 1;
+                        int ind1 = vista.jComboFondo.getSelectedIndex() - 1;
                         if (ind1 == -1) {
                             JOptionPane.showMessageDialog(null, "seleccione el fondo a depositar");
                         } else {
 
                             modcuen.setId_fondo(listafondo.get(ind1).getId());
 
-                            int ind = cuenco.jComboUnidad.getSelectedIndex() - 1;
+                            int ind = vista.jComboUnidad.getSelectedIndex() - 1;
 
                             if (ind == -1) {
                                 JOptionPane.showMessageDialog(null, "seleccione el numero de la unidad");
                             } else {
                                 modcuen.setId_unidad(listaunidades.get(ind).getId());
-                                modcuen.setMonto(Double.parseDouble(cuenco.txtMonto.getText()));
-                                modcuen.setReferencia(cuenco.txtReferencia.getText());
-                                java.sql.Date sqlDate = convert(cuenco.jDateChooser1.getDate());
+                                modcuen.setMonto(Double.parseDouble(vista.txtMonto.getText()));
+                                modcuen.setReferencia(vista.txtReferencia.getText());
+                                java.sql.Date sqlDate = convert(vista.jDateChooser1.getDate());
                                 modcuen.setFecha(sqlDate);
                                 double monto = modcuen.getMonto();
                                 double total = 0;
-                                for (int i = 0; i < cuenco.jTable1.getRowCount(); i++) {
-                                    if (valueOf(cuenco.jTable1.getValueAt(i, 7)) == "true") {
+                                for (int i = 0; i < vista.jTable1.getRowCount(); i++) {
+                                    if (valueOf(vista.jTable1.getValueAt(i, 7)) == "true") {
 
-                                        double dato = Double.parseDouble(String.valueOf(this.cuenco.jTable1.getValueAt(i, 5)));
+                                        double dato = Double.parseDouble(String.valueOf(this.vista.jTable1.getValueAt(i, 5)));
                                         total = total + dato;
 
                                     }
@@ -296,19 +296,19 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                                 if (modcuen.getMonto() > total) {
                                     JOptionPane.showMessageDialog(null, "No puede ingresar mas dinero de lo que debe");
                                 } else {
-                                  
+
                                     if (modcuen.registrarCobro(modcuen)) {
-                                        double var4 = listafondo.get(ind1).getSaldo()+ modcuen.getMonto();
+                                        double var4 = listafondo.get(ind1).getSaldo() + modcuen.getMonto();
                                         modfon.setId(listafondo.get(ind1).getId());
                                         modfon.setSaldo(var4);
                                         modfon.fondear(modfon);
 
                                         JOptionPane.showMessageDialog(null, "registro guardado");
                                         modc.buscId(modc);
-                                        for (int i = 0; i < cuenco.jTable1.getRowCount(); i++) {
-                                            if (valueOf(cuenco.jTable1.getValueAt(i, 7)) == "true") {
+                                        for (int i = 0; i < vista.jTable1.getRowCount(); i++) {
+                                            if (valueOf(vista.jTable1.getValueAt(i, 7)) == "true") {
 
-                                                double dato = Double.parseDouble(String.valueOf(this.cuenco.jTable1.getValueAt(i, 5)));
+                                                double dato = Double.parseDouble(String.valueOf(this.vista.jTable1.getValueAt(i, 5)));
                                                 double parte = dato - monto;
                                                 double va1 = dato - parte;
                                                 if (parte <= 0) {
@@ -327,7 +327,7 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                                                     }
                                                     modc.setSaldo_restante(parte);
 
-                                                    modc.setId_gasto(Integer.parseInt(String.valueOf(this.cuenco.jTable1.getValueAt(i, 0))));
+                                                    modc.setId_gasto(Integer.parseInt(String.valueOf(this.vista.jTable1.getValueAt(i, 0))));
                                                     modc.actualizartotal(modc);
                                                     modc.setSaldo_restante(va1);
                                                     modc.guardarpuentepagos(modc);
@@ -337,12 +337,12 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
 
                                             }
                                         }
-                                     
+
                                         modcuen.setId_unidad(listaunidades.get(ind).getId());
-                                        Llenartabla(cuenco.jTable1);
-                                        addCheckBox(7, cuenco.jTable1);
-                                        Llenartablapagados(cuenco.jTable2);
-                                        cuenco.jComboFondo.removeAllItems();
+                                        Llenartabla(vista.jTable1);
+                                        addCheckBox(7, vista.jTable1);
+                                        Llenartablapagados(vista.jTable2);
+                                        vista.jComboFondo.removeAllItems();
                                         listafondo = modfon.listar(2);
                                         crearCbxFondo(listafondo);
 
@@ -354,106 +354,58 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
                 }
             }
         }
+
     }
 
     private void crearCbxUnidad(ArrayList<Unidades> datos) {
-        cuenco.jComboUnidad.addItem("Seleccione el numero de la unidad");
+        vista.jComboUnidad.addItem("Seleccione el numero de la unidad");
 
         if (datos != null) {
             for (Unidades datosX : datos) {
                 moduni = datosX;
-                cuenco.jComboUnidad.addItem(moduni.getN_unidad());
+                vista.jComboUnidad.addItem(moduni.getN_unidad());
             }
 
         }
     }
 
     private void crearCbxFondo(ArrayList<Fondo> datos) {
-        cuenco.jComboFondo.addItem("Seleccione el fondo a depositar");
+        vista.jComboFondo.addItem("Seleccione el fondo a depositar");
 
         if (datos != null) {
             for (Fondo datosX : datos) {
                 modfon = datosX;
-                cuenco.jComboFondo.addItem(modfon.getTipo() + " " + modfon.getSaldo());
+                vista.jComboFondo.addItem(modfon.getTipo() + " " + modfon.getSaldo());
             }
 
         }
     }
 
     private void crearCbxCuenta(ArrayList<Cuenta> datos) {
-        cuenco.jComboCuenta.addItem("Seleccione la cuenta depositada");
+        vista.jComboCuenta.addItem("Seleccione la cuenta depositada");
 
         if (datos != null) {
             for (Cuenta datosX : datos) {
                 modcu = datosX;
-                cuenco.jComboCuenta.addItem(modcu.getN_cuenta() + " " + modcu.getCedula() + " " + modcu.getBeneficiario());
+                vista.jComboCuenta.addItem(modcu.getN_cuenta() + " " + modcu.getCedula() + " " + modcu.getBeneficiario());
             }
 
         }
     }
 
     @Override
-    public void windowOpened(WindowEvent e) {
-      
-        listaunidades = moduni.listar();
-        crearCbxUnidad(listaunidades);
-        listafondo = modfon.listar(2);
-        crearCbxFondo(listafondo);
-        listaCuenta = modcu.listarcuenta();
-        crearCbxCuenta(listaCuenta);
-
-        Component[] components = cuenco.jPanel2.getComponents();
-        JComponent[] com = {
-            cuenco.txtReferencia, cuenco.txtDescripcion, cuenco.txtMonto
-        };
-        Validacion.copiar(components);
-        Validacion.pegar(com);
-    }
-
-    @Override
-    public void windowClosing(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowClosed(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowIconified(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowDeiconified(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowActivated(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent e) {
-
-    }
-
-    @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getStateChange() == ItemEvent.SELECTED) {
             listaunidades = moduni.listar();
-             int ind = cuenco.jComboUnidad.getSelectedIndex() - 1;
-           if (ind == -1) {
+            int ind = vista.jComboUnidad.getSelectedIndex() - 1;
+            if (ind == -1) {
 
             } else {
-                 
-               
+
                 modc.setId_unidad(listaunidades.get(ind).getId());
-                Llenartabla(cuenco.jTable1);
-                addCheckBox(7, cuenco.jTable1);
-                Llenartablapagados(cuenco.jTable2);
+                Llenartabla(vista.jTable1);
+                addCheckBox(7, vista.jTable1);
+                Llenartablapagados(vista.jTable2);
             }
         }
 
@@ -464,19 +416,19 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
         Boolean resultado = true;
         String msj = "";
 
-        if (cuenco.txtMonto.getText().isEmpty()) {
+        if (vista.txtMonto.getText().isEmpty()) {
 
             msj += "El campo monto no puede estar vacio\n";
             resultado = false;
         }
 
-        if (cuenco.txtReferencia.getText().isEmpty()) {
+        if (vista.txtReferencia.getText().isEmpty()) {
 
             msj += "El campo de número de referencia no puede estar vacío\n";
             resultado = false;
         }
 
-        if (cuenco.txtDescripcion.getText().isEmpty()) {
+        if (vista.txtDescripcion.getText().isEmpty()) {
 
             msj += "El campo descripción no puede estar vacío\n";
             resultado = false;
@@ -498,20 +450,20 @@ public class controladorCuentasPorCobrar implements ActionListener, WindowListen
 
     @Override
     public void keyTyped(KeyEvent e) {
-        if (e.getSource() == cuenco.txtReferencia) {
+        if (e.getSource() == vista.txtReferencia) {
 
             Validacion.Espacio(e);
-            Validacion.limite(e, cuenco.txtReferencia.getText(), 50);
+            Validacion.limite(e, vista.txtReferencia.getText(), 50);
         }
 
-        if (e.getSource() == cuenco.txtDescripcion) {
+        if (e.getSource() == vista.txtDescripcion) {
 
-            Validacion.limite(e, cuenco.txtDescripcion.getText(), 500);
+            Validacion.limite(e, vista.txtDescripcion.getText(), 500);
         }
-        if (e.getSource() == cuenco.txtMonto) {
+        if (e.getSource() == vista.txtMonto) {
 
             Validacion.Espacio(e);
-            Validacion.soloUnPunto(e, cuenco.txtMonto.getText());
+            Validacion.soloUnPunto(e, vista.txtMonto.getText());
         }
     }
 
