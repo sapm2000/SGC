@@ -4,18 +4,41 @@
  * and open the template in the editor.
  */
 package vista;
-
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
+import javax.swing.JComponent;
+import javax.swing.JScrollBar;
+import javax.swing.JTable;
+import javax.swing.plaf.basic.BasicScrollBarUI;
+import sun.swing.table.DefaultTableCellHeaderRenderer;
 /**
  *
- * @author Jhen
+ * @author Maryo
  */
 public class VisPagarGasto extends javax.swing.JPanel {
 
     /**
      * Creates new form VisPagarGasto
      */
+    //Aquí cambias la trasparencia de la barra mientras el cursor está encima. Mientras mál alto el valor, menos transparente
+    private static final int SCROLL_BAR_ALPHA_ROLLOVER = 150;
+    //Aquí cambias la trasparencia de la barra. Mientras mál alto el valor, menos transparente
+    private static final int SCROLL_BAR_ALPHA = 100;
+    private static final int THUMB_BORDER_SIZE = 5;
+    //Aquí cambias el grosor de la barra
+    private static final int THUMB_SIZE = 8;
+    //Aquí cambias el color de la barra
+    private static final Color THUMB_COLOR = Color.BLUE;
+    
     public VisPagarGasto() {
         initComponents();
+        jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
+        tabla.getTableHeader().setDefaultRenderer(new VisCuentaPorPagar.Headercolor());
     }
 
     /**
@@ -45,7 +68,6 @@ public class VisPagarGasto extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
         txtFecha = new com.toedter.calendar.JDateChooser();
         jSeparator7 = new javax.swing.JSeparator();
@@ -77,7 +99,7 @@ public class VisPagarGasto extends javax.swing.JPanel {
         tabla.setRowHeight(20);
         jScrollPane1.setViewportView(tabla);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 456, 730, 170));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 460, 730, 170));
 
         jPanel2.setBackground(new java.awt.Color(0, 94, 159));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -85,11 +107,11 @@ public class VisPagarGasto extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("<html>\nForma <br> de Pago:\n</html>");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 70, 40));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 70, 40));
 
         cbxFormaP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxFormaP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Transferencia", "Efectivo", "Cheque", "Deposito" }));
-        jPanel2.add(cbxFormaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 240, -1));
+        jPanel2.add(cbxFormaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 240, 30));
 
         txtDescripcion.setBackground(new java.awt.Color(0, 94, 159));
         txtDescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -105,7 +127,7 @@ public class VisPagarGasto extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("<html>\nFecha <br> de Pago:\n</html>");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 70, 40));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 70, 40));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -130,7 +152,7 @@ public class VisPagarGasto extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Monto:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, 50, 30));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 50, 30));
 
         txtMonto.setBackground(new java.awt.Color(0, 94, 159));
         txtMonto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -149,7 +171,7 @@ public class VisPagarGasto extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("<html>\nFondo <br> Retirado:\n</html>");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, -1, -1));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, -1, -1));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 240, 20));
@@ -157,12 +179,9 @@ public class VisPagarGasto extends javax.swing.JPanel {
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 190, 250, 20));
 
-        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 240, 20));
-
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 250, 20));
-        jPanel2.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 230, 240, -1));
+        jPanel2.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(96, 230, 240, 30));
 
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, 250, 20));
@@ -176,28 +195,28 @@ public class VisPagarGasto extends javax.swing.JPanel {
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("<html>\nNúmero de <br> Referencia:\n</html>");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, -1));
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 760, 280));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 760, 280));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 800, 300));
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 800, 300));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, 510, 300));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 440, 510, 300));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 440, -1, 300));
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 440, -1, 300));
 
         jSeparator5.setBackground(new java.awt.Color(0, 94, 159));
         jSeparator5.setForeground(new java.awt.Color(0, 94, 159));
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 20, 50));
+        add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 380, 20, 50));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 94, 159));
         jLabel11.setText("<html> Seleccione en la tabla las <br> cuotas a procesar pago. </html>");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, 260, -1));
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 380, 210, -1));
 
         btnProcesar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnProcesar.setForeground(new java.awt.Color(0, 94, 159));
@@ -210,27 +229,47 @@ public class VisPagarGasto extends javax.swing.JPanel {
         btnProcesar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/2imageonline-co-merged-image.png"))); // NOI18N
         btnProcesar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/2imageonline-co-merged-image.png"))); // NOI18N
         btnProcesar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/2imageonline-co-merged-image.png"))); // NOI18N
-        add(btnProcesar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, 270, 70));
+        add(btnProcesar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 360, 270, 70));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel15.setText("Registro de Pago de las Cuotas Especiales");
-        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, -1, -1));
+        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, -1, -1));
 
+        btnPagado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnPagado.setForeground(new java.awt.Color(0, 94, 159));
+        btnPagado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/archivo (3).png"))); // NOI18N
         btnPagado.setText("Mostrar Cuotas Pagadas");
+        btnPagado.setBorder(null);
+        btnPagado.setBorderPainted(false);
+        btnPagado.setContentAreaFilled(false);
+        btnPagado.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/archivo (3).png"))); // NOI18N
+        btnPagado.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/archivo (2).png"))); // NOI18N
+        btnPagado.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/archivo (2).png"))); // NOI18N
+        btnPagado.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/archivo (2).png"))); // NOI18N
         btnPagado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPagadoActionPerformed(evt);
             }
         });
-        add(btnPagado, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, -1, -1));
+        add(btnPagado, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, -1, -1));
 
+        btnPagos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnPagos.setForeground(new java.awt.Color(0, 94, 159));
+        btnPagos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice.png"))); // NOI18N
         btnPagos.setText("Mostrar Pagos");
+        btnPagos.setBorder(null);
+        btnPagos.setBorderPainted(false);
+        btnPagos.setContentAreaFilled(false);
+        btnPagos.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice.png"))); // NOI18N
+        btnPagos.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice (1).png"))); // NOI18N
+        btnPagos.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice (1).png"))); // NOI18N
+        btnPagos.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice (1).png"))); // NOI18N
         btnPagos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPagosActionPerformed(evt);
             }
         });
-        add(btnPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, -1, -1));
+        add(btnPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 360, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
@@ -270,7 +309,6 @@ public class VisPagarGasto extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
@@ -281,4 +319,54 @@ public class VisPagarGasto extends javax.swing.JPanel {
     public javax.swing.JTextField txtMonto;
     public javax.swing.JTextField txtNumero_Ref;
     // End of variables declaration//GEN-END:variables
+static public class Headercolor extends DefaultTableCellHeaderRenderer {
+
+        public Headercolor() {
+            setOpaque(true);
+        }
+
+        public Component getTableCellRendererComponent(JTable jTable1, Object value, boolean selected, boolean focused, int row, int column) {
+            super.getTableCellRendererComponent(jTable1, value, selected, focused, row, column);
+            setBackground(new java.awt.Color(0, 94, 159));
+            setForeground(Color.white);
+            setFont(new Font("Tahoma", Font.BOLD, 14));
+            return this;
+        }
+    }
+
+    public class MyScrollBarUI extends BasicScrollBarUI {
+
+        @Override
+        public void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
+            trackBounds.contains(thumbRect);
+            g.setColor(new java.awt.Color(255, 255, 255));
+            g.drawRect(0, 0, 500, 500);
+            g.fillRect(0, 0, 500, 500);
+        }
+
+        @Override
+        public void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+            int alpha = isThumbRollover() ? SCROLL_BAR_ALPHA_ROLLOVER : SCROLL_BAR_ALPHA;
+            int orientation = scrollbar.getOrientation();
+            int arc = THUMB_SIZE;
+            int x = thumbBounds.x + THUMB_BORDER_SIZE;
+            int y = thumbBounds.y + THUMB_BORDER_SIZE;
+
+            int width = orientation == JScrollBar.VERTICAL
+                    ? THUMB_SIZE : thumbBounds.width - (THUMB_BORDER_SIZE * 2);
+            width = Math.max(width, THUMB_SIZE);
+
+            int height = orientation == JScrollBar.VERTICAL
+                    ? thumbBounds.height - (THUMB_BORDER_SIZE * 2) : THUMB_SIZE;
+            height = Math.max(height, THUMB_SIZE);
+
+            Graphics2D graphics2D = (Graphics2D) g.create();
+            graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON);
+            graphics2D.setColor(new Color(THUMB_COLOR.getRed(),
+                    THUMB_COLOR.getGreen(), THUMB_COLOR.getBlue(), alpha));
+            graphics2D.fillRoundRect(x, y, width, height, arc, arc);
+            graphics2D.dispose();
+        }
+    }
 }

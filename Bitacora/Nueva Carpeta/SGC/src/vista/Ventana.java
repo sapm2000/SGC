@@ -291,7 +291,7 @@ public class Ventana extends javax.swing.JFrame {
         menuProceso.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cogwheel (1).png"))); // NOI18N
         menuProceso.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cogwheel (1).png"))); // NOI18N
 
-        pCuentasporCobrar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        pCuentasporCobrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         pCuentasporCobrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dar-dinero.png"))); // NOI18N
         pCuentasporCobrar.setText("Cuentas por Cobrar");
         pCuentasporCobrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -302,7 +302,7 @@ public class Ventana extends javax.swing.JFrame {
         });
         menuProceso.add(pCuentasporCobrar);
 
-        pCuentapagar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        pCuentapagar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         pCuentapagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/metodo-de-pago.png"))); // NOI18N
         pCuentapagar.setText("Cuentas por Pagar");
         pCuentapagar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -313,7 +313,7 @@ public class Ventana extends javax.swing.JFrame {
         });
         menuProceso.add(pCuentapagar);
 
-        pCerrarMes.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        pCerrarMes.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         pCerrarMes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/factura.png"))); // NOI18N
         pCerrarMes.setText("Generar Recibo");
         pCerrarMes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -324,7 +324,7 @@ public class Ventana extends javax.swing.JFrame {
         });
         menuProceso.add(pCerrarMes);
 
-        pCuotas.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        pCuotas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         pCuotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cuota.png"))); // NOI18N
         pCuotas.setText("Pago de Cuotas Especiales");
         pCuotas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -335,7 +335,7 @@ public class Ventana extends javax.swing.JFrame {
         });
         menuProceso.add(pCuotas);
 
-        pVisitas.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        pVisitas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         pVisitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/autorizacion.png"))); // NOI18N
         pVisitas.setText("Visitas Autorizadas");
         pVisitas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
