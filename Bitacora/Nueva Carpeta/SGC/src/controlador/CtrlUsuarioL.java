@@ -8,19 +8,19 @@ import javax.swing.JOptionPane;
 import modelo.Condominio;
 import modelo.Usuario;
 import sgc.SGC;
-import vista.InicioUsuario;
+import vista.VisInicioUsuario;
 import vista.PantallaPrincipal;
 
 public class CtrlUsuarioL implements ActionListener, FocusListener {
 
-    private InicioUsuario vistaU;
+    private VisInicioUsuario vistaU;
     //private MetodosUsuario modelo = new MetodosUsuario();
 
     PantallaPrincipal pp = new PantallaPrincipal();
-    private controladorCondominio condominio;
+    private CtrlCondominio condominio;
     private Condominio modCondominio;
 
-    public CtrlUsuarioL(InicioUsuario vistau) {
+    public CtrlUsuarioL(VisInicioUsuario vistau) {
 
         this.vistaU = vistau;
         eventos();
@@ -105,7 +105,7 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Los datos del condominio no están configurados\nIngrese los datos a continuación", "Información", JOptionPane.INFORMATION_MESSAGE);
-                    condominio = new controladorCondominio(false);
+                    condominio = new CtrlCondominio(false);
                     
                 }
 

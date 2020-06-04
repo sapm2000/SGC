@@ -362,7 +362,7 @@ public class gastoComun extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNumerofacturaActionPerformed
 
     private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
-        this.setState(vista.InicioUsuario.ICONIFIED);
+        this.setState(vista.VisInicioUsuario.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
