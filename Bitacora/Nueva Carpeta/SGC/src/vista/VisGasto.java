@@ -43,6 +43,7 @@ public class VisGasto extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        GrupoSiNo = new javax.swing.ButtonGroup();
         jPanel2 = new javax.swing.JPanel();
         btnBuscarproveedor = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
@@ -179,6 +180,7 @@ public class VisGasto extends javax.swing.JPanel {
 
         jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 360, 120));
 
+        GrupoSiNo.add(no);
         no.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         no.setForeground(new java.awt.Color(255, 255, 255));
         no.setText("No");
@@ -194,8 +196,9 @@ public class VisGasto extends javax.swing.JPanel {
         fue_elegido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         fue_elegido.setForeground(new java.awt.Color(255, 255, 255));
         fue_elegido.setText("¿Fué elegido en una asamblea?");
-        jPanel2.add(fue_elegido, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, -1, -1));
+        jPanel2.add(fue_elegido, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, -1, -1));
 
+        GrupoSiNo.add(si);
         si.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         si.setForeground(new java.awt.Color(255, 255, 255));
         si.setText("Si");
@@ -370,6 +373,7 @@ public class VisGasto extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup GrupoSiNo;
     public javax.swing.JSeparator barrita;
     public javax.swing.JSeparator barritahorizontal;
     public javax.swing.JButton btnBuscarproveedor;
@@ -410,7 +414,7 @@ public class VisGasto extends javax.swing.JPanel {
     public javax.swing.JComboBox<String> jcombotipo;
     public javax.swing.JLabel labelAsamblea;
     public javax.swing.JLabel labelmense;
-    public javax.swing.JRadioButton no;
+    private javax.swing.JRadioButton no;
     public javax.swing.JRadioButton si;
     public javax.swing.JTextArea txaObservaciones;
     public javax.swing.JTextField txtNmeses;
