@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="GrupoSiNo">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -336,6 +340,9 @@
         </Container>
         <Component class="javax.swing.JRadioButton" name="no">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="GrupoSiNo"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
             </Property>
@@ -385,12 +392,15 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="500" y="60" width="-1" height="-1"/>
+              <AbsoluteConstraints x="510" y="60" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JRadioButton" name="si">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="GrupoSiNo"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="1"/>
             </Property>
