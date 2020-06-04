@@ -5,6 +5,19 @@
  */
 package vista;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
+import javax.swing.JComponent;
+import javax.swing.JScrollBar;
+import javax.swing.JTable;
+import javax.swing.plaf.basic.BasicScrollBarUI;
+import sun.swing.table.DefaultTableCellHeaderRenderer;
+
 /**
  *
  * @author Jhen
@@ -14,8 +27,22 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
     /**
      * Creates new form VisCuentaPorCobrar
      */
+    //Aquí cambias la trasparencia de la barra mientras el cursor está encima. Mientras mál alto el valor, menos transparente
+    private static final int SCROLL_BAR_ALPHA_ROLLOVER = 150;
+    //Aquí cambias la trasparencia de la barra. Mientras mál alto el valor, menos transparente
+    private static final int SCROLL_BAR_ALPHA = 100;
+    private static final int THUMB_BORDER_SIZE = 5;
+    //Aquí cambias el grosor de la barra
+    private static final int THUMB_SIZE = 8;
+    //Aquí cambias el color de la barra
+    private static final Color THUMB_COLOR = Color.BLUE;
     public VisCuentaPorCobrar() {
         initComponents();
+        jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
+        jScrollPane2.getVerticalScrollBar().setUI(new MyScrollBarUI());
+        jScrollPane3.getVerticalScrollBar().setUI(new MyScrollBarUI());
+        jTable1.getTableHeader().setDefaultRenderer(new Headercolor());
+        jTable2.getTableHeader().setDefaultRenderer(new Headercolor());
     }
 
     /**
@@ -36,7 +63,6 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jComboUnidad = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jComboCuenta = new javax.swing.JComboBox<>();
         jComboForma = new javax.swing.JComboBox<>();
@@ -50,6 +76,9 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -81,12 +110,12 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
         jTable1.setRowHeight(35);
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 690, 159));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, 690, 230));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 94, 159));
         jLabel8.setText("<html>\nSeleccione en la tabla las <br> facturas a procesar pago.\n</html>");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 240, 50));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 350, 240, 50));
 
         jPanel2.setBackground(new java.awt.Color(0, 94, 159));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -121,11 +150,6 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
             }
         });
         jPanel2.add(jComboUnidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 230, -1));
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Descripción:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 90, 20));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -192,14 +216,29 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
 
         jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 230, 80));
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 760, 280));
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Descripción:");
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 90, 20));
+
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 760, 280));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Por Pagar");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 420, 70, 20));
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Pagadas");
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 420, 70, 20));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 800, 300));
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 800, 300));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel11.setText("Cuentas por Cobrar");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, -1));
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 10, -1, -1));
 
         jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
@@ -219,17 +258,17 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
         jTable2.getTableHeader().setResizingAllowed(false);
         jTable2.getTableHeader().setReorderingAllowed(false);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 430, 500, 160));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 450, 500, 230));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 510, 300));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 510, 300));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 410, -1, 300));
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 410, -1, 300));
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 430, 10, 160));
+        add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 430, 10, 250));
 
         btnGuardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(0, 94, 159));
@@ -246,15 +285,15 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
         btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/2imageonline-co-merged-image.png"))); // NOI18N
         btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/2imageonline-co-merged-image.png"))); // NOI18N
         btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/2imageonline-co-merged-image.png"))); // NOI18N
-        add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 340, 260, 70));
+        add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 340, 260, 70));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 410, -1, 300));
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, -1, 300));
 
         jSeparator6.setBackground(new java.awt.Color(0, 94, 159));
         jSeparator6.setForeground(new java.awt.Color(0, 94, 159));
         jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 350, 20, 50));
+        add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 350, 20, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboUnidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboUnidadActionPerformed
@@ -275,6 +314,8 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -297,4 +338,54 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
     public javax.swing.JTextField txtMonto;
     public javax.swing.JTextField txtReferencia;
     // End of variables declaration//GEN-END:variables
+static public class Headercolor extends DefaultTableCellHeaderRenderer {
+
+        public Headercolor() {
+            setOpaque(true);
+        }
+
+        public Component getTableCellRendererComponent(JTable jTable1, Object value, boolean selected, boolean focused, int row, int column) {
+            super.getTableCellRendererComponent(jTable1, value, selected, focused, row, column);
+            setBackground(new java.awt.Color(0, 94, 159));
+            setForeground(Color.white);
+            setFont(new Font("Tahoma", Font.BOLD, 14));
+            return this;
+        }
+    }
+
+    public class MyScrollBarUI extends BasicScrollBarUI {
+
+        @Override
+        public void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
+            trackBounds.contains(thumbRect);
+            g.setColor(new java.awt.Color(255, 255, 255));
+            g.drawRect(0, 0, 500, 500);
+            g.fillRect(0, 0, 500, 500);
+        }
+
+        @Override
+        public void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+            int alpha = isThumbRollover() ? SCROLL_BAR_ALPHA_ROLLOVER : SCROLL_BAR_ALPHA;
+            int orientation = scrollbar.getOrientation();
+            int arc = THUMB_SIZE;
+            int x = thumbBounds.x + THUMB_BORDER_SIZE;
+            int y = thumbBounds.y + THUMB_BORDER_SIZE;
+
+            int width = orientation == JScrollBar.VERTICAL
+                    ? THUMB_SIZE : thumbBounds.width - (THUMB_BORDER_SIZE * 2);
+            width = Math.max(width, THUMB_SIZE);
+
+            int height = orientation == JScrollBar.VERTICAL
+                    ? thumbBounds.height - (THUMB_BORDER_SIZE * 2) : THUMB_SIZE;
+            height = Math.max(height, THUMB_SIZE);
+
+            Graphics2D graphics2D = (Graphics2D) g.create();
+            graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON);
+            graphics2D.setColor(new Color(THUMB_COLOR.getRed(),
+                    THUMB_COLOR.getGreen(), THUMB_COLOR.getBlue(), alpha));
+            graphics2D.fillRoundRect(x, y, width, height, arc, arc);
+            graphics2D.dispose();
+        }
+    }
 }

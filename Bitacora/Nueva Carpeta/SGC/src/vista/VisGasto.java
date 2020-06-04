@@ -1,12 +1,37 @@
 package vista;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
+import javax.swing.JComponent;
+import javax.swing.JScrollBar;
+import javax.swing.JTable;
+import javax.swing.plaf.basic.BasicScrollBarUI;
+import sun.swing.table.DefaultTableCellHeaderRenderer;
+
 public class VisGasto extends javax.swing.JPanel {
 
     /**
      * Creates new form VisGasto
      */
+    //Aquí cambias la trasparencia de la barra mientras el cursor está encima. Mientras mál alto el valor, menos transparente
+    private static final int SCROLL_BAR_ALPHA_ROLLOVER = 150;
+    //Aquí cambias la trasparencia de la barra. Mientras mál alto el valor, menos transparente
+    private static final int SCROLL_BAR_ALPHA = 100;
+    private static final int THUMB_BORDER_SIZE = 5;
+    //Aquí cambias el grosor de la barra
+    private static final int THUMB_SIZE = 8;
+    //Aquí cambias el color de la barra
+    private static final Color THUMB_COLOR = Color.BLUE;
     public VisGasto() {
         initComponents();
+        jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
+        jScrollPane4.getVerticalScrollBar().setUI(new MyScrollBarUI());
+        jTable.getTableHeader().setDefaultRenderer(new VisComunicados.Headercolor());
     }
 
     /**
@@ -61,11 +86,9 @@ public class VisGasto extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         txtid = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -148,6 +171,7 @@ public class VisGasto extends javax.swing.JPanel {
         txaObservaciones.setColumns(20);
         txaObservaciones.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txaObservaciones.setForeground(new java.awt.Color(255, 255, 255));
+        txaObservaciones.setLineWrap(true);
         txaObservaciones.setRows(5);
         txaObservaciones.setToolTipText("Ingrese observaciones (opcional)");
         txaObservaciones.setWrapStyleWord(true);
@@ -237,7 +261,7 @@ public class VisGasto extends javax.swing.JPanel {
         jTable.setRowHeight(35);
         jScrollPane1.setViewportView(jTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, 460, 180));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, 460, 110));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 800, 300));
@@ -320,19 +344,16 @@ public class VisGasto extends javax.swing.JPanel {
         jSeparator10.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel3.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 10, 70));
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 670, 360, 80));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 590, 360, 80));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondobtn1chiqui.png"))); // NOI18N
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 640, -1, 100));
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 560, -1, 100));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
         add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 800, 300));
 
         txtid.setEditable(false);
         add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 430, -1, -1));
-
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondofomu340-130.png"))); // NOI18N
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 510, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 94, 159));
@@ -344,9 +365,6 @@ public class VisGasto extends javax.swing.JPanel {
 
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondofomu340-130.png"))); // NOI18N
         add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 430, -1, -1));
-
-        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondofomu340-130.png"))); // NOI18N
-        add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 510, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -366,12 +384,10 @@ public class VisGasto extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     public javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -400,4 +416,54 @@ public class VisGasto extends javax.swing.JPanel {
     public javax.swing.JTextField txtProveedor;
     public javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables
+static public class Headercolor extends DefaultTableCellHeaderRenderer {
+
+        public Headercolor() {
+            setOpaque(true);
+        }
+
+        public Component getTableCellRendererComponent(JTable jTable1, Object value, boolean selected, boolean focused, int row, int column) {
+            super.getTableCellRendererComponent(jTable1, value, selected, focused, row, column);
+            setBackground(new java.awt.Color(0, 94, 159));
+            setForeground(Color.white);
+            setFont(new Font("Tahoma", Font.BOLD, 14));
+            return this;
+        }
+    }
+
+    public class MyScrollBarUI extends BasicScrollBarUI {
+
+        @Override
+        public void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
+            trackBounds.contains(thumbRect);
+            g.setColor(new java.awt.Color(255, 255, 255));
+            g.drawRect(0, 0, 500, 500);
+            g.fillRect(0, 0, 500, 500);
+        }
+
+        @Override
+        public void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+            int alpha = isThumbRollover() ? SCROLL_BAR_ALPHA_ROLLOVER : SCROLL_BAR_ALPHA;
+            int orientation = scrollbar.getOrientation();
+            int arc = THUMB_SIZE;
+            int x = thumbBounds.x + THUMB_BORDER_SIZE;
+            int y = thumbBounds.y + THUMB_BORDER_SIZE;
+
+            int width = orientation == JScrollBar.VERTICAL
+                    ? THUMB_SIZE : thumbBounds.width - (THUMB_BORDER_SIZE * 2);
+            width = Math.max(width, THUMB_SIZE);
+
+            int height = orientation == JScrollBar.VERTICAL
+                    ? thumbBounds.height - (THUMB_BORDER_SIZE * 2) : THUMB_SIZE;
+            height = Math.max(height, THUMB_SIZE);
+
+            Graphics2D graphics2D = (Graphics2D) g.create();
+            graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON);
+            graphics2D.setColor(new Color(THUMB_COLOR.getRed(),
+                    THUMB_COLOR.getGreen(), THUMB_COLOR.getBlue(), alpha));
+            graphics2D.fillRoundRect(x, y, width, height, arc, arc);
+            graphics2D.dispose();
+        }
+    }
 }

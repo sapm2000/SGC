@@ -1,12 +1,39 @@
 package vista;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
+import javax.swing.JComponent;
+import javax.swing.JScrollBar;
+import javax.swing.JTable;
+import javax.swing.plaf.basic.BasicScrollBarUI;
+import sun.swing.table.DefaultTableCellHeaderRenderer;
+import vista.buscarProveedor.MyScrollBarUI;
+
 public class VisAsamblea extends javax.swing.JPanel {
 
     /**
      * Creates new form VisAsamblea
      */
+    //Aquí cambias la trasparencia de la barra mientras el cursor está encima. Mientras mál alto el valor, menos transparente
+    private static final int SCROLL_BAR_ALPHA_ROLLOVER = 150;
+    //Aquí cambias la trasparencia de la barra. Mientras mál alto el valor, menos transparente
+    private static final int SCROLL_BAR_ALPHA = 100;
+    private static final int THUMB_BORDER_SIZE = 5;
+    //Aquí cambias el grosor de la barra
+    private static final int THUMB_SIZE = 8;
+    //Aquí cambias el color de la barra
+    private static final Color THUMB_COLOR = Color.BLUE;
+    
     public VisAsamblea() {
         initComponents();
+        jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
+        jScrollPane4.getVerticalScrollBar().setUI(new MyScrollBarUI());
+        tablaAsistentes.getTableHeader().setDefaultRenderer(new VisAsamblea.Headercolor());
     }
 
     /**
@@ -18,6 +45,7 @@ public class VisAsamblea extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         txtNombre = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -33,17 +61,21 @@ public class VisAsamblea extends javax.swing.JPanel {
         jSeparator8 = new javax.swing.JSeparator();
         btnGuardar = new javax.swing.JButton();
         txtFecha = new com.toedter.calendar.JDateChooser();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        txtid = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaAsistentes = new javax.swing.JTable();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
-        txtid = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 94, 159), 5, true));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel4.setBackground(new java.awt.Color(0, 94, 159));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -76,6 +108,7 @@ public class VisAsamblea extends javax.swing.JPanel {
         txaDescripcion.setColumns(20);
         txaDescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txaDescripcion.setForeground(new java.awt.Color(255, 255, 255));
+        txaDescripcion.setLineWrap(true);
         txaDescripcion.setRows(5);
         txaDescripcion.setToolTipText("Descripción sobre lo que se habló");
         txaDescripcion.setWrapStyleWord(true);
@@ -130,14 +163,11 @@ public class VisAsamblea extends javax.swing.JPanel {
         jPanel4.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 150, 30));
         txtFecha.getDateEditor().setEnabled(false);
 
-        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 480, 280));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 480, 280));
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, 320));
-
-        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel17.setText(" Asambleas");
-        add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
+        txtid.setEditable(false);
+        txtid.setEnabled(false);
+        jPanel1.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 20, -1));
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
@@ -153,13 +183,7 @@ public class VisAsamblea extends javax.swing.JPanel {
         tablaAsistentes.setRowHeight(20);
         jScrollPane1.setViewportView(tablaAsistentes);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 700, 210));
-
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 510, 300));
-
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 510, 300));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 700, 210));
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
         btnSalir.setToolTipText("Cerrar");
@@ -170,11 +194,22 @@ public class VisAsamblea extends javax.swing.JPanel {
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
-        add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, -1, 30));
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, 30));
 
-        txtid.setEditable(false);
-        txtid.setEnabled(false);
-        add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 20, -1));
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 510, 300));
+
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 440, 510, 300));
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel17.setText(" Asambleas");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, -1, 20));
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, -1, 320));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, 760, 670));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -190,6 +225,7 @@ public class VisAsamblea extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
@@ -203,4 +239,54 @@ public class VisAsamblea extends javax.swing.JPanel {
     public javax.swing.JTextField txtNombre;
     public javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables
+static public class Headercolor extends DefaultTableCellHeaderRenderer {
+
+        public Headercolor() {
+            setOpaque(true);
+        }
+
+        public Component getTableCellRendererComponent(JTable jTable1, Object value, boolean selected, boolean focused, int row, int column) {
+            super.getTableCellRendererComponent(jTable1, value, selected, focused, row, column);
+            setBackground(new java.awt.Color(0, 94, 159));
+            setForeground(Color.white);
+            setFont(new Font("Tahoma", Font.BOLD, 14));
+            return this;
+        }
+    }
+
+    public class MyScrollBarUI extends BasicScrollBarUI {
+
+        @Override
+        public void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
+            trackBounds.contains(thumbRect);
+            g.setColor(new java.awt.Color(255, 255, 255));
+            g.drawRect(0, 0, 500, 500);
+            g.fillRect(0, 0, 500, 500);
+        }
+
+        @Override
+        public void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+            int alpha = isThumbRollover() ? SCROLL_BAR_ALPHA_ROLLOVER : SCROLL_BAR_ALPHA;
+            int orientation = scrollbar.getOrientation();
+            int arc = THUMB_SIZE;
+            int x = thumbBounds.x + THUMB_BORDER_SIZE;
+            int y = thumbBounds.y + THUMB_BORDER_SIZE;
+
+            int width = orientation == JScrollBar.VERTICAL
+                    ? THUMB_SIZE : thumbBounds.width - (THUMB_BORDER_SIZE * 2);
+            width = Math.max(width, THUMB_SIZE);
+
+            int height = orientation == JScrollBar.VERTICAL
+                    ? thumbBounds.height - (THUMB_BORDER_SIZE * 2) : THUMB_SIZE;
+            height = Math.max(height, THUMB_SIZE);
+
+            Graphics2D graphics2D = (Graphics2D) g.create();
+            graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON);
+            graphics2D.setColor(new Color(THUMB_COLOR.getRed(),
+                    THUMB_COLOR.getGreen(), THUMB_COLOR.getBlue(), alpha));
+            graphics2D.fillRoundRect(x, y, width, height, arc, arc);
+            graphics2D.dispose();
+        }
+    }
 }
