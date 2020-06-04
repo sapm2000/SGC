@@ -1,8 +1,10 @@
 package controlador;
 
+import static controlador.CtrlVentana.centreWindow;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.PopupMenu;
 import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
@@ -13,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import modelo.Funcion;
@@ -20,6 +23,7 @@ import sgc.SGC;
 import vista.Inicio;
 import vista.PantallaPrincipal;
 import vista.Ventana;
+
 
 public class CtrlVentana implements ActionListener {
 
@@ -35,16 +39,18 @@ public class CtrlVentana implements ActionListener {
         marco = new PantallaPrincipal();
         vista = new Inicio();
 
+        
+        
         ventana.getContentPane().removeAll();
-        ventana.setSize(1366, 748);
+        ventana.setSize(1366, 740);
 
         if (panelPrincipal != null) {
             marco.remove(panelPrincipal);
         }
 
-        marco.setBounds(0, 0, 1366, 748);
+        marco.setBounds(0, 0, 1366, 710);
         ventana.getContentPane().add(marco);
-        vista.setBounds(20, 20, 1326, 652);
+        vista.setBounds(10, 10, 1346, 652);
         marco.panel.add(vista);
         panelPrincipal = vista;
         ventana.repaint();
@@ -203,22 +209,35 @@ public class CtrlVentana implements ActionListener {
             marco.panel.remove(panelPrincipal);
         }
 
-        vista.setSize(1326, 652);
-        vista.setBounds(20, 20, 1326, 652);
-        
+        marco.setBounds(0, 0, 1366, 710);
+        ventana.getContentPane().add(marco);
+        vista.setBounds(10, 10, 1346, 652);
         marco.panel.add(vista);
         panelPrincipal = vista;
         ventana.repaint();
         ventana.validate();
-        centreWindow(marco.panel);
         
+        
+        //vista.setSize(1346, 740);
+        //vista.setBounds(10, 10, 1346, 740);
+        
+        
+        
+        
+        //marco.panel.add(vista);
+        //panelPrincipal = vista;
+        //ventana.repaint();
+        //ventana.validate();
+        //centreWindow(panelPrincipal); 
     }
 
      public static void centreWindow(JPanel frame) {
        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-       int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
-       int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
-       frame.setLocation(x, 0);
+       
+       int panelX = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+       int panelY = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+      
+       panelPrincipal.setLocation(panelX, panelY);
 }
     private void filtrarMenu() {
         // Primero se vacían todos los menú

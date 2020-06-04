@@ -27,6 +27,18 @@ public class VisFondo extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        btnGuardar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
+        jSeparator8 = new javax.swing.JSeparator();
+        jSeparator9 = new javax.swing.JSeparator();
+        jSeparator10 = new javax.swing.JSeparator();
+        btnEliminar = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
+        btnSalir = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -42,129 +54,15 @@ public class VisFondo extends javax.swing.JPanel {
         jScrollPane4 = new javax.swing.JScrollPane();
         txaDescripcion = new javax.swing.JTextArea();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jLabel8 = new javax.swing.JLabel();
-        btnSalir = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        btnGuardar = new javax.swing.JButton();
-        btnModificar = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
-        jSeparator8 = new javax.swing.JSeparator();
-        jSeparator9 = new javax.swing.JSeparator();
-        jSeparator10 = new javax.swing.JSeparator();
-        btnEliminar = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
-        txtId = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(0, 94, 159));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Descripción:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 120, -1));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Observaciones:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, -1));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Fecha:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, -1));
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("<html>\nMonto <br> Inicial:\n</hmtl>");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, -1, 30));
-
-        txtMontoInicial.setBackground(new java.awt.Color(0, 94, 159));
-        txtMontoInicial.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtMontoInicial.setForeground(new java.awt.Color(255, 255, 255));
-        txtMontoInicial.setToolTipText("ingrese el fondo inicial");
-        txtMontoInicial.setBorder(null);
-        txtMontoInicial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMontoInicialActionPerformed(evt);
-            }
-        });
-        jPanel2.add(txtMontoInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 120, 20));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Tipo:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 40, -1));
-
-        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 130, 10));
-
-        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 120, 10));
-
-        txtTipo.setBackground(new java.awt.Color(0, 94, 159));
-        txtTipo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtTipo.setForeground(new java.awt.Color(255, 255, 255));
-        txtTipo.setToolTipText("Ingrese el tipo de fondo");
-        txtTipo.setBorder(null);
-        jPanel2.add(txtTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 130, 20));
-
-        jScrollPane3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
-        jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        txaObservaciones.setBackground(new java.awt.Color(0, 94, 159));
-        txaObservaciones.setColumns(20);
-        txaObservaciones.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txaObservaciones.setForeground(new java.awt.Color(255, 255, 255));
-        txaObservaciones.setRows(5);
-        txaObservaciones.setToolTipText("Ingrese las observaciones");
-        txaObservaciones.setWrapStyleWord(true);
-        txaObservaciones.setBorder(null);
-        jScrollPane3.setViewportView(txaObservaciones);
-
-        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 30, 280, 110));
-
-        jScrollPane4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
-        jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        txaDescripcion.setBackground(new java.awt.Color(0, 94, 159));
-        txaDescripcion.setColumns(20);
-        txaDescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txaDescripcion.setForeground(new java.awt.Color(255, 255, 255));
-        txaDescripcion.setRows(5);
-        txaDescripcion.setToolTipText("Ingrese la descripción");
-        txaDescripcion.setWrapStyleWord(true);
-        txaDescripcion.setBorder(null);
-        jScrollPane4.setViewportView(txaDescripcion);
-
-        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 280, 110));
-
-        jDateChooser1.setToolTipText("Ingrese la fecha");
-        jPanel2.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 140, -1));
-        jDateChooser1.getDateEditor().setEnabled(false);
-
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 480, 280));
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
-
-        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
-        btnSalir.setToolTipText("Cerrar");
-        btnSalir.setBorder(null);
-        btnSalir.setBorderPainted(false);
-        btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
-        btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
-        btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
-        add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, 30));
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel9.setText("Fondos");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 94, 159), 5, true));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(0, 94, 159));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -234,11 +132,122 @@ public class VisFondo extends javax.swing.JPanel {
         jPanel3.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 70, 70));
         //btnMinimizar.addActionListener(ctrl);
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 360, 90));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 360, 90));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondobtn1chiqui.png"))); // NOI18N
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, -1, 120));
-        add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 370, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, -1, 120));
+        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, -1, -1));
+
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
+        btnSalir.setToolTipText("Cerrar");
+        btnSalir.setBorder(null);
+        btnSalir.setBorderPainted(false);
+        btnSalir.setContentAreaFilled(false);
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
+        btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
+        btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, -1, 30));
+
+        jPanel2.setBackground(new java.awt.Color(0, 94, 159));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Descripción:");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 120, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Observaciones:");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Fecha:");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, -1));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("<html>\nMonto <br> Inicial:\n</hmtl>");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, -1, 30));
+
+        txtMontoInicial.setBackground(new java.awt.Color(0, 94, 159));
+        txtMontoInicial.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtMontoInicial.setForeground(new java.awt.Color(255, 255, 255));
+        txtMontoInicial.setToolTipText("ingrese el fondo inicial");
+        txtMontoInicial.setBorder(null);
+        txtMontoInicial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMontoInicialActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtMontoInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 120, 20));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Tipo:");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 40, -1));
+
+        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 130, 10));
+
+        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 120, 10));
+
+        txtTipo.setBackground(new java.awt.Color(0, 94, 159));
+        txtTipo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtTipo.setForeground(new java.awt.Color(255, 255, 255));
+        txtTipo.setToolTipText("Ingrese el tipo de fondo");
+        txtTipo.setBorder(null);
+        jPanel2.add(txtTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 130, 20));
+
+        jScrollPane3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
+        jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        txaObservaciones.setBackground(new java.awt.Color(0, 94, 159));
+        txaObservaciones.setColumns(20);
+        txaObservaciones.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txaObservaciones.setForeground(new java.awt.Color(255, 255, 255));
+        txaObservaciones.setLineWrap(true);
+        txaObservaciones.setRows(5);
+        txaObservaciones.setToolTipText("Ingrese las observaciones");
+        txaObservaciones.setWrapStyleWord(true);
+        txaObservaciones.setBorder(null);
+        jScrollPane3.setViewportView(txaObservaciones);
+
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 30, 280, 110));
+
+        jScrollPane4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
+        jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        txaDescripcion.setBackground(new java.awt.Color(0, 94, 159));
+        txaDescripcion.setColumns(20);
+        txaDescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txaDescripcion.setForeground(new java.awt.Color(255, 255, 255));
+        txaDescripcion.setLineWrap(true);
+        txaDescripcion.setRows(5);
+        txaDescripcion.setToolTipText("Ingrese la descripción");
+        txaDescripcion.setWrapStyleWord(true);
+        txaDescripcion.setBorder(null);
+        jScrollPane4.setViewportView(txaDescripcion);
+
+        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 280, 110));
+
+        jDateChooser1.setToolTipText("Ingrese la fecha");
+        jPanel2.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 140, -1));
+        jDateChooser1.getDateEditor().setEnabled(false);
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel9.setText("Fondos");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 570, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtMontoInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoInicialActionPerformed
@@ -265,6 +274,7 @@ public class VisFondo extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane3;

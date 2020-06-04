@@ -52,7 +52,7 @@ public class Ventana extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setSize(new java.awt.Dimension(1366, 768));
+        setSize(new java.awt.Dimension(1366, 710));
         getContentPane().setLayout(null);
 
         barraMenu.setBackground(new java.awt.Color(255, 255, 255));
