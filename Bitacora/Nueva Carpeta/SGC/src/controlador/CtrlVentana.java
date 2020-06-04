@@ -119,55 +119,55 @@ public class CtrlVentana implements ActionListener {
 
         //Maestros
         if (e.getSource() == ventana.jAsamblea) {
-            ctrl = new CtrlAsamblea();
+            ctrl = new controladorAsambleas();
         }
         if (e.getSource() == ventana.jBanco) {
-            ctrl = new CtrlBanco();
+            ctrl = new controladorBanco();
         }
         if (e.getSource() == ventana.jCategoria) {
-            ctrl = new CtrlCategoriaGasto();
+            ctrl = new controladorCategoriaGastos();
         }
         if (e.getSource() == ventana.jComunicados) {
-            ctrl = new CtrlComunicado();
+            ctrl = new controladorComunicados();
         }
         if (e.getSource() == ventana.jConcepto) {
-            ctrl = new CtrlConceptoGasto();
+            ctrl = new controladorConceptoGasto();
         }
         if (e.getSource() == ventana.jCondominio) {
-            ctrl = new CtrlCondominio();
+            ctrl = new controladorCondominio();
         }
         if (e.getSource() == ventana.jCuenta) {
-            ctrl = new CtrlCuenta();
+            ctrl = new controladorCuenta();
         }
         if (e.getSource() == ventana.jCuotas) {
-            ctrl = new CtrlCuotaEspecial();
+            ctrl = new controladorCuotasEspeciales();
         }
         if (e.getSource() == ventana.jFondo) {
-            ctrl = new CtrlFondo();
+            ctrl = new controladorFondo();
         }
         if (e.getSource() == ventana.jFormaPago) {
-            ctrl = new CtrlFormaPago();
+            ctrl = new controladorForma_pago();
         }
         if (e.getSource() == ventana.jGastos) {
-            ctrl = new CtrlGastoComun();
+            ctrl = new controladorGastoComun();
         }
         if (e.getSource() == ventana.jUsuario) {
             ctrl = new CtrlUsuario();
         }
         if (e.getSource() == ventana.jInteres) {
-            ctrl = new CtrlInteres();
+            ctrl = new controladorInteres();
         }
         if (e.getSource() == ventana.jPropietarios) {
             ctrl = new CtrlPropietario();
         }
         if (e.getSource() == ventana.jProveedores) {
-            ctrl = new CtrlProveedor();
+            ctrl = new controladorProveedores();
         }
         if (e.getSource() == ventana.jResponsable) {
             ctrl = new CtrlResponsable();
         }
         if (e.getSource() == ventana.jSancion) {
-            ctrl = new CtrlSancion();
+            ctrl = new controladorSancion();
         }
         if (e.getSource() == ventana.jTipoUnidad) {
             ctrl = new CtrlTipoUnidad();
@@ -176,24 +176,28 @@ public class CtrlVentana implements ActionListener {
             ctrl = new CtrlTipoUsuario();
         }
         if (e.getSource() == ventana.jUnidades) {
-            ctrl = new CtrlUnidad();
+            ctrl = new controladorUnidades();
         }
 
         //Procesos
         if (e.getSource() == ventana.pCuentasporCobrar) {
+<<<<<<< HEAD
             ctrl = new CtrlCuentaPorCobrar();
+=======
+            ctrl = new controladorCuentasPorCobrar();
+>>>>>>> parent of a9ecd90... Dañe un coñazo de vista.
         }
         if (e.getSource() == ventana.pCuentapagar) {
-            ctrl = new CtrlCuentaPagar();
+            ctrl = new controladorCuenta_Pagar();
         }
         if (e.getSource() == ventana.pVisitas) {
             ctrl = new CtrlVisita();
         }
         if (e.getSource() == ventana.pCuotas) {
-            ctrl = new CtrlPagarGasto();
+            ctrl = new controladorPagarCuotasEsp();
         }
         if (e.getSource() == ventana.pCerrarMes) {
-            ctrl = new CtrlCerrarMes();
+            ctrl = new controladorCerrarMes();
         }
     }
 
