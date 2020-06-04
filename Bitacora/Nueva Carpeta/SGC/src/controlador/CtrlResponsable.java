@@ -22,7 +22,7 @@ import vista.Catalogo;
 public class CtrlResponsable implements ActionListener, MouseListener, KeyListener {
 
     private Catalogo catalogo;
-    private vista.VisResponsable vista;
+    private vista.Responsable vista;
     private modelo.Responsable modelo;
 
     private ArrayList<Responsable> lista;
@@ -36,7 +36,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
         modelo = new modelo.Responsable();
 
         catalogo.lblTitulo.setText("Responsable");
-
+        
         catalogo.btnNuevo.addActionListener(this);
         catalogo.tabla.addMouseListener(this);
         catalogo.txtBuscar.addKeyListener(this);
@@ -54,8 +54,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == catalogo.btnNuevo) {
-
-            vista = new vista.VisResponsable();
+            vista = new vista.Responsable();
 
             vista.btnGuardar.setEnabled(true);
             vista.btnModificar.setEnabled(false);
@@ -63,7 +62,6 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
             vista.btnGuardar.addActionListener(this);
             vista.btnLimpiar.addActionListener(this);
-            vista.btnSalir.addActionListener(this);
             vista.txtCedula.addKeyListener(this);
             vista.txtPnombre.addKeyListener(this);
             vista.txtSnombre.addKeyListener(this);
@@ -72,9 +70,9 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
             vista.txtTelefono.addKeyListener(this);
             vista.txtCorreo.addKeyListener(this);
 
-            CtrlVentana.cambiarVista(vista);
-        }
+            vista.setVisible(true);
 
+        }
         if (e.getSource() == vista.btnGuardar) {
             if (validar()) {
                 String cedula = vista.cbxCedula.getSelectedItem() + "-" + vista.txtCedula.getText();
@@ -91,7 +89,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
                     if (modelo.reactivar()) {
                         JOptionPane.showMessageDialog(null, "Registro Guardado");
-                        CtrlVentana.cambiarVista(catalogo);
+                        vista.dispose();
                         llenarTabla();
 
                     } else {
@@ -104,7 +102,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
                         if (modelo.registrar(true)) {
                             JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
-                            CtrlVentana.cambiarVista(catalogo);
+                            vista.dispose();
                             llenarTabla();
 
                         } else {
@@ -115,7 +113,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
                     } else {
                         if (modelo.registrar(false)) {
                             JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
-                            CtrlVentana.cambiarVista(catalogo);
+                            vista.dispose();
                             llenarTabla();
 
                         } else {
@@ -137,7 +135,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
                 if (modelo.modificar()) {
                     JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
-                    CtrlVentana.cambiarVista(catalogo);
+                    vista.dispose();
                     llenarTabla();
 
                 } else {
@@ -149,7 +147,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
         if (e.getSource() == vista.btnEliminar) {
             if (modelo.eliminar()) {
                 JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
-                CtrlVentana.cambiarVista(catalogo);
+                vista.dispose();
                 llenarTabla();
 
             } else {
@@ -160,10 +158,6 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
         if (e.getSource() == vista.btnLimpiar) {
             limpiar();
         }
-
-        if (e.getSource() == vista.btnSalir) {
-            CtrlVentana.cambiarVista(catalogo);
-        }
     }
 
     private void permisoBtn() {
@@ -171,8 +165,11 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
         for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
             if (funcionbtn.getNombre().equals("Responsables")) {
                 permiso = funcionbtn;
+
             }
+
         }
+
     }
 
     @Override
@@ -181,7 +178,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
             fila = catalogo.tabla.getSelectedRow();
 
             modelo = new Responsable(lista.get(fila).getCedula(), lista.get(fila).getpNombre(), lista.get(fila).getsNombre(), lista.get(fila).getpApellido(), lista.get(fila).getsApellido(), lista.get(fila).getCorreo(), lista.get(fila).getTelefono());
-            vista = new vista.VisResponsable();
+            vista = new vista.Responsable();
             if (permiso.getModificar()) {
                 vista.btnModificar.setEnabled(true);
             }
@@ -204,7 +201,6 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
             vista.btnModificar.addActionListener(this);
             vista.btnEliminar.addActionListener(this);
             vista.btnLimpiar.addActionListener(this);
-            vista.btnSalir.addActionListener(this);
             vista.txtCedula.addKeyListener(this);
             vista.txtPnombre.addKeyListener(this);
             vista.txtSnombre.addKeyListener(this);
@@ -213,7 +209,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
             vista.txtTelefono.addKeyListener(this);
             vista.txtCorreo.addKeyListener(this);
 
-            CtrlVentana.cambiarVista(vista);
+            vista.setVisible(true);
         }
     }
 

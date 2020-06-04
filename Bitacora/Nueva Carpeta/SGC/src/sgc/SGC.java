@@ -2,7 +2,7 @@ package sgc;
 
 import modelo.Condominio;
 import modelo.Usuario;
-import vista.VisInicioUsuario;
+import vista.InicioUsuario;
 import vista.PantallaPrincipal;
 
 public class SGC {
@@ -12,7 +12,7 @@ public class SGC {
     public static PantallaPrincipal panta;
 
     public static void main(String[] args) {
-        VisInicioUsuario vistaU = new VisInicioUsuario();
+        InicioUsuario vistaU = new InicioUsuario();
         vistaU.setVisible(true);
 
     }
