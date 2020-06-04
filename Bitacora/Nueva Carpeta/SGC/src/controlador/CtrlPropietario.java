@@ -18,11 +18,11 @@ import modelo.Funcion;
 import modelo.Propietarios;
 import sgc.SGC;
 import vista.Catalogo;
-import vista.VisPropietario;
+import vista.Propietario;
 
 public class CtrlPropietario implements ActionListener, MouseListener, KeyListener {
 
-    VisPropietario vista;
+    Propietario vista;
     Propietarios modelo;
     Catalogo catalogo;
     Funcion permiso;
@@ -36,7 +36,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
     public CtrlPropietario() {
         catalogo = new Catalogo();
         modelo = new Propietarios();
-
+        
         CtrlVentana.cambiarVista(catalogo);
         catalogo.lblTitulo.setText("Propietario");
 
@@ -57,14 +57,13 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == catalogo.btnNuevo) {
-            vista = new VisPropietario();
+            vista = new Propietario();
 
             vista.btnModificar.setEnabled(false);
             vista.btnEliminar.setEnabled(false);
 
             vista.btnGuardar.addActionListener(this);
             vista.btnLimpiar.addActionListener(this);
-            vista.btnSalir.addActionListener(this);
             vista.txtCedula.addKeyListener(this);
             vista.txtPnombre.addKeyListener(this);
             vista.txtSnombre.addKeyListener(this);
@@ -73,9 +72,9 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
             vista.txtTelefono.addKeyListener(this);
             vista.txtCorreo.addKeyListener(this);
 
-            CtrlVentana.cambiarVista(vista);
-        }
+            vista.setVisible(true);
 
+        }
         if (e.getSource() == vista.btnGuardar) {
             if (validar()) {
                 String cedula = vista.cbxCedula.getSelectedItem() + "-" + vista.txtCedula.getText();
@@ -92,7 +91,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
 
                     if (modelo.reactivar()) {
                         JOptionPane.showMessageDialog(null, "Registro Guardado");
-                        CtrlVentana.cambiarVista(catalogo);
+                        vista.dispose();
                         llenarTabla();
 
                     } else {
@@ -105,7 +104,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
 
                         if (modelo.registrar(true)) {
                             JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
-                            CtrlVentana.cambiarVista(catalogo);
+                            vista.dispose();
                             llenarTabla();
 
                         } else {
@@ -116,7 +115,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
                     } else {
                         if (modelo.registrar(false)) {
                             JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
-                            CtrlVentana.cambiarVista(catalogo);
+                            vista.dispose();
                             llenarTabla();
 
                         } else {
@@ -138,7 +137,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
 
                 if (modelo.modificar()) {
                     JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
-                    CtrlVentana.cambiarVista(catalogo);
+                    vista.dispose();
                     llenarTabla();
 
                 } else {
@@ -150,7 +149,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
         if (e.getSource() == vista.btnEliminar) {
             if (modelo.eliminar()) {
                 JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
-                CtrlVentana.cambiarVista(catalogo);
+                vista.dispose();
                 llenarTabla();
 
             } else {
@@ -160,10 +159,6 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
         }
         if (e.getSource() == vista.btnLimpiar) {
             limpiar();
-        }
-
-        if (e.getSource() == vista.btnSalir) {
-            CtrlVentana.cambiarVista(catalogo);
         }
     }
 
@@ -185,7 +180,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
             fila = catalogo.tabla.getSelectedRow();
 
             modelo = new Propietarios(listaPropietarios.get(fila).getCedula(), listaPropietarios.get(fila).getpNombre(), listaPropietarios.get(fila).getsNombre(), listaPropietarios.get(fila).getpApellido(), listaPropietarios.get(fila).getsApellido(), listaPropietarios.get(fila).getCorreo(), listaPropietarios.get(fila).getTelefono());
-            vista = new VisPropietario();
+            vista = new Propietario();
             if (permiso.getModificar()) {
                 vista.btnModificar.setEnabled(true);
             }
@@ -210,7 +205,6 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
             vista.btnModificar.addActionListener(this);
             vista.btnEliminar.addActionListener(this);
             vista.btnLimpiar.addActionListener(this);
-            vista.btnSalir.addActionListener(this);
             vista.txtCedula.addKeyListener(this);
             vista.txtPnombre.addKeyListener(this);
             vista.txtSnombre.addKeyListener(this);
@@ -219,7 +213,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
             vista.txtTelefono.addKeyListener(this);
             vista.txtCorreo.addKeyListener(this);
 
-            CtrlVentana.cambiarVista(vista);
+            vista.setVisible(true);
         }
     }
 

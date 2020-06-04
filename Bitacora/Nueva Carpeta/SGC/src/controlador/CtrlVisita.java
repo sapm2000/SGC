@@ -8,17 +8,19 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Unidades;
 import modelo.Visita;
 import modelo.Visitante;
-import vista.VisRegistroVisita;
+import vista.registroVisitas;
 
-public class CtrlVisita implements ActionListener, ItemListener, MouseListener, KeyListener {
+public class CtrlVisita implements ActionListener, ItemListener, MouseListener, KeyListener, WindowListener {
 
-    private VisRegistroVisita vista = new VisRegistroVisita();
+    private registroVisitas vista = new registroVisitas();
     private Visita modelo;
     private ArrayList<Visita> lista;
 
@@ -28,7 +30,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
 
     public CtrlVisita() {
         this.modelo = new Visita();
-        this.vista = new VisRegistroVisita();
+        this.vista = new registroVisitas();
         this.modUnidad = new Unidades();
         this.modVisitante = new Visitante();
 
@@ -37,10 +39,10 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
         this.vista.btnVisitante.addActionListener(this);
         this.vista.btnAgregar.addActionListener(this);
 
-        CtrlVentana.cambiarVista(vista);
         crearCbxUnidad();
 
         llenarTabla();
+        this.vista.setVisible(true);
 
     }
 
@@ -55,7 +57,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
         }
 
         if (e.getSource() == vista.btnVisitante) {
-            CtrlVisitante ctrl = new CtrlVisitante();
+            controladorVisitante ctrl = new controladorVisitante();
         }
 
         if (e.getSource() == vista.btnAgregar) {
@@ -108,6 +110,34 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
 
     @Override
     public void keyReleased(KeyEvent e) {
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
     }
 
     private void buscarVisitante() {

@@ -12,11 +12,11 @@ import modelo.TipoUnidad;
 import modelo.Unidades;
 import sgc.SGC;
 import vista.Catalogo;
-import vista.VisTipoUnidad;
+import vista.tipoUnidad;
 
 public class CtrlTipoUnidad implements ActionListener, MouseListener {
 
-    private VisTipoUnidad vista;
+    private tipoUnidad vista;
     private Catalogo catalogo;
     private TipoUnidad modelo;
     private Unidades unidades;
@@ -26,10 +26,10 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener {
 
     public CtrlTipoUnidad() {
         this.catalogo = new Catalogo();
-        this.vista = new VisTipoUnidad();
+        this.vista = new tipoUnidad();
         this.modelo = new TipoUnidad();
         this.unidades = new Unidades();
-
+        
         CtrlVentana.cambiarVista(catalogo);
         catalogo.lblTitulo.setText("Tipo de Unidad");
 
@@ -38,7 +38,6 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener {
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnModificar.addActionListener(this);
         this.vista.btnEliminar.addActionListener(this);
-        this.vista.btnSalir.addActionListener(this);
 
         llenarTabla();
         permisoBtn();
@@ -54,8 +53,8 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener {
         if (e.getSource() == catalogo.btnNuevo) {
             vista.txtNombre.setText("");
             vista.txtArea.setText("");
+            this.vista.setVisible(true);
             this.vista.btnGuardar.setEnabled(true);
-            CtrlVentana.cambiarVista(vista);
         }
 
         if (e.getSource() == vista.btnGuardar) {
@@ -82,7 +81,7 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener {
                             unidades.actualizarAlicuota(unidades);
                         }
                         llenarTabla();
-                        CtrlVentana.cambiarVista(catalogo);
+                        vista.dispose();
 
                     } else {
                         JOptionPane.showMessageDialog(null, "No se pudo habilitar el Tipo de unidad");
@@ -108,7 +107,7 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener {
                                 unidades.setId(listaunidades.get(i).getId());
                                 unidades.actualizarAlicuota(unidades);
                             }
-                            CtrlVentana.cambiarVista(catalogo);
+                            vista.dispose();
                             vista.txtNombre.setText("");
                             vista.txtArea.setText("");
 
@@ -140,7 +139,7 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener {
                         unidades.actualizarAlicuota(unidades);
                     }
                     llenarTabla();
-                    CtrlVentana.cambiarVista(catalogo);
+                    vista.dispose();
 
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo modificar");
@@ -151,16 +150,12 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener {
         if (e.getSource() == vista.btnEliminar) {
             if (modelo.eliminar()) {
                 JOptionPane.showMessageDialog(null, "Registro eliminado");
-                CtrlVentana.cambiarVista(catalogo);
+                vista.dispose();
                 llenarTabla();
 
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo eliminar");
             }
-        }
-
-        if (e.getSource() == vista.btnSalir) {
-            CtrlVentana.cambiarVista(catalogo);
         }
     }
 
@@ -190,11 +185,12 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener {
             vista.txtNombre.setText(modelo.getNombre());
             vista.txtArea.setText(modelo.getArea().toString());
 
+//            vista.txtN_cuenta.setEditable(false);
             vista.btnGuardar.setEnabled(false);
             vista.btnModificar.setEnabled(true);
             vista.btnEliminar.setEnabled(true);
 
-            CtrlVentana.cambiarVista(vista);
+            vista.setVisible(true);
         }
     }
 

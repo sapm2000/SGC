@@ -13,11 +13,11 @@ import modelo.Funcion;
 import modelo.TipoUsuario;
 import sgc.SGC;
 import vista.Catalogo;
-import vista.VisTipoUsuario;
+import vista.tipoUsuario;
 
 public class CtrlTipoUsuario implements ActionListener, MouseListener {
 
-    private VisTipoUsuario vista;
+    private tipoUsuario vista;
     private Catalogo catalogo;
     private TipoUsuario modelo;
 
@@ -29,17 +29,16 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener {
 
     public CtrlTipoUsuario() {
         this.catalogo = new Catalogo();
-        this.vista = new VisTipoUsuario();
+        this.vista = new tipoUsuario();
         this.modelo = new TipoUsuario();
         this.modFuncion = new Funcion();
-
+        
         CtrlVentana.cambiarVista(catalogo);
         catalogo.lblTitulo.setText("Tipo Usuario");
-
+        
         this.catalogo.btnNuevo.addActionListener(this);
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnModificar.addActionListener(this);
-        this.vista.btnSalir.addActionListener(this);
         this.vista.tabla.addMouseListener(this);
 
         llenarTabla();
@@ -53,12 +52,11 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-
+        
         if (e.getSource() == catalogo.btnNuevo) {
+            this.vista.setVisible(true);
             this.vista.btnGuardar.setVisible(true);
             this.vista.btnModificar.setVisible(false);
-            CtrlVentana.cambiarVista(vista);
-
             llenarTablaFuncion();
 
         }
@@ -158,7 +156,7 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener {
                     if (modelo.registrar()) {
                         JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
                         llenarTabla();
-                        CtrlVentana.cambiarVista(catalogo);
+                        vista.dispose();
                         vista.txtTipo.setText("");
 
                     } else {
@@ -172,12 +170,9 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener {
         if (e.getSource() == vista.btnModificar) {
 
         }
-        if (e.getSource() == vista.btnSalir) {
-            CtrlVentana.cambiarVista(catalogo);
-        }
     }
-
-    private void permisoBtn() {
+    
+        private void permisoBtn() {
 
         for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
             if (funcionbtn.getNombre().equals("Responsables")) {
