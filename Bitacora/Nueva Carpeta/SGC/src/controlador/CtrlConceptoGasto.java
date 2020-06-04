@@ -20,51 +20,55 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.CategoriaGasto;
+import modelo.ConceptoGasto;
 import modelo.Funcion;
-import modelo.ModeloConceptoGastos;
 import sgc.SGC;
 import vista.Catalogo;
-import vista.conceptoGasto;
+import vista.VisConceptoGasto;
 
 public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyListener, WindowListener {
 
     private Catalogo catalogo;
-    private conceptoGasto vista;
-    private ModeloConceptoGastos modelo;
-    private CategoriaGasto modCat;
+    private VisConceptoGasto vista;
+    private ConceptoGasto modelo;
+    private ArrayList<ConceptoGasto> lista;
 
-    Funcion permiso;
-    ArrayList<ModeloConceptoGastos> listaConGas;
-    ArrayList<CategoriaGasto> listaCatGas;
-    DefaultTableModel dm;
+    private CategoriaGasto modCategoria;
+    private ArrayList<CategoriaGasto> listaCategoria;
+
+    private Funcion permiso;
 
     public CtrlConceptoGasto() {
 
         this.catalogo = new Catalogo();
-        this.vista = new conceptoGasto();
-        this.modelo = new ModeloConceptoGastos();
-        this.modCat = new CategoriaGasto();
+        this.vista = new VisConceptoGasto();
+        this.modelo = new ConceptoGasto();
+
+        this.modCategoria = new CategoriaGasto();
 
         catalogo.lblTitulo.setText("Concepto Gasto");
-        CtrlVentana.cambiarVista(catalogo);
-        Llenartabla(catalogo.tabla);
-                permisoBtn();
+
+        permisoBtn();
 
         if (permiso.getRegistrar()) {
             catalogo.btnNuevo.setEnabled(true);
         }
-        
+
+        llenarTabla(catalogo.tabla);
+
         this.catalogo.btnNuevo.addActionListener(this);
+        this.catalogo.txtBuscar.addKeyListener(this);
+        this.catalogo.tabla.addMouseListener(this);
+
         this.vista.btnGuardar.addActionListener(this);
-        this.vista.btnLimpiar.addActionListener(this);
         this.vista.btnModificar.addActionListener(this);
+        this.vista.btnEliminar.addActionListener(this);
+        this.vista.btnLimpiar.addActionListener(this);
+        this.vista.btnSalir.addActionListener(this);
         this.vista.txtNombreC.addKeyListener(this);
         this.vista.txtDescripcion.addKeyListener(this);
-        this.vista.btnEliminar.addActionListener(this);
-        this.catalogo.tabla.addMouseListener(this);
-        this.catalogo.txtBuscar.addKeyListener(this);
 
-        this.catalogo.setVisible(true);
+        CtrlVentana.cambiarVista(catalogo);
     }
 
     @Override
@@ -73,10 +77,10 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
         if (e.getSource() == vista.btnGuardar) {
             if (validar()) {
 
-                modelo.setNombre_Concepto(vista.txtNombreC.getText());
+                modelo.setNombre(vista.txtNombreC.getText());
                 modelo.setDescripcion(vista.txtDescripcion.getText());
                 int ind = vista.cbxCategoria.getSelectedIndex() - 1;
-                modelo.cate.setId(listaCatGas.get(ind).getId());
+                modelo.getCategoria().setId(listaCategoria.get(ind).getId());
                 if (ind == -1) {
                     JOptionPane.showMessageDialog(null, "por favor seleccione una categoria");
                 } else {
@@ -85,14 +89,14 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
                         modelo.activar(modelo);
                         modelo.modificarConcepto(modelo);
                         JOptionPane.showMessageDialog(null, "Registro Guardado");
-                        Llenartabla(catalogo.tabla);
+                        llenarTabla(catalogo.tabla);
 
                     } else {
 
-                        if (modelo.registrarConcepto(modelo)) {
+                        if (modelo.registrar()) {
 
                             JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
-                            Llenartabla(catalogo.tabla);
+                            llenarTabla(catalogo.tabla);
 
                         } else {
 
@@ -107,10 +111,10 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
         if (e.getSource() == vista.btnModificar) {
             if (validar()) {
                 modelo.setId(Integer.parseInt(vista.txtId.getText()));
-                modelo.setNombre_Concepto(vista.txtNombreC.getText());
+                modelo.setNombre(vista.txtNombreC.getText());
                 modelo.setDescripcion(vista.txtDescripcion.getText());
                 int ind = vista.cbxCategoria.getSelectedIndex() - 1;
-                modelo.cate.setId(listaCatGas.get(ind).getId());
+                modelo.getCategoria().setId(listaCategoria.get(ind).getId());
                 if (ind == -1) {
                     JOptionPane.showMessageDialog(null, "por favor seleccione una categoria");
                 } else {
@@ -124,8 +128,8 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
                         if (modelo.modificarConcepto(modelo)) {
 
                             JOptionPane.showMessageDialog(null, "Registro modificado");
-                            vista.dispose();
-                            Llenartabla(catalogo.tabla);
+                            CtrlVentana.cambiarVista(catalogo);
+                            llenarTabla(catalogo.tabla);
                             limpiar();
 
                         } else {
@@ -144,8 +148,8 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
                 if (modelo.eliminar(modelo)) {
                     modelo.setId(Integer.parseInt(vista.txtId.getText()));
                     JOptionPane.showMessageDialog(null, "Registro Eliminado");
-                    vista.dispose();
-                    Llenartabla(catalogo.tabla);
+                    CtrlVentana.cambiarVista(catalogo);
+                    llenarTabla(catalogo.tabla);
 
                 } else {
 
@@ -160,17 +164,22 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
             limpiar();
         }
 
+        if (e.getSource() == vista.btnSalir) {
+            CtrlVentana.cambiarVista(catalogo);
+        }
+
         if (e.getSource() == catalogo.btnNuevo) {
             limpiar();
-            this.vista.setVisible(true);
             vista.txtId.setVisible(false);
             this.vista.btnModificar.setEnabled(false);
             this.vista.btnGuardar.setEnabled(true);
             this.vista.btnEliminar.setEnabled(false);
             this.vista.txtNombreC.setEnabled(true);
             vista.cbxCategoria.removeAllItems();
-            listaCatGas = modCat.lCategGas();
-            crearCbxCategoria(listaCatGas);
+            listaCategoria = modCategoria.lCategGas();
+            crearCbxCategoria(listaCategoria);
+
+            CtrlVentana.cambiarVista(vista);
         }
 
     }
@@ -183,9 +192,9 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
 
     }
 
-    public void Llenartabla(JTable tablaD) {
+    public void llenarTabla(JTable tablaD) {
 
-        listaConGas = modelo.listarConcepto();
+        lista = modelo.listar();
 
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
@@ -205,13 +214,13 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
 
         Object[] columna = new Object[3];
 
-        int numRegistro = listaConGas.size();
+        int numRegistro = lista.size();
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = listaConGas.get(i).getNombre_Concepto();
-            columna[1] = listaConGas.get(i).getDescripcion();
-            columna[2] = listaConGas.get(i).cate.getNombre();
+            columna[0] = lista.get(i).getNombre();
+            columna[1] = lista.get(i).getDescripcion();
+            columna[2] = lista.get(i).getCategoria().getNombre();
 
             modeloT.addRow(columna);
 
@@ -278,7 +287,6 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
 //        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
 //        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
 //    }
-
     private Boolean validar() {
 
         Boolean resultado = true;
@@ -308,15 +316,15 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
 
         if (datos != null) {
             for (CategoriaGasto datosX : datos) {
-                modCat = datosX;
-                vista.cbxCategoria.addItem(modCat.getNombre());
+                modCategoria = datosX;
+                vista.cbxCategoria.addItem(modCategoria.getNombre());
             }
 
         }
     }
 
     private void filtro(String consulta, JTable tablaBuscar) {
-        dm = (DefaultTableModel) tablaBuscar.getModel();
+        DefaultTableModel dm = (DefaultTableModel) tablaBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
         tablaBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));
@@ -351,23 +359,23 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
         String msj = "";
         vista.cbxCategoria.removeAllItems();
 
-        modelo.setNombre_Concepto(String.valueOf(dato));
+        modelo.setNombre(String.valueOf(dato));
 
         modelo.buscarC(modelo);
 
-        vista.setVisible(true);
-        listaCatGas = modCat.lCategGas();
-        crearCbxCategoria(listaCatGas);
+        listaCategoria = modCategoria.lCategGas();
+        crearCbxCategoria(listaCategoria);
         vista.txtId.setText(modelo.getId() + "");
-        vista.txtNombreC.setText(modelo.getNombre_Concepto());
+        vista.txtNombreC.setText(modelo.getNombre());
         vista.txtDescripcion.setText(modelo.getDescripcion());
-        vista.cbxCategoria.setSelectedItem(modelo.cate.getNombre());
+        vista.cbxCategoria.setSelectedItem(modelo.getCategoria().getNombre());
         vista.txtId.setEnabled(false);
         vista.txtId.setVisible(false);
         vista.btnGuardar.setEnabled(false);
         vista.btnModificar.setEnabled(true);
         vista.btnEliminar.setEnabled(true);
 
+        CtrlVentana.cambiarVista(vista);
     }
 
     @Override
@@ -412,7 +420,6 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
 
     @Override
     public void windowOpened(WindowEvent e) {
-
 
         Component[] components = vista.jPanel2.getComponents();
         JComponent[] com = {

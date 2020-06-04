@@ -1,12 +1,9 @@
 package controlador;
 
-import static controlador.CtrlVentana.centreWindow;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.PopupMenu;
 import java.awt.Toolkit;
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static javax.swing.BorderFactory.createLineBorder;
@@ -15,7 +12,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import modelo.Funcion;
@@ -78,8 +74,7 @@ public class CtrlVentana implements ActionListener {
         ventana.jResponsable.addActionListener(this);
         ventana.jFormaPago.addActionListener(this);
         ventana.jAsamblea.addActionListener(this);
-        ventana.jCuotas.addActionListener(this);
-        ventana.jGastos.addActionListener(this);
+        ventana.jGasto.addActionListener(this);
         ventana.jSancion.addActionListener(this);
         ventana.jUnidades.addActionListener(this);
         ventana.jFondo.addActionListener(this);
@@ -145,17 +140,14 @@ public class CtrlVentana implements ActionListener {
         if (e.getSource() == ventana.jCuenta) {
             ctrl = new CtrlCuenta();
         }
-        if (e.getSource() == ventana.jCuotas) {
-            ctrl = new CtrlCuotaEspecial();
+        if (e.getSource() == ventana.jGasto) {
+            ctrl = new CtrlGasto();
         }
         if (e.getSource() == ventana.jFondo) {
             ctrl = new CtrlFondo();
         }
         if (e.getSource() == ventana.jFormaPago) {
             ctrl = new CtrlFormaPago();
-        }
-        if (e.getSource() == ventana.jGastos) {
-            ctrl = new CtrlGastoComun();
         }
         if (e.getSource() == ventana.jUsuario) {
             ctrl = new CtrlUsuario();
@@ -288,11 +280,8 @@ public class CtrlVentana implements ActionListener {
             if ("Asambleas".equals(funcionesX.getNombre())) {
                 ventana.menuArchivo.add(ventana.jAsamblea);
             }
-            if ("Cuotas especiales".equals(funcionesX.getNombre())) {
-                ventana.menuArchivo.add(ventana.jCuotas);
-            }
-            if ("Gastos comunes".equals(funcionesX.getNombre())) {
-                ventana.menuArchivo.add(ventana.jGastos);
+            if ("Gasto".equals(funcionesX.getNombre())) {
+                ventana.menuArchivo.add(ventana.jGasto);
             }
             if ("Sanciones".equals(funcionesX.getNombre())) {
                 ventana.menuArchivo.add(ventana.jSancion);

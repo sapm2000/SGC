@@ -27,10 +27,9 @@ public class Ventana extends javax.swing.JFrame {
         jConcepto = new javax.swing.JMenuItem();
         jCondominio = new javax.swing.JMenuItem();
         jCuenta = new javax.swing.JMenuItem();
-        jCuotas = new javax.swing.JMenuItem();
+        jGasto = new javax.swing.JMenuItem();
         jFondo = new javax.swing.JMenuItem();
         jFormaPago = new javax.swing.JMenuItem();
-        jGastos = new javax.swing.JMenuItem();
         jUsuario = new javax.swing.JMenuItem();
         jInteres = new javax.swing.JMenuItem();
         jPropietarios = new javax.swing.JMenuItem();
@@ -148,16 +147,16 @@ public class Ventana extends javax.swing.JFrame {
         });
         menuArchivo.add(jCuenta);
 
-        jCuotas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jCuotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/presupuesto.png"))); // NOI18N
-        jCuotas.setText("Cuotas Especiales");
-        jCuotas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jCuotas.addActionListener(new java.awt.event.ActionListener() {
+        jGasto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jGasto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/presupuesto.png"))); // NOI18N
+        jGasto.setText("Gasto");
+        jGasto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jGasto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCuotasActionPerformed(evt);
+                jGastoActionPerformed(evt);
             }
         });
-        menuArchivo.add(jCuotas);
+        menuArchivo.add(jGasto);
 
         jFondo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/hucha.png"))); // NOI18N
@@ -174,17 +173,6 @@ public class Ventana extends javax.swing.JFrame {
         jFormaPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pattern (2) (1) (1).png"))); // NOI18N
         jFormaPago.setText("Forma de Pago");
         menuArchivo.add(jFormaPago);
-
-        jGastos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jGastos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alquiler-de-casa.png"))); // NOI18N
-        jGastos.setText("Gastos Comunes");
-        jGastos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jGastos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jGastosActionPerformed(evt);
-            }
-        });
-        menuArchivo.add(jGastos);
 
         jUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/administracion.png"))); // NOI18N
@@ -411,17 +399,13 @@ public class Ventana extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jCuentaActionPerformed
 
-    private void jCuotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCuotasActionPerformed
+    private void jGastoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGastoActionPerformed
 
-    }//GEN-LAST:event_jCuotasActionPerformed
+    }//GEN-LAST:event_jGastoActionPerformed
 
     private void jFondoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFondoActionPerformed
 
     }//GEN-LAST:event_jFondoActionPerformed
-
-    private void jGastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGastosActionPerformed
-
-    }//GEN-LAST:event_jGastosActionPerformed
 
     private void jUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUsuarioActionPerformed
 
@@ -523,10 +507,9 @@ public class Ventana extends javax.swing.JFrame {
     public javax.swing.JMenuItem jConcepto;
     public javax.swing.JMenuItem jCondominio;
     public javax.swing.JMenuItem jCuenta;
-    public javax.swing.JMenuItem jCuotas;
     public javax.swing.JMenuItem jFondo;
     public javax.swing.JMenuItem jFormaPago;
-    public javax.swing.JMenuItem jGastos;
+    public javax.swing.JMenuItem jGasto;
     public javax.swing.JMenuItem jInteres;
     public javax.swing.JMenuItem jPropietarios;
     public javax.swing.JMenuItem jProveedores;
