@@ -5,7 +5,7 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2020-06-04 14:23:30
+-- Started on 2020-06-04 16:52:49
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -2582,7 +2582,7 @@ INSERT INTO public.funcion VALUES (27, 'Cuotas especiales');
 
 INSERT INTO public.gasto VALUES (8, 'Ordinario', '24666587', 'Alicuota', 6, 2020, 1, NULL, 'jkjkjk', 1, 575.7, 575.7, 'Pendiente', 'Pendiente');
 INSERT INTO public.gasto VALUES (9, 'Extraordinario', 'J-2457021456', 'Alicuota', 6, 2020, 4, 85, '', 4, 458, 458, 'Pendiente', 'Pendiente');
-INSERT INTO public.gasto VALUES (10, 'Extraordinario', 'J-54785696', 'Total de Inmuebles', 7, 2021, 4, 85, '', 4, 350.8, 350.8, 'Pendiente', 'Pendiente');
+INSERT INTO public.gasto VALUES (10, 'Extraordinario', 'J-54785696', 'Total de Inmuebles', 7, 2021, 4, NULL, '', 4, 40, 40, 'Pendiente', 'Pendiente');
 
 
 --
@@ -2723,8 +2723,8 @@ INSERT INTO public.puente_gasto_concepto VALUES (13, 8, 11, 550.7);
 INSERT INTO public.puente_gasto_concepto VALUES (14, 8, 10, 25);
 INSERT INTO public.puente_gasto_concepto VALUES (15, 9, 40, 100);
 INSERT INTO public.puente_gasto_concepto VALUES (16, 9, 41, 358);
-INSERT INTO public.puente_gasto_concepto VALUES (17, 10, 39, 200);
-INSERT INTO public.puente_gasto_concepto VALUES (18, 10, 11, 150.8);
+INSERT INTO public.puente_gasto_concepto VALUES (32, 10, 40, 10);
+INSERT INTO public.puente_gasto_concepto VALUES (33, 10, 41, 30);
 
 
 --
@@ -3126,7 +3126,7 @@ SELECT pg_catalog.setval('public.puente_concepto_factura_id_seq', 2, true);
 -- Name: puente_gasto_concepto_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.puente_gasto_concepto_id_seq', 18, true);
+SELECT pg_catalog.setval('public.puente_gasto_concepto_id_seq', 33, true);
 
 
 --
@@ -3849,7 +3849,7 @@ ALTER TABLE ONLY public.visitante
     ADD CONSTRAINT visitante_ci_persona_fkey FOREIGN KEY (ci_persona) REFERENCES public.persona(cedula);
 
 
--- Completed on 2020-06-04 14:23:36
+-- Completed on 2020-06-04 16:52:58
 
 --
 -- PostgreSQL database dump complete
