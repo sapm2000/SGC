@@ -216,7 +216,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         btnProcesar.setText("<html>\n<br><br><br>Procesar el Pago y Descargar el Recibo\n</html>");
         btnProcesar.setBorder(null);
         btnProcesar.setContentAreaFilled(false);
-        btnProcesar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnProcesar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProcesar.setHideActionText(true);
         btnProcesar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnProcesar.setIconTextGap(10);
@@ -236,7 +236,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         btnMostrar.setBorder(null);
         btnMostrar.setBorderPainted(false);
         btnMostrar.setContentAreaFilled(false);
-        btnMostrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMostrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMostrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/management (1).png"))); // NOI18N
         btnMostrar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/management.png"))); // NOI18N
         btnMostrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/management.png"))); // NOI18N
@@ -254,7 +254,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         btnPagos.setBorder(null);
         btnPagos.setBorderPainted(false);
         btnPagos.setContentAreaFilled(false);
-        btnPagos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnPagos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPagos.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice (1).png"))); // NOI18N
         btnPagos.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice.png"))); // NOI18N
         btnPagos.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice.png"))); // NOI18N

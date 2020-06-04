@@ -132,25 +132,25 @@ public class VisGasto extends javax.swing.JPanel {
         txtNmeses.setForeground(new java.awt.Color(255, 255, 255));
         txtNmeses.setToolTipText("Ingrese el número de meses que aplica");
         txtNmeses.setBorder(null);
-        jPanel2.add(txtNmeses, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 230, 20));
+        jPanel2.add(txtNmeses, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 230, 20));
 
         labelmense.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelmense.setForeground(new java.awt.Color(255, 255, 255));
         labelmense.setText("<html> Número de Meses <br> que Aplica: </html>");
-        jPanel2.add(labelmense, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 130, -1));
+        jPanel2.add(labelmense, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 130, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Observaciones:");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 110, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 110, -1));
 
         barritahorizontal.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(barritahorizontal, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, 230, 20));
+        jPanel2.add(barritahorizontal, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 230, 20));
 
         barrita.setForeground(new java.awt.Color(255, 255, 255));
         barrita.setOrientation(javax.swing.SwingConstants.VERTICAL);
         barrita.setOpaque(true);
-        jPanel2.add(barrita, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 90, -1, 20));
+        jPanel2.add(barrita, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 90, -1, 20));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 240, 20));
@@ -158,11 +158,11 @@ public class VisGasto extends javax.swing.JPanel {
         labelAsamblea.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelAsamblea.setForeground(new java.awt.Color(255, 255, 255));
         labelAsamblea.setText("Asamblea:");
-        jPanel2.add(labelAsamblea, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 80, 20));
+        jPanel2.add(labelAsamblea, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 80, 20));
 
         jAsamblea.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jAsamblea.setToolTipText("Seleccione una asamblea");
-        jPanel2.add(jAsamblea, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, 230, -1));
+        jPanel2.add(jAsamblea, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, 230, -1));
 
         jScrollPane4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
         jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -177,7 +177,7 @@ public class VisGasto extends javax.swing.JPanel {
         txaObservaciones.setWrapStyleWord(true);
         jScrollPane4.setViewportView(txaObservaciones);
 
-        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 360, 110));
+        jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 360, 120));
 
         no.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         no.setForeground(new java.awt.Color(255, 255, 255));
@@ -189,12 +189,12 @@ public class VisGasto extends javax.swing.JPanel {
         no.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dot (1).png"))); // NOI18N
         no.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button (1).png"))); // NOI18N
         no.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button.png"))); // NOI18N
-        jPanel2.add(no, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 90, -1, -1));
+        jPanel2.add(no, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 90, -1, -1));
 
         fue_elegido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         fue_elegido.setForeground(new java.awt.Color(255, 255, 255));
         fue_elegido.setText("¿Fué elegido en una asamblea?");
-        jPanel2.add(fue_elegido, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, -1, -1));
+        jPanel2.add(fue_elegido, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, -1, -1));
 
         si.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         si.setForeground(new java.awt.Color(255, 255, 255));
@@ -205,7 +205,7 @@ public class VisGasto extends javax.swing.JPanel {
         si.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dot (1).png"))); // NOI18N
         si.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button (1).png"))); // NOI18N
         si.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button.png"))); // NOI18N
-        jPanel2.add(si, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, -1, -1));
+        jPanel2.add(si, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, -1, -1));
 
         jMonthChooser1.setToolTipText("Seleccione el mes");
         jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 130, 30));
@@ -243,7 +243,7 @@ public class VisGasto extends javax.swing.JPanel {
         jLabel3.setText("<html> Nombre del <br> proveedor:</html>");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 124, -1, 40));
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 770, 340));
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 780, 340));
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
@@ -266,16 +266,17 @@ public class VisGasto extends javax.swing.JPanel {
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 800, 300));
 
-        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
-        btnSalir.setToolTipText("Cerrar");
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow.png"))); // NOI18N
+        btnSalir.setToolTipText("Volver al catálogo");
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
-        btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
-        btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
-        add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, -1, 30));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow.png"))); // NOI18N
+        btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow (1).png"))); // NOI18N
+        btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow (1).png"))); // NOI18N
+        btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow (1).png"))); // NOI18N
+        add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel12.setText("Registro de Cuotas Especiales");
@@ -289,7 +290,7 @@ public class VisGasto extends javax.swing.JPanel {
         btnGuardar.setBorder(null);
         btnGuardar.setBorderPainted(false);
         btnGuardar.setContentAreaFilled(false);
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
         btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
         btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
@@ -301,7 +302,7 @@ public class VisGasto extends javax.swing.JPanel {
         btnModificar.setBorder(null);
         btnModificar.setBorderPainted(false);
         btnModificar.setContentAreaFilled(false);
-        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnModificar.setEnabled(false);
         btnModificar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
         btnModificar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
@@ -313,7 +314,7 @@ public class VisGasto extends javax.swing.JPanel {
         btnLimpiar.setToolTipText("Limpiar todo");
         btnLimpiar.setBorderPainted(false);
         btnLimpiar.setContentAreaFilled(false);
-        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLimpiar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
         btnLimpiar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
         btnLimpiar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
@@ -332,7 +333,7 @@ public class VisGasto extends javax.swing.JPanel {
         btnEliminar.setBorder(null);
         btnEliminar.setBorderPainted(false);
         btnEliminar.setContentAreaFilled(false);
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminar.setEnabled(false);
         btnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (2).png"))); // NOI18N
         btnEliminar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (2).png"))); // NOI18N
