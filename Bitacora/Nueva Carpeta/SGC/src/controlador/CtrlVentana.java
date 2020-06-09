@@ -84,6 +84,7 @@ public class CtrlVentana implements ActionListener {
         ventana.pVisitas.addActionListener(this);
         ventana.pCuotas.addActionListener(this);
         ventana.pCerrarMes.addActionListener(this);
+        ventana.jPerfil.addActionListener(this);
     }
 
     @Override
@@ -193,6 +194,11 @@ public class CtrlVentana implements ActionListener {
         if (e.getSource() == ventana.pCerrarMes) {
             ctrl = new CtrlCerrarMes();
         }
+        
+        //Perfil
+        if (e.getSource() == ventana.jPerfil) {
+            ctrl = new CtrlPerfil();
+        }
     }
 
     public static void cambiarVista(JPanel vista) {
@@ -236,8 +242,6 @@ public class CtrlVentana implements ActionListener {
         ventana.menuArchivo.removeAll();
         ventana.menuProceso.removeAll();
         ventana.menuReporte.removeAll();
-        ventana.menuAyudas.removeAll();
-        ventana.menuPerfil.removeAll();
 
         // Se consulta cada función del usuario actual y se añaden las opciones al menú correspondientes
         for (Funcion funcionesX : SGC.usuarioActual.getTipoU().getFunciones()) {

@@ -357,6 +357,44 @@ public class Usuario extends ConexionBD {
         }
 
     }
+    
+        public Boolean consultarPerfil() {
+        Connection con = getConexion();
+        ps = null;
+        rs = null;
+
+        int ind;
+
+        String sql = "SELECT * FROM v_perfil WHERE id=?;";
+
+        try {
+            ps = con.prepareStatement(sql);
+
+            ind = 1;
+            ps.setInt(ind++, getId());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return true;
+
+            } else {
+                return false;
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+    }
 
     public int getId() {
         return id;
