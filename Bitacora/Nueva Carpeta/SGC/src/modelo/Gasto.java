@@ -302,7 +302,7 @@ public class Gasto extends ConexionBD {
         }
     }
 
-    public ArrayList<Gasto> listarCuotasEspecialescerrarmes() {
+    public ArrayList<Gasto> listarGastos() {
         ArrayList listacuotasEspeciales = new ArrayList();
         Gasto modcuo;
 
@@ -310,30 +310,30 @@ public class Gasto extends ConexionBD {
         ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT facturas_proveedores.id, id_proveedor, concepto_gasto.nom_concepto, calcular, mes, anio, monto, saldo, n_meses, asambleas.nombre, observacion, estado, n_mese_restante FROM facturas_proveedores inner join proveedores on proveedores.cedula=facturas_proveedores.id_proveedor  left join asambleas on asambleas.id = facturas_proveedores.id_asamblea where facturas_proveedores.id_condominio=? and facturas_proveedores.n_mese_restante !=0";
+        String sql = "SELECT id, tipo, id_proveedor, calcular_por, mes, anio, n_meses, observacion, meses_restantes, monto, saldo, estado, pagado FROM gasto where meses_restantes !=0;";
         try {
             ps = con.prepareStatement(sql);
 
-            ps.setString(1, SGC.condominioActual.getRif());
+           
             rs = ps.executeQuery();
 
             while (rs.next()) {
 
                 modcuo = new Gasto();
 
-                modcuo.setId(rs.getInt(1));
-                modcuo.proveedor.setCedula(rs.getString(2));
-
-                modcuo.setCalcular(rs.getString(3));
-                modcuo.setMes(rs.getInt(4));
-                modcuo.setAnio(rs.getInt(5));
-                modcuo.setMonto(rs.getDouble(6));
-                modcuo.setSaldo(rs.getDouble(7));
-                modcuo.setNumMeses(rs.getInt(8));
-                modcuo.asamblea.setNombre(rs.getString(9));
-                modcuo.setObservacion(rs.getString(10));
-                modcuo.setEstado(rs.getString(11));
-                modcuo.setMesesRestantes(rs.getInt(12));
+                modcuo.setId(rs.getInt("id"));
+                modcuo.proveedor.setCedula(rs.getString("id_proveedor"));
+                modcuo.setTipo(rs.getString("tipo"));
+                modcuo.setCalcular(rs.getString("calcular_por"));
+                modcuo.setMes(rs.getInt("mes"));
+                modcuo.setAnio(rs.getInt("anio"));
+                modcuo.setMonto(rs.getDouble("monto"));
+                modcuo.setSaldo(rs.getDouble("saldo"));
+                modcuo.setNumMeses(rs.getInt("n_meses"));
+                
+                modcuo.setObservacion(rs.getString("observacion"));
+                modcuo.setEstado(rs.getString("estado"));
+                modcuo.setMesesRestantes(rs.getInt("meses_restantes"));
 
                 listacuotasEspeciales.add(modcuo);
             }

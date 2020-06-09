@@ -33,6 +33,7 @@ public class CerrarMes extends ConexionBD {
     private int meses_deuda;
     private double saldo_restante;
     private String tipo_gasto;
+    public Gasto gasto = new Gasto();
 
     public int getMeses_deuda() {
         return meses_deuda;
@@ -203,16 +204,16 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO detalle_pagos(id_gasto, mes, anio, id_factura, monto, tipo_gasto) VALUES (?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO detalle_pagos(id_gasto, mes, anio, id_unidad, monto, tipo_gasto) VALUES (?, ?, ?, ?, ?, ?);";
 
         try {
 
             ps = con.prepareStatement(sql);
 
-            ps.setInt(1, gas.getId());
+            ps.setInt(1, gasto.getId());
             ps.setInt(2, getMes_cierre());
             ps.setInt(3, getAño_cierre());
-            ps.setInt(4, getId());
+            ps.setInt(4, uni.getId());
             ps.setDouble(5, getMonto());
             ps.setString(6, getTipo_gasto());
 
@@ -245,15 +246,15 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT id_factura, sum(monto) as total FROM detalle_pagos where id_factura=? and mes=? and anio=? and tipo_gasto=? group by id_factura;";
+        String sql = "SELECT id_unidad, sum(monto) as total FROM detalle_pagos where id_unidad=? and mes=? and anio=? and tipo_gasto != 'Interes' and tipo_gasto != 'Sancion'  group by id_unidad;";
 
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setInt(1, modc.getId());
+            ps.setInt(1, modc.uni.getId());
             ps.setInt(2, modc.getMes_cierre());
             ps.setInt(3, modc.getAño_cierre());
-            ps.setString(4, modc.getTipo_gasto());
+            
 
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -331,13 +332,13 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO detalle_pagos(id_factura, id_gasto, mes, anio, monto, tipo_gasto) VALUES (?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO detalle_pagos(id_unidad, id_gasto, mes, anio, monto, tipo_gasto) VALUES (?, ?, ?, ?, ?, ?);";
 
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
-            ps.setInt(2, gas.getId());
+            ps.setInt(1, uni.getId());
+            ps.setInt(2, gasto.getId());
             ps.setInt(3, getMes_cierre());
             ps.setInt(4, getAño_cierre());
 
@@ -373,13 +374,13 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO detalle_pagos(id_factura, id_gasto, mes, anio, monto, tipo_gasto) VALUES (?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO detalle_pagos(id_unidad, id_gasto, mes, anio, monto, tipo_gasto) VALUES (?, ?, ?, ?, ?, ?);";
 
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
-            ps.setInt(2, gas.getId());
+            ps.setInt(1, uni.getId());
+            ps.setInt(2, gasto.getId());
             ps.setInt(3, getMes_cierre());
             ps.setInt(4, getAño_cierre());
 
@@ -570,15 +571,15 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE facturas_proveedores SET estado=?, n_mese_restante=? WHERE id=?;";
+        String sql = "UPDATE gasto SET estado=?, meses_restantes=? WHERE id=?;";
 
         try {
 
             ps = con.prepareStatement(sql);
             ps.setString(1, getEstado());
 
-            ps.setInt(2, cuo.getN_meses_restantes());
-            ps.setInt(3, cuo.getId());
+            ps.setInt(2, gasto.getMesesRestantes());
+            ps.setInt(3, gasto.getId());
             ps.execute();
 
             return true;
@@ -614,7 +615,7 @@ public class CerrarMes extends ConexionBD {
             ps = con.prepareStatement(sql);
             ps.setString(1, getEstado());
 
-            ps.setInt(2, san.getId());
+            ps.setInt(2, gasto.getId());
             ps.execute();
 
             return true;
@@ -683,19 +684,20 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT id, mes, anio FROM cierre_de_mes where id_condominio=?;";
+        String sql = "SELECT unidad.n_unidad, detalle_pagos.mes, detalle_pagos.anio, sum(detalle_pagos.monto) FROM public.detalle_pagos inner join unidad on detalle_pagos.id_unidad=unidad.id group by unidad.n_unidad, detalle_pagos.mes, detalle_pagos.anio;";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, SGC.condominioActual.getRif());
+           
             rs = ps.executeQuery();
 
             while (rs.next()) {
 
                 modc = new CerrarMes();
 
-                modc.setId(rs.getInt(1));
+                modc.uni.setN_unidad(rs.getString(1));
                 modc.setMes_cierre(rs.getInt(2));
                 modc.setAño_cierre(rs.getInt(3));
+                modc.setMonto(rs.getDouble(4));
 
                 listaCierremes.add(modc);
             }
@@ -721,7 +723,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT id_condominio FROM cierre_de_mes where mes=? and anio=?";
+        String sql = "SELECT id, mes, anio, monto, id_gasto, id_unidad, tipo_gasto FROM detalle_pagos where mes=? and anio=?";
 
         try {
 
@@ -1012,7 +1014,7 @@ public class CerrarMes extends ConexionBD {
                 modc.setMonto(rs.getDouble(2));
                 modc.prove.setCedula(rs.getString(3));
                 modc.prove.setNombre(rs.getString(4));
-                modc.cuo.setN_meses_restantes(rs.getInt(5));
+                modc.gasto.setMesesRestantes(rs.getInt(5));
 
                 listadetallecuotas.add(modc);
             }
