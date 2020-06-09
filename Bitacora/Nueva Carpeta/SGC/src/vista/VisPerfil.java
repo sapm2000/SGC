@@ -16,7 +16,7 @@ public class VisPerfil extends javax.swing.JPanel {
      */
     public VisPerfil() {
         initComponents();
-        jpanePregunta.setVisible(false);
+        jPanelPregunta.setVisible(false);
         jPanelClave.setVisible(false);
     }
 
@@ -31,11 +31,6 @@ public class VisPerfil extends javax.swing.JPanel {
 
         Apellido = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabla = new javax.swing.JTable();
-        txtBuscar = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         cbxConfigurar = new javax.swing.JComboBox<>();
         jPanelClave = new javax.swing.JPanel();
@@ -44,17 +39,24 @@ public class VisPerfil extends javax.swing.JPanel {
         txtPassActual = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtConfirmar = new javax.swing.JTextField();
-        btnProcesarContraseña = new javax.swing.JButton();
+        btnProcesarPassword = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         txtPassNuevo = new javax.swing.JTextField();
-        jpanePregunta = new javax.swing.JPanel();
+        jPanelPregunta = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtPregunta = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtRespuesta = new javax.swing.JTextField();
-        btnProcesar = new javax.swing.JButton();
-        txtUnidad = new javax.swing.JTextField();
+        btnProcesarPregunta = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        txtPassActualPregunta = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla = new javax.swing.JTable();
+        txtBuscar = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txtUsuario = new javax.swing.JTextField();
         txtApellidos = new javax.swing.JTextField();
         Apellido1 = new javax.swing.JLabel();
         Apellido2 = new javax.swing.JLabel();
@@ -71,6 +73,85 @@ public class VisPerfil extends javax.swing.JPanel {
         Apellido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Apellido.setText(" Tipo de Usuario");
         add(Apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 310, 30));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        cbxConfigurar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar Opción", "Modificar Pregunta Secreta", "Modificar Contraseña" }));
+        jPanel1.add(cbxConfigurar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 34, 293, -1));
+
+        jPanelClave.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel61.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel61.setText("Editar Clave");
+        jPanelClave.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 828, -1));
+
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Ingresar Contraseña Actual");
+        jPanelClave.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 310, 30));
+
+        txtPassActual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPassActualActionPerformed(evt);
+            }
+        });
+        jPanelClave.add(txtPassActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 214, -1));
+
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Confirmar Contraseña");
+        jPanelClave.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 310, 30));
+        jPanelClave.add(txtConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 214, -1));
+
+        btnProcesarPassword.setText("Procesar");
+        jPanelClave.add(btnProcesarPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, -1, -1));
+
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Ingresar Nueva Contraseña");
+        jPanelClave.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 310, 30));
+        jPanelClave.add(txtPassNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, 214, -1));
+
+        jPanel1.add(jPanelClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 840, 350));
+
+        jPanelPregunta.setBackground(new java.awt.Color(240, 240, 240));
+        jPanelPregunta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Editar Pregunta Secreta");
+        jPanelPregunta.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 828, -1));
+
+        txtPregunta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPreguntaActionPerformed(evt);
+            }
+        });
+        jPanelPregunta.add(txtPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 214, -1));
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Pregunta");
+        jPanelPregunta.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 310, 30));
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Respuesta");
+        jPanelPregunta.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 310, 30));
+        jPanelPregunta.add(txtRespuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 214, -1));
+
+        btnProcesarPregunta.setText("Procesar");
+        jPanelPregunta.add(btnProcesarPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, -1, -1));
+
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Ingresar Contraseña Actual");
+        jPanelPregunta.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 310, 30));
+
+        txtPassActualPregunta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPassActualPreguntaActionPerformed(evt);
+            }
+        });
+        jPanelPregunta.add(txtPassActualPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 214, -1));
+
+        jPanel1.add(jPanelPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 840, 350));
+
+        jTabbedPane1.addTab("Editar Perfil", jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -94,78 +175,10 @@ public class VisPerfil extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Comunicados", jPanel2);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        cbxConfigurar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar Opción", "Modificar Pregunta Secreta", "Modificar Contraseña" }));
-        jPanel1.add(cbxConfigurar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 34, 293, -1));
-
-        jPanelClave.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel61.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel61.setText("Editar Pregunta Secreta");
-        jPanelClave.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 828, -1));
-
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Ingresar Contraseña Actual");
-        jPanelClave.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 310, 30));
-
-        txtPassActual.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPassActualActionPerformed(evt);
-            }
-        });
-        jPanelClave.add(txtPassActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 214, -1));
-
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Confirmar Contraseña");
-        jPanelClave.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 310, 30));
-        jPanelClave.add(txtConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 214, -1));
-
-        btnProcesarContraseña.setText("Procesar");
-        jPanelClave.add(btnProcesarContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, -1, -1));
-
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Ingresar Nueva Contraseña");
-        jPanelClave.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 310, 30));
-        jPanelClave.add(txtPassNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, 214, -1));
-
-        jPanel1.add(jPanelClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 840, 350));
-
-        jpanePregunta.setBackground(new java.awt.Color(240, 240, 240));
-        jpanePregunta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Editar Pregunta Secreta");
-        jpanePregunta.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 828, -1));
-
-        txtPregunta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPreguntaActionPerformed(evt);
-            }
-        });
-        jpanePregunta.add(txtPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 214, -1));
-
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Pregunta");
-        jpanePregunta.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 310, 30));
-
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Respuesta");
-        jpanePregunta.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 310, 30));
-        jpanePregunta.add(txtRespuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 214, -1));
-
-        btnProcesar.setText("Procesar");
-        jpanePregunta.add(btnProcesar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, -1, -1));
-
-        jPanel1.add(jpanePregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 840, 350));
-
-        jTabbedPane1.addTab("Editar Perfil", jPanel1);
-
         add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 880, 670));
 
-        txtUnidad.setEditable(false);
-        add(txtUnidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 340, -1));
+        txtUsuario.setEditable(false);
+        add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 340, -1));
 
         txtApellidos.setEditable(false);
         txtApellidos.addActionListener(new java.awt.event.ActionListener() {
@@ -217,16 +230,21 @@ public class VisPerfil extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPassActualActionPerformed
 
+    private void txtPassActualPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActualPreguntaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPassActualPreguntaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Apellido;
     private javax.swing.JLabel Apellido1;
     private javax.swing.JLabel Apellido2;
     private javax.swing.JLabel Apellido3;
-    private javax.swing.JButton btnProcesar;
-    private javax.swing.JButton btnProcesarContraseña;
+    public javax.swing.JButton btnProcesarPassword;
+    public javax.swing.JButton btnProcesarPregunta;
     public javax.swing.JComboBox<String> cbxConfigurar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -239,9 +257,9 @@ public class VisPerfil extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     public javax.swing.JPanel jPanelClave;
+    public javax.swing.JPanel jPanelPregunta;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTabbedPane jTabbedPane1;
-    public javax.swing.JPanel jpanePregunta;
     public javax.swing.JTable tabla;
     public javax.swing.JTextField txtApellidos;
     public javax.swing.JTextField txtBuscar;
@@ -249,10 +267,11 @@ public class VisPerfil extends javax.swing.JPanel {
     public javax.swing.JTextField txtCorreo;
     public javax.swing.JTextField txtNombres;
     public javax.swing.JTextField txtPassActual;
+    public javax.swing.JTextField txtPassActualPregunta;
     public javax.swing.JTextField txtPassNuevo;
     public javax.swing.JTextField txtPregunta;
     public javax.swing.JTextField txtRespuesta;
     public javax.swing.JTextField txtTelefono;
-    public javax.swing.JTextField txtUnidad;
+    public javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

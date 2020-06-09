@@ -41,12 +41,15 @@ public class Usuario extends ConexionBD {
             rs = ps.executeQuery();
 
             rs.next();
-            setTipoU(new TipoUsuario(rs.getInt("id"), rs.getString("tipo"), funciones));
+            setTipoU(new TipoUsuario());
+            getTipoU().setId(rs.getInt("id_tipo"));
+            getTipoU().setNombre(rs.getString("tipo"));
 
-            do {
+            while (rs.next()) {
                 funciones.add(new Funcion(rs.getInt("id_funcion"), rs.getString("funcion"), rs.getBoolean("registrar"), rs.getBoolean("modificar"), rs.getBoolean("eliminar"), rs.getBoolean("todo")));
+            }
 
-            } while (rs.next());
+            getTipoU().setFunciones(funciones);
 
             return true;
 
@@ -180,7 +183,6 @@ public class Usuario extends ConexionBD {
             if (result) {
                 setPassword(null);
                 consultarPermisos();
-
             }
 
             return result;
@@ -357,41 +359,134 @@ public class Usuario extends ConexionBD {
         }
 
     }
-    
-        public Boolean consultarPerfil() {
+
+    public Boolean consultarPerfil() {
         Connection con = getConexion();
         ps = null;
         rs = null;
 
         int ind;
 
-        String sql = "SELECT * FROM v_perfil WHERE id=?;";
+        String sql = "SELECT * FROM v_perfil WHERE usuario=?;";
 
         try {
             ps = con.prepareStatement(sql);
 
             ind = 1;
-            ps.setInt(ind++, getId());
+            ps.setString(ind++, getUsuario());
 
             rs = ps.executeQuery();
 
             if (rs.next()) {
+                setId(rs.getInt("id"));
+                setPregunta(rs.getString("pregunta"));
+
+                setPersona(new Persona());
+                getPersona().setpNombre(rs.getString("p_nombre"));
+                getPersona().setsNombre(rs.getString("s_nombre"));
+                getPersona().setpApellido(rs.getString("p_apellido"));
+                getPersona().setsApellido(rs.getString("s_apellido"));
+                getPersona().setTelefono(rs.getString("telefono"));
+                getPersona().setCorreo(rs.getString("correo"));
+
                 return true;
 
             } else {
                 return false;
-
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
-        }finally{
+        } finally {
             try {
                 con.close();
             } catch (SQLException e) {
                 System.err.println(e);
+            }
+        }
+    }
+
+    public boolean modificarPregunta(String pregunta, String respuesta, String password) {
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT cambiar_pregunta(?,?,?,?)";
+
+        try {
+
+            int i = 1;
+
+            ps = con.prepareStatement(sql);
+            ps.setString(i++, getUsuario());
+            ps.setString(i++, pregunta);
+            ps.setString(i++, respuesta);
+            ps.setString(i++, password);
+
+            rs = ps.executeQuery();
+
+            boolean result = false;
+
+            while (rs.next()) {
+                result = rs.getBoolean(1);
+
+            }
+
+            return result;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public boolean modificarClave(String passwordNuevo, String passwordActual) {
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT cambiar_clave(?,?,?)";
+
+        try {
+
+            int i = 1;
+
+            ps = con.prepareStatement(sql);
+            ps.setString(i++, getUsuario());
+            ps.setString(i++, passwordNuevo);
+            ps.setString(i++, passwordActual);
+
+            rs = ps.executeQuery();
+
+            boolean result = false;
+
+            while (rs.next()) {
+                result = rs.getBoolean(1);
+
+            }
+
+            return result;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

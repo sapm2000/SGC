@@ -72,7 +72,8 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener {
                 String claveSegura = Validacion.encriptar(String.valueOf(vista.txtClave.getPassword()));
                 modelo.setPassword(claveSegura);
                 modelo.setPregunta(vista.txtPregunta.getText());
-                modelo.setRespuesta(vista.txtRespuesta.getText());
+                String respuestaSegura = Validacion.encriptar(String.valueOf(vista.txtRespuesta.getText()));
+                modelo.setRespuesta(respuestaSegura);
                 int ind = vista.cbxTipo.getSelectedIndex() - 1;
                 modelo.getTipoU().setId(listaTipo.get(ind).getId());
 
