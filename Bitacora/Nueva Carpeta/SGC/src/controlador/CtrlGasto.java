@@ -111,10 +111,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
 
             vista.btnBuscarproveedor.setVisible(true);
 
-            vista.txtProveedor.setText("");
-            vista.txtProveedor.setText("");
-            vista.txtNmeses.setText("");
-            vista.txaObservaciones.setText("");
+            limpiar();
 
             CtrlVentana.cambiarVista(vista);
         }

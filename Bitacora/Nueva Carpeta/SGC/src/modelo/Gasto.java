@@ -314,7 +314,6 @@ public class Gasto extends ConexionBD {
         try {
             ps = con.prepareStatement(sql);
 
-           
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -330,7 +329,7 @@ public class Gasto extends ConexionBD {
                 modcuo.setMonto(rs.getDouble("monto"));
                 modcuo.setSaldo(rs.getDouble("saldo"));
                 modcuo.setNumMeses(rs.getInt("n_meses"));
-                
+
                 modcuo.setObservacion(rs.getString("observacion"));
                 modcuo.setEstado(rs.getString("estado"));
                 modcuo.setMesesRestantes(rs.getInt("meses_restantes"));
@@ -444,9 +443,12 @@ public class Gasto extends ConexionBD {
 
             numNuevos = getConceptos().size();
             numViejos = conceptosViejos.size();
+            Boolean procesado;
 
             // Ciclo que recorre los conceptos nuevos
             for (int j = 0; j < numNuevos; j++) {
+
+                procesado = false;
 
                 // Ciclo que recorre los conceptos viejos
                 for (int i = 0; i < numViejos; i++) {
@@ -460,23 +462,42 @@ public class Gasto extends ConexionBD {
                         conceptosViejos.remove(i);
                         montosViejos.remove(i);
                         numViejos--;
+                        procesado = true;
+                        break;
+
+                        //En cambio, si el concepto coincide, pero el monto es diferente
+                    } else if (getConceptos().get(j).getId().equals(conceptosViejos.get(i).getId()) && !getMontoConceptos().get(j).equals(montosViejos.get(i))) {
+                        //Se modifica el monto del concepto y se elimina de ambos arreglos junto al monto para dejar de compararlos
+                        modificarMontoConcepto(getConceptos().get(j).getId(), getMontoConceptos().get(j));
+                        System.out.println("se modificó el monto del concepto " + getConceptos().get(j).getId() + ", de " + montosViejos.get(i) + " a " + getMontoConceptos().get(j));
+                        getConceptos().remove(j);
+                        getMontoConceptos().remove(j);
+                        numNuevos--;
+                        conceptosViejos.remove(i);
+                        montosViejos.remove(i);
+                        numViejos--;
+                        procesado = true;
                         break;
                     }
                 }
 
-                // Si el propietario nuevo no está en la lista de viejos
-                if (getConceptos().size() > 0) {
-                    // Se agrega como nuevo propietario y se elimina del arreglo de nuevos
+                // Si el concepto nuevo no ha sido procesado
+                if (!procesado) {
+                    // Se agrega como nuevo concepto y se elimina del arreglo de nuevos
                     agregarConcepto(getConceptos().get(j).getId(), getMontoConceptos().get(j));
                     System.out.println("se agrego el concepto " + getConceptos().get(j).getId() + " con el monto " + getMontoConceptos().get(j));
                     getConceptos().remove(j);
                     getMontoConceptos().remove(j);
                     numNuevos--;
                     j--;
+
+                } else {
+                    //Se reduce el indice que recorre los conceptos nuevos
+                    j--;
                 }
             }
 
-            // Se retiran los viejos propietarios que quedaron en el arreglo de viejos (ya que fueron eliminados)
+            // Se retiran los viejos conceptos que quedaron en el arreglo de viejos (ya que fueron eliminados)
             retirarConceptos(conceptosViejos);
 
             return true;
@@ -495,10 +516,29 @@ public class Gasto extends ConexionBD {
         }
     }
 
+    private Boolean modificarMontoConcepto(Integer id, Double monto) throws SQLException {
+        int ind;
+        ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE puente_gasto_concepto SET monto = ? WHERE id_gasto = ? AND id_concepto = ?;";
+
+        ps = con.prepareStatement(sql);
+
+        ind = 1;
+        ps.setDouble(ind++, monto);
+        ps.setInt(ind++, getId());
+        ps.setInt(ind++, id);
+
+        ps.execute();
+
+        return true;
+    }
+
     public boolean eliminar_cuotas_especiales(Gasto modcuo) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "DELETE FROM facturas_proveedores WHERE id=?;";
 
@@ -533,8 +573,8 @@ public class Gasto extends ConexionBD {
 
     public boolean eliminar_puente(Gasto modcuo) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "DELETE FROM puente_concepto_factura WHERE id_factura_proveedor=?";
 
@@ -568,8 +608,8 @@ public class Gasto extends ConexionBD {
     }
 
     public boolean restarSaldo(Float saldoNuevo) {
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE facturas_proveedores SET saldo = saldo - ? WHERE id = ?;";
 
