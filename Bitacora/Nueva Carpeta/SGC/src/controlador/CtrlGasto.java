@@ -13,6 +13,8 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import static java.lang.String.valueOf;
 import java.util.ArrayList;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -20,6 +22,7 @@ import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableRowSorter;
@@ -431,7 +434,8 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
 
     public void llenarTablaConcepto(JTable tablaD, String accion) {
         int ind;
-
+     
+        
         listaConcepto = modConcepto.listar();
 
         DefaultTableModel modeloT = new DefaultTableModel() {
@@ -446,6 +450,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
                         break;
                     case 2:
                     case 3:
+                    case 4:
                         resu = true;
                         break;
                     default:
@@ -464,9 +469,10 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
         modeloT.addColumn("Concepto");
         modeloT.addColumn("Seleccione");
         modeloT.addColumn("Monto");
+        modeloT.addColumn("Moneda");
 
         Object[] columna = new Object[modeloT.getColumnCount()];
-
+        
         int numRegistro = listaConcepto.size();
 
         //Para cada concepto de la BD
@@ -500,7 +506,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
             //Se añade la fila a la tabla
             modeloT.addRow(columna);
         }
-
+        
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
 
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -508,6 +514,12 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
         for (int i = 0; i < modeloT.getColumnCount(); i++) {
             tablaD.getColumnModel().getColumn(i).setCellRenderer(tcr);
         }
+        String[] moneda = {"Bolívares","Dólares","Petros"};
+        JComboBox cbx = new JComboBox(moneda);
+        TableColumn tc = tablaD.getColumnModel().getColumn(4);
+        TableCellEditor tce = new DefaultCellEditor(cbx);
+        tc.setCellEditor(tce);
+        cbx.setSelectedIndex(0);
     }
 
     public void llenarTablaProveedores(JTable tablaD) {
