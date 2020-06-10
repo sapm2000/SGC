@@ -22,6 +22,7 @@ public class Gasto extends ConexionBD {
     private Double saldo;
     private String estado;
     private String pagado;
+    private String moneda;
 
     private ArrayList<ConceptoGasto> conceptos = new ArrayList();
     private ArrayList<Double> montoConceptos = new ArrayList();
@@ -134,7 +135,7 @@ public class Gasto extends ConexionBD {
             ps = null;
             con = getConexion();
 
-            String sql = "INSERT INTO gasto(tipo, id_proveedor, calcular_por, mes, anio, n_meses, observacion, id_asamblea, meses_restantes, monto, saldo) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+            String sql = "INSERT INTO gasto(tipo, id_proveedor, calcular_por, mes, anio, n_meses, observacion, id_asamblea, meses_restantes, monto, saldo, moneda) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
 
             ps = con.prepareStatement(sql);
             ind = 1;
@@ -156,6 +157,7 @@ public class Gasto extends ConexionBD {
             ps.setInt(ind++, getMesesRestantes());
             ps.setDouble(ind++, getMonto());
             ps.setDouble(ind++, getSaldo());
+            ps.setString(ind++, getMoneda());
             ps.execute();
 
             if (buscarId()) {
@@ -255,6 +257,7 @@ public class Gasto extends ConexionBD {
                 item.setSaldo(rs.getDouble("saldo"));
                 item.setNumMeses(rs.getInt("n_meses"));
                 item.setMesesRestantes(rs.getInt("meses_restantes"));
+                item.setMoneda(rs.getString("moneda"));
 
                 if (rs.getInt("id_asamblea") != 0) {
                     item.asamblea = new Asambleas();
@@ -361,7 +364,7 @@ public class Gasto extends ConexionBD {
             ps = null;
             con = getConexion();
 
-            String sql = "UPDATE gasto SET tipo=?, id_proveedor=?, calcular_por=?, mes=?, anio=?, n_meses=?, id_asamblea=?, observacion=?, meses_restantes=?, monto=?, saldo=? WHERE id = ?;";
+            String sql = "UPDATE gasto SET tipo=?, id_proveedor=?, calcular_por=?, mes=?, anio=?, n_meses=?, id_asamblea=?, observacion=?, meses_restantes=?, monto=?, saldo=?, moneda=? WHERE id = ?;";
 
             ps = con.prepareStatement(sql);
             ind = 1;
@@ -384,6 +387,7 @@ public class Gasto extends ConexionBD {
             System.out.println("monto total: " + getMonto());
             ps.setDouble(ind++, getMonto());
             ps.setDouble(ind++, getSaldo());
+            ps.setString(ind++, getMoneda());
 
             ps.setInt(ind++, getId());
 
@@ -797,5 +801,15 @@ public class Gasto extends ConexionBD {
     public void setMontoConceptos(ArrayList<Double> montoConceptos) {
         this.montoConceptos = montoConceptos;
     }
+
+    public String getMoneda() {
+        return moneda;
+    }
+
+    public void setMoneda(String moneda) {
+        this.moneda = moneda;
+    }
+    
+    
 
 }
