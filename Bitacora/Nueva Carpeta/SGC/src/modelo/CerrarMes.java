@@ -21,7 +21,8 @@ public class CerrarMes extends ConexionBD {
     private int id;
     private int mes_cierre;
     private int año_cierre;
-    private double monto;
+    private double monto_dolar;
+    private double monto_bolivar;
     public Unidades uni = new Unidades();
     public GastoComun gas = new GastoComun();
     public Sancion san = new Sancion();
@@ -34,6 +35,8 @@ public class CerrarMes extends ConexionBD {
     private double saldo_restante;
     private String tipo_gasto;
     public Gasto gasto = new Gasto();
+    private double paridad;
+    private String moneda_dominante;
 
     public int getMeses_deuda() {
         return meses_deuda;
@@ -41,6 +44,40 @@ public class CerrarMes extends ConexionBD {
 
     public void setMeses_deuda(int meses_deuda) {
         this.meses_deuda = meses_deuda;
+    }
+
+    public double getParidad() {
+        return paridad;
+    }
+
+    public void setParidad(double paridad) {
+        this.paridad = paridad;
+    }
+
+    public String getMoneda_dominante() {
+        return moneda_dominante;
+    }
+
+    public void setMoneda_dominante(String moneda_dominante) {
+        this.moneda_dominante = moneda_dominante;
+    }
+    
+    
+
+    public double getMonto_dolar() {
+        return monto_dolar;
+    }
+
+    public void setMonto_dolar(double monto_dolar) {
+        this.monto_dolar = monto_dolar;
+    }
+
+    public double getMonto_bolivar() {
+        return monto_bolivar;
+    }
+
+    public void setMonto_bolivar(double monto_bolivar) {
+        this.monto_bolivar = monto_bolivar;
     }
 
    
@@ -89,14 +126,7 @@ public class CerrarMes extends ConexionBD {
         this.año_cierre = año_cierre;
     }
 
-    public double getMonto() {
-        return monto;
-    }
-
-    public void setMonto(double monto) {
-        this.monto = monto;
-    }
-
+   
    
 
     
@@ -119,92 +149,16 @@ public class CerrarMes extends ConexionBD {
 
    
 
-    public boolean registrarGasto(CerrarMes modc) {
+    
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
-
-        String sql = "INSERT INTO detalle_pagos(mes, anio, monto, id_gasto, id_factura, tipo_gasto) VALUES (?, ?, ?, ?, ?, ?);";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-
-            ps.setInt(1, getMes_cierre());
-            ps.setInt(2, getAño_cierre());
-            ps.setDouble(3, getMonto());
-            ps.setInt(4, gas.getId());
-            ps.setInt(5, getId());
-            ps.setString(6, getTipo_gasto());
-            ps.execute();
-
-            return true;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-    }
-
-    public boolean cerrar_mes(CerrarMes modc) {
-
-        PreparedStatement ps = null;
-        Connection con = getConexion();
-
-        String sql = "INSERT INTO cierre_de_mes(mes, anio,id_condominio) VALUES (?, ?,?);";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-
-            ps.setInt(1, getMes_cierre());
-            ps.setInt(2, getAño_cierre());
-            ps.setString(3, SGC.condominioActual.getRif());
-
-            ps.execute();
-
-            return true;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-    }
+   
 
     public boolean registrar_cuota(CerrarMes modc) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO detalle_pagos(id_gasto, mes, anio, id_unidad, monto, tipo_gasto) VALUES (?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO detalle_pagos(id_gasto, mes, anio, id_unidad, monto_dolar,monto_bolivar, tipo_gasto, moneda_dominante, paridad) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?);";
 
         try {
 
@@ -214,8 +168,11 @@ public class CerrarMes extends ConexionBD {
             ps.setInt(2, getMes_cierre());
             ps.setInt(3, getAño_cierre());
             ps.setInt(4, uni.getId());
-            ps.setDouble(5, getMonto());
-            ps.setString(6, getTipo_gasto());
+            ps.setDouble(5, getMonto_dolar());
+             ps.setDouble(6, getMonto_bolivar());
+            ps.setString(7, getTipo_gasto());
+            ps.setString(8,getMoneda_dominante());
+            ps.setDouble(9,getParidad());
 
             ps.execute();
 

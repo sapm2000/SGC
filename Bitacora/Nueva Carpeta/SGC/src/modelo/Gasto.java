@@ -313,7 +313,7 @@ public class Gasto extends ConexionBD {
         ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT id, tipo, id_proveedor, calcular_por, mes, anio, n_meses, observacion, meses_restantes, monto, saldo, estado, pagado FROM gasto where meses_restantes !=0;";
+        String sql = "SELECT id, tipo, id_proveedor, calcular_por, mes, anio, n_meses, observacion, meses_restantes, monto, saldo, estado, pagado, moneda FROM gasto where meses_restantes !=0;";
         try {
             ps = con.prepareStatement(sql);
 
@@ -332,7 +332,7 @@ public class Gasto extends ConexionBD {
                 modcuo.setMonto(rs.getDouble("monto"));
                 modcuo.setSaldo(rs.getDouble("saldo"));
                 modcuo.setNumMeses(rs.getInt("n_meses"));
-
+                modcuo.setMoneda(rs.getString("moneda"));
                 modcuo.setObservacion(rs.getString("observacion"));
                 modcuo.setEstado(rs.getString("estado"));
                 modcuo.setMesesRestantes(rs.getInt("meses_restantes"));
