@@ -186,8 +186,7 @@ public class CtrlCerrarMes implements ActionListener, KeyListener {
                                                 año_c = año_c + 1;
                                             }
                                         }
-                                        JOptionPane.showMessageDialog(null, año);
-                                        JOptionPane.showMessageDialog(null, año_c);
+                                        
                                         if (año <= año_c) {
                                             
                                             

@@ -347,8 +347,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
         vista.jCalcular.setSelectedIndex(0);
         vista.cbxMoneda.setSelectedIndex(0);
         vista.txtNmeses.setText(null);
-        vista.jMonthChooser1.setMonth(0);
-        vista.jYearChooser1.setYear(0);
+       
         vista.txtNmeses.setText(null);
         vista.jAsamblea.setSelectedIndex(0);
         vista.txaObservaciones.setText(null);
