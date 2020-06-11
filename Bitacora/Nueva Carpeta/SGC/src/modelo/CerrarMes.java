@@ -680,7 +680,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = getConexion();
-        String sql = "SELECT id, mes, anio, monto, id_gasto, id_unidad, tipo_gasto FROM detalle_pagos where mes=? and anio=?";
+        String sql = "SELECT * FROM detalle_pagos where mes=? and anio=?";
 
         try {
 

@@ -97,8 +97,9 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
         modeloT.addColumn("Mes a aplicar");
         modeloT.addColumn("Nº de Unidades");
         modeloT.addColumn("Estado");
+        modeloT.addColumn("Moneda");
 
-        Object[] columna = new Object[7];
+        Object[] columna = new Object[8];
 
         int numRegistro = listaSancion.size();
 
@@ -112,6 +113,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
             columna[4] = fecha;
             columna[5] = listaSancion.get(i).getCantidad_de_unidades();
             columna[6] = listaSancion.get(i).getEstado();
+            columna[7] = listaSancion.get(i).getMoneda();
 
             modeloT.addRow(columna);
 
@@ -124,6 +126,8 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
         tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(6).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(7).setCellRenderer(tcr);
     }
 
     public void llenartablaunidadesmod(JTable tablaD) {
@@ -280,6 +284,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                         modsan.setDescripcion(vista.txaDescripcion.getText());
                         modsan.setMonto(Double.parseDouble(vista.txtmonto.getText()));
                         modsan.setEstado("Pendiente");
+                        modsan.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
                         modc.setMes_cierre(vista.jMonthChooser1.getMonth() + 1);
                         modc.setAño_cierre(vista.jYearChooser1.getYear());
 
@@ -345,7 +350,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                         modsan.setDescripcion(vista.txaDescripcion.getText());
                         modsan.setId(Integer.parseInt(vista.txtId.getText()));
                         modsan.setMonto(Double.parseDouble(vista.txtmonto.getText()));
-
+                        modsan.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
                         int x = 0;
                         if (modsan.buscarSancionRepetido(modsan)) {
                             x = modsan.getId();
@@ -474,6 +479,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
         int mes = modsan.getMes() - 1;
         vista.jMonthChooser1.setMonth(mes);
         vista.jYearChooser1.setYear(modsan.getAño());
+        vista.cbxMoneda.setSelectedItem(modsan.getMoneda());
         if (modsan.getEstado().equals("Pendiente")) {
             llenartablaunidadesmod(vista.jTable1);
             addCheckBox(1, vista.jTable1);

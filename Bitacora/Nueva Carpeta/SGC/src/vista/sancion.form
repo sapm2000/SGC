@@ -210,10 +210,9 @@
                   <Font name="Tahoma" size="14" style="1"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
-                    <StringItem index="0" value="Seleccione el Tipo de Deuda"/>
-                    <StringItem index="1" value="Multa"/>
-                    <StringItem index="2" value="Interes de mora"/>
+                  <StringArray count="2">
+                    <StringItem index="0" value="Multa"/>
+                    <StringItem index="1" value="Interes de mora"/>
                   </StringArray>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Seleccione el tipo de deuda de la sanci&#xf3;n"/>

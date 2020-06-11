@@ -27,6 +27,7 @@ public class Sancion extends ConexionBD {
     private int cantidad_de_unidades;
     private String estado;
     private int id;
+    private String moneda;
 
     public int getId() {
         return id;
@@ -92,11 +93,21 @@ public class Sancion extends ConexionBD {
         this.cantidad_de_unidades = cantidad_de_unidades;
     }
 
+    public String getMoneda() {
+        return moneda;
+    }
+
+    public void setMoneda(String moneda) {
+        this.moneda = moneda;
+    }
+    
+    
+
     public boolean registrarsancion(Sancion modsan) {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO sancion(tipo, mes, anio, monto, descripcion,  estado) VALUES (?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO sancion(tipo, mes, anio, monto, descripcion,  estado, moneda) VALUES (?, ?, ?, ?, ?, ?, ?);";
 
         try {
 
@@ -108,6 +119,7 @@ public class Sancion extends ConexionBD {
             ps.setString(5, modsan.getDescripcion());
 
             ps.setString(6, modsan.getEstado());
+            ps.setString(7, modsan.getMoneda());
 
             ps.execute();
             return true;
@@ -213,7 +225,7 @@ public class Sancion extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT sancion.id, tipo, mes, anio, monto, descripcion, count(id_sancion) as total, estado FROM sancion inner join puente_sancion_unidad on puente_sancion_unidad.id_sancion=sancion.id inner join unidad on puente_sancion_unidad.id_unidad=unidad.id group by sancion.id";
+        String sql = "SELECT sancion.id, tipo, mes, anio, monto, descripcion, count(id_sancion) as total, estado, moneda FROM sancion inner join puente_sancion_unidad on puente_sancion_unidad.id_sancion=sancion.id inner join unidad on puente_sancion_unidad.id_unidad=unidad.id group by sancion.id";
         try {
             ps = con.prepareStatement(sql);
 
@@ -232,6 +244,7 @@ public class Sancion extends ConexionBD {
                 modsan.setDescripcion(rs.getString(i++));
                 modsan.setCantidad_de_unidades(rs.getInt(i++));
                 modsan.setEstado(rs.getString(i++));
+                modsan.setMoneda(rs.getString(i++));
 
                 listaSancion.add(modsan);
             }
@@ -317,6 +330,7 @@ public class Sancion extends ConexionBD {
                 modsan.setMonto(rs.getDouble("monto"));
                 modsan.setDescripcion(rs.getString("descripcion"));
                 modsan.setEstado(rs.getString("estado"));
+                modsan.setMoneda(rs.getString("moneda"));
 
                 return true;
             }
@@ -472,7 +486,7 @@ public class Sancion extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "UPDATE sancion SET tipo=?, mes=?, anio=?, monto=?, descripcion=? WHERE id=?;";
+        String sql = "UPDATE sancion SET tipo=?, mes=?, anio=?, monto=?, descripcion=?, moneda=? WHERE id=?;";
 
         try {
 
@@ -482,7 +496,8 @@ public class Sancion extends ConexionBD {
             ps.setInt(3, getAño());
             ps.setDouble(4, getMonto());
             ps.setString(5, getDescripcion());
-            ps.setInt(6, getId());
+            ps.setString(6, getMoneda());
+            ps.setInt(7, getId());
 
             ps.execute();
 
