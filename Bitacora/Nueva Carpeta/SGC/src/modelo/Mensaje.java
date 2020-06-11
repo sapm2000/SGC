@@ -10,26 +10,27 @@ import sgc.SGC;
 
 public class Mensaje extends ConexionBD {
 
-    private int id;
+    private Integer id;
     private String asunto;
     private String contenido;
-    private Boolean estado;
     private Usuario emisor = new Usuario();
     private String fecha;
     private ArrayList<Usuario> receptores = new ArrayList();
+    private Boolean leido;
 
     private Connection con;
 
-    public Boolean actualizarEstado() {
+    public Boolean actualizarLeido() {
         try {
             ps = null;
             rs = null;
             con = getConexion();
 
-            String sql = "UPDATE mensaje SET estado = true WHERE id = ?;";
+            String sql = "UPDATE puente_mensaje_usuario SET leido = true WHERE id_mensaje = ? AND receptor = ?;";
 
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
+            ps.setInt(2, SGC.usuarioActual.getId());
 
             if (ps.executeUpdate() == 1) {
                 return true;
@@ -95,7 +96,7 @@ public class Mensaje extends ConexionBD {
             String sql = "";
 
             if (bandeja.equals("Recibidos")) {
-                sql = "SELECT * FROM v_bandeja_entrada WHERE receptor = ?;";
+                sql = "SELECT * FROM v_bandeja_entrada WHERE receptor = ? AND activo = true;";
 
             } else if (bandeja.equals("Enviados")) {
                 sql = "SELECT * FROM v_bandeja_salida WHERE id_emisor = ?;";
@@ -115,11 +116,14 @@ public class Mensaje extends ConexionBD {
                 item.setAsunto(rs.getString("asunto"));
                 item.setContenido(rs.getString("contenido"));
                 item.setFecha(rs.getString("fecha"));
-                item.setEstado(rs.getBoolean("estado"));
                 item.emisor = new Usuario();
                 item.emisor.setId(rs.getInt("id_emisor"));
                 item.emisor.getPersona().setpNombre(rs.getString("nombre"));
                 item.emisor.getPersona().setpApellido(rs.getString("apellido"));
+
+                if (bandeja.equals("Recibidos")) {
+                    item.leido = rs.getBoolean("leido");
+                }
 
                 ps.setInt(1, item.id);
                 rs2 = ps.executeQuery();
@@ -193,7 +197,7 @@ public class Mensaje extends ConexionBD {
             ps = null;
             con = getConexion();
 
-            String sql = "INSERT INTO puente_mensaje_usuario(id_mensaje, id_usuario) VALUES (?,?);";
+            String sql = "INSERT INTO puente_mensaje_usuario(id_mensaje, receptor) VALUES (?,?);";
 
             ps = con.prepareStatement(sql);
             ind = 1;
@@ -220,11 +224,11 @@ public class Mensaje extends ConexionBD {
         }
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -244,12 +248,12 @@ public class Mensaje extends ConexionBD {
         this.contenido = contenido;
     }
 
-    public Boolean getEstado() {
-        return estado;
+    public Boolean getLeido() {
+        return leido;
     }
 
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
+    public void setLeido(Boolean leido) {
+        this.leido = leido;
     }
 
     public Usuario getEmisor() {

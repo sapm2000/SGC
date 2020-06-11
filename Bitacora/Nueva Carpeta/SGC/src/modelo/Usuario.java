@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class Usuario extends ConexionBD {
 
-    private int id;
+    private Integer id;
     private String usuario;
     private String password;
     private String pregunta;
@@ -491,11 +491,11 @@ public class Usuario extends ConexionBD {
         }
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

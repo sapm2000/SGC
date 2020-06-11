@@ -75,6 +75,7 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
         if (e.getSource() == vista.btnEnviar) {
 
             if (validar()) {
+                modelo = new Mensaje();
                 modelo.setAsunto(vista.txtAsunto.getText());
                 modelo.setContenido(vista.txaMensaje.getText());
 
@@ -121,7 +122,7 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
             Mensaje mensaje;
             fila = catalogo.tablaRecibidos.getSelectedRow();
             mensaje = listaRecibidos.get(fila);
-            mensaje.actualizarEstado();
+            mensaje.actualizarLeido();
             mostrarMensaje(mensaje);
         }
 
@@ -291,7 +292,7 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
             columna[ind++] = listaRecibidos.get(i).getEmisor().getPersona().getpNombre() + " " + listaRecibidos.get(i).getEmisor().getPersona().getpApellido();
             columna[ind++] = listaRecibidos.get(i).getAsunto();
             columna[ind++] = listaRecibidos.get(i).getFecha();
-            columna[ind++] = listaRecibidos.get(i).getEstado();
+            columna[ind++] = listaRecibidos.get(i).getLeido();
 
             modeloT.addRow(columna);
         }
