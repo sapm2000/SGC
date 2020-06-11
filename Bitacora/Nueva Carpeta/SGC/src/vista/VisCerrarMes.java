@@ -37,9 +37,11 @@ public class VisCerrarMes extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         txtParidad = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -54,28 +56,28 @@ public class VisCerrarMes extends javax.swing.JPanel {
         jButton1.setText("<html>\n<br><br><br>Procesar el Pago y Descargar el Recibo\n</html>");
         jButton1.setBorder(null);
         jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setHideActionText(true);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setIconTextGap(10);
         jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/2imageonline-co-merged-image.png"))); // NOI18N
         jButton1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/2imageonline-co-merged-image.png"))); // NOI18N
         jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/2imageonline-co-merged-image.png"))); // NOI18N
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 220, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 220, -1));
 
         jPanel2.setBackground(new java.awt.Color(0, 94, 159));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jYearChooser1.setToolTipText("Elija el año a cerrar");
-        jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, -1, -1));
+        jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, -1, 30));
 
         jMonthChooser1.setToolTipText("Elija el mes a cerrar");
-        jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 49, -1, 20));
+        jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Mes a Cerrar:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 100, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 100, 30));
 
         cbxMoneda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bolívar", "Dólar" }));
@@ -85,19 +87,29 @@ public class VisCerrarMes extends javax.swing.JPanel {
                 cbxMonedaActionPerformed(evt);
             }
         });
-        jPanel2.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 110, 20));
+        jPanel2.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 140, 20));
 
-        jLabel4.setText("seleccione la moneda que mantendra el valor");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 80, -1, -1));
-        jPanel2.add(txtParidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 90, -1));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("<html>\nSeleccione la <br> moneda que <br> mantendra el valor:\n</html>");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
-        jLabel5.setText("paridad");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
+        txtParidad.setBackground(new java.awt.Color(0, 94, 159));
+        txtParidad.setBorder(null);
+        jPanel2.add(txtParidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 180, 20));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 320, 120));
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Paridad:");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 180, 10));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 320, 210));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondofomu340-130.png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 350, 140));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 350, 140));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Recibo");
@@ -115,7 +127,10 @@ public class VisCerrarMes extends javax.swing.JPanel {
         btnSalir.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow (1).png"))); // NOI18N
         jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, 380, 300));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondofomu340-130.png"))); // NOI18N
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 350, 140));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 380, 380));
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbxMonedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMonedaActionPerformed
@@ -132,9 +147,11 @@ public class VisCerrarMes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     public com.toedter.calendar.JMonthChooser jMonthChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator2;
     public com.toedter.calendar.JYearChooser jYearChooser1;
     public javax.swing.JTextField txtParidad;
     // End of variables declaration//GEN-END:variables
