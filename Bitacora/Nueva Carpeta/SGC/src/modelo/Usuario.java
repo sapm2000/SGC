@@ -141,7 +141,10 @@ public class Usuario extends ConexionBD {
                 usu = new Usuario();
                 usu.setId(rs.getInt("id"));
                 usu.setUsuario(rs.getString("usuario"));
-                usu.setPersona(new Persona(rs.getString("ci_persona")));
+                usu.setPersona(new Persona());
+                usu.persona.setCedula(rs.getString("cedula"));
+                usu.persona.setpNombre(rs.getString("nombre"));
+                usu.persona.setpApellido(rs.getString("apellido"));
                 listarUsu.add(usu);
 
             }
@@ -157,13 +160,12 @@ public class Usuario extends ConexionBD {
 
     public boolean login() {
 
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
-        String sql = "SELECT login(?,?)";
-
         try {
+            con = getConexion();
+            ps = null;
+            rs = null;
+
+            String sql = "SELECT login(?,?)";
 
             int i = 1;
 
@@ -177,7 +179,6 @@ public class Usuario extends ConexionBD {
 
             while (rs.next()) {
                 result = rs.getBoolean(1);
-
             }
 
             if (result) {
@@ -198,7 +199,6 @@ public class Usuario extends ConexionBD {
                 Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
     }
 
     public Boolean reactivar() {
@@ -273,7 +273,7 @@ public class Usuario extends ConexionBD {
 
         int ind;
 
-        String sql = "SELECT ci_persona FROM v_usuario WHERE ci_persona = ?;";
+        String sql = "SELECT cedula FROM v_usuario WHERE cedula = ?;";
 
         try {
             ps = con.prepareStatement(sql);
@@ -449,7 +449,7 @@ public class Usuario extends ConexionBD {
             }
         }
     }
-    
+
     public boolean modificarClave(String passwordNuevo, String passwordActual) {
 
         Connection con = getConexion();

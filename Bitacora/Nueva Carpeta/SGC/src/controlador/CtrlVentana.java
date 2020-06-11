@@ -127,7 +127,7 @@ public class CtrlVentana implements ActionListener {
             ctrl = new CtrlCategoriaGasto();
         }
         if (e.getSource() == ventana.jComunicados) {
-            ctrl = new CtrlComunicado();
+            ctrl = new CtrlMensaje();
         }
         if (e.getSource() == ventana.jConcepto) {
             ctrl = new CtrlConceptoGasto();

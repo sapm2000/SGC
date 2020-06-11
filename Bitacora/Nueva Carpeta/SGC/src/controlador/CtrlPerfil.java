@@ -7,7 +7,6 @@ import java.awt.event.ItemListener;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 import sgc.SGC;
-import vista.VisMensaje;
 import vista.VisPerfil;
 
 public class CtrlPerfil implements ActionListener, ItemListener {
@@ -15,22 +14,21 @@ public class CtrlPerfil implements ActionListener, ItemListener {
     private VisPerfil vista;
     private Usuario usuario;
 
-    private VisMensaje visMensaje;
+    private CtrlMensaje ctrlMensaje;
 
     public CtrlPerfil() {
         this.vista = new VisPerfil();
-        visMensaje = new VisMensaje();
+
+        ctrlMensaje = new CtrlMensaje(vista.panelPestana);
 
         usuario = SGC.usuarioActual;
 
+        vista.panelPestana.addTab("Mensaje", ctrlMensaje.getCatalogo());
+
         this.vista.btnProcesarPregunta.addActionListener(this);
         this.vista.btnProcesarPassword.addActionListener(this);
-        this.vista.btnMensaje.addActionListener(this);
         this.vista.cbxConfigurar.addItemListener(this);
 
-        this.visMensaje.btnSalir.addActionListener(this);
-
-        usuario.consultarPerfil();
         mostrarPerfil();
 
         CtrlVentana.cambiarVista(vista);
@@ -45,16 +43,6 @@ public class CtrlPerfil implements ActionListener, ItemListener {
         if (e.getSource() == vista.btnProcesarPassword) {
             modificarClave();
         }
-
-        if (e.getSource() == vista.btnMensaje) {
-            vista.jTabbedPane1.setComponentAt(1, visMensaje);
-            vista.repaint();
-        }
-
-        if (e.getSource() == visMensaje.btnSalir) {
-            vista.jTabbedPane1.setComponentAt(1, vista.panelMensaje);
-            vista.repaint();
-        }
     }
 
     @Override
@@ -64,10 +52,10 @@ public class CtrlPerfil implements ActionListener, ItemListener {
             if (vista.cbxConfigurar.getSelectedIndex() == 1) {
                 this.vista.jPanelPregunta.setVisible(true);
                 this.vista.jPanelClave.setVisible(false);
+
             } else if (vista.cbxConfigurar.getSelectedIndex() == 2) {
                 this.vista.jPanelClave.setVisible(true);
                 this.vista.jPanelPregunta.setVisible(false);
-
             }
         }
     }
