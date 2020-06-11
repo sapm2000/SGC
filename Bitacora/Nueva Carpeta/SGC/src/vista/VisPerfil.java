@@ -51,11 +51,12 @@ public class VisPerfil extends javax.swing.JPanel {
         btnProcesarPregunta = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         txtPassActualPregunta = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
+        panelMensaje = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
         txtBuscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        btnMensaje = new javax.swing.JButton();
         txtUsuario = new javax.swing.JTextField();
         txtApellidos = new javax.swing.JTextField();
         Apellido1 = new javax.swing.JLabel();
@@ -153,8 +154,8 @@ public class VisPerfil extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Editar Perfil", jPanel1);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelMensaje.setBackground(new java.awt.Color(255, 255, 255));
+        panelMensaje.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -166,14 +167,17 @@ public class VisPerfil extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tabla);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 830, 290));
-        jPanel2.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 340, -1));
+        panelMensaje.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 830, 290));
+        panelMensaje.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 340, -1));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Comunicados");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 310, 60));
+        panelMensaje.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 310, 60));
 
-        jTabbedPane1.addTab("Comunicados", jPanel2);
+        btnMensaje.setText("Nuevo Mensaje");
+        panelMensaje.add(btnMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, -1, -1));
+
+        jTabbedPane1.addTab("Comunicados", panelMensaje);
 
         add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 880, 670));
 
@@ -240,6 +244,7 @@ public class VisPerfil extends javax.swing.JPanel {
     private javax.swing.JLabel Apellido1;
     private javax.swing.JLabel Apellido2;
     private javax.swing.JLabel Apellido3;
+    public javax.swing.JButton btnMensaje;
     public javax.swing.JButton btnProcesarPassword;
     public javax.swing.JButton btnProcesarPregunta;
     public javax.swing.JComboBox<String> cbxConfigurar;
@@ -255,11 +260,11 @@ public class VisPerfil extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     public javax.swing.JPanel jPanelClave;
     public javax.swing.JPanel jPanelPregunta;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTabbedPane jTabbedPane1;
+    public javax.swing.JPanel panelMensaje;
     public javax.swing.JTable tabla;
     public javax.swing.JTextField txtApellidos;
     public javax.swing.JTextField txtBuscar;

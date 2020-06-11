@@ -40,7 +40,7 @@ public class VisUnidad extends javax.swing.JPanel {
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUI(new VisUnidad.MyScrollBarUI());
         jScrollPane2.getVerticalScrollBar().setUI(new VisUnidad.MyScrollBarUI());
-        tablaPropietarios.getTableHeader().setDefaultRenderer(new VisComunicados.Headercolor());
+        tablaPropietarios.getTableHeader().setDefaultRenderer(new VisMensaje.Headercolor());
     }
 
     /**

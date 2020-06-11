@@ -31,7 +31,7 @@ public class Catalogo extends javax.swing.JPanel {
     public Catalogo() {
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
-        tabla.getTableHeader().setDefaultRenderer(new VisComunicados.Headercolor());
+        tabla.getTableHeader().setDefaultRenderer(new VisMensaje.Headercolor());
     }
 
     /**

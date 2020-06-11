@@ -31,7 +31,7 @@ public class VisGasto extends javax.swing.JPanel {
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         jScrollPane4.getVerticalScrollBar().setUI(new MyScrollBarUI());
-        jTable.getTableHeader().setDefaultRenderer(new VisComunicados.Headercolor());
+        jTable.getTableHeader().setDefaultRenderer(new VisMensaje.Headercolor());
     }
 
     /**

@@ -7,6 +7,7 @@ import java.awt.event.ItemListener;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 import sgc.SGC;
+import vista.VisMensaje;
 import vista.VisPerfil;
 
 public class CtrlPerfil implements ActionListener, ItemListener {
@@ -14,32 +15,46 @@ public class CtrlPerfil implements ActionListener, ItemListener {
     private VisPerfil vista;
     private Usuario usuario;
 
-    public CtrlPerfil() {
+    private VisMensaje visMensaje;
 
+    public CtrlPerfil() {
         this.vista = new VisPerfil();
+        visMensaje = new VisMensaje();
+
         usuario = SGC.usuarioActual;
-        this.vista.cbxConfigurar.addItemListener(this);
 
         this.vista.btnProcesarPregunta.addActionListener(this);
         this.vista.btnProcesarPassword.addActionListener(this);
+        this.vista.btnMensaje.addActionListener(this);
+        this.vista.cbxConfigurar.addItemListener(this);
+
+        this.visMensaje.btnSalir.addActionListener(this);
+
         usuario.consultarPerfil();
-
         mostrarPerfil();
-        CtrlVentana.cambiarVista(vista);
 
+        CtrlVentana.cambiarVista(vista);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.btnProcesarPregunta) {
-
             modificarPregunta();
-
         }
+
         if (e.getSource() == vista.btnProcesarPassword) {
             modificarClave();
         }
 
+        if (e.getSource() == vista.btnMensaje) {
+            vista.jTabbedPane1.setComponentAt(1, visMensaje);
+            vista.repaint();
+        }
+
+        if (e.getSource() == visMensaje.btnSalir) {
+            vista.jTabbedPane1.setComponentAt(1, vista.panelMensaje);
+            vista.repaint();
+        }
     }
 
     @Override
