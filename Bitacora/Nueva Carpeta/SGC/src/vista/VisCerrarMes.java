@@ -5,6 +5,22 @@
  */
 package vista;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import javax.swing.BorderFactory;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
+import javax.swing.plaf.ComboBoxUI;
+import javax.swing.plaf.basic.BasicArrowButton;
+import javax.swing.plaf.basic.BasicComboBoxUI;
+import vista.VisCerrarMes.CustomUI;
+
 /**
  *
  * @author Jhen
@@ -16,6 +32,7 @@ public class VisCerrarMes extends javax.swing.JPanel {
      */
     public VisCerrarMes() {
         initComponents();
+        //cbxMoneda.getUI(new CurrentValue());
     }
 
     /**
@@ -95,6 +112,7 @@ public class VisCerrarMes extends javax.swing.JPanel {
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
         txtParidad.setBackground(new java.awt.Color(0, 94, 159));
+        txtParidad.setForeground(new java.awt.Color(255, 255, 255));
         txtParidad.setBorder(null);
         jPanel2.add(txtParidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 180, 20));
 
@@ -155,4 +173,77 @@ public class VisCerrarMes extends javax.swing.JPanel {
     public com.toedter.calendar.JYearChooser jYearChooser1;
     public javax.swing.JTextField txtParidad;
     // End of variables declaration//GEN-END:variables
+static public class CustomUI extends BasicComboBoxUI{
+    
+    private ImageIcon espacio =  new ImageIcon(getClass().getResource("/org/bolivia/res/espacio.png"));
+    private Color red = new Color(153,3,3);
+     
+ 
+    @Override 
+    protected JButton createArrowButton() {        
+        BasicArrowButton basicArrowButton = new BasicArrowButton(BasicArrowButton.SOUTH, //Direccion de la flecha
+                Color.WHITE, //Color de fondo
+                new Color(130,7,7),//sombra
+                new Color(130,7,7),//darkShadow
+                Color.WHITE //highlight
+                );         
+        //se quita el efecto 3d del boton, sombra y darkShadow no se aplican 
+        basicArrowButton.setBorder(BorderFactory.createLineBorder(red,2));
+        basicArrowButton.setContentAreaFilled(false);        
+        return basicArrowButton;
+    }        
+ 
+     //Se puede usar un JButton para usar un icono personalizado en lugar del arrow
+     /* 
+45  @Override 
+46  protected JButton createArrowButton() { 
+47  JButton button = new JButton(); 
+48  //se quita el efecto 3d del boton, sombra y darkShadow no se aplican 
+49  button.setText("");
+50  button.setBorder(BorderFactory.createLineBorder(red,2));
+51  button.setContentAreaFilled(false);
+52  button.setIcon( new ImageIcon(getClass().getResource("/org/bolivia/res/estrella.png")) );
+53  return button;
+54  } 
+55  */
+     
+    @Override
+    public void paintCurrentValueBackground(Graphics g,
+                                Rectangle bounds,
+                                boolean hasFocus)
+    {
+        g.setColor( red );            
+        g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
+    }
+       
+     //Pinta los items
+    @Override
+    protected ListCellRenderer createRenderer()
+    {
+        return new DefaultListCellRenderer() {      
+             
+        @Override
+        public Component getListCellRendererComponent(JList list,Object value,int index,
+           boolean isSelected,boolean cellHasFocus) {
+       
+        super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
+        list.setSelectionBackground(red);
+        if (isSelected)
+        {
+             setBackground( red );
+             setForeground(Color.WHITE);
+        }
+        else
+        {
+             setBackground( Color.WHITE );            
+             setForeground( new Color(70,70,70));
+        }
+            if (index!=-1) {          
+           setIcon( espacio );          
+            }
+            return this;
+            }
+        };
+        }
+    }
 }
