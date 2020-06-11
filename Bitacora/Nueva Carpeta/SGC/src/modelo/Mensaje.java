@@ -20,6 +20,37 @@ public class Mensaje extends ConexionBD {
 
     private Connection con;
 
+    public Boolean actualizarEstado() {
+        try {
+            ps = null;
+            rs = null;
+            con = getConexion();
+
+            String sql = "UPDATE mensaje SET estado = true WHERE id = ?;";
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            if (ps.executeUpdate() == 1) {
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+    }
+
     public Boolean buscarId() {
         try {
             ps = null;
@@ -84,6 +115,7 @@ public class Mensaje extends ConexionBD {
                 item.setAsunto(rs.getString("asunto"));
                 item.setContenido(rs.getString("contenido"));
                 item.setFecha(rs.getString("fecha"));
+                item.setEstado(rs.getBoolean("estado"));
                 item.emisor = new Usuario();
                 item.emisor.setId(rs.getInt("id_emisor"));
                 item.emisor.getPersona().setpNombre(rs.getString("nombre"));

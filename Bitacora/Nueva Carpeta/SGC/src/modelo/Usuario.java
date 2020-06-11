@@ -18,7 +18,7 @@ public class Usuario extends ConexionBD {
     private TipoUsuario tipoU;
     private Persona persona;
 
-    Connection con;
+    private Connection con;
 
     public Usuario() {
         tipoU = new TipoUsuario();
@@ -93,7 +93,7 @@ public class Usuario extends ConexionBD {
     }
 
     public Boolean existeInactivo() {
-        Connection con = getConexion();
+        con = getConexion();
         ps = null;
         rs = null;
 
