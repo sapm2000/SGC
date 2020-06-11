@@ -170,46 +170,7 @@ public class Interes extends ConexionBD {
         return listainteres;
     }
 
-    public ArrayList<Interes> listarInteresCerrames() {
-        ArrayList listainteres = new ArrayList();
-        Interes modin;
-
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
-        String sql = "select interes.id, interes.nombre, interes.factor, from interes inner join puente_interes_condominio on interes.id=puente_interes_condominio.id_interes where puente_interes_condominio.id_condominio=? and interes.activo=true group by interes.id,puente_interes_condominio.id_condominio";
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setString(1, SGC.condominioActual.getRif());
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-
-                modin = new Interes();
-
-                modin.setId(rs.getInt(1));
-                modin.setNombre(rs.getString(2));
-                modin.setFactor(rs.getDouble(3));
-
-                listainteres.add(modin);
-            }
-        } catch (Exception e) {
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-        return listainteres;
-    }
+    
 
     public boolean buscarInteres(Interes modin) {
 

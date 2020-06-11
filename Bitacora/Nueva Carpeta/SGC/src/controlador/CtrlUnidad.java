@@ -128,7 +128,8 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
                 int j = 0;
 
                 for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
-                    if (valueOf(vista.tablaPropietarios.getValueAt(i, 2)) == "true") {
+                   
+                    if (valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
                         j = j + 1;
                     }
                 }
@@ -138,7 +139,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
                 } else {
                     for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
-                        if (valueOf(vista.tablaPropietarios.getValueAt(i, 2)) == "true") {
+                        if (valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
                             modelo.getPropietario().add(new Propietarios(vista.tablaPropietarios.getValueAt(i, 0).toString()));
                             modelo.setEstatus(1);
                         }
@@ -726,7 +727,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
             columna[1] = listadetallecuotas.get(i).prove.getNombre();
             columna[2] = listadetallecuotas.get(i).concep.getNombre_Concepto();
             columna[3] = Validacion.formato1.format(listadetallecuotas.get(i).getMonto());
-            columna[4] = listadetallecuotas.get(i).cuo.getN_meses_restantes();
+            columna[4] = listadetallecuotas.get(i).gasto.getMesesRestantes();
 
             modeloT.addRow(columna);
 

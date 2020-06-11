@@ -41,7 +41,7 @@ public class VisSancion extends javax.swing.JPanel {
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUI(new VisSancion.MyScrollBarUI());
         jScrollPane2.getVerticalScrollBar().setUI(new VisSancion.MyScrollBarUI());
-        jTable1.getTableHeader().setDefaultRenderer(new VisComunicados.Headercolor());
+        jTable1.getTableHeader().setDefaultRenderer(new VisMensaje.Headercolor());
     }
 
     /**

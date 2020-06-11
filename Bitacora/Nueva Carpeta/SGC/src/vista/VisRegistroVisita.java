@@ -30,7 +30,7 @@ public class VisRegistroVisita extends javax.swing.JPanel {
     public VisRegistroVisita() {
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
-        tabla.getTableHeader().setDefaultRenderer(new VisComunicados.Headercolor());
+        tabla.getTableHeader().setDefaultRenderer(new VisMensaje.Headercolor());
     }
 
     @SuppressWarnings("unchecked")

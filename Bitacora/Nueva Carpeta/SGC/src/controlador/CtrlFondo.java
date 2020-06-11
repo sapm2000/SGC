@@ -85,19 +85,22 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
         modeloT.addColumn("Observación");
         modeloT.addColumn("Monto Inicial");
         modeloT.addColumn("Saldo Actual");
+        modeloT.addColumn("Moneda");
 
-        Object[] columna = new Object[6];
+        Object[] columna = new Object[modeloT.getColumnCount()];
 
         int numRegistro = listafondo.size();
-
+        System.out.println(numRegistro);
+        int ind;
         for (int i = 0; i < numRegistro; i++) {
-
-            columna[0] = listafondo.get(i).getFecha();
-            columna[1] = listafondo.get(i).getTipo();
-            columna[2] = listafondo.get(i).getDescripcion();
-            columna[3] = listafondo.get(i).getObservacion();
-            columna[4] = Validacion.formato1.format(listafondo.get(i).getMonto_inicial());
-            columna[5] = Validacion.formato1.format(listafondo.get(i).getSaldo());
+            ind = 0;
+            columna[ind++] = listafondo.get(i).getFecha();
+            columna[ind++] = listafondo.get(i).getTipo();
+            columna[ind++] = listafondo.get(i).getDescripcion();
+            columna[ind++] = listafondo.get(i).getObservacion();
+            columna[ind++] = Validacion.formato1.format(listafondo.get(i).getMonto_inicial());
+            columna[ind++] = Validacion.formato1.format(listafondo.get(i).getSaldo());
+            columna[ind++] = listafondo.get(i).getMoneda();
 
             modeloT.addRow(columna);
 
@@ -115,7 +118,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
     private void permisoBtn() {
 
         for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
-            if (funcionbtn.getNombre().equals("Responsables")) {
+            if (funcionbtn.getNombre().equals("Fondo")) {
                 permiso = funcionbtn;
 
             }
@@ -124,79 +127,78 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
 
     }
 
-    public void Llenartablainactivos(JTable tablaD) {
-
-        listafondo = modfon.listar(3);
-        DefaultTableModel modeloT = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-
-                boolean resu = false;
-
-                if (column == 0) {
-                    resu = false;
-                }
-                if (column == 1) {
-                    resu = false;
-                }
-                if (column == 2) {
-                    resu = false;
-                }
-                if (column == 3) {
-                    resu = false;
-                }
-                if (column == 4) {
-                    resu = false;
-                }
-                if (column == 5) {
-                    resu = false;
-                }
-                if (column == 6) {
-                    resu = true;
-                }
-
-                return resu;
-            }
-
-        };
-        tablaD.setModel(modeloT);
-        tablaD.getTableHeader().setReorderingAllowed(false);
-
-        modeloT.addColumn("Fecha");
-        modeloT.addColumn("Tipo");
-        modeloT.addColumn("Descripción");
-        modeloT.addColumn("Observación");
-        modeloT.addColumn("Monto Inicial");
-        modeloT.addColumn("Saldo Actual");
-        modeloT.addColumn("Seleccione");
-
-        Object[] columna = new Object[7];
-
-        int numRegistro = listafondo.size();
-
-        for (int i = 0; i < numRegistro; i++) {
-
-            columna[0] = listafondo.get(i).getFecha();
-            columna[1] = listafondo.get(i).getTipo();
-            columna[2] = listafondo.get(i).getDescripcion();
-            columna[3] = listafondo.get(i).getObservacion();
-            columna[4] = Validacion.formato1.format(listafondo.get(i).getMonto_inicial());
-            columna[5] = Validacion.formato1.format(listafondo.get(i).getSaldo());
-
-            modeloT.addRow(columna);
-
-        }
-        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-        tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(6).setCellRenderer(tcr);
-    }
-
+//    public void Llenartablainactivos(JTable tablaD) {
+//
+//        listafondo = modfon.listar(3);
+//        DefaultTableModel modeloT = new DefaultTableModel() {
+//            @Override
+//            public boolean isCellEditable(int row, int column) {
+//
+//                boolean resu = false;
+//
+//                if (column == 0) {
+//                    resu = false;
+//                }
+//                if (column == 1) {
+//                    resu = false;
+//                }
+//                if (column == 2) {
+//                    resu = false;
+//                }
+//                if (column == 3) {
+//                    resu = false;
+//                }
+//                if (column == 4) {
+//                    resu = false;
+//                }
+//                if (column == 5) {
+//                    resu = false;
+//                }
+//                if (column == 6) {
+//                    resu = true;
+//                }
+//
+//                return resu;
+//            }
+//
+//        };
+//        tablaD.setModel(modeloT);
+//        tablaD.getTableHeader().setReorderingAllowed(false);
+//
+//        modeloT.addColumn("Fecha");
+//        modeloT.addColumn("Tipo");
+//        modeloT.addColumn("Descripción");
+//        modeloT.addColumn("Observación");
+//        modeloT.addColumn("Monto Inicial");
+//        modeloT.addColumn("Saldo Actual");
+//        modeloT.addColumn("Seleccione");
+//
+//        Object[] columna = new Object[7];
+//
+//        int numRegistro = listafondo.size();
+//
+//        for (int i = 0; i < numRegistro; i++) {
+//
+//            columna[0] = listafondo.get(i).getFecha();
+//            columna[1] = listafondo.get(i).getTipo();
+//            columna[2] = listafondo.get(i).getDescripcion();
+//            columna[3] = listafondo.get(i).getObservacion();
+//            columna[4] = Validacion.formato1.format(listafondo.get(i).getMonto_inicial());
+//            columna[5] = Validacion.formato1.format(listafondo.get(i).getSaldo());
+//
+//            modeloT.addRow(columna);
+//
+//        }
+//        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+//        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+//        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+//        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+//        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+//        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+//        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
+//        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
+//        tablaD.getColumnModel().getColumn(6).setCellRenderer(tcr);
+//    }
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == catalogo.btnNuevo) {
@@ -210,6 +212,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
             vista.txtMontoInicial.setText("");
             vista.txtTipo.setText("");
             vista.jDateChooser1.setDate(null);
+            vista.cbxMoneda.setSelectedIndex(0);
 
             CtrlVentana.cambiarVista(vista);
         }
@@ -225,6 +228,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                     modfon.setDescripcion(vista.txaDescripcion.getText());
                     modfon.setObservacion(vista.txaObservaciones.getText());
                     modfon.setMonto_inicial(Double.parseDouble(vista.txtMontoInicial.getText()));
+                    modfon.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
 
                     if (modfon.buscar(modfon)) {
                         JOptionPane.showMessageDialog(null, "este fondo ya esta registrado");
@@ -254,6 +258,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                 modfon.setDescripcion(vista.txaDescripcion.getText());
                 modfon.setObservacion(vista.txaObservaciones.getText());
                 modfon.setMonto_inicial(Double.parseDouble(vista.txtMontoInicial.getText()));
+                modfon.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
 
                 modfon.setId(Integer.parseInt(vista.txtId.getText()));
                 int var7 = 0;
@@ -353,6 +358,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
         vista.txaDescripcion.setText(null);
         vista.txaObservaciones.setText(null);
         vista.jDateChooser1.setDate(null);
+        vista.cbxMoneda.setSelectedIndex(0);
     }
 
     private Boolean validar() {
@@ -369,6 +375,11 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
         if (vista.txtTipo.getText().isEmpty()) {
 
             msj += "El campo tipo no puede estar vacío\n";
+            resultado = false;
+        }
+        if (vista.cbxMoneda.getSelectedIndex() == 0) {
+
+            msj += "Debe selccionar una moneda\n";
             resultado = false;
         }
 
@@ -414,6 +425,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
         vista.txtTipo.setText(modfon.getTipo());
         vista.jDateChooser1.setDate(modfon.getFecha());
         vista.txtMontoInicial.setText(String.valueOf(Validacion.formato1.format(modfon.getMonto_inicial())));
+        vista.cbxMoneda.setSelectedItem(modfon.getMoneda());
         saldo = modfon.getSaldo();
         montoi = modfon.getMonto_inicial();
 

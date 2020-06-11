@@ -213,10 +213,10 @@ public class Sancion extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT sancion.id, tipo, mes, anio, monto, descripcion, count(id_sancion) as total, estado FROM sancion inner join puente_sancion_unidad on puente_sancion_unidad.id_sancion=sancion.id inner join unidad on puente_sancion_unidad.id_unidad=unidad.id group by sancion.id, id_condominio";
+        String sql = "SELECT sancion.id, tipo, mes, anio, monto, descripcion, count(id_sancion) as total, estado FROM sancion inner join puente_sancion_unidad on puente_sancion_unidad.id_sancion=sancion.id inner join unidad on puente_sancion_unidad.id_unidad=unidad.id group by sancion.id";
         try {
             ps = con.prepareStatement(sql);
-           
+
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -252,7 +252,7 @@ public class Sancion extends ConexionBD {
         return listaSancion;
     }
 
-    public ArrayList<Sancion> listarSancionesCerrarmes() {
+        public ArrayList<Sancion> listarSancionesCerrarmes() {
         ArrayList listaSancion = new ArrayList();
         Sancion modsan;
 
@@ -260,12 +260,12 @@ public class Sancion extends ConexionBD {
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT id_sancion,factura_unidad.id, tipo, sancion.monto FROM puente_sancion_unidad inner join sancion on puente_sancion_unidad.id_sancion=sancion.id inner join unidades on puente_sancion_unidad.id_unidad=unidades.id inner join factura_unidad on factura_unidad.id_unidad = unidades.id where unidades.id_condominio=? and sancion.mes=? and sancion.anio=?";
+        String sql = "SELECT id_sancion, tipo, sancion.monto, id_unidad FROM puente_sancion_unidad inner join sancion on puente_sancion_unidad.id_sancion=sancion.id inner join unidad on puente_sancion_unidad.id_unidad=unidad.id where sancion.mes=? and sancion.anio=?";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, SGC.condominioActual.getRif());
-            ps.setInt(2, getMes());
-            ps.setInt(3, getAño());
+
+            ps.setInt(1, getMes());
+            ps.setInt(2, getAño());
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -273,9 +273,10 @@ public class Sancion extends ConexionBD {
                 modsan = new Sancion();
 
                 modsan.setId(rs.getInt(1));
-                modsan.setId(rs.getInt(2));
-                modsan.setTipo(rs.getString(3));
-                modsan.setMonto(rs.getDouble(4));
+
+                modsan.setTipo(rs.getString(2));
+                modsan.setMonto(rs.getDouble(3));
+                modsan.uni.setId(rs.getInt(4));
 
                 listaSancion.add(modsan);
             }
@@ -355,7 +356,7 @@ public class Sancion extends ConexionBD {
 
             ps.setInt(1, modsan.getMes());
             ps.setInt(2, modsan.getAño());
-            
+
             rs = ps.executeQuery();
             if (rs.next()) {
 
@@ -399,8 +400,6 @@ public class Sancion extends ConexionBD {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
 
-         
-
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -426,8 +425,8 @@ public class Sancion extends ConexionBD {
         return listaunimod;
 
     }
-    
-     public ArrayList<Sancion> listarunidadesmodprocesadas() {
+
+    public ArrayList<Sancion> listarunidadesmodprocesadas() {
         ArrayList listaunimod = new ArrayList();
         Sancion modsan = new Sancion();
 

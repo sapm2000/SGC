@@ -20,7 +20,6 @@ import vista.Inicio;
 import vista.PantallaPrincipal;
 import vista.Ventana;
 
-
 public class CtrlVentana implements ActionListener {
 
     public static PantallaPrincipal marco;
@@ -35,8 +34,6 @@ public class CtrlVentana implements ActionListener {
         marco = new PantallaPrincipal();
         vista = new Inicio();
 
-        
-        
         ventana.getContentPane().removeAll();
         ventana.setSize(1366, 740);
 
@@ -84,6 +81,7 @@ public class CtrlVentana implements ActionListener {
         ventana.pVisitas.addActionListener(this);
         ventana.pCuotas.addActionListener(this);
         ventana.pCerrarMes.addActionListener(this);
+        ventana.jPerfil.addActionListener(this);
     }
 
     @Override
@@ -193,6 +191,11 @@ public class CtrlVentana implements ActionListener {
         if (e.getSource() == ventana.pCerrarMes) {
             ctrl = new CtrlCerrarMes();
         }
+
+        //Perfil
+        if (e.getSource() == ventana.jPerfil) {
+            ctrl = new CtrlPerfil();
+        }
     }
 
     public static void cambiarVista(JPanel vista) {
@@ -208,14 +211,9 @@ public class CtrlVentana implements ActionListener {
         panelPrincipal = vista;
         ventana.repaint();
         ventana.validate();
-        
-        
+
         //vista.setSize(1346, 740);
         //vista.setBounds(10, 10, 1346, 740);
-        
-        
-        
-        
         //marco.panel.add(vista);
         //panelPrincipal = vista;
         //ventana.repaint();
@@ -223,21 +221,20 @@ public class CtrlVentana implements ActionListener {
         //centreWindow(panelPrincipal); 
     }
 
-     public static void centreWindow(JPanel frame) {
-       Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-       
-       int panelX = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
-       int panelY = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
-      
-       panelPrincipal.setLocation(panelX, panelY);
-}
+    public static void centreWindow(JPanel frame) {
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+
+        int panelX = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
+        int panelY = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
+
+        panelPrincipal.setLocation(panelX, panelY);
+    }
+
     private void filtrarMenu() {
         // Primero se vacían todos los menú
         ventana.menuArchivo.removeAll();
         ventana.menuProceso.removeAll();
         ventana.menuReporte.removeAll();
-        ventana.menuAyudas.removeAll();
-        ventana.menuPerfil.removeAll();
 
         // Se consulta cada función del usuario actual y se añaden las opciones al menú correspondientes
         for (Funcion funcionesX : SGC.usuarioActual.getTipoU().getFunciones()) {
@@ -313,5 +310,3 @@ public class CtrlVentana implements ActionListener {
         }
     }
 }
-
-   

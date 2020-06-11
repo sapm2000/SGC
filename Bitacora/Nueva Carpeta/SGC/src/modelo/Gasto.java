@@ -22,6 +22,7 @@ public class Gasto extends ConexionBD {
     private Double saldo;
     private String estado;
     private String pagado;
+    private String moneda;
 
     private ArrayList<ConceptoGasto> conceptos = new ArrayList();
     private ArrayList<Double> montoConceptos = new ArrayList();
@@ -134,7 +135,7 @@ public class Gasto extends ConexionBD {
             ps = null;
             con = getConexion();
 
-            String sql = "INSERT INTO gasto(tipo, id_proveedor, calcular_por, mes, anio, n_meses, observacion, id_asamblea, meses_restantes, monto, saldo) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+            String sql = "INSERT INTO gasto(tipo, id_proveedor, calcular_por, mes, anio, n_meses, observacion, id_asamblea, meses_restantes, monto, saldo, moneda) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
 
             ps = con.prepareStatement(sql);
             ind = 1;
@@ -156,6 +157,7 @@ public class Gasto extends ConexionBD {
             ps.setInt(ind++, getMesesRestantes());
             ps.setDouble(ind++, getMonto());
             ps.setDouble(ind++, getSaldo());
+            ps.setString(ind++, getMoneda());
             ps.execute();
 
             if (buscarId()) {
@@ -255,6 +257,7 @@ public class Gasto extends ConexionBD {
                 item.setSaldo(rs.getDouble("saldo"));
                 item.setNumMeses(rs.getInt("n_meses"));
                 item.setMesesRestantes(rs.getInt("meses_restantes"));
+                item.setMoneda(rs.getString("moneda"));
 
                 if (rs.getInt("id_asamblea") != 0) {
                     item.asamblea = new Asambleas();
@@ -302,7 +305,7 @@ public class Gasto extends ConexionBD {
         }
     }
 
-    public ArrayList<Gasto> listarCuotasEspecialescerrarmes() {
+    public ArrayList<Gasto> listarGastos() {
         ArrayList listacuotasEspeciales = new ArrayList();
         Gasto modcuo;
 
@@ -310,30 +313,29 @@ public class Gasto extends ConexionBD {
         ps = null;
         ResultSet rs = null;
 
-        String sql = "SELECT facturas_proveedores.id, id_proveedor, concepto_gasto.nom_concepto, calcular, mes, anio, monto, saldo, n_meses, asambleas.nombre, observacion, estado, n_mese_restante FROM facturas_proveedores inner join proveedores on proveedores.cedula=facturas_proveedores.id_proveedor  left join asambleas on asambleas.id = facturas_proveedores.id_asamblea where facturas_proveedores.id_condominio=? and facturas_proveedores.n_mese_restante !=0";
+        String sql = "SELECT id, tipo, id_proveedor, calcular_por, mes, anio, n_meses, observacion, meses_restantes, monto, saldo, estado, pagado, moneda FROM gasto where meses_restantes !=0;";
         try {
             ps = con.prepareStatement(sql);
 
-            ps.setString(1, SGC.condominioActual.getRif());
             rs = ps.executeQuery();
 
             while (rs.next()) {
 
                 modcuo = new Gasto();
 
-                modcuo.setId(rs.getInt(1));
-                modcuo.proveedor.setCedula(rs.getString(2));
-
-                modcuo.setCalcular(rs.getString(3));
-                modcuo.setMes(rs.getInt(4));
-                modcuo.setAnio(rs.getInt(5));
-                modcuo.setMonto(rs.getDouble(6));
-                modcuo.setSaldo(rs.getDouble(7));
-                modcuo.setNumMeses(rs.getInt(8));
-                modcuo.asamblea.setNombre(rs.getString(9));
-                modcuo.setObservacion(rs.getString(10));
-                modcuo.setEstado(rs.getString(11));
-                modcuo.setMesesRestantes(rs.getInt(12));
+                modcuo.setId(rs.getInt("id"));
+                modcuo.proveedor.setCedula(rs.getString("id_proveedor"));
+                modcuo.setTipo(rs.getString("tipo"));
+                modcuo.setCalcular(rs.getString("calcular_por"));
+                modcuo.setMes(rs.getInt("mes"));
+                modcuo.setAnio(rs.getInt("anio"));
+                modcuo.setMonto(rs.getDouble("monto"));
+                modcuo.setSaldo(rs.getDouble("saldo"));
+                modcuo.setNumMeses(rs.getInt("n_meses"));
+                modcuo.setMoneda(rs.getString("moneda"));
+                modcuo.setObservacion(rs.getString("observacion"));
+                modcuo.setEstado(rs.getString("estado"));
+                modcuo.setMesesRestantes(rs.getInt("meses_restantes"));
 
                 listacuotasEspeciales.add(modcuo);
             }
@@ -362,7 +364,7 @@ public class Gasto extends ConexionBD {
             ps = null;
             con = getConexion();
 
-            String sql = "UPDATE gasto SET tipo=?, id_proveedor=?, calcular_por=?, mes=?, anio=?, n_meses=?, id_asamblea=?, observacion=?, meses_restantes=?, monto=?, saldo=? WHERE id = ?;";
+            String sql = "UPDATE gasto SET tipo=?, id_proveedor=?, calcular_por=?, mes=?, anio=?, n_meses=?, id_asamblea=?, observacion=?, meses_restantes=?, monto=?, saldo=?, moneda=? WHERE id = ?;";
 
             ps = con.prepareStatement(sql);
             ind = 1;
@@ -385,6 +387,7 @@ public class Gasto extends ConexionBD {
             System.out.println("monto total: " + getMonto());
             ps.setDouble(ind++, getMonto());
             ps.setDouble(ind++, getSaldo());
+            ps.setString(ind++, getMoneda());
 
             ps.setInt(ind++, getId());
 
@@ -444,9 +447,12 @@ public class Gasto extends ConexionBD {
 
             numNuevos = getConceptos().size();
             numViejos = conceptosViejos.size();
+            Boolean procesado;
 
             // Ciclo que recorre los conceptos nuevos
             for (int j = 0; j < numNuevos; j++) {
+
+                procesado = false;
 
                 // Ciclo que recorre los conceptos viejos
                 for (int i = 0; i < numViejos; i++) {
@@ -460,23 +466,42 @@ public class Gasto extends ConexionBD {
                         conceptosViejos.remove(i);
                         montosViejos.remove(i);
                         numViejos--;
+                        procesado = true;
+                        break;
+
+                        //En cambio, si el concepto coincide, pero el monto es diferente
+                    } else if (getConceptos().get(j).getId().equals(conceptosViejos.get(i).getId()) && !getMontoConceptos().get(j).equals(montosViejos.get(i))) {
+                        //Se modifica el monto del concepto y se elimina de ambos arreglos junto al monto para dejar de compararlos
+                        modificarMontoConcepto(getConceptos().get(j).getId(), getMontoConceptos().get(j));
+                        System.out.println("se modificó el monto del concepto " + getConceptos().get(j).getId() + ", de " + montosViejos.get(i) + " a " + getMontoConceptos().get(j));
+                        getConceptos().remove(j);
+                        getMontoConceptos().remove(j);
+                        numNuevos--;
+                        conceptosViejos.remove(i);
+                        montosViejos.remove(i);
+                        numViejos--;
+                        procesado = true;
                         break;
                     }
                 }
 
-                // Si el propietario nuevo no está en la lista de viejos
-                if (getConceptos().size() > 0) {
-                    // Se agrega como nuevo propietario y se elimina del arreglo de nuevos
+                // Si el concepto nuevo no ha sido procesado
+                if (!procesado) {
+                    // Se agrega como nuevo concepto y se elimina del arreglo de nuevos
                     agregarConcepto(getConceptos().get(j).getId(), getMontoConceptos().get(j));
                     System.out.println("se agrego el concepto " + getConceptos().get(j).getId() + " con el monto " + getMontoConceptos().get(j));
                     getConceptos().remove(j);
                     getMontoConceptos().remove(j);
                     numNuevos--;
                     j--;
+
+                } else {
+                    //Se reduce el indice que recorre los conceptos nuevos
+                    j--;
                 }
             }
 
-            // Se retiran los viejos propietarios que quedaron en el arreglo de viejos (ya que fueron eliminados)
+            // Se retiran los viejos conceptos que quedaron en el arreglo de viejos (ya que fueron eliminados)
             retirarConceptos(conceptosViejos);
 
             return true;
@@ -495,10 +520,29 @@ public class Gasto extends ConexionBD {
         }
     }
 
+    private Boolean modificarMontoConcepto(Integer id, Double monto) throws SQLException {
+        int ind;
+        ps = null;
+        Connection con = getConexion();
+
+        String sql = "UPDATE puente_gasto_concepto SET monto = ? WHERE id_gasto = ? AND id_concepto = ?;";
+
+        ps = con.prepareStatement(sql);
+
+        ind = 1;
+        ps.setDouble(ind++, monto);
+        ps.setInt(ind++, getId());
+        ps.setInt(ind++, id);
+
+        ps.execute();
+
+        return true;
+    }
+
     public boolean eliminar_cuotas_especiales(Gasto modcuo) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "DELETE FROM facturas_proveedores WHERE id=?;";
 
@@ -533,8 +577,8 @@ public class Gasto extends ConexionBD {
 
     public boolean eliminar_puente(Gasto modcuo) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "DELETE FROM puente_concepto_factura WHERE id_factura_proveedor=?";
 
@@ -568,8 +612,8 @@ public class Gasto extends ConexionBD {
     }
 
     public boolean restarSaldo(Float saldoNuevo) {
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE facturas_proveedores SET saldo = saldo - ? WHERE id = ?;";
 
@@ -757,5 +801,15 @@ public class Gasto extends ConexionBD {
     public void setMontoConceptos(ArrayList<Double> montoConceptos) {
         this.montoConceptos = montoConceptos;
     }
+
+    public String getMoneda() {
+        return moneda;
+    }
+
+    public void setMoneda(String moneda) {
+        this.moneda = moneda;
+    }
+    
+    
 
 }

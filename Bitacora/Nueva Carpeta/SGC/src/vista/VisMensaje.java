@@ -17,13 +17,12 @@ import javax.swing.JScrollBar;
 import javax.swing.JTable;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
-import vista.buscarProveedor.MyScrollBarUI;
 
 /**
  *
  * @author Maryo
  */
-public class VisComunicados extends javax.swing.JPanel {
+public class VisMensaje extends javax.swing.JPanel {
 
     /**
      * Creates new form VisComunicados
@@ -38,11 +37,11 @@ public class VisComunicados extends javax.swing.JPanel {
     //Aquí cambias el color de la barra
     private static final Color THUMB_COLOR = Color.BLUE;
     
-    public VisComunicados() {
+    public VisMensaje() {
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         jScrollPane2.getVerticalScrollBar().setUI(new MyScrollBarUI());
-        jTable1.getTableHeader().setDefaultRenderer(new VisComunicados.Headercolor());
+        jTable1.getTableHeader().setDefaultRenderer(new VisMensaje.Headercolor());
     }
 
     /**
@@ -67,7 +66,6 @@ public class VisComunicados extends javax.swing.JPanel {
         btnEnviar = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
-        txtid = new javax.swing.JTextField();
         jSeparator8 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -143,7 +141,7 @@ public class VisComunicados extends javax.swing.JPanel {
         btnEnviar.setBorder(null);
         btnEnviar.setBorderPainted(false);
         btnEnviar.setContentAreaFilled(false);
-        btnEnviar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEnviar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEnviar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enviar (1).png"))); // NOI18N
         btnEnviar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enviar (1).png"))); // NOI18N
         btnEnviar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enviar (1).png"))); // NOI18N
@@ -159,9 +157,6 @@ public class VisComunicados extends javax.swing.JPanel {
 
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 320, 10));
-
-        txtid.setEditable(false);
-        jPanel2.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, -1, -1));
 
         jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 220, 10));
@@ -200,7 +195,7 @@ public class VisComunicados extends javax.swing.JPanel {
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalir.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow.png"))); // NOI18N
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow (1).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow (1).png"))); // NOI18N
@@ -217,10 +212,11 @@ public class VisComunicados extends javax.swing.JPanel {
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 510, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel5.setText("Envio de Comunicados");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Envio de Mensajes");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 740, -1));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 760, 620));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 760, 620));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
@@ -250,7 +246,6 @@ public class VisComunicados extends javax.swing.JPanel {
     public javax.swing.JTextArea txaMensaje;
     public javax.swing.JTextField txtAsunto;
     public javax.swing.JTextField txtBuscarPropietarios;
-    public javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables
 static public class Headercolor extends DefaultTableCellHeaderRenderer {
 

@@ -21,12 +21,12 @@ import javax.swing.table.TableRowSorter;
 import modelo.Comunicados;
 import modelo.CrudUsuario;
 import vista.Catalogo;
-import vista.VisComunicados;
+import vista.VisMensaje;
 
 public class CtrlComunicado implements ActionListener, KeyListener, WindowListener, MouseListener {
 
     private Catalogo catalogo;
-    private VisComunicados vista;
+    private VisMensaje vista;
     private Comunicados modelo;
 
     ArrayList<CrudUsuario> listausuarios;
@@ -37,7 +37,7 @@ public class CtrlComunicado implements ActionListener, KeyListener, WindowListen
 
     public CtrlComunicado() {
         this.catalogo = new Catalogo();
-        this.vista = new VisComunicados();
+        this.vista = new VisMensaje();
         this.modelo = new Comunicados();
 
         this.modus = new CrudUsuario();

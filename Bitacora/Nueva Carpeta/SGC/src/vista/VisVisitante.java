@@ -38,7 +38,7 @@ public class VisVisitante extends javax.swing.JPanel {
     
     public VisVisitante() {
         initComponents();
-        tabla.getTableHeader().setDefaultRenderer(new VisComunicados.Headercolor());
+        tabla.getTableHeader().setDefaultRenderer(new VisMensaje.Headercolor());
     }
 
     /**

@@ -39,7 +39,7 @@ public class VisUsuario extends javax.swing.JPanel {
     public VisUsuario() {
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
-        jTable.getTableHeader().setDefaultRenderer(new VisComunicados.Headercolor());
+        jTable.getTableHeader().setDefaultRenderer(new VisMensaje.Headercolor());
     }
 
     /**

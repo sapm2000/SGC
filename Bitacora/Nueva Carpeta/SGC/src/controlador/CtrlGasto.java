@@ -111,10 +111,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
 
             vista.btnBuscarproveedor.setVisible(true);
 
-            vista.txtProveedor.setText("");
-            vista.txtProveedor.setText("");
-            vista.txtNmeses.setText("");
-            vista.txaObservaciones.setText("");
+            limpiar();
 
             CtrlVentana.cambiarVista(vista);
         }
@@ -134,6 +131,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
                 modelo.setMes(vista.jMonthChooser1.getMonth() + 1);
                 modelo.setAnio(vista.jYearChooser1.getYear());
                 modelo.setObservacion(vista.txaObservaciones.getText());
+                modelo.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
 
                 //Se verifica si el monto es ordinario o extraordinario
                 if (modelo.getTipo().equals("Ordinario")) {
@@ -227,6 +225,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
                 modelo.setMes(vista.jMonthChooser1.getMonth() + 1);
                 modelo.setAnio(vista.jYearChooser1.getYear());
                 modelo.setObservacion(vista.txaObservaciones.getText());
+                modelo.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
 
                 //Se verifica si el monto es ordinario o extraordinario
                 if (modelo.getTipo().equals("Ordinario")) {
@@ -346,6 +345,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
         vista.txtProveedor.setText(null);
         vista.jLabel2.setText(null);
         vista.jCalcular.setSelectedIndex(0);
+        vista.cbxMoneda.setSelectedIndex(0);
         vista.txtNmeses.setText(null);
         vista.jMonthChooser1.setMonth(0);
         vista.jYearChooser1.setYear(0);
@@ -374,6 +374,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
         modeloT.addColumn("<html>Comienzo <br>de cobro</html>");
         modeloT.addColumn("<html>Monto <br>Inicial</html>");
         modeloT.addColumn("Saldo");
+        modeloT.addColumn("Moneda");
         modeloT.addColumn("Asamblea");
         modeloT.addColumn("<html>Meses <br>iniciales</html>");
         modeloT.addColumn("<html>Meses <br>restantes</html>");
@@ -396,6 +397,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
             columna[ind++] = fecha;
             columna[ind++] = Validacion.formato1.format(lista.get(i).getMonto());
             columna[ind++] = Validacion.formato1.format(lista.get(i).getSaldo());
+            columna[ind++] = lista.get(i).getMoneda();
 
             if (lista.get(i).getAsamblea() != null) {
                 columna[ind++] = lista.get(i).getAsamblea().getNombre();
@@ -511,6 +513,12 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
         for (int i = 0; i < modeloT.getColumnCount(); i++) {
             tablaD.getColumnModel().getColumn(i).setCellRenderer(tcr);
         }
+//        String[] moneda = {"Bolívares","Dólares","Petros"};
+//        JComboBox cbx = new JComboBox(moneda);
+//        TableColumn tc = tablaD.getColumnModel().getColumn(4);
+//        TableCellEditor tce = new DefaultCellEditor(cbx);
+//        tc.setCellEditor(tce);
+//        cbx.setSelectedIndex(0);
     }
 
     public void llenarTablaProveedores(JTable tablaD) {
@@ -558,7 +566,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
 
         for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
 
-            if (funcionbtn.getNombre().equals("Responsables")) {
+            if (funcionbtn.getNombre().equals("Gasto")) {
                 permiso = funcionbtn;
             }
         }
@@ -595,6 +603,10 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
                     resultado = false;
                 }
             }
+        }
+        if (vista.cbxMoneda.getSelectedIndex() == 0) {
+            msj += "Debe seleccionar una Moneda\n";
+            resultado = false;
         }
 
         //Si se esta edtando la tabla
@@ -691,6 +703,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
             vista.txtProveedor.setText(modelo.getProveedor().getCedula());
             vista.jLabel2.setText(modelo.getProveedor().getNombre());
             vista.jCalcular.setSelectedItem(modelo.getCalcular());
+            vista.cbxMoneda.setSelectedItem(modelo.getMoneda());
             vista.jMonthChooser1.setMonth(modelo.getMes() - 1);
             vista.jYearChooser1.setYear(modelo.getAnio());
             vista.txaObservaciones.setText(modelo.getObservacion());
