@@ -91,9 +91,10 @@ public class CtrlCerrarMes implements ActionListener, KeyListener {
         modeloT.addColumn("Nº de Unidad");
         modeloT.addColumn("Mes");
         modeloT.addColumn("Año");
-        modeloT.addColumn("Monto");
+        modeloT.addColumn("Monto dolar");
+         modeloT.addColumn("Monto bolivar");
 
-        Object[] columna = new Object[4];
+        Object[] columna = new Object[5];
 
         int numRegistro = listaCierremes.size();
 
@@ -102,7 +103,8 @@ public class CtrlCerrarMes implements ActionListener, KeyListener {
             columna[0] = listaCierremes.get(i).uni.getN_unidad();
             columna[1] = listaCierremes.get(i).getMes_cierre();
             columna[2] = listaCierremes.get(i).getAño_cierre();
-            columna[3] = listaCierremes.get(i).getMonto();
+            columna[3] = listaCierremes.get(i).getMonto_dolar();
+            columna[4] = listaCierremes.get(i).getMonto_bolivar();
 
             modeloT.addRow(columna);
 
@@ -113,6 +115,7 @@ public class CtrlCerrarMes implements ActionListener, KeyListener {
         tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
 
     }
 
