@@ -77,6 +77,10 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
         jLabel15 = new javax.swing.JLabel();
+        txtParidad = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        cbxMoneda = new javax.swing.JComboBox<>();
+        jLabel18 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -189,10 +193,10 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
         txtMonto.setForeground(new java.awt.Color(255, 255, 255));
         txtMonto.setToolTipText("Ingrese el monto");
         txtMonto.setBorder(null);
-        jPanel2.add(txtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, 240, 20));
+        jPanel2.add(txtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, 240, 20));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 240, 20));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 240, 20));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 230, 20));
@@ -220,6 +224,25 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Descripción:");
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 90, 20));
+        jPanel2.add(txtParidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 260, 120, -1));
+
+        jLabel17.setText("paridad");
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, -1, -1));
+
+        cbxMoneda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cbxMoneda.setForeground(new java.awt.Color(255, 255, 255));
+        cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bolívar", "Dólar" }));
+        cbxMoneda.setToolTipText("Calcular la cuota especial por...");
+        cbxMoneda.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        cbxMoneda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxMonedaActionPerformed(evt);
+            }
+        });
+        jPanel2.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 180, 140, 20));
+
+        jLabel18.setText("moneda a pagar");
+        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, -1, -1));
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 760, 280));
 
@@ -300,9 +323,14 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboUnidadActionPerformed
 
+    private void cbxMonedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMonedaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxMonedaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnGuardar;
+    public javax.swing.JComboBox<String> cbxMoneda;
     public javax.swing.JComboBox<String> jComboCuenta;
     public javax.swing.JComboBox<String> jComboFondo;
     public javax.swing.JComboBox<String> jComboForma;
@@ -316,6 +344,8 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -336,6 +366,7 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
     public javax.swing.JTable jTable2;
     public javax.swing.JTextArea txtDescripcion;
     public javax.swing.JTextField txtMonto;
+    public javax.swing.JTextField txtParidad;
     public javax.swing.JTextField txtReferencia;
     // End of variables declaration//GEN-END:variables
 static public class Headercolor extends DefaultTableCellHeaderRenderer {
