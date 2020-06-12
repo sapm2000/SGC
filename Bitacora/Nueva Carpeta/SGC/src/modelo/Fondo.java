@@ -1,22 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import sgc.SGC;
 
-/**
- *
- * @author rma
- */
 public class Fondo extends ConexionBD {
 
     private String tipo;
@@ -28,10 +17,12 @@ public class Fondo extends ConexionBD {
     private double saldo;
     private String moneda;
 
+    private Connection con;
+
     public boolean registrar(Fondo modfon) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "INSERT INTO fondos(tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id_condominio, moneda) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 
@@ -59,26 +50,21 @@ public class Fondo extends ConexionBD {
 
         } finally {
             try {
-
                 con.close();
 
             } catch (SQLException e) {
-
                 System.err.println(e);
-
             }
-
         }
-
     }
 
     public ArrayList<Fondo> listar(int status) {
         ArrayList listaFondo = new ArrayList();
         Fondo modfon;
 
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+        con = getConexion();
+        ps = null;
+        rs = null;
         String sql = "";
 
         if (status == 1) {
@@ -130,9 +116,9 @@ public class Fondo extends ConexionBD {
 
     public boolean buscar(Fondo modfon) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
         String sql = "SELECT id, fecha, descripcion, observaciones, monto_inicial, saldo, moneda FROM fondos where id_condominio=? and tipo=?;";
 
         try {
@@ -177,9 +163,9 @@ public class Fondo extends ConexionBD {
 
     public boolean buscar1(Fondo modfon) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
         String sql = "SELECT id, fecha, descripcion, observaciones, monto_inicial, saldo FROM fondos where id_condominio=? and tipo=?;";
 
         try {
@@ -219,15 +205,15 @@ public class Fondo extends ConexionBD {
 
     public boolean modificar(Fondo modfon) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE fondos SET  fecha=?, descripcion=?, observaciones=?, monto_inicial=?, saldo=?, tipo=?, moneda=? WHERE id=?";
 
         try {
             int ind;
-            ind = 1 ;
-            
+            ind = 1;
+
             ps = con.prepareStatement(sql);
             ps.setDate(ind++, getFecha());
             ps.setString(ind++, getDescripcion());
@@ -261,10 +247,11 @@ public class Fondo extends ConexionBD {
 
     }
 // fondeas un carro aqui o que samuel??
+
     public boolean fondear(Fondo modfon) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE fondos SET  saldo=? WHERE id=?";
 
@@ -300,8 +287,8 @@ public class Fondo extends ConexionBD {
 
     public boolean eliminar(Fondo modfon) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE fondos SET activo=false WHERE id=?";
 
@@ -336,8 +323,8 @@ public class Fondo extends ConexionBD {
 
     public boolean activar(Fondo modfon) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE fondos SET activo=true WHERE id=?";
 
@@ -371,8 +358,8 @@ public class Fondo extends ConexionBD {
     }
 
     public boolean restarFondo(Float saldoNuevo) {
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE fondos SET saldo = saldo - ? WHERE id = ?;";
 
