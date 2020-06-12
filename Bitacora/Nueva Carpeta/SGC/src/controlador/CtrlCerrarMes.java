@@ -92,7 +92,7 @@ public class CtrlCerrarMes implements ActionListener, KeyListener {
         modeloT.addColumn("Mes");
         modeloT.addColumn("Año");
         modeloT.addColumn("Monto dolar");
-         modeloT.addColumn("Monto bolivar");
+        modeloT.addColumn("Monto bolivar");
 
         Object[] columna = new Object[5];
 
@@ -179,7 +179,7 @@ public class CtrlCerrarMes implements ActionListener, KeyListener {
                                     }
 
                                     if (mes >= mes_c) {
-                                        
+
                                         if (var1 > 13) {
                                             int var2 = var1;
                                             var1 = var1 - 12;
@@ -189,10 +189,9 @@ public class CtrlCerrarMes implements ActionListener, KeyListener {
                                                 año_c = año_c + 1;
                                             }
                                         }
-                                        
+
                                         if (año <= año_c) {
-                                            
-                                            
+
                                             if (mes < var1) {
 
                                                 String tipo = String.valueOf(tipo_cuota[z]);
@@ -364,23 +363,16 @@ public class CtrlCerrarMes implements ActionListener, KeyListener {
                                 for (int w = 0; w < numRegistro; w++) {
                                     modc.uni.setId(listaunidades.get(w).getId());
                                     double monto = 0;
-                                    if (vista.cbxMoneda.getSelectedItem().toString().equals("Dólar")) {
-                                        modc.buscartotal(modc, 2);
-                                        monto = modc.getMonto_dolar();
-                                    } else {
-                                        modc.buscartotal(modc, 1);
-                                        monto = modc.getMonto_bolivar();
-                                    }
+
+                                    modc.buscartotal(modc, 1);
+                                    monto = modc.getMonto_bolivar();
+
                                     double var9 = Double.parseDouble(String.valueOf(factor[l])) / 100;
 
                                     double parte_cuota = monto * var9;
 
-                                    if (vista.cbxMoneda.getSelectedItem().toString().equals("Dólar")) {
-                                        modc.setMonto_bolivar(parte_cuota * Double.parseDouble(vista.txtParidad.getText()));
-                                    } else {
-                                        modc.setMonto_dolar(parte_cuota / Double.parseDouble(vista.txtParidad.getText()));
-                                    }
-
+                                    modc.setMonto_dolar(parte_cuota / Double.parseDouble(vista.txtParidad.getText()));
+                                    modc.setMonto_bolivar(parte_cuota);
                                     modc.gasto.setId(listainteres.get(l).getId());
 
                                     modc.uni.setId(listaunidades.get(w).getId());

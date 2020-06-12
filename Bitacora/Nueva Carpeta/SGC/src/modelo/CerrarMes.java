@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import sgc.SGC;
 
 /**
@@ -32,7 +33,8 @@ public class CerrarMes extends ConexionBD {
     public ModeloConceptoGastos concep = new ModeloConceptoGastos();
     public Proveedores prove = new Proveedores();
     private int meses_deuda;
-    private double saldo_restante;
+    private double saldo_restante_bs;
+     private double saldo_restante_dolar;
     private String tipo_gasto;
     public Gasto gasto = new Gasto();
     private double paridad;
@@ -94,13 +96,7 @@ public class CerrarMes extends ConexionBD {
         this.tipo_gasto = tipo_gasto;
     }
 
-    public double getSaldo_restante() {
-        return saldo_restante;
-    }
-
-    public void setSaldo_restante(double saldo_restante) {
-        this.saldo_restante = saldo_restante;
-    }
+    
 
     public int getMes_cierre() {
         return mes_cierre;
@@ -134,26 +130,49 @@ public class CerrarMes extends ConexionBD {
         this.estado = estado;
     }
 
+    public double getSaldo_restante_bs() {
+        return saldo_restante_bs;
+    }
+
+    public void setSaldo_restante_bs(double saldo_restante_bs) {
+        this.saldo_restante_bs = saldo_restante_bs;
+    }
+
+    public double getSaldo_restante_dolar() {
+        return saldo_restante_dolar;
+    }
+
+    public void setSaldo_restante_dolar(double saldo_restante_dolar) {
+        this.saldo_restante_dolar = saldo_restante_dolar;
+    }
+    
+    
+
     public boolean registrar_cuota(CerrarMes modc) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO detalle_pagos(id_gasto, mes, anio, id_unidad, monto_dolar,monto_bolivar, tipo_gasto, moneda_dominante, paridad) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?);";
+        String sql = "INSERT INTO detalle_pagos(id_unidad,id_gasto, mes, anio, monto_dolar,monto_bolivar, tipo_gasto, moneda_dominante, paridad, saldo_restante_bolivar, saldo_restante_dolar) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?)";
 
         try {
 
             ps = con.prepareStatement(sql);
 
-            ps.setInt(1, gasto.getId());
-            ps.setInt(2, getMes_cierre());
-            ps.setInt(3, getAño_cierre());
-            ps.setInt(4, uni.getId());
+            ps.setInt(1, uni.getId());
+            ps.setInt(2, gasto.getId());
+
+            ps.setInt(3, getMes_cierre());
+
+            ps.setInt(4, getAño_cierre());
+
             ps.setDouble(5, getMonto_dolar());
             ps.setDouble(6, getMonto_bolivar());
             ps.setString(7, getTipo_gasto());
             ps.setString(8, getMoneda_dominante());
             ps.setDouble(9, getParidad());
+            ps.setDouble(11, getMonto_dolar());
+            ps.setDouble(10, getMonto_bolivar());
 
             ps.execute();
 
@@ -279,7 +298,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO detalle_pagos(id_unidad,id_gasto, mes, anio, monto_dolar,monto_bolivar, tipo_gasto, moneda_dominante, paridad) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?);";
+        String sql = "INSERT INTO detalle_pagos(id_unidad,id_gasto, mes, anio, monto_dolar,monto_bolivar, tipo_gasto, moneda_dominante, paridad, saldo_restante_bolivar, saldo_restante_dolar) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?)";
 
         try {
 
@@ -294,6 +313,8 @@ public class CerrarMes extends ConexionBD {
             ps.setString(7, getTipo_gasto());
             ps.setString(8, getMoneda_dominante());
             ps.setDouble(9, getParidad());
+            ps.setDouble(11, getMonto_dolar());
+            ps.setDouble(10, getMonto_bolivar());
 
             ps.execute();
 
@@ -324,7 +345,7 @@ public class CerrarMes extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO detalle_pagos(id_unidad,id_gasto, mes, anio, monto_dolar,monto_bolivar, tipo_gasto, moneda_dominante, paridad) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?)";
+        String sql = "INSERT INTO detalle_pagos(id_unidad,id_gasto, mes, anio, monto_dolar,monto_bolivar, tipo_gasto, moneda_dominante, paridad, saldo_restante_bolivar, saldo_restante_dolar) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?)";
 
         try {
 
@@ -339,6 +360,8 @@ public class CerrarMes extends ConexionBD {
             ps.setString(7, getTipo_gasto());
             ps.setString(8, getMoneda_dominante());
             ps.setDouble(9, getParidad());
+            ps.setDouble(11, getMonto_dolar());
+            ps.setDouble(10, getMonto_bolivar());
 
             ps.execute();
 
@@ -590,6 +613,47 @@ public class CerrarMes extends ConexionBD {
         return listaCierremes;
     }
 
+    public ArrayList<CerrarMes> listarDominantes() {
+        ArrayList listaCierremes = new ArrayList();
+        CerrarMes modc;
+
+        Connection con = getConexion();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT id_unidad,mes, anio, moneda_dominante FROM detalle_pagos where id_unidad=? group by mes, anio, moneda_dominante, id_unidad;";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, uni.getId());
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modc = new CerrarMes();
+                modc.uni.setId(rs.getInt(1));
+                modc.setMes_cierre(rs.getInt(2));
+                modc.setAño_cierre(rs.getInt(3));
+                modc.setMoneda_dominante(rs.getString(4));
+
+                listaCierremes.add(modc);
+            }
+        } catch (SQLException e) {
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+        return listaCierremes;
+    }
+
     public boolean buscarfechas(CerrarMes modc) {
 
         PreparedStatement ps = null;
@@ -678,18 +742,32 @@ public class CerrarMes extends ConexionBD {
         return listaCierremes;
     }
 
-    public ArrayList<CerrarMes> listarpagospendientes() {
+    public ArrayList<CerrarMes> listarpagospendientes(String moneda) {
         ArrayList listaCierremes = new ArrayList();
         CerrarMes modc;
 
         Connection con = getConexion();
         PreparedStatement ps = null;
         ResultSet rs = null;
+        int x = 0;
+        String sql = "";
+        if (moneda.equals("Bolívar")) {
+            sql = "SELECT mes, anio,sum(monto_bolivar),sum(monto_bolivar/?), sum(saldo_restante_bolivar),sum(saldo_restante_bolivar/?), moneda_dominante FROM detalle_pagos where id_unidad=? and mes=? and anio=? group by mes, anio, moneda_dominante;";
+        } else {
+            sql = "SELECT mes, anio,sum(monto_dolar*?),sum(monto_dolar), sum(saldo_restante_dolar*?),sum(saldo_restante_dolar), moneda_dominante FROM detalle_pagos where id_unidad=? and mes=? and anio=? group by mes, anio, moneda_dominante;";
 
-        String sql = "SELECT id, monto, mes, anio, alicuota, estado, saldo_restante FROM factura_unidad where id_unidad=? and estado='Pendiente de Pago' order by anio,mes";
+        }
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, uni.getId());
+            ps.setDouble(1, getParidad());
+           
+            ps.setDouble(2, getParidad());
+            ps.setInt(3, uni.getId());
+           
+            ps.setInt(4, getMes_cierre());
+             
+            ps.setInt(5, getAño_cierre());
+            
 
             rs = ps.executeQuery();
 
@@ -697,13 +775,13 @@ public class CerrarMes extends ConexionBD {
 
                 modc = new CerrarMes();
 
-                modc.gas.setId(rs.getInt(1));
-                modc.setMonto(rs.getDouble(2));
-                modc.setMes_cierre(rs.getInt(3));
-                modc.setAño_cierre(rs.getInt(4));
-                modc.setAlicuota(rs.getDouble(5));
-                modc.setEstado(rs.getString(6));
-                modc.setSaldo_restante(rs.getDouble(7));
+                modc.setMes_cierre(rs.getInt(1));
+                modc.setAño_cierre(rs.getInt(2));
+                modc.setMonto_dolar(rs.getDouble(3));
+                modc.setMonto_bolivar(rs.getDouble(4));
+                modc.setSaldo_restante_bs(rs.getDouble(5));
+                modc.setSaldo_restante_dolar(rs.getDouble(6));
+                modc.setMoneda_dominante(rs.getString(7));
 
                 listaCierremes.add(modc);
             }

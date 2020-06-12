@@ -8,7 +8,9 @@ package modelo;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,6 +27,17 @@ public class CuentasPorCobrar extends ConexionBD {
     private String referencia;
     private int id_fondo;
     private java.sql.Date fecha;
+    private double paridad;
+
+    public double getParidad() {
+        return paridad;
+    }
+
+    public void setParidad(double paridad) {
+        this.paridad = paridad;
+    }
+    
+    
    
 
    
@@ -98,6 +111,8 @@ public class CuentasPorCobrar extends ConexionBD {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+    
+    
 
     public boolean registrarCobro(CuentasPorCobrar modcuen) {
 
