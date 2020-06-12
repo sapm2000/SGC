@@ -1,5 +1,6 @@
 package modelo;
 
+import controlador.Validacion;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -259,7 +260,7 @@ public class Fondo extends ConexionBD {
 
             ps = con.prepareStatement(sql);
 
-            ps.setDouble(1, getSaldo());
+            ps.setDouble(1, Double.parseDouble(Validacion.formatopago.format(getSaldo())));
 
             ps.setInt(2, getId());
             ps.execute();

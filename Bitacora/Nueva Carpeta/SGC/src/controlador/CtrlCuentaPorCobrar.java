@@ -51,7 +51,6 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
     ArrayList<Cuenta> listaCuenta;
     ArrayList<FormaPago> listaformapago;
     int x;
-    
 
     public CtrlCuentaPorCobrar() {
         this.vista = new VisCuentaPorCobrar();
@@ -64,6 +63,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         String hola = JOptionPane.showInputDialog("ingrese la paridad a trabajar");
         double x = Double.parseDouble(hola);
         modc.setParidad(x);
+        vista.txtParidad.setText(hola);
 
         vista.jComboUnidad.addItemListener(this);
         vista.btnGuardar.addActionListener(this);
@@ -344,14 +344,14 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                         for (int i = 0; i < vista.jTable1.getRowCount(); i++) {
                                             if (monto_total > 0) {
                                                 if (valueOf(vista.jTable1.getValueAt(i, 7)) == "true") {
+                                                    modc.setMes_cierre(Integer.parseInt(valueOf(vista.jTable1.getValueAt(i, 0))));
+                                                    modc.setAño_cierre(Integer.parseInt(valueOf(vista.jTable1.getValueAt(i, 1))));
+                                                    int x = vista.jComboUnidad.getSelectedIndex() - 1;
+                                                    modc.uni.setId(listaunidades.get(x).getId());
+                                                    lista_detalles = modc.listardetallesgastos();
 
                                                     if (vista.cbxMoneda.getSelectedItem().toString().equals("Bolívar")) {
                                                         if ((vista.jTable1.getValueAt(i, 6).equals("Bolívar"))) {
-                                                            modc.setMes_cierre(Integer.parseInt(valueOf(vista.jTable1.getValueAt(i, 0))));
-                                                            modc.setAño_cierre(Integer.parseInt(valueOf(vista.jTable1.getValueAt(i, 1))));
-                                                            int x = vista.jComboUnidad.getSelectedIndex() - 1;
-                                                            modc.uni.setId(listaunidades.get(x).getId());
-                                                            lista_detalles = modc.listardetallesgastos();
 
                                                             double varsaldo = 0;
                                                             for (int q = 0; q < lista_detalles.size(); q++) {
@@ -372,11 +372,6 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                                         }
 
                                                         if ((vista.jTable1.getValueAt(i, 6).equals("Dólar"))) {
-                                                            modc.setMes_cierre(Integer.parseInt(valueOf(vista.jTable1.getValueAt(i, 0))));
-                                                            modc.setAño_cierre(Integer.parseInt(valueOf(vista.jTable1.getValueAt(i, 1))));
-                                                            int x = vista.jComboUnidad.getSelectedIndex() - 1;
-                                                            modc.uni.setId(listaunidades.get(x).getId());
-                                                            lista_detalles = modc.listardetallesgastos();
 
                                                             double varsaldo = 0;
 
@@ -384,8 +379,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                                                 if (monto_total > 0) {
 
                                                                     varsaldo = lista_detalles.get(q).getSaldo_restante_dolar() - (monto_total / Double.parseDouble(vista.txtParidad.getText()));
-                                                                    System.out.println(varsaldo + " es el resultado de " + lista_detalles.get(q).getSaldo_restante_dolar() + "-" + monto_total + "/" + Double.parseDouble(vista.txtParidad.getText()));
-                                                                    formatearDecimales(varsaldo, 2);
+
                                                                     monto_total = monto_total - (lista_detalles.get(q).getSaldo_restante_dolar() * Double.parseDouble(vista.txtParidad.getText()));
                                                                     if (varsaldo < 0) {
                                                                         varsaldo = 0;
@@ -400,6 +394,47 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
                                                         }
 
+                                                    }
+                                                    if (vista.cbxMoneda.getSelectedItem().toString().equals("Dólar")) {
+                                                        if ((vista.jTable1.getValueAt(i, 6).equals("Dólar"))) {
+
+                                                            double varsaldo = 0;
+                                                            for (int q = 0; q < lista_detalles.size(); q++) {
+                                                                if (monto_total > 0) {
+
+                                                                    varsaldo = lista_detalles.get(q).getSaldo_restante_dolar() - monto_total;
+                                                                    monto_total = monto_total - lista_detalles.get(q).getSaldo_restante_dolar();
+
+                                                                    if (varsaldo < 0) {
+                                                                        varsaldo = 0;
+                                                                    }
+
+                                                                    modc.setSaldo_restante_dolar(Double.parseDouble(Validacion.formatopago.format(varsaldo)));
+                                                                    modc.setId(lista_detalles.get(q).getId());
+                                                                    modc.actualizarTotalDolar(modc);
+                                                                }
+                                                            }
+                                                        }
+                                                        if ((vista.jTable1.getValueAt(i, 6).equals("Bolívar"))) {
+                                                            double varsaldo = 0;
+
+                                                            for (int q = 0; q < lista_detalles.size(); q++) {
+                                                                if (monto_total > 0) {
+
+                                                                    varsaldo = lista_detalles.get(q).getSaldo_restante_bs()- (monto_total * Double.parseDouble(vista.txtParidad.getText()));
+
+                                                                    monto_total = monto_total - (lista_detalles.get(q).getSaldo_restante_bs() / Double.parseDouble(vista.txtParidad.getText()));
+                                                                    if (varsaldo < 0) {
+                                                                        varsaldo = 0;
+                                                                    }
+
+                                                                    modc.setSaldo_restante_bs(Double.parseDouble(Validacion.formatopago.format(varsaldo)));
+                                                                    modc.setId(lista_detalles.get(q).getId());
+                                                                    modc.actualizarTotalBolivar(modc);
+
+                                                                }
+                                                            }
+                                                        }
                                                     }
 
                                                     double dato = Double.parseDouble(String.valueOf(this.vista.jTable1.getValueAt(i, 5)));
@@ -557,9 +592,6 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
         return resultado;
     }
-    public static Double formatearDecimales(Double numero, Integer numeroDecimales) {
-    return Math.round(numero * Math.pow(10, numeroDecimales)) / Math.pow(10, numeroDecimales);
-}
 
     public void addCheckBox(int column, JTable table) {
         TableColumn tc = table.getColumnModel().getColumn(column);
