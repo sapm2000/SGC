@@ -57,7 +57,7 @@ public class CtrlCerrarMes implements ActionListener, KeyListener {
         this.modc = new CerrarMes();
         this.moduni = new Unidades();
 
-        
+            
         this.modcuo = new Gasto();
         this.modsan = new Sancion();
         this.modin = new Interes();
