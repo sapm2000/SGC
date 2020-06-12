@@ -25,6 +25,7 @@ import modelo.CerrarMes;
 import modelo.Cuenta;
 import modelo.CuentasPorCobrar;
 import modelo.Fondo;
+import modelo.FormaPago;
 import modelo.Unidades;
 import vista.VisCuentaPorCobrar;
 
@@ -40,11 +41,13 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
     private Fondo modfon;
     private Cuenta modcu;
     private CerrarMes modc;
+    private FormaPago modfor;
     ArrayList<CerrarMes> listaCierremes;
     ArrayList<CerrarMes> listaDominante;
     ArrayList<Unidades> listaunidades;
     ArrayList<Fondo> listafondo;
     ArrayList<Cuenta> listaCuenta;
+    ArrayList<FormaPago> listaformapago;
     int x;
 
     public CtrlCuentaPorCobrar() {
@@ -54,23 +57,32 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         this.modfon = new Fondo();
         this.modcu = new Cuenta();
         this.modc = new CerrarMes();
-         String hola = JOptionPane.showInputDialog("ingrese la paridad a trabajar");
-            double x = Double.parseDouble(hola);
-            modc.setParidad(x);
+        this.modfor = new FormaPago();
+        String hola = JOptionPane.showInputDialog("ingrese la paridad a trabajar");
+        double x = Double.parseDouble(hola);
+        modc.setParidad(x);
 
         vista.jComboUnidad.addItemListener(this);
         vista.btnGuardar.addActionListener(this);
         vista.txtMonto.addKeyListener(this);
         vista.txtDescripcion.addKeyListener(this);
         vista.txtReferencia.addKeyListener(this);
+        vista.cbxMoneda.addItemListener(this);
         CtrlVentana.cambiarVista(vista);
+
+        vista.jComboFondo.removeAllItems();
+        modfon.setMoneda("Bolívar");
+        listafondo = modfon.listar(2);
+        crearCbxFondo(listafondo);
 
         listaunidades = moduni.listar();
         crearCbxUnidad(listaunidades);
-        listafondo = modfon.listar(2);
-        crearCbxFondo(listafondo);
+
         listaCuenta = modcu.listarcuenta();
         crearCbxCuenta(listaCuenta);
+        
+        listaformapago = modfor.listar();
+        crearCbxFormadePago(listaformapago);
 
         Component[] components = vista.jPanel2.getComponents();
         JComponent[] com = {
@@ -122,7 +134,6 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
 
-       
         modeloT.addColumn("Mes");
         modeloT.addColumn("Año");
         modeloT.addColumn("Monto en $");
@@ -133,14 +144,13 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         modeloT.addColumn("Seleccione");
 
         Object[] columna = new Object[8];
-       
-        for (int s=0; s < listaDominante.size(); s++) {
+
+        for (int s = 0; s < listaDominante.size(); s++) {
             modc.setMes_cierre(listaDominante.get(s).getMes_cierre());
             modc.setAño_cierre(listaDominante.get(s).getAño_cierre());
             modc.uni.setId(listaDominante.get(s).uni.getId());
             listaCierremes = modc.listarpagospendientes(listaDominante.get(s).getMoneda_dominante());
             int numRegistro = listaCierremes.size();
-            
 
             for (int i = 0; i < numRegistro; i++) {
 
@@ -382,6 +392,18 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
         }
     }
+    
+    private void crearCbxFormadePago(ArrayList<FormaPago> datos) {
+        
+
+        if (datos != null) {
+            for (FormaPago datosX : datos) {
+                modfor = datosX;
+                vista.jComboForma.addItem(modfor.getForma_pago());
+            }
+
+        }
+    }
 
     private void crearCbxFondo(ArrayList<Fondo> datos) {
         vista.jComboFondo.addItem("Seleccione el fondo a depositar");
@@ -389,7 +411,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         if (datos != null) {
             for (Fondo datosX : datos) {
                 modfon = datosX;
-                vista.jComboFondo.addItem(modfon.getTipo() + " " + modfon.getSaldo());
+                vista.jComboFondo.addItem(modfon.getTipo() + " " + modfon.getSaldo()+ " " +modfon.getMoneda());
             }
 
         }
@@ -397,11 +419,12 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
     private void crearCbxCuenta(ArrayList<Cuenta> datos) {
         vista.jComboCuenta.addItem("Seleccione la cuenta depositada");
+        vista.jComboCuenta.addItem("Otros");
 
         if (datos != null) {
             for (Cuenta datosX : datos) {
                 modcu = datosX;
-                vista.jComboCuenta.addItem(modcu.getN_cuenta() + " " + modcu.getCedula() + " " + modcu.getBeneficiario());
+                vista.jComboCuenta.addItem(modcu.getN_cuenta() + " " + modcu.getBeneficiario().getCedula() + " " + modcu.getBeneficiario());
             }
 
         }
@@ -409,21 +432,29 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        if (e.getStateChange() == ItemEvent.SELECTED) {
-            listaunidades = moduni.listar();
-            int ind = vista.jComboUnidad.getSelectedIndex() - 1;
-            if (ind == -1) {
+        if (e.getSource() == vista.jComboUnidad) {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                listaunidades = moduni.listar();
+                int ind = vista.jComboUnidad.getSelectedIndex() - 1;
+                if (ind == -1) {
 
-            } else {
-                modc.uni.setId(listaunidades.get(ind).getId());
-                
-                listaDominante = modc.listarDominantes();
-                x = listaDominante.size();
+                } else {
+                    modc.uni.setId(listaunidades.get(ind).getId());
 
-                Llenartabla(vista.jTable1, listaDominante);
-                addCheckBox(7, vista.jTable1);
-                Llenartablapagados(vista.jTable2);
+                    listaDominante = modc.listarDominantes();
+                    x = listaDominante.size();
+
+                    Llenartabla(vista.jTable1, listaDominante);
+                    addCheckBox(7, vista.jTable1);
+                    Llenartablapagados(vista.jTable2);
+                }
             }
+        }
+        if (e.getSource() == vista.cbxMoneda) {
+            vista.jComboFondo.removeAllItems();
+            modfon.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
+            listafondo = modfon.listar(2);
+            crearCbxFondo(listafondo);
         }
 
     }

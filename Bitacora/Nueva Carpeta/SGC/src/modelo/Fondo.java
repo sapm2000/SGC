@@ -85,7 +85,7 @@ public class Fondo extends ConexionBD {
             sql = "SELECT tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id, moneda FROM fondos where id_condominio=? AND saldo > 0 and activo=true;";
         }
         if (status == 2) {
-            sql = "SELECT tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id, moneda FROM fondos where id_condominio=? and activo=true;";
+            sql = "SELECT tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id, moneda FROM fondos where id_condominio=? and activo=true and moneda=?;";
         }
         if (status == 3) {
             sql = "SELECT tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id, moneda FROM fondos where id_condominio=? and activo=false;";
@@ -93,6 +93,7 @@ public class Fondo extends ConexionBD {
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, SGC.condominioActual.getRif());
+            ps.setString(2, getMoneda());
             rs = ps.executeQuery();
 
             while (rs.next()) {

@@ -6,7 +6,10 @@
 package vista;
 
 import java.awt.Color;
+import static java.awt.Color.white;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import javax.swing.BorderFactory;
@@ -23,7 +26,7 @@ import vista.VisCerrarMes.CustomUI;
 
 /**
  *
- * @author Jhen
+ * @author Maryo
  */
 public class VisCerrarMes extends javax.swing.JPanel {
 
@@ -32,7 +35,7 @@ public class VisCerrarMes extends javax.swing.JPanel {
      */
     public VisCerrarMes() {
         initComponents();
-        //cbxMoneda.getUI(new CurrentValue());
+        cbxMoneda.setUI(new VisCerrarMes.CustomUI());
     }
 
     /**
@@ -97,14 +100,16 @@ public class VisCerrarMes extends javax.swing.JPanel {
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 100, 30));
 
         cbxMoneda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cbxMoneda.setForeground(new java.awt.Color(255, 255, 255));
         cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bolívar", "Dólar" }));
         cbxMoneda.setToolTipText("Calcular la cuota especial por...");
+        cbxMoneda.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         cbxMoneda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxMonedaActionPerformed(evt);
             }
         });
-        jPanel2.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 140, 20));
+        jPanel2.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 140, 20));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -174,21 +179,25 @@ public class VisCerrarMes extends javax.swing.JPanel {
     public javax.swing.JTextField txtParidad;
     // End of variables declaration//GEN-END:variables
 static public class CustomUI extends BasicComboBoxUI{
+        
     
-    private ImageIcon espacio =  new ImageIcon(getClass().getResource("/org/bolivia/res/espacio.png"));
-    private Color red = new Color(153,3,3);
-     
+   
+    public Color blue = new Color(0,94,159);
+    
+    public static ComboBoxUI createUI(JComponent cbxMoneda) {
+         return new CustomUI();
+     }
  
     @Override 
-    protected JButton createArrowButton() {        
+    public JButton createArrowButton() {        
         BasicArrowButton basicArrowButton = new BasicArrowButton(BasicArrowButton.SOUTH, //Direccion de la flecha
                 Color.WHITE, //Color de fondo
-                new Color(130,7,7),//sombra
-                new Color(130,7,7),//darkShadow
+                new Color(0,94,159),//sombra
+                new Color(0,94,159),//darkShadow
                 Color.WHITE //highlight
                 );         
         //se quita el efecto 3d del boton, sombra y darkShadow no se aplican 
-        basicArrowButton.setBorder(BorderFactory.createLineBorder(red,2));
+        basicArrowButton.setBorder(BorderFactory.createLineBorder(blue,2));
         basicArrowButton.setContentAreaFilled(false);        
         return basicArrowButton;
     }        
@@ -212,13 +221,15 @@ static public class CustomUI extends BasicComboBoxUI{
                                 Rectangle bounds,
                                 boolean hasFocus)
     {
-        g.setColor( red );            
+        g.setColor( blue );
+        g.setFont(new Font("Tahoma", Font.BOLD, 14));
         g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
     }
-       
+    
+    
      //Pinta los items
     @Override
-    protected ListCellRenderer createRenderer()
+    public ListCellRenderer createRenderer()
     {
         return new DefaultListCellRenderer() {      
              
@@ -227,10 +238,11 @@ static public class CustomUI extends BasicComboBoxUI{
            boolean isSelected,boolean cellHasFocus) {
        
         super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
-        list.setSelectionBackground(red);
+        list.setSelectionBackground(blue);
+        list.setForeground(white);
         if (isSelected)
         {
-             setBackground( red );
+             setBackground( blue );
              setForeground(Color.WHITE);
         }
         else
@@ -238,9 +250,7 @@ static public class CustomUI extends BasicComboBoxUI{
              setBackground( Color.WHITE );            
              setForeground( new Color(70,70,70));
         }
-            if (index!=-1) {          
-           setIcon( espacio );          
-            }
+            
             return this;
             }
         };
