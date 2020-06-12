@@ -44,6 +44,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
     private FormaPago modfor;
     ArrayList<CerrarMes> listaCierremes;
     ArrayList<CerrarMes> listaDominante;
+    ArrayList<CerrarMes> lista_detalles;
     ArrayList<Unidades> listaunidades;
     ArrayList<Fondo> listafondo;
     ArrayList<Cuenta> listaCuenta;
@@ -80,7 +81,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
         listaCuenta = modcu.listarcuenta();
         crearCbxCuenta(listaCuenta);
-        
+
         listaformapago = modfor.listar();
         crearCbxFormadePago(listaformapago);
 
@@ -179,7 +180,6 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
     public void Llenartablapagados(JTable tablaD) {
 
-        listaCierremes = modc.listarpagospagados();
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -219,32 +219,37 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
 
-        modeloT.addColumn("<html>Nº de<br> Recibo</html>");
         modeloT.addColumn("Mes");
         modeloT.addColumn("Año");
-        modeloT.addColumn("Alícuota");
-        modeloT.addColumn("Monto");
-        modeloT.addColumn("<html>Saldo <br> Restante</html>");
-        modeloT.addColumn("Estado");
+        modeloT.addColumn("Monto en $");
+        modeloT.addColumn("Monto en BsS");
+        modeloT.addColumn("Saldo Restante $");
+        modeloT.addColumn("Saldo Restante BsS");
+        modeloT.addColumn("Mantener valor en");
+        modeloT.addColumn("Seleccione");
 
-        Object[] columna = new Object[7];
+        Object[] columna = new Object[8];
 
-        int numRegistro = listaCierremes.size();
+        for (int s = 0; s < listaDominante.size(); s++) {
+            modc.setMes_cierre(listaDominante.get(s).getMes_cierre());
+            modc.setAño_cierre(listaDominante.get(s).getAño_cierre());
+            modc.uni.setId(listaDominante.get(s).uni.getId());
+            listaCierremes = modc.listarpagospagados(listaDominante.get(s).getMoneda_dominante());
+            int numRegistro = listaCierremes.size();
 
-        for (int i = 0; i < numRegistro; i++) {
+            for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = listaCierremes.get(i).getId_gasto();
-            columna[1] = listaCierremes.get(i).getMes_cierre();
-            columna[2] = listaCierremes.get(i).getAño_cierre();
-            double var4 = listaCierremes.get(i).getAlicuota() * 100;
-            String var5 = var4 + "%";
-            columna[3] = var5;
-            columna[4] = Validacion.formato1.format(listaCierremes.get(i).getMonto());
-            columna[5] = Validacion.formato1.format(listaCierremes.get(i).getSaldo_restante());
-            columna[6] = listaCierremes.get(i).getEstado();
+                columna[0] = listaCierremes.get(i).getMes_cierre();
+                columna[1] = listaCierremes.get(i).getAño_cierre();
+                columna[2] = listaCierremes.get(i).getMonto_bolivar();
+                columna[3] = listaCierremes.get(i).getMonto_dolar();
+                columna[4] = listaCierremes.get(i).getSaldo_restante_dolar();
+                columna[5] = listaCierremes.get(i).getSaldo_restante_bs();
+                columna[6] = listaCierremes.get(i).getMoneda_dominante();
 
-            modeloT.addRow(columna);
+                modeloT.addRow(columna);
 
+            }
         }
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -254,6 +259,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(6).setCellRenderer(tcr);
     }
 
     private static java.sql.Date convert(java.util.Date uDate) {
@@ -266,13 +272,14 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         if (e.getSource() == vista.btnGuardar) {
             if (validar()) {
                 listaunidades = moduni.listar();
+                modfon.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
                 listafondo = modfon.listar(2);
                 listaCuenta = modcu.listarcuenta();
 
                 int j = 0;
                 modcuen.setDescripcion(vista.txtDescripcion.getText());
                 modcuen.setForma_pago(vista.jComboForma.getSelectedItem().toString());
-                int ind2 = vista.jComboCuenta.getSelectedIndex() - 1;
+                int ind2 = vista.jComboCuenta.getSelectedIndex() - 2;
 
                 for (int i = 0; i < vista.jTable1.getRowCount(); i++) {
                     if (valueOf(vista.jTable1.getValueAt(i, 7)) == "true") {
@@ -301,11 +308,12 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                             if (ind == -1) {
                                 JOptionPane.showMessageDialog(null, "seleccione el numero de la unidad");
                             } else {
-                                modcuen.setId_unidad(listaunidades.get(ind).getId());
+                                modcuen.uni.setId(listaunidades.get(ind).getId());
                                 modcuen.setMonto(Double.parseDouble(vista.txtMonto.getText()));
                                 modcuen.setReferencia(vista.txtReferencia.getText());
                                 java.sql.Date sqlDate = convert(vista.jDateChooser1.getDate());
                                 modcuen.setFecha(sqlDate);
+
                                 double monto = modcuen.getMonto();
                                 double total = 0;
                                 for (int i = 0; i < vista.jTable1.getRowCount(); i++) {
@@ -329,44 +337,103 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
                                         JOptionPane.showMessageDialog(null, "registro guardado");
                                         modc.buscId(modc);
+                                        double monto_total = Double.parseDouble(vista.txtMonto.getText());
+
                                         for (int i = 0; i < vista.jTable1.getRowCount(); i++) {
-                                            if (valueOf(vista.jTable1.getValueAt(i, 7)) == "true") {
+                                            if (monto_total > 0) {
+                                                if (valueOf(vista.jTable1.getValueAt(i, 7)) == "true") {
 
-                                                double dato = Double.parseDouble(String.valueOf(this.vista.jTable1.getValueAt(i, 5)));
-                                                double parte = dato - monto;
-                                                double va1 = dato - parte;
-                                                if (parte <= 0) {
-                                                    parte = 0;
-                                                    va1 = dato;
-                                                }
+                                                    if (vista.cbxMoneda.getSelectedItem().toString().equals("Bolívar")) {
+                                                        if ((vista.jTable1.getValueAt(i, 6).equals("Bolívar"))) {
+                                                            modc.setMes_cierre(Integer.parseInt(valueOf(vista.jTable1.getValueAt(i, 0))));
+                                                            modc.setAño_cierre(Integer.parseInt(valueOf(vista.jTable1.getValueAt(i, 1))));
+                                                            int x = vista.jComboUnidad.getSelectedIndex() - 1;
+                                                            modc.uni.setId(listaunidades.get(x).getId());
+                                                            lista_detalles = modc.listardetallesgastos();
 
-                                                if (monto <= 0) {
+                                                            double varsaldo = 0;
+                                                            for (int q = 0; q < lista_detalles.size(); q++) {
+                                                                if (monto_total > 0) {
 
-                                                } else {
-                                                    if (parte == 0) {
-                                                        modc.setEstado("Pagado");
+                                                                    varsaldo = lista_detalles.get(q).getSaldo_restante_bs() - monto_total;
+                                                                    monto_total = monto_total - lista_detalles.get(q).getSaldo_restante_bs();
+
+                                                                    if (varsaldo < 0) {
+                                                                        varsaldo = 0;
+                                                                    }
+
+                                                                    modc.setSaldo_restante_bs(varsaldo);
+                                                                    modc.setId(lista_detalles.get(q).getId());
+                                                                    modc.actualizarTotalBolivar(modc);
+                                                                }
+                                                            }
+                                                        }
+
+                                                        if ((vista.jTable1.getValueAt(i, 6).equals("Dólar"))) {
+                                                            modc.setMes_cierre(Integer.parseInt(valueOf(vista.jTable1.getValueAt(i, 0))));
+                                                            modc.setAño_cierre(Integer.parseInt(valueOf(vista.jTable1.getValueAt(i, 1))));
+                                                            int x = vista.jComboUnidad.getSelectedIndex() - 1;
+                                                            modc.uni.setId(listaunidades.get(x).getId());
+                                                            lista_detalles = modc.listardetallesgastos();
+
+                                                            double varsaldo = 0;
+
+                                                            for (int q = 0; q < lista_detalles.size(); q++) {
+                                                                if (monto_total > 0) {
+
+                                                                    varsaldo = lista_detalles.get(q).getSaldo_restante_dolar() - (monto_total / Double.parseDouble(vista.txtParidad.getText()));
+                                                                    System.out.println(varsaldo + " es el resultado de " + lista_detalles.get(q).getSaldo_restante_dolar() + "-" + monto_total + "/" + Double.parseDouble(vista.txtParidad.getText()));
+
+                                                                    monto_total = monto_total - (lista_detalles.get(q).getSaldo_restante_dolar() * Double.parseDouble(vista.txtParidad.getText()));
+                                                                    if (varsaldo < 0) {
+                                                                        varsaldo = 0;
+                                                                    }
+
+                                                                    modc.setSaldo_restante_dolar(varsaldo);
+                                                                    modc.setId(lista_detalles.get(q).getId());
+                                                                    modc.actualizarTotalDolar(modc);
+
+                                                                }
+                                                            }
+
+                                                        }
+
+                                                    }
+
+                                                    double dato = Double.parseDouble(String.valueOf(this.vista.jTable1.getValueAt(i, 5)));
+                                                    double parte = dato - monto;
+                                                    double va1 = dato - parte;
+                                                    if (parte <= 0) {
+                                                        parte = 0;
+                                                        va1 = dato;
+                                                    }
+
+                                                    if (monto <= 0) {
 
                                                     } else {
-                                                        modc.setEstado("Pendiente de Pago");
+                                                        if (parte == 0) {
+                                                            modc.setEstado("Pagado");
+
+                                                        } else {
+                                                            modc.setEstado("Pendiente de Pago");
+                                                        }
+
                                                     }
-                                                    modc.setSaldo_restante(parte);
 
-                                                    modc.setId_gasto(Integer.parseInt(String.valueOf(this.vista.jTable1.getValueAt(i, 0))));
-                                                    modc.actualizartotal(modc);
-                                                    modc.setSaldo_restante(va1);
-                                                    modc.guardarpuentepagos(modc);
-                                                    modc.setSaldo_restante(0);
                                                 }
-                                                monto = monto - dato;
-
                                             }
                                         }
 
-                                        modcuen.setId_unidad(listaunidades.get(ind).getId());
-                                        Llenartabla(vista.jTable1);
+                                        modc.uni.setId(listaunidades.get(ind).getId());
+
+                                        listaDominante = modc.listarDominantes();
+                                        x = listaDominante.size();
+
+                                        Llenartabla(vista.jTable1, listaDominante);
                                         addCheckBox(7, vista.jTable1);
                                         Llenartablapagados(vista.jTable2);
                                         vista.jComboFondo.removeAllItems();
+                                        modfon.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
                                         listafondo = modfon.listar(2);
                                         crearCbxFondo(listafondo);
 
@@ -392,9 +459,8 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
         }
     }
-    
+
     private void crearCbxFormadePago(ArrayList<FormaPago> datos) {
-        
 
         if (datos != null) {
             for (FormaPago datosX : datos) {
@@ -411,7 +477,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         if (datos != null) {
             for (Fondo datosX : datos) {
                 modfon = datosX;
-                vista.jComboFondo.addItem(modfon.getTipo() + " " + modfon.getSaldo()+ " " +modfon.getMoneda());
+                vista.jComboFondo.addItem(modfon.getTipo() + " " + modfon.getSaldo() + " " + modfon.getMoneda());
             }
 
         }
