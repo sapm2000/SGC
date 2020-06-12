@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class CuentasPorCobrar extends ConexionBD {
 
     private int id;
-  private Unidades uni = new Unidades();
+    public Unidades uni = new Unidades();
     private double monto;
     private String descripcion;
     private String id_cuenta;
@@ -36,13 +36,6 @@ public class CuentasPorCobrar extends ConexionBD {
     public void setParidad(double paridad) {
         this.paridad = paridad;
     }
-    
-    
-   
-
-   
-    
-    
 
     public int getId() {
         return id;
@@ -51,10 +44,6 @@ public class CuentasPorCobrar extends ConexionBD {
     public void setId(int id) {
         this.id = id;
     }
-
-  
-
-  
 
     public double getMonto() {
         return monto;
@@ -111,8 +100,6 @@ public class CuentasPorCobrar extends ConexionBD {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    
-    
 
     public boolean registrarCobro(CuentasPorCobrar modcuen) {
 
@@ -132,7 +119,6 @@ public class CuentasPorCobrar extends ConexionBD {
             ps.setString(6, getReferencia());
             ps.setDate(7, getFecha());
             ps.setInt(8, getId_fondo());
-            
 
             ps.execute();
 
