@@ -10,8 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import sgc.SGC;
 
 /**
  *
@@ -25,12 +23,12 @@ public class CerrarMes extends ConexionBD {
     private double monto_dolar;
     private double monto_bolivar;
     public Unidades uni = new Unidades();
-    public GastoComun gas = new GastoComun();
+//    public GastoComun gas = new GastoComun();
     public Sancion san = new Sancion();
     private double alicuota;
     private String estado;
     public Gasto cuo = new Gasto();
-    public ModeloConceptoGastos concep = new ModeloConceptoGastos();
+//    public ModeloConceptoGastos concep = new ModeloConceptoGastos();
     public Proveedores prove = new Proveedores();
     private int meses_deuda;
     private double saldo_restante_bs;
@@ -432,7 +430,7 @@ public class CerrarMes extends ConexionBD {
             ps = con.prepareStatement(sql);
             ps.setString(1, getEstado());
 
-            ps.setInt(2, gas.getId());
+//            ps.setInt(2, gas.getId());
             ps.execute();
 
             return true;
@@ -528,7 +526,7 @@ public class CerrarMes extends ConexionBD {
         }
 
     }
-    
+
     public boolean actualizarTotalBolivar(CerrarMes modc) {
 
         PreparedStatement ps = null;
@@ -564,8 +562,8 @@ public class CerrarMes extends ConexionBD {
         }
 
     }
-    
-     public boolean actualizarTotalDolar(CerrarMes modc) {
+
+    public boolean actualizarTotalDolar(CerrarMes modc) {
 
         PreparedStatement ps = null;
         Connection con = getConexion();
@@ -783,7 +781,7 @@ public class CerrarMes extends ConexionBD {
 
                 modc = new CerrarMes();
 
-                modc.gas.setId(rs.getInt(1));
+//                modc.gas.setId(rs.getInt(1));
                 modc.setMonto(rs.getDouble(2));
                 modc.setMes_cierre(rs.getInt(3));
                 modc.setAño_cierre(rs.getInt(4));
@@ -1043,7 +1041,7 @@ public class CerrarMes extends ConexionBD {
 
                 modc = new CerrarMes();
 
-                modc.concep.setNombre_Concepto(rs.getString(1));
+//                modc.concep.setNombre_Concepto(rs.getString(1));
                 modc.setMonto(rs.getDouble(2));
                 modc.prove.setCedula(rs.getString(3));
                 modc.prove.setNombre(rs.getString(4));
@@ -1254,7 +1252,7 @@ public class CerrarMes extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setInt(1, gas.getId());
+//            ps.setInt(1, gas.getId());
             ps.setInt(2, getId());
             ps.setDouble(3, getSaldo_restante());
 
