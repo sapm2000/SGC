@@ -5,12 +5,15 @@
  */
 package controlador;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Calendar;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -406,5 +409,21 @@ public class CtrlCerrarMes implements ActionListener, KeyListener {
         tr.setRowFilter(RowFilter.regexFilter(consulta));
         
     }
+    
+    public class SComboBox extends VisCerrarMes{
+  
+     /** Constructor */
+     public SComboBox()
+     {
+         Dimension dimension = new Dimension(200,32);
+         setPreferredSize(dimension);
+         setSize(dimension);      
+         setForeground(Color.WHITE);        
+         setBorder(BorderFactory.createLineBorder(new Color(71, 71, 71), 2));
+         setUI(CustomUI.createUI(this));                
+         setVisible(true);
+     }
+ 
+ }
     
 }
