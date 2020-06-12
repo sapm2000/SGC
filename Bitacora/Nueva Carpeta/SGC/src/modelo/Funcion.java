@@ -7,14 +7,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Funcion extends ConexionBD {
-    
+
     private Integer id;
     private String nombre;
     private Boolean registrar;
     private Boolean modificar;
     private Boolean eliminar;
     private Boolean todo;
-    
+
     private Connection con;
 
     public Funcion() {
@@ -37,7 +37,7 @@ public class Funcion extends ConexionBD {
         this.eliminar = eliminar;
         this.todo = todo;
     }
-    
+
     public ArrayList<Funcion> listar() {
         try {
             ArrayList<Funcion> listar = new ArrayList();
@@ -65,6 +65,13 @@ public class Funcion extends ConexionBD {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
     }
 
@@ -115,6 +122,5 @@ public class Funcion extends ConexionBD {
     public void setTodo(Boolean todo) {
         this.todo = todo;
     }
-    
 
 }

@@ -1,12 +1,8 @@
 package modelo;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 
 public class ConceptoGasto extends ConexionBD {
 
@@ -50,8 +46,8 @@ public class ConceptoGasto extends ConexionBD {
 
     public boolean modificarConcepto(ConceptoGasto modConGas) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE concepto_gasto SET nom_concepto=?, descripcion=?, id_categoria=? WHERE id=? ";
 
@@ -89,8 +85,8 @@ public class ConceptoGasto extends ConexionBD {
 
     public boolean eliminar(ConceptoGasto modConGas) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE concepto_gasto SET activo=false WHERE id=? ";
 
@@ -125,9 +121,9 @@ public class ConceptoGasto extends ConexionBD {
 
     public boolean buscarInactivo(ConceptoGasto modConGas) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
         String sql = "SELECT * FROM concepto_gasto WHERE nom_concepto=? and activo=false";
 
         try {
@@ -166,8 +162,8 @@ public class ConceptoGasto extends ConexionBD {
 
     public boolean activar(ConceptoGasto modConGas) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE concepto_gasto SET activo=true WHERE id=? ";
 
@@ -202,9 +198,9 @@ public class ConceptoGasto extends ConexionBD {
 
     public boolean buscarC(ConceptoGasto modC) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
 
         String sql = "SELECT concepto_gasto.id, concepto_gasto.nom_concepto, concepto_gasto.descripcion, categoriagasto.nombre"
                 + " FROM concepto_gasto INNER JOIN categoriagasto ON categoriagasto.id=concepto_gasto.id_categoria"
@@ -294,9 +290,9 @@ public class ConceptoGasto extends ConexionBD {
 
     public boolean Buscargas(ConceptoGasto modCatGas) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
 
         String sql = "SELECT * FROM gasto_comun where id_concepto=? and estado='Pendiente'";
 
@@ -331,9 +327,9 @@ public class ConceptoGasto extends ConexionBD {
 
     public boolean Buscarcuo(ConceptoGasto modCatGas) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
 
         String sql = "SELECT * from puente_concepto_factura  inner join facturas_proveedores on puente_concepto_factura.id_factura_proveedor = facturas_proveedores.id where id_concepto=? and estado='Pendiente'";
 
@@ -368,9 +364,9 @@ public class ConceptoGasto extends ConexionBD {
 
     public boolean Buscarconcepto(ConceptoGasto modCatGas) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
 
         String sql = "SELECT * FROM categoriagasto where id=? and activo=true;";
 
@@ -407,9 +403,9 @@ public class ConceptoGasto extends ConexionBD {
         ArrayList listaPersona = new ArrayList();
         ConceptoGasto modConGas;
 
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+        con = getConexion();
+        ps = null;
+        rs = null;
         String sql = "SELECT concepto_gasto.id, nom_concepto, concepto_gasto.descripcion, categoriagasto.nombre, categoriagasto.id FROM concepto_gasto "
                 + "INNER JOIN categoriagasto ON concepto_gasto.id_categoria=categoriagasto.id where concepto_gasto.activo=false";
         try {
@@ -445,68 +441,11 @@ public class ConceptoGasto extends ConexionBD {
 
     }
 
-    public void llenar_concepto(JComboBox Concepto) {
-
-//Creamos objeto tipo Connection    
-        java.sql.Connection conectar = null;
-        PreparedStatement pst = null;
-        ResultSet result = null;
-
-//Creamos la Consulta SQL
-        String SSQL = "SELECT nom_concepto FROM concepto_gasto;";
-
-//Establecemos bloque try-catch-finally
-        try {
-
-            //Establecemos conexión con la BD 
-            conectar = getConexion();
-            //Preparamos la consulta SQL
-            pst = conectar.prepareStatement(SSQL);
-            //Ejecutamos la consulta
-            result = pst.executeQuery();
-
-            //LLenamos nuestro ComboBox
-            Concepto.addItem("Seleccione el Concepto");
-
-            while (result.next()) {
-
-                Concepto.addItem(result.getString("nom_concepto"));
-
-            }
-
-        } catch (SQLException e) {
-
-            JOptionPane.showMessageDialog(null, e);
-
-        } finally {
-
-            if (conectar != null) {
-
-                try {
-
-                    conectar.close();
-                    result.close();
-
-                    conectar = null;
-                    result = null;
-
-                } catch (SQLException ex) {
-
-                    JOptionPane.showMessageDialog(null, ex);
-
-                }
-
-            }
-
-        }
-
-    }
-
     public boolean buscarid(ConceptoGasto modcon) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
         String sql = "SELECT id FROM concepto_gasto where nom_concepto=?;";
 
         try {

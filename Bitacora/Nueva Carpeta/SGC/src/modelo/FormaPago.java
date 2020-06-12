@@ -1,45 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- *
- * @author rma
- */
 public class FormaPago extends ConexionBD {
 
     private int id;
     private String forma_pago;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getForma_pago() {
-        return forma_pago;
-    }
-
-    public void setForma_pago(String forma_pago) {
-        this.forma_pago = forma_pago;
-    }
+    private Connection con;
 
     public boolean registrar(FormaPago modfor) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "INSERT INTO forma_pago (forma_pago, activo) VALUES(?,true);";
 
@@ -58,15 +33,11 @@ public class FormaPago extends ConexionBD {
 
         } finally {
             try {
-
                 con.close();
 
             } catch (SQLException e) {
-
                 System.err.println(e);
-
             }
-
         }
 
     }
@@ -75,9 +46,9 @@ public class FormaPago extends ConexionBD {
         ArrayList listaFormaPago = new ArrayList();
         FormaPago modfor;
 
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+        con = getConexion();
+        ps = null;
+        rs = null;
 
         String sql = "SELECT * FROM forma_pago where activo=true";
         try {
@@ -111,9 +82,9 @@ public class FormaPago extends ConexionBD {
 
     public boolean buscar(FormaPago modfor) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
         String sql = "SELECT * FROM forma_pago WHERE forma_pago=?";
 
         try {
@@ -150,12 +121,12 @@ public class FormaPago extends ConexionBD {
         }
 
     }
-    
-     public boolean buscarInactivo(FormaPago modfor) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+    public boolean buscarInactivo(FormaPago modfor) {
+
+        ps = null;
+        rs = null;
+        con = getConexion();
         String sql = "SELECT * FROM forma_pago WHERE forma_pago=? and activo=false";
 
         try {
@@ -164,8 +135,6 @@ public class FormaPago extends ConexionBD {
             ps.setString(1, getForma_pago());
             rs = ps.executeQuery();
             if (rs.next()) {
-
-                
 
                 return true;
             }
@@ -194,8 +163,8 @@ public class FormaPago extends ConexionBD {
 
     public boolean modificar(FormaPago modfor) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE forma_pago SET forma_pago=? WHERE id=?";
 
@@ -230,8 +199,8 @@ public class FormaPago extends ConexionBD {
 
     public boolean eliminar(FormaPago modfor) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE forma_pago SET activo=false WHERE id=?";
 
@@ -265,8 +234,8 @@ public class FormaPago extends ConexionBD {
 
     public boolean activar(FormaPago modfor) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE forma_pago SET activo=true WHERE forma_pago=?";
 
@@ -296,6 +265,22 @@ public class FormaPago extends ConexionBD {
 
         }
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getForma_pago() {
+        return forma_pago;
+    }
+
+    public void setForma_pago(String forma_pago) {
+        this.forma_pago = forma_pago;
     }
 
 }

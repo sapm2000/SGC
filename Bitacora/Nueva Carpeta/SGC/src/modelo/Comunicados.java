@@ -6,8 +6,6 @@
 package modelo;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import sgc.SGC;
@@ -16,64 +14,22 @@ import sgc.SGC;
  *
  * @author rma
  */
-public class Comunicados extends CrudUsuario {
+public class Comunicados extends ConexionBD {
 
     private int id;
     private String asunto;
     private String mensaje;
     private Usuario usu = new Usuario();
-   
-   
+
     private int leido;
     private int enviado;
 
-    public int getEnviado() {
-        return enviado;
-    }
-
-    public void setEnviado(int enviado) {
-        this.enviado = enviado;
-    }
-
-    public int getLeido() {
-        return leido;
-    }
-
-    public void setLeido(int leido) {
-        this.leido = leido;
-    }
-
-   
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getAsunto() {
-        return asunto;
-    }
-
-    public void setAsunto(String asunto) {
-        this.asunto = asunto;
-    }
-
-    public String getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
-    }
-
+    private Connection con;
 
     public boolean registrarcomunicados(Comunicados modco) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "INSERT INTO comunicados (asunto, mensaje, id_condominio) VALUES (?, ?, ?);";
 
@@ -109,9 +65,9 @@ public class Comunicados extends CrudUsuario {
 
     public boolean buscId(Comunicados modco) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
         String sql = "SELECT MAX(id) as id from comunicados";
 
         try {
@@ -150,8 +106,8 @@ public class Comunicados extends CrudUsuario {
 
     public boolean registrar_comunicados_usuarios(Comunicados modcon) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "INSERT INTO puente_comunicado_usuario(id_usuario, id_comunicado,leido) VALUES (?, ?,?);";
 
@@ -190,9 +146,9 @@ public class Comunicados extends CrudUsuario {
         ArrayList listacomunicados = new ArrayList();
         Comunicados modco;
 
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+        con = getConexion();
+        ps = null;
+        rs = null;
 
         String sql = "SELECT id_comunicado, comunicados.asunto, count(id_usuario) as enviado, SUM(leido) as leido FROM puente_comunicado_usuario inner join comunicados on comunicados.id = puente_comunicado_usuario.id_comunicado where comunicados.id_condominio=? group by id_comunicado, comunicados.asunto;";
         try {
@@ -230,9 +186,9 @@ public class Comunicados extends CrudUsuario {
 
     public boolean buscarComunicado(Comunicados modco) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
         String sql = "SELECT asunto, mensaje FROM comunicados where id=?;";
 
         try {
@@ -274,9 +230,9 @@ public class Comunicados extends CrudUsuario {
         ArrayList listausuariosmod = new ArrayList();
         Comunicados modco;
 
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+        con = getConexion();
+        ps = null;
+        rs = null;
 
         String sql = "select usuario.cedula, usuario.usuario, usuario.nombre, usuario.apellido, usuario.ntelefono, id_comunicado, tipo from usuario left join puente_comunicado_usuario on puente_comunicado_usuario.id_usuario=usuario.cedula and puente_comunicado_usuario.id_comunicado=?";
         try {
@@ -316,6 +272,46 @@ public class Comunicados extends CrudUsuario {
 
         return listausuariosmod;
 
+    }
+
+    public int getEnviado() {
+        return enviado;
+    }
+
+    public void setEnviado(int enviado) {
+        this.enviado = enviado;
+    }
+
+    public int getLeido() {
+        return leido;
+    }
+
+    public void setLeido(int leido) {
+        this.leido = leido;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getAsunto() {
+        return asunto;
+    }
+
+    public void setAsunto(String asunto) {
+        this.asunto = asunto;
+    }
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
     }
 
 }

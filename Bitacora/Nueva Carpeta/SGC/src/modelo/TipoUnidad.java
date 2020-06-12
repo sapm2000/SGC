@@ -49,8 +49,8 @@ public class TipoUnidad extends ConexionBD {
             }
         }
     }
-    
-      public boolean areaTotal() {
+
+    public boolean areaTotal() {
         try {
             ps = null;
             rs = null;
@@ -59,7 +59,7 @@ public class TipoUnidad extends ConexionBD {
             String sql = "SELECT sum(area) as area from tipo_unidad inner join unidad ON unidad.id_tipo = tipo_unidad.id where unidad.activo=true";
 
             ps = con.prepareStatement(sql);
-           
+
             rs = ps.executeQuery();
 
             if (rs.next()) {
@@ -139,6 +139,14 @@ public class TipoUnidad extends ConexionBD {
         } catch (SQLException ex) {
             Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
             return null;
+
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
     }
 
@@ -235,6 +243,14 @@ public class TipoUnidad extends ConexionBD {
         } catch (SQLException ex) {
             Logger.getLogger(Propietarios.class.getName()).log(Level.SEVERE, null, ex);
             return null;
+
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
     }
 

@@ -1,8 +1,6 @@
 package modelo;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -12,33 +10,11 @@ public class CategoriaGasto extends ConexionBD {
     private String nombre;
     private String descripcion;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+    private Connection con;
 
     public boolean registrar(CategoriaGasto cga) {
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "INSERT INTO categoriagasto (nombre, descripcion, activo) VALUES(?,?,true)";
 
@@ -70,9 +46,9 @@ public class CategoriaGasto extends ConexionBD {
         ArrayList listaPersona = new ArrayList();
         CategoriaGasto CategoriaGasto;
 
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+        con = getConexion();
+        ps = null;
+        rs = null;
 
         String sql = "SELECT id, nombre, descripcion FROM categoriagasto where activo=true;";
         try {
@@ -102,14 +78,14 @@ public class CategoriaGasto extends ConexionBD {
         return listaPersona;
 
     }
-    
-     public ArrayList<CategoriaGasto> lCategGasi() {
+
+    public ArrayList<CategoriaGasto> lCategGasi() {
         ArrayList listaPersona = new ArrayList();
         CategoriaGasto CategoriaGasto;
 
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+        con = getConexion();
+        ps = null;
+        rs = null;
 
         String sql = "SELECT id, nombre, descripcion FROM categoriagasto where activo=false;";
         try {
@@ -142,9 +118,9 @@ public class CategoriaGasto extends ConexionBD {
 
     public boolean Buscar(CategoriaGasto catagc) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
 
         String sql = "SELECT * FROM categoriagasto WHERE nombre=? and activo=true ";
 
@@ -180,12 +156,12 @@ public class CategoriaGasto extends ConexionBD {
         }
 
     }
-    
+
     public boolean Buscarcon(CategoriaGasto catagc) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
 
         String sql = "SELECT id, nom_concepto, descripcion, id_categoria FROM concepto_gasto where id_categoria=? and activo=true;";
 
@@ -197,7 +173,6 @@ public class CategoriaGasto extends ConexionBD {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-
 
                 return true;
             }
@@ -221,8 +196,8 @@ public class CategoriaGasto extends ConexionBD {
 
     public boolean modificar(CategoriaGasto catacg) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE categoriagasto SET nombre=?, descripcion=? WHERE id=?";
 
@@ -256,12 +231,12 @@ public class CategoriaGasto extends ConexionBD {
         }
 
     }
-    
-     public boolean buscarInactivo(CategoriaGasto modcg) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+    public boolean buscarInactivo(CategoriaGasto modcg) {
+
+        ps = null;
+        rs = null;
+        con = getConexion();
         String sql = "SELECT * FROM categoriagasto WHERE nombre=? and activo=false";
 
         try {
@@ -299,8 +274,8 @@ public class CategoriaGasto extends ConexionBD {
     }
 
     public boolean eliminar(CategoriaGasto prs) {
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE categoriagasto SET activo=false WHERE id=?";
 
@@ -325,10 +300,10 @@ public class CategoriaGasto extends ConexionBD {
         }
 
     }
-    
+
     public boolean activar(CategoriaGasto prs) {
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE categoriagasto SET activo=true WHERE nombre=?";
 
@@ -353,4 +328,29 @@ public class CategoriaGasto extends ConexionBD {
         }
 
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
 }
