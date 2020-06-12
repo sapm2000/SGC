@@ -13,6 +13,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import static java.lang.String.valueOf;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -50,6 +51,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
     ArrayList<Cuenta> listaCuenta;
     ArrayList<FormaPago> listaformapago;
     int x;
+    
 
     public CtrlCuentaPorCobrar() {
         this.vista = new VisCuentaPorCobrar();
@@ -159,8 +161,8 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                 columna[1] = listaCierremes.get(i).getAño_cierre();
                 columna[2] = listaCierremes.get(i).getMonto_bolivar();
                 columna[3] = listaCierremes.get(i).getMonto_dolar();
-                columna[4] = listaCierremes.get(i).getSaldo_restante_dolar();
-                columna[5] = listaCierremes.get(i).getSaldo_restante_bs();
+                columna[4] = Validacion.formatopago.format(listaCierremes.get(i).getSaldo_restante_dolar());
+                columna[5] = Validacion.formatopago.format(listaCierremes.get(i).getSaldo_restante_bs());
                 columna[6] = listaCierremes.get(i).getMoneda_dominante();
 
                 modeloT.addRow(columna);
@@ -383,13 +385,13 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
                                                                     varsaldo = lista_detalles.get(q).getSaldo_restante_dolar() - (monto_total / Double.parseDouble(vista.txtParidad.getText()));
                                                                     System.out.println(varsaldo + " es el resultado de " + lista_detalles.get(q).getSaldo_restante_dolar() + "-" + monto_total + "/" + Double.parseDouble(vista.txtParidad.getText()));
-
+                                                                    formatearDecimales(varsaldo, 2);
                                                                     monto_total = monto_total - (lista_detalles.get(q).getSaldo_restante_dolar() * Double.parseDouble(vista.txtParidad.getText()));
                                                                     if (varsaldo < 0) {
                                                                         varsaldo = 0;
                                                                     }
 
-                                                                    modc.setSaldo_restante_dolar(varsaldo);
+                                                                    modc.setSaldo_restante_dolar(Double.parseDouble(Validacion.formatopago.format(varsaldo)));
                                                                     modc.setId(lista_detalles.get(q).getId());
                                                                     modc.actualizarTotalDolar(modc);
 
@@ -555,6 +557,9 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
         return resultado;
     }
+    public static Double formatearDecimales(Double numero, Integer numeroDecimales) {
+    return Math.round(numero * Math.pow(10, numeroDecimales)) / Math.pow(10, numeroDecimales);
+}
 
     public void addCheckBox(int column, JTable table) {
         TableColumn tc = table.getColumnModel().getColumn(column);
