@@ -1,8 +1,6 @@
 package modelo;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -11,26 +9,12 @@ public class Banco extends ConexionBD {
     private int id;
     private String nombre_banco;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNombre_banco() {
-        return nombre_banco;
-    }
-
-    public void setNombre_banco(String nombre_banco) {
-        this.nombre_banco = nombre_banco;
-    }
+    private Connection con;
 
     public boolean registrar(Banco modban) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "INSERT INTO banco (nombre_banco, activo) VALUES(?,true);";
 
@@ -49,15 +33,11 @@ public class Banco extends ConexionBD {
 
         } finally {
             try {
-
                 con.close();
 
             } catch (SQLException e) {
-
                 System.err.println(e);
-
             }
-
         }
 
     }
@@ -66,9 +46,9 @@ public class Banco extends ConexionBD {
         ArrayList listaBanco = new ArrayList();
         Banco modban;
 
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+        con = getConexion();
+        ps = null;
+        rs = null;
 
         String sql = "SELECT * FROM banco where activo=true";
         try {
@@ -99,14 +79,12 @@ public class Banco extends ConexionBD {
             return listaBanco;
         }
     }
-    
-    
 
     public boolean buscar(Banco modban) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
         String sql = "SELECT * FROM banco WHERE nombre_banco=?";
 
         try {
@@ -143,12 +121,12 @@ public class Banco extends ConexionBD {
         }
 
     }
-    
+
     public boolean buscacuentas(Banco modban) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
         String sql = "SELECT * FROM cuenta where id_banco=?;";
 
         try {
@@ -157,8 +135,6 @@ public class Banco extends ConexionBD {
             ps.setInt(1, modban.getId());
             rs = ps.executeQuery();
             if (rs.next()) {
-
-               
 
                 return true;
             }
@@ -187,8 +163,8 @@ public class Banco extends ConexionBD {
 
     public boolean modificar(Banco modban) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE banco SET nombre_banco=? WHERE id=?";
 
@@ -220,12 +196,12 @@ public class Banco extends ConexionBD {
         }
 
     }
-    
-     public boolean buscarInactivo(Banco modban) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+    public boolean buscarInactivo(Banco modban) {
+
+        ps = null;
+        rs = null;
+        con = getConexion();
         String sql = "SELECT * FROM banco WHERE nombre_banco=? and activo=false";
 
         try {
@@ -234,8 +210,6 @@ public class Banco extends ConexionBD {
             ps.setString(1, getNombre_banco());
             rs = ps.executeQuery();
             if (rs.next()) {
-
-                
 
                 return true;
             }
@@ -264,15 +238,14 @@ public class Banco extends ConexionBD {
 
     public boolean eliminar(Banco modban) {
 
-       PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE banco SET activo=false WHERE id=?";
 
         try {
 
             ps = con.prepareStatement(sql);
-            
 
             ps.setInt(1, getId());
             ps.execute();
@@ -297,18 +270,17 @@ public class Banco extends ConexionBD {
         }
 
     }
-    
-     public boolean activar(Banco modban) {
 
-       PreparedStatement ps = null;
-        Connection con = getConexion();
+    public boolean activar(Banco modban) {
+
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE banco SET activo=true WHERE nombre_banco=?";
 
         try {
 
             ps = con.prepareStatement(sql);
-            
 
             ps.setString(1, getNombre_banco());
             ps.execute();
@@ -332,6 +304,22 @@ public class Banco extends ConexionBD {
 
         }
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNombre_banco() {
+        return nombre_banco;
+    }
+
+    public void setNombre_banco(String nombre_banco) {
+        this.nombre_banco = nombre_banco;
     }
 
 }

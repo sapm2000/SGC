@@ -51,13 +51,12 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
         llenarTablaRecibidos();
         llenarTablaEnviados();
         llenarTablaUsuario();
-        addCheckBox(2, vista.tablaUsuarios);
 
         this.catalogo.btnMensaje.addActionListener(this);
         this.catalogo.tablaRecibidos.addMouseListener(this);
         this.catalogo.tablaEnviados.addMouseListener(this);
         this.catalogo.txtBuscar.addKeyListener(this);
-
+        this.catalogo.btnEliminar.addActionListener(this);
         this.vista.btnEnviar.addActionListener(this);
         this.vista.btnSalir.addActionListener(this);
         this.vista.txtBuscarPropietarios.addKeyListener(this);
@@ -107,23 +106,75 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
             contenedor.setComponentAt(1, catalogo);
             catalogo.repaint();
         }
+
+        // Si el usuario presiona el botón Eliminar
+        if (e.getSource() == catalogo.btnEliminar) {
+            int indice = catalogo.panelBandejas.getSelectedIndex();
+
+            // Si la pestaña seleccionada del panel de pestañas es Recibidos
+            if (indice == 0) {
+
+                // Para cada fila de la tabla Recibidos
+                for (int i = 0; i < catalogo.tablaRecibidos.getRowCount(); i++) {
+
+                    //Si el mensaje actual fue seleccionado
+                    if (String.valueOf(catalogo.tablaRecibidos.getValueAt(i, 4)) == "true") {
+
+                        //Se obtiene el mensaje seleccionado y lo elimina
+                        if (listaRecibidos.get(i).eliminarRecibido()) {
+
+                        } else {
+                            JOptionPane.showMessageDialog(catalogo, "No se pudo eliminar");
+                        }
+                    }
+                }
+
+                llenarTablaRecibidos();
+
+                // Si la pestaña seleccionada del panel de pestañas es Enviados
+            } else if (indice == 1) {
+
+                // Para cada fila de la tabla Enviados
+                for (int i = 0; i < catalogo.tablaEnviados.getRowCount(); i++) {
+
+                    //Si el mensaje actual fue seleccionado
+                    if (String.valueOf(catalogo.tablaEnviados.getValueAt(i, 3)) == "true") {
+
+                        //Se obtiene el mensaje seleccionado y lo elimina
+                        if (listaEnviados.get(i).eliminarEnviado()) {
+
+                        } else {
+                            JOptionPane.showMessageDialog(catalogo, "No se pudo eliminar");
+                        }
+                    }
+                }
+
+                llenarTablaEnviados();
+            }
+        }
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(MouseEvent e
+    ) {
         if (e.getSource().equals(catalogo.tablaEnviados)) {
-            int fila;
-            fila = catalogo.tablaEnviados.getSelectedRow();
-            mostrarMensaje(listaEnviados.get(fila));
+            if (!(catalogo.tablaEnviados.getSelectedColumn() == 3)) {
+                int fila;
+                fila = catalogo.tablaEnviados.getSelectedRow();
+                mostrarMensaje(listaEnviados.get(fila));
+            }
         }
 
         if (e.getSource().equals(catalogo.tablaRecibidos)) {
-            int fila;
-            Mensaje mensaje;
-            fila = catalogo.tablaRecibidos.getSelectedRow();
-            mensaje = listaRecibidos.get(fila);
-            mensaje.actualizarLeido();
-            mostrarMensaje(mensaje);
+            if (!(catalogo.tablaRecibidos.getSelectedColumn() == 4)) {
+
+                int fila;
+                Mensaje mensaje;
+                fila = catalogo.tablaRecibidos.getSelectedRow();
+                mensaje = listaRecibidos.get(fila);
+                mensaje.actualizarLeido();
+                mostrarMensaje(mensaje);
+            }
         }
 
 //        int fila = this.catalogo.tablaMensajes.getSelectedRow(); // primero, obtengo la fila seleccionada
@@ -144,37 +195,44 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
+    public void mousePressed(MouseEvent e
+    ) {
 
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(MouseEvent e
+    ) {
 
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
+    public void mouseEntered(MouseEvent e
+    ) {
 
     }
 
     @Override
-    public void mouseExited(MouseEvent e) {
+    public void mouseExited(MouseEvent e
+    ) {
 
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(KeyEvent e
+    ) {
 
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e
+    ) {
 
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(KeyEvent e
+    ) {
         if (e.getSource() == catalogo.txtBuscar) {
 
             filtro(catalogo.txtBuscar.getText(), catalogo.tablaRecibidos);
@@ -187,37 +245,44 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
     }
 
     @Override
-    public void windowOpened(WindowEvent e) {
+    public void windowOpened(WindowEvent e
+    ) {
 
     }
 
     @Override
-    public void windowClosing(WindowEvent e) {
+    public void windowClosing(WindowEvent e
+    ) {
 
     }
 
     @Override
-    public void windowClosed(WindowEvent e) {
+    public void windowClosed(WindowEvent e
+    ) {
 
     }
 
     @Override
-    public void windowIconified(WindowEvent e) {
+    public void windowIconified(WindowEvent e
+    ) {
 
     }
 
     @Override
-    public void windowDeiconified(WindowEvent e) {
+    public void windowDeiconified(WindowEvent e
+    ) {
 
     }
 
     @Override
-    public void windowActivated(WindowEvent e) {
+    public void windowActivated(WindowEvent e
+    ) {
 
     }
 
     @Override
-    public void windowDeactivated(WindowEvent e) {
+    public void windowDeactivated(WindowEvent e
+    ) {
 
     }
 
@@ -228,7 +293,23 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false;
+                boolean resu = false;
+
+                switch (column) {
+                    case 0:
+                    case 1:
+                    case 2:
+                        resu = false;
+                        break;
+                    case 3:
+                        resu = true;
+                        break;
+                    default:
+                        break;
+                }
+
+                return resu;
+
             }
         };
 
@@ -239,6 +320,7 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
         modeloT.addColumn("Remitente");
         modeloT.addColumn("Asunto");
         modeloT.addColumn("Fecha y Hora");
+        modeloT.addColumn("Seleccione");
 
         Object[] columna = new Object[modeloT.getColumnCount()];
 
@@ -260,6 +342,8 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
         for (int i = 0; i < modeloT.getColumnCount(); i++) {
             catalogo.tablaEnviados.getColumnModel().getColumn(i).setCellRenderer(tcr);
         }
+
+        addCheckBox(3, catalogo.tablaEnviados);
     }
 
     public void llenarTablaRecibidos() {
@@ -269,7 +353,23 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false;
+                boolean resu = false;
+
+                switch (column) {
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                        resu = false;
+                        break;
+                    case 4:
+                        resu = true;
+                        break;
+                    default:
+                        break;
+                }
+
+                return resu;
             }
         };
 
@@ -281,6 +381,7 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
         modeloT.addColumn("Asunto");
         modeloT.addColumn("Fecha y Hora");
         modeloT.addColumn("Leído");
+        modeloT.addColumn("Seleccione");
 
         Object[] columna = new Object[modeloT.getColumnCount()];
 
@@ -318,9 +419,8 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
 
         catalogo.tablaRecibidos.setDefaultRenderer(Object.class, tcr);
 
-//        for (int i = 0; i < modeloT.getColumnCount(); i++) {
-//            tabla.getColumnModel().getColumn(i).setCellRenderer(tcr);
-//        }
+        addCheckBox(4, catalogo.tablaRecibidos);
+
     }
 
     public void llenarTablaUsuario() {
@@ -374,6 +474,8 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
         for (int i = 0; i < modeloT.getColumnCount(); i++) {
             vista.tablaUsuarios.getColumnModel().getColumn(i).setCellRenderer(tcr);
         }
+
+        addCheckBox(2, vista.tablaUsuarios);
     }
 
     private void mostrarMensaje(Mensaje mensaje) {

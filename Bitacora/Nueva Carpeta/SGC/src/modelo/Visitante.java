@@ -1,11 +1,14 @@
 package modelo;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Visitante extends Persona {
+
+    private Connection con;
 
     public boolean buscar(String cedula) {
         try {
@@ -71,20 +74,27 @@ public class Visitante extends Persona {
         } catch (SQLException ex) {
             Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
             return null;
+
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
     }
 
     public Boolean registrar(Boolean existe) {
         try {
             ps = null;
+            con = getConexion();
 
             if (!existe) {
                 if (!registrarPersona()) {
                     return false;
                 }
             }
-
-            con = getConexion();
 
             String sql = "INSERT INTO visitante (ci_persona) VALUES (?);";
 

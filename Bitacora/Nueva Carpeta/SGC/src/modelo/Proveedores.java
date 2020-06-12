@@ -1,22 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 
-/**
- *
- * @author rma
- */
 public class Proveedores extends ConexionBD {
 
     private String cedula;
@@ -25,6 +12,358 @@ public class Proveedores extends ConexionBD {
     private String correo;
     private String contacto;
     private String direccion;
+
+    private Connection con;
+
+    public boolean registrar(Proveedores modpro) {
+
+        ps = null;
+        con = getConexion();
+
+        String sql = "INSERT INTO proveedores(cedula, nombre, telefono, correo, contacto, direccion, activo) VALUES (?, ?, ?, ?, ?, ?, 1);";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getCedula());
+            ps.setString(2, getNombre());
+            ps.setString(3, getTelefono());
+            ps.setString(4, getCorreo());
+            ps.setString(5, getContacto());
+            ps.setString(6, getDireccion());
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+    }
+
+    public ArrayList<Proveedores> listar() {
+        ArrayList listaProveedores = new ArrayList();
+        Proveedores modpro;
+
+        con = getConexion();
+        ps = null;
+        rs = null;
+
+        String sql = "SELECT cedula, nombre, telefono, correo, contacto, direccion FROM proveedores where activo=1;";
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modpro = new Proveedores();
+
+                modpro.setCedula(rs.getString(1));
+                modpro.setNombre(rs.getString(2));
+                modpro.setTelefono(rs.getString(3));
+                modpro.setCorreo(rs.getString(4));
+                modpro.setContacto(rs.getString(5));
+                modpro.setDireccion(rs.getString(6));
+
+                listaProveedores.add(modpro);
+            }
+        } catch (Exception e) {
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+        return listaProveedores;
+    }
+
+    public ArrayList<Proveedores> listarinactivos() {
+        ArrayList listaProveedores = new ArrayList();
+        Proveedores modpro;
+
+        con = getConexion();
+        ps = null;
+        rs = null;
+
+        String sql = "SELECT cedula, nombre, telefono, correo, contacto, direccion FROM proveedores where activo=0;";
+        try {
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modpro = new Proveedores();
+
+                modpro.setCedula(rs.getString(1));
+                modpro.setNombre(rs.getString(2));
+                modpro.setTelefono(rs.getString(3));
+                modpro.setCorreo(rs.getString(4));
+                modpro.setContacto(rs.getString(5));
+                modpro.setDireccion(rs.getString(6));
+
+                listaProveedores.add(modpro);
+            }
+        } catch (Exception e) {
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+        return listaProveedores;
+    }
+
+    public boolean buscar(Proveedores modpro) {
+
+        ps = null;
+        rs = null;
+        con = getConexion();
+        String sql = "SELECT * FROM proveedores WHERE cedula=?";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, modpro.getCedula());
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                modpro.setContacto(rs.getString("contacto"));
+                modpro.setCorreo(rs.getString("correo"));
+                modpro.setDireccion(rs.getString("direccion"));
+                modpro.setNombre(rs.getString("nombre"));
+                modpro.setTelefono(rs.getString("telefono"));
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
+    public boolean modificar(Proveedores modpro) {
+
+        ps = null;
+        con = getConexion();
+
+        String sql = "UPDATE proveedores SET nombre=?, telefono=?, correo=?, contacto=?, direccion=? WHERE cedula=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getNombre());
+            ps.setString(2, getTelefono());
+            ps.setString(3, getCorreo());
+            ps.setString(4, getContacto());
+            ps.setString(5, getDireccion());
+
+            ps.setString(6, getCedula());
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
+    public boolean eliminar(Proveedores modpro) {
+
+        ps = null;
+        con = getConexion();
+
+        String sql = "UPDATE proveedores SET activo=0 WHERE cedula=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getCedula());
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
+    public boolean activar(Proveedores modpro) {
+
+        ps = null;
+        con = getConexion();
+
+        String sql = "UPDATE proveedores SET activo=1 WHERE cedula=?;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, getCedula());
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+
+    public boolean Buscargas(Proveedores modpro) {
+
+        ps = null;
+        rs = null;
+        con = getConexion();
+
+        String sql = "SELECT * FROM gasto_comun where id_proveedor=? and estado='Pendiente'";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, modpro.getCedula());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
+
+    public boolean Buscarcuo(Proveedores modpro) {
+
+        ps = null;
+        rs = null;
+        con = getConexion();
+
+        String sql = "SELECT * FROM facturas_proveedores where id_proveedor=? and estado='Pendiente'";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setString(1, modpro.getCedula());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                return true;
+            }
+
+            return false;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
 
     public String getCedula() {
         return cedula;
@@ -72,420 +411,6 @@ public class Proveedores extends ConexionBD {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }
-
-    public boolean registrar(Proveedores modpro) {
-
-        PreparedStatement ps = null;
-        Connection con = getConexion();
-
-        String sql = "INSERT INTO proveedores(cedula, nombre, telefono, correo, contacto, direccion, activo) VALUES (?, ?, ?, ?, ?, ?, 1);";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-            ps.setString(1, getCedula());
-            ps.setString(2, getNombre());
-            ps.setString(3, getTelefono());
-            ps.setString(4, getCorreo());
-            ps.setString(5, getContacto());
-            ps.setString(6, getDireccion());
-            ps.execute();
-
-            return true;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-    }
-
-    public ArrayList<Proveedores> listar() {
-        ArrayList listaProveedores = new ArrayList();
-        Proveedores modpro;
-
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
-        String sql = "SELECT cedula, nombre, telefono, correo, contacto, direccion FROM proveedores where activo=1;";
-        try {
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-
-                modpro = new Proveedores();
-
-                modpro.setCedula(rs.getString(1));
-                modpro.setNombre(rs.getString(2));
-                modpro.setTelefono(rs.getString(3));
-                modpro.setCorreo(rs.getString(4));
-                modpro.setContacto(rs.getString(5));
-                modpro.setDireccion(rs.getString(6));
-
-                listaProveedores.add(modpro);
-            }
-        } catch (Exception e) {
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-        return listaProveedores;
-    }
-    
-    public ArrayList<Proveedores> listarinactivos() {
-        ArrayList listaProveedores = new ArrayList();
-        Proveedores modpro;
-
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
-        String sql = "SELECT cedula, nombre, telefono, correo, contacto, direccion FROM proveedores where activo=0;";
-        try {
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-
-                modpro = new Proveedores();
-
-                modpro.setCedula(rs.getString(1));
-                modpro.setNombre(rs.getString(2));
-                modpro.setTelefono(rs.getString(3));
-                modpro.setCorreo(rs.getString(4));
-                modpro.setContacto(rs.getString(5));
-                modpro.setDireccion(rs.getString(6));
-
-                listaProveedores.add(modpro);
-            }
-        } catch (Exception e) {
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-        return listaProveedores;
-    }
-
-    public boolean buscar(Proveedores modpro) {
-
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
-        String sql = "SELECT * FROM proveedores WHERE cedula=?";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-            ps.setString(1, modpro.getCedula());
-            rs = ps.executeQuery();
-            if (rs.next()) {
-
-                modpro.setContacto(rs.getString("contacto"));
-                modpro.setCorreo(rs.getString("correo"));
-                modpro.setDireccion(rs.getString("direccion"));
-                modpro.setNombre(rs.getString("nombre"));
-                modpro.setTelefono(rs.getString("telefono"));
-
-                return true;
-            }
-
-            return false;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-    }
-
-    public boolean modificar(Proveedores modpro) {
-
-        PreparedStatement ps = null;
-        Connection con = getConexion();
-
-        String sql = "UPDATE proveedores SET nombre=?, telefono=?, correo=?, contacto=?, direccion=? WHERE cedula=?;";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-            ps.setString(1, getNombre());
-            ps.setString(2, getTelefono());
-            ps.setString(3, getCorreo());
-            ps.setString(4, getContacto());
-            ps.setString(5, getDireccion());
-
-            ps.setString(6, getCedula());
-            ps.execute();
-
-            return true;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-    }
-
-    public boolean eliminar(Proveedores modpro) {
-
-        PreparedStatement ps = null;
-        Connection con = getConexion();
-
-        String sql = "UPDATE proveedores SET activo=0 WHERE cedula=?;";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-            ps.setString(1, getCedula());
-            ps.execute();
-
-            return true;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-    }
-    
-     public boolean activar(Proveedores modpro) {
-
-        PreparedStatement ps = null;
-        Connection con = getConexion();
-
-        String sql = "UPDATE proveedores SET activo=1 WHERE cedula=?;";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-            ps.setString(1, getCedula());
-            ps.execute();
-
-            return true;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-    }
-
-    public void llenar_proveedores(JComboBox Proveedores) {
-
-//Creamos objeto tipo Connection    
-        java.sql.Connection conectar = null;
-        PreparedStatement pst = null;
-        ResultSet result = null;
-
-//Creamos la Consulta SQL
-        String SSQL = "SELECT cedula FROM proveedores;";
-
-//Establecemos bloque try-catch-finally
-        try {
-
-            //Establecemos conexión con la BD 
-            conectar = getConexion();
-            //Preparamos la consulta SQL
-            pst = conectar.prepareStatement(SSQL);
-            //Ejecutamos la consulta
-            result = pst.executeQuery();
-
-            //LLenamos nuestro ComboBox
-            Proveedores.addItem("Seleccione el Proveedor");
-
-            while (result.next()) {
-
-                Proveedores.addItem(result.getString("cedula"));
-
-            }
-
-        } catch (SQLException e) {
-
-            JOptionPane.showMessageDialog(null, e);
-
-        } finally {
-
-            if (conectar != null) {
-
-                try {
-
-                    conectar.close();
-                    result.close();
-
-                    conectar = null;
-                    result = null;
-
-                } catch (SQLException ex) {
-
-                    JOptionPane.showMessageDialog(null, ex);
-
-                }
-
-            }
-
-        }
-
-    }
-    
-    public boolean Buscargas(Proveedores modpro) {
-
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
-
-        String sql = "SELECT * FROM gasto_comun where id_proveedor=? and estado='Pendiente'";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-            ps.setString(1, modpro.getCedula());
-
-            rs = ps.executeQuery();
-
-            if (rs.next()) {
-
-
-                return true;
-            }
-
-            return false;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                System.err.println(e);
-            }
-        }
-
-    }
-    
-    public boolean Buscarcuo(Proveedores modpro) {
-
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
-
-        String sql = "SELECT * FROM facturas_proveedores where id_proveedor=? and estado='Pendiente'";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-            ps.setString(1, modpro.getCedula());
-
-            rs = ps.executeQuery();
-
-            if (rs.next()) {
-
-
-                return true;
-            }
-
-            return false;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                System.err.println(e);
-            }
-        }
-
     }
 
 }

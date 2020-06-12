@@ -1,59 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import sgc.SGC;
 
-/**
- *
- * @author rma
- */
 public class Interes extends ConexionBD {
 
     private int id;
     private String nombre;
     private double factor;
 
-   
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public double getFactor() {
-        return factor;
-    }
-
-    public void setFactor(double factor) {
-        this.factor = factor;
-    }
-
-   
+    private Connection con;
 
     public boolean registrarinteres(Interes modin) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "INSERT INTO interes(nombre, factor, activo) VALUES (?, ?, true);";
 
@@ -89,9 +51,9 @@ public class Interes extends ConexionBD {
 
     public boolean buscId(Interes modin) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
         String sql = "SELECT MAX(id) as id from interes";
 
         try {
@@ -132,9 +94,9 @@ public class Interes extends ConexionBD {
         ArrayList listainteres = new ArrayList();
         Interes modin;
 
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+        con = getConexion();
+        ps = null;
+        rs = null;
 
         String sql = "SELECT id, nombre, factor FROM interes where activo=true;";
         try {
@@ -148,8 +110,6 @@ public class Interes extends ConexionBD {
                 modin.setId(rs.getInt(1));
                 modin.setNombre(rs.getString(2));
                 modin.setFactor(rs.getDouble(3));
-
-                
 
                 listainteres.add(modin);
             }
@@ -170,13 +130,11 @@ public class Interes extends ConexionBD {
         return listainteres;
     }
 
-    
-
     public boolean buscarInteres(Interes modin) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
         String sql = "SELECT nombre, factor FROM interes where id=?;";
 
         try {
@@ -216,8 +174,8 @@ public class Interes extends ConexionBD {
 
     public boolean modificar_Interes(Interes modin) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE interes SET nombre=?, factor=? WHERE id=?;";
 
@@ -254,9 +212,9 @@ public class Interes extends ConexionBD {
 
     public boolean buscarInactivo(Interes modin) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
         String sql = "SELECT * FROM interes WHERE nombre=? and factor=? and activo=false";
 
         try {
@@ -266,7 +224,7 @@ public class Interes extends ConexionBD {
             ps.setDouble(2, getFactor());
             rs = ps.executeQuery();
             if (rs.next()) {
-                 modin.setId(rs.getInt("id"));
+                modin.setId(rs.getInt("id"));
                 return true;
             }
 
@@ -291,13 +249,12 @@ public class Interes extends ConexionBD {
         }
 
     }
-    
-    
+
     public boolean buscarduplicados(Interes modin) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
         String sql = "SELECT * FROM interes WHERE nombre=? and factor=? and activo=true";
 
         try {
@@ -307,10 +264,9 @@ public class Interes extends ConexionBD {
             ps.setDouble(2, getFactor());
             rs = ps.executeQuery();
             if (rs.next()) {
-                 modin.setId(rs.getInt("id"));
+                modin.setId(rs.getInt("id"));
                 return true;
             }
-
 
             return false;
 
@@ -336,8 +292,8 @@ public class Interes extends ConexionBD {
 
     public boolean eliminarInteres(Interes modin) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE interes SET activo=false WHERE id=?";
 
@@ -371,8 +327,8 @@ public class Interes extends ConexionBD {
 
     public boolean activarInteres(Interes modin) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE interes SET activo=true WHERE id=?";
 
@@ -403,4 +359,29 @@ public class Interes extends ConexionBD {
         }
 
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public double getFactor() {
+        return factor;
+    }
+
+    public void setFactor(double factor) {
+        this.factor = factor;
+    }
+
 }

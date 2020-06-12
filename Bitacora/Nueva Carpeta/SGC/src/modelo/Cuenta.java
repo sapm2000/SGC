@@ -1,14 +1,10 @@
 package modelo;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import sgc.SGC;
 
 public class Cuenta extends ConexionBD {
@@ -19,7 +15,7 @@ public class Cuenta extends ConexionBD {
     private Persona beneficiario = new Persona();
     private Condominio condominio = new Condominio();
 
-    Connection con = getConexion();
+    private Connection con;
 
     public boolean buscarInactivo(Cuenta modcu) {
         ps = null;
@@ -63,7 +59,7 @@ public class Cuenta extends ConexionBD {
 
     public Boolean existeInactivo() {
         try {
-            Connection con = getConexion();
+            con = getConexion();
             ps = null;
             rs = null;
 
@@ -88,64 +84,14 @@ public class Cuenta extends ConexionBD {
         } catch (SQLException ex) {
             Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
             return null;
-        }
-    }
-
-    public void llenar_banco(JComboBox banco) {
-
-//Creamos objeto tipo Connection    
-        java.sql.Connection conectar = null;
-        PreparedStatement pst = null;
-        ResultSet result = null;
-
-//Creamos la Consulta SQL
-        String SSQL = "SELECT nombre_banco FROM banco where activo=true order by nombre_banco";
-
-//Establecemos bloque try-catch-finally
-        try {
-
-            //Establecemos conexión con la BD 
-            conectar = getConexion();
-            //Preparamos la consulta SQL
-            pst = conectar.prepareStatement(SSQL);
-            //Ejecutamos la consulta
-            result = pst.executeQuery();
-
-            //LLenamos nuestro ComboBox
-            banco.addItem("Seleccione el Banco");
-
-            while (result.next()) {
-
-                banco.addItem(result.getString("nombre_banco"));
-
-            }
-
-        } catch (SQLException e) {
-
-            JOptionPane.showMessageDialog(null, e);
-
         } finally {
+            try {
+                con.close();
 
-            if (conectar != null) {
-
-                try {
-
-                    conectar.close();
-                    result.close();
-
-                    conectar = null;
-                    result = null;
-
-                } catch (SQLException ex) {
-
-                    JOptionPane.showMessageDialog(null, ex);
-
-                }
-
+            } catch (SQLException e) {
+                System.err.println(e);
             }
-
         }
-
     }
 
     public Boolean reactivar() {
@@ -169,12 +115,19 @@ public class Cuenta extends ConexionBD {
         } catch (SQLException ex) {
             Logger.getLogger(Propietarios.class.getName()).log(Level.SEVERE, null, ex);
             return null;
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
     }
 
     public Boolean registrar() {
         ps = null;
-        Connection con = getConexion();
+        con = getConexion();
         int ind;
 
         String sql = "INSERT INTO cuenta (n_cuenta, tipo, id_banco, ci_persona, rif_condominio) VALUES (?,?,?,?,?);";
@@ -217,7 +170,7 @@ public class Cuenta extends ConexionBD {
         ArrayList listaCuenta = new ArrayList();
         Cuenta cuenta;
 
-        Connection con = getConexion();
+        con = getConexion();
         ps = null;
         rs = null;
 
@@ -258,54 +211,11 @@ public class Cuenta extends ConexionBD {
 
     }
 
-//    public boolean buscarcuenta(Cuenta modcun) {
-//
-//        PreparedStatement ps = null;
-//        ResultSet rs = null;
-//        Connection con = getConexion();
-//        String sql = "SELECT cuenta.*, banco.* FROM cuenta inner join banco on cuenta.id_banco=banco.id WHERE n_cuenta=?";
-//
-//        try {
-//
-//            ps = con.prepareStatement(sql);
-//            ps.setString(1, modcun.getN_cuenta());
-//            rs = ps.executeQuery();
-//            if (rs.next()) {
-//
-//                modcun.setCedula(rs.getString("cedula"));
-//                modcun.setBeneficiario(rs.getString("beneficiario"));
-//                modcun.setTipo(rs.getString("tipo"));
-//                modcun.banco.setNombre_banco(rs.getString("nombre_banco"));
-//
-//                return true;
-//            }
-//
-//            return false;
-//
-//        } catch (SQLException e) {
-//
-//            System.err.println(e);
-//            return false;
-//
-//        } finally {
-//            try {
-//
-//                con.close();
-//
-//            } catch (SQLException e) {
-//
-//                System.err.println(e);
-//
-//            }
-//
-//        }
-//
-//    }
     public Boolean buscarPersona(String cedula) {
         try {
             ps = null;
             rs = null;
-            Connection con = getConexion();
+            con = getConexion();
             String sql = "SELECT p_nombre, p_apellido FROM persona WHERE cedula=?";
 
             ps = con.prepareStatement(sql);
@@ -338,7 +248,7 @@ public class Cuenta extends ConexionBD {
     public boolean modificar() {
         try {
             ps = null;
-            Connection con = getConexion();
+            con = getConexion();
             int ind;
 
             String sql = "UPDATE cuenta SET tipo=?, id_banco=?, ci_persona=? WHERE n_cuenta=?";
@@ -371,7 +281,7 @@ public class Cuenta extends ConexionBD {
     public boolean eliminar() {
 
         ps = null;
-        Connection con = getConexion();
+        con = getConexion();
 
         String sql = "UPDATE cuenta SET activo=false WHERE n_cuenta=?";
 
@@ -397,7 +307,7 @@ public class Cuenta extends ConexionBD {
     }
 
     public Boolean existe() {
-        Connection con = getConexion();
+        con = getConexion();
         ps = null;
         rs = null;
 
@@ -424,14 +334,20 @@ public class Cuenta extends ConexionBD {
         } catch (SQLException ex) {
             Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
             return null;
+        } finally {
+            try {
+                con.close();
 
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
     }
 
     public boolean activarcuenta(Cuenta modcun) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE cuenta SET activo=true WHERE n_cuenta=?";
 
@@ -455,52 +371,6 @@ public class Cuenta extends ConexionBD {
 
             } catch (SQLException e) {
                 System.err.println(e);
-            }
-        }
-    }
-
-    public void llenar_cuentas(JComboBox Cuentas) {
-//Creamos objeto tipo Connection    
-        java.sql.Connection conectar = null;
-        PreparedStatement pst = null;
-        ResultSet result = null;
-
-//Creamos la Consulta SQL
-        String SSQL = "SELECT id_cuenta FROM public.puente_condominio_cuenta inner join cuenta on cuenta.n_cuenta=puente_condominio_cuenta.id_cuenta where id_condominio=?;";
-
-//Establecemos bloque try-catch-finally
-        try {
-
-            //Establecemos conexión con la BD 
-            conectar = getConexion();
-            //Preparamos la consulta SQL
-            pst = conectar.prepareStatement(SSQL);
-            pst.setString(1, SGC.condominioActual.getRif());
-            //Ejecutamos la consulta
-            result = pst.executeQuery();
-
-            //LLenamos nuestro ComboBox
-            Cuentas.addItem("Seleccione la cuenta depositada");
-
-            while (result.next()) {
-                Cuentas.addItem(result.getString("id_cuenta"));
-            }
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-
-        } finally {
-            if (conectar != null) {
-                try {
-                    conectar.close();
-                    result.close();
-
-                    conectar = null;
-                    result = null;
-
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, ex);
-                }
             }
         }
     }

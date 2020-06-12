@@ -1,8 +1,6 @@
 package modelo;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -19,7 +17,7 @@ public class Persona extends ConexionBD {
     private String telefono;
     private Condominio[] condominio;
 
-    Connection con;
+    private Connection con;
 
     public Persona() {
     }
@@ -73,14 +71,21 @@ public class Persona extends ConexionBD {
             Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
     }
 
     public ArrayList<Persona> listarP() {
 
-        ResultSet rs = null;
-        Connection con = getConexion();
-        PreparedStatement ps = null;
+        rs = null;
+        con = getConexion();
+        ps = null;
 
         ArrayList<Persona> personas = new ArrayList();
         Persona mod;
@@ -108,12 +113,19 @@ public class Persona extends ConexionBD {
             System.err.println(e);
             return null;
 
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
     }
 
     public boolean modificar() {
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE persona SET p_nombre = ?, s_nombre = ?, p_apellido = ?, s_apellido = ?, correo = ?, telefono = ? WHERE cedula = ?";
 
@@ -143,14 +155,12 @@ public class Persona extends ConexionBD {
 
             } catch (SQLException e) {
                 System.err.println(e);
-
             }
         }
     }
 
     protected Boolean registrarPersona() {
         try {
-            con = getConexion();
             ps = null;
 
             String sql = "INSERT INTO persona(cedula, p_nombre, s_nombre, p_apellido, s_apellido, telefono, correo) VALUES (?,?,?,?,?,?,?);";

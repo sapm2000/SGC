@@ -34,7 +34,6 @@ public class Gasto extends ConexionBD {
     private Boolean agregarConcepto(Integer id, Double monto) throws SQLException {
         int ind;
         ps = null;
-        Connection con = getConexion();
 
         String sql = "INSERT INTO puente_gasto_concepto(id_gasto, id_concepto, monto) VALUES (?,?,?);";
 
@@ -311,7 +310,7 @@ public class Gasto extends ConexionBD {
 
         con = getConexion();
         ps = null;
-        ResultSet rs = null;
+        rs = null;
 
         String sql = "SELECT id, tipo, id_proveedor, calcular_por, mes, anio, n_meses, observacion, meses_restantes, monto, saldo, estado, pagado, moneda FROM gasto where meses_restantes !=0;";
         try {
@@ -340,17 +339,15 @@ public class Gasto extends ConexionBD {
                 listacuotasEspeciales.add(modcuo);
             }
         } catch (Exception e) {
+            System.err.println(e);
+
         } finally {
             try {
-
                 con.close();
 
             } catch (SQLException e) {
-
                 System.err.println(e);
-
             }
-
         }
 
         return listacuotasEspeciales;
@@ -411,7 +408,6 @@ public class Gasto extends ConexionBD {
 
             } catch (SQLException e) {
                 System.err.println(e);
-
             }
         }
     }
@@ -422,6 +418,7 @@ public class Gasto extends ConexionBD {
             ArrayList<ConceptoGasto> conceptosViejos;
             ArrayList<Double> montosViejos;
             ConceptoGasto item;
+
             conceptosViejos = new ArrayList();
             montosViejos = new ArrayList();
 
@@ -447,6 +444,7 @@ public class Gasto extends ConexionBD {
 
             numNuevos = getConceptos().size();
             numViejos = conceptosViejos.size();
+
             Boolean procesado;
 
             // Ciclo que recorre los conceptos nuevos
@@ -523,7 +521,6 @@ public class Gasto extends ConexionBD {
     private Boolean modificarMontoConcepto(Integer id, Double monto) throws SQLException {
         int ind;
         ps = null;
-        Connection con = getConexion();
 
         String sql = "UPDATE puente_gasto_concepto SET monto = ? WHERE id_gasto = ? AND id_concepto = ?;";
 
@@ -645,7 +642,6 @@ public class Gasto extends ConexionBD {
 
     private Boolean retirarConceptos(ArrayList<ConceptoGasto> conceptos) throws SQLException {
         ps = null;
-        con = getConexion();
 
         int ind;
 
@@ -809,7 +805,5 @@ public class Gasto extends ConexionBD {
     public void setMoneda(String moneda) {
         this.moneda = moneda;
     }
-    
-    
 
 }

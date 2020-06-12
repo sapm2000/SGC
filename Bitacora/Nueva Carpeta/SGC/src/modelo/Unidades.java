@@ -2,13 +2,11 @@ package modelo;
 
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import sgc.SGC;
 
 public class Unidades extends ConexionBD {
 
@@ -23,7 +21,7 @@ public class Unidades extends ConexionBD {
     private java.sql.Date fecha_hasta;
     public TipoUnidad tipo_Unidad = new TipoUnidad();
 
-    private Connection con = getConexion();
+    private Connection con;
 
     private int estatus;
     private int id_puente;
@@ -36,9 +34,9 @@ public class Unidades extends ConexionBD {
 
     public boolean buscId(Unidades moduni) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
         String sql = "SELECT MAX(id) as id from unidades";
 
         try {
@@ -76,64 +74,77 @@ public class Unidades extends ConexionBD {
     }
 
     public Boolean reactivar() throws SQLException {
-        ps = null;
-        con = getConexion();
+        try {
+            ps = null;
+            con = getConexion();
 
-        if (vaciarPropietarios()) {
-            int ind;
+            if (vaciarPropietarios()) {
+                int ind;
 
-            String sql = "UPDATE unidad SET activo = true, n_documento = ? WHERE n_unidad = ?";
+                String sql = "UPDATE unidad SET activo = true, n_documento = ? WHERE n_unidad = ?";
 
-            ps = con.prepareStatement(sql);
+                ps = con.prepareStatement(sql);
 
-            ind = 1;
-            ps.setString(ind++, getDocumento());
-            ps.setString(ind++, getN_unidad());
-
-            ps.execute();
-
-            //Se selecciona el id de la unidad que se acaba de registrar
-            sql = "SELECT id FROM v_unidad WHERE n_unidad = ?";
-
-            ps = con.prepareStatement(sql);
-
-            ind = 1;
-
-            ps.setString(ind++, getN_unidad());
-
-            rs = ps.executeQuery();
-
-            if (rs.next()) {
-                setId(rs.getInt(1));
-
-            }
-
-            //Registro de los datos del puente
-            sql = "INSERT INTO puente_unidad_propietarios(ci_propietario, id_unidad, estado) VALUES (?,?,?);";
-
-            ps = con.prepareStatement(sql);
-
-            for (int i = 0; i < getPropietario().size(); i++) {
                 ind = 1;
-                ps.setString(ind++, getPropietario().get(i).getCedula());
-                ps.setInt(ind++, getId());
-                ps.setInt(ind++, getEstatus());
+                ps.setString(ind++, getDocumento());
+                ps.setString(ind++, getN_unidad());
 
                 ps.execute();
 
+                //Se selecciona el id de la unidad que se acaba de registrar
+                sql = "SELECT id FROM v_unidad WHERE n_unidad = ?";
+
+                ps = con.prepareStatement(sql);
+
+                ind = 1;
+
+                ps.setString(ind++, getN_unidad());
+
+                rs = ps.executeQuery();
+
+                if (rs.next()) {
+                    setId(rs.getInt(1));
+
+                }
+
+                //Registro de los datos del puente
+                sql = "INSERT INTO puente_unidad_propietarios(ci_propietario, id_unidad, estado) VALUES (?,?,?);";
+
+                ps = con.prepareStatement(sql);
+
+                for (int i = 0; i < getPropietario().size(); i++) {
+                    ind = 1;
+                    ps.setString(ind++, getPropietario().get(i).getCedula());
+                    ps.setInt(ind++, getId());
+                    ps.setInt(ind++, getEstatus());
+
+                    ps.execute();
+
+                }
+
+                return true;
+
+            } else {
+                return false;
+
             }
-
-            return true;
-
-        } else {
+        } catch (SQLException e) {
+            System.err.println(e);
             return false;
 
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
     }
 
     public boolean registrar() {
         ps = null;
-        Connection con = getConexion();
+        con = getConexion();
 
         int ind;
 
@@ -202,7 +213,6 @@ public class Unidades extends ConexionBD {
 
     private Boolean agregarPropietario(String cedula) throws SQLException {
         ps = null;
-        Connection con = getConexion();
 
         int ind;
 
@@ -224,7 +234,7 @@ public class Unidades extends ConexionBD {
         ArrayList listaUnidades = new ArrayList();
         Unidades unidad = new Unidades();
 
-        Connection con = getConexion();
+        con = getConexion();
         ps = null;
         rs = null;
         ResultSet rs2 = null;
@@ -246,7 +256,7 @@ public class Unidades extends ConexionBD {
                 unidad.setN_unidad(rs.getString("n_unidad"));
                 unidad.setDocumento(rs.getString("n_documento"));
                 unidad.setDireccion(rs.getString("direccion"));
-                 unidad.setAlicuota(rs.getFloat("alicuota"));
+                unidad.setAlicuota(rs.getFloat("alicuota"));
                 unidad.getTipo_Unidad().setId(rs.getInt("id_tipo"));
                 unidad.getTipo_Unidad().setNombre(rs.getString("tipo"));
                 unidad.getTipo_Unidad().setArea(rs.getFloat("area"));
@@ -279,9 +289,9 @@ public class Unidades extends ConexionBD {
 
     public boolean buscarsancion(Unidades moduni) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
         String sql = "SELECT * FROM unidades inner join puente_sancion_unidad on puente_sancion_unidad.id_unidad=unidades.id inner join sancion on puente_sancion_unidad.id_sancion=sancion.id where unidades.id=? and estado='Pendiente'";
 
         try {
@@ -316,11 +326,11 @@ public class Unidades extends ConexionBD {
         }
 
     }
-    
+
     public boolean actualizarAlicuota(Unidades modelo) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE unidad SET alicuota=? WHERE id=?;";
 
@@ -329,7 +339,7 @@ public class Unidades extends ConexionBD {
             ps = con.prepareStatement(sql);
             ps.setFloat(1, getAlicuota());
             ps.setInt(2, getId());
-           
+
             ps.execute();
 
             return true;
@@ -397,7 +407,6 @@ public class Unidades extends ConexionBD {
 
     private Boolean modificarPropietarios() {
         ps = null;
-        con = getConexion();
 
         int numNuevos;
         int numViejos;
@@ -471,7 +480,6 @@ public class Unidades extends ConexionBD {
 
     private Boolean retirarPropietarios(ArrayList<Propietarios> propietarios) throws SQLException {
         ps = null;
-        con = getConexion();
 
         int ind;
 
@@ -492,7 +500,6 @@ public class Unidades extends ConexionBD {
 
     private Boolean vaciarPropietarios() throws SQLException {
         ps = null;
-        con = getConexion();
 
         int ind;
 
@@ -524,8 +531,8 @@ public class Unidades extends ConexionBD {
 
     public boolean eliminarPuenteUnidad(Unidades moduni) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE puente_unidad_propietarios SET activo=0 WHERE id_unidad=?;";
 
@@ -622,11 +629,19 @@ public class Unidades extends ConexionBD {
         } catch (SQLException ex) {
             Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
             return null;
+
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
     }
 
     public Boolean existeInactivo() {
-        Connection con = getConexion();
+        con = getConexion();
         ps = null;
         rs = null;
 
@@ -654,13 +669,20 @@ public class Unidades extends ConexionBD {
             Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
     }
 
     public boolean activarUnidad(Unidades moduni) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE unidades SET activo=1 WHERE id=?";
 
@@ -692,57 +714,19 @@ public class Unidades extends ConexionBD {
 
     }
 
-    public ArrayList<Unidades> listarCbxUnidad() {
+    public ArrayList<Unidades> listarArea() {
         ArrayList listaUnidad = new ArrayList();
         Unidades uni;
 
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
-        String sql = "SELECT n_unidad FROM unidad;";
-
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setString(1, SGC.condominioActual.getRif());
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                uni = new Unidades();
-                uni.setN_unidad(rs.getString("n_unidad"));
-
-                listaUnidad.add(uni);
-            }
-
-        } catch (Exception e) {
-
-        } finally {
-            try {
-                con.close();
-
-            } catch (SQLException e) {
-                System.err.println(e);
-
-            }
-        }
-
-        return listaUnidad;
-
-    }
-    
-     public ArrayList<Unidades> listarArea() {
-        ArrayList listaUnidad = new ArrayList();
-        Unidades uni;
-
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+        con = getConexion();
+        ps = null;
+        rs = null;
 
         String sql = "SELECT area, unidad.id FROM unidad inner join tipo_unidad ON tipo_unidad.id = unidad.id_tipo where unidad.activo=true";
 
         try {
             ps = con.prepareStatement(sql);
-           
+
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -864,7 +848,5 @@ public class Unidades extends ConexionBD {
     public void setAlicuota(float alicuota) {
         this.alicuota = alicuota;
     }
-    
-    
 
 }
