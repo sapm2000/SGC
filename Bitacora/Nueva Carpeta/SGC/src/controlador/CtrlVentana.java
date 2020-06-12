@@ -14,17 +14,21 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
+import modelo.CerrarMes;
+import modelo.CuentasPorCobrar;
 import modelo.Funcion;
 import sgc.SGC;
 import vista.Inicio;
 import vista.PantallaPrincipal;
 import vista.Ventana;
+import vista.VisInicioUsuario;
 
 public class CtrlVentana implements ActionListener {
 
     public static PantallaPrincipal marco;
     public static JPanel panelPrincipal;
     public static Ventana ventana;
+    private CerrarMes cuen = new CerrarMes();
 
     private Inicio vista;
     private Object ctrl;
@@ -55,8 +59,10 @@ public class CtrlVentana implements ActionListener {
         SGC.panta = marco;
         filtrarMenu();
 
-        marco.btnSalir.addActionListener(this);
+        marco.btnCerrar.addActionListener(this);
         marco.btnMinimizar.addActionListener(this);
+        marco.btnSalir.addActionListener(this);
+
         ventana.jCondominio.addActionListener(this);
         ventana.jBanco.addActionListener(this);
         ventana.jCategoria.addActionListener(this);
@@ -86,6 +92,15 @@ public class CtrlVentana implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == marco.btnCerrar) {
+            SGC.usuarioActual = null;
+            SGC.condominioActual = null;
+            ventana.dispose();
+            VisInicioUsuario vistaU = new VisInicioUsuario();
+            vistaU.setVisible(true);
+        }
+
         if (e.getSource() == marco.btnMinimizar) {
             ventana.setState(JFrame.ICONIFIED);
         }
@@ -127,7 +142,6 @@ public class CtrlVentana implements ActionListener {
             ctrl = new CtrlCategoriaGasto();
         }
         if (e.getSource() == ventana.jComunicados) {
-            ctrl = new CtrlComunicado();
         }
         if (e.getSource() == ventana.jConcepto) {
             ctrl = new CtrlConceptoGasto();
@@ -177,6 +191,11 @@ public class CtrlVentana implements ActionListener {
 
         //Procesos
         if (e.getSource() == ventana.pCuentasporCobrar) {
+            
+           
+            
+         
+           
             ctrl = new CtrlCuentaPorCobrar();
         }
         if (e.getSource() == ventana.pCuentapagar) {

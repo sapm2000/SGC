@@ -41,9 +41,11 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
     private Cuenta modcu;
     private CerrarMes modc;
     ArrayList<CerrarMes> listaCierremes;
+    ArrayList<CerrarMes> listaDominante;
     ArrayList<Unidades> listaunidades;
     ArrayList<Fondo> listafondo;
     ArrayList<Cuenta> listaCuenta;
+    int x;
 
     public CtrlCuentaPorCobrar() {
         this.vista = new VisCuentaPorCobrar();
@@ -52,6 +54,9 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         this.modfon = new Fondo();
         this.modcu = new Cuenta();
         this.modc = new CerrarMes();
+         String hola = JOptionPane.showInputDialog("ingrese la paridad a trabajar");
+            double x = Double.parseDouble(hola);
+            modc.setParidad(x);
 
         vista.jComboUnidad.addItemListener(this);
         vista.btnGuardar.addActionListener(this);
@@ -73,11 +78,11 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         };
         Validacion.copiar(components);
         Validacion.pegar(com);
+
     }
 
-    public void Llenartabla(JTable tablaD) {
+    public void Llenartabla(JTable tablaD, ArrayList listadominante) {
 
-        listaCierremes = modc.listarpagospendientes();
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -117,31 +122,39 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
 
-        modeloT.addColumn("<html>Nº de<br> Recibo</html>");
+       
         modeloT.addColumn("Mes");
         modeloT.addColumn("Año");
-        modeloT.addColumn("Alícuota");
-        modeloT.addColumn("Monto");
-        modeloT.addColumn("<html>Saldo <br> Restante</html>");
-        modeloT.addColumn("Estado");
+        modeloT.addColumn("Monto en $");
+        modeloT.addColumn("Monto en BsS");
+        modeloT.addColumn("Saldo Restante $");
+        modeloT.addColumn("Saldo Restante BsS");
+        modeloT.addColumn("Mantener valor en");
         modeloT.addColumn("Seleccione");
 
         Object[] columna = new Object[8];
+       
+        for (int s=0; s < listaDominante.size(); s++) {
+            modc.setMes_cierre(listaDominante.get(s).getMes_cierre());
+            modc.setAño_cierre(listaDominante.get(s).getAño_cierre());
+            modc.uni.setId(listaDominante.get(s).uni.getId());
+            listaCierremes = modc.listarpagospendientes(listaDominante.get(s).getMoneda_dominante());
+            int numRegistro = listaCierremes.size();
+            
 
-        int numRegistro = listaCierremes.size();
+            for (int i = 0; i < numRegistro; i++) {
 
-        for (int i = 0; i < numRegistro; i++) {
+                columna[0] = listaCierremes.get(i).getMes_cierre();
+                columna[1] = listaCierremes.get(i).getAño_cierre();
+                columna[2] = listaCierremes.get(i).getMonto_bolivar();
+                columna[3] = listaCierremes.get(i).getMonto_dolar();
+                columna[4] = listaCierremes.get(i).getSaldo_restante_dolar();
+                columna[5] = listaCierremes.get(i).getSaldo_restante_bs();
+                columna[6] = listaCierremes.get(i).getMoneda_dominante();
 
-            columna[0] = listaCierremes.get(i).getId_gasto();
-            columna[1] = listaCierremes.get(i).getMes_cierre();
-            columna[2] = listaCierremes.get(i).getAño_cierre();
-            columna[3] = Validacion.formatoalicuota.format(listaCierremes.get(i).getAlicuota());
-            columna[4] = Validacion.formato1.format(listaCierremes.get(i).getMonto());
-            columna[5] = Validacion.formato1.format(listaCierremes.get(i).getSaldo_restante());
-            columna[6] = listaCierremes.get(i).getEstado();
+                modeloT.addRow(columna);
 
-            modeloT.addRow(columna);
-
+            }
         }
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -151,6 +164,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(6).setCellRenderer(tcr);
     }
 
     public void Llenartablapagados(JTable tablaD) {
@@ -401,9 +415,12 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
             if (ind == -1) {
 
             } else {
+                modc.uni.setId(listaunidades.get(ind).getId());
+                
+                listaDominante = modc.listarDominantes();
+                x = listaDominante.size();
 
-                modc.setId_unidad(listaunidades.get(ind).getId());
-                Llenartabla(vista.jTable1);
+                Llenartabla(vista.jTable1, listaDominante);
                 addCheckBox(7, vista.jTable1);
                 Llenartablapagados(vista.jTable2);
             }

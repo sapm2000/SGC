@@ -30,7 +30,7 @@ public class VisPerfil extends javax.swing.JPanel {
     private void initComponents() {
 
         Apellido = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        panelPestana = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         cbxConfigurar = new javax.swing.JComboBox<>();
         jPanelClave = new javax.swing.JPanel();
@@ -51,12 +51,6 @@ public class VisPerfil extends javax.swing.JPanel {
         btnProcesarPregunta = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         txtPassActualPregunta = new javax.swing.JTextField();
-        panelMensaje = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabla = new javax.swing.JTable();
-        txtBuscar = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        btnMensaje = new javax.swing.JButton();
         txtUsuario = new javax.swing.JTextField();
         txtApellidos = new javax.swing.JTextField();
         Apellido1 = new javax.swing.JLabel();
@@ -152,37 +146,12 @@ public class VisPerfil extends javax.swing.JPanel {
 
         jPanel1.add(jPanelPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 840, 350));
 
-        jTabbedPane1.addTab("Editar Perfil", jPanel1);
+        panelPestana.addTab("Editar Perfil", jPanel1);
 
-        panelMensaje.setBackground(new java.awt.Color(255, 255, 255));
-        panelMensaje.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        tabla.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane1.setViewportView(tabla);
-
-        panelMensaje.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 830, 290));
-        panelMensaje.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 340, -1));
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Comunicados");
-        panelMensaje.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 310, 60));
-
-        btnMensaje.setText("Nuevo Mensaje");
-        panelMensaje.add(btnMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, -1, -1));
-
-        jTabbedPane1.addTab("Comunicados", panelMensaje);
-
-        add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 880, 670));
+        add(panelPestana, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 880, 630));
 
         txtUsuario.setEditable(false);
-        add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 340, -1));
+        add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 340, -1));
 
         txtApellidos.setEditable(false);
         txtApellidos.addActionListener(new java.awt.event.ActionListener() {
@@ -190,32 +159,32 @@ public class VisPerfil extends javax.swing.JPanel {
                 txtApellidosActionPerformed(evt);
             }
         });
-        add(txtApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 340, -1));
+        add(txtApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 340, -1));
 
         Apellido1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Apellido1.setText("Apellidos");
-        add(Apellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 310, 30));
+        add(Apellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 310, 30));
 
         Apellido2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Apellido2.setText("Telefono");
-        add(Apellido2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 310, 30));
+        add(Apellido2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 310, 30));
 
         txtCorreo.setEditable(false);
-        add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 340, -1));
+        add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 340, -1));
 
         txtNombres.setEditable(false);
-        add(txtNombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 340, -1));
+        add(txtNombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 340, -1));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Nombres:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 310, 30));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 310, 30));
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Perfil");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, 310, 60));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 310, 60));
 
         txtTelefono.setEditable(false);
-        add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 340, -1));
+        add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 340, -1));
 
         Apellido3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Apellido3.setText("Correo");
@@ -244,13 +213,11 @@ public class VisPerfil extends javax.swing.JPanel {
     private javax.swing.JLabel Apellido1;
     private javax.swing.JLabel Apellido2;
     private javax.swing.JLabel Apellido3;
-    public javax.swing.JButton btnMensaje;
     public javax.swing.JButton btnProcesarPassword;
     public javax.swing.JButton btnProcesarPregunta;
     public javax.swing.JComboBox<String> cbxConfigurar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -262,12 +229,8 @@ public class VisPerfil extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanelClave;
     public javax.swing.JPanel jPanelPregunta;
-    private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTabbedPane jTabbedPane1;
-    public javax.swing.JPanel panelMensaje;
-    public javax.swing.JTable tabla;
+    public javax.swing.JTabbedPane panelPestana;
     public javax.swing.JTextField txtApellidos;
-    public javax.swing.JTextField txtBuscar;
     public javax.swing.JTextField txtConfirmar;
     public javax.swing.JTextField txtCorreo;
     public javax.swing.JTextField txtNombres;

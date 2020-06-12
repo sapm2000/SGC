@@ -90,6 +90,7 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
             usu.setPassword(Validacion.encriptar(pass));
 
             if (usu.login()) {
+                usu.consultarPerfil();
                 SGC.usuarioActual = usu;
                 vistaU.dispose();
 

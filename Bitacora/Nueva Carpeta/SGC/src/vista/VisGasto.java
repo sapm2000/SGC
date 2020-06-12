@@ -66,8 +66,6 @@ public class VisGasto extends javax.swing.JPanel {
         jSeparator3 = new javax.swing.JSeparator();
         jScrollPane4 = new javax.swing.JScrollPane();
         txaObservaciones = new javax.swing.JTextArea();
-        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
-        jYearChooser1 = new com.toedter.calendar.JYearChooser();
         txtProveedor = new javax.swing.JTextField();
         jcombotipo = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
@@ -88,6 +86,8 @@ public class VisGasto extends javax.swing.JPanel {
         jLabel17 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         cbxMoneda = new javax.swing.JComboBox<>();
+        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
+        jYearChooser1 = new com.toedter.calendar.JYearChooser();
         jLabel10 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -251,19 +251,12 @@ public class VisGasto extends javax.swing.JPanel {
 
         jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 200, 360, 120));
 
-        jMonthChooser1.setToolTipText("Seleccione el mes");
-        jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 130, 30));
-
-        jYearChooser1.setToolTipText("Seleccione el año");
-        jYearChooser1.setDayChooser(null);
-        jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 70, 30));
-
         txtProveedor.setEditable(false);
         txtProveedor.setBackground(new java.awt.Color(0, 94, 159));
         txtProveedor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtProveedor.setForeground(new java.awt.Color(255, 255, 255));
         txtProveedor.setBorder(null);
-        jPanel2.add(txtProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 240, 20));
+        jPanel2.add(txtProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 240, 20));
 
         jcombotipo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jcombotipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Extraordinario", "Ordinario" }));
@@ -370,6 +363,12 @@ public class VisGasto extends javax.swing.JPanel {
         cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Bolívar", "Dólar", "Petro" }));
         cbxMoneda.setToolTipText("Calcular la cuota especial por...");
         jPanel2.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 260, -1));
+
+        jMonthChooser1.setToolTipText("Elija el mes a cerrar");
+        jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, -1, 30));
+
+        jYearChooser1.setToolTipText("Elija el año a cerrar");
+        jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, -1, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 

@@ -157,7 +157,7 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, 80, -1));
 
         jComboCuenta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboCuenta.setToolTipText("Seleccione la cuenta depositada");
+        jComboCuenta.setToolTipText("Seleccione la cuenta depositada\nOtros\n");
         jPanel2.add(jComboCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 240, -1));
 
         jComboForma.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -226,7 +226,7 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Por Pagar");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 420, 70, 20));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 420, 130, 20));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
@@ -278,7 +278,7 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
         btnGuardar.setBorder(null);
         btnGuardar.setBorderPainted(false);
         btnGuardar.setContentAreaFilled(false);
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGuardar.setHideActionText(true);
         btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnGuardar.setIconTextGap(10);

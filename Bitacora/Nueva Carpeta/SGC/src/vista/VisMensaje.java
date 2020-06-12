@@ -41,7 +41,7 @@ public class VisMensaje extends javax.swing.JPanel {
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         jScrollPane2.getVerticalScrollBar().setUI(new MyScrollBarUI());
-        jTable1.getTableHeader().setDefaultRenderer(new VisMensaje.Headercolor());
+        tablaUsuarios.getTableHeader().setDefaultRenderer(new VisMensaje.Headercolor());
     }
 
     /**
@@ -68,7 +68,7 @@ public class VisMensaje extends javax.swing.JPanel {
         jSeparator7 = new javax.swing.JSeparator();
         jSeparator8 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaUsuarios = new javax.swing.JTable();
         btnSalir = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -165,7 +165,7 @@ public class VisMensaje extends javax.swing.JPanel {
 
         jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -184,11 +184,11 @@ public class VisMensaje extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jTable1.setToolTipText("Seleccione a los usuarios a los que les enviará el mensaje");
-        jTable1.setRowHeight(35);
-        jScrollPane2.setViewportView(jTable1);
+        tablaUsuarios.setToolTipText("Seleccione a los usuarios a los que les enviará el mensaje");
+        tablaUsuarios.setRowHeight(35);
+        jScrollPane2.setViewportView(tablaUsuarios);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 700, 210));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 700, 150));
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow.png"))); // NOI18N
         btnSalir.setToolTipText("Volver al catálogo");
@@ -216,7 +216,7 @@ public class VisMensaje extends javax.swing.JPanel {
         jLabel5.setText("Envio de Mensajes");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 740, -1));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 760, 620));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 760, 570));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
@@ -242,7 +242,7 @@ public class VisMensaje extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
-    public javax.swing.JTable jTable1;
+    public javax.swing.JTable tablaUsuarios;
     public javax.swing.JTextArea txaMensaje;
     public javax.swing.JTextField txtAsunto;
     public javax.swing.JTextField txtBuscarPropietarios;
