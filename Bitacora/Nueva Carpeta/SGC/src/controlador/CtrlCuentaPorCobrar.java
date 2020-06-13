@@ -13,7 +13,6 @@ import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import static java.lang.String.valueOf;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -60,7 +59,13 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         this.modcu = new Cuenta();
         this.modc = new CerrarMes();
         this.modfor = new FormaPago();
-        String hola = JOptionPane.showInputDialog("ingrese la paridad a trabajar");
+        String hola = "";
+        do {
+            hola = "";
+            hola = JOptionPane.showInputDialog("ingrese la paridad a trabajar");
+
+        } while (isValidDouble(hola) == false);
+
         double x = Double.parseDouble(hola);
         modc.setParidad(x);
         vista.txtParidad.setText(hola);
@@ -665,6 +670,18 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    private static boolean isValidDouble(String s) {
+        boolean isValid = true;
+
+        try {
+            Double.parseDouble(s);
+        } catch (NumberFormatException nfe) {
+            isValid = false;
+        }
+
+        return isValid;
     }
 
 }
