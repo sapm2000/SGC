@@ -293,10 +293,14 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                 if (j == 0) {
                     JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
                 } else {
-                    if (ind2 == -1) {
+                    if (ind2 == -2) {
                         JOptionPane.showMessageDialog(null, "seleccione una cuenta");
                     } else {
-                        modcuen.setId_cuenta(listaCuenta.get(ind2).getN_cuenta());
+                        if (ind2 == -1) {
+                            modcuen.setId_cuenta("Otros");
+                        } else {
+                            modcuen.setId_cuenta(listaCuenta.get(ind2).getN_cuenta());
+                        }
 
                         int ind1 = vista.jComboFondo.getSelectedIndex() - 1;
                         if (ind1 == -1) {
@@ -330,7 +334,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                     }
                                 }
 
-                                if ((modcuen.getMonto() > total_dolar&&vista.cbxMoneda.getSelectedItem().toString().equals("Dólar"))||(modcuen.getMonto() > total_bs&&vista.cbxMoneda.getSelectedItem().toString().equals("Bolívar"))) {
+                                if ((modcuen.getMonto() > total_dolar && vista.cbxMoneda.getSelectedItem().toString().equals("Dólar")) || (modcuen.getMonto() > total_bs && vista.cbxMoneda.getSelectedItem().toString().equals("Bolívar"))) {
                                     JOptionPane.showMessageDialog(null, "No puede ingresar mas dinero de lo que debe");
                                 } else {
                                     modcuen.setParidad(Double.parseDouble(vista.txtParidad.getText()));
