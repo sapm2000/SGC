@@ -317,20 +317,24 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                 modcuen.setFecha(sqlDate);
 
                                 double monto = modcuen.getMonto();
-                                double total = 0;
+                                double total_dolar = 0;
+                                double total_bs = 0;
                                 for (int i = 0; i < vista.jTable1.getRowCount(); i++) {
                                     if (valueOf(vista.jTable1.getValueAt(i, 7)) == "true") {
 
-                                        double dato = Double.parseDouble(String.valueOf(this.vista.jTable1.getValueAt(i, 5)));
-                                        total = total + dato;
+                                        double dato_dolar = Double.parseDouble(String.valueOf(this.vista.jTable1.getValueAt(i, 4)));
+                                        double dato_bs = Double.parseDouble(String.valueOf(this.vista.jTable1.getValueAt(i, 5)));
+                                        total_dolar = total_dolar + dato_dolar;
+                                        total_bs = total_bs + dato_bs;
 
                                     }
                                 }
 
-                                if (modcuen.getMonto() > total) {
+                                if ((modcuen.getMonto() > total_dolar&&vista.cbxMoneda.getSelectedItem().toString().equals("Dólar"))||(modcuen.getMonto() > total_bs&&vista.cbxMoneda.getSelectedItem().toString().equals("Bolívar"))) {
                                     JOptionPane.showMessageDialog(null, "No puede ingresar mas dinero de lo que debe");
                                 } else {
-
+                                    modcuen.setParidad(Double.parseDouble(vista.txtParidad.getText()));
+                                    modcuen.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
                                     if (modcuen.registrarCobro(modcuen)) {
                                         double var4 = listafondo.get(ind1).getSaldo() + modcuen.getMonto();
                                         modfon.setId(listafondo.get(ind1).getId());
@@ -338,7 +342,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                         modfon.fondear(modfon);
 
                                         JOptionPane.showMessageDialog(null, "registro guardado");
-                                        modc.buscId(modc);
+                                        modcuen.buscId(modcuen);
                                         double monto_total = Double.parseDouble(vista.txtMonto.getText());
 
                                         for (int i = 0; i < vista.jTable1.getRowCount(); i++) {
@@ -353,20 +357,29 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                                     if (vista.cbxMoneda.getSelectedItem().toString().equals("Bolívar")) {
                                                         if ((vista.jTable1.getValueAt(i, 6).equals("Bolívar"))) {
 
+                                                            double montototal = 0;
                                                             double varsaldo = 0;
                                                             for (int q = 0; q < lista_detalles.size(); q++) {
                                                                 if (monto_total > 0) {
 
                                                                     varsaldo = lista_detalles.get(q).getSaldo_restante_bs() - monto_total;
+                                                                    montototal = monto_total;
                                                                     monto_total = monto_total - lista_detalles.get(q).getSaldo_restante_bs();
 
                                                                     if (varsaldo < 0) {
                                                                         varsaldo = 0;
+                                                                        montototal = lista_detalles.get(q).getSaldo_restante_bs();
                                                                     }
-
-                                                                    modc.setSaldo_restante_bs(varsaldo);
+                                                                    modcuen.setMonto(Double.parseDouble(Validacion.formatopago.format(montototal)));
+                                                                    modcuen.cer.setId(lista_detalles.get(q).getId());
+                                                                    modcuen.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
+                                                                    modc.setSaldo_restante_bs(Double.parseDouble(Validacion.formatopago.format(varsaldo)));
                                                                     modc.setId(lista_detalles.get(q).getId());
                                                                     modc.actualizarTotalBolivar(modc);
+                                                                    if (montototal != 0) {
+                                                                        modcuen.guardarpuentepagos(modcuen);
+                                                                    }
+
                                                                 }
                                                             }
                                                         }
@@ -374,20 +387,27 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                                         if ((vista.jTable1.getValueAt(i, 6).equals("Dólar"))) {
 
                                                             double varsaldo = 0;
+                                                            double montototal = 0;
 
                                                             for (int q = 0; q < lista_detalles.size(); q++) {
                                                                 if (monto_total > 0) {
 
                                                                     varsaldo = lista_detalles.get(q).getSaldo_restante_dolar() - (monto_total / Double.parseDouble(vista.txtParidad.getText()));
-
+                                                                    montototal = monto_total;
                                                                     monto_total = monto_total - (lista_detalles.get(q).getSaldo_restante_dolar() * Double.parseDouble(vista.txtParidad.getText()));
                                                                     if (varsaldo < 0) {
                                                                         varsaldo = 0;
+                                                                        montototal = lista_detalles.get(q).getSaldo_restante_dolar() * Double.parseDouble(vista.txtParidad.getText());
                                                                     }
-
+                                                                    modcuen.setMonto(Double.parseDouble(Validacion.formatopago.format(montototal)));
+                                                                    modcuen.cer.setId(lista_detalles.get(q).getId());
+                                                                    modcuen.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
                                                                     modc.setSaldo_restante_dolar(Double.parseDouble(Validacion.formatopago.format(varsaldo)));
                                                                     modc.setId(lista_detalles.get(q).getId());
                                                                     modc.actualizarTotalDolar(modc);
+                                                                    if (montototal != 0) {
+                                                                        modcuen.guardarpuentepagos(modcuen);
+                                                                    }
 
                                                                 }
                                                             }
@@ -399,38 +419,53 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                                         if ((vista.jTable1.getValueAt(i, 6).equals("Dólar"))) {
 
                                                             double varsaldo = 0;
+                                                            double montototal = 0;
                                                             for (int q = 0; q < lista_detalles.size(); q++) {
                                                                 if (monto_total > 0) {
 
                                                                     varsaldo = lista_detalles.get(q).getSaldo_restante_dolar() - monto_total;
+                                                                    montototal = monto_total;
                                                                     monto_total = monto_total - lista_detalles.get(q).getSaldo_restante_dolar();
 
                                                                     if (varsaldo < 0) {
                                                                         varsaldo = 0;
+                                                                        montototal = lista_detalles.get(q).getSaldo_restante_dolar();
                                                                     }
-
+                                                                    modcuen.setMonto(Double.parseDouble(Validacion.formatopago.format(montototal)));
+                                                                    modcuen.cer.setId(lista_detalles.get(q).getId());
+                                                                    modcuen.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
                                                                     modc.setSaldo_restante_dolar(Double.parseDouble(Validacion.formatopago.format(varsaldo)));
                                                                     modc.setId(lista_detalles.get(q).getId());
                                                                     modc.actualizarTotalDolar(modc);
+                                                                    if (montototal != 0) {
+                                                                        modcuen.guardarpuentepagos(modcuen);
+                                                                    }
                                                                 }
                                                             }
                                                         }
                                                         if ((vista.jTable1.getValueAt(i, 6).equals("Bolívar"))) {
                                                             double varsaldo = 0;
-
+                                                            double montototal = 0;
                                                             for (int q = 0; q < lista_detalles.size(); q++) {
                                                                 if (monto_total > 0) {
 
-                                                                    varsaldo = lista_detalles.get(q).getSaldo_restante_bs()- (monto_total * Double.parseDouble(vista.txtParidad.getText()));
-
+                                                                    varsaldo = lista_detalles.get(q).getSaldo_restante_bs() - (monto_total * Double.parseDouble(vista.txtParidad.getText()));
+                                                                    montototal = monto_total;
                                                                     monto_total = monto_total - (lista_detalles.get(q).getSaldo_restante_bs() / Double.parseDouble(vista.txtParidad.getText()));
                                                                     if (varsaldo < 0) {
                                                                         varsaldo = 0;
-                                                                    }
+                                                                        montototal = lista_detalles.get(q).getSaldo_restante_bs() / Double.parseDouble(vista.txtParidad.getText());
 
+                                                                    }
+                                                                    modcuen.setMonto(Double.parseDouble(Validacion.formatopago.format(montototal)));
+                                                                    modcuen.cer.setId(lista_detalles.get(q).getId());
+                                                                    modcuen.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
                                                                     modc.setSaldo_restante_bs(Double.parseDouble(Validacion.formatopago.format(varsaldo)));
                                                                     modc.setId(lista_detalles.get(q).getId());
                                                                     modc.actualizarTotalBolivar(modc);
+                                                                    if (montototal != 0) {
+                                                                        modcuen.guardarpuentepagos(modcuen);
+                                                                    }
 
                                                                 }
                                                             }

@@ -28,6 +28,16 @@ public class CuentasPorCobrar extends ConexionBD {
     private int id_fondo;
     private java.sql.Date fecha;
     private double paridad;
+    private String moneda;
+    public CerrarMes cer = new CerrarMes();
+
+    public String getMoneda() {
+        return moneda;
+    }
+
+    public void setMoneda(String moneda) {
+        this.moneda = moneda;
+    }
 
     public double getParidad() {
         return paridad;
@@ -106,7 +116,7 @@ public class CuentasPorCobrar extends ConexionBD {
         PreparedStatement ps = null;
         Connection con = getConexion();
 
-        String sql = "INSERT INTO cobro_unidad(monto, descripcion, id_unidad, id_cuenta, forma_pago, referencia, fecha, id_fondo) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO cobro_unidad(monto, descripcion, id_unidad, id_cuenta, forma_pago, referencia, fecha, id_fondo, paridad, moneda) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         try {
 
@@ -119,10 +129,93 @@ public class CuentasPorCobrar extends ConexionBD {
             ps.setString(6, getReferencia());
             ps.setDate(7, getFecha());
             ps.setInt(8, getId_fondo());
+            ps.setDouble(9, getParidad());
+            ps.setString(10, getMoneda());
 
             ps.execute();
 
             return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+    
+    public boolean guardarpuentepagos(CuentasPorCobrar modcuen) {
+
+        ps = null;
+         Connection con = getConexion();
+
+        String sql = "INSERT INTO puente_cobro_factura(id_detalle_pagos, id_cobro, parte_monto, moneda) VALUES (?, ?, ?, ?);";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, cer.getId());
+            ps.setInt(2, getId());
+            ps.setDouble(3, getMonto());
+            
+            ps.setString(4, getMoneda());
+
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
+    
+     public boolean buscId(CuentasPorCobrar modcuen) {
+
+        ps = null;
+        rs = null;
+        Connection con = getConexion();
+        String sql = "SELECT MAX(id) as id from cobro_unidad";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                modcuen.setId(rs.getInt("id"));
+
+                return true;
+            }
+
+            return false;
 
         } catch (SQLException e) {
 

@@ -12,12 +12,12 @@ public class CerrarMes extends ConexionBD {
     private double monto_dolar;
     private double monto_bolivar;
     public Unidades uni = new Unidades();
-//    public GastoComun gas = new GastoComun();
+   
     public Sancion san = new Sancion();
     private double alicuota;
     private String estado;
     public Gasto cuo = new Gasto();
-//    public ModeloConceptoGastos concep = new ModeloConceptoGastos();
+
     public Proveedores prove = new Proveedores();
     private int meses_deuda;
     private double saldo_restante_bs;
@@ -1129,43 +1129,7 @@ public class CerrarMes extends ConexionBD {
 
     }
 
-    public boolean guardarpuentepagos(CerrarMes modc) {
-
-        ps = null;
-        con = getConexion();
-
-        String sql = "INSERT INTO puente_cobro_factura(id_total, id_cobro, parte_monto) VALUES (?, ?, ?);";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-//            ps.setInt(1, gas.getId());
-            ps.setInt(2, getId());
-            ps.setDouble(3, getSaldo_restante());
-
-            ps.execute();
-
-            return true;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-    }
+    
 
     public int getMeses_deuda() {
         return meses_deuda;
