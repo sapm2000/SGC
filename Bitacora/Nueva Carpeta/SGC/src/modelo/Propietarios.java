@@ -2,8 +2,6 @@ package modelo;
 
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -15,8 +13,6 @@ public class Propietarios extends Persona {
     private int cantidad;
     private java.sql.Date fecha_hasta;
 
-    private PreparedStatement ps = null;
-    private ResultSet rs = null;
     private Connection con;
 
     public Propietarios() {
@@ -34,24 +30,8 @@ public class Propietarios extends Persona {
         super(cedula, pNombre, sNombre, pApellido, sApellido, correo, telefono);
     }
 
-    public Date getFecha_hasta() {
-        return fecha_hasta;
-    }
-
-    public void setFecha_hasta(Date fecha_hasta) {
-        this.fecha_hasta = fecha_hasta;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
     public Boolean existeInactivo() {
-        Connection con = getConexion();
+        con = getConexion();
         ps = null;
         rs = null;
 
@@ -79,6 +59,14 @@ public class Propietarios extends Persona {
             Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+
+            }
         }
     }
 
@@ -86,26 +74,33 @@ public class Propietarios extends Persona {
         try {
             ps = null;
             con = getConexion();
-            
+
             int ind;
-            
+
             String sql = "UPDATE propietario SET activo = true WHERE ci_persona = ?";
-            
+
             ps = con.prepareStatement(sql);
-            
+
             ind = 1;
             ps.setString(ind++, getCedula());
-            
+
             ps.execute();
-            
+
             return true;
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(Propietarios.class.getName()).log(Level.SEVERE, null, ex);
             return null;
-            
-        }
 
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+
+            }
+        }
     }
 
     public boolean registrar(Boolean existe) {
@@ -133,7 +128,6 @@ public class Propietarios extends Persona {
             return true;
 
         } catch (SQLException e) {
-
             System.err.println(e);
             return false;
 
@@ -143,41 +137,6 @@ public class Propietarios extends Persona {
 
             } catch (SQLException e) {
                 System.err.println(e);
-
-            }
-        }
-    }
-
-    private Boolean registrarCondominio() {
-        ps = null;
-        con = getConexion();
-
-        String sql = "INSERT INTO puente_persona_condominio (ci_persona, rif_condominio) VALUES (?,?);";
-
-        int i = 1;
-
-        try {
-            ps = con.prepareStatement(sql);
-
-            ps.setString(i++, getCedula());
-            //ps.setString(i++, getCondominio().getRif());
-
-            ps.execute();
-
-            return true;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-                con.close();
-
-            } catch (SQLException e) {
-                System.err.println(e);
-
             }
         }
     }
@@ -346,8 +305,8 @@ public class Propietarios extends Persona {
     }
 
     public boolean eliminar() {
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE propietario SET activo = false WHERE ci_persona = ?";
 
@@ -379,8 +338,8 @@ public class Propietarios extends Persona {
 
     public boolean activar(Propietarios modpro) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE propietarios SET activo=1 WHERE cedula=?";
 
@@ -410,6 +369,22 @@ public class Propietarios extends Persona {
 
         }
 
+    }
+
+    public Date getFecha_hasta() {
+        return fecha_hasta;
+    }
+
+    public void setFecha_hasta(Date fecha_hasta) {
+        this.fecha_hasta = fecha_hasta;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
 }

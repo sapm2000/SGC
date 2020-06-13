@@ -1,8 +1,6 @@
 package modelo;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -57,11 +55,18 @@ public class Usuario extends ConexionBD {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
     }
 
     public Boolean existe() {
-        Connection con = getConexion();
+        con = getConexion();
         ps = null;
         rs = null;
 
@@ -89,6 +94,13 @@ public class Usuario extends ConexionBD {
             Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
     }
 
@@ -121,6 +133,13 @@ public class Usuario extends ConexionBD {
             Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
     }
 
@@ -155,6 +174,13 @@ public class Usuario extends ConexionBD {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
     }
 
@@ -227,14 +253,21 @@ public class Usuario extends ConexionBD {
             Logger.getLogger(Propietarios.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
 
     }
 
     public boolean registrar() {
 
-        Connection con = getConexion();
-        PreparedStatement ps = null;
+        con = getConexion();
+        ps = null;
 
         String sql = "INSERT INTO usuario(usuario, password, pregunta, respuesta, ci_persona, id_tipo_usuario) VALUES(?,?,?,?,?,?);";
 
@@ -267,7 +300,7 @@ public class Usuario extends ConexionBD {
     }
 
     public Boolean tieneUsuario() {
-        Connection con = getConexion();
+        con = getConexion();
         ps = null;
         rs = null;
 
@@ -295,13 +328,20 @@ public class Usuario extends ConexionBD {
             Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
     }
 
     public boolean modificar() {
 
-        Connection con = getConexion();
-        PreparedStatement ps = null;
+        con = getConexion();
+        ps = null;
 
         String sql = "UPDATE usuario SET password=?, pregunta=?, respuesta=? WHERE id=?;";
 
@@ -361,7 +401,7 @@ public class Usuario extends ConexionBD {
     }
 
     public Boolean consultarPerfil() {
-        Connection con = getConexion();
+        con = getConexion();
         ps = null;
         rs = null;
 
@@ -410,9 +450,9 @@ public class Usuario extends ConexionBD {
 
     public boolean modificarPregunta(String pregunta, String respuesta, String password) {
 
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+        con = getConexion();
+        ps = null;
+        rs = null;
 
         String sql = "SELECT cambiar_pregunta(?,?,?,?)";
 
@@ -452,9 +492,9 @@ public class Usuario extends ConexionBD {
 
     public boolean modificarClave(String passwordNuevo, String passwordActual) {
 
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+        con = getConexion();
+        ps = null;
+        rs = null;
 
         String sql = "SELECT cambiar_clave(?,?,?)";
 

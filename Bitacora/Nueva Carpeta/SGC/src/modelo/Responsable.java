@@ -1,14 +1,14 @@
 package modelo;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Responsable extends Persona {
+
+    private Connection con;
 
     public Responsable() {
         super();
@@ -19,8 +19,8 @@ public class Responsable extends Persona {
     }
 
     public boolean eliminar() {
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE responsable SET activo = false WHERE ci_persona = ?";
 
@@ -54,9 +54,9 @@ public class Responsable extends Persona {
         ArrayList listaResponsable = new ArrayList();
         Responsable res;
 
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+        con = getConexion();
+        ps = null;
+        rs = null;
 
         String sql = "SELECT * FROM v_responsable;";
 
@@ -99,7 +99,7 @@ public class Responsable extends Persona {
     }
 
     public Boolean existeInactivo() {
-        Connection con = getConexion();
+        con = getConexion();
         ps = null;
         rs = null;
 
@@ -127,6 +127,13 @@ public class Responsable extends Persona {
             Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
     }
 
@@ -152,14 +159,20 @@ public class Responsable extends Persona {
             Logger.getLogger(Propietarios.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
-        }
+        } finally {
+            try {
+                con.close();
 
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
     }
 
     public boolean registrar(Boolean existe) {
         try {
-            PreparedStatement ps = null;
-            Connection con = getConexion();
+            ps = null;
+            con = getConexion();
 
             if (!existe) {
                 if (!registrarPersona()) {

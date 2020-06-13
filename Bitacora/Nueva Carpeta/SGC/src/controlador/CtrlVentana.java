@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import modelo.CerrarMes;
-import modelo.CuentasPorCobrar;
 import modelo.Funcion;
 import sgc.SGC;
 import vista.Inicio;
@@ -191,11 +190,7 @@ public class CtrlVentana implements ActionListener {
 
         //Procesos
         if (e.getSource() == ventana.pCuentasporCobrar) {
-            
-           
-            
-         
-           
+
             ctrl = new CtrlCuentaPorCobrar();
         }
         if (e.getSource() == ventana.pCuentapagar) {
@@ -307,6 +302,9 @@ public class CtrlVentana implements ActionListener {
             }
             if ("Fondo".equals(funcionesX.getNombre())) {
                 ventana.menuArchivo.add(ventana.jFondo);
+            }
+            if ("Forma de pago".equals(funcionesX.getNombre())) {
+                ventana.menuArchivo.add(ventana.jFormaPago);
             }
             if ("Comunicados".equals(funcionesX.getNombre())) {
                 ventana.menuArchivo.add(ventana.jComunicados);

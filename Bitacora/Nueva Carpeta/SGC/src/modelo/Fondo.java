@@ -1,22 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
+import controlador.Validacion;
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import sgc.SGC;
 
-/**
- *
- * @author rma
- */
 public class Fondo extends ConexionBD {
 
     private String tipo;
@@ -28,10 +18,12 @@ public class Fondo extends ConexionBD {
     private double saldo;
     private String moneda;
 
+    private Connection con;
+
     public boolean registrar(Fondo modfon) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "INSERT INTO fondos(tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id_condominio, moneda) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 
@@ -59,33 +51,28 @@ public class Fondo extends ConexionBD {
 
         } finally {
             try {
-
                 con.close();
 
             } catch (SQLException e) {
-
                 System.err.println(e);
-
             }
-
         }
-
     }
 
     public ArrayList<Fondo> listar(int status) {
         ArrayList listaFondo = new ArrayList();
         Fondo modfon;
 
-        Connection con = getConexion();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+        con = getConexion();
+        ps = null;
+        rs = null;
         String sql = "";
 
         if (status == 1) {
             sql = "SELECT tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id, moneda FROM fondos where id_condominio=? AND saldo > 0 and activo=true;";
         }
         if (status == 2) {
-            sql = "SELECT tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id, moneda FROM fondos where id_condominio=? and activo=true;";
+            sql = "SELECT tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id, moneda FROM fondos where id_condominio=? and activo=true and moneda=?;";
         }
         if (status == 3) {
             sql = "SELECT tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id, moneda FROM fondos where id_condominio=? and activo=false;";
@@ -93,6 +80,7 @@ public class Fondo extends ConexionBD {
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, SGC.condominioActual.getRif());
+            ps.setString(2, getMoneda());
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -129,9 +117,9 @@ public class Fondo extends ConexionBD {
 
     public boolean buscar(Fondo modfon) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
         String sql = "SELECT id, fecha, descripcion, observaciones, monto_inicial, saldo, moneda FROM fondos where id_condominio=? and tipo=?;";
 
         try {
@@ -176,9 +164,9 @@ public class Fondo extends ConexionBD {
 
     public boolean buscar1(Fondo modfon) {
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection con = getConexion();
+        ps = null;
+        rs = null;
+        con = getConexion();
         String sql = "SELECT id, fecha, descripcion, observaciones, monto_inicial, saldo FROM fondos where id_condominio=? and tipo=?;";
 
         try {
@@ -218,15 +206,15 @@ public class Fondo extends ConexionBD {
 
     public boolean modificar(Fondo modfon) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE fondos SET  fecha=?, descripcion=?, observaciones=?, monto_inicial=?, saldo=?, tipo=?, moneda=? WHERE id=?";
 
         try {
             int ind;
-            ind = 1 ;
-            
+            ind = 1;
+
             ps = con.prepareStatement(sql);
             ps.setDate(ind++, getFecha());
             ps.setString(ind++, getDescripcion());
@@ -260,10 +248,11 @@ public class Fondo extends ConexionBD {
 
     }
 // fondeas un carro aqui o que samuel??
+
     public boolean fondear(Fondo modfon) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE fondos SET  saldo=? WHERE id=?";
 
@@ -271,7 +260,7 @@ public class Fondo extends ConexionBD {
 
             ps = con.prepareStatement(sql);
 
-            ps.setDouble(1, getSaldo());
+            ps.setDouble(1, Double.parseDouble(Validacion.formatopago.format(getSaldo())));
 
             ps.setInt(2, getId());
             ps.execute();
@@ -299,8 +288,8 @@ public class Fondo extends ConexionBD {
 
     public boolean eliminar(Fondo modfon) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE fondos SET activo=false WHERE id=?";
 
@@ -335,8 +324,8 @@ public class Fondo extends ConexionBD {
 
     public boolean activar(Fondo modfon) {
 
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE fondos SET activo=true WHERE id=?";
 
@@ -370,8 +359,8 @@ public class Fondo extends ConexionBD {
     }
 
     public boolean restarFondo(Float saldoNuevo) {
-        PreparedStatement ps = null;
-        Connection con = getConexion();
+        ps = null;
+        con = getConexion();
 
         String sql = "UPDATE fondos SET saldo = saldo - ? WHERE id = ?;";
 

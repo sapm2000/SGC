@@ -84,6 +84,76 @@ public class Mensaje extends ConexionBD {
         }
     }
 
+    public boolean eliminarEnviado() {
+        ps = null;
+        con = getConexion();
+       
+        String sql = "UPDATE mensaje SET activo_emisor = false WHERE id = ?";
+
+        try {
+            int i = 1;
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(i++, getId());
+
+            if (ps.executeUpdate() == 1) {
+                return true;
+            }
+            
+            return false;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+
+            }
+
+        }
+    }
+    
+    public boolean eliminarRecibido() {
+        ps = null;
+        con = getConexion();
+       
+        String sql = "UPDATE puente_mensaje_usuario SET activo_receptor = false WHERE id_mensaje = ? AND receptor = ?";
+
+        try {
+            int i = 1;
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(i++, getId());
+            ps.setInt(i++, SGC.usuarioActual.getId());
+
+            if (ps.executeUpdate() == 1) {
+                return true;
+            }
+            
+            return false;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+
+            }
+
+        }
+    }
+
+
     public ArrayList<Mensaje> listar(Integer usuario, String bandeja) {
         try {
             ArrayList<Mensaje> lista = new ArrayList();
@@ -96,7 +166,7 @@ public class Mensaje extends ConexionBD {
             String sql = "";
 
             if (bandeja.equals("Recibidos")) {
-                sql = "SELECT * FROM v_bandeja_entrada WHERE receptor = ? AND activo = true;";
+                sql = "SELECT * FROM v_bandeja_entrada WHERE receptor = ?;";
 
             } else if (bandeja.equals("Enviados")) {
                 sql = "SELECT * FROM v_bandeja_salida WHERE id_emisor = ?;";
@@ -147,6 +217,14 @@ public class Mensaje extends ConexionBD {
         } catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
             return null;
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+
+            }
         }
     }
 
