@@ -52,52 +52,57 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
     int x;
 
     public CtrlCuentaPorCobrar() {
-        this.vista = new VisCuentaPorCobrar();
-        this.modcuen = new CuentasPorCobrar();
-        this.moduni = new Unidades();
-        this.modfon = new Fondo();
-        this.modcu = new Cuenta();
-        this.modc = new CerrarMes();
-        this.modfor = new FormaPago();
-
         String hola = "";
         do {
             hola = "";
             hola = JOptionPane.showInputDialog("ingrese la paridad a trabajar"); //ventana que se despliega para que ingresen la paridad 
 
+            if (hola != null && isValidDouble(hola) == true) {
+                this.vista = new VisCuentaPorCobrar();
+                this.modcuen = new CuentasPorCobrar();
+                this.moduni = new Unidades();
+                this.modfon = new Fondo();
+                this.modcu = new Cuenta();
+                this.modc = new CerrarMes();
+                this.modfor = new FormaPago();
+
+                modc.setParidad(Double.parseDouble(hola)); //seteamos la paridad para que busque los gastos en la bd y los multiplique por la paridad
+                vista.txtParidad.setText(hola); // seteamos la paridad en la caja de texto para que este cargada al abrir la vantana
+
+                vista.jComboUnidad.addItemListener(this);
+                vista.btnGuardar.addActionListener(this);
+                vista.txtMonto.addKeyListener(this);
+                vista.txtDescripcion.addKeyListener(this);
+                vista.txtReferencia.addKeyListener(this);
+                vista.cbxMoneda.addItemListener(this);
+                CtrlVentana.cambiarVista(vista); //funcion para que abra la ventana
+
+                vista.jComboFondo.removeAllItems(); //limpiamos los combobox
+                modfon.setMoneda("Bolívar"); //seteamos la moneda por defecto (bs)
+                listafondo = modfon.listar(2);
+                crearCbxFondo(listafondo); //llenamos el combobox con la funcion de arriba (arraylist)
+
+                listaunidades = moduni.listar();
+                crearCbxUnidad(listaunidades); //llenamos el combobox con la funcion de arriba (arraylist)
+
+                listaCuenta = modcu.listarcuenta();
+                crearCbxCuenta(listaCuenta); //llenamos el combobox con la funcion de arriba (arraylist)v
+
+                listaformapago = modfor.listar();
+                crearCbxFormadePago(listaformapago); //llenamos el combobox con la funcion de arriba (arraylist)
+
+                Component[] components = vista.jPanel2.getComponents();
+                JComponent[] com = {
+                    vista.txtReferencia, vista.txtDescripcion, vista.txtMonto
+                };
+                Validacion.copiar(components);
+                Validacion.pegar(com);
+            } if (hola==null) {
+                break;
+            } else {
+                
+            }
         } while (isValidDouble(hola) == false); //ciclo que repite mientras no ingresen un numero valido
-
-        modc.setParidad(Double.parseDouble(hola)); //seteamos la paridad para que busque los gastos en la bd y los multiplique por la paridad
-        vista.txtParidad.setText(hola); // seteamos la paridad en la caja de texto para que este cargada al abrir la vantana
-
-        vista.jComboUnidad.addItemListener(this);
-        vista.btnGuardar.addActionListener(this);
-        vista.txtMonto.addKeyListener(this);
-        vista.txtDescripcion.addKeyListener(this);
-        vista.txtReferencia.addKeyListener(this);
-        vista.cbxMoneda.addItemListener(this);
-        CtrlVentana.cambiarVista(vista); //funcion para que abra la ventana
-
-        vista.jComboFondo.removeAllItems(); //limpiamos los combobox
-        modfon.setMoneda("Bolívar"); //seteamos la moneda por defecto (bs)
-        listafondo = modfon.listar(2);
-        crearCbxFondo(listafondo); //llenamos el combobox con la funcion de arriba (arraylist)
-
-        listaunidades = moduni.listar();
-        crearCbxUnidad(listaunidades); //llenamos el combobox con la funcion de arriba (arraylist)
-
-        listaCuenta = modcu.listarcuenta();
-        crearCbxCuenta(listaCuenta); //llenamos el combobox con la funcion de arriba (arraylist)v
-
-        listaformapago = modfor.listar();
-        crearCbxFormadePago(listaformapago); //llenamos el combobox con la funcion de arriba (arraylist)
-
-        Component[] components = vista.jPanel2.getComponents();
-        JComponent[] com = {
-            vista.txtReferencia, vista.txtDescripcion, vista.txtMonto
-        };
-        Validacion.copiar(components);
-        Validacion.pegar(com);
 
     }
 
@@ -568,8 +573,6 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                     modc.uni.setId(listaunidades.get(ind).getId());//setea el id de la unidad seleccionada
 
                     listaDominante = modc.listarDominantes(); //llenamos la lista de monedas dominantes
-
-                  
 
                     Llenartabla(vista.jTable1, listaDominante);//llenamos la tabla de recibos pendientes
                     addCheckBox(7, vista.jTable1);//añadimos checkbox a la tabla
