@@ -5,12 +5,18 @@
  */
 package controlador;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Calendar;
+import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -27,24 +33,25 @@ import modelo.Unidades;
 import vista.Catalogo;
 import vista.PantallaPrincipal;
 import vista.VisCerrarMes;
+import vista.VisCerrarMes.CustomUI;
 
 /**
  *
  * @author rma
  */
-public class CtrlCerrarMes implements ActionListener, KeyListener {
+public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListener, ItemListener{
 
     private VisCerrarMes vista;
     private CerrarMes modc;
     private Unidades moduni;
     ArrayList<Unidades> listaunidades;
-    
+
     ArrayList<Gasto> listaGastos;
     ArrayList<Sancion> listasanciones;
     ArrayList<Interes> listainteres;
     ArrayList<CerrarMes> listaCierremes;
     private PantallaPrincipal panta1;
-   
+
     private Gasto modcuo;
     private Sancion modsan;
     private Interes modin;
@@ -57,14 +64,17 @@ public class CtrlCerrarMes implements ActionListener, KeyListener {
         this.modc = new CerrarMes();
         this.moduni = new Unidades();
 
-            
         this.modcuo = new Gasto();
         this.modsan = new Sancion();
         this.modin = new Interes();
         this.catalogo = new Catalogo();
         catalogo.lblTitulo.setText("Cerrar mes");
-
+        
         CtrlVentana.cambiarVista(catalogo);
+        
+        vista.cbxMoneda.addItemListener(this);
+        stylecombo(vista.cbxMoneda);
+        
         Llenartabla(catalogo.tabla);
         vista.jButton1.addActionListener(this);
         vista.btnSalir.addActionListener(this);
@@ -121,8 +131,10 @@ public class CtrlCerrarMes implements ActionListener, KeyListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+       
         if (e.getSource() == catalogo.btnNuevo) {
             CtrlVentana.cambiarVista(vista);
+            
         }
         if (e.getSource() == vista.jButton1) {
             Calendar c1 = Calendar.getInstance();
@@ -217,6 +229,7 @@ public class CtrlCerrarMes implements ActionListener, KeyListener {
 
                                                         double parte_cuota = parte_periodo * listaunidades.get(w).getAlicuota();
                                                         if (listaGastos.get(z).getMoneda().equals("Bolívar")) {
+                                                            
                                                             double paridad = Double.parseDouble(vista.txtParidad.getText());
                                                             double total_dolar = parte_cuota / paridad;
                                                             modc.setMonto_bolivar(parte_cuota);
@@ -240,7 +253,7 @@ public class CtrlCerrarMes implements ActionListener, KeyListener {
                                                     }
                                                 } else {
                                                     for (int w = 0; w < numRegistro; w++) {
-
+                                                        
                                                         double parte_cuota = parte_periodo / numRegistro;
                                                         modc.setId(listaGastos.get(z).getId());
                                                         if (listaGastos.get(z).getMoneda().equals("Bolívar")) {
@@ -291,6 +304,7 @@ public class CtrlCerrarMes implements ActionListener, KeyListener {
                                     double monto = 0;
                                     modc.gasto.setId(listasanciones.get(j).getId());
                                     if (vista.cbxMoneda.getSelectedItem().toString().equals("Dólar")) {
+                                        
                                         modc.buscartotal(modc, 2);
                                         monto = modc.getMonto_dolar();
                                     } else {
@@ -305,6 +319,7 @@ public class CtrlCerrarMes implements ActionListener, KeyListener {
                                     modc.uni.setId(listasanciones.get(j).uni.getId());
 
                                     if (vista.cbxMoneda.getSelectedItem().toString().equals("Dólar")) {
+                                        
                                         modc.setMonto_dolar(var3);
                                         modc.setMonto_bolivar(var3 * Double.parseDouble(vista.txtParidad.getText()));
 
@@ -441,5 +456,19 @@ public class CtrlCerrarMes implements ActionListener, KeyListener {
         tr.setRowFilter(RowFilter.regexFilter(consulta));
 
     }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        vista.cbxMoneda.setFocusable(false);
+    } 
+    
+    public void stylecombo (JComboBox c) {
+        c.setFont(new Font("Tahoma", Font.BOLD, 14));
+        c.setForeground(Color.WHITE);
+        
+        c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 1));
+    }
+
+    
 
 }

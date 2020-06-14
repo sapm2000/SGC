@@ -22,6 +22,8 @@ import javax.swing.ListCellRenderer;
 import javax.swing.plaf.ComboBoxUI;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
+import javax.swing.text.MutableAttributeSet;
+import javax.swing.text.StyleConstants;
 import vista.VisCerrarMes.CustomUI;
 
 /**
@@ -36,6 +38,8 @@ public class VisCerrarMes extends javax.swing.JPanel {
     public VisCerrarMes() {
         initComponents();
         cbxMoneda.setUI(new VisCerrarMes.CustomUI());
+        cbxMoneda.setForeground(new Color(255,255,255));
+        
     }
 
     /**
@@ -103,13 +107,13 @@ public class VisCerrarMes extends javax.swing.JPanel {
         cbxMoneda.setForeground(new java.awt.Color(255, 255, 255));
         cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bolívar", "Dólar" }));
         cbxMoneda.setToolTipText("Calcular la cuota especial por...");
-        cbxMoneda.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        cbxMoneda.setBorder(null);
         cbxMoneda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxMonedaActionPerformed(evt);
             }
         });
-        jPanel2.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 140, 20));
+        jPanel2.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 140, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -117,6 +121,7 @@ public class VisCerrarMes extends javax.swing.JPanel {
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
         txtParidad.setBackground(new java.awt.Color(0, 94, 159));
+        txtParidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtParidad.setForeground(new java.awt.Color(255, 255, 255));
         txtParidad.setBorder(null);
         jPanel2.add(txtParidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 180, 20));
@@ -181,10 +186,11 @@ public class VisCerrarMes extends javax.swing.JPanel {
 static public class CustomUI extends BasicComboBoxUI{
         
     
-   
+    
     public Color blue = new Color(0,94,159);
     
     public static ComboBoxUI createUI(JComponent cbxMoneda) {
+        
          return new CustomUI();
      }
  
@@ -216,11 +222,10 @@ static public class CustomUI extends BasicComboBoxUI{
 54  } 
 55  */
      
-    @Override
-    public void paintCurrentValueBackground(Graphics g,
-                                Rectangle bounds,
-                                boolean hasFocus)
+    
+    public void paintCurrentValueBackground(Graphics g, Rectangle bounds, boolean hasFocus)
     {
+        
         g.setColor( blue );
         g.setFont(new Font("Tahoma", Font.BOLD, 14));
         g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
@@ -240,15 +245,16 @@ static public class CustomUI extends BasicComboBoxUI{
         super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
         list.setSelectionBackground(blue);
         list.setForeground(white);
+        
         if (isSelected)
         {
              setBackground( blue );
-             setForeground(Color.WHITE);
+             setForeground(new Color(255,255,255));
         }
         else
         {
              setBackground( Color.WHITE );            
-             setForeground( new Color(70,70,70));
+             setForeground( new Color(0,94,159));
         }
             
             return this;
