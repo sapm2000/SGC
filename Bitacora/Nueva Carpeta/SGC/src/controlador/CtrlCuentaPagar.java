@@ -21,7 +21,6 @@ import javax.swing.table.TableRowSorter;
 import modelo.Cuenta;
 import modelo.Cuenta_Pagar;
 import modelo.Fondo;
-import modelo.GastoComun;
 import vista.Catalogo;
 import vista.VisCuentaPorPagar;
 
