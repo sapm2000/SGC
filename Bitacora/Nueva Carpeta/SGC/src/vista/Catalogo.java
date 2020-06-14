@@ -105,7 +105,7 @@ public class Catalogo extends javax.swing.JPanel {
         tabla.setRowHeight(35);
         jScrollPane1.setViewportView(tabla);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 1290, 440));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 1280, 440));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
@@ -114,7 +114,7 @@ public class Catalogo extends javax.swing.JPanel {
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 500, -1));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 130, 500, -1));
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 130, 500, -1));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 300, 500, -1));
@@ -123,7 +123,7 @@ public class Catalogo extends javax.swing.JPanel {
         add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 300, 500, -1));
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 300, 500, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 

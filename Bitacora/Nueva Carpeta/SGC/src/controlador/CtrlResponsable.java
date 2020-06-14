@@ -1,12 +1,18 @@
 package controlador;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -19,7 +25,7 @@ import modelo.Responsable;
 import sgc.SGC;
 import vista.Catalogo;
 
-public class CtrlResponsable implements ActionListener, MouseListener, KeyListener {
+public class CtrlResponsable implements ActionListener, MouseListener, KeyListener, ItemListener{
 
     private Catalogo catalogo;
     private vista.VisResponsable vista;
@@ -73,6 +79,8 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
             vista.txtCorreo.addKeyListener(this);
 
             CtrlVentana.cambiarVista(vista);
+            vista.cbxCedula.addItemListener(this);
+            stylecombo(vista.cbxCedula);
         }
 
         if (e.getSource() == vista.btnGuardar) {
@@ -392,5 +400,17 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
             filtro(catalogo.txtBuscar.getText(), catalogo.tabla);
         }
+    }
+    
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        vista.cbxCedula.setFocusable(false);
+    } 
+    
+    public void stylecombo (JComboBox c) {
+        c.setFont(new Font("Tahoma", Font.BOLD, 14));
+        c.setForeground(Color.WHITE);
+        
+        c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
     }
 }

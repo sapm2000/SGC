@@ -1,5 +1,7 @@
 package controlador;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -9,6 +11,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Unidades;
@@ -38,6 +42,10 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
         this.vista.btnAgregar.addActionListener(this);
 
         CtrlVentana.cambiarVista(vista);
+        vista.cbxCedula.addItemListener(this);
+        stylecombo(vista.cbxCedula);
+        vista.cbxUnidad.addItemListener(this);
+        stylecombo(vista.cbxUnidad);
         crearCbxUnidad();
 
         llenarTabla();
@@ -46,6 +54,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
         if (e.getSource() == vista.txtCedula) {
             buscarVisitante();
         }
@@ -76,6 +85,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
 
     @Override
     public void itemStateChanged(ItemEvent e) {
+        vista.cbxCedula.setFocusable(false);
     }
 
     @Override
@@ -112,6 +122,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
 
     private void buscarVisitante() {
         String cedula = vista.cbxCedula.getSelectedItem() + "-" + vista.txtCedula.getText();
+        
 
         if (modVisitante.buscar(cedula)) {
             vista.txtNombre.setText(modVisitante.getpNombre());
@@ -126,7 +137,8 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
     private void crearCbxUnidad() {
         listaUnidad = modUnidad.listar();
         vista.cbxUnidad.addItem("Seleccione...");
-
+        vista.cbxUnidad.setFocusable(false);
+        
         if (listaUnidad != null) {
             for (Unidades datosX : listaUnidad) {
                 vista.cbxUnidad.addItem(datosX.getN_unidad());
@@ -180,4 +192,10 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
         }
     }
 
+    public void stylecombo (JComboBox c) {
+        c.setFont(new Font("Tahoma", Font.BOLD, 14));
+        c.setForeground(Color.WHITE);
+        
+        c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
+    }
 }

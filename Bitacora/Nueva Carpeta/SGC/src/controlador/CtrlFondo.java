@@ -1,8 +1,12 @@
 package controlador;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -10,6 +14,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -25,7 +31,7 @@ import sgc.SGC;
 import vista.Catalogo;
 import vista.VisFondo;
 
-public class CtrlFondo implements ActionListener, MouseListener, KeyListener, WindowListener {
+public class CtrlFondo implements ActionListener, MouseListener, KeyListener, WindowListener, ItemListener{
 
     private VisFondo vista;
     private Catalogo catalogo;
@@ -45,6 +51,8 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
 
         catalogo.lblTitulo.setText("Fondo");
         CtrlVentana.cambiarVista(catalogo);
+        vista.cbxMoneda.addItemListener(this);
+        stylecombo(vista.cbxMoneda);
 
         Llenartabla(catalogo.tabla);
         permisoBtn();
@@ -530,5 +538,16 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
         TableColumn tc = table.getColumnModel().getColumn(column);
         tc.setCellEditor(table.getDefaultEditor(Boolean.class));
         tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
+    }
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        vista.cbxMoneda.setFocusable(false);
+    } 
+    
+    public void stylecombo (JComboBox c) {
+        c.setFont(new Font("Tahoma", Font.BOLD, 14));
+        c.setForeground(Color.WHITE);
+        
+        c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
     }
 }

@@ -1,19 +1,25 @@
 package controlador;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import modelo.Visitante;
 import vista.VisVisitante;
 
-    public class CtrlVisitante implements ActionListener, MouseListener, KeyListener{
+    public class CtrlVisitante implements ActionListener, MouseListener, KeyListener, ItemListener{
 
     private VisVisitante vista;
     private Visitante modelo;
@@ -30,6 +36,8 @@ import vista.VisVisitante;
         this.vista.txtNombre.addKeyListener(this);
         this.vista.txtApellido.addKeyListener(this);
         CtrlVentana.cambiarVista(vista);
+        vista.cbxCedula.addItemListener(this);
+        stylecombo(vista.cbxCedula);
         llenarTabla(vista.tabla);
 
     }
@@ -183,4 +191,16 @@ import vista.VisVisitante;
         return resultado;
     }
 
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        vista.cbxCedula.setFocusable(false);
+    } 
+    
+    public void stylecombo (JComboBox c) {
+        c.setFont(new Font("Tahoma", Font.BOLD, 14));
+        c.setForeground(Color.WHITE);
+        
+        c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
+    }
+    
 }
