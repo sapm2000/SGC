@@ -1,15 +1,24 @@
 package vista;
 
 import java.awt.Color;
+import static java.awt.Color.white;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import javax.swing.BorderFactory;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JList;
 import javax.swing.JScrollBar;
 import javax.swing.JTable;
+import javax.swing.ListCellRenderer;
+import javax.swing.plaf.ComboBoxUI;
+import javax.swing.plaf.basic.BasicArrowButton;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 
@@ -32,6 +41,10 @@ public class VisGasto extends javax.swing.JPanel {
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         jScrollPane4.getVerticalScrollBar().setUI(new MyScrollBarUI());
         jTable.getTableHeader().setDefaultRenderer(new VisMensaje.Headercolor());
+        cbxMoneda.setUI(new VisCerrarMes.CustomUI());
+        jAsamblea.setUI(new VisCerrarMes.CustomUI());
+        jCalcular.setUI(new VisCerrarMes.CustomUI());
+        jcombotipo.setUI(new VisCerrarMes.CustomUI());
     }
 
     /**
@@ -70,7 +83,6 @@ public class VisGasto extends javax.swing.JPanel {
         jcombotipo = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jSeparator4 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         panelTipo = new javax.swing.JPanel();
         labelmense = new javax.swing.JLabel();
@@ -88,6 +100,7 @@ public class VisGasto extends javax.swing.JPanel {
         cbxMoneda = new javax.swing.JComboBox<>();
         jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
         jYearChooser1 = new com.toedter.calendar.JYearChooser();
+        jSeparator5 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -206,27 +219,27 @@ public class VisGasto extends javax.swing.JPanel {
         btnBuscarproveedor.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
         btnBuscarproveedor.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
         btnBuscarproveedor.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
-        jPanel2.add(btnBuscarproveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 40, 40));
+        jPanel2.add(btnBuscarproveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 40, 40));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Proveedor:");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, 20));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, -1, 20));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Calcular Por:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 90, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 90, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("<html>\nComienzo de <br> Cobro (Mes):\n</html>");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, -1, 30));
 
         jCalcular.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jCalcular.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alicuota", "Total de Inmuebles" }));
         jCalcular.setToolTipText("Calcular la cuota especial por...");
-        jPanel2.add(jCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 260, -1));
+        jPanel2.add(jCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 280, 30));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -234,7 +247,7 @@ public class VisGasto extends javax.swing.JPanel {
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 110, -1));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 240, 20));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 280, 20));
 
         jScrollPane4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
         jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -261,24 +274,21 @@ public class VisGasto extends javax.swing.JPanel {
         jcombotipo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jcombotipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Extraordinario", "Ordinario" }));
         jcombotipo.setToolTipText("Seleccione el tipo de gasto");
-        jPanel2.add(jcombotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 260, -1));
+        jPanel2.add(jcombotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 280, 30));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("<html>\nTipo de <br> Gasto:\n</html>");
-        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 60, -1));
+        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 240, 20));
-
-        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 240, 20));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 280, 20));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("<html> Nombre del <br> proveedor:</html>");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 124, -1, 40));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, -1, 40));
 
         panelTipo.setBackground(new java.awt.Color(0, 94, 159));
         panelTipo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -286,22 +296,22 @@ public class VisGasto extends javax.swing.JPanel {
         labelmense.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelmense.setForeground(new java.awt.Color(255, 255, 255));
         labelmense.setText("<html> Número de Meses <br> que Aplica: </html>");
-        panelTipo.add(labelmense, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, -1));
+        panelTipo.add(labelmense, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 130, -1));
 
         txtNmeses.setBackground(new java.awt.Color(0, 94, 159));
         txtNmeses.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtNmeses.setForeground(new java.awt.Color(255, 255, 255));
         txtNmeses.setToolTipText("Ingrese el número de meses que aplica");
         txtNmeses.setBorder(null);
-        panelTipo.add(txtNmeses, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 190, 20));
+        panelTipo.add(txtNmeses, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 200, 20));
 
         barritahorizontal.setForeground(new java.awt.Color(255, 255, 255));
-        panelTipo.add(barritahorizontal, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 190, 10));
+        panelTipo.add(barritahorizontal, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 200, 10));
 
         fue_elegido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         fue_elegido.setForeground(new java.awt.Color(255, 255, 255));
         fue_elegido.setText("¿Fué elegido en una asamblea?");
-        panelTipo.add(fue_elegido, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, -1, -1));
+        panelTipo.add(fue_elegido, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, -1, -1));
 
         bgrpAsamblea.add(si);
         si.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -313,12 +323,12 @@ public class VisGasto extends javax.swing.JPanel {
         si.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dot (1).png"))); // NOI18N
         si.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button (1).png"))); // NOI18N
         si.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button.png"))); // NOI18N
-        panelTipo.add(si, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, -1, -1));
+        panelTipo.add(si, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
 
         barrita.setForeground(new java.awt.Color(255, 255, 255));
         barrita.setOrientation(javax.swing.SwingConstants.VERTICAL);
         barrita.setOpaque(true);
-        panelTipo.add(barrita, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, -1, 20));
+        panelTipo.add(barrita, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, -1, 20));
 
         bgrpAsamblea.add(no);
         no.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -331,7 +341,7 @@ public class VisGasto extends javax.swing.JPanel {
         no.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dot (1).png"))); // NOI18N
         no.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button (1).png"))); // NOI18N
         no.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button.png"))); // NOI18N
-        panelTipo.add(no, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, -1, -1));
+        panelTipo.add(no, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, -1, -1));
 
         panelAsamblea.setBackground(new java.awt.Color(0, 94, 159));
         panelAsamblea.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -343,11 +353,11 @@ public class VisGasto extends javax.swing.JPanel {
 
         jAsamblea.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jAsamblea.setToolTipText("Seleccione una asamblea");
-        panelAsamblea.add(jAsamblea, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 230, -1));
+        panelAsamblea.add(jAsamblea, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 240, 30));
 
-        panelTipo.add(panelAsamblea, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 340, 40));
+        panelTipo.add(panelAsamblea, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 360, 40));
 
-        jPanel2.add(panelTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 370, 160));
+        jPanel2.add(panelTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 380, 170));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
@@ -357,18 +367,21 @@ public class VisGasto extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Moneda:");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 90, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 60, 30));
 
         cbxMoneda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Bolívar", "Dólar", "Petro" }));
         cbxMoneda.setToolTipText("Calcular la cuota especial por...");
-        jPanel2.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 260, -1));
+        jPanel2.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 280, 30));
 
         jMonthChooser1.setToolTipText("Elija el mes a cerrar");
-        jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, -1, 30));
+        jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, -1, 30));
 
         jYearChooser1.setToolTipText("Elija el año a cerrar");
-        jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, -1, 30));
+        jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, -1, 30));
+
+        jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 280, 20));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
@@ -459,7 +472,7 @@ public class VisGasto extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     public javax.swing.JTable jTable;
@@ -524,6 +537,85 @@ static public class Headercolor extends DefaultTableCellHeaderRenderer {
                     THUMB_COLOR.getGreen(), THUMB_COLOR.getBlue(), alpha));
             graphics2D.fillRoundRect(x, y, width, height, arc, arc);
             graphics2D.dispose();
+        }
+    }
+    static public class CustomUI extends BasicComboBoxUI{
+        
+    
+    
+    public Color blue = new Color(0,94,159);
+    
+    public static ComboBoxUI createUI(JComponent cbxMoneda) {
+        
+         return new CustomUI();
+     }
+ 
+    @Override 
+    public JButton createArrowButton() {        
+        BasicArrowButton basicArrowButton = new BasicArrowButton(BasicArrowButton.SOUTH, //Direccion de la flecha
+                Color.WHITE, //Color de fondo
+                new Color(0,94,159),//sombra
+                new Color(0,94,159),//darkShadow
+                Color.WHITE //highlight
+                );         
+        //se quita el efecto 3d del boton, sombra y darkShadow no se aplican 
+        basicArrowButton.setBorder(BorderFactory.createLineBorder(blue,2));
+        basicArrowButton.setContentAreaFilled(false);        
+        return basicArrowButton;
+    }        
+ 
+     //Se puede usar un JButton para usar un icono personalizado en lugar del arrow
+     /* 
+45  @Override 
+46  protected JButton createArrowButton() { 
+47  JButton button = new JButton(); 
+48  //se quita el efecto 3d del boton, sombra y darkShadow no se aplican 
+49  button.setText("");
+50  button.setBorder(BorderFactory.createLineBorder(red,2));
+51  button.setContentAreaFilled(false);
+52  button.setIcon( new ImageIcon(getClass().getResource("/org/bolivia/res/estrella.png")) );
+53  return button;
+54  } 
+55  */
+     
+    
+    public void paintCurrentValueBackground(Graphics g, Rectangle bounds, boolean hasFocus)
+    {
+        
+        g.setColor( blue );
+        g.setFont(new Font("Tahoma", Font.BOLD, 14));
+        g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
+    }
+    
+    
+     //Pinta los items
+    @Override
+    public ListCellRenderer createRenderer()
+    {
+        return new DefaultListCellRenderer() {      
+             
+        @Override
+        public Component getListCellRendererComponent(JList list,Object value,int index,
+           boolean isSelected,boolean cellHasFocus) {
+       
+        super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
+        list.setSelectionBackground(blue);
+        list.setForeground(white);
+        
+        if (isSelected)
+        {
+             setBackground( blue );
+             setForeground(new Color(255,255,255));
+        }
+        else
+        {
+             setBackground( Color.WHITE );            
+             setForeground( new Color(0,94,159));
+        }
+            
+            return this;
+            }
+        };
         }
     }
 }

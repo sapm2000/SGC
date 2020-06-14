@@ -1,15 +1,24 @@
 package vista;
 
 import java.awt.Color;
+import static java.awt.Color.white;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import javax.swing.BorderFactory;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JList;
 import javax.swing.JScrollBar;
 import javax.swing.JTable;
+import javax.swing.ListCellRenderer;
+import javax.swing.plaf.ComboBoxUI;
+import javax.swing.plaf.basic.BasicArrowButton;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 
@@ -30,6 +39,9 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         jTable.getTableHeader().setDefaultRenderer(new Headercolor());
+        cbxCuentaT.setUI(new CustomUI());
+        cbxFondo.setUI(new CustomUI());
+        cbxFormaP.setUI(new CustomUI());
     }
 
     @SuppressWarnings("unchecked")
@@ -113,7 +125,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
 
         cbxFormaP.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxFormaP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Transferencia", "Deposito", "Cheque", "Efectivo" }));
-        jPanel.add(cbxFormaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 240, -1));
+        jPanel.add(cbxFormaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 240, 30));
 
         txtDescripcion.setBackground(new java.awt.Color(0, 94, 159));
         txtDescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -143,12 +155,12 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         jPanel.add(txtReferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 260, 20));
 
         cbxCuentaT.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel.add(cbxCuentaT, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 260, -1));
+        jPanel.add(cbxCuentaT, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 93, 260, 30));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("<html>\nCuenta <br> Transferida:\n</html>");
-        jPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, -1));
+        jPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 94, -1, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -162,12 +174,12 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         jPanel.add(txtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 260, 20));
 
         cbxFondo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel.add(cbxFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 230, 260, -1));
+        jPanel.add(cbxFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 223, 260, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("<html>\nFondo <br> Retirado:\n</html>");
-        jPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, -1, -1));
+        jPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 224, -1, 30));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 240, 20));
@@ -177,7 +189,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
         jPanel.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, 260, 20));
-        jPanel.add(jDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 240, -1));
+        jPanel.add(jDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 240, 30));
 
         txtProveedor.setBackground(new java.awt.Color(0, 94, 159));
         txtProveedor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -189,7 +201,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
         jPanel.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 240, 20));
 
-        add(jPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 750, 280));
+        add(jPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, 760, 280));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 800, 300));
@@ -358,6 +370,85 @@ static public class Headercolor extends DefaultTableCellHeaderRenderer {
                     THUMB_COLOR.getGreen(), THUMB_COLOR.getBlue(), alpha));
             graphics2D.fillRoundRect(x, y, width, height, arc, arc);
             graphics2D.dispose();
+        }
+    }
+    static public class CustomUI extends BasicComboBoxUI{
+        
+    
+    
+    public Color blue = new Color(0,94,159);
+    
+    public static ComboBoxUI createUI(JComponent cbxMoneda) {
+        
+         return new CustomUI();
+     }
+ 
+    @Override 
+    public JButton createArrowButton() {        
+        BasicArrowButton basicArrowButton = new BasicArrowButton(BasicArrowButton.SOUTH, //Direccion de la flecha
+                Color.WHITE, //Color de fondo
+                new Color(0,94,159),//sombra
+                new Color(0,94,159),//darkShadow
+                Color.WHITE //highlight
+                );         
+        //se quita el efecto 3d del boton, sombra y darkShadow no se aplican 
+        basicArrowButton.setBorder(BorderFactory.createLineBorder(blue,2));
+        basicArrowButton.setContentAreaFilled(false);        
+        return basicArrowButton;
+    }        
+ 
+     //Se puede usar un JButton para usar un icono personalizado en lugar del arrow
+     /* 
+45  @Override 
+46  protected JButton createArrowButton() { 
+47  JButton button = new JButton(); 
+48  //se quita el efecto 3d del boton, sombra y darkShadow no se aplican 
+49  button.setText("");
+50  button.setBorder(BorderFactory.createLineBorder(red,2));
+51  button.setContentAreaFilled(false);
+52  button.setIcon( new ImageIcon(getClass().getResource("/org/bolivia/res/estrella.png")) );
+53  return button;
+54  } 
+55  */
+     
+    
+    public void paintCurrentValueBackground(Graphics g, Rectangle bounds, boolean hasFocus)
+    {
+        
+        g.setColor( blue );
+        g.setFont(new Font("Tahoma", Font.BOLD, 14));
+        g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
+    }
+    
+    
+     //Pinta los items
+    @Override
+    public ListCellRenderer createRenderer()
+    {
+        return new DefaultListCellRenderer() {      
+             
+        @Override
+        public Component getListCellRendererComponent(JList list,Object value,int index,
+           boolean isSelected,boolean cellHasFocus) {
+       
+        super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
+        list.setSelectionBackground(blue);
+        list.setForeground(white);
+        
+        if (isSelected)
+        {
+             setBackground( blue );
+             setForeground(new Color(255,255,255));
+        }
+        else
+        {
+             setBackground( Color.WHITE );            
+             setForeground( new Color(0,94,159));
+        }
+            
+            return this;
+            }
+        };
         }
     }
 }

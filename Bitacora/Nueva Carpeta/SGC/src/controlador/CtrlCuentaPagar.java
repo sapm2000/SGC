@@ -1,6 +1,8 @@
 package controlador;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -10,6 +12,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -21,7 +25,7 @@ import javax.swing.table.TableRowSorter;
 import modelo.Cuenta;
 import modelo.Cuenta_Pagar;
 import modelo.Fondo;
-import modelo.GastoComun;
+
 import vista.Catalogo;
 import vista.VisCuentaPorPagar;
 
@@ -31,13 +35,13 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
     private Cuenta_Pagar modelo;
 
     private Catalogo catCuenPro;
-    private GastoComun modGastoC;
+   
 
     private Catalogo catPagos;
 
     private Fondo modFondo;
     private Cuenta modCuenta;
-    ArrayList<GastoComun> listaGastoC;
+    
     ArrayList<Fondo> listaFondo;
     ArrayList<Cuenta> listaCuenta;
     ArrayList<Cuenta_Pagar> listaPagar;
@@ -56,7 +60,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
         this.vista = new VisCuentaPorPagar();
         this.modFondo = new Fondo();
         this.modCuenta = new Cuenta();
-        this.modGastoC = new GastoComun();
+       
         this.vista.btnProcesar.addActionListener(this);
         this.vista.jTable.addMouseListener(this);
         this.vista.btnMostrar.addActionListener(this);
@@ -65,12 +69,18 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
         this.vista.setVisible(true);
 
         CtrlVentana.cambiarVista(vista);
+        vista.cbxFondo.addItemListener(this);
+        stylecombo(vista.cbxFondo);
+        vista.cbxCuentaT.addItemListener(this);
+        stylecombo(vista.cbxCuentaT);
+        vista.cbxFormaP.addItemListener(this);
+        stylecombo(vista.cbxFormaP);
 
         listaFondo = modFondo.listar(1);
         crearCbxFondo(listaFondo);
         listaCuenta = modCuenta.listarcuenta();
         crearCbxCuenta(listaCuenta);
-        modGastoC = new GastoComun();
+       
         //listaGastoC = modGastoC.listarGastoComun();
         Llenartabla(vista.jTable, 2);
 
@@ -102,15 +112,15 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
                 if (modelo.registrarPago(modelo)) {
                     modelo.getModFondo().restarFondo(modelo.getMonto());
-                    modGastoC.setId(listaGastoC.get(fila).getId());
-                    modGastoC.restarSaldo(modelo.getMonto());
+                  //  modGastoC.setId(listaGastoC.get(fila).getId());
+                  //  modGastoC.restarSaldo(modelo.getMonto());
                     JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
 
                 } else {
                     JOptionPane.showMessageDialog(null, "ERROR AL REGISTAR");
                 }
                 //listaGastoC = modGastoC.listarGastoComun();
-                listaGastoC = modGastoC.listarGastoComun(2);
+//                listaGastoC = modGastoC.listarGastoComun(2);
                 Llenartabla(vista.jTable, 2);
                 listaFondo = modFondo.listar(1);
                 crearCbxFondo(listaFondo);
@@ -131,6 +141,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
     @Override
     public void itemStateChanged(ItemEvent e) {
+        vista.cbxFormaP.setFocusable(false);
     }
 
     @Override
@@ -156,10 +167,10 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
             //Boolean resultado = true;
             //String msj = "";
 
-            modelo.cargarProveedor(listaGastoC.get(fila).getId());
+//            modelo.cargarProveedor(listaGastoC.get(fila).getId());
 
             vista.setVisible(true);
-            vista.txtProveedor.setText(modelo.getNom_proveedor());
+          //  vista.txtProveedor.setText(modelo.getNom_proveedor());
         }
     }
 
@@ -181,10 +192,11 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
     private void crearCbxCuenta(ArrayList<Cuenta> datos) {
         vista.cbxCuentaT.addItem("Seleccione...");
+        vista.cbxCuentaT.setFocusable(false);
 
         if (datos != null) {
             for (Cuenta datosX : datos) {
-                vista.cbxCuentaT.addItem(datosX.getN_cuenta() + " - " + datosX.getNombre_banco());
+//                vista.cbxCuentaT.addItem(datosX.getN_cuenta() + " - " + datosX.getNombre_banco());
             }
 
         }
@@ -193,7 +205,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
     private void crearCbxFondo(ArrayList<Fondo> datos) {
         vista.cbxFondo.removeAllItems();
         vista.cbxFondo.addItem("Seleccione...");
-
+        vista.cbxFondo.setFocusable(false);
         if (datos != null) {
             for (Fondo datosX : datos) {
                 vista.cbxFondo.addItem(Validacion.formatoDecimal(datosX.getSaldo()) + " - " + datosX.getTipo());
@@ -215,7 +227,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
     }
 
     public void Llenartabla(JTable tablaD, int status) {
-        listaGastoC = modGastoC.listarGastoComun(status);
+//        listaGastoC = modGastoC.listarGastoComun(status);
 
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
@@ -236,9 +248,9 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
         modeloT.addColumn("Tipo");
         Object[] columna = new Object[modeloT.getColumnCount()];
 
-        int num = listaGastoC.size();
+//        int num = listaGastoC.size();
 
-        System.out.println(modeloT.getColumnCount());
+  /*      System.out.println(modeloT.getColumnCount());
         System.out.println(num);
         for (int i = 0; i < num; i++) {
             int j = 0;
@@ -254,7 +266,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
             columna[j++] = listaGastoC.get(i).getEstado();
             columna[j++] = listaGastoC.get(i).getTipo_gasto();
             modeloT.addRow(columna);
-        }
+        }*/
 
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -292,7 +304,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
             columna[2] = listaPagar.get(i).getDescripcion();
             columna[3] = listaPagar.get(i).getMonto();
             columna[4] = listaPagar.get(i).getFecha();
-            columna[5] = listaPagar.get(i).getNom_proveedor();
+//            columna[5] = listaPagar.get(i).getNom_proveedor();
             columna[6] = listaPagar.get(i).getModCuenta().getN_cuenta();
             columna[7] = listaPagar.get(i).getModBanco().getNombre_banco();
             columna[8] = listaPagar.get(i).getModFondo().getTipo();
@@ -351,5 +363,12 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
             JOptionPane.showMessageDialog(vista, mensaje);
         }
         return resultado;
+    }
+    
+    public void stylecombo (JComboBox c) {
+        c.setFont(new Font("Tahoma", Font.BOLD, 14));
+        c.setForeground(Color.WHITE);
+        
+        c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
     }
 }
