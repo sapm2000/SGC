@@ -5,6 +5,22 @@
  */
 package vista;
 
+import java.awt.Color;
+import static java.awt.Color.white;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import javax.swing.BorderFactory;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
+import javax.swing.plaf.ComboBoxUI;
+import javax.swing.plaf.basic.BasicArrowButton;
+import javax.swing.plaf.basic.BasicComboBoxUI;
+
 /**
  *
  * @author Jhen
@@ -16,6 +32,7 @@ public class VisResponsable extends javax.swing.JPanel {
      */
     public VisResponsable() {
         initComponents();
+        cbxCedula.setUI(new VisCerrarMes.CustomUI());
     }
 
     /**
@@ -140,7 +157,7 @@ public class VisResponsable extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Cédula:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, -1, 30));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -214,7 +231,7 @@ public class VisResponsable extends javax.swing.JPanel {
 
         cbxCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxCedula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "V", "E" }));
-        jPanel2.add(cbxCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, -1, 30));
+        jPanel2.add(cbxCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 0, 50, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 770, 280));
 
@@ -357,4 +374,83 @@ public class VisResponsable extends javax.swing.JPanel {
     public javax.swing.JTextField txtSnombre;
     public javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
+static public class CustomUI extends BasicComboBoxUI{
+        
+    
+    
+    public Color blue = new Color(0,94,159);
+    
+    public static ComboBoxUI createUI(JComponent cbxMoneda) {
+        
+         return new CustomUI();
+     }
+ 
+    @Override 
+    public JButton createArrowButton() {        
+        BasicArrowButton basicArrowButton = new BasicArrowButton(BasicArrowButton.SOUTH, //Direccion de la flecha
+                Color.WHITE, //Color de fondo
+                new Color(0,94,159),//sombra
+                new Color(0,94,159),//darkShadow
+                Color.WHITE //highlight
+                );         
+        //se quita el efecto 3d del boton, sombra y darkShadow no se aplican 
+        basicArrowButton.setBorder(BorderFactory.createLineBorder(blue,2));
+        basicArrowButton.setContentAreaFilled(false);        
+        return basicArrowButton;
+    }        
+ 
+     //Se puede usar un JButton para usar un icono personalizado en lugar del arrow
+     /* 
+45  @Override 
+46  protected JButton createArrowButton() { 
+47  JButton button = new JButton(); 
+48  //se quita el efecto 3d del boton, sombra y darkShadow no se aplican 
+49  button.setText("");
+50  button.setBorder(BorderFactory.createLineBorder(red,2));
+51  button.setContentAreaFilled(false);
+52  button.setIcon( new ImageIcon(getClass().getResource("/org/bolivia/res/estrella.png")) );
+53  return button;
+54  } 
+55  */
+     
+    
+    public void paintCurrentValueBackground(Graphics g, Rectangle bounds, boolean hasFocus)
+    {
+        
+        g.setColor( blue );
+        g.setFont(new Font("Tahoma", Font.BOLD, 14));
+        g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
+    }
+    
+    
+     //Pinta los items
+    @Override
+    public ListCellRenderer createRenderer()
+    {
+        return new DefaultListCellRenderer() {      
+             
+        @Override
+        public Component getListCellRendererComponent(JList list,Object value,int index,
+           boolean isSelected,boolean cellHasFocus) {
+       
+        super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
+        list.setSelectionBackground(blue);
+        list.setForeground(white);
+        
+        if (isSelected)
+        {
+             setBackground( blue );
+             setForeground(new Color(255,255,255));
+        }
+        else
+        {
+             setBackground( Color.WHITE );            
+             setForeground( new Color(0,94,159));
+        }
+            
+            return this;
+            }
+        };
+        }
+    }
 }

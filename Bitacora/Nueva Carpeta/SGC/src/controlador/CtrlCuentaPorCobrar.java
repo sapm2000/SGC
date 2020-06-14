@@ -5,7 +5,9 @@
  */
 package controlador;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -14,6 +16,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import static java.lang.String.valueOf;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -21,6 +25,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import modelo.CerrarMes;
 import modelo.Cuenta;
 import modelo.CuentasPorCobrar;
@@ -77,6 +82,17 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                 vista.cbxMoneda.addItemListener(this);
                 CtrlVentana.cambiarVista(vista); //funcion para que abra la ventana
 
+                vista.cbxMoneda.addItemListener(this);
+                stylecombo(vista.cbxMoneda);
+                vista.jComboCuenta.addItemListener(this);
+                stylecombo(vista.jComboCuenta);
+                vista.jComboFondo.addItemListener(this);
+                stylecombo(vista.jComboFondo);
+                vista.jComboForma.addItemListener(this);
+                stylecombo(vista.jComboForma);
+                vista.jComboUnidad.addItemListener(this);
+                stylecombo(vista.jComboUnidad);
+                
                 vista.jComboFondo.removeAllItems(); //limpiamos los combobox
                 modfon.setMoneda("Bolívar"); //seteamos la moneda por defecto (bs)
                 listafondo = modfon.listar(2);
@@ -147,13 +163,13 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
 
-        modeloT.addColumn("Mes"); //añadimos el encabezado de la columna
+        modeloT.addColumn("<html>Mes a <br> Cobrar</html>"); //añadimos el encabezado de la columna
         modeloT.addColumn("Año");
-        modeloT.addColumn("Monto en $");
-        modeloT.addColumn("Monto en BsS");
-        modeloT.addColumn("Saldo Restante $");
-        modeloT.addColumn("Saldo Restante BsS");
-        modeloT.addColumn("Mantener valor en");
+        modeloT.addColumn("<html>Monto <br> en $</html>");
+        modeloT.addColumn("<html>Monto <br> en BsS</html>");
+        modeloT.addColumn("<html>Saldo <br> Restante $</html>");
+        modeloT.addColumn("<html>Saldo <br> Restante BsS</html>");
+        modeloT.addColumn("<html>Mantener<br> Valor en</html>");
         modeloT.addColumn("Seleccione");
 
         Object[] columna = new Object[8];
@@ -188,6 +204,17 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(6).setCellRenderer(tcr);
+        
+        TableColumnModel columnModel = tablaD.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(25);
+        columnModel.getColumn(1).setPreferredWidth(18);
+        columnModel.getColumn(2).setPreferredWidth(35);
+        columnModel.getColumn(3).setPreferredWidth(35);
+        columnModel.getColumn(4).setPreferredWidth(35);
+        columnModel.getColumn(5).setPreferredWidth(35);
+        columnModel.getColumn(6).setPreferredWidth(35);
+        columnModel.getColumn(7).setPreferredWidth(40);
+        
     }
 
     public void Llenartablapagados(JTable tablaD) { //igual que la funcion anterior pero para las factura que ya esten pagadas
@@ -231,13 +258,13 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
 
-        modeloT.addColumn("Mes");
+        modeloT.addColumn("<html>Mes <br> a Cobrar</html>");
         modeloT.addColumn("Año");
-        modeloT.addColumn("Monto en $");
-        modeloT.addColumn("Monto en BsS");
-        modeloT.addColumn("Saldo Restante $");
-        modeloT.addColumn("Saldo Restante BsS");
-        modeloT.addColumn("Mantener valor en");
+        modeloT.addColumn("<html>Monto <br> en $</html>");
+        modeloT.addColumn("<html>Monto <br> en BsS</html>");
+        modeloT.addColumn("<html>Saldo <br> Restante $</html>");
+        modeloT.addColumn("<html>Saldo <br> Restante BsS</html>");
+        modeloT.addColumn("<html>Mantener<br> Valor en</html>");
         modeloT.addColumn("Seleccione");
 
         Object[] columna = new Object[8];
@@ -272,6 +299,16 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(6).setCellRenderer(tcr);
+        
+        TableColumnModel columnModel = tablaD.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(25);
+        columnModel.getColumn(1).setPreferredWidth(18);
+        columnModel.getColumn(2).setPreferredWidth(35);
+        columnModel.getColumn(3).setPreferredWidth(35);
+        columnModel.getColumn(4).setPreferredWidth(35);
+        columnModel.getColumn(5).setPreferredWidth(35);
+        columnModel.getColumn(6).setPreferredWidth(35);
+        columnModel.getColumn(7).setPreferredWidth(40);
     }
 
     private static java.sql.Date convert(java.util.Date uDate) { // funcion para convertir fechas de java a sql
@@ -515,7 +552,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
     private void crearCbxUnidad(ArrayList<Unidades> datos) { //funcion para crear combobox unidades
         vista.jComboUnidad.addItem("Seleccione el numero de la unidad");
-
+        vista.jComboUnidad.setFocusable(false);
         if (datos != null) {
             for (Unidades datosX : datos) {
                 moduni = datosX;
@@ -526,7 +563,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
     }
 
     private void crearCbxFormadePago(ArrayList<FormaPago> datos) {//funcion para crear combobox forma de pago
-
+        vista.jComboForma.setFocusable(false);
         if (datos != null) {
             for (FormaPago datosX : datos) {
                 modfor = datosX;
@@ -538,7 +575,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
     private void crearCbxFondo(ArrayList<Fondo> datos) {//funcion para crear combobox fondo
         vista.jComboFondo.addItem("Seleccione el fondo a depositar");
-
+        vista.jComboFondo.setFocusable(false);
         if (datos != null) {
             for (Fondo datosX : datos) {
                 modfon = datosX;
@@ -551,7 +588,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
     private void crearCbxCuenta(ArrayList<Cuenta> datos) { //funcion para crear combobox cuenta
         vista.jComboCuenta.addItem("Seleccione la cuenta depositada");
         vista.jComboCuenta.addItem("Otros");
-
+        vista.jComboCuenta.setFocusable(false);
         if (datos != null) {
             for (Cuenta datosX : datos) {
                 modcu = datosX;
@@ -579,12 +616,14 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                     Llenartablapagados(vista.jTable2); //llenamos la tabla de recibos pagados
                 }
             }
+            vista.jComboUnidad.setFocusable(false);
         }
         if (e.getSource() == vista.cbxMoneda) {//de moneda
             vista.jComboFondo.removeAllItems();//limpie lo que hay en combobox fondo
             modfon.setMoneda(vista.cbxMoneda.getSelectedItem().toString());//seteamos la moneda
             listafondo = modfon.listar(2);
             crearCbxFondo(listafondo);//rellenamos el combobox con fondos acorde a la moneda seleccionada
+            vista.cbxMoneda.setFocusable(false);
         }
 
     }
@@ -667,4 +706,11 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         return isValid;
     }
 
+    public void stylecombo (JComboBox c) {
+        c.setFont(new Font("Tahoma", Font.BOLD, 14));
+        c.setForeground(Color.WHITE);
+        
+        c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
+    }
+    
 }

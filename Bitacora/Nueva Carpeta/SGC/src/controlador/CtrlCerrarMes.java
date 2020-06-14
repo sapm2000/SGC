@@ -466,7 +466,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
         c.setFont(new Font("Tahoma", Font.BOLD, 14));
         c.setForeground(Color.WHITE);
         
-        c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 1));
+        c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
     }
 
     

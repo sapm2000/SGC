@@ -1,6 +1,8 @@
 package controlador;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -13,6 +15,8 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import static java.lang.String.valueOf;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -96,6 +100,15 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
         vista.txaObservaciones.addKeyListener(this);
 
         CtrlVentana.cambiarVista(catalogo);
+        vista.cbxMoneda.addItemListener(this);
+        stylecombo(vista.cbxMoneda);
+        vista.jAsamblea.addItemListener(this);
+        stylecombo(vista.jAsamblea);
+        vista.jCalcular.addItemListener(this);
+        stylecombo(vista.jCalcular);
+        vista.jcombotipo.addItemListener(this);
+        stylecombo(vista.jcombotipo);
+        
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -880,7 +893,10 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-
+        vista.cbxMoneda.setFocusable(false);
+        vista.jcombotipo.setFocusable(false);
+        vista.jCalcular.setFocusable(false);
+        vista.jAsamblea.setFocusable(false);
         if (e.getSource() == vista.jcombotipo) {
 
             if (vista.jcombotipo.getSelectedItem().equals("Ordinario")) {
@@ -906,6 +922,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
                 vista.jAsamblea.setSelectedIndex(0);
             }
         }
+        
     }
 
     public void addCheckBox(int column, JTable table) {
@@ -926,5 +943,14 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
         }
 
         return isValid;
+    }
+    
+    
+    
+    public void stylecombo (JComboBox c) {
+        c.setFont(new Font("Tahoma", Font.BOLD, 14));
+        c.setForeground(Color.WHITE);
+        
+        c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
     }
 }

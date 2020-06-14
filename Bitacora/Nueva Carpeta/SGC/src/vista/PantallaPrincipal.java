@@ -30,7 +30,15 @@ public class PantallaPrincipal extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 2, 2));
 
-        btnCerrar.setText("Cerrar Sesión");
+        btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/puerta.png"))); // NOI18N
+        btnCerrar.setToolTipText("Cerrar Sesión");
+        btnCerrar.setBorder(null);
+        btnCerrar.setContentAreaFilled(false);
+        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCerrar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logout (1).png"))); // NOI18N
+        btnCerrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logout.png"))); // NOI18N
+        btnCerrar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logout.png"))); // NOI18N
+        btnCerrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logout (1).png"))); // NOI18N
         jPanel3.add(btnCerrar);
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N

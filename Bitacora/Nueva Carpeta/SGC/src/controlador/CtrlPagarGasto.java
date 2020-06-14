@@ -1,12 +1,18 @@
 package controlador;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -19,7 +25,7 @@ import modelo.PagarCuotaEspecial;
 import vista.Catalogo;
 import vista.VisPagarGasto;
 
-public class CtrlPagarGasto implements ActionListener, MouseListener, KeyListener {
+public class CtrlPagarGasto implements ActionListener, MouseListener, KeyListener, ItemListener {
 
     private VisPagarGasto vista;
     private Catalogo vistaCatPagadas;
@@ -49,6 +55,13 @@ public class CtrlPagarGasto implements ActionListener, MouseListener, KeyListene
 
         CtrlVentana.cambiarVista(vista);
 
+        vista.cbxFondo.addItemListener(this);
+        stylecombo(vista.cbxFondo);
+        vista.cbxCuenta.addItemListener(this);
+        stylecombo(vista.cbxCuenta);
+        vista.cbxFormaP.addItemListener(this);
+        stylecombo(vista.cbxFormaP);
+        
         listaFondo = modFondo.listar(1);
         crearCbxFondo(listaFondo);
         listaCuenta = modCuenta.listarcuenta();
@@ -357,4 +370,18 @@ public class CtrlPagarGasto implements ActionListener, MouseListener, KeyListene
         return resultado;
     }
 
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        vista.cbxCuenta.setFocusable(false);
+        vista.cbxFondo.setFocusable(false);
+        vista.cbxFormaP.setFocusable(false);
+    } 
+    
+    public void stylecombo (JComboBox c) {
+        c.setFont(new Font("Tahoma", Font.BOLD, 14));
+        c.setForeground(Color.WHITE);
+        
+        c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
+    }
+    
 }
