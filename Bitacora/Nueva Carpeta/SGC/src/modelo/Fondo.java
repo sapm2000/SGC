@@ -61,7 +61,7 @@ public class Fondo extends ConexionBD {
 
     public ArrayList<Fondo> listar(int status) {
         ArrayList listaFondo = new ArrayList();
-        Fondo modfon;
+        Fondo item;
 
         con = getConexion();
         ps = null;
@@ -69,47 +69,51 @@ public class Fondo extends ConexionBD {
         String sql = "";
 
         if (status == 1) {
-            sql = "SELECT tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id, moneda FROM fondos where id_condominio=? AND saldo > 0 and activo=true;";
+            sql = "SELECT id, tipo, fecha, descripcion, observaciones, monto_inicial, saldo, moneda FROM fondos WHERE saldo > 0 AND moneda = ? AND activo = true;";
         }
         if (status == 2) {
-            sql = "SELECT tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id, moneda FROM fondos where id_condominio=? and activo=true and moneda=?;";
+            sql = "SELECT id, tipo, fecha, descripcion, observaciones, monto_inicial, saldo, moneda FROM fondos WHERE activo=true AND moneda=?;";
         }
         if (status == 3) {
-            sql = "SELECT tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id, moneda FROM fondos where id_condominio=? and activo=false;";
+            sql = "SELECT id, tipo, fecha, descripcion, observaciones, monto_inicial, saldo, moneda FROM fondos WHERE activo=true;";
         }
+
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, SGC.condominioActual.getRif());
-            ps.setString(2, getMoneda());
+
+            if (status != 3) {
+                ps.setString(1, getMoneda());
+            }
+
             rs = ps.executeQuery();
 
             while (rs.next()) {
 
-                modfon = new Fondo();
+                item = new Fondo();
 
-                modfon.setTipo(rs.getString("tipo"));
-                modfon.setFecha(rs.getDate("fecha"));
-                modfon.setDescripcion(rs.getString("descripcion"));
-                modfon.setObservacion(rs.getString("observaciones"));
-                modfon.setMonto_inicial(rs.getDouble("monto_inicial"));
-                modfon.setSaldo(rs.getDouble("saldo"));
-                modfon.setId(rs.getInt("id"));
-                modfon.setMoneda(rs.getString("moneda"));
+                item.setId(rs.getInt("id"));
+                item.setTipo(rs.getString("tipo"));
+                item.setFecha(rs.getDate("fecha"));
+                item.setDescripcion(rs.getString("descripcion"));
+                item.setObservacion(rs.getString("observaciones"));
+                item.setMonto_inicial(rs.getDouble("monto_inicial"));
+                item.setSaldo(rs.getDouble("saldo"));
+                item.setMoneda(rs.getString("moneda"));
 
-                listaFondo.add(modfon);
+                listaFondo.add(item);
             }
-        } catch (Exception e) {
-        } finally {
-            try {
 
+        } catch (SQLException e) {
+            System.err.println(e);
+
+        } finally {
+
+            try {
                 con.close();
 
             } catch (SQLException e) {
-
                 System.err.println(e);
-
             }
-
         }
 
         return listaFondo;
