@@ -1,7 +1,6 @@
 package modelo;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -27,8 +26,6 @@ public class Gasto extends ConexionBD {
 
     private ArrayList<ConceptoGasto> conceptos = new ArrayList();
     private ArrayList<Double> montoConceptos = new ArrayList();
-
-    private java.sql.Date fecha;
 
     private Connection con;
 
@@ -566,36 +563,35 @@ public class Gasto extends ConexionBD {
 
     }
 
-    public boolean restarSaldo(Float saldoNuevo) {
+    public Boolean restarSaldo(Double saldoNuevo) {
         ps = null;
         con = getConexion();
+        int ind;
 
-        String sql = "UPDATE facturas_proveedores SET saldo = saldo - ? WHERE id = ?;";
+        String sql = "SELECT pagar_gasto(?,?)";
 
         try {
+            ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setDouble(1, saldoNuevo);
-            ps.setInt(2, getId());
-            ps.execute();
-
-            sql = "SELECT actualizar_status_cuotas(?)";
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
+            ps.setInt(ind++, getId());
+            ps.setDouble(ind++, saldoNuevo);
             ps.execute();
 
             return true;
+
         } catch (Exception e) {
             System.err.println(e);
             return false;
 
         } finally {
+
             try {
                 con.close();
+
             } catch (Exception e) {
                 System.err.println(e);
             }
         }
-
     }
 
     private Boolean retirarConceptos(ArrayList<ConceptoGasto> conceptos) throws SQLException {
@@ -740,14 +736,6 @@ public class Gasto extends ConexionBD {
         this.pagado = pagado;
     }
 
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
     public ArrayList<Double> getMontoConceptos() {
         return montoConceptos;
     }
@@ -771,6 +759,5 @@ public class Gasto extends ConexionBD {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
 
 }
