@@ -1,8 +1,6 @@
 package controlador;
 
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -12,8 +10,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import javax.swing.BorderFactory;
-import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -23,125 +19,214 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Cuenta;
-import modelo.Cuenta_Pagar;
+import modelo.CuentaPagar;
 import modelo.Fondo;
-
+import modelo.FormaPago;
+import modelo.Gasto;
 import vista.Catalogo;
 import vista.VisCuentaPorPagar;
 
 public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListener, MouseListener {
 
     private VisCuentaPorPagar vista;
-    private Cuenta_Pagar modelo;
-
-    private Catalogo catCuenPro;
-   
+    private CuentaPagar modelo;
+    private ArrayList<CuentaPagar> lista;
 
     private Catalogo catPagos;
+    private Catalogo catGastosProcesados;
+
+    private FormaPago modFormaPago;
+    private ArrayList<FormaPago> listaFormaPago;
+
+    private Cuenta modCuenta;
+    private ArrayList<Cuenta> listaCuenta;
+
+    private Gasto modGasto;
+    private ArrayList<Gasto> listaGasto;
 
     private Fondo modFondo;
-    private Cuenta modCuenta;
-    
-    ArrayList<Fondo> listaFondo;
-    ArrayList<Cuenta> listaCuenta;
-    ArrayList<Cuenta_Pagar> listaPagar;
-    DefaultTableModel dm;
+    private ArrayList<Fondo> listaFondo;
 
     int fila;
 
     public CtrlCuentaPagar() {
 
-        catPagos = new Catalogo();
-        catCuenPro = new Catalogo();
-        catCuenPro.lblTitulo.setText("Cuentas Procesadas");
-        catPagos.lblTitulo.setText("Cuentas Pagadas");
-
-        this.modelo = new Cuenta_Pagar();
         this.vista = new VisCuentaPorPagar();
+        this.modelo = new CuentaPagar();
+
+        this.modGasto = new Gasto();
+        this.modFormaPago = new FormaPago();
         this.modFondo = new Fondo();
         this.modCuenta = new Cuenta();
-       
+
+        this.catPagos = new Catalogo();
+        this.catGastosProcesados = new Catalogo();
+
+        this.vista.panelReferencia.setVisible(false);
+        this.vista.panelPariedad.setVisible(false);
+
+        this.catPagos.lblTitulo.setText("Gastos pagados");
+
+        this.catGastosProcesados.lblTitulo.setText("Cuentas Procesadas");
+
         this.vista.btnProcesar.addActionListener(this);
-        this.vista.jTable.addMouseListener(this);
-        this.vista.btnMostrar.addActionListener(this);
+        this.vista.btnMostrarProcesados.addActionListener(this);
         this.vista.btnPagos.addActionListener(this);
-        this.catPagos.txtBuscar.addKeyListener(this);
+        this.vista.cbxFormaPago.addItemListener(this);
+        this.vista.cbxMoneda.addItemListener(this);
+        this.vista.cbxFondo.addItemListener(this);
+        this.vista.tablaGastos.addMouseListener(this);
+        this.vista.txtPariedad.addKeyListener(this);
         this.vista.setVisible(true);
 
-        CtrlVentana.cambiarVista(vista);
-        vista.cbxFondo.addItemListener(this);
-        stylecombo(vista.cbxFondo);
-        vista.cbxCuentaT.addItemListener(this);
-        stylecombo(vista.cbxCuentaT);
-        vista.cbxFormaP.addItemListener(this);
-        stylecombo(vista.cbxFormaP);
+        this.catPagos.txtBuscar.addKeyListener(this);
 
-        listaFondo = modFondo.listar(1);
-        crearCbxFondo(listaFondo);
-        listaCuenta = modCuenta.listarcuenta();
-        crearCbxCuenta(listaCuenta);
-       
-        //listaGastoC = modGastoC.listarGastoComun();
-        Llenartabla(vista.jTable, 2);
+        CtrlVentana.cambiarVista(vista);
+
+        crearCbxFormaPago();
+        crearCbxCuenta();
+        llenarTablaGastos(vista.tablaGastos, "Pendiente");
 
         Component[] components = vista.jPanel.getComponents();
-        JComponent[] com = {vista.jDate, vista.txtDescripcion, vista.txtMonto, vista.txtProveedor, vista.txtReferencia};
+        JComponent[] com = {vista.fecha, vista.txtDescripcion, vista.txtMonto, vista.txtGasto, vista.txtPariedad};
         Validacion.copiar(components);
         Validacion.pegar(com);
-
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         if (e.getSource() == vista.btnProcesar) {
-            System.out.println("poli0");
+
             if (validar()) {
-                System.out.println("poli1");
-                modelo.setNum_ref(vista.txtReferencia.getText());
-                modelo.setForma_pago(vista.cbxFormaP.getSelectedItem().toString());
-                int ind = vista.cbxCuentaT.getSelectedIndex() - 1;
-                modelo.getModCuenta().setN_cuenta(listaCuenta.get(ind).getN_cuenta());
+                int ind;
+                Double pariedad;
+                Double montoARestar = 0.;
+                modelo = new CuentaPagar();
+
+                // Se guardan en el modelo los datos básicos
+                modelo.setGasto(modGasto);
+                ind = vista.cbxFormaPago.getSelectedIndex() - 1;
+                modelo.setFormaPago(listaFormaPago.get(ind));
+
+                if (vista.panelReferencia.isVisible()) {
+                    modelo.setReferencia(vista.txtReferencia.getText());
+                    ind = vista.cbxCuenta.getSelectedIndex() - 1;
+                    modelo.setCuenta(listaCuenta.get(ind));
+                }
+
                 modelo.setDescripcion(vista.txtDescripcion.getText());
-                java.sql.Date sqlDate = convert(vista.jDate.getDate());
+                modelo.setMonto(Double.parseDouble(vista.txtMonto.getText()));
+                java.sql.Date sqlDate = convert(vista.fecha.getDate());
                 modelo.setFecha(sqlDate);
                 ind = vista.cbxFondo.getSelectedIndex() - 1;
-                modelo.getModFondo().setId(listaFondo.get(ind).getId());
-                modelo.getModFondo().setSaldo(listaFondo.get(ind).getSaldo());
-                //int fila = this.vistaCuentaP.jTable.getSelectedRow(); // primero, obtengo la fila seleccionada
-                modelo.setMonto(Float.parseFloat(vista.txtMonto.getText()));
+                modelo.setFondo(listaFondo.get(ind));
+                modelo.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
 
-                if (modelo.registrarPago(modelo)) {
-                    modelo.getModFondo().restarFondo(modelo.getMonto());
-                  //  modGastoC.setId(listaGastoC.get(fila).getId());
-                  //  modGastoC.restarSaldo(modelo.getMonto());
-                    JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
+                if (!modelo.getMoneda().equals(modGasto.getMoneda())) {
+                    pariedad = Double.parseDouble(vista.txtPariedad.getText());
+                    modelo.setTasaCambio(pariedad);
+                    montoARestar = cambioMoneda(modelo.getMonto(), modelo.getMoneda(), pariedad);
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "ERROR AL REGISTAR");
+                    montoARestar = modelo.getMonto();
                 }
-                //listaGastoC = modGastoC.listarGastoComun();
-//                listaGastoC = modGastoC.listarGastoComun(2);
-                Llenartabla(vista.jTable, 2);
-                listaFondo = modFondo.listar(1);
-                crearCbxFondo(listaFondo);
+
+                if (modelo.registrar()) {
+
+                    if (modelo.getFondo().restarFondo(modelo.getMonto().floatValue())) {
+
+                        if (modGasto.restarSaldo(montoARestar)) {
+                            JOptionPane.showMessageDialog(null, "Pago registrado");
+
+                        } else {
+                            System.out.println("Error al restar el saldo del gasto");
+                        }
+
+                    } else {
+                        System.out.println("Error al restar el saldo del fondo");
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al registrar el pago");
+                }
+
+                llenarTablaGastos(vista.tablaGastos, "Pendiente");
+                vista.cbxFondo.removeAllItems();
+                crearCbxFondo();
             }
-        }
-        if (e.getSource() == vista.btnMostrar) {
-            catCuenPro.btnNuevo.setVisible(false);
-            Llenartabla(catCuenPro.tabla, 1);
-            this.catCuenPro.setVisible(true);
         }
         if (e.getSource() == vista.btnPagos) {
             catPagos.btnNuevo.setVisible(false);
             llenarTablaPagos(catPagos.tabla);
-            this.catPagos.setVisible(true);
+            CtrlVentana.cambiarVista(catPagos);
+        }
 
+        if (e.getSource() == vista.btnMostrarProcesados) {
+            catGastosProcesados.btnNuevo.setVisible(false);
+            llenarTablaGastos(catGastosProcesados.tabla, "Pendiente");
+            CtrlVentana.cambiarVista(catGastosProcesados);
         }
     }
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        vista.cbxFormaP.setFocusable(false);
+
+        if (e.getSource() == vista.cbxFormaPago) {
+
+            if (vista.cbxFormaPago.getSelectedIndex() != 0) {
+
+                if (!vista.cbxFormaPago.getSelectedItem().toString().equals("Efectivo")) {
+                    vista.panelReferencia.setVisible(true);
+
+                } else {
+                    vista.panelReferencia.setVisible(false);
+                }
+
+            } else {
+                vista.panelReferencia.setVisible(false);
+            }
+
+        } else if (e.getSource() == vista.cbxMoneda) {
+
+            if (vista.cbxMoneda.getSelectedIndex() != 0) {
+                String moneda;
+
+                moneda = vista.cbxMoneda.getSelectedItem().toString();
+                modFondo.setMoneda(moneda);
+                vista.cbxFondo.removeAllItems();
+                crearCbxFondo();
+                vista.cbxFondo.setSelectedIndex(0);
+                vista.cbxFondo.setEnabled(true);
+
+                if (!vista.txtGasto.getText().isEmpty()) {
+
+                    if (moneda.equals(modGasto.getMoneda()) || vista.cbxMoneda.getSelectedIndex() == 0) {
+                        vista.panelPariedad.setVisible(false);
+
+                    } else {
+                        vista.panelPariedad.setVisible(true);
+                    }
+                }
+
+            } else {
+                vista.panelPariedad.setVisible(false);
+                vista.cbxFondo.setEnabled(false);
+                vista.cbxFondo.addItem("Seleccione una moneda");
+                vista.cbxFondo.setSelectedItem("Seleccione una moneda");
+            }
+
+        } else if (e.getSource() == vista.cbxFondo) {
+
+            if (vista.cbxFondo.getSelectedIndex() == 0) {
+                vista.txtMonto.setEnabled(false);
+                vista.txtMonto.setText("Seleccione un fondo");
+
+            } else {
+                vista.txtMonto.setText(null);
+                vista.txtMonto.setEnabled(true);
+            }
+        }
     }
 
     @Override
@@ -154,6 +239,18 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
     @Override
     public void keyReleased(KeyEvent e) {
+
+        if (e.getSource() == vista.txtPariedad) {
+
+            if (vista.txtPariedad.getText().isEmpty()) {
+                vista.txtMonto.setEnabled(false);
+                vista.txtMonto.setText(null);
+
+            } else if (vista.cbxFondo.getSelectedIndex() == 0) {
+                vista.txtMonto.setEnabled(true);
+            }
+        }
+
         if (e.getSource() == catPagos.txtBuscar) {
             filtro(catPagos.txtBuscar.getText(), catPagos.tabla);
         }
@@ -161,16 +258,25 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getSource() == vista.jTable) {
-            //Llenartabla(vista.jTable, 2);
-            fila = this.vista.jTable.getSelectedRow(); // primero, obtengo la fila seleccionada
-            //Boolean resultado = true;
-            //String msj = "";
 
-//            modelo.cargarProveedor(listaGastoC.get(fila).getId());
+        if (e.getSource() == vista.tablaGastos) {
+            fila = this.vista.tablaGastos.getSelectedRow(); // primero, obtengo la fila seleccionada
+            modGasto = listaGasto.get(fila);
+            vista.txtGasto.setText(modGasto.getNombre());
 
-            vista.setVisible(true);
-          //  vista.txtProveedor.setText(modelo.getNom_proveedor());
+            if (vista.cbxMoneda.getSelectedIndex() != 0) {
+
+                if (vista.cbxMoneda.getSelectedItem().toString().equals(modGasto.getMoneda())) {
+                    vista.panelPariedad.setVisible(false);
+
+                } else {
+                    vista.panelPariedad.setVisible(true);
+                }
+
+            } else {
+                vista.panelPariedad.setVisible(false);
+            }
+
         }
     }
 
@@ -190,32 +296,67 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
     public void mouseExited(MouseEvent e) {
     }
 
-    private void crearCbxCuenta(ArrayList<Cuenta> datos) {
-        vista.cbxCuentaT.addItem("Seleccione...");
-        vista.cbxCuentaT.setFocusable(false);
+    private Double cambioMoneda(Double monto, String moneda, Double pariedad) {
+        Double montoNuevo = 0.;
 
-        if (datos != null) {
-            for (Cuenta datosX : datos) {
-//                vista.cbxCuentaT.addItem(datosX.getN_cuenta() + " - " + datosX.getNombre_banco());
+        if (moneda.equals("Bolívar")) {
+            montoNuevo = monto / pariedad;
+
+        } else if (moneda.equals("Dólar")) {
+            montoNuevo = monto * pariedad;
+        }
+
+        return montoNuevo;
+    }
+
+    private void crearCbxCuenta() {
+        listaCuenta = modCuenta.listarcuenta();
+        vista.cbxCuenta.addItem("Seleccione...");
+
+        if (listaCuenta != null) {
+
+            for (Cuenta item : listaCuenta) {
+                vista.cbxCuenta.addItem(item.getN_cuenta() + " - " + item.getBanco().getNombre_banco());
             }
-
         }
     }
 
-    private void crearCbxFondo(ArrayList<Fondo> datos) {
-        vista.cbxFondo.removeAllItems();
-        vista.cbxFondo.addItem("Seleccione...");
-        vista.cbxFondo.setFocusable(false);
-        if (datos != null) {
-            for (Fondo datosX : datos) {
-                vista.cbxFondo.addItem(Validacion.formatoDecimal(datosX.getSaldo()) + " - " + datosX.getTipo());
-            }
+    private void crearCbxFondo() {
+        String simbolo = "";
 
+        listaFondo = modFondo.listar(1);
+
+        if (modFondo.getMoneda().equals("Bolívar")) {
+            simbolo = "Bs.";
+
+        } else if (modFondo.getMoneda().equals("Dólar")) {
+            simbolo = "$";
+        }
+
+        vista.cbxFondo.addItem("Seleccione...");
+
+        if (listaFondo != null) {
+
+            for (Fondo item : listaFondo) {
+                vista.cbxFondo.addItem(Validacion.formatoDecimal(item.getSaldo()) + simbolo + " - " + item.getTipo());
+            }
+        }
+    }
+
+    private void crearCbxFormaPago() {
+        listaFormaPago = modFormaPago.listar();
+        vista.cbxFormaPago.addItem("Seleccione...");
+
+        if (listaFormaPago != null) {
+
+            for (FormaPago item : listaFormaPago) {
+                vista.cbxFormaPago.addItem(item.getForma_pago());
+            }
         }
     }
 
     private void filtro(String consulta, JTable jtableBuscar) {
-        dm = (DefaultTableModel) jtableBuscar.getModel();
+        DefaultTableModel dm = (DefaultTableModel) jtableBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
         jtableBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));
@@ -226,149 +367,224 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
         return sDate;
     }
 
-    public void Llenartabla(JTable tablaD, int status) {
-//        listaGastoC = modGastoC.listarGastoComun(status);
+    public void llenarTablaGastos(JTable tablaD, String status) {
+        listaGasto = modGasto.listar(status);
 
-        DefaultTableModel modeloT = new DefaultTableModel();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
 
-        // modeloT.addColumn("Selecciona");
-        modeloT.addColumn("id");
+        modeloT.addColumn("Proveedor");
+        modeloT.addColumn("Nombre");
         modeloT.addColumn("Fecha");
-        modeloT.addColumn("Concepto");
         modeloT.addColumn("Monto");
 
-        if (status != 1) {
+        if (!status.equals("Pagado")) {
             modeloT.addColumn("Saldo Restante");
         }
 
+        modeloT.addColumn("Moneda");
         modeloT.addColumn("Estado");
         modeloT.addColumn("Tipo");
+
         Object[] columna = new Object[modeloT.getColumnCount()];
 
-//        int num = listaGastoC.size();
+        int num = listaGasto.size();
 
-  /*      System.out.println(modeloT.getColumnCount());
-        System.out.println(num);
         for (int i = 0; i < num; i++) {
             int j = 0;
-            columna[j++] = listaGastoC.get(i).getId();
-            columna[j++] = listaGastoC.get(i).getFecha();
-            columna[j++] = listaGastoC.get(i).getNombre_Concepto();
-            columna[j++] = listaGastoC.get(i).getMonto();
+            columna[j++] = listaGasto.get(i).getProveedor().getNombre();
+            columna[j++] = listaGasto.get(i).getNombre();
+            columna[j++] = listaGasto.get(i).getMes() + " - " + listaGasto.get(i).getAnio();
+            columna[j++] = listaGasto.get(i).getMonto();
 
-            if (status != 1) {
-                columna[j++] = listaGastoC.get(i).getSaldo();
+            if (!status.equals("Pagado")) {
+                columna[j++] = listaGasto.get(i).getSaldo();
             }
 
-            columna[j++] = listaGastoC.get(i).getEstado();
-            columna[j++] = listaGastoC.get(i).getTipo_gasto();
+            columna[j++] = listaGasto.get(i).getMoneda();
+            columna[j++] = listaGasto.get(i).getEstado();
+            columna[j++] = listaGasto.get(i).getTipo();
+
             modeloT.addRow(columna);
-        }*/
+        }
 
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+
+        for (int i = 0; i < modeloT.getColumnCount(); i++) {
+            tablaD.getColumnModel().getColumn(i).setCellRenderer(tcr);
+        }
     }
 
     public void llenarTablaPagos(JTable tablaD) {
-        listaPagar = modelo.listar();
+        int ind;
+        int numeroRegistros;
+
+        lista = modelo.listar();
 
         DefaultTableModel modeloT = new DefaultTableModel();
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
 
-        // modeloT.addColumn("Selecciona");
         modeloT.addColumn("Referencia");
-        modeloT.addColumn("Pago");
         modeloT.addColumn("Descripción");
         modeloT.addColumn("Monto");
+        modeloT.addColumn("Moneda");
+        modeloT.addColumn("Tasa de cambio");
         modeloT.addColumn("Fecha");
-        modeloT.addColumn("Proveedor");
+        modeloT.addColumn("Gasto");
         modeloT.addColumn("Nro Cuenta");
         modeloT.addColumn("Banco");
-        modeloT.addColumn("Tipo");
+        modeloT.addColumn("Tipo de Fondo");
+        modeloT.addColumn("Forma de pago");
 
-        Object[] columna = new Object[9];
+        Object[] columna = new Object[modeloT.getColumnCount()];
 
-        int num = listaPagar.size();
+        numeroRegistros = lista.size();
 
-        for (int i = 0; i < num; i++) {
-            columna[0] = listaPagar.get(i).getNum_ref();
-            columna[1] = listaPagar.get(i).getForma_pago();
-            columna[2] = listaPagar.get(i).getDescripcion();
-            columna[3] = listaPagar.get(i).getMonto();
-            columna[4] = listaPagar.get(i).getFecha();
-//            columna[5] = listaPagar.get(i).getNom_proveedor();
-            columna[6] = listaPagar.get(i).getModCuenta().getN_cuenta();
-            columna[7] = listaPagar.get(i).getModBanco().getNombre_banco();
-            columna[8] = listaPagar.get(i).getModFondo().getTipo();
+        for (int i = 0; i < numeroRegistros; i++) {
+            ind = 0;
+            columna[ind++] = lista.get(i).getReferencia();
+            columna[ind++] = lista.get(i).getDescripcion();
+            columna[ind++] = lista.get(i).getMonto();
+            columna[ind++] = lista.get(i).getMoneda();
+            columna[ind++] = lista.get(i).getTasaCambio();
+            columna[ind++] = lista.get(i).getFecha();
+            columna[ind++] = lista.get(i).getGasto().getNombre();
+            columna[ind++] = lista.get(i).getCuenta().getN_cuenta();
+            columna[ind++] = lista.get(i).getCuenta().getBanco().getNombre_banco();
+            columna[ind++] = lista.get(i).getFondo().getTipo();
+            columna[ind++] = lista.get(i).getFormaPago().getForma_pago();
+
             modeloT.addRow(columna);
-
         }
-
     }
 
-    /*public void addCheckBox(int column, JTable table) {
-        TableColumn tc = table.getColumnModel().getColumn(column);
-        tc.setCellEditor(table.getDefaultEditor(Boolean.class));
-        tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
-    }*/
     private boolean validar() {
         boolean resultado = true;
         String mensaje = "";
+        boolean gastoEstaSeleccionado = false;
+        boolean formaPagoEstaSeleccionado = false;
+        boolean monedaEstaSeleccionado = false;
+        String moneda = "";
+        boolean fondoEstaSeleccionado = false;
+        Double monto = 0.;
+        Double montoNuevo = 0.;
+        Double saldoFactura = 0.;
+        Double saldoFondo = 0.;
 
-        if (vista.txtProveedor.getText().isEmpty()) {
+        if (vista.txtGasto.getText().isEmpty()) {
             resultado = false;
-            mensaje += "El campo Proveedor no puede estar vacío\n";
-        } else if (vista.txtMonto.getText().isEmpty()) {
-            resultado = false;
-            mensaje += "El campo Monto no puede estar vacío\n";
-        } else if (Float.parseFloat(vista.txtMonto.getText()) <= 0) {
-            resultado = false;
-            mensaje += "El monto no puede ser 0\n";
-        } else if (Float.parseFloat(vista.txtMonto.getText()) > Float.parseFloat(vista.jTable.getValueAt(fila, 4).toString())) {
-            resultado = false;
-            mensaje += "El monto no puede ser mayor al saldo restante de la factura\n";
+            mensaje += "Debe seleccionar un Gasto\n";
+
+        } else {
+            gastoEstaSeleccionado = true;
+            saldoFactura = Double.parseDouble(vista.tablaGastos.getValueAt(fila, 4).toString());
         }
-        if (vista.txtReferencia.getText().isEmpty()) {
-            resultado = false;
-            mensaje += "El campo Número de Referencia no puede estar vacío\n";
-        }
-        if (vista.cbxCuentaT.getSelectedIndex() == 0) {
-            resultado = false;
-            mensaje += "Debe seleccionar una Cuenta a transferir\n";
-        }
+
         if (vista.txtDescripcion.getText().isEmpty()) {
             resultado = false;
             mensaje += "El campo Descripción no puede estar vacío\n";
         }
-        if (vista.jDate.getDate() == null) {
+
+        if (vista.cbxFormaPago.getSelectedIndex() == 0) {
+            resultado = false;
+            mensaje += "Debe seleccionar una Forma de Pago\n";
+
+        } else {
+            formaPagoEstaSeleccionado = true;
+        }
+
+        if (vista.fecha.getDate() == null) {
             resultado = false;
             mensaje += "Debe seleccionar una Fecha de pago\n";
         }
-        if (vista.cbxFondo.getSelectedIndex() == 0) {
+
+        if (vista.cbxMoneda.getSelectedIndex() == 0) {
             resultado = false;
-            mensaje += "Debe seleccionar un Fondo\n";
-        } else if (Float.parseFloat(vista.txtMonto.getText()) > listaFondo.get(vista.cbxFondo.getSelectedIndex() - 1).getSaldo()) {
-            resultado = false;
-            mensaje += "El monto no puede ser mayor al Fondo\n";
+            mensaje += "Debe seleccionar una Moneda a pagar\n";
+
+        } else {
+            monedaEstaSeleccionado = true;
+            moneda = vista.cbxMoneda.getSelectedItem().toString();
+
+            if (vista.cbxFondo.getSelectedIndex() == 0) {
+                resultado = false;
+                mensaje += "Debe seleccionar un Fondo\n";
+
+            } else {
+                saldoFondo = listaFondo.get(vista.cbxFondo.getSelectedIndex() - 1).getSaldo();
+                fondoEstaSeleccionado = true;
+            }
         }
+
+        if (fondoEstaSeleccionado && vista.txtMonto.getText().isEmpty()) {
+            resultado = false;
+            mensaje += "El campo Monto no puede estar vacío\n";
+
+        } else if (fondoEstaSeleccionado) {
+            monto = Double.parseDouble(vista.txtMonto.getText());
+
+            if (monto <= 0) {
+                resultado = false;
+                mensaje += "El monto debe ser mayor que 0\n";
+
+            } else {
+                if (moneda.equals(modGasto.getMoneda())) {
+                    if (gastoEstaSeleccionado && monto > saldoFactura) {
+                        resultado = false;
+                        mensaje += "El monto no puede ser mayor al saldo restante de la factura\n";
+                    }
+
+                } else {
+                    montoNuevo = cambioMoneda(monto, vista.cbxMoneda.getSelectedItem().toString(), Double.parseDouble(vista.txtPariedad.getText()));
+
+                    if (gastoEstaSeleccionado && montoNuevo > saldoFactura) {
+                        resultado = false;
+                        mensaje += "El monto no puede ser mayor al saldo restante de la factura\n";
+                    }
+                }
+
+                if (gastoEstaSeleccionado && monto > saldoFondo) {
+                    resultado = false;
+                    mensaje += "El monto no puede ser mayor al Fondo\n";
+                }
+            }
+        }
+
+        if (formaPagoEstaSeleccionado && !vista.cbxFormaPago.getSelectedItem().toString().equals("Efectivo")) {
+
+            if (vista.txtReferencia.getText().isEmpty()) {
+                resultado = false;
+                mensaje += "El campo Número de Referencia no puede estar vacío\n";
+            }
+
+            if (vista.cbxCuenta.getSelectedIndex() == 0) {
+                resultado = false;
+                mensaje += "Debe seleccionar una Cuenta a transferir\n";
+            }
+        }
+
+        if (monedaEstaSeleccionado) {
+
+            if (!vista.cbxMoneda.getSelectedItem().toString().equals(modGasto.getMoneda()) && vista.txtPariedad.getText().isEmpty()) {
+                resultado = false;
+                mensaje += "El campo Tasa de cambio no puede estar vacío\n";
+            }
+        }
+
         if (resultado == false) {
             JOptionPane.showMessageDialog(vista, mensaje);
         }
+
         return resultado;
-    }
-    
-    public void stylecombo (JComboBox c) {
-        c.setFont(new Font("Tahoma", Font.BOLD, 14));
-        c.setForeground(Color.WHITE);
-        
-        c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
     }
 }

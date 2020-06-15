@@ -108,7 +108,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
         stylecombo(vista.jCalcular);
         vista.jcombotipo.addItemListener(this);
         stylecombo(vista.jcombotipo);
-        
+
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -138,6 +138,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
 
             if (validar()) {
                 //Se guardan en el modelo los datos básicos
+                modelo.setNombre(vista.txtNombre.getText());
                 modelo.setTipo(vista.jcombotipo.getSelectedItem().toString());
                 modelo.getProveedor().setCedula(vista.txtProveedor.getText());
                 modelo.setCalcular(vista.jCalcular.getSelectedItem().toString());
@@ -232,6 +233,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
             if (validar()) {
 
                 //Se guardan en el modelo los datos básicos
+                modelo.setNombre(vista.txtNombre.getText());
                 modelo.setTipo(vista.jcombotipo.getSelectedItem().toString());
                 modelo.getProveedor().setCedula(vista.txtProveedor.getText());
                 modelo.setCalcular(vista.jCalcular.getSelectedItem().toString());
@@ -354,13 +356,14 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
     }
 
     public void limpiar() {
+        vista.txtNombre.setText(null);
         vista.jcombotipo.setSelectedIndex(0);
         vista.txtProveedor.setText(null);
         vista.jLabel2.setText(null);
         vista.jCalcular.setSelectedIndex(0);
         vista.cbxMoneda.setSelectedIndex(0);
         vista.txtNmeses.setText(null);
-       
+
         vista.txtNmeses.setText(null);
         vista.jAsamblea.setSelectedIndex(0);
         vista.txaObservaciones.setText(null);
@@ -381,6 +384,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
         tablaD.getTableHeader().setResizingAllowed(false);
 
         modeloT.addColumn("<html>Nº de <br>Gasto</html>");
+        modeloT.addColumn("Nombre");
         modeloT.addColumn("Proveedor");
         modeloT.addColumn("<html>Calcular <br>por</html>");
         modeloT.addColumn("<html>Comienzo <br>de cobro</html>");
@@ -403,6 +407,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
         for (int i = 0; i < numRegistro; i++) {
             ind = 0;
             columna[ind++] = lista.get(i).getId();
+            columna[ind++] = lista.get(i).getNombre();
             columna[ind++] = lista.get(i).getProveedor().getCedula();
             columna[ind++] = lista.get(i).getCalcular();
             fecha = String.valueOf(lista.get(i).getMes()) + " - " + lista.get(i).getAnio();
@@ -922,7 +927,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
                 vista.jAsamblea.setSelectedIndex(0);
             }
         }
-        
+
     }
 
     public void addCheckBox(int column, JTable table) {
@@ -944,13 +949,11 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
 
         return isValid;
     }
-    
-    
-    
-    public void stylecombo (JComboBox c) {
+
+    public void stylecombo(JComboBox c) {
         c.setFont(new Font("Tahoma", Font.BOLD, 14));
         c.setForeground(Color.WHITE);
-        
+
         c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
     }
 }

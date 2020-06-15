@@ -112,6 +112,7 @@ public class VisGasto extends javax.swing.JPanel {
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -121,7 +122,7 @@ public class VisGasto extends javax.swing.JPanel {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel12.setText("Registro de Cuotas Especiales");
+        jLabel12.setText("Registro de Gastos");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
@@ -428,6 +429,7 @@ public class VisGasto extends javax.swing.JPanel {
         jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 400, -1, -1));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 840, 640));
+        add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 180, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -486,6 +488,7 @@ public class VisGasto extends javax.swing.JPanel {
     public javax.swing.JRadioButton si;
     public javax.swing.JTextArea txaObservaciones;
     public javax.swing.JTextField txtNmeses;
+    public javax.swing.JTextField txtNombre;
     public javax.swing.JTextField txtProveedor;
     public javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables

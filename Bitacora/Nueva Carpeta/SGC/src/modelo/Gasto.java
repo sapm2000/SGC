@@ -1,7 +1,6 @@
 package modelo;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -23,11 +22,10 @@ public class Gasto extends ConexionBD {
     private String estado;
     private String pagado;
     private String moneda;
+    private String nombre;
 
     private ArrayList<ConceptoGasto> conceptos = new ArrayList();
     private ArrayList<Double> montoConceptos = new ArrayList();
-
-    private java.sql.Date fecha;
 
     private Connection con;
 
@@ -47,52 +45,6 @@ public class Gasto extends ConexionBD {
         ps.execute();
 
         return true;
-    }
-
-    public boolean buscar() {
-        try {
-            ps = null;
-            rs = null;
-            con = getConexion();
-
-            String sql = "SELECT proveedores.nombre as prov, id_proveedor, calcular, mes, anio, monto, saldo, n_meses, asambleas.nombre, asambleas.fecha, observacion, estado FROM facturas_proveedores inner join proveedores on proveedores.cedula=facturas_proveedores.id_proveedor left join asambleas on asambleas.id = facturas_proveedores.id_asamblea where facturas_proveedores.id=?;";
-
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
-            rs = ps.executeQuery();
-
-            if (rs.next()) {
-
-                proveedor.setCedula(rs.getString("id_proveedor"));
-                proveedor.setNombre(rs.getString("prov"));
-                setCalcular(rs.getString("calcular"));
-                setMes(rs.getInt("mes"));
-                setAnio(rs.getInt("anio"));
-                setMonto(rs.getDouble("monto"));
-                setSaldo(rs.getDouble("saldo"));
-                setNumMeses(rs.getInt("n_meses"));
-                asamblea.setNombre(rs.getString("nombre"));
-                setObservacion(rs.getString("observacion"));
-                setEstado(rs.getString("estado"));
-                setFecha(rs.getDate("fecha"));
-
-                return true;
-            }
-
-            return false;
-
-        } catch (SQLException e) {
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-                con.close();
-
-            } catch (SQLException e) {
-                System.err.println(e);
-            }
-        }
     }
 
     public boolean buscarId() {
@@ -134,7 +86,7 @@ public class Gasto extends ConexionBD {
             ps = null;
             con = getConexion();
 
-            String sql = "INSERT INTO gasto(tipo, id_proveedor, calcular_por, mes, anio, n_meses, observacion, id_asamblea, meses_restantes, monto, saldo, moneda) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
+            String sql = "INSERT INTO gasto(tipo, id_proveedor, calcular_por, mes, anio, n_meses, observacion, id_asamblea, meses_restantes, monto, saldo, moneda, nombre) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
             ps = con.prepareStatement(sql);
             ind = 1;
@@ -157,6 +109,7 @@ public class Gasto extends ConexionBD {
             ps.setDouble(ind++, getMonto());
             ps.setDouble(ind++, getSaldo());
             ps.setString(ind++, getMoneda());
+            ps.setString(ind++, getNombre());
             ps.execute();
 
             if (buscarId()) {
@@ -257,6 +210,7 @@ public class Gasto extends ConexionBD {
                 item.setNumMeses(rs.getInt("n_meses"));
                 item.setMesesRestantes(rs.getInt("meses_restantes"));
                 item.setMoneda(rs.getString("moneda"));
+                item.setNombre(rs.getString("nombre"));
 
                 if (rs.getInt("id_asamblea") != 0) {
                     item.asamblea = new Asambleas();
@@ -361,7 +315,7 @@ public class Gasto extends ConexionBD {
             ps = null;
             con = getConexion();
 
-            String sql = "UPDATE gasto SET tipo=?, id_proveedor=?, calcular_por=?, mes=?, anio=?, n_meses=?, id_asamblea=?, observacion=?, meses_restantes=?, monto=?, saldo=?, moneda=? WHERE id = ?;";
+            String sql = "UPDATE gasto SET tipo=?, id_proveedor=?, calcular_por=?, mes=?, anio=?, n_meses=?, id_asamblea=?, observacion=?, meses_restantes=?, monto=?, saldo=?, moneda=?, nombre=? WHERE id = ?;";
 
             ps = con.prepareStatement(sql);
             ind = 1;
@@ -385,6 +339,7 @@ public class Gasto extends ConexionBD {
             ps.setDouble(ind++, getMonto());
             ps.setDouble(ind++, getSaldo());
             ps.setString(ind++, getMoneda());
+            ps.setString(ind++, getNombre());
 
             ps.setInt(ind++, getId());
 
@@ -608,36 +563,35 @@ public class Gasto extends ConexionBD {
 
     }
 
-    public boolean restarSaldo(Float saldoNuevo) {
+    public Boolean restarSaldo(Double saldoNuevo) {
         ps = null;
         con = getConexion();
+        int ind;
 
-        String sql = "UPDATE facturas_proveedores SET saldo = saldo - ? WHERE id = ?;";
+        String sql = "SELECT pagar_gasto(?,?)";
 
         try {
+            ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setDouble(1, saldoNuevo);
-            ps.setInt(2, getId());
-            ps.execute();
-
-            sql = "SELECT actualizar_status_cuotas(?)";
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
+            ps.setInt(ind++, getId());
+            ps.setDouble(ind++, saldoNuevo);
             ps.execute();
 
             return true;
+
         } catch (Exception e) {
             System.err.println(e);
             return false;
 
         } finally {
+
             try {
                 con.close();
+
             } catch (Exception e) {
                 System.err.println(e);
             }
         }
-
     }
 
     private Boolean retirarConceptos(ArrayList<ConceptoGasto> conceptos) throws SQLException {
@@ -782,14 +736,6 @@ public class Gasto extends ConexionBD {
         this.pagado = pagado;
     }
 
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
     public ArrayList<Double> getMontoConceptos() {
         return montoConceptos;
     }
@@ -804,6 +750,14 @@ public class Gasto extends ConexionBD {
 
     public void setMoneda(String moneda) {
         this.moneda = moneda;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
 }

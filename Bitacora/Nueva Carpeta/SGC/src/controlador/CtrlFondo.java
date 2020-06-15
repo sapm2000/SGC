@@ -35,11 +35,11 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
 
     private VisFondo vista;
     private Catalogo catalogo;
-    private Fondo modfon;
+    private Fondo modelo;
+    private ArrayList<Fondo> lista;
 
-    Funcion permiso;
+    private Funcion permiso;
 
-    ArrayList<Fondo> listafondo;
     DefaultTableModel dm;
     double montoi;
     double saldo;
@@ -47,14 +47,14 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
     public CtrlFondo() {
         this.vista = new VisFondo();
         this.catalogo = new Catalogo();
-        this.modfon = new Fondo();
+        this.modelo = new Fondo();
 
         catalogo.lblTitulo.setText("Fondo");
         CtrlVentana.cambiarVista(catalogo);
         vista.cbxMoneda.addItemListener(this);
         stylecombo(vista.cbxMoneda);
 
-        Llenartabla(catalogo.tabla);
+        llenarTabla(catalogo.tabla);
         permisoBtn();
 
         if (permiso.getRegistrar()) {
@@ -73,9 +73,9 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
         this.catalogo.setVisible(true);
     }
 
-    public void Llenartabla(JTable tablaD) {
+    public void llenarTabla(JTable tablaD) {
+        lista = modelo.listar(3);
 
-        listafondo = modfon.listar(2);
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -97,18 +97,18 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
 
         Object[] columna = new Object[modeloT.getColumnCount()];
 
-        int numRegistro = listafondo.size();
+        int numRegistro = lista.size();
         System.out.println(numRegistro);
         int ind;
         for (int i = 0; i < numRegistro; i++) {
             ind = 0;
-            columna[ind++] = listafondo.get(i).getFecha();
-            columna[ind++] = listafondo.get(i).getTipo();
-            columna[ind++] = listafondo.get(i).getDescripcion();
-            columna[ind++] = listafondo.get(i).getObservacion();
-            columna[ind++] = Validacion.formato1.format(listafondo.get(i).getMonto_inicial());
-            columna[ind++] = Validacion.formato1.format(listafondo.get(i).getSaldo());
-            columna[ind++] = listafondo.get(i).getMoneda();
+            columna[ind++] = lista.get(i).getFecha();
+            columna[ind++] = lista.get(i).getTipo();
+            columna[ind++] = lista.get(i).getDescripcion();
+            columna[ind++] = lista.get(i).getObservacion();
+            columna[ind++] = Validacion.formato1.format(lista.get(i).getMonto_inicial());
+            columna[ind++] = Validacion.formato1.format(lista.get(i).getSaldo());
+            columna[ind++] = lista.get(i).getMoneda();
 
             modeloT.addRow(columna);
 
@@ -227,25 +227,25 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
 
         if (e.getSource() == vista.btnGuardar) {
             if (validar()) {
-                modfon.setTipo(vista.txtTipo.getText());
+                modelo.setTipo(vista.txtTipo.getText());
                 if (vista.jDateChooser1.getDate() == null) {
                     JOptionPane.showMessageDialog(null, "ingrese la fecha de creacion del fondo");
                 } else {
                     java.sql.Date sqlDate = convert(vista.jDateChooser1.getDate());
-                    modfon.setFecha(sqlDate);
-                    modfon.setDescripcion(vista.txaDescripcion.getText());
-                    modfon.setObservacion(vista.txaObservaciones.getText());
-                    modfon.setMonto_inicial(Double.parseDouble(vista.txtMontoInicial.getText()));
-                    modfon.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
+                    modelo.setFecha(sqlDate);
+                    modelo.setDescripcion(vista.txaDescripcion.getText());
+                    modelo.setObservacion(vista.txaObservaciones.getText());
+                    modelo.setMonto_inicial(Double.parseDouble(vista.txtMontoInicial.getText()));
+                    modelo.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
 
-                    if (modfon.buscar(modfon)) {
+                    if (modelo.buscar(modelo)) {
                         JOptionPane.showMessageDialog(null, "este fondo ya esta registrado");
                     } else {
 
-                        if (modfon.registrar(modfon)) {
+                        if (modelo.registrar(modelo)) {
 
                             JOptionPane.showMessageDialog(null, "Registro Guardado");
-                            Llenartabla(catalogo.tabla);
+                            llenarTabla(catalogo.tabla);
 
                         } else {
 
@@ -260,30 +260,30 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
 
         if (e.getSource() == vista.btnModificar) {
             if (validar()) {
-                modfon.setTipo(vista.txtTipo.getText());
+                modelo.setTipo(vista.txtTipo.getText());
                 java.sql.Date sqlDate = convert(vista.jDateChooser1.getDate());
-                modfon.setFecha(sqlDate);
-                modfon.setDescripcion(vista.txaDescripcion.getText());
-                modfon.setObservacion(vista.txaObservaciones.getText());
-                modfon.setMonto_inicial(Double.parseDouble(vista.txtMontoInicial.getText()));
-                modfon.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
+                modelo.setFecha(sqlDate);
+                modelo.setDescripcion(vista.txaDescripcion.getText());
+                modelo.setObservacion(vista.txaObservaciones.getText());
+                modelo.setMonto_inicial(Double.parseDouble(vista.txtMontoInicial.getText()));
+                modelo.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
 
-                modfon.setId(Integer.parseInt(vista.txtId.getText()));
+                modelo.setId(Integer.parseInt(vista.txtId.getText()));
                 int var7 = 0;
-                var7 = modfon.getId();
+                var7 = modelo.getId();
 
-                if (modfon.buscar1(modfon)) {
-                    if (var7 == modfon.getId()) {
+                if (modelo.buscar1(modelo)) {
+                    if (var7 == modelo.getId()) {
                         double var1 = Double.parseDouble(vista.txtMontoInicial.getText());
                         double var2 = var1 - montoi;
                         double total = var2 + saldo;
-                        modfon.setSaldo(total);
+                        modelo.setSaldo(total);
 
                         if (total > 0) {
-                            if (modfon.modificar(modfon)) {
+                            if (modelo.modificar(modelo)) {
 
                                 JOptionPane.showMessageDialog(null, "Registro Modificado");
-                                Llenartabla(catalogo.tabla);
+                                llenarTabla(catalogo.tabla);
                                 CtrlVentana.cambiarVista(catalogo);
 
                             } else {
@@ -303,13 +303,13 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                     double var1 = Double.parseDouble(vista.txtMontoInicial.getText());
                     double var2 = var1 - montoi;
                     double total = var2 + saldo;
-                    modfon.setSaldo(total);
+                    modelo.setSaldo(total);
 
                     if (total > 0) {
-                        if (modfon.modificar(modfon)) {
+                        if (modelo.modificar(modelo)) {
 
                             JOptionPane.showMessageDialog(null, "Registro Modificado");
-                            Llenartabla(catalogo.tabla);
+                            llenarTabla(catalogo.tabla);
                             CtrlVentana.cambiarVista(catalogo);
 
                         } else {
@@ -328,15 +328,15 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
 
         if (e.getSource() == vista.btnEliminar) {
 
-            modfon.setTipo(vista.txtTipo.getText());
+            modelo.setTipo(vista.txtTipo.getText());
 
             if (saldo == 0) {
 
-                if (modfon.eliminar(modfon)) {
+                if (modelo.eliminar(modelo)) {
 
                     JOptionPane.showMessageDialog(null, "Registro Eliminado");
                     CtrlVentana.cambiarVista(catalogo);
-                    Llenartabla(catalogo.tabla);
+                    llenarTabla(catalogo.tabla);
 
                 } else {
 
@@ -417,25 +417,25 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
 
         String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 1)); // por ultimo, obtengo el valor de la celda
 
-        modfon.setTipo(String.valueOf(dato));
+        modelo.setTipo(String.valueOf(dato));
 
         vista.txtTipo.setEnabled(true);
         vista.btnGuardar.setEnabled(false);
         vista.btnEliminar.setEnabled(true);
         vista.btnModificar.setEnabled(true);
 
-        modfon.buscar(modfon);
+        modelo.buscar(modelo);
 
-        vista.txaDescripcion.setText(modfon.getDescripcion());
-        vista.txaObservaciones.setText(modfon.getObservacion());
-        vista.txtId.setText(String.valueOf(modfon.getId()));
+        vista.txaDescripcion.setText(modelo.getDescripcion());
+        vista.txaObservaciones.setText(modelo.getObservacion());
+        vista.txtId.setText(String.valueOf(modelo.getId()));
         vista.txtId.setVisible(false);
-        vista.txtTipo.setText(modfon.getTipo());
-        vista.jDateChooser1.setDate(modfon.getFecha());
-        vista.txtMontoInicial.setText(String.valueOf(Validacion.formato1.format(modfon.getMonto_inicial())));
-        vista.cbxMoneda.setSelectedItem(modfon.getMoneda());
-        saldo = modfon.getSaldo();
-        montoi = modfon.getMonto_inicial();
+        vista.txtTipo.setText(modelo.getTipo());
+        vista.jDateChooser1.setDate(modelo.getFecha());
+        vista.txtMontoInicial.setText(String.valueOf(Validacion.formato1.format(modelo.getMonto_inicial())));
+        vista.cbxMoneda.setSelectedItem(modelo.getMoneda());
+        saldo = modelo.getSaldo();
+        montoi = modelo.getMonto_inicial();
 
         CtrlVentana.cambiarVista(vista);
     }
