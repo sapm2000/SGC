@@ -27,7 +27,7 @@ public class Cuenta_Pagar extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "INSERT INTO cuenta_pagar(num_ref, forma_pago, descripcion, monto, fecha, id_proveedor, id_cuenta, id_fondo) "
+        String sql = "INSERT INTO cuenta_pagar(num_ref, forma_pago, descripcion, monto, fecha, ci_proveedor, id_cuenta, id_fondo) "
                 + "VALUES(?,?,?,?,?,?,?,?)";
         try {
             ps = con.prepareStatement(sql);

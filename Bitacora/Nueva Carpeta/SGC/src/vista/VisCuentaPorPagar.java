@@ -45,12 +45,12 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         txtDescripcion = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtReferencia = new javax.swing.JTextField();
+        txtPariedad = new javax.swing.JTextField();
         cbxCuentaT = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtMonto = new javax.swing.JTextField();
-        cbxFondo = new javax.swing.JComboBox<>();
+        cbxMoneda = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
@@ -62,6 +62,8 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         txtReferencia1 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -106,7 +108,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("moneda a pagar:");
+        jLabel1.setText("Moneda a pagar:");
         jPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 250, -1, 20));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -134,11 +136,11 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         jLabel3.setText("<html>\nNúmero de <br> Referencia:\n</html>");
         jPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, -1, 40));
 
-        txtReferencia.setBackground(new java.awt.Color(0, 94, 159));
-        txtReferencia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtReferencia.setForeground(new java.awt.Color(255, 255, 255));
-        txtReferencia.setBorder(null);
-        jPanel.add(txtReferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, 260, 20));
+        txtPariedad.setBackground(new java.awt.Color(0, 94, 159));
+        txtPariedad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtPariedad.setForeground(new java.awt.Color(255, 255, 255));
+        txtPariedad.setBorder(null);
+        jPanel.add(txtPariedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 250, 260, 20));
 
         cbxCuentaT.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel.add(cbxCuentaT, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 260, -1));
@@ -150,8 +152,8 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Monto:");
-        jPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, -1, 20));
+        jLabel4.setText(" Tasa de cambio");
+        jPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, -1, 20));
 
         txtMonto.setBackground(new java.awt.Color(0, 94, 159));
         txtMonto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -159,8 +161,9 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         txtMonto.setBorder(null);
         jPanel.add(txtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, 260, 20));
 
-        cbxFondo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel.add(cbxFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 240, -1));
+        cbxMoneda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Bolívar", "Dólar" }));
+        jPanel.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 240, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -171,7 +174,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         jPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 240, 20));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 260, 20));
+        jPanel.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 270, 260, 20));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
         jPanel.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 260, 20));
@@ -205,6 +208,14 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         txtReferencia1.setForeground(new java.awt.Color(255, 255, 255));
         txtReferencia1.setBorder(null);
         jPanel.add(txtReferencia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 260, 20));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Monto:");
+        jPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, -1, 20));
+
+        jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 260, 20));
 
         add(jPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 750, 280));
 
@@ -298,9 +309,9 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
     public javax.swing.JButton btnPagos;
     public javax.swing.JButton btnProcesar;
     public javax.swing.JComboBox<String> cbxCuentaT;
-    public javax.swing.JComboBox<String> cbxFondo;
     public javax.swing.JComboBox<String> cbxFondo1;
     public javax.swing.JComboBox<String> cbxFormaP;
+    public javax.swing.JComboBox<String> cbxMoneda;
     public com.toedter.calendar.JDateChooser jDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -313,6 +324,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -320,14 +332,15 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     public javax.swing.JTable jTable;
     public javax.swing.JTextField txtDescripcion;
     public javax.swing.JTextField txtMonto;
+    public javax.swing.JTextField txtPariedad;
     public javax.swing.JTextField txtProveedor;
-    public javax.swing.JTextField txtReferencia;
     public javax.swing.JTextField txtReferencia1;
     // End of variables declaration//GEN-END:variables
 static public class Headercolor extends DefaultTableCellHeaderRenderer {
