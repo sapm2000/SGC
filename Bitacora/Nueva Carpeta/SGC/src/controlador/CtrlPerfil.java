@@ -1,9 +1,13 @@
 package controlador;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 import sgc.SGC;
@@ -32,6 +36,8 @@ public class CtrlPerfil implements ActionListener, ItemListener {
         mostrarPerfil();
 
         CtrlVentana.cambiarVista(vista);
+        vista.cbxConfigurar.addItemListener(this);
+        stylecombo(vista.cbxConfigurar);
     }
 
     @Override
@@ -48,7 +54,7 @@ public class CtrlPerfil implements ActionListener, ItemListener {
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getSource() == vista.cbxConfigurar) {
-
+            vista.cbxConfigurar.setFocusable(false);
             if (vista.cbxConfigurar.getSelectedIndex() == 1) {
                 this.vista.jPanelPregunta.setVisible(true);
                 this.vista.jPanelClave.setVisible(false);
@@ -104,6 +110,13 @@ public class CtrlPerfil implements ActionListener, ItemListener {
         vista.txtUsuario.setText(usuario.getTipoU().getNombre());
         vista.txtPregunta.setText(usuario.getPregunta());
 
+    }
+    
+    public void stylecombo (JComboBox c) {
+        c.setFont(new Font("Tahoma", Font.BOLD, 14));
+        c.setForeground(Color.WHITE);
+        
+        c.setBorder(BorderFactory.createLineBorder(new Color(0, 94, 159), 2));
     }
 
 }

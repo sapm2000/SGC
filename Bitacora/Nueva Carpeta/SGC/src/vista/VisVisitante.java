@@ -12,6 +12,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import static java.awt.SystemColor.scrollbar;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
@@ -47,7 +48,7 @@ public class VisVisitante extends javax.swing.JPanel {
     
     public VisVisitante() {
         initComponents();
-        jScrollPane1.getVerticalScrollBar().setUI(new VisRegistroVisita.MyScrollBarUI());
+        jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         tabla.getTableHeader().setDefaultRenderer(new VisMensaje.Headercolor());
         cbxCedula.setUI(new VisCerrarMes.CustomUI());
     }
@@ -313,32 +314,7 @@ static public class Headercolor extends DefaultTableCellHeaderRenderer {
         g.setFont(new Font("Tahoma", Font.BOLD, 14));
         g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
     }
-    
-    @Override
-        public void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
-            int alpha = isThumbRollover() ? SCROLL_BAR_ALPHA_ROLLOVER : SCROLL_BAR_ALPHA;
-            int orientation = scrollbar.getOrientation();
-            int arc = THUMB_SIZE;
-            int x = thumbBounds.x + THUMB_BORDER_SIZE;
-            int y = thumbBounds.y + THUMB_BORDER_SIZE;
-
-            int width = orientation == JScrollBar.VERTICAL
-                    ? THUMB_SIZE : thumbBounds.width - (THUMB_BORDER_SIZE * 2);
-            width = Math.max(width, THUMB_SIZE);
-
-            int height = orientation == JScrollBar.VERTICAL
-                    ? thumbBounds.height - (THUMB_BORDER_SIZE * 2) : THUMB_SIZE;
-            height = Math.max(height, THUMB_SIZE);
-
-            Graphics2D graphics2D = (Graphics2D) g.create();
-            graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                    RenderingHints.VALUE_ANTIALIAS_ON);
-            graphics2D.setColor(new Color(THUMB_COLOR.getRed(),
-                    THUMB_COLOR.getGreen(), THUMB_COLOR.getBlue(), alpha));
-            graphics2D.fillRoundRect(x, y, width, height, arc, arc);
-            graphics2D.dispose();
-        }
-    
+        
      //Pinta los items
     @Override
     public ListCellRenderer createRenderer()
