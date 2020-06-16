@@ -246,6 +246,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                                         modc.gasto.setId(Integer.parseInt(String.valueOf(id_cuota[z])));
                                                         modc.setTipo_gasto(listaGastos.get(z).getTipo());
                                                         modc.uni.setId(listaunidades.get(w).getId());
+                                                        modc.uni.setAlicuota(listaunidades.get(w).getAlicuota());
                                                         modc.registrar_cuota(modc);
 
                                                         numReales = numReales + 1;
@@ -271,6 +272,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                                         modc.setTipo_gasto(listaGastos.get(z).getTipo());
                                                         modc.setParidad(Double.parseDouble(vista.txtParidad.getText()));
                                                         modc.setMoneda_dominante(vista.cbxMoneda.getSelectedItem().toString());
+                                                        modc.uni.setAlicuota(listaunidades.get(w).getAlicuota());
                                                         modc.registrar_cuota(modc);
 
                                                         numReales = numReales + 1;

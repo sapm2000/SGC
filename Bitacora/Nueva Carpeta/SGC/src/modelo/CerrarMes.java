@@ -3,6 +3,7 @@ package modelo;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class CerrarMes extends ConexionBD {
 
@@ -12,8 +13,9 @@ public class CerrarMes extends ConexionBD {
     private double monto_dolar;
     private double monto_bolivar;
     public Unidades uni = new Unidades();
-   
+    public ConceptoGasto concep = new ConceptoGasto();
     public Sancion san = new Sancion();
+    public Interes in = new Interes();
     private double alicuota;
     private String estado;
     public Gasto cuo = new Gasto();
@@ -34,7 +36,7 @@ public class CerrarMes extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "INSERT INTO detalle_pagos(id_unidad,id_gasto, mes, anio, monto_dolar,monto_bolivar, tipo_gasto, moneda_dominante, paridad, saldo_restante_bolivar, saldo_restante_dolar) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO detalle_pagos(id_unidad,id_gasto, mes, anio, monto_dolar,monto_bolivar, tipo_gasto, moneda_dominante, paridad, saldo_restante_bolivar, saldo_restante_dolar, alicuota) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?)";
 
         try {
 
@@ -54,6 +56,7 @@ public class CerrarMes extends ConexionBD {
             ps.setDouble(9, getParidad());
             ps.setDouble(11, getMonto_dolar());
             ps.setDouble(10, getMonto_bolivar());
+            ps.setDouble(12, uni.getAlicuota());
 
             ps.execute();
 
@@ -179,7 +182,7 @@ public class CerrarMes extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "INSERT INTO detalle_pagos(id_unidad,id_gasto, mes, anio, monto_dolar,monto_bolivar, tipo_gasto, moneda_dominante, paridad, saldo_restante_bolivar, saldo_restante_dolar) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO detalle_pagos(id_unidad,id_gasto, mes, anio, monto_dolar,monto_bolivar, tipo_gasto, moneda_dominante, paridad, saldo_restante_bolivar, saldo_restante_dolar, alicuota) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?)";
 
         try {
 
@@ -196,7 +199,7 @@ public class CerrarMes extends ConexionBD {
             ps.setDouble(9, getParidad());
             ps.setDouble(11, getMonto_dolar());
             ps.setDouble(10, getMonto_bolivar());
-
+            ps.setDouble(12, uni.getAlicuota());
             ps.execute();
 
             return true;
@@ -226,7 +229,7 @@ public class CerrarMes extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "INSERT INTO detalle_pagos(id_unidad,id_gasto, mes, anio, monto_dolar,monto_bolivar, tipo_gasto, moneda_dominante, paridad, saldo_restante_bolivar, saldo_restante_dolar) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO detalle_pagos(id_unidad,id_gasto, mes, anio, monto_dolar,monto_bolivar, tipo_gasto, moneda_dominante, paridad, saldo_restante_bolivar, saldo_restante_dolar, alicuota) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?)";
 
         try {
 
@@ -243,6 +246,7 @@ public class CerrarMes extends ConexionBD {
             ps.setDouble(9, getParidad());
             ps.setDouble(11, getMonto_dolar());
             ps.setDouble(10, getMonto_bolivar());
+            ps.setDouble(12, uni.getAlicuota());
 
             ps.execute();
 
@@ -486,42 +490,6 @@ public class CerrarMes extends ConexionBD {
 
     }
 
-    public boolean actualizartotal(CerrarMes modc) {
-
-        ps = null;
-        con = getConexion();
-
-        String sql = "UPDATE factura_unidad SET saldo_restante=?, estado=? WHERE id=?;";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-            ps.setDouble(1, getSaldo_restante());
-            ps.setString(2, getEstado());
-
-            ps.setInt(3, getId());
-            ps.execute();
-
-            return true;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-    }
 
     public ArrayList<CerrarMes> listar() {
         ArrayList listaCierremes = new ArrayList();
@@ -649,18 +617,31 @@ public class CerrarMes extends ConexionBD {
 
     }
 
-    public ArrayList<CerrarMes> listarpagos() {
+    public ArrayList<CerrarMes> listarpagospendientes(String moneda) {
         ArrayList listaCierremes = new ArrayList();
         CerrarMes modc;
 
         con = getConexion();
         ps = null;
         rs = null;
+        int x = 0;
+        String sql = "";
+        if (moneda.equals("Bolívar")) {
+            sql = "SELECT mes, anio,sum(monto_bolivar),sum(monto_bolivar/?), sum(saldo_restante_bolivar),sum(saldo_restante_bolivar/?), moneda_dominante FROM detalle_pagos where id_unidad=? and mes=? and anio=? group by mes, anio, moneda_dominante having sum(saldo_restante_bolivar)>0;";
+        } else {
+            sql = "SELECT mes, anio,sum(monto_dolar*?),sum(monto_dolar), sum(saldo_restante_dolar*?),sum(saldo_restante_dolar), moneda_dominante FROM detalle_pagos where id_unidad=? and mes=? and anio=? group by mes, anio, moneda_dominante having sum(saldo_restante_dolar)>0;";
 
-        String sql = "SELECT id, monto, mes, anio, alicuota, estado, saldo_restante FROM factura_unidad where id_unidad=? order by anio,mes";
+        }
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, uni.getId());
+            ps.setDouble(1, getParidad());
+
+            ps.setDouble(2, getParidad());
+            ps.setInt(3, uni.getId());
+
+            ps.setInt(4, getMes_cierre());
+
+            ps.setInt(5, getAño_cierre());
 
             rs = ps.executeQuery();
 
@@ -668,13 +649,13 @@ public class CerrarMes extends ConexionBD {
 
                 modc = new CerrarMes();
 
-//                modc.gas.setId(rs.getInt(1));
-                modc.setMonto(rs.getDouble(2));
-                modc.setMes_cierre(rs.getInt(3));
-                modc.setAño_cierre(rs.getInt(4));
-                modc.setAlicuota(rs.getDouble(5));
-                modc.setEstado(rs.getString(6));
-                modc.setSaldo_restante(rs.getDouble(7));
+                modc.setMes_cierre(rs.getInt(1));
+                modc.setAño_cierre(rs.getInt(2));
+                modc.setMonto_dolar(rs.getDouble(3));
+                modc.setMonto_bolivar(rs.getDouble(4));
+                modc.setSaldo_restante_bs(rs.getDouble(5));
+                modc.setSaldo_restante_dolar(rs.getDouble(6));
+                modc.setMoneda_dominante(rs.getString(7));
 
                 listaCierremes.add(modc);
             }
@@ -695,7 +676,7 @@ public class CerrarMes extends ConexionBD {
         return listaCierremes;
     }
 
-    public ArrayList<CerrarMes> listarpagospendientes(String moneda) {
+    public ArrayList<CerrarMes> listargastos(String moneda) {
         ArrayList listaCierremes = new ArrayList();
         CerrarMes modc;
 
@@ -705,9 +686,66 @@ public class CerrarMes extends ConexionBD {
         int x = 0;
         String sql = "";
         if (moneda.equals("Bolívar")) {
-            sql = "SELECT mes, anio,sum(monto_bolivar),sum(monto_bolivar/?), sum(saldo_restante_bolivar),sum(saldo_restante_bolivar/?), moneda_dominante FROM detalle_pagos where id_unidad=? and mes=? and anio=? group by mes, anio, moneda_dominante having sum(saldo_restante_bolivar)>0;";
+            sql = "SELECT detalle_pagos.mes, detalle_pagos.anio, proveedores.nombre, monto_bolivar/?, monto_bolivar, concepto_gasto.nom_concepto, proveedores.cedula, detalle_pagos.tipo_gasto  FROM public.detalle_pagos inner join gasto on gasto.id = detalle_pagos.id_gasto inner join proveedores on proveedores.cedula=gasto.id_proveedor  inner join puente_gasto_concepto on gasto.id = puente_gasto_concepto.id_gasto inner join concepto_gasto ON concepto_gasto.id = puente_gasto_concepto.id_concepto where detalle_pagos.id_unidad=? and detalle_pagos.mes=? and detalle_pagos.anio=? and (detalle_pagos.tipo_gasto='Ordinario' or detalle_pagos.tipo_gasto='Extraordinario' );";
         } else {
-            sql = "SELECT mes, anio,sum(monto_dolar*?),sum(monto_dolar), sum(saldo_restante_dolar*?),sum(saldo_restante_dolar), moneda_dominante FROM detalle_pagos where id_unidad=? and mes=? and anio=? group by mes, anio, moneda_dominante having sum(saldo_restante_dolar)>0;";
+            sql = "SELECT detalle_pagos.mes, detalle_pagos.anio, proveedores.nombre, monto_dolar, monto_dolar*?, concepto_gasto.nom_concepto, proveedores.cedula, detalle_pagos.tipo_gasto  FROM public.detalle_pagos inner join gasto on gasto.id = detalle_pagos.id_gasto inner join proveedores on proveedores.cedula=gasto.id_proveedor  inner join puente_gasto_concepto on gasto.id = puente_gasto_concepto.id_gasto inner join concepto_gasto ON concepto_gasto.id = puente_gasto_concepto.id_concepto where detalle_pagos.id_unidad=? and detalle_pagos.mes=? and detalle_pagos.anio=? and (detalle_pagos.tipo_gasto='Ordinario' or detalle_pagos.tipo_gasto='Extraordinario' );";
+
+        }
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setDouble(1, getParidad());
+
+            ps.setInt(2, uni.getId());
+            ps.setInt(3, getMes_cierre());
+            ps.setInt(4, getAño_cierre());
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                modc = new CerrarMes();
+
+                modc.setMes_cierre(rs.getInt(1));
+                modc.setAño_cierre(rs.getInt(2));
+                modc.prove.setNombre(rs.getString(3));
+                modc.setMonto_dolar(rs.getDouble(4));
+                modc.setMonto_bolivar(rs.getDouble(5));
+                modc.concep.setNombre(rs.getString(6));
+                modc.prove.setCedula(rs.getString(7));
+                modc.setTipo_gasto(rs.getString(8));
+
+                listaCierremes.add(modc);
+            }
+        } catch (Exception e) {
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+        return listaCierremes;
+    }
+
+    public ArrayList<CerrarMes> listarpagostotales(String moneda) {
+        ArrayList listaCierremes = new ArrayList();
+        CerrarMes modc;
+
+        con = getConexion();
+        ps = null;
+        rs = null;
+        int x = 0;
+        String sql = "";
+        if (moneda.equals("Bolívar")) {
+            sql = "SELECT mes, anio,sum(monto_bolivar),sum(monto_bolivar/?), sum(saldo_restante_bolivar),sum(saldo_restante_bolivar/?), moneda_dominante FROM detalle_pagos where id_unidad=? and mes=? and anio=? group by mes, anio, moneda_dominante;";
+        } else {
+            sql = "SELECT mes, anio,sum(monto_dolar*?),sum(monto_dolar), sum(saldo_restante_dolar*?),sum(saldo_restante_dolar), moneda_dominante FROM detalle_pagos where id_unidad=? and mes=? and anio=? group by mes, anio, moneda_dominante;";
 
         }
         try {
@@ -907,20 +945,28 @@ public class CerrarMes extends ConexionBD {
         return listadetallegasto;
     }
 
-    public ArrayList<CerrarMes> listardetallescuotas() {
-        ArrayList listadetallecuotas = new ArrayList();
+    public ArrayList<CerrarMes> listardetallessancion(String moneda) {
+        ArrayList listaCierremes = new ArrayList();
         CerrarMes modc;
 
         con = getConexion();
         ps = null;
         rs = null;
+        int x = 0;
+        String sql = "";
+        if (moneda.equals("Bolívar")) {
+            sql = "SELECT sancion.descripcion, sancion.tipo,  monto_bolivar/?, monto_bolivar,   sancion.monto  FROM public.detalle_pagos inner join sancion on detalle_pagos.id_gasto = sancion.id where detalle_pagos.id_unidad=? and detalle_pagos.mes=? and detalle_pagos.anio=? and detalle_pagos.tipo_gasto='Sancion';";
+        } else {
+            sql = "SELECT sancion.descripcion,sancion.tipo, monto_dolar, monto_dolar*?,   sancion.monto  FROM public.detalle_pagos inner join sancion on detalle_pagos.id_gasto = sancion.id where detalle_pagos.id_unidad=? and detalle_pagos.mes=? and detalle_pagos.anio=? and detalle_pagos.tipo_gasto='Sancion'";
 
-        String sql = "SELECT concepto_gasto.nom_concepto, detalle_pagos.monto, proveedores.cedula, proveedores.nombre, facturas_proveedores.n_mese_restante FROM detalle_pagos inner join facturas_proveedores on detalle_pagos.id_gasto=facturas_proveedores.id  and tipo_gasto='Cuota especial' inner join concepto_gasto on facturas_proveedores.id_concepto=concepto_gasto.id inner join proveedores on proveedores.cedula=facturas_proveedores.id_proveedor where id_factura=?  and detalle_pagos.mes=? and detalle_pagos.anio=?";
+        }
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
-            ps.setInt(2, getMes_cierre());
-            ps.setInt(3, getAño_cierre());
+            ps.setDouble(1, getParidad());
+
+            ps.setInt(2, uni.getId());
+            ps.setInt(3, getMes_cierre());
+            ps.setInt(4, getAño_cierre());
 
             rs = ps.executeQuery();
 
@@ -928,13 +974,13 @@ public class CerrarMes extends ConexionBD {
 
                 modc = new CerrarMes();
 
-//                modc.concep.setNombre_Concepto(rs.getString(1));
-                modc.setMonto(rs.getDouble(2));
-                modc.prove.setCedula(rs.getString(3));
-                modc.prove.setNombre(rs.getString(4));
-                modc.gasto.setMesesRestantes(rs.getInt(5));
+                modc.san.setDescripcion(rs.getString(1));
+                modc.san.setTipo(rs.getString(2));
+                modc.setMonto_dolar(rs.getDouble(3));
+                modc.setMonto_bolivar(rs.getDouble(4));
+                modc.san.setMonto(rs.getDouble(5));
 
-                listadetallecuotas.add(modc);
+                listaCierremes.add(modc);
             }
         } catch (Exception e) {
         } finally {
@@ -950,23 +996,31 @@ public class CerrarMes extends ConexionBD {
 
         }
 
-        return listadetallecuotas;
+        return listaCierremes;
     }
 
-    public ArrayList<CerrarMes> listardetallessancion() {
-        ArrayList listadetallesancion = new ArrayList();
+    public ArrayList<CerrarMes> listardetallesinteres(String moneda) {
+        ArrayList listaCierremes = new ArrayList();
         CerrarMes modc;
 
         con = getConexion();
         ps = null;
         rs = null;
+        int x = 0;
+        String sql = "";
+        if (moneda.equals("Bolívar")) {
+            sql = "SELECT  interes.nombre, interes.factor,  monto_bolivar/?, monto_bolivar,  detalle_pagos.tipo_gasto  FROM public.detalle_pagos inner join interes on detalle_pagos.id_gasto = interes.id where detalle_pagos.id_unidad=? and detalle_pagos.mes=? and detalle_pagos.anio=? and detalle_pagos.tipo_gasto='Interes';";
+        } else {
+            sql = "SELECT interes.nombre, interes.factor,  monto_dolar, monto_dolar*?,  detalle_pagos.tipo_gasto  FROM public.detalle_pagos inner join interes on detalle_pagos.id_gasto = interes.id where detalle_pagos.id_unidad=? and detalle_pagos.mes=? and detalle_pagos.anio=? and detalle_pagos.tipo_gasto='Interes'";
 
-        String sql = "SELECT detalle_pagos.monto, sancion.monto, sancion.tipo, sancion.descripcion FROM detalle_pagos inner join sancion on detalle_pagos.id_gasto=sancion.id and tipo_gasto='Sancion' where detalle_pagos.id_factura=? and detalle_pagos.mes=? and detalle_pagos.anio=?";
+        }
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
-            ps.setInt(2, getMes_cierre());
-            ps.setInt(3, getAño_cierre());
+            ps.setDouble(1, getParidad());
+
+            ps.setInt(2, uni.getId());
+            ps.setInt(3, getMes_cierre());
+            ps.setInt(4, getAño_cierre());
 
             rs = ps.executeQuery();
 
@@ -974,12 +1028,12 @@ public class CerrarMes extends ConexionBD {
 
                 modc = new CerrarMes();
 
-                modc.setMonto(rs.getDouble(1));
-                modc.setAlicuota(rs.getDouble(2));
-                modc.san.setTipo(rs.getString(3));
-                modc.setEstado(rs.getString(4));
+                modc.in.setNombre(rs.getString(1));
+                modc.in.setFactor(rs.getDouble(2));
+                modc.setMonto_dolar(rs.getDouble(3));
+                modc.setMonto_bolivar(rs.getDouble(4));
 
-                listadetallesancion.add(modc);
+                listaCierremes.add(modc);
             }
         } catch (Exception e) {
         } finally {
@@ -995,59 +1049,15 @@ public class CerrarMes extends ConexionBD {
 
         }
 
-        return listadetallesancion;
+        return listaCierremes;
     }
 
-    public ArrayList<CerrarMes> listardetallesinteres() {
-        ArrayList listadetalleinteres = new ArrayList();
-        CerrarMes modc;
-
-        con = getConexion();
-        ps = null;
-        rs = null;
-
-        String sql = "SELECT  detalle_pagos.monto, interes.factor, interes.nombre FROM detalle_pagos INNER join interes on detalle_pagos.id_gasto = interes.id and tipo_gasto='Interes' where detalle_pagos.id_factura=? and detalle_pagos.mes=? and detalle_pagos.anio=?";
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
-            ps.setInt(2, getMes_cierre());
-            ps.setInt(3, getAño_cierre());
-
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-
-                modc = new CerrarMes();
-
-                modc.setMonto(rs.getDouble(1));
-                modc.setAlicuota(rs.getDouble(2));
-                modc.setEstado(rs.getString(3));
-
-                listadetalleinteres.add(modc);
-            }
-        } catch (Exception e) {
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-        return listadetalleinteres;
-    }
-
-    public boolean bucartotal(CerrarMes modc) {
+    public boolean bucaralicuota(CerrarMes modc) {
 
         ps = null;
         rs = null;
         con = getConexion();
-        String sql = "SELECT monto, alicuota FROM factura_unidad where id_unidad=? and mes=? and anio=?";
+        String sql = "SELECT max(alicuota) FROM detalle_pagos where id_unidad=? and mes=? and anio=? ";
 
         try {
 
@@ -1060,8 +1070,7 @@ public class CerrarMes extends ConexionBD {
             rs = ps.executeQuery();
             if (rs.next()) {
 
-                modc.setMonto(rs.getDouble("monto"));
-                modc.setAlicuota(rs.getDouble("alicuota"));
+                modc.setAlicuota(rs.getDouble(1));
 
                 return true;
             }
@@ -1128,8 +1137,6 @@ public class CerrarMes extends ConexionBD {
         }
 
     }
-
-    
 
     public int getMeses_deuda() {
         return meses_deuda;

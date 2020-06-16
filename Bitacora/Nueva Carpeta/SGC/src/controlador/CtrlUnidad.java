@@ -28,6 +28,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableRowSorter;
 import modelo.CerrarMes;
 import modelo.Funcion;
@@ -45,11 +46,14 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
     private VisUnidad vista;
     private Unidades modelo;
     private Catalogo catalogo;
-
+    int fa = 0;
     private Propietarios modPropietario;
     private TipoUnidad tipoUnidad;
     private detallecuenta detacun;
     private detalleRecibo detare;
+    ArrayList<CerrarMes> listaDominante;
+    ArrayList<CerrarMes> listaCierremes;
+    ArrayList<CerrarMes> listax;
 
     private ArrayList<Unidades> listaUnidades;
     private ArrayList<Propietarios> listaPropietarios;
@@ -112,11 +116,11 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
             this.vista.btnModificar.setEnabled(false);
             this.vista.btnEliminar.setEnabled(false);
             this.vista.txtNumeroUnidad.setEnabled(true);
-            
+
             llenarTablaPropietarios(vista.tablaPropietarios, "Registrar");
             addCheckBox(4, vista.tablaPropietarios);
             limpiar();
-            
+
             CtrlVentana.cambiarVista(vista);
         }
 
@@ -136,7 +140,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
                 int j = 0;
 
                 for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
-                   
+
                     if (valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
                         j = j + 1;
                     }
@@ -307,18 +311,33 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
             int result = JOptionPane.showOptionDialog(null, "Seleccione si desea ver detalles de pago o modificar datos", "MENÚ", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
             if (result == 0) {
-                int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
-                listaUnidades = modelo.listar();
-                String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+                String hola = "";
+                do {
+                    hola = "";
+                    hola = JOptionPane.showInputDialog("ingrese la paridad a trabajar"); //ventana que se despliega para que ingresen la paridad 
+                    modc.setParidad(Double.parseDouble(hola));
+                    int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
+                    listaUnidades = modelo.listar();
+                    String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
 
-                String dato2 = String.valueOf(this.catalogo.tabla.getValueAt(fila, 2)); // por ultimo, obtengo el valor de la celda
-                detacun.setVisible(true);
-                modc.uni.setId(listaUnidades.get(fila).getId());
-                detacun.txtArea.setText(dato2);
-                llenartablapagos(detacun.jTable1);
-                detacun.txtUnidad.setText(dato);
-                modc.buscarmesesdedeuda(modc);
-                detacun.txtMesesdeuda.setText(String.valueOf(modc.getMeses_deuda()));
+                    String dato2 = String.valueOf(this.catalogo.tabla.getValueAt(fila, 3)); // por ultimo, obtengo el valor de la celda
+                    detacun.setVisible(true);
+                    modc.uni.setId(listaUnidades.get(fila).getId());
+                    detacun.txtArea.setText(dato2);
+                    listaDominante = modc.listarDominantes();
+                    fa = 0;
+                    Llenartabla(detacun.jTable1, listaDominante);
+                    detacun.txtUnidad.setText(dato);
+
+                    detacun.txtMesesdeuda.setText(String.valueOf(fa));
+
+                    if (hola == null) {
+                        break;
+                    } else {
+
+                    }
+                } while (isValidDouble(hola) == false); //ciclo que repite mientras no ingresen un numero valido
+
             }
 
             if (result == 1) {
@@ -350,7 +369,8 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
             }
         }
 
-        if (e.getSource() == vista.tablaPropietarios) {
+        if (e.getSource()
+                == vista.tablaPropietarios) {
             int fila = this.vista.tablaPropietarios.getSelectedRow(); // primero, obtengo la fila seleccionada
             String dato = String.valueOf(this.vista.tablaPropietarios.getValueAt(fila, 4)); // por ultimo, obtengo el valor de la celda
 
@@ -359,31 +379,28 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
             }
         }
 
-        if (e.getSource() == detacun.jTable1) {
+        if (e.getSource()
+                == detacun.jTable1) {
 
             int fila = this.detacun.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
-            String datos = String.valueOf(this.detacun.jTable1.getValueAt(fila, 1)); // por ultimo, obtengo el valor de la celda
+            String datos = String.valueOf(this.detacun.jTable1.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
             int fila2 = this.detacun.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
-            String dato2 = String.valueOf(this.detacun.jTable1.getValueAt(fila2, 2)); // por ultimo, obtengo el valor de la celda
-            int fila3 = this.detacun.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
-            String dato3 = String.valueOf(this.detacun.jTable1.getValueAt(fila3, 0)); // por ultimo, obtengo el valor de la celda
+            String dato2 = String.valueOf(this.detacun.jTable1.getValueAt(fila2, 1)); // por ultimo, obtengo el valor de la celda
             this.detare.setVisible(true);
-            modc.setId(Integer.parseInt(dato3));
+            String dato3 = String.valueOf(this.detacun.jTable1.getValueAt(fila2, 6)); // por ultimo, obtengo el valor de la celda
 
             modc.setMes_cierre(Integer.parseInt(datos));
             modc.setAño_cierre(Integer.parseInt(dato2));
-            llenardetallegasto(detare.tablagastos);
-            llenardetallecuotas(detare.tablacuotas);
-            llenardetallesancion(detare.tablasancion);
-            llenardetalleinteres(detare.tablainteres);
+            llenardetallegasto(detare.tablagastos, dato3);
+
+            llenardetallesancion(detare.tablasancion, dato3);
+            llenardetalleinteres(detare.tablainteres, dato3);
             detare.txtMes.setText(datos + "-" + dato2);
             detare.txtUnidad.setText(detacun.txtUnidad.getText());
             detare.txtArea.setText(detacun.txtArea.getText());
-            detare.txtId.setText(dato3);
-            modc.bucartotal(modc);
-
+            modc.bucaralicuota(modc);
             detare.txtAlicuota.setText(String.valueOf(Validacion.formatoalicuota.format(modc.getAlicuota())));
-            detare.txtTotal.setText(String.valueOf(Validacion.formato1.format(modc.getMonto())));
+
         }
 
     }
@@ -571,9 +588,101 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
         }
     }
 
-    public void llenartablapagos(JTable tablaD) {
+    public void Llenartabla(JTable tablaD, ArrayList listadominante) { //funcion para llenar la tabla de pagos pendientes
 
-        listapagos = modc.listarpagos();
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) { //indicamos que columnas son editables y cuales no
+
+                boolean resu = false;
+
+                if (column == 0) {
+                    resu = false;
+                }
+                if (column == 1) {
+                    resu = false;
+                }
+                if (column == 2) {
+                    resu = false;
+                }
+                if (column == 3) {
+                    resu = false;
+                }
+                if (column == 4) {
+                    resu = false;
+                }
+                if (column == 5) {
+                    resu = false;
+                }
+                if (column == 6) {
+                    resu = false;
+                }
+
+                return resu;
+            }
+
+        };
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
+
+        modeloT.addColumn("<html>Mes a <br> Cobrar</html>"); //añadimos el encabezado de la columna
+        modeloT.addColumn("Año");
+        modeloT.addColumn("<html>Monto <br> en $</html>");
+        modeloT.addColumn("<html>Monto <br> en BsS</html>");
+        modeloT.addColumn("<html>Saldo <br> Restante $</html>");
+        modeloT.addColumn("<html>Saldo <br> Restante BsS</html>");
+        modeloT.addColumn("<html>Mantener<br> Valor en</html>");
+
+        Object[] columna = new Object[7];
+
+        for (int s = 0; s < listaDominante.size(); s++) { //ciclo que busca los gastos por la moneda dominante, mes y año
+            modc.setMes_cierre(listaDominante.get(s).getMes_cierre()); //seteamos los datos necesarios para la busqueda
+            modc.setAño_cierre(listaDominante.get(s).getAño_cierre());
+            modc.uni.setId(listaDominante.get(s).uni.getId());
+            listax = modc.listarpagospendientes(listaDominante.get(s).getMoneda_dominante());
+            fa = fa + listax.size();
+            listaCierremes = modc.listarpagostotales(listaDominante.get(s).getMoneda_dominante()); // buscamos los datos por cada mes, año, unidad, se suman y multiplican/dividen por la paridad para obtener el total a mostrar
+            int numRegistro = listaCierremes.size();
+
+            for (int i = 0; i < numRegistro; i++) { //llenamos la columna con los datos obtenidos
+
+                columna[0] = listaCierremes.get(i).getMes_cierre();
+                columna[1] = listaCierremes.get(i).getAño_cierre();
+                columna[2] = listaCierremes.get(i).getMonto_bolivar();
+                columna[3] = listaCierremes.get(i).getMonto_dolar();
+                columna[4] = Validacion.formatopago.format(listaCierremes.get(i).getSaldo_restante_dolar()); //limito los decimales
+                columna[5] = Validacion.formatopago.format(listaCierremes.get(i).getSaldo_restante_bs());
+                columna[6] = listaCierremes.get(i).getMoneda_dominante();
+
+                modeloT.addRow(columna);
+
+            }
+        }
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(6).setCellRenderer(tcr);
+
+        TableColumnModel columnModel = tablaD.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(25);
+        columnModel.getColumn(1).setPreferredWidth(18);
+        columnModel.getColumn(2).setPreferredWidth(35);
+        columnModel.getColumn(3).setPreferredWidth(35);
+        columnModel.getColumn(4).setPreferredWidth(35);
+        columnModel.getColumn(5).setPreferredWidth(35);
+        columnModel.getColumn(6).setPreferredWidth(35);
+
+    }
+
+    public void llenardetallegasto(JTable tablaD, String mone) {
+
+        listadetallegasto = modc.listargastos(mone);
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -586,25 +695,25 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
 
-        modeloT.addColumn("<html>Nº <br>de Recibo</html>");
-        modeloT.addColumn("Mes");
-        modeloT.addColumn("Año");
-        modeloT.addColumn("Monto");
-        modeloT.addColumn("Alícuota");
-        modeloT.addColumn("Estado");
+        modeloT.addColumn("Rif");
+        modeloT.addColumn("Razón Social");
+        modeloT.addColumn("monto bs");
+        modeloT.addColumn("monto $");
+        modeloT.addColumn("concepto");
+        modeloT.addColumn("tipo de gasto");
 
         Object[] columna = new Object[6];
 
-        int numRegistro = listapagos.size();
+        int numRegistro = listadetallegasto.size();
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = listapagos.get(i).gas.getId();
-            columna[1] = listapagos.get(i).getMes_cierre();
-            columna[2] = listapagos.get(i).getAño_cierre();
-            columna[3] = Validacion.formato1.format(listapagos.get(i).getMonto());
-            columna[4] = Validacion.formatoalicuota.format(listapagos.get(i).getAlicuota());
-            columna[5] = listapagos.get(i).getEstado();
+            columna[0] = listadetallegasto.get(i).prove.getCedula();
+            columna[1] = listadetallegasto.get(i).prove.getNombre();
+            columna[2] = listadetallegasto.get(i).getMonto_bolivar();
+            columna[3] = listadetallegasto.get(i).getMonto_dolar();
+            columna[4] = listadetallegasto.get(i).concep.getNombre();
+            columna[5] = listadetallegasto.get(i).getTipo_gasto();
 
             modeloT.addRow(columna);
 
@@ -619,54 +728,9 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
         tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
     }
 
-    public void llenardetallegasto(JTable tablaD) {
+    public void llenardetalleinteres(JTable tablaD, String mone) {
 
-        listadetallegasto = modc.listardetallesgastos();
-        DefaultTableModel modeloT = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-
-                return false;
-            }
-
-        };
-        tablaD.setModel(modeloT);
-        tablaD.getTableHeader().setReorderingAllowed(false);
-        tablaD.getTableHeader().setResizingAllowed(false);
-
-        modeloT.addColumn("Tipo");
-        modeloT.addColumn("Rif");
-        modeloT.addColumn("Razón Social");
-        modeloT.addColumn("Concepto");
-        modeloT.addColumn("Monto");
-
-        Object[] columna = new Object[5];
-
-        int numRegistro = listadetallegasto.size();
-
-        for (int i = 0; i < numRegistro; i++) {
-
-            columna[0] = listadetallegasto.get(i).gas.getTipo_gasto();
-            columna[1] = listadetallegasto.get(i).prove.getCedula();
-            columna[2] = listadetallegasto.get(i).prove.getNombre();
-            columna[3] = listadetallegasto.get(i).concep.getNombre_Concepto();
-            columna[4] = Validacion.formato1.format(listadetallegasto.get(i).getMonto());
-
-            modeloT.addRow(columna);
-
-        }
-        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-        tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
-    }
-
-    public void llenardetalleinteres(JTable tablaD) {
-
-        listadetalleinteres = modc.listardetallesinteres();
+        listadetalleinteres = modc.listardetallesinteres(mone);
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -681,18 +745,20 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
         modeloT.addColumn("Tipo de Interes ");
         modeloT.addColumn("Factor");
-        modeloT.addColumn("Monto");
+        modeloT.addColumn("Monto $");
+        modeloT.addColumn("Monto bs");
 
-        Object[] columna = new Object[5];
+        Object[] columna = new Object[4];
 
         int numRegistro = listadetalleinteres.size();
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = listadetalleinteres.get(i).getEstado();
-            String var6 = String.valueOf(listadetalleinteres.get(i).getAlicuota()) + "%";
+            columna[0] = listadetalleinteres.get(i).in.getNombre();
+            String var6 = String.valueOf(listadetalleinteres.get(i).in.getFactor()) + "%";
             columna[1] = var6;
-            columna[2] = Validacion.formato1.format(listadetalleinteres.get(i).getMonto());
+            columna[2] = listadetalleinteres.get(i).getMonto_dolar();
+            columna[3] = listadetalleinteres.get(i).getMonto_bolivar();
 
             modeloT.addRow(columna);
 
@@ -704,54 +770,9 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
     }
 
-    public void llenardetallecuotas(JTable tablaD) {
+    public void llenardetallesancion(JTable tablaD, String mone) {
 
-        listadetallecuotas = modc.listardetallescuotas();
-        DefaultTableModel modeloT = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-
-                return false;
-            }
-
-        };
-        tablaD.setModel(modeloT);
-        tablaD.getTableHeader().setReorderingAllowed(false);
-        tablaD.getTableHeader().setResizingAllowed(false);
-
-        modeloT.addColumn("<html>Cédula/<br>Rif</html>");
-        modeloT.addColumn("<html>Razón <br> Social</html>");
-        modeloT.addColumn("Concepto");
-        modeloT.addColumn("Monto");
-        modeloT.addColumn("<html>Meses <br> Restantes</html>");
-
-        Object[] columna = new Object[5];
-
-        int numRegistro = listadetallecuotas.size();
-
-        for (int i = 0; i < numRegistro; i++) {
-
-            columna[0] = listadetallecuotas.get(i).prove.getCedula();
-            columna[1] = listadetallecuotas.get(i).prove.getNombre();
-            columna[2] = listadetallecuotas.get(i).concep.getNombre_Concepto();
-            columna[3] = Validacion.formato1.format(listadetallecuotas.get(i).getMonto());
-            columna[4] = listadetallecuotas.get(i).gasto.getMesesRestantes();
-
-            modeloT.addRow(columna);
-
-        }
-        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-        tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
-    }
-
-    public void llenardetallesancion(JTable tablaD) {
-
-        listadetallesancion = modc.listardetallessancion();
+        listadetallesancion = modc.listardetallessancion(mone);
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -767,24 +788,25 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
         modeloT.addColumn("Tipo ");
         modeloT.addColumn("Descripción");
         modeloT.addColumn("Factor");
-        modeloT.addColumn("Monto");
+        modeloT.addColumn("Monto $");
+        modeloT.addColumn("Monto bs");
 
-        Object[] columna = new Object[4];
+        Object[] columna = new Object[5];
 
         int numRegistro = listadetallesancion.size();
+        
 
         for (int i = 0; i < numRegistro; i++) {
 
             columna[0] = listadetallesancion.get(i).san.getTipo();
-            columna[1] = listadetallesancion.get(i).getEstado();
+            columna[1] = listadetallesancion.get(i).san.getDescripcion();
             if (listadetallesancion.get(i).san.getTipo().equals("Interes de mora")) {
-                String var4 = listadetallesancion.get(i).getAlicuota() + "%";
-                columna[2] = var4;
+                columna[2] = listadetallesancion.get(i).san.getMonto()+"%";
             } else {
                 columna[2] = "";
             }
-
-            columna[3] = Validacion.formato1.format(listadetallesancion.get(i).getMonto());
+            columna[3] = listadetallesancion.get(i).getMonto_dolar();
+            columna[4] = listadetallesancion.get(i).getMonto_bolivar();
 
             modeloT.addRow(columna);
 
@@ -923,19 +945,33 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
     public void addCheckBox(int column, JTable table) {
         TableColumn tc = table.getColumnModel().getColumn(column);
-        tc.setCellEditor(table.getDefaultEditor(Boolean.class));
-        tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
+        tc.setCellEditor(table.getDefaultEditor(Boolean.class
+        ));
+        tc.setCellRenderer(table.getDefaultRenderer(Boolean.class
+        ));
     }
 
     @Override
     public void itemStateChanged(ItemEvent e) {
         vista.cbxTipo.setFocusable(false);
-    } 
-    
-    public void stylecombo (JComboBox c) {
+    }
+
+    public void stylecombo(JComboBox c) {
         c.setFont(new Font("Tahoma", Font.BOLD, 14));
         c.setForeground(Color.WHITE);
-        
+
         c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
+    }
+
+    private static boolean isValidDouble(String s) {//funcion para validar si un dato es numerico
+        boolean isValid = true;
+
+        try {
+            Double.parseDouble(s);
+        } catch (NumberFormatException nfe) {
+            isValid = false;
+        }
+
+        return isValid;
     }
 }
