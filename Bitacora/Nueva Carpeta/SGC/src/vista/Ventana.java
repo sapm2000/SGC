@@ -368,6 +368,8 @@ public class Ventana extends javax.swing.JFrame {
         menuPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         menuPerfil.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
+        jPerfil.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/datos-del-usuario.png"))); // NOI18N
         jPerfil.setText("Perfil");
         menuPerfil.add(jPerfil);
 
