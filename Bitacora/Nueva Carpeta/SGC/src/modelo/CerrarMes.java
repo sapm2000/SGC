@@ -36,7 +36,7 @@ public class CerrarMes extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "INSERT INTO detalle_pagos(id_unidad,id_gasto, mes, anio, monto_dolar,monto_bolivar, tipo_gasto, moneda_dominante, paridad, saldo_restante_bolivar, saldo_restante_dolar, alicuota) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO recibo(id_unidad,id_gasto, mes, anio, monto_dolar,monto_bolivar, tipo_gasto, moneda_dominante, paridad, saldo_restante_bolivar, saldo_restante_dolar, alicuota) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?)";
 
         try {
 
@@ -89,10 +89,10 @@ public class CerrarMes extends ConexionBD {
         con = getConexion();
         String sql = "";
         if (x == 1) {
-            sql = "SELECT id_unidad, sum(monto_bolivar) as total FROM detalle_pagos where id_unidad=? and mes=? and anio=? and tipo_gasto != 'Interes' and tipo_gasto != 'Sancion'  group by id_unidad;";
+            sql = "SELECT id_unidad, sum(monto_bolivar) as total FROM recibo where id_unidad=? and mes=? and anio=? and tipo_gasto != 'Interes' and tipo_gasto != 'Sancion'  group by id_unidad;";
 
         } else {
-            sql = "SELECT id_unidad, sum(monto_dolar) as total FROM detalle_pagos where id_unidad=? and mes=? and anio=? and tipo_gasto != 'Interes' and tipo_gasto != 'Sancion'  group by id_unidad;";
+            sql = "SELECT id_unidad, sum(monto_dolar) as total FROM recibo where id_unidad=? and mes=? and anio=? and tipo_gasto != 'Interes' and tipo_gasto != 'Sancion'  group by id_unidad;";
 
         }
 
@@ -182,7 +182,7 @@ public class CerrarMes extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "INSERT INTO detalle_pagos(id_unidad,id_gasto, mes, anio, monto_dolar,monto_bolivar, tipo_gasto, moneda_dominante, paridad, saldo_restante_bolivar, saldo_restante_dolar, alicuota) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO recibo(id_unidad,id_gasto, mes, anio, monto_dolar,monto_bolivar, tipo_gasto, moneda_dominante, paridad, saldo_restante_bolivar, saldo_restante_dolar, alicuota) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?)";
 
         try {
 
@@ -229,7 +229,7 @@ public class CerrarMes extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "INSERT INTO detalle_pagos(id_unidad,id_gasto, mes, anio, monto_dolar,monto_bolivar, tipo_gasto, moneda_dominante, paridad, saldo_restante_bolivar, saldo_restante_dolar, alicuota) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO recibo(id_unidad,id_gasto, mes, anio, monto_dolar,monto_bolivar, tipo_gasto, moneda_dominante, paridad, saldo_restante_bolivar, saldo_restante_dolar, alicuota) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?)";
 
         try {
 
@@ -423,7 +423,7 @@ public class CerrarMes extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE detalle_pagos SET saldo_restante_bolivar=? WHERE id=?;";
+        String sql = "UPDATE recibo SET saldo_restante_bolivar=? WHERE id=?;";
 
         try {
 
@@ -459,7 +459,7 @@ public class CerrarMes extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE detalle_pagos SET saldo_restante_dolar=? WHERE id=?;";
+        String sql = "UPDATE recibo SET saldo_restante_dolar=? WHERE id=?;";
 
         try {
 
@@ -499,7 +499,7 @@ public class CerrarMes extends ConexionBD {
         ps = null;
         rs = null;
 
-        String sql = "SELECT unidad.n_unidad, detalle_pagos.mes, detalle_pagos.anio, sum(detalle_pagos.monto_dolar), sum(detalle_pagos.monto_bolivar) FROM public.detalle_pagos inner join unidad on detalle_pagos.id_unidad=unidad.id group by unidad.n_unidad, detalle_pagos.mes, detalle_pagos.anio;";
+        String sql = "SELECT unidad.n_unidad, recibo.mes, recibo.anio, sum(recibo.monto_dolar), sum(recibo.monto_bolivar) FROM public.recibo inner join unidad on recibo.id_unidad=unidad.id group by unidad.n_unidad, recibo.mes, recibo.anio;";
         try {
             ps = con.prepareStatement(sql);
 
@@ -542,7 +542,7 @@ public class CerrarMes extends ConexionBD {
         ps = null;
         rs = null;
 
-        String sql = "SELECT id_unidad,mes, anio, moneda_dominante FROM detalle_pagos where id_unidad=? group by mes, anio, moneda_dominante, id_unidad;";
+        String sql = "SELECT id_unidad,mes, anio, moneda_dominante FROM recibo where id_unidad=? group by mes, anio, moneda_dominante, id_unidad;";
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, uni.getId());
@@ -580,7 +580,7 @@ public class CerrarMes extends ConexionBD {
         ps = null;
         rs = null;
         con = getConexion();
-        String sql = "SELECT * FROM detalle_pagos where mes=? and anio=?";
+        String sql = "SELECT * FROM recibo where mes=? and anio=?";
 
         try {
 
@@ -627,9 +627,9 @@ public class CerrarMes extends ConexionBD {
         int x = 0;
         String sql = "";
         if (moneda.equals("Bolívar")) {
-            sql = "SELECT mes, anio,sum(monto_bolivar),sum(monto_bolivar/?), sum(saldo_restante_bolivar),sum(saldo_restante_bolivar/?), moneda_dominante FROM detalle_pagos where id_unidad=? and mes=? and anio=? group by mes, anio, moneda_dominante having sum(saldo_restante_bolivar)>0;";
+            sql = "SELECT mes, anio,sum(monto_bolivar),sum(monto_bolivar/?), sum(saldo_restante_bolivar),sum(saldo_restante_bolivar/?), moneda_dominante FROM recibo where id_unidad=? and mes=? and anio=? group by mes, anio, moneda_dominante having sum(saldo_restante_bolivar)>0;";
         } else {
-            sql = "SELECT mes, anio,sum(monto_dolar*?),sum(monto_dolar), sum(saldo_restante_dolar*?),sum(saldo_restante_dolar), moneda_dominante FROM detalle_pagos where id_unidad=? and mes=? and anio=? group by mes, anio, moneda_dominante having sum(saldo_restante_dolar)>0;";
+            sql = "SELECT mes, anio,sum(monto_dolar*?),sum(monto_dolar), sum(saldo_restante_dolar*?),sum(saldo_restante_dolar), moneda_dominante FROM recibo where id_unidad=? and mes=? and anio=? group by mes, anio, moneda_dominante having sum(saldo_restante_dolar)>0;";
 
         }
         try {
@@ -686,9 +686,9 @@ public class CerrarMes extends ConexionBD {
         int x = 0;
         String sql = "";
         if (moneda.equals("Bolívar")) {
-            sql = "SELECT detalle_pagos.mes, detalle_pagos.anio, proveedores.nombre, monto_bolivar/?, monto_bolivar, concepto_gasto.nom_concepto, proveedores.cedula, detalle_pagos.tipo_gasto  FROM public.detalle_pagos inner join gasto on gasto.id = detalle_pagos.id_gasto inner join proveedores on proveedores.cedula=gasto.id_proveedor  inner join puente_gasto_concepto on gasto.id = puente_gasto_concepto.id_gasto inner join concepto_gasto ON concepto_gasto.id = puente_gasto_concepto.id_concepto where detalle_pagos.id_unidad=? and detalle_pagos.mes=? and detalle_pagos.anio=? and (detalle_pagos.tipo_gasto='Ordinario' or detalle_pagos.tipo_gasto='Extraordinario' );";
+            sql = "SELECT recibo.mes, recibo.anio, proveedores.nombre, monto_bolivar/?, monto_bolivar, concepto_gasto.nom_concepto, proveedores.cedula, recibo.tipo_gasto  FROM public.recibo inner join gasto on gasto.id = recibo.id_gasto inner join proveedores on proveedores.cedula=gasto.id_proveedor  inner join puente_gasto_concepto on gasto.id = puente_gasto_concepto.id_gasto inner join concepto_gasto ON concepto_gasto.id = puente_gasto_concepto.id_concepto where recibo.id_unidad=? and recibo.mes=? and recibo.anio=? and (recibo.tipo_gasto='Ordinario' or recibo.tipo_gasto='Extraordinario' );";
         } else {
-            sql = "SELECT detalle_pagos.mes, detalle_pagos.anio, proveedores.nombre, monto_dolar, monto_dolar*?, concepto_gasto.nom_concepto, proveedores.cedula, detalle_pagos.tipo_gasto  FROM public.detalle_pagos inner join gasto on gasto.id = detalle_pagos.id_gasto inner join proveedores on proveedores.cedula=gasto.id_proveedor  inner join puente_gasto_concepto on gasto.id = puente_gasto_concepto.id_gasto inner join concepto_gasto ON concepto_gasto.id = puente_gasto_concepto.id_concepto where detalle_pagos.id_unidad=? and detalle_pagos.mes=? and detalle_pagos.anio=? and (detalle_pagos.tipo_gasto='Ordinario' or detalle_pagos.tipo_gasto='Extraordinario' );";
+            sql = "SELECT recibo.mes, recibo.anio, proveedores.nombre, monto_dolar, monto_dolar*?, concepto_gasto.nom_concepto, proveedores.cedula, recibo.tipo_gasto  FROM public.recibo inner join gasto on gasto.id = recibo.id_gasto inner join proveedores on proveedores.cedula=gasto.id_proveedor  inner join puente_gasto_concepto on gasto.id = puente_gasto_concepto.id_gasto inner join concepto_gasto ON concepto_gasto.id = puente_gasto_concepto.id_concepto where recibo.id_unidad=? and recibo.mes=? and recibo.anio=? and (recibo.tipo_gasto='Ordinario' or recibo.tipo_gasto='Extraordinario' );";
 
         }
         try {
@@ -743,9 +743,9 @@ public class CerrarMes extends ConexionBD {
         int x = 0;
         String sql = "";
         if (moneda.equals("Bolívar")) {
-            sql = "SELECT mes, anio,sum(monto_bolivar),sum(monto_bolivar/?), sum(saldo_restante_bolivar),sum(saldo_restante_bolivar/?), moneda_dominante FROM detalle_pagos where id_unidad=? and mes=? and anio=? group by mes, anio, moneda_dominante;";
+            sql = "SELECT mes, anio,sum(monto_bolivar),sum(monto_bolivar/?), sum(saldo_restante_bolivar),sum(saldo_restante_bolivar/?), moneda_dominante FROM recibo where id_unidad=? and mes=? and anio=? group by mes, anio, moneda_dominante;";
         } else {
-            sql = "SELECT mes, anio,sum(monto_dolar*?),sum(monto_dolar), sum(saldo_restante_dolar*?),sum(saldo_restante_dolar), moneda_dominante FROM detalle_pagos where id_unidad=? and mes=? and anio=? group by mes, anio, moneda_dominante;";
+            sql = "SELECT mes, anio,sum(monto_dolar*?),sum(monto_dolar), sum(saldo_restante_dolar*?),sum(saldo_restante_dolar), moneda_dominante FROM recibo where id_unidad=? and mes=? and anio=? group by mes, anio, moneda_dominante;";
 
         }
         try {
@@ -803,9 +803,9 @@ public class CerrarMes extends ConexionBD {
         int x = 0;
         String sql = "";
         if (moneda.equals("Bolívar")) {
-            sql = "SELECT mes, anio,sum(monto_bolivar),sum(monto_bolivar/?), sum(saldo_restante_bolivar),sum(saldo_restante_bolivar/?), moneda_dominante FROM detalle_pagos where id_unidad=? and mes=? and anio=? group by mes, anio, moneda_dominante having sum(saldo_restante_bolivar)=0;";
+            sql = "SELECT mes, anio,sum(monto_bolivar),sum(monto_bolivar/?), sum(saldo_restante_bolivar),sum(saldo_restante_bolivar/?), moneda_dominante FROM recibo where id_unidad=? and mes=? and anio=? group by mes, anio, moneda_dominante having sum(saldo_restante_bolivar)=0;";
         } else {
-            sql = "SELECT mes, anio,sum(monto_dolar*?),sum(monto_dolar), sum(saldo_restante_dolar*?),sum(saldo_restante_dolar), moneda_dominante FROM detalle_pagos where id_unidad=? and mes=? and anio=? group by mes, anio, moneda_dominante having sum(saldo_restante_dolar)=0;";
+            sql = "SELECT mes, anio,sum(monto_dolar*?),sum(monto_dolar), sum(saldo_restante_dolar*?),sum(saldo_restante_dolar), moneda_dominante FROM recibo where id_unidad=? and mes=? and anio=? group by mes, anio, moneda_dominante having sum(saldo_restante_dolar)=0;";
 
         }
         try {
@@ -903,7 +903,7 @@ public class CerrarMes extends ConexionBD {
         ps = null;
         rs = null;
 
-        String sql = "SELECT id, mes, anio, monto_dolar, monto_bolivar, paridad, moneda_dominante, saldo_restante_bolivar, saldo_restante_dolar FROM detalle_pagos where id_unidad=? and mes=? and anio=?";
+        String sql = "SELECT id, mes, anio, monto_dolar, monto_bolivar, paridad, moneda_dominante, saldo_restante_bolivar, saldo_restante_dolar FROM recibo where id_unidad=? and mes=? and anio=?";
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, uni.getId());
@@ -955,9 +955,9 @@ public class CerrarMes extends ConexionBD {
         int x = 0;
         String sql = "";
         if (moneda.equals("Bolívar")) {
-            sql = "SELECT sancion.descripcion, sancion.tipo,  monto_bolivar/?, monto_bolivar,   sancion.monto  FROM public.detalle_pagos inner join sancion on detalle_pagos.id_gasto = sancion.id where detalle_pagos.id_unidad=? and detalle_pagos.mes=? and detalle_pagos.anio=? and detalle_pagos.tipo_gasto='Sancion';";
+            sql = "SELECT sancion.descripcion, sancion.tipo,  monto_bolivar/?, monto_bolivar,   sancion.monto  FROM public.recibo inner join sancion on recibo.id_gasto = sancion.id where recibo.id_unidad=? and recibo.mes=? and recibo.anio=? and recibo.tipo_gasto='Sancion';";
         } else {
-            sql = "SELECT sancion.descripcion,sancion.tipo, monto_dolar, monto_dolar*?,   sancion.monto  FROM public.detalle_pagos inner join sancion on detalle_pagos.id_gasto = sancion.id where detalle_pagos.id_unidad=? and detalle_pagos.mes=? and detalle_pagos.anio=? and detalle_pagos.tipo_gasto='Sancion'";
+            sql = "SELECT sancion.descripcion,sancion.tipo, monto_dolar, monto_dolar*?,   sancion.monto  FROM public.recibo inner join sancion on recibo.id_gasto = sancion.id where recibo.id_unidad=? and recibo.mes=? and recibo.anio=? and recibo.tipo_gasto='Sancion'";
 
         }
         try {
@@ -1009,9 +1009,9 @@ public class CerrarMes extends ConexionBD {
         int x = 0;
         String sql = "";
         if (moneda.equals("Bolívar")) {
-            sql = "SELECT  interes.nombre, interes.factor,  monto_bolivar/?, monto_bolivar,  detalle_pagos.tipo_gasto  FROM public.detalle_pagos inner join interes on detalle_pagos.id_gasto = interes.id where detalle_pagos.id_unidad=? and detalle_pagos.mes=? and detalle_pagos.anio=? and detalle_pagos.tipo_gasto='Interes';";
+            sql = "SELECT  interes.nombre, interes.factor,  monto_bolivar/?, monto_bolivar,  recibo.tipo_gasto  FROM public.recibo inner join interes on recibo.id_gasto = interes.id where recibo.id_unidad=? and recibo.mes=? and recibo.anio=? and recibo.tipo_gasto='Interes';";
         } else {
-            sql = "SELECT interes.nombre, interes.factor,  monto_dolar, monto_dolar*?,  detalle_pagos.tipo_gasto  FROM public.detalle_pagos inner join interes on detalle_pagos.id_gasto = interes.id where detalle_pagos.id_unidad=? and detalle_pagos.mes=? and detalle_pagos.anio=? and detalle_pagos.tipo_gasto='Interes'";
+            sql = "SELECT interes.nombre, interes.factor,  monto_dolar, monto_dolar*?,  recibo.tipo_gasto  FROM public.recibo inner join interes on recibo.id_gasto = interes.id where recibo.id_unidad=? and recibo.mes=? and recibo.anio=? and recibo.tipo_gasto='Interes'";
 
         }
         try {
@@ -1057,7 +1057,7 @@ public class CerrarMes extends ConexionBD {
         ps = null;
         rs = null;
         con = getConexion();
-        String sql = "SELECT max(alicuota) FROM detalle_pagos where id_unidad=? and mes=? and anio=? ";
+        String sql = "SELECT max(alicuota) FROM recibo where id_unidad=? and mes=? and anio=? ";
 
         try {
 
