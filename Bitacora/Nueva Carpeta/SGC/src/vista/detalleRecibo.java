@@ -41,9 +41,11 @@ public class detalleRecibo extends javax.swing.JFrame {
     public detalleRecibo() {
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
-        jScrollPane2.getVerticalScrollBar().setUI(new MyScrollBarUI());
         jScrollPane3.getVerticalScrollBar().setUI(new MyScrollBarUI());
         jScrollPane4.getVerticalScrollBar().setUI(new MyScrollBarUI());
+        tablagastos.getTableHeader().setDefaultRenderer(new VisMensaje.Headercolor());
+        tablainteres.getTableHeader().setDefaultRenderer(new VisMensaje.Headercolor());
+        tablasancion.getTableHeader().setDefaultRenderer(new VisMensaje.Headercolor());
         setLocationRelativeTo(null);
     }
 
@@ -74,8 +76,6 @@ public class detalleRecibo extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tablacuotas = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablasancion = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -89,14 +89,14 @@ public class detalleRecibo extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
 
         jLabel6.setText("jLabel6");
 
@@ -129,7 +129,7 @@ public class detalleRecibo extends javax.swing.JFrame {
             tablagastos.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 460, 150));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 1110, 150));
 
         jPanel2.setBackground(new java.awt.Color(0, 94, 159));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -137,7 +137,7 @@ public class detalleRecibo extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("<html>\nN° de <br> Unidad:\n</html>");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 60, 30));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 60, 30));
 
         txtUnidad.setBackground(new java.awt.Color(0, 94, 159));
         txtUnidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -145,17 +145,17 @@ public class detalleRecibo extends javax.swing.JFrame {
         txtUnidad.setToolTipText("No se puede modificar este dato");
         txtUnidad.setBorder(null);
         txtUnidad.setEnabled(false);
-        jPanel2.add(txtUnidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 260, 20));
+        jPanel2.add(txtUnidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 260, 20));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Área:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 40, 20));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 40, 20));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Alícuota:");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 60, 20));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 60, 20));
 
         txtAlicuota.setBackground(new java.awt.Color(0, 94, 159));
         txtAlicuota.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -163,7 +163,7 @@ public class detalleRecibo extends javax.swing.JFrame {
         txtAlicuota.setToolTipText("No se puede modificar este dato");
         txtAlicuota.setBorder(null);
         txtAlicuota.setEnabled(false);
-        jPanel2.add(txtAlicuota, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, 260, 20));
+        jPanel2.add(txtAlicuota, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 250, 20));
 
         txtArea.setBackground(new java.awt.Color(0, 94, 159));
         txtArea.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -171,12 +171,12 @@ public class detalleRecibo extends javax.swing.JFrame {
         txtArea.setToolTipText("No se puede modificar este dato");
         txtArea.setBorder(null);
         txtArea.setEnabled(false);
-        jPanel2.add(txtArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 260, 20));
+        jPanel2.add(txtArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 260, 20));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("<html>\nMes <br> Relacionado:\n</html>");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 90, 30));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 90, 30));
 
         txtMes.setBackground(new java.awt.Color(0, 94, 159));
         txtMes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -184,39 +184,21 @@ public class detalleRecibo extends javax.swing.JFrame {
         txtMes.setToolTipText("No se puede modificar este dato");
         txtMes.setBorder(null);
         txtMes.setEnabled(false);
-        jPanel2.add(txtMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 230, 20));
+        jPanel2.add(txtMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 230, 20));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 260, 20));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 260, 20));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 260, 20));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 260, 20));
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 40, 260, 20));
+        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 250, 20));
 
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 230, 20));
+        jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 230, 20));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 1120, 110));
-
-        jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
-
-        tablacuotas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "<html>Cédula/<br>Rif</html>", "Razón Social", "Concepto", "Monto", "<html>Meses <br>Restantes"
-            }
-        ));
-        tablacuotas.setRowHeight(35);
-        jScrollPane2.setViewportView(tablacuotas);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 230, 440, 150));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 670, 110));
 
         jScrollPane3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
@@ -234,7 +216,7 @@ public class detalleRecibo extends javax.swing.JFrame {
         tablasancion.setRowHeight(35);
         jScrollPane3.setViewportView(tablasancion);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, 460, 150));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, 550, 150));
 
         jScrollPane4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
@@ -252,10 +234,10 @@ public class detalleRecibo extends javax.swing.JFrame {
         tablainteres.setRowHeight(35);
         jScrollPane4.setViewportView(tablainteres);
 
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 440, 440, 150));
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 440, 520, 150));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondofomu340-130.png"))); // NOI18N
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 50, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 50, -1, -1));
 
         btnMinimizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (1).png"))); // NOI18N
         btnMinimizar.setToolTipText("Minimizar");
@@ -291,52 +273,50 @@ public class detalleRecibo extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel9.setText("Detalles de Cuenta");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, -1, -1));
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 200, 10, 390));
-        jPanel1.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 930, 20));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 400, 10, 190));
+        jPanel1.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, 1130, 20));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Intereses");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 410, -1, -1));
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 410, -1, -1));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Sanciones");
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 410, -1, -1));
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 410, -1, -1));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Gastos");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, -1, -1));
-
-        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setText("Cuotas Especiales");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 200, -1, -1));
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 200, -1, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, -1, -1));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, -1, 170));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, -1, 170));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 440, -1, 160));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 440, -1, 160));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 190, -1, -1));
-
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondofomu340-130.png"))); // NOI18N
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, -1, -1));
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondofomu340-130.png"))); // NOI18N
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, -1, -1));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, -1));
 
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondofomu340-130.png"))); // NOI18N
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 50, -1, -1));
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 50, -1, -1));
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 190, -1, -1));
+
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 440, -1, 160));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1310, 600));
 
@@ -407,9 +387,9 @@ public class detalleRecibo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -423,7 +403,6 @@ public class detalleRecibo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
@@ -433,7 +412,6 @@ public class detalleRecibo extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JTextField jTextField7;
-    public javax.swing.JTable tablacuotas;
     public javax.swing.JTable tablagastos;
     public javax.swing.JTable tablainteres;
     public javax.swing.JTable tablasancion;
