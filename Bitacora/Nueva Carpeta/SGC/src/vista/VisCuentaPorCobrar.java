@@ -282,7 +282,7 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Por Pagar");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 420, 130, 20));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, 70, 20));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));

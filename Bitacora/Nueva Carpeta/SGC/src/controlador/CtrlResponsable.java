@@ -46,7 +46,8 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
         catalogo.btnNuevo.addActionListener(this);
         catalogo.tabla.addMouseListener(this);
         catalogo.txtBuscar.addKeyListener(this);
-
+            
+        
         llenarTabla();
         permisoBtn();
 
@@ -55,10 +56,12 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
         }
 
         CtrlVentana.cambiarVista(catalogo);
+        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
         if (e.getSource() == catalogo.btnNuevo) {
 
             vista = new vista.VisResponsable();
@@ -80,7 +83,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
             CtrlVentana.cambiarVista(vista);
             vista.cbxCedula.addItemListener(this);
-            stylecombo(vista.cbxCedula);
+        stylecombo(vista.cbxCedula);
         }
 
         if (e.getSource() == vista.btnGuardar) {

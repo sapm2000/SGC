@@ -37,6 +37,7 @@ public class buscarProveedor extends javax.swing.JFrame {
     public buscarProveedor() {
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
+        jTable1.getTableHeader().setDefaultRenderer(new VisMensaje.Headercolor());
         setLocationRelativeTo(null);
 
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
