@@ -161,7 +161,7 @@ public class CuentasPorCobrar extends ConexionBD {
         ps = null;
          Connection con = getConexion();
 
-        String sql = "INSERT INTO puente_cobro_factura(id_detalle_pagos, id_cobro, parte_monto, moneda) VALUES (?, ?, ?, ?);";
+        String sql = "INSERT INTO puente_cobro_factura(id_recibo, id_cobro, parte_monto, moneda) VALUES (?, ?, ?, ?);";
 
         try {
 
