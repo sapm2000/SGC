@@ -3,6 +3,7 @@ package modelo;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import sgc.SGC;
 
 public class Interes extends ConexionBD {
 
@@ -17,13 +18,14 @@ public class Interes extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "INSERT INTO interes(nombre, factor, activo) VALUES (?, ?, true);";
+        String sql = "INSERT INTO interes(nombre, factor, activo, id_condominio) VALUES (?, ?, true, ?);";
 
         try {
 
             ps = con.prepareStatement(sql);
             ps.setString(1, getNombre());
             ps.setDouble(2, getFactor());
+            ps.setString(3, SGC.condominioActual.getRif());
 
             ps.execute();
 
