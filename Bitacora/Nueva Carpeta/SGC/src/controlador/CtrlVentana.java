@@ -80,11 +80,11 @@ public class CtrlVentana implements ActionListener {
         ventana.jSancion.addActionListener(this);
         ventana.jUnidades.addActionListener(this);
         ventana.jFondo.addActionListener(this);
-        ventana.jComunicados.addActionListener(this);
+        
         ventana.pCuentasporCobrar.addActionListener(this);
         ventana.pCuentapagar.addActionListener(this);
         ventana.pVisitas.addActionListener(this);
-        ventana.pCuotas.addActionListener(this);
+        
         ventana.pCerrarMes.addActionListener(this);
         ventana.jPerfil.addActionListener(this);
     }
@@ -140,8 +140,7 @@ public class CtrlVentana implements ActionListener {
         if (e.getSource() == ventana.jCategoria) {
             ctrl = new CtrlCategoriaGasto();
         }
-        if (e.getSource() == ventana.jComunicados) {
-        }
+        
         if (e.getSource() == ventana.jConcepto) {
             ctrl = new CtrlConceptoGasto();
         }
@@ -199,9 +198,7 @@ public class CtrlVentana implements ActionListener {
         if (e.getSource() == ventana.pVisitas) {
             ctrl = new CtrlVisita();
         }
-        if (e.getSource() == ventana.pCuotas) {
-            ctrl = new CtrlPagarGasto();
-        }
+        
         if (e.getSource() == ventana.pCerrarMes) {
             ctrl = new CtrlCerrarMes();
         }
@@ -306,9 +303,7 @@ public class CtrlVentana implements ActionListener {
             if ("Forma de pago".equals(funcionesX.getNombre())) {
                 ventana.menuArchivo.add(ventana.jFormaPago);
             }
-            if ("Comunicados".equals(funcionesX.getNombre())) {
-                ventana.menuArchivo.add(ventana.jComunicados);
-            }
+            
             if ("Cuentas por cobrar".equals(funcionesX.getNombre())) {
                 ventana.menuProceso.add(ventana.pCuentasporCobrar);
             }
@@ -318,9 +313,7 @@ public class CtrlVentana implements ActionListener {
             if ("Visitas autorizadas".equals(funcionesX.getNombre())) {
                 ventana.menuProceso.add(ventana.pVisitas);
             }
-            if ("Pago de cuotas especiales".equals(funcionesX.getNombre())) {
-                ventana.menuProceso.add(ventana.pCuotas);
-            }
+            
             if ("Generar recibo".equals(funcionesX.getNombre())) {
                 ventana.menuProceso.add(ventana.pCerrarMes);
             }
