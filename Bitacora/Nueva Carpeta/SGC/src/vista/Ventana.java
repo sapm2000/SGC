@@ -23,7 +23,6 @@ public class Ventana extends javax.swing.JFrame {
         jAsamblea = new javax.swing.JMenuItem();
         jBanco = new javax.swing.JMenuItem();
         jCategoria = new javax.swing.JMenuItem();
-        jComunicados = new javax.swing.JMenuItem();
         jConcepto = new javax.swing.JMenuItem();
         jCondominio = new javax.swing.JMenuItem();
         jCuenta = new javax.swing.JMenuItem();
@@ -43,7 +42,6 @@ public class Ventana extends javax.swing.JFrame {
         pCuentasporCobrar = new javax.swing.JMenuItem();
         pCuentapagar = new javax.swing.JMenuItem();
         pCerrarMes = new javax.swing.JMenuItem();
-        pCuotas = new javax.swing.JMenuItem();
         pVisitas = new javax.swing.JMenuItem();
         menuReporte = new javax.swing.JMenu();
         menuAyudas = new javax.swing.JMenu();
@@ -100,17 +98,6 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
         menuArchivo.add(jCategoria);
-
-        jComunicados.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jComunicados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mensaje.png"))); // NOI18N
-        jComunicados.setText("Comunicados");
-        jComunicados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jComunicados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComunicadosActionPerformed(evt);
-            }
-        });
-        menuArchivo.add(jComunicados);
 
         jConcepto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jConcepto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/analisis.png"))); // NOI18N
@@ -325,17 +312,6 @@ public class Ventana extends javax.swing.JFrame {
         });
         menuProceso.add(pCerrarMes);
 
-        pCuotas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        pCuotas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cuota.png"))); // NOI18N
-        pCuotas.setText("Pago de Cuotas Especiales");
-        pCuotas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        pCuotas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pCuotasActionPerformed(evt);
-            }
-        });
-        menuProceso.add(pCuotas);
-
         pVisitas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         pVisitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/autorizacion.png"))); // NOI18N
         pVisitas.setText("Visitas Autorizadas");
@@ -391,10 +367,6 @@ public class Ventana extends javax.swing.JFrame {
     private void jCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCategoriaActionPerformed
 
     }//GEN-LAST:event_jCategoriaActionPerformed
-
-    private void jComunicadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComunicadosActionPerformed
-
-    }//GEN-LAST:event_jComunicadosActionPerformed
 
     private void jConceptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConceptoActionPerformed
 
@@ -464,10 +436,6 @@ public class Ventana extends javax.swing.JFrame {
 
     }//GEN-LAST:event_pVisitasActionPerformed
 
-    private void pCuotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pCuotasActionPerformed
-
-    }//GEN-LAST:event_pCuotasActionPerformed
-
     private void pCerrarMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pCerrarMesActionPerformed
 
     }//GEN-LAST:event_pCerrarMesActionPerformed
@@ -512,7 +480,6 @@ public class Ventana extends javax.swing.JFrame {
     public javax.swing.JMenuItem jAsamblea;
     public javax.swing.JMenuItem jBanco;
     public javax.swing.JMenuItem jCategoria;
-    public javax.swing.JMenuItem jComunicados;
     public javax.swing.JMenuItem jConcepto;
     public javax.swing.JMenuItem jCondominio;
     public javax.swing.JMenuItem jCuenta;
@@ -537,7 +504,6 @@ public class Ventana extends javax.swing.JFrame {
     public javax.swing.JMenuItem pCerrarMes;
     public javax.swing.JMenuItem pCuentapagar;
     public javax.swing.JMenuItem pCuentasporCobrar;
-    public javax.swing.JMenuItem pCuotas;
     public javax.swing.JMenuItem pVisitas;
     // End of variables declaration//GEN-END:variables
 }
