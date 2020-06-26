@@ -280,7 +280,7 @@ public class VisFondo extends javax.swing.JPanel {
         jLabel7.setText("Fecha:");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 50, -1));
 
-        cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Bolívar", "Dólar", "Petro" }));
+        cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Bolívar", "Dólar" }));
         jPanel2.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 130, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));

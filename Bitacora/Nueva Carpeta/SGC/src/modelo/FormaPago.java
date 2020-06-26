@@ -3,6 +3,7 @@ package modelo;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import sgc.SGC;
 
 public class FormaPago extends ConexionBD {
 
@@ -12,16 +13,17 @@ public class FormaPago extends ConexionBD {
     private Connection con;
 
     public boolean registrar(FormaPago modfor) {
-
+        int ind;
         ps = null;
         con = getConexion();
 
-        String sql = "INSERT INTO forma_pago (forma_pago, activo) VALUES(?,true);";
+        String sql = "SELECT agregar_forma_pago(?,?);";
 
         try {
-
+            ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setString(1, getForma_pago());
+            ps.setString(ind++, getForma_pago());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;
@@ -163,17 +165,19 @@ public class FormaPago extends ConexionBD {
 
     public boolean modificar(FormaPago modfor) {
 
+        int ind;
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE forma_pago SET forma_pago=? WHERE id=?";
+        String sql = "SELECT modificar_forma_pago(?,?,?)";
 
         try {
 
+            ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setString(1, getForma_pago());
-
-            ps.setInt(2, getId());
+            ps.setInt(ind++, getId());
+            ps.setString(ind++, getForma_pago());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;
@@ -199,16 +203,18 @@ public class FormaPago extends ConexionBD {
 
     public boolean eliminar(FormaPago modfor) {
 
+        int ind;
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE forma_pago SET activo=false WHERE id=?";
+        String sql = "SELECT eliminar_forma_pago(?,?)";
 
         try {
 
+            ind = 1;
             ps = con.prepareStatement(sql);
-
-            ps.setInt(1, getId());
+            ps.setInt(ind++, getId());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;
@@ -217,7 +223,9 @@ public class FormaPago extends ConexionBD {
 
             System.err.println(e);
             return false;
+
         } finally {
+
             try {
 
                 con.close();
@@ -225,25 +233,24 @@ public class FormaPago extends ConexionBD {
             } catch (SQLException e) {
 
                 System.err.println(e);
-
             }
-
         }
-
     }
 
     public boolean activar(FormaPago modfor) {
 
+        int ind;
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE forma_pago SET activo=true WHERE forma_pago=?";
+        String sql = "SELECT reactivar_forma_pago(?,?)";
 
         try {
 
+            ind = 1;
             ps = con.prepareStatement(sql);
-
-            ps.setString(1, getForma_pago());
+            ps.setString(ind++, getForma_pago());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;
@@ -252,19 +259,17 @@ public class FormaPago extends ConexionBD {
 
             System.err.println(e);
             return false;
-        } finally {
-            try {
 
+        } finally {
+
+            try {
                 con.close();
 
             } catch (SQLException e) {
 
                 System.err.println(e);
-
             }
-
         }
-
     }
 
     public int getId() {

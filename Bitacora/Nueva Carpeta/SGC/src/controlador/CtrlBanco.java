@@ -126,6 +126,8 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
                     Llenartabla(catalogo.tabla);
                     limpiar();
+                    CtrlVentana.cambiarVista(catalogo);
+
                 } else {
 
                     if (modban.registrar(modban)) {
@@ -133,15 +135,14 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
                         JOptionPane.showMessageDialog(null, "Registro Guardado");
                         Llenartabla(catalogo.tabla);
                         limpiar();
+                        CtrlVentana.cambiarVista(catalogo);
 
                     } else {
 
-                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
-
+                        JOptionPane.showMessageDialog(null, "No se pudo registrar");
                     }
                 }
             }
-
         }
 
         if (e.getSource() == vista.btnEliminar) {

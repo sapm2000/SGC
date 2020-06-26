@@ -3,7 +3,7 @@ package modelo;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import sgc.SGC;
 
 public class CerrarMes extends ConexionBD {
 
@@ -33,31 +33,29 @@ public class CerrarMes extends ConexionBD {
 
     public boolean registrar_cuota(CerrarMes modc) {
 
+        int ind;
         ps = null;
         con = getConexion();
 
-        String sql = "INSERT INTO recibo(id_unidad,id_gasto, mes, anio, monto_dolar,monto_bolivar, tipo_gasto, moneda_dominante, paridad, saldo_restante_bolivar, saldo_restante_dolar, alicuota) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?)";
+        String sql = "SELECT registrar_cuota(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
 
+            ind = 1;
             ps = con.prepareStatement(sql);
-
-            ps.setInt(1, uni.getId());
-            ps.setInt(2, gasto.getId());
-
-            ps.setInt(3, getMes_cierre());
-
-            ps.setInt(4, getAño_cierre());
-
-            ps.setDouble(5, getMonto_dolar());
-            ps.setDouble(6, getMonto_bolivar());
-            ps.setString(7, getTipo_gasto());
-            ps.setString(8, getMoneda_dominante());
-            ps.setDouble(9, getParidad());
-            ps.setDouble(11, getMonto_dolar());
-            ps.setDouble(10, getMonto_bolivar());
-            ps.setDouble(12, uni.getAlicuota());
-
+            ps.setInt(ind++, uni.getId());
+            ps.setInt(ind++, gasto.getId());
+            ps.setInt(ind++, getMes_cierre());
+            ps.setInt(ind++, getAño_cierre());
+            ps.setDouble(ind++, getMonto_dolar());
+            ps.setDouble(ind++, getMonto_bolivar());
+            ps.setString(ind++, getTipo_gasto());
+            ps.setString(ind++, getMoneda_dominante());
+            ps.setDouble(ind++, getParidad());
+            ps.setDouble(ind++, getMonto_dolar());
+            ps.setDouble(ind++, getMonto_bolivar());
+            ps.setDouble(ind++, uni.getAlicuota());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;
@@ -226,28 +224,29 @@ public class CerrarMes extends ConexionBD {
 
     public boolean registrar_interes(CerrarMes modc) {
 
+        int ind;
         ps = null;
         con = getConexion();
 
-        String sql = "INSERT INTO recibo(id_unidad,id_gasto, mes, anio, monto_dolar,monto_bolivar, tipo_gasto, moneda_dominante, paridad, saldo_restante_bolivar, saldo_restante_dolar, alicuota) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?)";
+        String sql = "SELECT registrar_interes(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
 
+            ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setInt(1, uni.getId());
-            ps.setInt(2, gasto.getId());
-            ps.setInt(3, getMes_cierre());
-            ps.setInt(4, getAño_cierre());
-
-            ps.setDouble(5, getMonto_dolar());
-            ps.setDouble(6, getMonto_bolivar());
-            ps.setString(7, getTipo_gasto());
-            ps.setString(8, getMoneda_dominante());
-            ps.setDouble(9, getParidad());
-            ps.setDouble(11, getMonto_dolar());
-            ps.setDouble(10, getMonto_bolivar());
-            ps.setDouble(12, uni.getAlicuota());
-
+            ps.setInt(ind++, uni.getId());
+            ps.setInt(ind++, gasto.getId());
+            ps.setInt(ind++, getMes_cierre());
+            ps.setInt(ind++, getAño_cierre());
+            ps.setDouble(ind++, getMonto_dolar());
+            ps.setDouble(ind++, getMonto_bolivar());
+            ps.setString(ind++, getTipo_gasto());
+            ps.setString(ind++, getMoneda_dominante());
+            ps.setDouble(ind++, getParidad());
+            ps.setDouble(ind++, getMonto_dolar());
+            ps.setDouble(ind++, getMonto_bolivar());
+            ps.setDouble(ind++, uni.getAlicuota());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;
@@ -258,6 +257,7 @@ public class CerrarMes extends ConexionBD {
             return false;
 
         } finally {
+
             try {
 
                 con.close();
@@ -265,11 +265,8 @@ public class CerrarMes extends ConexionBD {
             } catch (SQLException e) {
 
                 System.err.println(e);
-
             }
-
         }
-
     }
 
     public boolean borrarnulo(CerrarMes modc) {
@@ -489,7 +486,6 @@ public class CerrarMes extends ConexionBD {
         }
 
     }
-
 
     public ArrayList<CerrarMes> listar() {
         ArrayList listaCierremes = new ArrayList();

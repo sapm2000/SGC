@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import sgc.SGC;
 
 public class CuentaPagar extends ConexionBD {
 
@@ -79,8 +80,7 @@ public class CuentaPagar extends ConexionBD {
         con = getConexion();
         int ind;
 
-        String sql = "INSERT INTO cuenta_pagar (descripcion, num_ref, moneda, monto, fecha, tasa_cambio, id_gasto, id_forma_pago, n_cuenta, id_fondo) "
-                + "VALUES (?,?,?,?,?,?,?,?,?,?)";
+        String sql = "SELECT agregar_cuenta_pagar(?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
             ind = 1;
@@ -102,6 +102,7 @@ public class CuentaPagar extends ConexionBD {
             ps.setInt(ind++, formaPago.getId());
             ps.setString(ind++, cuenta.getN_cuenta());
             ps.setInt(ind++, fondo.getId());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;

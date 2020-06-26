@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sgc.SGC;
 
 public class Unidades extends ConexionBD {
 
@@ -149,7 +150,7 @@ public class Unidades extends ConexionBD {
         int ind;
 
         //Registro de los datos de la tabla unidad
-        String sql = "INSERT INTO unidad(n_unidad, n_documento, direccion, id_tipo) VALUES (?,?,?,?);";
+        String sql = "SELECT agregar_unidad(?,?,?,?,?)";
 
         try {
             ps = con.prepareStatement(sql);
@@ -159,7 +160,8 @@ public class Unidades extends ConexionBD {
             ps.setString(ind++, getN_unidad());
             ps.setString(ind++, getDocumento());
             ps.setString(ind++, getDireccion());
-            ps.setDouble(ind++, getTipo_Unidad().getId());
+            ps.setInt(ind++, getTipo_Unidad().getId());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
 
             ps.execute();
 
@@ -370,15 +372,16 @@ public class Unidades extends ConexionBD {
 
             int ind;
 
-            String sql = "UPDATE unidad SET n_documento = ?, direccion = ?, id_tipo=? WHERE id = ?;";
+            String sql = "SELECT modificar_unidad(?,?,?,?,?)";
 
             ps = con.prepareStatement(sql);
 
             ind = 1;
             ps.setString(ind++, getDocumento());
             ps.setString(ind++, getDireccion());
-            ps.setDouble(ind++, getTipo_Unidad().getId());
+            ps.setInt(ind++, getTipo_Unidad().getId());
             ps.setInt(ind++, getId());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
 
             ps.execute();
 
@@ -568,12 +571,13 @@ public class Unidades extends ConexionBD {
 
         int ind;
 
-        String sql = "UPDATE unidad SET activo = false WHERE id = ?";
+        String sql = "SELECT eliminar_unidad(?,?);";
 
         try {
             ind = 1;
             ps = con.prepareStatement(sql);
             ps.setInt(ind++, getId());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             sql = "UPDATE puente_unidad_propietarios SET fecha_hasta = LOCALTIMESTAMP(0), estado = 0 WHERE fecha_hasta IS null AND id_unidad = ?;";

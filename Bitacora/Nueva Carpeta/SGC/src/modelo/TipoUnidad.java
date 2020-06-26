@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sgc.SGC;
 
 public class TipoUnidad extends ConexionBD {
 
@@ -89,11 +90,12 @@ public class TipoUnidad extends ConexionBD {
             con = getConexion();
             int ind;
 
-            String sql = "UPDATE tipo_unidad SET activo = false WHERE id = ?";
+            String sql = "SELECT eliminar_tipo_unidad (?,?);";
 
             ind = 1;
             ps = con.prepareStatement(sql);
             ps.setInt(ind++, getId());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;
@@ -196,7 +198,7 @@ public class TipoUnidad extends ConexionBD {
             con = getConexion();
             int ind;
 
-            String sql = "UPDATE tipo_unidad SET tipo = ?, area = ? WHERE id = ?;";
+            String sql = "SELECT modificar_tipo_unidad(?,?,?,?)";
 
             ps = con.prepareStatement(sql);
 
@@ -204,6 +206,7 @@ public class TipoUnidad extends ConexionBD {
             ps.setString(ind++, getNombre());
             ps.setDouble(ind++, getArea());
             ps.setInt(ind++, getId());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
 
             ps.execute();
 
@@ -229,12 +232,13 @@ public class TipoUnidad extends ConexionBD {
             con = getConexion();
             int ind;
 
-            String sql = "UPDATE tipo_unidad SET activo = true WHERE id = ?";
+            String sql = "SELECT reactivar_tipo_unidad(?,?)";
 
             ps = con.prepareStatement(sql);
 
             ind = 1;
-            ps.setInt(ind++, getId());
+            ps.setString(ind++, getNombre());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
 
             ps.execute();
 
@@ -260,7 +264,7 @@ public class TipoUnidad extends ConexionBD {
             con = getConexion();
             int ind;
 
-            String sql = "INSERT INTO tipo_unidad(tipo, area) VALUES (?,?);";
+            String sql = "SELECT agregar_tipo_unidad(?,?,?);";
 
             ps = con.prepareStatement(sql);
 
@@ -268,6 +272,7 @@ public class TipoUnidad extends ConexionBD {
 
             ps.setString(ind++, getNombre());
             ps.setDouble(ind++, getArea());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
 
             ps.execute();
 

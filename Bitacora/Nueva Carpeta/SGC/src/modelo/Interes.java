@@ -15,18 +15,20 @@ public class Interes extends ConexionBD {
 
     public boolean registrarinteres(Interes modin) {
 
+        int ind;
         ps = null;
         con = getConexion();
 
-        String sql = "INSERT INTO interes(nombre, factor, activo, id_condominio) VALUES (?, ?, true, ?);";
+        String sql = "SELECT agregar_interes(?,?,?,?);";
 
         try {
 
+            ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setString(1, getNombre());
-            ps.setDouble(2, getFactor());
-            ps.setString(3, SGC.condominioActual.getRif());
-
+            ps.setString(ind++, getNombre());
+            ps.setDouble(ind++, getFactor());
+            ps.setString(ind++, SGC.condominioActual.getRif());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;
@@ -176,19 +178,20 @@ public class Interes extends ConexionBD {
 
     public boolean modificar_Interes(Interes modin) {
 
+        int ind;
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE interes SET nombre=?, factor=? WHERE id=?;";
+        String sql = "SELECT modificar_interes(?,?,?,?);";
 
         try {
 
+            ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setString(1, getNombre());
-            ps.setDouble(2, getFactor());
-
-            ps.setInt(3, getId());
-
+            ps.setInt(ind++, getId());
+            ps.setString(ind++, getNombre());
+            ps.setDouble(ind++, getFactor());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;
@@ -294,15 +297,18 @@ public class Interes extends ConexionBD {
 
     public boolean eliminarInteres(Interes modin) {
 
+        int ind;
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE interes SET activo=false WHERE id=?";
+        String sql = "SELECT eliminar_interes(?,?)";
 
         try {
 
+            ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
+            ps.setInt(ind++, getId());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;
@@ -313,6 +319,7 @@ public class Interes extends ConexionBD {
             return false;
 
         } finally {
+
             try {
 
                 con.close();
@@ -320,24 +327,24 @@ public class Interes extends ConexionBD {
             } catch (SQLException e) {
 
                 System.err.println(e);
-
             }
-
         }
-
     }
 
     public boolean activarInteres(Interes modin) {
 
+        int ind;
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE interes SET activo=true WHERE id=?";
+        String sql = "SELECT reactivar_interes(?,?);";
 
         try {
 
+            ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
+            ps.setInt(ind++, getId());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import sgc.SGC;
 
 public class Gasto extends ConexionBD {
 
@@ -86,17 +87,17 @@ public class Gasto extends ConexionBD {
             ps = null;
             con = getConexion();
 
-            String sql = "INSERT INTO gasto(tipo, id_proveedor, calcular_por, mes, anio, n_meses, observacion, id_asamblea, meses_restantes, monto, saldo, moneda, nombre) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
+            String sql = "SELECT agregar_gasto(?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
             ps = con.prepareStatement(sql);
             ind = 1;
+            ps.setString(ind++, getNombre());
             ps.setString(ind++, getTipo());
             ps.setString(ind++, proveedor.getCedula());
             ps.setString(ind++, getCalcular());
-            ps.setDouble(ind++, getMes());
+            ps.setInt(ind++, getMes());
             ps.setInt(ind++, getAnio());
             ps.setInt(ind++, getNumMeses());
-            ps.setString(ind++, getObservacion());
 
             if (asamblea != null) {
                 ps.setInt(ind++, asamblea.getId());
@@ -105,11 +106,11 @@ public class Gasto extends ConexionBD {
                 ps.setNull(ind++, java.sql.Types.NULL);
             }
 
+            ps.setString(ind++, getObservacion());
             ps.setInt(ind++, getMesesRestantes());
             ps.setDouble(ind++, getMonto());
-            ps.setDouble(ind++, getSaldo());
             ps.setString(ind++, getMoneda());
-            ps.setString(ind++, getNombre());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             if (buscarId()) {
@@ -122,14 +123,18 @@ public class Gasto extends ConexionBD {
             return false;
 
         } catch (SQLException e) {
+            
             System.err.println(e);
             return false;
 
         } finally {
+            
             try {
+                
                 con.close();
 
             } catch (SQLException e) {
+                
                 System.err.println(e);
             }
         }
@@ -315,10 +320,12 @@ public class Gasto extends ConexionBD {
             ps = null;
             con = getConexion();
 
-            String sql = "UPDATE gasto SET tipo=?, id_proveedor=?, calcular_por=?, mes=?, anio=?, n_meses=?, id_asamblea=?, observacion=?, meses_restantes=?, monto=?, saldo=?, moneda=?, nombre=? WHERE id = ?;";
+            String sql = "SELECT modificar_gasto(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
             ps = con.prepareStatement(sql);
             ind = 1;
+            ps.setInt(ind++, getId());
+            ps.setString(ind++, getNombre());
             ps.setString(ind++, getTipo());
             ps.setString(ind++, proveedor.getCedula());
             ps.setString(ind++, getCalcular());
@@ -335,13 +342,10 @@ public class Gasto extends ConexionBD {
 
             ps.setString(ind++, getObservacion());
             ps.setInt(ind++, getMesesRestantes());
-            System.out.println("monto total: " + getMonto());
             ps.setDouble(ind++, getMonto());
             ps.setDouble(ind++, getSaldo());
             ps.setString(ind++, getMoneda());
-            ps.setString(ind++, getNombre());
-
-            ps.setInt(ind++, getId());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
 
             ps.execute();
 
@@ -489,78 +493,6 @@ public class Gasto extends ConexionBD {
         ps.execute();
 
         return true;
-    }
-
-    public boolean eliminar_cuotas_especiales(Gasto modcuo) {
-
-        ps = null;
-        con = getConexion();
-
-        String sql = "DELETE FROM facturas_proveedores WHERE id=?;";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
-
-            ps.execute();
-
-            return true;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-    }
-
-    public boolean eliminar_puente(Gasto modcuo) {
-
-        ps = null;
-        con = getConexion();
-
-        String sql = "DELETE FROM puente_concepto_factura WHERE id_factura_proveedor=?";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
-
-            ps.execute();
-
-            return true;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
     }
 
     public Boolean restarSaldo(Double saldoNuevo) {

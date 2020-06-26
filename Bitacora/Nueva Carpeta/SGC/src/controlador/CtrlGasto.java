@@ -140,7 +140,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
                 //Se guardan en el modelo los datos básicos
                 modelo.setNombre(vista.txtNombre.getText());
                 modelo.setTipo(vista.jcombotipo.getSelectedItem().toString());
-                modelo.getProveedor().setCedula(vista.txtProveedor.getText());
+                modelo.setProveedor(modProveedor);
                 modelo.setCalcular(vista.jCalcular.getSelectedItem().toString());
                 modelo.setMes(vista.jMonthChooser1.getMonth() + 1);
                 modelo.setAnio(vista.jYearChooser1.getYear());
@@ -235,7 +235,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
                 //Se guardan en el modelo los datos básicos
                 modelo.setNombre(vista.txtNombre.getText());
                 modelo.setTipo(vista.jcombotipo.getSelectedItem().toString());
-                modelo.getProveedor().setCedula(vista.txtProveedor.getText());
+                modelo.setProveedor(modProveedor);
                 modelo.setCalcular(vista.jCalcular.getSelectedItem().toString());
                 modelo.setMes(vista.jMonthChooser1.getMonth() + 1);
                 modelo.setAnio(vista.jYearChooser1.getYear());
@@ -330,20 +330,6 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
         }
 
         if (e.getSource() == vista.btnEliminar) {
-
-//            modelo.setId(Integer.parseInt(vista.txtid.getText()));
-//
-//            if (modelo.eliminar_cuotas_especiales(modelo)) {
-//                modelo.eliminar_puente(modelo);
-//                JOptionPane.showMessageDialog(null, "Registro Eliminado");
-//                llenarTabla(catalogo.tabla);
-//                CtrlVentana.cambiarVista(catalogo);
-//
-//            } else {
-//
-//                JOptionPane.showMessageDialog(null, "Error al Eliminar");
-//
-//            }
         }
 
         if (e.getSource() == vista.btnLimpiar) {
@@ -408,7 +394,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
             ind = 0;
             columna[ind++] = lista.get(i).getId();
             columna[ind++] = lista.get(i).getNombre();
-            columna[ind++] = lista.get(i).getProveedor().getCedula();
+            columna[ind++] = lista.get(i).getProveedor().getNombre();
             columna[ind++] = lista.get(i).getCalcular();
             fecha = String.valueOf(lista.get(i).getMes()) + " - " + lista.get(i).getAnio();
             columna[ind++] = fecha;
@@ -598,6 +584,11 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
             resultado = false;
         }
 
+        if (vista.txtNombre.getText().isEmpty()) {
+            msj += "El campo Nombre no debe estar vacío\n";
+            resultado = false;
+        }
+
         if (vista.jcombotipo.getSelectedItem().equals("Extraordinario")) {
 
             if (vista.txtNmeses.getText().isEmpty()) {
@@ -716,9 +707,10 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
             modelo = lista.get(fila);
 
             //Se muestran los datos básicos en el formulario
+            vista.txtNombre.setText(modelo.getNombre());
             vista.jcombotipo.setSelectedItem(modelo.getTipo());
-            vista.txtProveedor.setText(modelo.getProveedor().getCedula());
-            vista.jLabel2.setText(modelo.getProveedor().getNombre());
+            modProveedor = modelo.getProveedor();
+            vista.txtProveedor.setText(modProveedor.getNombre());
             vista.jCalcular.setSelectedItem(modelo.getCalcular());
             vista.cbxMoneda.setSelectedItem(modelo.getMoneda());
             vista.jMonthChooser1.setMonth(modelo.getMes() - 1);
@@ -762,12 +754,8 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
 
         if (e.getSource() == catProveedores.jTable1) {
             int fila = this.catProveedores.jTable1.getSelectedRow(); // primero, obtengo la fila seleccionada
-
             modProveedor = listaProveedores.get(fila);
-
-            vista.txtProveedor.setText(modProveedor.getCedula());
-            vista.jLabel2.setText(modProveedor.getNombre());
-
+            vista.txtProveedor.setText(modProveedor.getNombre());
             catProveedores.dispose();
         }
 

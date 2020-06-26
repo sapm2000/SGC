@@ -83,33 +83,37 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == vista.btnGuardar) {
-            if (validar()) {
 
+            if (validar()) {
                 modelo.setNombre(vista.txtNombreC.getText());
                 modelo.setDescripcion(vista.txtDescripcion.getText());
                 int ind = vista.cbxCategoria.getSelectedIndex() - 1;
                 modelo.getCategoria().setId(listaCategoria.get(ind).getId());
+
                 if (ind == -1) {
                     JOptionPane.showMessageDialog(null, "por favor seleccione una categoria");
+
                 } else {
 
                     if (modelo.buscarInactivo(modelo)) {
-                        modelo.activar(modelo);
-                        modelo.modificarConcepto(modelo);
-                        JOptionPane.showMessageDialog(null, "Registro Guardado");
-                        llenarTabla(catalogo.tabla);
+                        if (modelo.activar(modelo)) {
+                            JOptionPane.showMessageDialog(null, "Registro guardado");
+                            llenarTabla(catalogo.tabla);
+                            CtrlVentana.cambiarVista(catalogo);
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No se pudo registrar");
+                        }
 
                     } else {
 
                         if (modelo.registrar()) {
-
-                            JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
+                            JOptionPane.showMessageDialog(null, "Registro guardado");
                             llenarTabla(catalogo.tabla);
+                            CtrlVentana.cambiarVista(catalogo);
 
                         } else {
-
-                            JOptionPane.showMessageDialog(null, "Registro Duplicado");
-
+                            JOptionPane.showMessageDialog(null, "No se pudo registrar");
                         }
                     }
                 }
@@ -133,12 +137,12 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
 
                     } else {
 
-                        if (modelo.modificarConcepto(modelo)) {
+                        if (modelo.modificar(modelo)) {
 
                             JOptionPane.showMessageDialog(null, "Registro modificado");
-                            CtrlVentana.cambiarVista(catalogo);
                             llenarTabla(catalogo.tabla);
                             limpiar();
+                            CtrlVentana.cambiarVista(catalogo);
 
                         } else {
 
@@ -466,16 +470,16 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
         tc.setCellEditor(table.getDefaultEditor(Boolean.class));
         tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
     }
-    
+
     @Override
     public void itemStateChanged(ItemEvent e) {
         vista.cbxCategoria.setFocusable(false);
-    } 
-    
-    public void stylecombo (JComboBox c) {
+    }
+
+    public void stylecombo(JComboBox c) {
         c.setFont(new Font("Tahoma", Font.BOLD, 14));
         c.setForeground(Color.WHITE);
-        
+
         c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
     }
 }

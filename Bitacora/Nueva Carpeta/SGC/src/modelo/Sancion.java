@@ -24,19 +24,21 @@ public class Sancion extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "INSERT INTO sancion(tipo, mes, anio, monto, descripcion,  estado, moneda) VALUES (?, ?, ?, ?, ?, ?, ?);";
+        String sql = "SELECT agregar_sancion(?,?,?,?,?,?,?,?)";
 
         try {
-
+            int ind;
+            ind = 1;
+            
             ps = con.prepareStatement(sql);
-            ps.setString(1, modsan.getTipo());
-            ps.setInt(2, modsan.getMes());
-            ps.setInt(3, modsan.getAño());
-            ps.setDouble(4, modsan.getMonto());
-            ps.setString(5, modsan.getDescripcion());
-
-            ps.setString(6, modsan.getEstado());
-            ps.setString(7, modsan.getMoneda());
+            ps.setString(ind++, modsan.getTipo());
+            ps.setInt(ind++, modsan.getMes());
+            ps.setInt(ind++, modsan.getAño());
+            ps.setDouble(ind++, modsan.getMonto());
+            ps.setString(ind++, modsan.getDescripcion());
+            ps.setString(ind++, modsan.getEstado());
+            ps.setString(ind++, modsan.getMoneda());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
 
             ps.execute();
             return true;
@@ -405,18 +407,20 @@ public class Sancion extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE sancion SET tipo=?, mes=?, anio=?, monto=?, descripcion=?, moneda=? WHERE id=?;";
+        String sql = "SELECT modificar_sancion(?,?,?,?,?,?,?,?);";
 
         try {
-
+            int ind;
+            ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setString(1, getTipo());
-            ps.setInt(2, getMes());
-            ps.setInt(3, getAño());
-            ps.setDouble(4, getMonto());
-            ps.setString(5, getDescripcion());
-            ps.setString(6, getMoneda());
-            ps.setInt(7, getId());
+            ps.setString(ind++, getTipo());
+            ps.setInt(ind++, getMes());
+            ps.setInt(ind++, getAño());
+            ps.setDouble(ind++, getMonto());
+            ps.setString(ind++, getDescripcion());
+            ps.setString(ind++, getMoneda());
+            ps.setInt(ind++, getId());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
 
             ps.execute();
 
@@ -481,12 +485,15 @@ public class Sancion extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "DELETE FROM sancion WHERE id=?";
+        String sql = "SELECT eliminar_sancion(?,?)";
 
         try {
+            int ind;
+            ind = 1;
 
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
+            ps.setInt(ind++, getId());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;

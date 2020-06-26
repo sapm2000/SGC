@@ -41,7 +41,6 @@ public class CtrlCategoriaGasto implements ActionListener, MouseListener, KeyLis
         this.modelo = new CategoriaGasto();
 
         catalogo.lblTitulo.setText("Categoría Gastos");
-        CtrlVentana.cambiarVista(catalogo);
         Llenartabla(catalogo.tabla);
 
         permisoBtn();
@@ -60,8 +59,8 @@ public class CtrlCategoriaGasto implements ActionListener, MouseListener, KeyLis
         this.catalogo.txtBuscar.addKeyListener(this);
         this.vista.txtnombre.addKeyListener(this);
         this.vista.txtdescripcion.addKeyListener(this);
-        this.catalogo.setVisible(true);
 
+        CtrlVentana.cambiarVista(catalogo);
     }
 
     public void Llenartabla(JTable tablaD) {
@@ -173,25 +172,26 @@ public class CtrlCategoriaGasto implements ActionListener, MouseListener, KeyLis
                 modelo.setDescripcion(vista.txtdescripcion.getText());
 
                 if (modelo.buscarInactivo(modelo)) {
-                    modelo.activar(modelo);
-                    modelo.modificar(modelo);
-                    JOptionPane.showMessageDialog(null, "Registro Guardado");
-                    Llenartabla(catalogo.tabla);
+                    if (modelo.activar(modelo)) {
+                        JOptionPane.showMessageDialog(null, "Registro guardado");
+                        Llenartabla(catalogo.tabla);
+                        CtrlVentana.cambiarVista(catalogo);
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se pudo registrar");
+                    }
 
                 } else {
 
                     if (modelo.registrar(modelo)) {
-
-                        JOptionPane.showMessageDialog(null, "Registro Guardado");
+                        JOptionPane.showMessageDialog(null, "Registro guardado");
                         Llenartabla(catalogo.tabla);
+                        CtrlVentana.cambiarVista(catalogo);
 
                     } else {
-
-                        JOptionPane.showMessageDialog(null, "Registro Duplicado");
-
+                        JOptionPane.showMessageDialog(null, "No se pudo registrar");
                     }
                 }
-
             }
         }
 
@@ -203,8 +203,8 @@ public class CtrlCategoriaGasto implements ActionListener, MouseListener, KeyLis
                 if (modelo.eliminar(modelo)) {
 
                     JOptionPane.showMessageDialog(null, "Registro Eliminado");
-                    CtrlVentana.cambiarVista(catalogo);
                     Llenartabla(catalogo.tabla);
+                    CtrlVentana.cambiarVista(catalogo);
 
                 } else {
 
@@ -229,13 +229,12 @@ public class CtrlCategoriaGasto implements ActionListener, MouseListener, KeyLis
                     if (modelo.modificar(modelo)) {
 
                         JOptionPane.showMessageDialog(null, "Registro modificado");
-                        CtrlVentana.cambiarVista(catalogo);
                         Llenartabla(catalogo.tabla);
+                        CtrlVentana.cambiarVista(catalogo);
 
                     } else {
 
-                        JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
-
+                        JOptionPane.showMessageDialog(null, "No se pudo modificar");
                     }
                 }
             }

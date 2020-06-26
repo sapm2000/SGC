@@ -3,6 +3,7 @@ package modelo;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import sgc.SGC;
 
 public class Proveedores extends ConexionBD {
 
@@ -17,20 +18,23 @@ public class Proveedores extends ConexionBD {
 
     public boolean registrar(Proveedores modpro) {
 
+        int ind;
         ps = null;
         con = getConexion();
 
-        String sql = "INSERT INTO proveedores(cedula, nombre, telefono, correo, contacto, direccion, activo) VALUES (?, ?, ?, ?, ?, ?, 1);";
+        String sql = "SELECT agregar_proveedor(?,?,?,?,?,?,?);";
 
         try {
 
+            ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setString(1, getCedula());
-            ps.setString(2, getNombre());
-            ps.setString(3, getTelefono());
-            ps.setString(4, getCorreo());
-            ps.setString(5, getContacto());
-            ps.setString(6, getDireccion());
+            ps.setString(ind++, getCedula());
+            ps.setString(ind++, getNombre());
+            ps.setString(ind++, getTelefono());
+            ps.setString(ind++, getCorreo());
+            ps.setString(ind++, getContacto());
+            ps.setString(ind++, getDireccion());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;
@@ -58,7 +62,7 @@ public class Proveedores extends ConexionBD {
         ps = null;
         rs = null;
 
-        String sql = "SELECT cedula, nombre, telefono, correo, contacto, direccion FROM proveedores where activo=1;";
+        String sql = "SELECT cedula, nombre, telefono, correo, contacto, direccion FROM proveedores where activo = true;";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -101,7 +105,7 @@ public class Proveedores extends ConexionBD {
         ps = null;
         rs = null;
 
-        String sql = "SELECT cedula, nombre, telefono, correo, contacto, direccion FROM proveedores where activo=0;";
+        String sql = "SELECT cedula, nombre, telefono, correo, contacto, direccion FROM proveedores where activo = false;";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
@@ -183,21 +187,23 @@ public class Proveedores extends ConexionBD {
 
     public boolean modificar(Proveedores modpro) {
 
+        int ind;
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE proveedores SET nombre=?, telefono=?, correo=?, contacto=?, direccion=? WHERE cedula=?;";
+        String sql = "SELECT modificar_proveedor(?,?,?,?,?,?,?);";
 
         try {
 
+            ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setString(1, getNombre());
-            ps.setString(2, getTelefono());
-            ps.setString(3, getCorreo());
-            ps.setString(4, getContacto());
-            ps.setString(5, getDireccion());
-
-            ps.setString(6, getCedula());
+            ps.setString(ind++, getCedula());
+            ps.setString(ind++, getNombre());
+            ps.setString(ind++, getTelefono());
+            ps.setString(ind++, getCorreo());
+            ps.setString(ind++, getContacto());
+            ps.setString(ind++, getDireccion());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;
@@ -223,15 +229,18 @@ public class Proveedores extends ConexionBD {
 
     public boolean eliminar(Proveedores modpro) {
 
+        int ind;
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE proveedores SET activo=0 WHERE cedula=?;";
+        String sql = "SELECT eliminar_proveedor(?,?);";
 
         try {
 
+            ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setString(1, getCedula());
+            ps.setString(ind++, getCedula());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;
@@ -261,7 +270,7 @@ public class Proveedores extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE proveedores SET activo=1 WHERE cedula=?;";
+        String sql = "SELECT reactivar_proveedor(?,?);";
 
         try {
 

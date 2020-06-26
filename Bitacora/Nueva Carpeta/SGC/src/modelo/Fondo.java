@@ -25,20 +25,19 @@ public class Fondo extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "INSERT INTO fondos(tipo, fecha, descripcion, observaciones, monto_inicial, saldo, id_condominio, moneda) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+        String sql = "SELECT agregar_fondos(?,?,?,?,?,?,?);";
 
         try {
 
             int ind;
             ind = 1;
             ps = con.prepareStatement(sql);
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.setString(ind++, getTipo());
             ps.setDate(ind++, getFecha());
             ps.setString(ind++, getDescripcion());
             ps.setString(ind++, getObservacion());
             ps.setDouble(ind++, getMonto_inicial());
-            ps.setDouble(ind++, getMonto_inicial());
-            ps.setString(ind++, SGC.condominioActual.getRif());
             ps.setString(ind++, getMoneda());
             ps.execute();
 
@@ -124,13 +123,12 @@ public class Fondo extends ConexionBD {
         ps = null;
         rs = null;
         con = getConexion();
-        String sql = "SELECT id, fecha, descripcion, observaciones, monto_inicial, saldo, moneda FROM fondos where id_condominio=? and tipo=?;";
+        String sql = "SELECT id, fecha, descripcion, observaciones, monto_inicial, saldo, moneda FROM fondos where tipo=?;";
 
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, SGC.condominioActual.getRif());
-            ps.setString(2, modfon.getTipo());
+            ps.setString(1, modfon.getTipo());
             rs = ps.executeQuery();
             if (rs.next()) {
                 modfon.setId(rs.getInt("id"));
@@ -171,13 +169,12 @@ public class Fondo extends ConexionBD {
         ps = null;
         rs = null;
         con = getConexion();
-        String sql = "SELECT id, fecha, descripcion, observaciones, monto_inicial, saldo FROM fondos where id_condominio=? and tipo=?;";
+        String sql = "SELECT id, fecha, descripcion, observaciones, monto_inicial, saldo FROM fondos where tipo=?;";
 
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, SGC.condominioActual.getRif());
-            ps.setString(2, modfon.getTipo());
+            ps.setString(1, modfon.getTipo());
             rs = ps.executeQuery();
             if (rs.next()) {
                 modfon.setId(rs.getInt("id"));
@@ -213,21 +210,17 @@ public class Fondo extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE fondos SET  fecha=?, descripcion=?, observaciones=?, monto_inicial=?, saldo=?, tipo=?, moneda=? WHERE id=?";
+        String sql = "SELECT modificar_fondos(?,?,?,?,?);";
 
         try {
             int ind;
             ind = 1;
 
             ps = con.prepareStatement(sql);
-            ps.setDate(ind++, getFecha());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
+            ps.setString(ind++, getTipo());
             ps.setString(ind++, getDescripcion());
             ps.setString(ind++, getObservacion());
-            ps.setDouble(ind++, getMonto_inicial());
-            ps.setDouble(ind++, getSaldo());
-
-            ps.setString(ind++, getTipo());
-            ps.setString(ind++, getMoneda());
             ps.setInt(ind++, getId());
             ps.execute();
 
@@ -295,12 +288,15 @@ public class Fondo extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE fondos SET activo=false WHERE id=?";
+        String sql = "SELECT eliminar_fondos(?,?)";
 
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
+            int ind;
+            ind = 1;
+            ps.setInt(ind++, SGC.usuarioActual.getId());
+            ps.setInt(ind++, getId());
 
             ps.execute();
 

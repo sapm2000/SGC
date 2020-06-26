@@ -3,6 +3,7 @@ package modelo;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import sgc.SGC;
 
 public class Banco extends ConexionBD {
 
@@ -16,12 +17,13 @@ public class Banco extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "INSERT INTO banco (nombre_banco, activo) VALUES(?,true);";
+        String sql = "SELECT agregar_banco(?,?);";
 
         try {
 
             ps = con.prepareStatement(sql);
             ps.setString(1, getNombre_banco());
+            ps.setInt(2, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;
@@ -162,18 +164,18 @@ public class Banco extends ConexionBD {
     }
 
     public boolean modificar(Banco modban) {
-
+        int ind;
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE banco SET nombre_banco=? WHERE id=?";
+        String sql = "SELECT modificar_banco(?,?,?);";
 
         try {
-
+            ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setString(1, getNombre_banco());
-
-            ps.setInt(2, getId());
+            ps.setInt(ind++, getId());
+            ps.setString(ind++, getNombre_banco());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;
@@ -241,13 +243,14 @@ public class Banco extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE banco SET activo=false WHERE id=?";
+        String sql = "SELECT eliminar_banco(?,?);";
 
         try {
 
             ps = con.prepareStatement(sql);
 
             ps.setInt(1, getId());
+            ps.setInt(2, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;

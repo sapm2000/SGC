@@ -105,14 +105,11 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
                 } else {
                     JOptionPane.showMessageDialog(null, "Los datos del condominio no están configurados\nIngrese los datos a continuación", "Información", JOptionPane.INFORMATION_MESSAGE);
                     condominio = new CtrlCondominio(false);
-
                 }
 
             } else {
                 JOptionPane.showMessageDialog(null, "Acceso Denegado", "Error", JOptionPane.ERROR_MESSAGE);
-
             }
-
         }
     }
 

@@ -75,7 +75,7 @@ public class CtrlVentana implements ActionListener {
         ventana.jPropietarios.addActionListener(this);
         ventana.jResponsable.addActionListener(this);
         ventana.jFormaPago.addActionListener(this);
-        ventana.jAsamblea.addActionListener(this);
+        ventana.pAsamblea.addActionListener(this);
         ventana.jGasto.addActionListener(this);
         ventana.jSancion.addActionListener(this);
         ventana.jUnidades.addActionListener(this);
@@ -131,7 +131,7 @@ public class CtrlVentana implements ActionListener {
         }
 
         //Maestros
-        if (e.getSource() == ventana.jAsamblea) {
+        if (e.getSource() == ventana.pAsamblea) {
             ctrl = new CtrlAsamblea();
         }
         if (e.getSource() == ventana.jBanco) {
@@ -264,6 +264,15 @@ public class CtrlVentana implements ActionListener {
             if ("Cuenta".equals(funcionesX.getNombre())) {
                 ventana.menuArchivo.add(ventana.jCuenta);
             }
+            if ("Fondo".equals(funcionesX.getNombre())) {
+                ventana.menuArchivo.add(ventana.jFondo);
+            }
+            if ("Forma de pago".equals(funcionesX.getNombre())) {
+                ventana.menuArchivo.add(ventana.jFormaPago);
+            }
+            if ("Gasto".equals(funcionesX.getNombre())) {
+                ventana.menuArchivo.add(ventana.jGasto);
+            }
             if ("Gestionar Usuario".equals(funcionesX.getNombre())) {
                 ventana.menuArchivo.add(ventana.jUsuario);
             }
@@ -279,31 +288,22 @@ public class CtrlVentana implements ActionListener {
             if ("Responsables".equals(funcionesX.getNombre())) {
                 ventana.menuArchivo.add(ventana.jResponsable);
             }
+            if ("Sanciones".equals(funcionesX.getNombre())) {
+                ventana.menuArchivo.add(ventana.jSancion);
+            }
             if ("Tipo de unidad".equals(funcionesX.getNombre())) {
                 ventana.menuArchivo.add(ventana.jTipoUnidad);
             }
             if ("Tipo de usuario".equals(funcionesX.getNombre())) {
                 ventana.menuArchivo.add(ventana.jTipo);
             }
-            if ("Asambleas".equals(funcionesX.getNombre())) {
-                ventana.menuArchivo.add(ventana.jAsamblea);
-            }
-            if ("Gasto".equals(funcionesX.getNombre())) {
-                ventana.menuArchivo.add(ventana.jGasto);
-            }
-            if ("Sanciones".equals(funcionesX.getNombre())) {
-                ventana.menuArchivo.add(ventana.jSancion);
-            }
             if ("Unidades".equals(funcionesX.getNombre())) {
                 ventana.menuArchivo.add(ventana.jUnidades);
             }
-            if ("Fondo".equals(funcionesX.getNombre())) {
-                ventana.menuArchivo.add(ventana.jFondo);
-            }
-            if ("Forma de pago".equals(funcionesX.getNombre())) {
-                ventana.menuArchivo.add(ventana.jFormaPago);
-            }
             
+            if ("Asambleas".equals(funcionesX.getNombre())) {
+                ventana.menuProceso.add(ventana.pAsamblea);
+            }
             if ("Cuentas por cobrar".equals(funcionesX.getNombre())) {
                 ventana.menuProceso.add(ventana.pCuentasporCobrar);
             }
@@ -313,7 +313,6 @@ public class CtrlVentana implements ActionListener {
             if ("Visitas autorizadas".equals(funcionesX.getNombre())) {
                 ventana.menuProceso.add(ventana.pVisitas);
             }
-            
             if ("Generar recibo".equals(funcionesX.getNombre())) {
                 ventana.menuProceso.add(ventana.pCerrarMes);
             }
