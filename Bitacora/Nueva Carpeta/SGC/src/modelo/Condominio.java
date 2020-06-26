@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sgc.SGC;
 
 public class Condominio extends ConexionBD {
 
@@ -19,11 +20,12 @@ public class Condominio extends ConexionBD {
         con = getConexion();
         int ind;
 
-        String sql = "INSERT INTO condominio (rif, razon_social, telefono, correo_electronico) VALUES(?,?,?,?)";
+        String sql = "SELECT agregar_condominio(?,?,?,?,?)";
 
         try {
             ind = 1;
             ps = con.prepareStatement(sql);
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.setString(ind++, getRif());
             ps.setString(ind++, getRazonS());
             ps.setString(ind++, getTelefono());
@@ -121,15 +123,16 @@ public class Condominio extends ConexionBD {
             con = getConexion();
             int ind;
 
-            String sql = "UPDATE condominio SET razon_social=?, telefono=?, correo_electronico=? WHERE rif=?";
+            String sql = "SELECT modificar_condominio(?,?,?,?,?)";
 
             ps = con.prepareStatement(sql);
 
             ind = 1;
+            ps.setInt(ind++, SGC.usuarioActual.getId());
+            ps.setString(ind++, getRif());
             ps.setString(ind++, getRazonS());
             ps.setString(ind++, getTelefono());
             ps.setString(ind++, getCorreoElectro());
-            ps.setString(ind++, getRif());
 
             ps.execute();
 

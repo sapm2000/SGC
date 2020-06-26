@@ -43,9 +43,9 @@ public class Usuario extends ConexionBD {
             getTipoU().setId(rs.getInt("id_tipo"));
             getTipoU().setNombre(rs.getString("tipo"));
 
-            while (rs.next()) {
+            do {
                 funciones.add(new Funcion(rs.getInt("id_funcion"), rs.getString("funcion"), rs.getBoolean("registrar"), rs.getBoolean("modificar"), rs.getBoolean("eliminar"), rs.getBoolean("todo")));
-            }
+            } while (rs.next());
 
             getTipoU().setFunciones(funciones);
 

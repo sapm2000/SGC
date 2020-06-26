@@ -86,7 +86,7 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
                 modelo = new Asambleas();
                 modelo.setNombre(vista.txtNombre.getText());
                 modelo.setDescripcion(vista.txaDescripcion.getText());
-                modelo.setFecha(Validacion.convert(vista.txtFecha.getDate()));
+                modelo.setFecha(new java.sql.Date(vista.txtFecha.getDate().getTime()));
 
                 j = 0;
 

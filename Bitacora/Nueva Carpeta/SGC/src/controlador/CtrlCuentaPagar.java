@@ -81,8 +81,6 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
         this.catPagos.txtBuscar.addKeyListener(this);
 
-        CtrlVentana.cambiarVista(vista);
-
         crearCbxFormaPago();
         crearCbxCuenta();
         llenarTablaGastos(vista.tablaGastos, "Pendiente");
@@ -91,6 +89,8 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
         JComponent[] com = {vista.fecha, vista.txtDescripcion, vista.txtMonto, vista.txtGasto, vista.txtPariedad};
         Validacion.copiar(components);
         Validacion.pegar(com);
+
+        CtrlVentana.cambiarVista(vista);
     }
 
     @Override
@@ -117,8 +117,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
                 modelo.setDescripcion(vista.txtDescripcion.getText());
                 modelo.setMonto(Double.parseDouble(vista.txtMonto.getText()));
-                java.sql.Date sqlDate = convert(vista.fecha.getDate());
-                modelo.setFecha(sqlDate);
+                modelo.setFecha(new java.sql.Date(vista.fecha.getDate().getTime()));
                 ind = vista.cbxFondo.getSelectedIndex() - 1;
                 modelo.setFondo(listaFondo.get(ind));
                 modelo.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
@@ -230,33 +229,6 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-        if (e.getSource() == vista.txtPariedad) {
-
-            if (vista.txtPariedad.getText().isEmpty()) {
-                vista.txtMonto.setEnabled(false);
-                vista.txtMonto.setText(null);
-
-            } else if (vista.cbxFondo.getSelectedIndex() == 0) {
-                vista.txtMonto.setEnabled(true);
-            }
-        }
-
-        if (e.getSource() == catPagos.txtBuscar) {
-            filtro(catPagos.txtBuscar.getText(), catPagos.tabla);
-        }
-    }
-
-    @Override
     public void mouseClicked(MouseEvent e) {
 
         if (e.getSource() == vista.tablaGastos) {
@@ -294,6 +266,33 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
     @Override
     public void mouseExited(MouseEvent e) {
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+        if (e.getSource() == vista.txtPariedad) {
+
+            if (vista.txtPariedad.getText().isEmpty()) {
+                vista.txtMonto.setEnabled(false);
+                vista.txtMonto.setText(null);
+
+            } else if (vista.cbxFondo.getSelectedIndex() == 0) {
+                vista.txtMonto.setEnabled(true);
+            }
+        }
+
+        if (e.getSource() == catPagos.txtBuscar) {
+            filtro(catPagos.txtBuscar.getText(), catPagos.tabla);
+        }
     }
 
     private Double cambioMoneda(Double monto, String moneda, Double pariedad) {

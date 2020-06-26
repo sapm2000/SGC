@@ -3,6 +3,7 @@ package modelo;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import sgc.SGC;
 
 public class ConceptoGasto extends ConexionBD {
 
@@ -14,18 +15,20 @@ public class ConceptoGasto extends ConexionBD {
     private Connection con;
 
     public boolean registrar() {
+        
         try {
             int ind;
             ps = null;
             con = getConexion();
 
-            String sql = "INSERT INTO concepto_gasto(nom_concepto, descripcion, id_categoria) VALUES (?,?,?);";
+            String sql = "SELECT agregar_concepto(?,?,?,?);";
 
             ps = con.prepareStatement(sql);
             ind = 1;
             ps.setString(ind++, getNombre());
             ps.setString(ind++, getDescripcion());
             ps.setInt(ind++, categoria.getId());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;
@@ -35,6 +38,7 @@ public class ConceptoGasto extends ConexionBD {
             return false;
 
         } finally {
+            
             try {
                 con.close();
 
@@ -44,21 +48,21 @@ public class ConceptoGasto extends ConexionBD {
         }
     }
 
-    public boolean modificarConcepto(ConceptoGasto modConGas) {
-
+    public boolean modificar(ConceptoGasto modConGas) {
+        int ind;
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE concepto_gasto SET nom_concepto=?, descripcion=?, id_categoria=? WHERE id=? ";
+        String sql = "SELECT modificar_concepto(?,?,?,?,?);";
 
         try {
-
+            ind = 1;
             ps = con.prepareStatement(sql);
-
-            ps.setString(1, getNombre());
-            ps.setString(2, getDescripcion());
-            ps.setInt(3, categoria.getId());
-            ps.setInt(4, getId());
+            ps.setInt(ind++, getId());
+            ps.setString(ind++, getNombre());
+            ps.setString(ind++, getDescripcion());
+            ps.setInt(ind++, categoria.getId());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;
@@ -84,17 +88,17 @@ public class ConceptoGasto extends ConexionBD {
     }
 
     public boolean eliminar(ConceptoGasto modConGas) {
-
+        int ind;
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE concepto_gasto SET activo=false WHERE id=? ";
+        String sql = "SELECT eliminar_concepto(?,?);";
 
         try {
-
+            ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
-
+            ps.setInt(ind++, getId());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;
@@ -161,16 +165,19 @@ public class ConceptoGasto extends ConexionBD {
     }
 
     public boolean activar(ConceptoGasto modConGas) {
-
+        int ind;
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE concepto_gasto SET activo=true WHERE id=? ";
+        String sql = "SELECT reactivar_concepto(?,?,?,?);";
 
         try {
-
+            ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
+            ps.setString(ind++, getNombre());
+            ps.setString(ind++, getDescripcion());
+            ps.setInt(ind++, categoria.getId());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
 
             ps.execute();
 

@@ -31,7 +31,7 @@ import sgc.SGC;
 import vista.Catalogo;
 import vista.VisFondo;
 
-public class CtrlFondo implements ActionListener, MouseListener, KeyListener, WindowListener, ItemListener{
+public class CtrlFondo implements ActionListener, MouseListener, KeyListener, WindowListener, ItemListener {
 
     private VisFondo vista;
     private Catalogo catalogo;
@@ -50,7 +50,6 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
         this.modelo = new Fondo();
 
         catalogo.lblTitulo.setText("Fondo");
-        CtrlVentana.cambiarVista(catalogo);
         vista.cbxMoneda.addItemListener(this);
         stylecombo(vista.cbxMoneda);
 
@@ -70,7 +69,8 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
         this.vista.btnEliminar.addActionListener(this);
         this.vista.btnSalir.addActionListener(this);
         this.vista.txtMontoInicial.addKeyListener(this);
-        this.catalogo.setVisible(true);
+
+        CtrlVentana.cambiarVista(catalogo);
     }
 
     public void llenarTabla(JTable tablaD) {
@@ -79,11 +79,10 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-
                 return false;
             }
-
         };
+
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
 
@@ -98,7 +97,6 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
         Object[] columna = new Object[modeloT.getColumnCount()];
 
         int numRegistro = lista.size();
-        System.out.println(numRegistro);
         int ind;
         for (int i = 0; i < numRegistro; i++) {
             ind = 0;
@@ -126,87 +124,13 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
     private void permisoBtn() {
 
         for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
+
             if (funcionbtn.getNombre().equals("Fondo")) {
                 permiso = funcionbtn;
-
             }
-
         }
-
     }
 
-//    public void Llenartablainactivos(JTable tablaD) {
-//
-//        listafondo = modfon.listar(3);
-//        DefaultTableModel modeloT = new DefaultTableModel() {
-//            @Override
-//            public boolean isCellEditable(int row, int column) {
-//
-//                boolean resu = false;
-//
-//                if (column == 0) {
-//                    resu = false;
-//                }
-//                if (column == 1) {
-//                    resu = false;
-//                }
-//                if (column == 2) {
-//                    resu = false;
-//                }
-//                if (column == 3) {
-//                    resu = false;
-//                }
-//                if (column == 4) {
-//                    resu = false;
-//                }
-//                if (column == 5) {
-//                    resu = false;
-//                }
-//                if (column == 6) {
-//                    resu = true;
-//                }
-//
-//                return resu;
-//            }
-//
-//        };
-//        tablaD.setModel(modeloT);
-//        tablaD.getTableHeader().setReorderingAllowed(false);
-//
-//        modeloT.addColumn("Fecha");
-//        modeloT.addColumn("Tipo");
-//        modeloT.addColumn("Descripción");
-//        modeloT.addColumn("Observación");
-//        modeloT.addColumn("Monto Inicial");
-//        modeloT.addColumn("Saldo Actual");
-//        modeloT.addColumn("Seleccione");
-//
-//        Object[] columna = new Object[7];
-//
-//        int numRegistro = listafondo.size();
-//
-//        for (int i = 0; i < numRegistro; i++) {
-//
-//            columna[0] = listafondo.get(i).getFecha();
-//            columna[1] = listafondo.get(i).getTipo();
-//            columna[2] = listafondo.get(i).getDescripcion();
-//            columna[3] = listafondo.get(i).getObservacion();
-//            columna[4] = Validacion.formato1.format(listafondo.get(i).getMonto_inicial());
-//            columna[5] = Validacion.formato1.format(listafondo.get(i).getSaldo());
-//
-//            modeloT.addRow(columna);
-//
-//        }
-//        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-//        tcr.setHorizontalAlignment(SwingConstants.CENTER);
-//        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
-//        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
-//        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-//        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
-//        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
-//        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
-//        tablaD.getColumnModel().getColumn(6).setCellRenderer(tcr);
-//    }
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == catalogo.btnNuevo) {
@@ -229,7 +153,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
             if (validar()) {
                 modelo.setTipo(vista.txtTipo.getText());
                 if (vista.jDateChooser1.getDate() == null) {
-                    JOptionPane.showMessageDialog(null, "ingrese la fecha de creacion del fondo");
+                    JOptionPane.showMessageDialog(null, "Ingrese la fecha de creación del fondo");
                 } else {
                     java.sql.Date sqlDate = convert(vista.jDateChooser1.getDate());
                     modelo.setFecha(sqlDate);
@@ -239,23 +163,21 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                     modelo.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
 
                     if (modelo.buscar(modelo)) {
-                        JOptionPane.showMessageDialog(null, "este fondo ya esta registrado");
+                        JOptionPane.showMessageDialog(null, "Este fondo ya está registrado");
                     } else {
 
                         if (modelo.registrar(modelo)) {
 
-                            JOptionPane.showMessageDialog(null, "Registro Guardado");
+                            JOptionPane.showMessageDialog(null, "Registro guardado");
                             llenarTabla(catalogo.tabla);
+                            CtrlVentana.cambiarVista(catalogo);
 
                         } else {
-
-                            JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
-
+                            JOptionPane.showMessageDialog(null, "No se pudo registrar");
                         }
                     }
                 }
             }
-
         }
 
         if (e.getSource() == vista.btnModificar) {
@@ -265,7 +187,6 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                 modelo.setFecha(sqlDate);
                 modelo.setDescripcion(vista.txaDescripcion.getText());
                 modelo.setObservacion(vista.txaObservaciones.getText());
-                modelo.setMonto_inicial(Double.parseDouble(vista.txtMontoInicial.getText()));
                 modelo.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
 
                 modelo.setId(Integer.parseInt(vista.txtId.getText()));
@@ -282,20 +203,20 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                         if (total > 0) {
                             if (modelo.modificar(modelo)) {
 
-                                JOptionPane.showMessageDialog(null, "Registro Modificado");
+                                JOptionPane.showMessageDialog(null, "Registro modificado");
                                 llenarTabla(catalogo.tabla);
                                 CtrlVentana.cambiarVista(catalogo);
 
                             } else {
-
-                                JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
-
+                                JOptionPane.showMessageDialog(null, "Este registro ya existe");
                             }
+
                         } else {
-                            JOptionPane.showMessageDialog(null, "el saldo no puede ser negativo");
+                            JOptionPane.showMessageDialog(null, "El saldo no puede ser negativo");
                         }
+
                     } else {
-                        JOptionPane.showMessageDialog(null, "este registro ya existe");
+                        JOptionPane.showMessageDialog(null, "No pudo ser modificado el fondo");
                     }
 
                 } else {
@@ -308,46 +229,40 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                     if (total > 0) {
                         if (modelo.modificar(modelo)) {
 
-                            JOptionPane.showMessageDialog(null, "Registro Modificado");
+                            JOptionPane.showMessageDialog(null, "Registro modificado");
                             llenarTabla(catalogo.tabla);
                             CtrlVentana.cambiarVista(catalogo);
 
                         } else {
-
-                            JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
-
+                            JOptionPane.showMessageDialog(null, "Este registro ya existe");
                         }
+
                     } else {
-                        JOptionPane.showMessageDialog(null, "el saldo no puede ser negativo");
+                        JOptionPane.showMessageDialog(null, "El saldo no puede ser negativo");
                     }
                 }
-
             }
-
         }
 
         if (e.getSource() == vista.btnEliminar) {
-
             modelo.setTipo(vista.txtTipo.getText());
 
             if (saldo == 0) {
 
                 if (modelo.eliminar(modelo)) {
-
-                    JOptionPane.showMessageDialog(null, "Registro Eliminado");
-                    CtrlVentana.cambiarVista(catalogo);
+                    JOptionPane.showMessageDialog(null, "Registro eliminado");
                     llenarTabla(catalogo.tabla);
+                    CtrlVentana.cambiarVista(catalogo);
 
                 } else {
-
-                    JOptionPane.showMessageDialog(null, "Error al Eliminar");
-
+                    JOptionPane.showMessageDialog(null, "Error al eliminar");
                 }
+
             } else {
                 JOptionPane.showMessageDialog(null, "No se puede eliminar un fondo con saldo mayor a 0");
             }
-
         }
+
         if (e.getSource() == vista.btnLimpiar) {
 
             limpiar();
@@ -418,7 +333,9 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
         String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 1)); // por ultimo, obtengo el valor de la celda
 
         modelo.setTipo(String.valueOf(dato));
-
+        vista.jDateChooser1.setEnabled(false);
+        vista.cbxMoneda.setEnabled(false);
+        vista.txtMontoInicial.setEnabled(false);
         vista.txtTipo.setEnabled(true);
         vista.btnGuardar.setEnabled(false);
         vista.btnEliminar.setEnabled(true);
@@ -539,15 +456,16 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
         tc.setCellEditor(table.getDefaultEditor(Boolean.class));
         tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
     }
+
     @Override
     public void itemStateChanged(ItemEvent e) {
         vista.cbxMoneda.setFocusable(false);
-    } 
-    
-    public void stylecombo (JComboBox c) {
+    }
+
+    public void stylecombo(JComboBox c) {
         c.setFont(new Font("Tahoma", Font.BOLD, 14));
         c.setForeground(Color.WHITE);
-        
+
         c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
     }
 }

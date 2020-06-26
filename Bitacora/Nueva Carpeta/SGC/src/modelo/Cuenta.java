@@ -101,12 +101,13 @@ public class Cuenta extends ConexionBD {
 
             int ind;
 
-            String sql = "UPDATE cuenta SET activo = true WHERE n_cuenta = ?";
+            String sql = "SELECT reactivar_cuenta(?,?)";
 
             ps = con.prepareStatement(sql);
 
             ind = 1;
             ps.setString(ind++, getN_cuenta());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
 
             ps.execute();
 
@@ -130,7 +131,7 @@ public class Cuenta extends ConexionBD {
         con = getConexion();
         int ind;
 
-        String sql = "INSERT INTO cuenta (n_cuenta, tipo, id_banco, ci_persona, rif_condominio) VALUES (?,?,?,?,?);";
+        String sql = "SELECT agregar_cuenta(?,?,?,?,?,?);";
 
         try {
             ind = 1;
@@ -142,6 +143,7 @@ public class Cuenta extends ConexionBD {
             ps.setInt(ind++, getBanco().getId());
             ps.setString(ind++, getBeneficiario().getCedula());
             ps.setString(ind++, SGC.condominioActual.getRif());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
 
             ps.execute();
 
@@ -251,7 +253,7 @@ public class Cuenta extends ConexionBD {
             con = getConexion();
             int ind;
 
-            String sql = "UPDATE cuenta SET tipo=?, id_banco=?, ci_persona=? WHERE n_cuenta=?";
+            String sql = "SELECT modificar_cuenta(?,?,?,?,?)";
 
             ind = 1;
 
@@ -260,6 +262,7 @@ public class Cuenta extends ConexionBD {
             ps.setInt(ind++, banco.getId());
             ps.setString(ind++, getBeneficiario().getCedula());
             ps.setString(ind++, getN_cuenta());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;
@@ -283,11 +286,14 @@ public class Cuenta extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE cuenta SET activo=false WHERE n_cuenta=?";
+        String sql = "SELECT eliminar_cuenta(?,?)";
 
         try {
+            int ind;
+            ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setString(1, getN_cuenta());
+            ps.setString(ind++, getN_cuenta());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
 
             return true;

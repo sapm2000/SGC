@@ -3,6 +3,7 @@ package modelo;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import sgc.SGC;
 
 public class CategoriaGasto extends ConexionBD {
 
@@ -16,13 +17,15 @@ public class CategoriaGasto extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "INSERT INTO categoriagasto (nombre, descripcion, activo) VALUES(?,?,true)";
+        String sql = "SELECT agregar_categoria(?,?,?);";
 
         try {
-
+            int ind;
+            ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setString(1, cga.getNombre());
-            ps.setString(2, cga.getDescripcion());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
+            ps.setString(ind++, cga.getNombre());
+            ps.setString(ind++, cga.getDescripcion());
 
             ps.execute();
             return true;
@@ -199,14 +202,16 @@ public class CategoriaGasto extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE categoriagasto SET nombre=?, descripcion=? WHERE id=?";
+        String sql = "SELECT modificar_categoria(?,?,?,?);";
 
         try {
-
+            int ind;
+            ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setInt(3, catacg.getId());
-            ps.setString(2, catacg.getDescripcion());
-            ps.setString(1, catacg.getNombre());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
+            ps.setString(ind++, catacg.getNombre());
+            ps.setString(ind++, catacg.getDescripcion());
+            ps.setInt(ind++, catacg.getId());
 
             ps.execute();
 
@@ -277,12 +282,14 @@ public class CategoriaGasto extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE categoriagasto SET activo=false WHERE id=?";
+        String sql = "SELECT eliminar_categoria(?,?)";
 
         try {
-
+            int ind;
+            ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setInt(1, prs.getId());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
+            ps.setInt(ind++, prs.getId());
             ps.execute();
             return true;
 
@@ -302,15 +309,18 @@ public class CategoriaGasto extends ConexionBD {
     }
 
     public boolean activar(CategoriaGasto prs) {
+        int ind;
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE categoriagasto SET activo=true WHERE nombre=?";
+        String sql = "SELECT reactivar_categoria(?,?,?);";
 
         try {
-
+            ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setString(1, prs.getNombre());
+            ps.setString(ind++, prs.getNombre());
+            ps.setString(ind++, prs.getDescripcion());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.execute();
             return true;
 
@@ -326,7 +336,6 @@ public class CategoriaGasto extends ConexionBD {
                 System.err.println(e);
             }
         }
-
     }
 
     public int getId() {
