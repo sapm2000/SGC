@@ -550,7 +550,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
 
         for (int i = 0; i < numRegistro; i++) {
             ind = 0;
-            columna[ind++] = listaProveedores.get(i).getCedula();
+            columna[ind++] = listaProveedores.get(i).getCedulaRif();
             columna[ind++] = listaProveedores.get(i).getNombre();
             columna[ind++] = listaProveedores.get(i).getTelefono();
 

@@ -33,9 +33,7 @@ public class Usuario extends ConexionBD {
             String sql = "SELECT * FROM v_permisos WHERE usuario = ?;";
 
             ps = con.prepareStatement(sql);
-
             ps.setString(1, getUsuario());
-
             rs = ps.executeQuery();
 
             rs.next();
@@ -56,6 +54,7 @@ public class Usuario extends ConexionBD {
             return null;
 
         } finally {
+            
             try {
                 con.close();
 
@@ -186,6 +185,8 @@ public class Usuario extends ConexionBD {
 
     public boolean login() {
 
+        boolean result;
+
         try {
             con = getConexion();
             ps = null;
@@ -201,13 +202,10 @@ public class Usuario extends ConexionBD {
 
             rs = ps.executeQuery();
 
-            boolean result = false;
+            result = false;
 
-            while (rs.next()) {
+            if (rs.next()) {
                 result = rs.getBoolean(1);
-            }
-
-            if (result) {
                 setPassword(null);
                 consultarPermisos();
             }
@@ -219,8 +217,10 @@ public class Usuario extends ConexionBD {
             return false;
 
         } finally {
+            
             try {
                 con.close();
+                
             } catch (SQLException ex) {
                 Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -407,14 +407,13 @@ public class Usuario extends ConexionBD {
 
         int ind;
 
-        String sql = "SELECT * FROM v_perfil WHERE usuario=?;";
+        String sql = "SELECT * FROM v_perfil WHERE usuario = ?;";
 
         try {
             ps = con.prepareStatement(sql);
 
             ind = 1;
             ps.setString(ind++, getUsuario());
-
             rs = ps.executeQuery();
 
             if (rs.next()) {

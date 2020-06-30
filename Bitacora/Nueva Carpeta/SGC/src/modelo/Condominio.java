@@ -25,6 +25,7 @@ public class Condominio extends ConexionBD {
         try {
             ind = 1;
             ps = con.prepareStatement(sql);
+            System.out.println(SGC.usuarioActual.getId());
             ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.setString(ind++, getRif());
             ps.setString(ind++, getRazonS());

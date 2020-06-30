@@ -25,7 +25,7 @@ import modelo.Responsable;
 import sgc.SGC;
 import vista.Catalogo;
 
-public class CtrlResponsable implements ActionListener, MouseListener, KeyListener, ItemListener{
+public class CtrlResponsable implements ActionListener, MouseListener, KeyListener, ItemListener {
 
     private Catalogo catalogo;
     private vista.VisResponsable vista;
@@ -46,8 +46,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
         catalogo.btnNuevo.addActionListener(this);
         catalogo.tabla.addMouseListener(this);
         catalogo.txtBuscar.addKeyListener(this);
-            
-        
+
         llenarTabla();
         permisoBtn();
 
@@ -56,12 +55,12 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
         }
 
         CtrlVentana.cambiarVista(catalogo);
-        
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+
         if (e.getSource() == catalogo.btnNuevo) {
 
             vista = new vista.VisResponsable();
@@ -83,7 +82,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
             CtrlVentana.cambiarVista(vista);
             vista.cbxCedula.addItemListener(this);
-        stylecombo(vista.cbxCedula);
+            stylecombo(vista.cbxCedula);
         }
 
         if (e.getSource() == vista.btnGuardar) {
@@ -107,31 +106,38 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
                     } else {
                         JOptionPane.showMessageDialog(null, "No se pudo reactivar");
-
                     }
+
                 } else {
-                    if (modelo.existePersona()) {
-                        JOptionPane.showMessageDialog(null, "Esta persona está registrada en la BD como propietario, se utilizarán los datos de ese registro");
 
-                        if (modelo.registrar(true)) {
-                            JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
-                            CtrlVentana.cambiarVista(catalogo);
-                            llenarTabla();
-
-                        } else {
-                            JOptionPane.showMessageDialog(null, "ERROR AL REGISTAR");
-
-                        }
+                    if (modelo.existe()) {
+                        JOptionPane.showMessageDialog(null, "Esta persona ya está registrada");
 
                     } else {
-                        if (modelo.registrar(false)) {
-                            JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
-                            CtrlVentana.cambiarVista(catalogo);
-                            llenarTabla();
+
+                        if (modelo.existePersona()) {
+                            JOptionPane.showMessageDialog(null, "Esta persona está registrada en la BD como propietario, se utilizarán los datos de ese registro");
+
+                            if (modelo.registrar(true)) {
+                                JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
+                                CtrlVentana.cambiarVista(catalogo);
+                                llenarTabla();
+
+                            } else {
+                                JOptionPane.showMessageDialog(null, "ERROR AL REGISTAR");
+
+                            }
 
                         } else {
-                            JOptionPane.showMessageDialog(null, "ERROR AL REGISTAR");
+                            if (modelo.registrar(false)) {
+                                JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
+                                CtrlVentana.cambiarVista(catalogo);
+                                llenarTabla();
 
+                            } else {
+                                JOptionPane.showMessageDialog(null, "ERROR AL REGISTAR");
+
+                            }
                         }
                     }
                 }
@@ -395,6 +401,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
     @Override
     public void keyPressed(KeyEvent e) {
+        
     }
 
     @Override
@@ -404,16 +411,17 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
             filtro(catalogo.txtBuscar.getText(), catalogo.tabla);
         }
     }
-    
+
     @Override
     public void itemStateChanged(ItemEvent e) {
         vista.cbxCedula.setFocusable(false);
-    } 
-    
-    public void stylecombo (JComboBox c) {
+    }
+
+    public void stylecombo(JComboBox c) {
         c.setFont(new Font("Tahoma", Font.BOLD, 14));
         c.setForeground(Color.WHITE);
-        
+
         c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
     }
+
 }

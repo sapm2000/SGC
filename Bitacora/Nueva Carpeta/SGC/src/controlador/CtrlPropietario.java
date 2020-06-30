@@ -43,15 +43,12 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
         catalogo = new Catalogo();
         modelo = new Propietarios();
         catalogo.lblTitulo.setText("Propietario");
-        
+
         CtrlVentana.cambiarVista(catalogo);
-        
-        
-        
+
         catalogo.btnNuevo.addActionListener(this);
         catalogo.tabla.addMouseListener(this);
         catalogo.txtBuscar.addKeyListener(this);
-        
 
         llenarTabla();
 
@@ -60,7 +57,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
             catalogo.btnNuevo.setEnabled(true);
         }
         catalogo.setVisible(true);
-        
+
     }
 
     @Override
@@ -111,33 +108,41 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
 
                     }
                 } else {
-                    if (modelo.existePersona()) {
-                        JOptionPane.showMessageDialog(null, "Esta persona está registrada en la BD como responsable, se utilizarán los datos de ese registro");
-
-                        if (modelo.registrar(true)) {
-                            JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
-                            CtrlVentana.cambiarVista(catalogo);
-                            llenarTabla();
-
-                        } else {
-                            JOptionPane.showMessageDialog(null, "ERROR AL REGISTAR");
-
-                        }
-
+                    
+                    if (modelo.existe()) {
+                        JOptionPane.showMessageDialog(null, "Esta persona ya está registrada");
+                        
                     } else {
-                        if (modelo.registrar(false)) {
-                            JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
-                            CtrlVentana.cambiarVista(catalogo);
-                            llenarTabla();
+
+                        if (modelo.existePersona()) {
+                            JOptionPane.showMessageDialog(null, "Esta persona está registrada en la BD como responsable, se utilizarán los datos de ese registro");
+
+                            if (modelo.registrar(true)) {
+                                JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
+                                CtrlVentana.cambiarVista(catalogo);
+                                llenarTabla();
+
+                            } else {
+                                JOptionPane.showMessageDialog(null, "ERROR AL REGISTAR");
+
+                            }
 
                         } else {
-                            JOptionPane.showMessageDialog(null, "ERROR AL REGISTAR");
+                            if (modelo.registrar(false)) {
+                                JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
+                                CtrlVentana.cambiarVista(catalogo);
+                                llenarTabla();
 
+                            } else {
+                                JOptionPane.showMessageDialog(null, "ERROR AL REGISTAR");
+
+                            }
                         }
                     }
                 }
             }
         }
+        
         if (e.getSource() == vista.btnModificar) {
             if (validar()) {
                 modelo.setpNombre(vista.txtPnombre.getText());
@@ -409,16 +414,16 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
             filtro(catalogo.txtBuscar.getText(), catalogo.tabla);
         }
     }
-    
+
     @Override
     public void itemStateChanged(ItemEvent e) {
         vista.cbxCedula.setFocusable(false);
-    } 
-    
-    public void stylecombo (JComboBox c) {
+    }
+
+    public void stylecombo(JComboBox c) {
         c.setFont(new Font("Tahoma", Font.BOLD, 14));
         c.setForeground(Color.WHITE);
-        
+
         c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
     }
 }

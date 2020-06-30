@@ -20,7 +20,7 @@ public class Unidades extends ConexionBD {
     private ArrayList<Propietarios> propietario;
     private java.sql.Date fecha_desde;
     private java.sql.Date fecha_hasta;
-    public TipoUnidad tipo_Unidad = new TipoUnidad();
+    private TipoUnidad tipo_Unidad = new TipoUnidad();
 
     private Connection con;
 

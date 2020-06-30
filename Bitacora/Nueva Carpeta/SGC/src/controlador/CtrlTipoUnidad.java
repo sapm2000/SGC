@@ -75,7 +75,7 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener {
                         listaunidades = unidades.listarArea();
                         int x = listaunidades.size();
                         for (int i = 0; i < x; i++) {
-                            float total = listaunidades.get(i).tipo_Unidad.getArea() / area;
+                            float total = listaunidades.get(i).getTipo_Unidad().getArea() / area;
                             unidades.setAlicuota(total);
 
                             unidades.setId(listaunidades.get(i).getId());
@@ -102,7 +102,7 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener {
                             listaunidades = unidades.listarArea();
                             int x = listaunidades.size();
                             for (int i = 0; i < x; i++) {
-                                float total = listaunidades.get(i).tipo_Unidad.getArea() / area;
+                                float total = listaunidades.get(i).getTipo_Unidad().getArea() / area;
                                 unidades.setAlicuota(total);
 
                                 unidades.setId(listaunidades.get(i).getId());
@@ -133,7 +133,7 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener {
                     listaunidades = unidades.listarArea();
                     int x = listaunidades.size();
                     for (int i = 0; i < x; i++) {
-                        float total = listaunidades.get(i).tipo_Unidad.getArea() / area;
+                        float total = listaunidades.get(i).getTipo_Unidad().getArea() / area;
                         unidades.setAlicuota(total);
 
                         unidades.setId(listaunidades.get(i).getId());

@@ -131,7 +131,7 @@ public class Cuenta extends ConexionBD {
         con = getConexion();
         int ind;
 
-        String sql = "SELECT agregar_cuenta(?,?,?,?,?,?);";
+        String sql = "SELECT agregar_cuenta(?,?,?,?,?);";
 
         try {
             ind = 1;
@@ -141,8 +141,14 @@ public class Cuenta extends ConexionBD {
             ps.setString(ind++, getN_cuenta());
             ps.setString(ind++, getTipo());
             ps.setInt(ind++, getBanco().getId());
-            ps.setString(ind++, getBeneficiario().getCedula());
-            ps.setString(ind++, SGC.condominioActual.getRif());
+
+            if (getBeneficiario().getCedula() != null) {
+                ps.setString(ind++, getBeneficiario().getCedula());
+
+            } else {
+                ps.setString(ind++, SGC.condominioActual.getRif());
+            }
+
             ps.setInt(ind++, SGC.usuarioActual.getId());
 
             ps.execute();
@@ -193,6 +199,7 @@ public class Cuenta extends ConexionBD {
                 cuenta.getBeneficiario().setpNombre(rs.getString("nombre"));
                 cuenta.getBeneficiario().setpApellido(rs.getString("apellido"));
                 cuenta.getCondominio().setRif(rs.getString("rif_condominio"));
+                cuenta.getCondominio().setRazonS(rs.getString("razon_social"));
 
                 listaCuenta.add(cuenta);
             }
@@ -210,7 +217,6 @@ public class Cuenta extends ConexionBD {
         }
 
         return listaCuenta;
-
     }
 
     public Boolean buscarPersona(String cedula) {
