@@ -30,6 +30,46 @@ public class Propietarios extends Persona {
         super(cedula, pNombre, sNombre, pApellido, sApellido, correo, telefono);
     }
 
+    public Boolean existe() {
+        con = getConexion();
+        ps = null;
+        rs = null;
+
+        int ind;
+
+        String sql = "SELECT ci_persona FROM v_propietario WHERE ci_persona = ?;";
+
+        try {
+            ps = con.prepareStatement(sql);
+
+            ind = 1;
+            ps.setString(ind++, getCedula());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return true;
+
+            } else {
+                return false;
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+
+            }
+        }
+    }
+
     public Boolean existeInactivo() {
         con = getConexion();
         ps = null;

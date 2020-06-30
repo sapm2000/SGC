@@ -3,17 +3,21 @@ package modelo;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import sgc.SGC;
 
 public class Visita extends ConexionBD {
 
     private Integer id;
     private Unidades unidad = new Unidades();
-    private String fecha;
-    private String hora;
+    private Persona visitante = new Persona();
+    private Integer numPeronas;
+    private String fechaEntrada;
+    private String horaEntrada;
+    private String fechaSalida;
+    private String horaSalida;
     private String matricula;
     private String modelo;
     private String color;
-    private Visitante visitante = new Visitante();
 
     private Connection con;
 
@@ -40,14 +44,17 @@ public class Visita extends ConexionBD {
                 visita.setId(rs.getInt("id"));
                 visita.getUnidad().setId(rs.getInt("id_unidad"));
                 visita.getUnidad().setN_unidad(rs.getString("n_unidad"));
-                visita.setFecha(rs.getString("fecha"));
-                visita.setHora(rs.getString("hora"));
-                visita.setMatricula(rs.getString("matricula"));
-                visita.setModelo(rs.getString("modelo"));
-                visita.setColor(rs.getString("color"));
                 visita.getVisitante().setCedula(rs.getString("cedula"));
                 visita.getVisitante().setpNombre(rs.getString("nombre"));
                 visita.getVisitante().setpApellido(rs.getString("apellido"));
+                visita.setNumPeronas(rs.getInt("n_personas"));
+                visita.setFechaEntrada(rs.getString("fecha_entrada"));
+                visita.setHoraEntrada(rs.getString("hora_entrada"));
+                visita.setFechaSalida(rs.getString("fecha_salida"));
+                visita.setHoraSalida(rs.getString("hora_salida"));
+                visita.setMatricula(rs.getString("matricula"));
+                visita.setModelo(rs.getString("modelo"));
+                visita.setColor(rs.getString("color"));
 
                 lista.add(visita);
             }
@@ -68,21 +75,63 @@ public class Visita extends ConexionBD {
         }
     }
 
-    public boolean registrar() {
+    public boolean registrar(Boolean tieneAuto) {
         try {
             ps = null;
             con = getConexion();
             int ind;
 
-            String sql = "INSERT INTO visita(placa, modelo, color, id_unidad, ci_visitante) VALUES(?,?,?,?,?);";
+            String sql = "SELECT agregar_visita(?,?,?,?,?,?,?);";
 
             ps = con.prepareStatement(sql);
             ind = 1;
-            ps.setString(ind++, getMatricula());
-            ps.setString(ind++, getModelo());
-            ps.setString(ind++, getColor());
             ps.setInt(ind++, getUnidad().getId());
             ps.setString(ind++, getVisitante().getCedula());
+
+            if (tieneAuto) {
+                ps.setInt(ind++, getNumPeronas());
+                ps.setString(ind++, getMatricula());
+                ps.setString(ind++, getModelo());
+                ps.setString(ind++, getColor());
+
+            } else {
+                ps.setNull(ind++, java.sql.Types.NULL);
+                ps.setNull(ind++, java.sql.Types.NULL);
+                ps.setNull(ind++, java.sql.Types.NULL);
+                ps.setNull(ind++, java.sql.Types.NULL);
+            }
+
+            ps.setInt(ind++, SGC.usuarioActual.getId());
+            ps.execute();
+
+            return true;
+
+        } catch (SQLException e) {
+            System.err.println(e);
+            return false;
+
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+    }
+
+    public boolean registrarSalida() {
+        try {
+            ps = null;
+            con = getConexion();
+            int ind;
+
+            String sql = "SELECT registrar_salida(?,?);";
+
+            ps = con.prepareStatement(sql);
+            ind = 1;
+            ps.setInt(ind++, getId());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
 
             ps.execute();
             return true;
@@ -117,20 +166,52 @@ public class Visita extends ConexionBD {
         this.unidad = unidad;
     }
 
-    public String getFecha() {
-        return fecha;
+    public Persona getVisitante() {
+        return visitante;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public void setVisitante(Persona visitante) {
+        this.visitante = visitante;
     }
 
-    public String getHora() {
-        return hora;
+    public Integer getNumPeronas() {
+        return numPeronas;
     }
 
-    public void setHora(String hora) {
-        this.hora = hora;
+    public void setNumPeronas(Integer numPeronas) {
+        this.numPeronas = numPeronas;
+    }
+
+    public String getFechaEntrada() {
+        return fechaEntrada;
+    }
+
+    public void setFechaEntrada(String fechaEntrada) {
+        this.fechaEntrada = fechaEntrada;
+    }
+
+    public String getHoraEntrada() {
+        return horaEntrada;
+    }
+
+    public void setHoraEntrada(String horaEntrada) {
+        this.horaEntrada = horaEntrada;
+    }
+
+    public String getFechaSalida() {
+        return fechaSalida;
+    }
+
+    public void setFechaSalida(String fechaSalida) {
+        this.fechaSalida = fechaSalida;
+    }
+
+    public String getHoraSalida() {
+        return horaSalida;
+    }
+
+    public void setHoraSalida(String horaSalida) {
+        this.horaSalida = horaSalida;
     }
 
     public String getMatricula() {
@@ -155,14 +236,6 @@ public class Visita extends ConexionBD {
 
     public void setColor(String color) {
         this.color = color;
-    }
-
-    public Visitante getVisitante() {
-        return visitante;
-    }
-
-    public void setVisitante(Visitante visitante) {
-        this.visitante = visitante;
     }
 
 }

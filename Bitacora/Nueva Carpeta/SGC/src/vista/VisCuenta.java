@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vista;
 
 import java.awt.Color;
@@ -21,10 +16,6 @@ import javax.swing.plaf.ComboBoxUI;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 
-/**
- *
- * @author Jhen
- */
 public class VisCuenta extends javax.swing.JPanel {
 
     /**
@@ -35,6 +26,7 @@ public class VisCuenta extends javax.swing.JPanel {
         cbxCedula.setUI(new VisCerrarMes.CustomUI());
         cbxBanco.setUI(new VisCerrarMes.CustomUI());
         cbxTipo.setUI(new VisCerrarMes.CustomUI());
+        txtBeneficiario.setEditable(false);
     }
 
     /**
@@ -88,7 +80,7 @@ public class VisCuenta extends javax.swing.JPanel {
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalir.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow.png"))); // NOI18N
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow (1).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow (1).png"))); // NOI18N
@@ -103,7 +95,7 @@ public class VisCuenta extends javax.swing.JPanel {
         btnGuardar.setBorder(null);
         btnGuardar.setBorderPainted(false);
         btnGuardar.setContentAreaFilled(false);
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
         btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
         btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
@@ -120,7 +112,7 @@ public class VisCuenta extends javax.swing.JPanel {
         btnModificar.setBorder(null);
         btnModificar.setBorderPainted(false);
         btnModificar.setContentAreaFilled(false);
-        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnModificar.setEnabled(false);
         btnModificar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
         btnModificar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato (1).png"))); // NOI18N
@@ -132,7 +124,7 @@ public class VisCuenta extends javax.swing.JPanel {
         btnLimpiar.setToolTipText("Limpiar todo");
         btnLimpiar.setBorderPainted(false);
         btnLimpiar.setContentAreaFilled(false);
-        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLimpiar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
         btnLimpiar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
         btnLimpiar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/barriendo (1).png"))); // NOI18N
@@ -155,7 +147,7 @@ public class VisCuenta extends javax.swing.JPanel {
         btnEliminar.setBorder(null);
         btnEliminar.setBorderPainted(false);
         btnEliminar.setContentAreaFilled(false);
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEliminar.setEnabled(false);
         btnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (2).png"))); // NOI18N
         btnEliminar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (2).png"))); // NOI18N
@@ -219,14 +211,14 @@ public class VisCuenta extends javax.swing.JPanel {
         txtCedula.setForeground(new java.awt.Color(255, 255, 255));
         txtCedula.setToolTipText("Ingrese la cédula o el rif");
         txtCedula.setBorder(null);
-        jPanel2.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 230, 20));
+        jPanel2.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 210, 20));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 310, 10));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 270, 10));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 250, 10));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 310, 10));
@@ -247,7 +239,7 @@ public class VisCuenta extends javax.swing.JPanel {
         jPanel2.add(cbxTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 310, 30));
 
         cbxCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cbxCedula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "V", "E" }));
+        cbxCedula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "V", "E", "J" }));
         cbxCedula.setToolTipText("Seleccione el tipo de cuenta");
         cbxCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,8 +257,8 @@ public class VisCuenta extends javax.swing.JPanel {
         btnCedula.setBorder(null);
         btnCedula.setBorderPainted(false);
         btnCedula.setContentAreaFilled(false);
-        btnCedula.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel2.add(btnCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 40, 40));
+        btnCedula.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel2.add(btnCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 40, 40));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 480, 280));
 

@@ -30,7 +30,7 @@ public class CtrlProveedor implements ActionListener, WindowListener, KeyListene
 
     private Catalogo catalogo;
     private VisProveedor vista;
-    private Proveedores modpro;
+    private Proveedores modelo;
 
     Funcion permiso;
 
@@ -41,11 +41,11 @@ public class CtrlProveedor implements ActionListener, WindowListener, KeyListene
     public CtrlProveedor() {
         this.catalogo = new Catalogo();
         this.vista = new VisProveedor();
-        this.modpro = new Proveedores();
+        this.modelo = new Proveedores();
 
         catalogo.lblTitulo.setText("Proveedores");
         CtrlVentana.cambiarVista(catalogo);
-        Llenartabla(catalogo.tabla);
+        llenarTabla(catalogo.tabla);
         permisoBtn();
 
         if (permiso.getRegistrar()) {
@@ -61,26 +61,28 @@ public class CtrlProveedor implements ActionListener, WindowListener, KeyListene
         this.vista.btnModificar.addActionListener(this);
         this.vista.btnEliminar.addActionListener(this);
         this.vista.btnSalir.addActionListener(this);
-        vista.txtCedula.addKeyListener(this);
+        vista.txtCedulaRif.addKeyListener(this);
         vista.txtNombre.addKeyListener(this);
         vista.txtContacto.addKeyListener(this);
         vista.txtTelefono.addKeyListener(this);
         vista.txtCorreo.addKeyListener(this);
         vista.txaDireccion.addKeyListener(this);
-        this.catalogo.setVisible(true);
     }
 
-    public void Llenartabla(JTable tablaD) {
+    public void llenarTabla(JTable tablaD) {
 
-        listaProveedores = modpro.listar();
+        int ind;
+
+        listaProveedores = modelo.listar();
+
         DefaultTableModel modeloT = new DefaultTableModel() {
+
             @Override
             public boolean isCellEditable(int row, int column) {
-
                 return false;
             }
-
         };
+
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
@@ -98,186 +100,124 @@ public class CtrlProveedor implements ActionListener, WindowListener, KeyListene
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = listaProveedores.get(i).getCedula();
-            columna[1] = listaProveedores.get(i).getNombre();
-            columna[2] = listaProveedores.get(i).getTelefono();
-            columna[3] = listaProveedores.get(i).getCorreo();
-            columna[4] = listaProveedores.get(i).getContacto();
-            columna[5] = listaProveedores.get(i).getDireccion();
+            ind = 0;
+            columna[ind++] = listaProveedores.get(i).getCedulaRif();
+            columna[ind++] = listaProveedores.get(i).getNombre();
+            columna[ind++] = listaProveedores.get(i).getTelefono();
+            columna[ind++] = listaProveedores.get(i).getCorreo();
+            columna[ind++] = listaProveedores.get(i).getContacto();
+            columna[ind++] = listaProveedores.get(i).getDireccion();
 
             modeloT.addRow(columna);
-
         }
+
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
-    }
 
-    public void Llenartablainactivos(JTable tablaD) {
-
-        listaProveedores = modpro.listarinactivos();
-        DefaultTableModel modeloT = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-
-                boolean resu = false;
-                if (column == 0) {
-                    resu = false;
-                }
-                if (column == 1) {
-                    resu = false;
-                }
-                if (column == 2) {
-                    resu = false;
-                }
-                if (column == 3) {
-                    resu = false;
-                }
-                if (column == 4) {
-                    resu = false;
-                }
-                if (column == 5) {
-                    resu = false;
-                }
-                if (column == 6) {
-                    resu = true;
-                }
-
-                return resu;
-            }
-
-        };
-        tablaD.setModel(modeloT);
-        tablaD.getTableHeader().setReorderingAllowed(false);
-        tablaD.getTableHeader().setResizingAllowed(false);
-
-        modeloT.addColumn("Cédula/Rif");
-        modeloT.addColumn("Nombre/Razón Social");
-        modeloT.addColumn("Teléfono");
-        modeloT.addColumn("Correo Electrónico");
-        modeloT.addColumn("Contacto");
-        modeloT.addColumn("Dirección");
-        modeloT.addColumn("Seleccione");
-
-        Object[] columna = new Object[7];
-
-        int numRegistro = listaProveedores.size();
-
-        for (int i = 0; i < numRegistro; i++) {
-
-            columna[0] = listaProveedores.get(i).getCedula();
-            columna[1] = listaProveedores.get(i).getNombre();
-            columna[2] = listaProveedores.get(i).getTelefono();
-            columna[3] = listaProveedores.get(i).getCorreo();
-            columna[4] = listaProveedores.get(i).getContacto();
-            columna[5] = listaProveedores.get(i).getDireccion();
-
-            modeloT.addRow(columna);
-
+        for (int i = 0; i < modeloT.getColumnCount(); i++) {
+            tablaD.getColumnModel().getColumn(i).setCellRenderer(tcr);
         }
-        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-        tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(6).setCellRenderer(tcr);
     }
 
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == catalogo.btnNuevo) {
+
             this.vista.btnModificar.setEnabled(false);
             this.vista.btnGuardar.setEnabled(true);
             this.vista.btnEliminar.setEnabled(false);
-            this.vista.txtCedula.setEnabled(true);
-            vista.txtCedula.setText("");
-            vista.txtContacto.setText("");
-            vista.txtCorreo.setText("");
-            vista.txtNombre.setText("");
-            vista.txtTelefono.setText("");
-            vista.txaDireccion.setText("");
+            vista.cbxCedulaRif.setEnabled(true);
+            this.vista.txtCedulaRif.setEnabled(true);
+
+            limpiar();
 
             CtrlVentana.cambiarVista(vista);
         }
 
         if (e.getSource() == vista.btnGuardar) {
+
             if (validar()) {
-                modpro.setCedula(vista.txtCedula.getText());
-                modpro.setNombre(vista.txtNombre.getText());
-                modpro.setContacto(vista.txtContacto.getText());
-                modpro.setCorreo(vista.txtCorreo.getText());
-                modpro.setTelefono(vista.txtTelefono.getText());
-                modpro.setDireccion(vista.txaDireccion.getText());
 
-                if (modpro.registrar(modpro)) {
+                String letra;
+                String cedulaRif;
 
-                    JOptionPane.showMessageDialog(null, "Registro Guardado");
-                    Llenartabla(catalogo.tabla);
+                letra = vista.cbxCedulaRif.getSelectedItem().toString();
+                cedulaRif = vista.txtCedulaRif.getText();
+
+                modelo.setCedulaRif(letra + "-" + cedulaRif);
+                modelo.setNombre(vista.txtNombre.getText());
+                modelo.setTelefono(vista.txtTelefono.getText());
+                modelo.setCorreo(vista.txtCorreo.getText());
+                modelo.setContacto(vista.txtContacto.getText());
+                modelo.setDireccion(vista.txaDireccion.getText());
+
+                if (modelo.registrar(modelo)) {
+                    JOptionPane.showMessageDialog(null, "Registro guardado");
+                    llenarTabla(catalogo.tabla);
+                    CtrlVentana.cambiarVista(catalogo);
 
                 } else {
-
-                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
-
+                    JOptionPane.showMessageDialog(null, "No se pudo registrar");
                 }
             }
-
         }
 
         if (e.getSource() == vista.btnModificar) {
+
             if (validar()) {
-                modpro.setCedula(vista.txtCedula.getText());
-                modpro.setNombre(vista.txtNombre.getText());
-                modpro.setContacto(vista.txtContacto.getText());
-                modpro.setCorreo(vista.txtCorreo.getText());
-                modpro.setTelefono(vista.txtTelefono.getText());
-                modpro.setDireccion(vista.txaDireccion.getText());
 
-                if (modpro.modificar(modpro)) {
+                String letra;
+                String cedulaRif;
 
-                    JOptionPane.showMessageDialog(null, "Registro Modificado");
-                    Llenartabla(catalogo.tabla);
+                letra = vista.cbxCedulaRif.getSelectedItem().toString();
+                cedulaRif = vista.txtCedulaRif.getText();
+
+                modelo.setCedulaRif(letra + "-" + cedulaRif);
+                modelo.setNombre(vista.txtNombre.getText());
+                modelo.setContacto(vista.txtContacto.getText());
+                modelo.setCorreo(vista.txtCorreo.getText());
+                modelo.setTelefono(vista.txtTelefono.getText());
+                modelo.setDireccion(vista.txaDireccion.getText());
+
+                if (modelo.modificar()) {
+
+                    JOptionPane.showMessageDialog(null, "Registro modificado");
+                    llenarTabla(catalogo.tabla);
                     CtrlVentana.cambiarVista(catalogo);
 
                 } else {
-
-                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
-
+                    JOptionPane.showMessageDialog(null, "No se pudo modificar");
                 }
             }
-
         }
 
         if (e.getSource() == vista.btnEliminar) {
-            modpro.setCedula(vista.txtCedula.getText());
-            if (modpro.Buscargas(modpro) || modpro.Buscarcuo(modpro)) {
-                JOptionPane.showMessageDialog(null, "no se puede eliminar si tiene gastos por procesar asignados");
-            } else {
-                if (modpro.eliminar(modpro)) {
+            String letra;
+            String cedulaRif;
 
-                    JOptionPane.showMessageDialog(null, "Registro Eliminado");
+            letra = vista.cbxCedulaRif.getSelectedItem().toString();
+            cedulaRif = vista.txtCedulaRif.getText();
+
+            modelo.setCedulaRif(letra + "-" + cedulaRif);
+
+            if (modelo.buscarGasto(modelo)) {
+                JOptionPane.showMessageDialog(null, "No se puede eliminar si tiene gastos por procesar asignados");
+
+            } else {
+
+                if (modelo.eliminar(modelo)) {
+                    JOptionPane.showMessageDialog(null, "Registro eliminado");
+                    llenarTabla(catalogo.tabla);
                     CtrlVentana.cambiarVista(catalogo);
-                    Llenartabla(catalogo.tabla);
 
                 } else {
-
-                    JOptionPane.showMessageDialog(null, "Error al Eliminar");
-
+                    JOptionPane.showMessageDialog(null, "No se pudo eliminar");
                 }
             }
-
         }
+
         if (e.getSource() == vista.btnLimpiar) {
-
             limpiar();
-
         }
 
         if (e.getSource() == vista.btnSalir) {
@@ -287,7 +227,8 @@ public class CtrlProveedor implements ActionListener, WindowListener, KeyListene
 
     public void limpiar() {
 
-        vista.txtCedula.setText(null);
+        vista.cbxCedulaRif.setSelectedIndex(0);
+        vista.txtCedulaRif.setText(null);
         vista.txtNombre.setText(null);
         vista.txtContacto.setText(null);
         vista.txtTelefono.setText(null);
@@ -298,13 +239,11 @@ public class CtrlProveedor implements ActionListener, WindowListener, KeyListene
     private void permisoBtn() {
 
         for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
+
             if (funcionbtn.getNombre().equals("Responsables")) {
                 permiso = funcionbtn;
-
             }
-
         }
-
     }
 
     private Boolean validar() {
@@ -312,44 +251,43 @@ public class CtrlProveedor implements ActionListener, WindowListener, KeyListene
         Boolean resultado = true;
         String msj = "";
 
-        if (vista.txtCedula.getText().isEmpty()) {
+        if (vista.txtCedulaRif.getText().isEmpty()) {
 
-            msj += "El campo C.I./RIF. no puede estar vacío\n";
+            msj += "El campo C.I./RIF no puede estar vacío\n";
             resultado = false;
         }
 
         if (vista.txtNombre.getText().isEmpty()) {
 
-            msj += "El campo nombre no puede estar vacío\n";
+            msj += "El campo Nombre o Razón Social no puede estar vacío\n";
             resultado = false;
         }
 
         if (vista.txtTelefono.getText().isEmpty()) {
 
-            msj += "El campo teléfono no puede estar vacío\n";
+            msj += "El campo Teléfono no puede estar vacío\n";
             resultado = false;
         }
 
         if (vista.txtCorreo.getText().isEmpty()) {
 
-            msj += "El campo correo electrónico no puede estar vacío\n";
+            msj += "El campo Correo Electrónico no puede estar vacío\n";
             resultado = false;
         }
 
         if (vista.txtContacto.getText().isEmpty()) {
 
-            msj += "El campo contanto no puede estar vacío\n";
+            msj += "El campo Nombre del Contanto no puede estar vacío\n";
             resultado = false;
         }
 
         if (vista.txaDireccion.getText().isEmpty()) {
 
-            msj += "El campo dirección no puede estar vacío\n";
+            msj += "El campo Dirección no puede estar vacío\n";
             resultado = false;
         }
 
         if (!resultado) {
-
             JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
 
@@ -361,7 +299,7 @@ public class CtrlProveedor implements ActionListener, WindowListener, KeyListene
 
         Component[] components = vista.jPanel2.getComponents();
         JComponent[] com = {
-            vista.txtCedula, vista.txtNombre, vista.txtContacto, vista.txtTelefono, vista.txtCorreo
+            vista.txtCedulaRif, vista.txtNombre, vista.txtContacto, vista.txtTelefono, vista.txtCorreo
         };
         Validacion.copiar(components);
         Validacion.pegar(com);
@@ -400,14 +338,14 @@ public class CtrlProveedor implements ActionListener, WindowListener, KeyListene
     @Override
     public void keyTyped(KeyEvent ke) {
 
-        if (ke.getSource() == vista.txtCedula) {
+        if (ke.getSource() == vista.txtCedulaRif) {
 
             Validacion.Espacio(ke);
-            Validacion.limite(ke, vista.txtCedula.getText(), 15);
+            Validacion.limite(ke, vista.txtCedulaRif.getText(), 11);
         }
         if (ke.getSource() == vista.txtNombre) {
 
-            Validacion.limite(ke, vista.txtNombre.getText(), 100);
+            Validacion.limite(ke, vista.txtNombre.getText(), 60);
         }
         if (ke.getSource() == vista.txtContacto) {
 
@@ -415,17 +353,16 @@ public class CtrlProveedor implements ActionListener, WindowListener, KeyListene
         }
         if (ke.getSource() == vista.txaDireccion) {
 
-            Validacion.limite(ke, vista.txaDireccion.getText(), 60);
+            Validacion.limite(ke, vista.txaDireccion.getText(), 150);
         }
         if (ke.getSource() == vista.txtTelefono) {
             Validacion.Espacio(ke);
             Validacion.soloNumeros(ke);
-            Validacion.limite(ke, vista.txtTelefono.getText(), 15);
+            Validacion.limite(ke, vista.txtTelefono.getText(), 12);
         }
         if (ke.getSource() == vista.txtCorreo) {
-
             Validacion.Espacio(ke);
-            Validacion.limite(ke, vista.txtCorreo.getText(), 40);
+            Validacion.limite(ke, vista.txtCorreo.getText(), 80);
 
         }
     }
@@ -448,7 +385,6 @@ public class CtrlProveedor implements ActionListener, WindowListener, KeyListene
     @Override
     public void mouseClicked(MouseEvent e) {
         int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
-        int columna = this.catalogo.tabla.getSelectedColumn(); // luego, obtengo la columna seleccionada
 
         if (permiso.getModificar()) {
             vista.btnModificar.setEnabled(true);
@@ -460,22 +396,23 @@ public class CtrlProveedor implements ActionListener, WindowListener, KeyListene
         String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
         catalogo.txtBuscar.setText(String.valueOf(dato));
 
-        modpro.setCedula(String.valueOf(dato));
+        modelo.setCedulaRif(String.valueOf(dato));
 
-        modpro.buscar(modpro);
+        modelo.buscar(modelo);
 
-        vista.txtCedula.setText(modpro.getCedula());
-        vista.txtContacto.setText(modpro.getContacto());
-        vista.txtCorreo.setText(modpro.getCorreo());
-        vista.txtNombre.setText(modpro.getNombre());
-        vista.txtTelefono.setText(modpro.getTelefono());
-        vista.txaDireccion.setText(modpro.getDireccion());
-        vista.txtCedula.setEnabled(false);
+        vista.cbxCedulaRif.setSelectedItem(modelo.getCedulaRif().split("-")[0]);
+        vista.txtCedulaRif.setText(modelo.getCedulaRif().split("-")[1]);
+        vista.txtContacto.setText(modelo.getContacto());
+        vista.txtCorreo.setText(modelo.getCorreo());
+        vista.txtNombre.setText(modelo.getNombre());
+        vista.txtTelefono.setText(modelo.getTelefono());
+        vista.txaDireccion.setText(modelo.getDireccion());
+        vista.txtCedulaRif.setEnabled(false);
 
         vista.btnGuardar.setEnabled(false);
-
         vista.btnModificar.setEnabled(true);
         vista.btnEliminar.setEnabled(true);
+        vista.cbxCedulaRif.setEnabled(false);
 
         CtrlVentana.cambiarVista(vista);
     }

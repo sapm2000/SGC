@@ -707,7 +707,7 @@ public class CerrarMes extends ConexionBD {
                 modc.setMonto_dolar(rs.getDouble(4));
                 modc.setMonto_bolivar(rs.getDouble(5));
                 modc.concep.setNombre(rs.getString(6));
-                modc.prove.setCedula(rs.getString(7));
+                modc.prove.setCedulaRif(rs.getString(7));
                 modc.setTipo_gasto(rs.getString(8));
 
                 listaCierremes.add(modc);

@@ -25,36 +25,39 @@ import javax.swing.table.TableRowSorter;
 import modelo.Banco;
 import modelo.Cuenta;
 import modelo.Funcion;
+import modelo.Persona;
 import sgc.SGC;
 import vista.Catalogo;
 import vista.VisCuenta;
 
-public class CtrlCuenta implements ActionListener, MouseListener, KeyListener, ItemListener{
+public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, KeyListener {
 
     private Catalogo catalogo;
     private VisCuenta vista;
     private Cuenta modelo;
-    private Banco modBanco;
-    Funcion permiso;
-
     private ArrayList<Cuenta> lista;
+
+    private Persona modPersona;
+    private Banco modBanco;
     private ArrayList<Banco> listaBanco;
+
+    private Funcion permiso;
 
     public CtrlCuenta() {
         this.catalogo = new Catalogo();
         this.vista = new VisCuenta();
         this.modelo = new Cuenta();
+
         this.modBanco = new Banco();
+        this.modPersona = new Persona();
 
         catalogo.lblTitulo.setText("Cuenta");
-        CtrlVentana.cambiarVista(catalogo);
-        vista.cbxCedula.addItemListener(this);
+
         stylecombo(vista.cbxCedula);
-        vista.cbxBanco.addItemListener(this);
         stylecombo(vista.cbxBanco);
-        vista.cbxTipo.addItemListener(this);
         stylecombo(vista.cbxTipo);
 
+        crearCbxBanco();
         llenarTabla(catalogo.tabla);
 
         permisoBtn();
@@ -62,11 +65,6 @@ public class CtrlCuenta implements ActionListener, MouseListener, KeyListener, I
         if (permiso.getRegistrar()) {
             catalogo.btnNuevo.setEnabled(true);
         }
-
-        this.catalogo.btnNuevo.addActionListener(this);
-        this.catalogo.tabla.addMouseListener(this);
-
-        crearCbxBanco();
 
         Component[] components = vista.jPanel2.getComponents();
 
@@ -77,6 +75,9 @@ public class CtrlCuenta implements ActionListener, MouseListener, KeyListener, I
         Validacion.copiar(components);
         Validacion.pegar(com);
 
+        this.catalogo.btnNuevo.addActionListener(this);
+        this.catalogo.tabla.addMouseListener(this);
+
         this.vista.txtCedula.addActionListener(this);
         this.vista.btnCedula.addActionListener(this);
         this.vista.btnGuardar.addActionListener(this);
@@ -84,11 +85,14 @@ public class CtrlCuenta implements ActionListener, MouseListener, KeyListener, I
         this.vista.btnEliminar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
         this.vista.btnSalir.addActionListener(this);
+        vista.cbxCedula.addItemListener(this);
+        vista.cbxBanco.addItemListener(this);
+        vista.cbxTipo.addItemListener(this);
         this.vista.txtCedula.addKeyListener(this);
         this.vista.txtN_cuenta.addKeyListener(this);
         this.vista.txtBeneficiario.addKeyListener(this);
 
-        this.catalogo.setVisible(true);
+        CtrlVentana.cambiarVista(catalogo);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -97,7 +101,7 @@ public class CtrlCuenta implements ActionListener, MouseListener, KeyListener, I
             limpiar();
 
             vista.txtN_cuenta.setEditable(true);
-
+            vista.cbxCedula.setEnabled(true);
             this.vista.btnGuardar.setEnabled(true);
             this.vista.btnModificar.setEnabled(false);
             this.vista.btnEliminar.setEnabled(false);
@@ -110,12 +114,12 @@ public class CtrlCuenta implements ActionListener, MouseListener, KeyListener, I
                 int ind;
                 String cedula;
 
-                modelo.setN_cuenta(vista.txtN_cuenta.getText());
                 cedula = vista.cbxCedula.getSelectedItem() + "-" + vista.txtCedula.getText();
                 modelo.getBeneficiario().setCedula(cedula);
-                modelo.setTipo(vista.cbxTipo.getSelectedItem().toString());
                 ind = vista.cbxBanco.getSelectedIndex() - 1;
                 modelo.getBanco().setId(listaBanco.get(ind).getId());
+                modelo.setTipo(vista.cbxTipo.getSelectedItem().toString());
+                modelo.setN_cuenta(vista.txtN_cuenta.getText());
 
                 if (modelo.buscarInactivo(modelo)) {
                     JOptionPane.showMessageDialog(null, "Esta cuenta ya está registrada en la BD, se recuperarán los datos");
@@ -179,8 +183,8 @@ public class CtrlCuenta implements ActionListener, MouseListener, KeyListener, I
 
             modelo.eliminar();
             JOptionPane.showMessageDialog(null, "Registro eliminado");
-            CtrlVentana.cambiarVista(catalogo);
             llenarTabla(catalogo.tabla);
+            CtrlVentana.cambiarVista(catalogo);
         }
 
         if (e.getSource() == vista.btnLimpiar) {
@@ -188,13 +192,18 @@ public class CtrlCuenta implements ActionListener, MouseListener, KeyListener, I
         }
 
         if (e.getSource() == vista.txtCedula || e.getSource() == vista.btnCedula) {
-            String cedula = vista.cbxCedula.getSelectedItem() + "-" + vista.txtCedula.getText();
+            String letra = vista.cbxCedula.getSelectedItem().toString();
+            String documento = letra + "-" + vista.txtCedula.getText();
 
-            if (modelo.buscarPersona(cedula)) {
-                vista.txtBeneficiario.setText(modelo.getBeneficiario().getpNombre() + " " + modelo.getBeneficiario().getpApellido());
+            if (letra == "V" || letra == "E") {
+                modPersona.setCedula(documento);
 
-            } else {
-                JOptionPane.showMessageDialog(vista, "No se ha encontrado una persona con esta cédula");
+                if (modPersona.buscar()) {
+                    vista.txtBeneficiario.setText(modPersona.getpNombre() + " " + modPersona.getpApellido());
+
+                } else {
+                    JOptionPane.showMessageDialog(vista, "No se ha encontrado una persona con esta cédula");
+                }
             }
         }
 
@@ -226,12 +235,19 @@ public class CtrlCuenta implements ActionListener, MouseListener, KeyListener, I
             if (permiso.getEliminar()) {
                 vista.btnEliminar.setEnabled(true);
             }
-
-            vista.cbxCedula.setSelectedItem(modelo.getBeneficiario().getCedula().split("-")[0]);
-            vista.txtCedula.setText(modelo.getBeneficiario().getCedula().split("-")[1]);
+            if (modelo.getBeneficiario().getCedula() != null) {
+                vista.cbxCedula.setSelectedItem(modelo.getBeneficiario().getCedula().split("-")[0]);
+                vista.txtCedula.setText(modelo.getBeneficiario().getCedula().split("-")[1]);
+                vista.txtBeneficiario.setText(modelo.getBeneficiario().getpNombre() + " " + modelo.getBeneficiario().getpApellido());
+            }else{
+                vista.cbxCedula.setEnabled(false);
+                vista.cbxCedula.setSelectedItem("J");
+                vista.txtCedula.setText(modelo.getCondominio().getRif().split("-")[1]);
+                vista.txtBeneficiario.setText(modelo.getCondominio().getRazonS());
+                        
+            }
             vista.cbxBanco.setSelectedItem(modelo.getBanco().getNombre_banco());
             vista.cbxTipo.setSelectedItem(modelo.getTipo());
-            vista.txtBeneficiario.setText(modelo.getBeneficiario().getpNombre() + " " + modelo.getBeneficiario().getpApellido());
             vista.txtN_cuenta.setText(modelo.getN_cuenta());
 
             vista.txtN_cuenta.setEditable(false);
@@ -356,8 +372,16 @@ public class CtrlCuenta implements ActionListener, MouseListener, KeyListener, I
             ind = 0;
             columna[ind++] = lista.get(i).getBanco().getNombre_banco();
             columna[ind++] = lista.get(i).getN_cuenta();
-            columna[ind++] = lista.get(i).getBeneficiario().getCedula();
-            columna[ind++] = lista.get(i).getBeneficiario().getpNombre() + " " + lista.get(i).getBeneficiario().getpApellido();
+
+            if (lista.get(i).getBeneficiario().getCedula() != null) {
+                columna[ind++] = lista.get(i).getBeneficiario().getCedula();
+                columna[ind++] = lista.get(i).getBeneficiario().getpNombre() + " " + lista.get(i).getBeneficiario().getpApellido();
+
+            } else {
+                columna[ind++] = lista.get(i).getCondominio().getRif();
+                columna[ind++] = lista.get(i).getCondominio().getRazonS();
+            }
+
             columna[ind++] = lista.get(i).getTipo();
 
             modeloT.addRow(columna);
@@ -397,18 +421,32 @@ public class CtrlCuenta implements ActionListener, MouseListener, KeyListener, I
 
         return resultado;
     }
-    
+
     @Override
     public void itemStateChanged(ItemEvent e) {
         vista.cbxCedula.setFocusable(false);
         vista.cbxBanco.setFocusable(false);
         vista.cbxTipo.setFocusable(false);
-    } 
-    
-    public void stylecombo (JComboBox c) {
+
+        if (e.getSource() == vista.cbxCedula) {
+
+            if (vista.cbxCedula.getSelectedItem().equals("J")) {
+                vista.txtCedula.setEnabled(false);
+                vista.txtBeneficiario.setEnabled(false);
+                vista.txtCedula.setText(SGC.condominioActual.getRif().split("-")[1]);
+                vista.txtBeneficiario.setText(SGC.condominioActual.getRazonS());
+
+            } else {
+                vista.txtCedula.setEnabled(true);
+                vista.txtBeneficiario.setEnabled(true);
+            }
+        }
+    }
+
+    public void stylecombo(JComboBox c) {
         c.setFont(new Font("Tahoma", Font.BOLD, 14));
         c.setForeground(Color.WHITE);
-        
+
         c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
     }
 
