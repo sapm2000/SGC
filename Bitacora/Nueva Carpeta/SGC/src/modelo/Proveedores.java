@@ -35,9 +35,15 @@ public class Proveedores extends ConexionBD {
             ps.setString(ind++, getContacto());
             ps.setString(ind++, getDireccion());
             ps.setInt(ind++, SGC.usuarioActual.getId());
-            ps.execute();
 
-            return true;
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
+
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
 
@@ -244,9 +250,15 @@ public class Proveedores extends ConexionBD {
             ps = con.prepareStatement(sql);
             ps.setString(ind++, getCedulaRif());
             ps.setInt(ind++, SGC.usuarioActual.getId());
-            ps.execute();
 
-            return true;
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
+
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
 
@@ -279,9 +291,15 @@ public class Proveedores extends ConexionBD {
 
             ps = con.prepareStatement(sql);
             ps.setString(1, getCedulaRif());
-            ps.execute();
+            
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
 
-            return true;
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
 
@@ -330,10 +348,10 @@ public class Proveedores extends ConexionBD {
             return false;
 
         } finally {
-            
+
             try {
                 con.close();
-                
+
             } catch (SQLException e) {
                 System.err.println(e);
             }

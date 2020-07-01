@@ -32,8 +32,14 @@ public class Condominio extends ConexionBD {
             ps.setString(ind++, getTelefono());
             ps.setString(ind++, getCorreoElectro());
 
-            ps.execute();
-            return true;
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
+
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
             System.err.println(e);
@@ -135,9 +141,14 @@ public class Condominio extends ConexionBD {
             ps.setString(ind++, getTelefono());
             ps.setString(ind++, getCorreoElectro());
 
-            ps.execute();
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
 
-            return true;
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
             System.err.println(e);

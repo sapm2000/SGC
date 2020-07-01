@@ -103,9 +103,15 @@ public class CuentaPagar extends ConexionBD {
             ps.setString(ind++, cuenta.getN_cuenta());
             ps.setInt(ind++, fondo.getId());
             ps.setInt(ind++, SGC.usuarioActual.getId());
-            ps.execute();
 
-            return true;
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
+
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
             System.err.println(e);

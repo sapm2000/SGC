@@ -109,9 +109,14 @@ public class Cuenta extends ConexionBD {
             ps.setString(ind++, getN_cuenta());
             ps.setInt(ind++, SGC.usuarioActual.getId());
 
-            ps.execute();
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
 
-            return true;
+            } else {
+                return false;
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(Propietarios.class.getName()).log(Level.SEVERE, null, ex);
@@ -151,9 +156,14 @@ public class Cuenta extends ConexionBD {
 
             ps.setInt(ind++, SGC.usuarioActual.getId());
 
-            ps.execute();
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
 
-            return true;
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
             System.err.println(e);
@@ -269,9 +279,15 @@ public class Cuenta extends ConexionBD {
             ps.setString(ind++, getBeneficiario().getCedula());
             ps.setString(ind++, getN_cuenta());
             ps.setInt(ind++, SGC.usuarioActual.getId());
-            ps.execute();
+            
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
 
-            return true;
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
             System.err.println(e);

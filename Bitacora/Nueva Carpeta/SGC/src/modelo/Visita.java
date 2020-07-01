@@ -102,9 +102,14 @@ public class Visita extends ConexionBD {
             }
 
             ps.setInt(ind++, SGC.usuarioActual.getId());
-            ps.execute();
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
 
-            return true;
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
             System.err.println(e);
@@ -133,8 +138,14 @@ public class Visita extends ConexionBD {
             ps.setInt(ind++, getId());
             ps.setInt(ind++, SGC.usuarioActual.getId());
 
-            ps.execute();
-            return true;
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
+
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
             System.err.println(e);

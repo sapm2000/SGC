@@ -148,30 +148,37 @@ public class Propietarios extends Persona {
             con = getConexion();
             ps = null;
 
-            if (!existe) {
-                if (!registrarPersona()) {
-                    return false;
-
-                }
-            }
-
-            String sql = "INSERT INTO propietario (ci_persona) VALUES (?);";
+            String sql = "SELECT agregar_propietario(?,?,?,?,?,?,?,?,?);";
 
             int i = 1;
 
             ps = con.prepareStatement(sql);
 
             ps.setString(i++, getCedula());
+            ps.setString(i++, getpNombre());
+            ps.setString(i++, getsNombre());
+            ps.setString(i++, getpApellido());
+            ps.setString(i++, getsApellido());
+            ps.setString(i++, getTelefono());
+            ps.setString(i++, getCorreo());
+            ps.setBoolean(i++, existe);
+            ps.setInt(i++, SGC.usuarioActual.getId());
 
-            ps.execute();
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
 
-            return true;
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
             System.err.println(e);
             return false;
 
         } finally {
+
             try {
                 con.close();
 
@@ -181,6 +188,44 @@ public class Propietarios extends Persona {
         }
     }
 
+//    public boolean registrar(Boolean existe) {
+//        try {
+//            con = getConexion();
+//            ps = null;
+//
+//            if (!existe) {
+//
+//                if (!registrarPersona()) {
+//                    return false;
+//                }
+//            }
+//
+//            String sql = "INSERT INTO propietario (ci_persona) VALUES (?);";
+//
+//            int i = 1;
+//
+//            ps = con.prepareStatement(sql);
+//
+//            ps.setString(i++, getCedula());
+//
+//            ps.execute();
+//
+//            return true;
+//
+//        } catch (SQLException e) {
+//            System.err.println(e);
+//            return false;
+//
+//        } finally {
+//            
+//            try {
+//                con.close();
+//
+//            } catch (SQLException e) {
+//                System.err.println(e);
+//            }
+//        }
+//    }
     public boolean eliminarpuenteuni(Propietarios modpro) {
 
         ps = null;

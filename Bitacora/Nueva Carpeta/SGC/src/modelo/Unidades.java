@@ -82,15 +82,20 @@ public class Unidades extends ConexionBD {
             if (vaciarPropietarios()) {
                 int ind;
 
-                String sql = "UPDATE unidad SET activo = true, n_documento = ? WHERE n_unidad = ?";
+                String sql = "SELECT reactivar_unidad(?,?)";
 
                 ps = con.prepareStatement(sql);
 
                 ind = 1;
-                ps.setString(ind++, getDocumento());
                 ps.setString(ind++, getN_unidad());
+                ps.setInt(ind++, SGC.usuarioActual.getId());
 
-                ps.execute();
+                if (ps.execute()) {
+                    rs = ps.getResultSet();
+
+                } else {
+                    return false;
+                }
 
                 //Se selecciona el id de la unidad que se acaba de registrar
                 sql = "SELECT id FROM v_unidad WHERE n_unidad = ?";
@@ -123,7 +128,8 @@ public class Unidades extends ConexionBD {
 
                 }
 
-                return true;
+                rs.next();
+                return rs.getBoolean(1);
 
             } else {
                 return false;
@@ -163,7 +169,12 @@ public class Unidades extends ConexionBD {
             ps.setInt(ind++, getTipo_Unidad().getId());
             ps.setInt(ind++, SGC.usuarioActual.getId());
 
-            ps.execute();
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+
+            } else {
+                return false;
+            }
 
             //Se selecciona el id de la unidad que se acaba de registrar
             sql = "SELECT id FROM v_unidad WHERE n_unidad = ?";
@@ -196,7 +207,8 @@ public class Unidades extends ConexionBD {
 
             }
 
-            return true;
+            rs.next();
+            return rs.getBoolean(1);
 
         } catch (SQLException e) {
             System.err.println(e);
@@ -383,11 +395,16 @@ public class Unidades extends ConexionBD {
             ps.setInt(ind++, getId());
             ps.setInt(ind++, SGC.usuarioActual.getId());
 
-            ps.execute();
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+
+            } else {
+                return false;
+            }
 
             if (modificarPropietarios()) {
-                return true;
-
+                rs.next();
+                return rs.getBoolean(1);
             } else {
                 return false;
 
@@ -578,7 +595,12 @@ public class Unidades extends ConexionBD {
             ps = con.prepareStatement(sql);
             ps.setInt(ind++, getId());
             ps.setInt(ind++, SGC.usuarioActual.getId());
-            ps.execute();
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+
+            } else {
+                return false;
+            }
 
             sql = "UPDATE puente_unidad_propietarios SET fecha_hasta = LOCALTIMESTAMP(0), estado = 0 WHERE fecha_hasta IS null AND id_unidad = ?;";
 
@@ -589,7 +611,8 @@ public class Unidades extends ConexionBD {
 
             ps.execute();
 
-            return true;
+            rs.next();
+            return rs.getBoolean(1);
 
         } catch (SQLException e) {
             System.err.println(e);
@@ -681,41 +704,6 @@ public class Unidades extends ConexionBD {
                 System.err.println(e);
             }
         }
-    }
-
-    public boolean activarUnidad(Unidades moduni) {
-
-        ps = null;
-        con = getConexion();
-
-        String sql = "UPDATE unidades SET activo=1 WHERE id=?";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, getId());
-            ps.execute();
-
-            return true;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
     }
 
     public ArrayList<Unidades> listarArea() {

@@ -96,7 +96,6 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
                 modelo.setTelefono(vista.txtTelefono.getText());
 
                 if (modelo.existeInactivo()) {
-                    JOptionPane.showMessageDialog(null, "Este propietario ya existe en la BD, se recuperarán los datos para el nuevo registro");
 
                     if (modelo.reactivar()) {
                         JOptionPane.showMessageDialog(null, "Registro Guardado");
@@ -118,24 +117,23 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
                             JOptionPane.showMessageDialog(null, "Esta persona está registrada en la BD como responsable, se utilizarán los datos de ese registro");
 
                             if (modelo.registrar(true)) {
-                                JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
+                                JOptionPane.showMessageDialog(null, "Registro guardado");
                                 CtrlVentana.cambiarVista(catalogo);
                                 llenarTabla();
 
                             } else {
-                                JOptionPane.showMessageDialog(null, "ERROR AL REGISTAR");
-
+                                JOptionPane.showMessageDialog(null, "Error al registrar");
                             }
 
                         } else {
+                            
                             if (modelo.registrar(false)) {
-                                JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
+                                JOptionPane.showMessageDialog(null, "Registro guardado");
                                 CtrlVentana.cambiarVista(catalogo);
                                 llenarTabla();
 
                             } else {
-                                JOptionPane.showMessageDialog(null, "ERROR AL REGISTAR");
-
+                                JOptionPane.showMessageDialog(null, "Error al registrar");
                             }
                         }
                     }
@@ -311,10 +309,6 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
         boolean resultado = true;
         String mensaje = "";
 
-        if (vista.cbxCedula.getSelectedIndex() == 0) {
-            mensaje += "Debe seleccionar una Nacionalidad\n";
-            resultado = false;
-        }
         if (vista.txtCedula.getText().isEmpty()) {
             mensaje += "El campo Cédula no puede estar vacío\n";
             resultado = false;

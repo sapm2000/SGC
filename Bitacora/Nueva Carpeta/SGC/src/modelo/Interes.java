@@ -29,9 +29,15 @@ public class Interes extends ConexionBD {
             ps.setDouble(ind++, getFactor());
             ps.setString(ind++, SGC.condominioActual.getRif());
             ps.setInt(ind++, SGC.usuarioActual.getId());
-            ps.execute();
 
-            return true;
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
+
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
 
@@ -192,9 +198,14 @@ public class Interes extends ConexionBD {
             ps.setString(ind++, getNombre());
             ps.setDouble(ind++, getFactor());
             ps.setInt(ind++, SGC.usuarioActual.getId());
-            ps.execute();
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
 
-            return true;
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
 
@@ -309,9 +320,14 @@ public class Interes extends ConexionBD {
             ps = con.prepareStatement(sql);
             ps.setInt(ind++, getId());
             ps.setInt(ind++, SGC.usuarioActual.getId());
-            ps.execute();
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
 
-            return true;
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
 
@@ -345,9 +361,14 @@ public class Interes extends ConexionBD {
             ps = con.prepareStatement(sql);
             ps.setInt(ind++, getId());
             ps.setInt(ind++, SGC.usuarioActual.getId());
-            ps.execute();
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
 
-            return true;
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
 

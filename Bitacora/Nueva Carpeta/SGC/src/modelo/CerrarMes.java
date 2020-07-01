@@ -56,9 +56,15 @@ public class CerrarMes extends ConexionBD {
             ps.setDouble(ind++, getMonto_bolivar());
             ps.setDouble(ind++, uni.getAlicuota());
             ps.setInt(ind++, SGC.usuarioActual.getId());
-            ps.execute();
 
-            return true;
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
+
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
 
@@ -247,9 +253,15 @@ public class CerrarMes extends ConexionBD {
             ps.setDouble(ind++, getMonto_bolivar());
             ps.setDouble(ind++, uni.getAlicuota());
             ps.setInt(ind++, SGC.usuarioActual.getId());
-            ps.execute();
+            
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
 
-            return true;
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
 
