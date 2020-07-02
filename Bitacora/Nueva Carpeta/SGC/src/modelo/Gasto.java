@@ -93,7 +93,7 @@ public class Gasto extends ConexionBD {
             ind = 1;
             ps.setString(ind++, getNombre());
             ps.setString(ind++, getTipo());
-            ps.setString(ind++, proveedor.getCedula());
+            ps.setString(ind++, proveedor.getCedulaRif());
             ps.setString(ind++, getCalcular());
             ps.setInt(ind++, getMes());
             ps.setInt(ind++, getAnio());
@@ -111,30 +111,38 @@ public class Gasto extends ConexionBD {
             ps.setDouble(ind++, getMonto());
             ps.setString(ind++, getMoneda());
             ps.setInt(ind++, SGC.usuarioActual.getId());
-            ps.execute();
+
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+
+            } else {
+                return false;
+            }
 
             if (buscarId()) {
 
                 if (registrarConceptos()) {
-                    return true;
+                    rs.next();
+                    return rs.getBoolean(1);
+
                 }
             }
 
             return false;
 
         } catch (SQLException e) {
-            
+
             System.err.println(e);
             return false;
 
         } finally {
-            
+
             try {
-                
+
                 con.close();
 
             } catch (SQLException e) {
-                
+
                 System.err.println(e);
             }
         }
@@ -205,7 +213,7 @@ public class Gasto extends ConexionBD {
 
                 item.setId(rs.getInt("id"));
                 item.setTipo(rs.getString("tipo"));
-                item.proveedor.setCedula(rs.getString("id_proveedor"));
+                item.proveedor.setCedulaRif(rs.getString("id_proveedor"));
                 item.proveedor.setNombre(rs.getString("proveedor"));
                 item.setCalcular(rs.getString("calcular_por"));
                 item.setMes(rs.getInt("mes"));
@@ -282,7 +290,7 @@ public class Gasto extends ConexionBD {
                 modcuo = new Gasto();
 
                 modcuo.setId(rs.getInt("id"));
-                modcuo.proveedor.setCedula(rs.getString("id_proveedor"));
+                modcuo.proveedor.setCedulaRif(rs.getString("id_proveedor"));
                 modcuo.setTipo(rs.getString("tipo"));
                 modcuo.setCalcular(rs.getString("calcular_por"));
                 modcuo.setMes(rs.getInt("mes"));
@@ -327,7 +335,7 @@ public class Gasto extends ConexionBD {
             ps.setInt(ind++, getId());
             ps.setString(ind++, getNombre());
             ps.setString(ind++, getTipo());
-            ps.setString(ind++, proveedor.getCedula());
+            ps.setString(ind++, proveedor.getCedulaRif());
             ps.setString(ind++, getCalcular());
             ps.setInt(ind++, getMes());
             ps.setInt(ind++, getAnio());
@@ -346,11 +354,16 @@ public class Gasto extends ConexionBD {
             ps.setDouble(ind++, getSaldo());
             ps.setString(ind++, getMoneda());
             ps.setInt(ind++, SGC.usuarioActual.getId());
+            if (ps.execute()) {
+                rs = ps.getResultSet();
 
-            ps.execute();
+            } else {
+                return false;
+            }
 
             if (modificarConceptos()) {
-                return true;
+                rs.next();
+                return rs.getBoolean(1);
 
             } else {
                 return true;

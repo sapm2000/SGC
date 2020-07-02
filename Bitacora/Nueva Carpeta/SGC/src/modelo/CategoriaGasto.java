@@ -27,8 +27,14 @@ public class CategoriaGasto extends ConexionBD {
             ps.setString(ind++, cga.getNombre());
             ps.setString(ind++, cga.getDescripcion());
 
-            ps.execute();
-            return true;
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
+
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
 
@@ -213,9 +219,14 @@ public class CategoriaGasto extends ConexionBD {
             ps.setString(ind++, catacg.getDescripcion());
             ps.setInt(ind++, catacg.getId());
 
-            ps.execute();
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
 
-            return true;
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
 
@@ -290,8 +301,15 @@ public class CategoriaGasto extends ConexionBD {
             ps = con.prepareStatement(sql);
             ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.setInt(ind++, prs.getId());
-            ps.execute();
-            return true;
+
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
+
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
 
@@ -321,8 +339,15 @@ public class CategoriaGasto extends ConexionBD {
             ps.setString(ind++, prs.getNombre());
             ps.setString(ind++, prs.getDescripcion());
             ps.setInt(ind++, SGC.usuarioActual.getId());
-            ps.execute();
-            return true;
+
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
+
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
 

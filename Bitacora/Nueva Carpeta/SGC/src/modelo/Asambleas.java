@@ -31,12 +31,19 @@ public class Asambleas extends ConexionBD {
             ps.setDate(i++, getFecha());
             ps.setString(i++, getDescripcion());
             ps.setInt(i++, SGC.usuarioActual.getId());
-            ps.execute();
+
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+
+            } else {
+                return false;
+            }
 
             if (buscarId()) {
 
                 if (registrarAsistentes()) {
-                    return true;
+                    rs.next();
+                    return rs.getBoolean(1);
 
                 } else {
                     return false;

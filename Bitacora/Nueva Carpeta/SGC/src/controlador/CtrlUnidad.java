@@ -164,16 +164,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
                             if (modelo.reactivar()) {
                                 JOptionPane.showMessageDialog(null, "Unidad reactivada");
                                 CtrlVentana.cambiarVista(catalogo);
-                                tipoUnidad.areaTotal();
-                                float area = tipoUnidad.getArea();
-                                listaUnidades = modelo.listarArea();
-                                int x = listaUnidades.size();
-                                for (int i = 0; i < x; i++) {
-                                    float total = listaUnidades.get(i).tipo_Unidad.getArea() / area;
-                                    modelo.setAlicuota(total);
-                                    modelo.setId(listaUnidades.get(i).getId());
-                                    modelo.actualizarAlicuota(modelo);
-                                }
+
                                 llenarTabla(catalogo.tabla);
 
                             } else {
@@ -190,19 +181,21 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
                         } else {
                             if (modelo.registrar()) {
+//                                tipoUnidad.areaTotal();
+//                                float area = tipoUnidad.getArea();
+//
+//                                listaUnidades = modelo.listarArea();
+//                                int x = listaUnidades.size();
+//                                
+//                                for (int i = 0; i < x; i++) {
+//                                    float total = listaUnidades.get(i).tipo_Unidad.getArea() / area;
+//                                    modelo.setAlicuota(total);
+//
+//                                    modelo.setId(listaUnidades.get(i).getId());
+//                                    modelo.actualizarAlicuota(modelo);
+//                                }
+
                                 JOptionPane.showMessageDialog(null, "Registro Guardado");
-                                tipoUnidad.areaTotal();
-                                float area = tipoUnidad.getArea();
-
-                                listaUnidades = modelo.listarArea();
-                                int x = listaUnidades.size();
-                                for (int i = 0; i < x; i++) {
-                                    float total = listaUnidades.get(i).tipo_Unidad.getArea() / area;
-                                    modelo.setAlicuota(total);
-
-                                    modelo.setId(listaUnidades.get(i).getId());
-                                    modelo.actualizarAlicuota(modelo);
-                                }
                                 CtrlVentana.cambiarVista(catalogo);
                                 llenarTabla(catalogo.tabla);
 
@@ -249,16 +242,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
                     if (modelo.modificar()) {
                         JOptionPane.showMessageDialog(null, "Registro Modificado");
-                        tipoUnidad.areaTotal();
-                        float area = tipoUnidad.getArea();
-                        listaUnidades = modelo.listarArea();
-                        int x = listaUnidades.size();
-                        for (int i = 0; i < x; i++) {
-                            float total = listaUnidades.get(i).tipo_Unidad.getArea() / area;
-                            modelo.setAlicuota(total);
-                            modelo.setId(listaUnidades.get(i).getId());
-                            modelo.actualizarAlicuota(modelo);
-                        }
+
                         llenarTabla(catalogo.tabla);
                         CtrlVentana.cambiarVista(catalogo);
 
@@ -273,16 +257,6 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
         if (e.getSource() == vista.btnEliminar) {
             if (modelo.eliminar()) {
                 JOptionPane.showMessageDialog(null, "Registro eliminado");
-                tipoUnidad.areaTotal();
-                float area = tipoUnidad.getArea();
-                listaUnidades = modelo.listarArea();
-                int x = listaUnidades.size();
-                for (int i = 0; i < x; i++) {
-                    float total = listaUnidades.get(i).tipo_Unidad.getArea() / area;
-                    modelo.setAlicuota(total);
-                    modelo.setId(listaUnidades.get(i).getId());
-                    modelo.actualizarAlicuota(modelo);
-                }
                 CtrlVentana.cambiarVista(catalogo);
                 llenarTabla(catalogo.tabla);
 
@@ -708,7 +682,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = listadetallegasto.get(i).prove.getCedula();
+            columna[0] = listadetallegasto.get(i).prove.getCedulaRif();
             columna[1] = listadetallegasto.get(i).prove.getNombre();
             columna[2] = listadetallegasto.get(i).getMonto_bolivar();
             columna[3] = listadetallegasto.get(i).getMonto_dolar();
@@ -794,14 +768,13 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
         Object[] columna = new Object[5];
 
         int numRegistro = listadetallesancion.size();
-        
 
         for (int i = 0; i < numRegistro; i++) {
 
             columna[0] = listadetallesancion.get(i).san.getTipo();
             columna[1] = listadetallesancion.get(i).san.getDescripcion();
             if (listadetallesancion.get(i).san.getTipo().equals("Interes de mora")) {
-                columna[2] = listadetallesancion.get(i).san.getMonto()+"%";
+                columna[2] = listadetallesancion.get(i).san.getMonto() + "%";
             } else {
                 columna[2] = "";
             }

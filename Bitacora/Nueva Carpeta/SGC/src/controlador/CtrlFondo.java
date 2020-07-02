@@ -139,6 +139,8 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
             this.vista.btnGuardar.setEnabled(true);
             this.vista.btnEliminar.setEnabled(false);
             this.vista.txtTipo.setEnabled(true);
+            vista.jDateChooser1.setEnabled(true);
+            vista.cbxMoneda.setEnabled(true);
             vista.txaDescripcion.setText("");
             vista.txaObservaciones.setText("");
             vista.txtMontoInicial.setText("");

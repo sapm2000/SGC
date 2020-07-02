@@ -69,7 +69,7 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
     public void Llenartabla(JTable tablaD) {
 
         listaBanco = modban.listar();
-        DefaultTableModel modeloT = new DefaultTableModel() {
+        dm = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
 
@@ -77,21 +77,22 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
             }
 
         };
-        tablaD.setModel(modeloT);
+        tablaD.setModel(dm);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
 
-        modeloT.addColumn("Nombre del Banco");
-
-        Object[] columna = new Object[1];
+        dm.addColumn("Nombre del Banco");
+        int ind;
+        Object[] columna = new Object[dm.getColumnCount()];
 
         int numRegistro = listaBanco.size();
 
         for (int i = 0; i < numRegistro; i++) {
+            ind = 0;
 
-            columna[0] = listaBanco.get(i).getNombre_banco();
+            columna[ind++] = listaBanco.get(i).getNombre_banco();
 
-            modeloT.addRow(columna);
+            dm.addRow(columna);
 
         }
 
@@ -225,7 +226,6 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
             vista.btnEliminar.setEnabled(true);
         }
         String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, columna)); // por ultimo, obtengo el valor de la celda
-        catalogo.txtBuscar.setText(String.valueOf(dato));
 
         modban.setNombre_banco(String.valueOf(dato));
 

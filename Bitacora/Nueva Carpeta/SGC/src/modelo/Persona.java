@@ -41,6 +41,50 @@ public class Persona extends ConexionBD {
         this.correo = correo;
         this.telefono = telefono;
     }
+    
+        public Boolean buscar() {
+        try {
+            rs = null;
+            ps = null;
+            con = getConexion();
+
+            int ind;
+
+            String sql = "SELECT cedula, p_nombre, s_nombre, p_apellido, s_apellido, correo, telefono FROM persona WHERE cedula = ?";
+
+            ps = con.prepareStatement(sql);
+
+            ind = 1;
+            ps.setString(ind++, getCedula());
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                setpNombre(rs.getString("p_nombre"));
+                setsNombre(rs.getString("s_nombre"));
+                setpApellido(rs.getString("p_apellido"));
+                setsApellido(rs.getString("s_apellido"));
+                setCorreo(rs.getString("correo"));
+                setTelefono(rs.getString("telefono"));
+                return true;
+
+            } else {
+                return false;
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+
+        } finally {
+            try {
+                con.close();
+
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+    }
 
     public Boolean existePersona() {
         try {
@@ -159,9 +203,10 @@ public class Persona extends ConexionBD {
         }
     }
 
-    protected Boolean registrarPersona() {
+    public Boolean registrarPersona() {
         try {
             ps = null;
+            con = getConexion();
 
             String sql = "INSERT INTO persona(cedula, p_nombre, s_nombre, p_apellido, s_apellido, telefono, correo) VALUES (?,?,?,?,?,?,?);";
 

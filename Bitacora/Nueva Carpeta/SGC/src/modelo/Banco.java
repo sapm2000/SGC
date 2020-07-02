@@ -24,9 +24,15 @@ public class Banco extends ConexionBD {
             ps = con.prepareStatement(sql);
             ps.setString(1, getNombre_banco());
             ps.setInt(2, SGC.usuarioActual.getId());
-            ps.execute();
 
-            return true;
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
+
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
 
@@ -176,9 +182,15 @@ public class Banco extends ConexionBD {
             ps.setInt(ind++, getId());
             ps.setString(ind++, getNombre_banco());
             ps.setInt(ind++, SGC.usuarioActual.getId());
-            ps.execute();
 
-            return true;
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
+
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
 
@@ -251,9 +263,15 @@ public class Banco extends ConexionBD {
 
             ps.setInt(1, getId());
             ps.setInt(2, SGC.usuarioActual.getId());
-            ps.execute();
 
-            return true;
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
+
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
 
@@ -279,16 +297,24 @@ public class Banco extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE banco SET activo=true WHERE nombre_banco=?";
+        String sql = "SELECT reactivar_banco(?,?)";
 
         try {
-
+            int ind;
+            ind = 1;
             ps = con.prepareStatement(sql);
 
-            ps.setString(1, getNombre_banco());
-            ps.execute();
+            ps.setString(ind++, getNombre_banco());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
+            
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
 
-            return true;
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
 

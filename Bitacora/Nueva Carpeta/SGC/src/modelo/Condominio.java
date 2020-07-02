@@ -25,14 +25,21 @@ public class Condominio extends ConexionBD {
         try {
             ind = 1;
             ps = con.prepareStatement(sql);
+            System.out.println(SGC.usuarioActual.getId());
             ps.setInt(ind++, SGC.usuarioActual.getId());
             ps.setString(ind++, getRif());
             ps.setString(ind++, getRazonS());
             ps.setString(ind++, getTelefono());
             ps.setString(ind++, getCorreoElectro());
 
-            ps.execute();
-            return true;
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
+
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
             System.err.println(e);
@@ -134,9 +141,14 @@ public class Condominio extends ConexionBD {
             ps.setString(ind++, getTelefono());
             ps.setString(ind++, getCorreoElectro());
 
-            ps.execute();
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
 
-            return true;
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
             System.err.println(e);

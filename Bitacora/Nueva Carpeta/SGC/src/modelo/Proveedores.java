@@ -7,7 +7,7 @@ import sgc.SGC;
 
 public class Proveedores extends ConexionBD {
 
-    private String cedula;
+    private String cedulaRif;
     private String nombre;
     private String telefono;
     private String correo;
@@ -28,16 +28,22 @@ public class Proveedores extends ConexionBD {
 
             ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setString(ind++, getCedula());
+            ps.setString(ind++, getCedulaRif());
             ps.setString(ind++, getNombre());
             ps.setString(ind++, getTelefono());
             ps.setString(ind++, getCorreo());
             ps.setString(ind++, getContacto());
             ps.setString(ind++, getDireccion());
             ps.setInt(ind++, SGC.usuarioActual.getId());
-            ps.execute();
 
-            return true;
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
+
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
 
@@ -71,7 +77,7 @@ public class Proveedores extends ConexionBD {
 
                 modpro = new Proveedores();
 
-                modpro.setCedula(rs.getString(1));
+                modpro.setCedulaRif(rs.getString(1));
                 modpro.setNombre(rs.getString(2));
                 modpro.setTelefono(rs.getString(3));
                 modpro.setCorreo(rs.getString(4));
@@ -114,7 +120,7 @@ public class Proveedores extends ConexionBD {
 
                 modpro = new Proveedores();
 
-                modpro.setCedula(rs.getString(1));
+                modpro.setCedulaRif(rs.getString(1));
                 modpro.setNombre(rs.getString(2));
                 modpro.setTelefono(rs.getString(3));
                 modpro.setCorreo(rs.getString(4));
@@ -150,7 +156,7 @@ public class Proveedores extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, modpro.getCedula());
+            ps.setString(1, modpro.getCedulaRif());
             rs = ps.executeQuery();
             if (rs.next()) {
 
@@ -185,7 +191,7 @@ public class Proveedores extends ConexionBD {
 
     }
 
-    public boolean modificar(Proveedores modpro) {
+    public boolean modificar() {
 
         int ind;
         ps = null;
@@ -197,34 +203,37 @@ public class Proveedores extends ConexionBD {
 
             ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setString(ind++, getCedula());
+            ps.setString(ind++, getCedulaRif());
             ps.setString(ind++, getNombre());
             ps.setString(ind++, getTelefono());
             ps.setString(ind++, getCorreo());
             ps.setString(ind++, getContacto());
             ps.setString(ind++, getDireccion());
             ps.setInt(ind++, SGC.usuarioActual.getId());
-            ps.execute();
 
-            return true;
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
+
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
 
             System.err.println(e);
             return false;
-        } finally {
-            try {
 
+        } finally {
+
+            try {
                 con.close();
 
             } catch (SQLException e) {
-
                 System.err.println(e);
-
             }
-
         }
-
     }
 
     public boolean eliminar(Proveedores modpro) {
@@ -239,11 +248,17 @@ public class Proveedores extends ConexionBD {
 
             ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setString(ind++, getCedula());
+            ps.setString(ind++, getCedulaRif());
             ps.setInt(ind++, SGC.usuarioActual.getId());
-            ps.execute();
 
-            return true;
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
+
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
 
@@ -275,10 +290,16 @@ public class Proveedores extends ConexionBD {
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, getCedula());
-            ps.execute();
+            ps.setString(1, getCedulaRif());
+            
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
 
-            return true;
+            } else {
+                return false;
+            }
 
         } catch (SQLException e) {
 
@@ -300,23 +321,22 @@ public class Proveedores extends ConexionBD {
 
     }
 
-    public boolean Buscargas(Proveedores modpro) {
+    public boolean buscarGasto(Proveedores modpro) {
 
         ps = null;
         rs = null;
         con = getConexion();
 
-        String sql = "SELECT * FROM gasto_comun where id_proveedor=? and estado='Pendiente'";
+        String sql = "SELECT * FROM gasto WHERE id_proveedor = ? AND estado = 'Pendiente'";
 
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, modpro.getCedula());
+            ps.setString(1, modpro.getCedulaRif());
 
             rs = ps.executeQuery();
 
             if (rs.next()) {
-
                 return true;
             }
 
@@ -328,58 +348,22 @@ public class Proveedores extends ConexionBD {
             return false;
 
         } finally {
+
             try {
                 con.close();
+
             } catch (SQLException e) {
                 System.err.println(e);
             }
         }
-
     }
 
-    public boolean Buscarcuo(Proveedores modpro) {
-
-        ps = null;
-        rs = null;
-        con = getConexion();
-
-        String sql = "SELECT * FROM facturas_proveedores where id_proveedor=? and estado='Pendiente'";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-            ps.setString(1, modpro.getCedula());
-
-            rs = ps.executeQuery();
-
-            if (rs.next()) {
-
-                return true;
-            }
-
-            return false;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                System.err.println(e);
-            }
-        }
-
+    public String getCedulaRif() {
+        return cedulaRif;
     }
 
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
+    public void setCedulaRif(String cedulaRif) {
+        this.cedulaRif = cedulaRif;
     }
 
     public String getNombre() {
