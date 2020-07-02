@@ -1,9 +1,29 @@
+-- banco
+INSERT INTO banco (nombre_banco) VALUES ('Banco de Venezuela');
+INSERT INTO banco (nombre_banco) VALUES ('Banco del Caribe');
+INSERT INTO banco (nombre_banco) VALUES ('Banco Provincial');
+INSERT INTO banco (nombre_banco) VALUES ('Banco Bicentenario');
+INSERT INTO banco (nombre_banco) VALUES ('Banesco');
+INSERT INTO banco (nombre_banco) VALUES ('Banco Exterior');
+INSERT INTO banco (nombre_banco) VALUES ('Banco BOD');
+
+-- condominio
+INSERT INTO condominio (rif, razon_social, telefono, correo_electronico) VALUES ('J-223189390', 'Campo Guatacaro', '0414-5371749', 'ajhensuarez@gmail.com');
+
+-- forma_pago
+INSERT INTO forma_pago(forma_pago) VALUES ('Pago móvil');
+INSERT INTO forma_pago(forma_pago) VALUES ('Transferencia');
+INSERT INTO forma_pago(forma_pago) VALUES ('Depósito');
+INSERT INTO forma_pago(forma_pago) VALUES ('Efectivo');
+INSERT INTO forma_pago(forma_pago) VALUES ('Cheque');
+INSERT INTO forma_pago(forma_pago) VALUES ('Punto de venta');
+
 -- funcion
 INSERT INTO funcion (funcion) VALUES ('Asambleas');
 INSERT INTO funcion (funcion) VALUES ('Banco');
 INSERT INTO funcion (funcion) VALUES ('Categoria Gastos');
 INSERT INTO funcion (funcion) VALUES ('Concepto Gastos');
-INSERT INTO funcion (funcion) VALUES ('Comunicados');
+--INSERT INTO funcion (funcion) VALUES ('Comunicados');
 INSERT INTO funcion (funcion) VALUES ('Condominio');
 INSERT INTO funcion (funcion) VALUES ('Cuenta');
 INSERT INTO funcion (funcion) VALUES ('Cuentas por cobrar');
@@ -14,7 +34,7 @@ INSERT INTO funcion (funcion) VALUES ('Gasto');
 INSERT INTO funcion (funcion) VALUES ('Generar recibo');
 INSERT INTO funcion (funcion) VALUES ('Gestionar Usuario');
 INSERT INTO funcion (funcion) VALUES ('Intereses');
-INSERT INTO funcion (funcion) VALUES ('Pago de cuotas especiales');
+--INSERT INTO funcion (funcion) VALUES ('Pago de cuotas especiales');
 INSERT INTO funcion (funcion) VALUES ('Propietarios');
 INSERT INTO funcion (funcion) VALUES ('Proveedores');
 INSERT INTO funcion (funcion) VALUES ('Recibo');
@@ -23,8 +43,10 @@ INSERT INTO funcion (funcion) VALUES ('Sanciones');
 INSERT INTO funcion (funcion) VALUES ('Tipo de unidad');
 INSERT INTO funcion (funcion) VALUES ('Tipo de usuario');
 INSERT INTO funcion (funcion) VALUES ('Unidades');
-INSERT INTO funcion (funcion) VALUES ('Registro de visitas');
 INSERT INTO funcion (funcion) VALUES ('Visitas autorizadas');
+
+-- persona
+INSERT INTO persona (cedula, p_nombre, p_apellido, telefono, correo) VALUES ('V-00000000', 'Admin', 'Istrador', '0000-0000000', 'admin@admin.com');
 
 -- tipo_usuario
 INSERT INTO tipo_usuario (tipo) VALUES ('Administrador');
@@ -53,11 +75,8 @@ INSERT INTO puente_tipo_funcion (id_tipo, id_funcion, registrar, modificar, elim
 (1, 20, true, true, true, true),
 (1, 21, true, true, true, true),
 (1, 22, true, true, true, true),
-(1, 23, true, true, true, true),
-(1, 24, true, true, true, true),
-(1, 25, true, true, true, true),
-(1, 26, true, true, true, true);
+(1, 23, true, true, true, true);
 
 -- usuario
-INSERT INTO usuario (usuario, password, pregunta, respuesta, id_tipo_usuario) VALUES ('Ingresar Usuario', '455831477b82574f6bf871193f2f761d', 'pregunta', 'respuesta', 1);
+INSERT INTO usuario (usuario, password, pregunta, respuesta, ci_persona, id_tipo_usuario) VALUES ('Ingresar Usuario', '455831477b82574f6bf871193f2f761d', 'pregunta', 'respuesta', 'V-00000000', 1);
 
