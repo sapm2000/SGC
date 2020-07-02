@@ -7,8 +7,6 @@ INSERT INTO banco (nombre_banco) VALUES ('Banesco');
 INSERT INTO banco (nombre_banco) VALUES ('Banco Exterior');
 INSERT INTO banco (nombre_banco) VALUES ('Banco BOD');
 
--- condominio
-INSERT INTO condominio (rif, razon_social, telefono, correo_electronico) VALUES ('J-223189390', 'Campo Guatacaro', '0414-5371749', 'ajhensuarez@gmail.com');
 
 -- forma_pago
 INSERT INTO forma_pago(forma_pago) VALUES ('Pago móvil');

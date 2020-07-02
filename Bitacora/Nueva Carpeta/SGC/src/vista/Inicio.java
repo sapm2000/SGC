@@ -5,6 +5,14 @@
  */
 package vista;
 
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Jhen
@@ -16,6 +24,24 @@ public class Inicio extends javax.swing.JPanel {
      */
     public Inicio() {
         initComponents();
+        File fichero = new File("test.txt");
+        int cantidad = 8;
+        String cadena = fichero.getAbsolutePath();
+        /* Total de elementos a Eliminar*/
+ /* Total de elementos a Mostrar*/
+        int m = Math.max(0, cadena.length() - cantidad);
+        String ruta = (cadena.substring(0, cadena.length() - cantidad));
+        String ruta2 = "src\\fondo\\logo.png";
+        Image img = null;
+
+        try {
+            img = new ImageIcon(ImageIO.read(new File(ruta + ruta2))).getImage();
+            ImageIcon img2 = new ImageIcon(img.getScaledInstance(400, 200, Image.SCALE_SMOOTH));
+            jLabel2.setIcon(img2);
+        } catch (IOException ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**
@@ -46,26 +72,24 @@ public class Inicio extends javax.swing.JPanel {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("¡Bienvenido al Menú de Datos Compartidos!");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 780, -1));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/condominio1 (2).png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 130, 280, 220));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1121, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel2;
+    public javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

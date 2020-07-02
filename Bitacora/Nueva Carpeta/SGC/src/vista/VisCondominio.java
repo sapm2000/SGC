@@ -5,17 +5,59 @@
  */
 package vista;
 
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Jhen
  */
 public class VisCondominio extends javax.swing.JPanel {
+    JFileChooser seleccionar = new JFileChooser();
+    File archivo;
+    byte[] imagen;
+    FileInputStream entrada;
+    FileOutputStream salida;
+    ImageIcon img2 = null;
+    ImageIcon img3 = null;
 
     /**
      * Creates new form VisCondominio
      */
     public VisCondominio() {
         initComponents();
+    }
+    
+    public byte[] AbrirArchivo(File archivo) {
+        byte[] imagen = new byte[1024 * 100];
+        try {
+            entrada = new FileInputStream(archivo);
+            entrada.read(imagen);
+
+        } catch (Exception e) {
+
+        }
+        return imagen;
+    }
+
+    public String guardarArchivo(File archivo, byte[] imagen) {
+        String mensaje = null;
+        try {
+            salida = new FileOutputStream(archivo);
+            salida.write(imagen);
+            mensaje = "archivo guardado";
+        } catch (Exception e) {
+        }
+        return mensaje;
     }
 
     /**
@@ -48,6 +90,9 @@ public class VisCondominio extends javax.swing.JPanel {
         jSeparator4 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jlogo = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -90,10 +135,10 @@ public class VisCondominio extends javax.swing.JPanel {
         jSeparator9.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel3.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 10, 70));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, 360, 80));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 480, 360, 80));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondobtn1chiqui.png"))); // NOI18N
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 370, -1, 120));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 440, -1, 120));
 
         jPanel2.setBackground(new java.awt.Color(0, 94, 159));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -173,7 +218,24 @@ public class VisCondominio extends javax.swing.JPanel {
         jLabel6.setText("Registro de Condominio");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 580, 490));
+        jlogo.setText("adjuntar logo");
+        jlogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jlogoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jlogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, 160, 110));
+
+        jButton1.setText("guardar logo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, -1, -1));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 620, 560));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtRifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRifActionPerformed
@@ -181,13 +243,59 @@ public class VisCondominio extends javax.swing.JPanel {
     }//GEN-LAST:event_txtRifActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void jlogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlogoActionPerformed
+         if (seleccionar.showDialog(null, null) == JFileChooser.APPROVE_OPTION) {
+            archivo = seleccionar.getSelectedFile();
+            if (archivo.canRead()) {
+                if (archivo.getName().endsWith("jpg") || archivo.getName().endsWith("png") || archivo.getName().endsWith("gif"));
+
+                imagen = AbrirArchivo(archivo);
+                Image img = new ImageIcon(imagen).getImage();
+                 img2 = new ImageIcon(img.getScaledInstance(150, 100, Image.SCALE_SMOOTH));
+                 img3= new ImageIcon(img);
+
+                jLabel8.setIcon((img2));
+            } else {
+                JOptionPane.showMessageDialog(null, "archivo no compatible");
+            }
+        }
+    }//GEN-LAST:event_jlogoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      ImageIcon icon = (ImageIcon) img3;
+
+        BufferedImage image = new BufferedImage(icon.getIconWidth(),
+        icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2 = image.createGraphics();
+
+        g2.drawImage(icon.getImage(), 0, 0, icon.getImageObserver());
+
+        g2.dispose();
+        File fichero = new File("test.txt");
+
+        int cantidad = 8;
+        String cadena = fichero.getAbsolutePath();
+        /* Total de elementos a Eliminar*/
+ /* Total de elementos a Mostrar*/
+        int m = Math.max(0, cadena.length() - cantidad);
+        String ruta = (cadena.substring(0, cadena.length() - cantidad));
+        String ruta2 = "\\src\\fondo\\logo.png";
+        System.out.println(ruta);
+        try {
+            ImageIO.write(image, "png", new File(ruta + ruta2));
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "error");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnLimpiar;
+    public javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -195,6 +303,7 @@ public class VisCondominio extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    public javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -203,6 +312,7 @@ public class VisCondominio extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator9;
+    public javax.swing.JButton jlogo;
     public javax.swing.JTextField txtCorreo;
     public javax.swing.JTextField txtRazonS;
     public javax.swing.JTextField txtRif;
