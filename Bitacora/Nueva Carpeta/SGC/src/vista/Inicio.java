@@ -36,7 +36,7 @@ public class Inicio extends javax.swing.JPanel {
 
         try {
             img = new ImageIcon(ImageIO.read(new File(ruta + ruta2))).getImage();
-            ImageIcon img2 = new ImageIcon(img.getScaledInstance(400, 200, Image.SCALE_SMOOTH));
+            ImageIcon img2 = new ImageIcon(img.getScaledInstance(200, 200, Image.SCALE_SMOOTH));
             jLabel2.setIcon(img2);
         } catch (IOException ex) {
             Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
@@ -72,13 +72,13 @@ public class Inicio extends javax.swing.JPanel {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("¡Bienvenido al Menú de Datos Compartidos!");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 780, -1));
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 130, 280, 220));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 130, 280, 220));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1121, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

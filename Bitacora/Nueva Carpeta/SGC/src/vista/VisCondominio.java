@@ -135,10 +135,10 @@ public class VisCondominio extends javax.swing.JPanel {
         jSeparator9.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel3.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 10, 70));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 480, 360, 80));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 510, 360, 80));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondobtn1chiqui.png"))); // NOI18N
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 440, -1, 120));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, -1, 120));
 
         jPanel2.setBackground(new java.awt.Color(0, 94, 159));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -209,23 +209,35 @@ public class VisCondominio extends javax.swing.JPanel {
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 300, 10));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 480, 280));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 480, 280));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel6.setText("Registro de Condominio");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
 
-        jlogo.setText("adjuntar logo");
+        jlogo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jlogo.setForeground(new java.awt.Color(0, 94, 159));
+        jlogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imagen.png"))); // NOI18N
+        jlogo.setText("Adjuntar Logo");
+        jlogo.setToolTipText("Boton para adjuntar el logo, debe ser mayor de 200x200");
+        jlogo.setBorder(null);
+        jlogo.setBorderPainted(false);
+        jlogo.setContentAreaFilled(false);
+        jlogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlogo.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imagen.png"))); // NOI18N
+        jlogo.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imagen (1).png"))); // NOI18N
+        jlogo.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imagen (1).png"))); // NOI18N
+        jlogo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imagen (1).png"))); // NOI18N
         jlogo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jlogoActionPerformed(evt);
             }
         });
-        jPanel1.add(jlogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, -1, -1));
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, 160, 110));
+        jPanel1.add(jlogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, 160, 120));
 
         jButton1.setText("guardar logo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -233,9 +245,9 @@ public class VisCondominio extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, -1, -1));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 620, 560));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 620, 590));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtRifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRifActionPerformed
@@ -254,7 +266,7 @@ public class VisCondominio extends javax.swing.JPanel {
 
                 imagen = AbrirArchivo(archivo);
                 Image img = new ImageIcon(imagen).getImage();
-                 img2 = new ImageIcon(img.getScaledInstance(150, 100, Image.SCALE_SMOOTH));
+                 img2 = new ImageIcon(img.getScaledInstance(125, 125, Image.SCALE_SMOOTH));
                  img3= new ImageIcon(img);
 
                 jLabel8.setIcon((img2));
