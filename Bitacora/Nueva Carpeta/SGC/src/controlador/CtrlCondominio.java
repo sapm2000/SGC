@@ -36,7 +36,7 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
 
     JFileChooser seleccionar = new JFileChooser();
     File archivo;
-    byte[] imagen ;
+    byte[] imagen;
     FileInputStream entrada;
     FileOutputStream salida;
     ImageIcon img2 = null;
@@ -51,6 +51,7 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
 
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
+        this.vista.btnEliminar.addActionListener(this);
         this.vista.jlogo.addActionListener(this);
         this.vista.txtRif.addKeyListener(this);
         this.vista.txtRazonS.addKeyListener(this);
@@ -78,6 +79,7 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
         ventana.setSize(1366, 662);
         ventana.add(vista);
 
+        this.vista.btnEliminar.addActionListener(this);
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
         this.vista.jlogo.addActionListener(this);
@@ -90,6 +92,10 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
     }
 
     public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == vista.btnEliminar) {
+            vista.labelLogo.setIcon(null);
+        }
 
         if (e.getSource() == vista.jlogo) {
             if (seleccionar.showDialog(null, null) == JFileChooser.APPROVE_OPTION) {
