@@ -91,8 +91,7 @@ public class VisCondominio extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jlogo = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        labelLogo = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -226,7 +225,7 @@ public class VisCondominio extends javax.swing.JPanel {
         jlogo.setBorder(null);
         jlogo.setBorderPainted(false);
         jlogo.setContentAreaFilled(false);
-        jlogo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlogo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jlogo.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imagen.png"))); // NOI18N
         jlogo.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imagen (1).png"))); // NOI18N
         jlogo.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imagen (1).png"))); // NOI18N
@@ -237,15 +236,7 @@ public class VisCondominio extends javax.swing.JPanel {
             }
         });
         jPanel1.add(jlogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, -1, -1));
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, 160, 120));
-
-        jButton1.setText("guardar logo");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, -1, -1));
+        jPanel1.add(labelLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, 160, 120));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 620, 590));
     }// </editor-fold>//GEN-END:initComponents
@@ -259,55 +250,13 @@ public class VisCondominio extends javax.swing.JPanel {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void jlogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlogoActionPerformed
-         if (seleccionar.showDialog(null, null) == JFileChooser.APPROVE_OPTION) {
-            archivo = seleccionar.getSelectedFile();
-            if (archivo.canRead()) {
-                if (archivo.getName().endsWith("jpg") || archivo.getName().endsWith("png") || archivo.getName().endsWith("gif"));
-
-                imagen = AbrirArchivo(archivo);
-                Image img = new ImageIcon(imagen).getImage();
-                 img2 = new ImageIcon(img.getScaledInstance(125, 125, Image.SCALE_SMOOTH));
-                 img3= new ImageIcon(img);
-
-                jLabel8.setIcon((img2));
-            } else {
-                JOptionPane.showMessageDialog(null, "archivo no compatible");
-            }
-        }
+        
     }//GEN-LAST:event_jlogoActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      ImageIcon icon = (ImageIcon) img3;
-
-        BufferedImage image = new BufferedImage(icon.getIconWidth(),
-        icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g2 = image.createGraphics();
-
-        g2.drawImage(icon.getImage(), 0, 0, icon.getImageObserver());
-
-        g2.dispose();
-        File fichero = new File("test.txt");
-
-        int cantidad = 8;
-        String cadena = fichero.getAbsolutePath();
-        /* Total de elementos a Eliminar*/
- /* Total de elementos a Mostrar*/
-        int m = Math.max(0, cadena.length() - cantidad);
-        String ruta = (cadena.substring(0, cadena.length() - cantidad));
-        String ruta2 = "\\src\\fondo\\logo.png";
-        System.out.println(ruta);
-        try {
-            ImageIO.write(image, "png", new File(ruta + ruta2));
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "error");
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnLimpiar;
-    public javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -315,7 +264,6 @@ public class VisCondominio extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    public javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -325,6 +273,7 @@ public class VisCondominio extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator9;
     public javax.swing.JButton jlogo;
+    public javax.swing.JLabel labelLogo;
     public javax.swing.JTextField txtCorreo;
     public javax.swing.JTextField txtRazonS;
     public javax.swing.JTextField txtRif;
