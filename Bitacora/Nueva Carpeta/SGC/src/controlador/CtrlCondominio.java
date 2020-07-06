@@ -36,7 +36,7 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
 
     JFileChooser seleccionar = new JFileChooser();
     File archivo;
-    byte[] imagen;
+    byte[] imagen ;
     FileInputStream entrada;
     FileOutputStream salida;
     ImageIcon img2 = null;
@@ -95,7 +95,7 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
             if (seleccionar.showDialog(null, null) == JFileChooser.APPROVE_OPTION) {
                 archivo = seleccionar.getSelectedFile();
                 if (archivo.canRead()) {
-                    if (archivo.getName().endsWith("jpg") || archivo.getName().endsWith("png") || archivo.getName().endsWith("gif"));
+                    if (archivo.getName().endsWith("png"));
 
                     imagen = AbrirArchivo(archivo);
                     Image img = new ImageIcon(imagen).getImage();
@@ -319,7 +319,7 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
     }
 
     public byte[] AbrirArchivo(File archivo) {
-        byte[] imagen = new byte[1024 * 100];
+        byte[] imagen = new byte[1024 * 1000];
         try {
             entrada = new FileInputStream(archivo);
             entrada.read(imagen);

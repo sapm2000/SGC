@@ -92,7 +92,6 @@ public class VisCondominio extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jlogo = new javax.swing.JButton();
         labelLogo = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -239,14 +238,6 @@ public class VisCondominio extends javax.swing.JPanel {
         jPanel1.add(jlogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, -1, -1));
         jPanel1.add(labelLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, 160, 120));
 
-        jButton1.setText("guardar logo");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, -1, -1));
-
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 620, 590));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -262,17 +253,10 @@ public class VisCondominio extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jlogoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        
-      
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnLimpiar;
-    public javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
