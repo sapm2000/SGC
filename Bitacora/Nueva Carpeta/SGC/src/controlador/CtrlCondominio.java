@@ -1,6 +1,8 @@
 package controlador;
 
 import java.awt.Component;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -9,7 +11,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -24,9 +34,15 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
     private VisCondominio vista;
     private Condominio modelo;
 
-
+    JFileChooser seleccionar = new JFileChooser();
+    File archivo;
+    byte[] imagen;
+    FileInputStream entrada;
+    FileOutputStream salida;
+    ImageIcon img2 = null;
+    ImageIcon img3 = null;
     private Funcion permiso;
-    
+
     private JFrame ventana;
 
     public CtrlCondominio() {
@@ -35,6 +51,7 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
 
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
+        this.vista.jlogo.addActionListener(this);
         this.vista.txtRif.addKeyListener(this);
         this.vista.txtRazonS.addKeyListener(this);
         this.vista.txtTelefono.addKeyListener(this);
@@ -63,6 +80,7 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
 
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
+        this.vista.jlogo.addActionListener(this);
         this.vista.txtRif.addKeyListener(this);
         this.vista.txtRazonS.addKeyListener(this);
         this.vista.txtTelefono.addKeyListener(this);
@@ -73,6 +91,24 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
 
     public void actionPerformed(ActionEvent e) {
 
+        if (e.getSource() == vista.jlogo) {
+            if (seleccionar.showDialog(null, null) == JFileChooser.APPROVE_OPTION) {
+                archivo = seleccionar.getSelectedFile();
+                if (archivo.canRead()) {
+                    if (archivo.getName().endsWith("jpg") || archivo.getName().endsWith("png") || archivo.getName().endsWith("gif"));
+
+                    imagen = AbrirArchivo(archivo);
+                    Image img = new ImageIcon(imagen).getImage();
+                    img2 = new ImageIcon(img.getScaledInstance(125, 125, Image.SCALE_SMOOTH));
+                    img3 = new ImageIcon(img);
+
+                    vista.labelLogo.setIcon((img2));
+                } else {
+                    JOptionPane.showMessageDialog(null, "archivo no compatible");
+                }
+            }
+        }
+
         if (e.getSource() == vista.btnGuardar) {
             if (validar()) {
                 modelo.setRif(vista.txtRif.getText());
@@ -82,6 +118,32 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
 
                 if (modelo.existe()) {
                     if (modelo.modificar()) {
+                        if (vista.labelLogo.getIcon() != null) {
+                            ImageIcon icon = (ImageIcon) img3;
+
+                            BufferedImage image = new BufferedImage(icon.getIconWidth(),
+                                    icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+                            Graphics2D g2 = image.createGraphics();
+
+                            g2.drawImage(icon.getImage(), 0, 0, icon.getImageObserver());
+
+                            g2.dispose();
+                            File fichero = new File("test.txt");
+
+                            int cantidad = 8;
+                            String cadena = fichero.getAbsolutePath();
+                            /* Total de elementos a Eliminar*/
+ /* Total de elementos a Mostrar*/
+                            int m = Math.max(0, cadena.length() - cantidad);
+                            String ruta = (cadena.substring(0, cadena.length() - cantidad));
+                            String ruta2 = "\\src\\fondo\\logo.png";
+                            System.out.println(ruta);
+                            try {
+                                ImageIO.write(image, "png", new File(ruta + ruta2));
+                            } catch (IOException ex) {
+                                JOptionPane.showMessageDialog(null, "error");
+                            }
+                        }
                         JOptionPane.showMessageDialog(null, "Datos actualizados");
                     }
 
@@ -92,7 +154,6 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
 
                         CtrlVentana ctrlMenu = new CtrlVentana();
                         ventana.dispose();
-                               
 
                     }
                 }
@@ -255,5 +316,17 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
         TableColumn tc = table.getColumnModel().getColumn(column);
         tc.setCellEditor(table.getDefaultEditor(Boolean.class));
         tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
+    }
+
+    public byte[] AbrirArchivo(File archivo) {
+        byte[] imagen = new byte[1024 * 100];
+        try {
+            entrada = new FileInputStream(archivo);
+            entrada.read(imagen);
+
+        } catch (Exception e) {
+
+        }
+        return imagen;
     }
 }
