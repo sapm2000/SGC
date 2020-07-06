@@ -92,6 +92,7 @@ public class VisCondominio extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jlogo = new javax.swing.JButton();
         labelLogo = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -235,8 +236,20 @@ public class VisCondominio extends javax.swing.JPanel {
                 jlogoActionPerformed(evt);
             }
         });
-        jPanel1.add(jlogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, -1, -1));
+        jPanel1.add(jlogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, -1, -1));
         jPanel1.add(labelLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, 160, 120));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/multiplicar-signo-matematico.png"))); // NOI18N
+        jButton1.setToolTipText("Eliminar el logo");
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/multiplicar-signo-matematico.png"))); // NOI18N
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/multiplicar-signo-matematico (1).png"))); // NOI18N
+        jButton1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/multiplicar-signo-matematico (1).png"))); // NOI18N
+        jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/multiplicar-signo-matematico (1).png"))); // NOI18N
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 360, 30, -1));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 620, 590));
     }// </editor-fold>//GEN-END:initComponents
@@ -257,6 +270,7 @@ public class VisCondominio extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
