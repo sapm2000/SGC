@@ -114,6 +114,7 @@ public class Gasto extends ConexionBD {
 
             if (ps.execute()) {
                 rs = ps.getResultSet();
+                System.out.println("poli1");
 
             } else {
                 return false;
@@ -123,6 +124,7 @@ public class Gasto extends ConexionBD {
 
                 if (registrarConceptos()) {
                     rs.next();
+                    System.out.println("poli2");
                     return rs.getBoolean(1);
 
                 }

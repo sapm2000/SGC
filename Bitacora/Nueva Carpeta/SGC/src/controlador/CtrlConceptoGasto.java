@@ -154,9 +154,9 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
             }
         }
         if (e.getSource() == vista.btnEliminar) {
-            if (modelo.Buscarcuo(modelo)) {
-                JOptionPane.showMessageDialog(null, "no se puede eliminar si tiene gastos por procesar asignados");
-            } else {
+//            if (modelo.Buscarcuo(modelo)) {
+//                JOptionPane.showMessageDialog(null, "no se puede eliminar si tiene gastos por procesar asignados");
+//            } else {
                 if (modelo.eliminar(modelo)) {
                     modelo.setId(Integer.parseInt(vista.txtId.getText()));
                     JOptionPane.showMessageDialog(null, "Registro Eliminado");
@@ -168,7 +168,7 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
                     JOptionPane.showMessageDialog(null, "Error al Eliminar");
 
                 }
-            }
+//            }
 
         }
 
