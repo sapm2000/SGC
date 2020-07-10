@@ -5,17 +5,59 @@
  */
 package vista;
 
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Jhen
  */
 public class VisCondominio extends javax.swing.JPanel {
+    JFileChooser seleccionar = new JFileChooser();
+    File archivo;
+    byte[] imagen;
+    FileInputStream entrada;
+    FileOutputStream salida;
+    ImageIcon img2 = null;
+    ImageIcon img3 = null;
 
     /**
      * Creates new form VisCondominio
      */
     public VisCondominio() {
         initComponents();
+    }
+    
+    public byte[] AbrirArchivo(File archivo) {
+        byte[] imagen = new byte[1024 * 100];
+        try {
+            entrada = new FileInputStream(archivo);
+            entrada.read(imagen);
+
+        } catch (Exception e) {
+
+        }
+        return imagen;
+    }
+
+    public String guardarArchivo(File archivo, byte[] imagen) {
+        String mensaje = null;
+        try {
+            salida = new FileOutputStream(archivo);
+            salida.write(imagen);
+            mensaje = "archivo guardado";
+        } catch (Exception e) {
+        }
+        return mensaje;
     }
 
     /**
@@ -48,6 +90,9 @@ public class VisCondominio extends javax.swing.JPanel {
         jSeparator4 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jlogo = new javax.swing.JButton();
+        labelLogo = new javax.swing.JLabel();
+        btnEliminar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -90,10 +135,10 @@ public class VisCondominio extends javax.swing.JPanel {
         jSeparator9.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel3.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 10, 70));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, 360, 80));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 510, 360, 80));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondobtn1chiqui.png"))); // NOI18N
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 370, -1, 120));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, -1, 120));
 
         jPanel2.setBackground(new java.awt.Color(0, 94, 159));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -164,16 +209,49 @@ public class VisCondominio extends javax.swing.JPanel {
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 300, 10));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 480, 280));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 480, 280));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel6.setText("Registro de Condominio");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 580, 490));
+        jlogo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jlogo.setForeground(new java.awt.Color(0, 94, 159));
+        jlogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imagen.png"))); // NOI18N
+        jlogo.setText("Adjuntar Logo");
+        jlogo.setToolTipText("Boton para adjuntar el logo, debe ser mayor de 200x200");
+        jlogo.setBorder(null);
+        jlogo.setBorderPainted(false);
+        jlogo.setContentAreaFilled(false);
+        jlogo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jlogo.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imagen.png"))); // NOI18N
+        jlogo.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imagen (1).png"))); // NOI18N
+        jlogo.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imagen (1).png"))); // NOI18N
+        jlogo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imagen (1).png"))); // NOI18N
+        jlogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jlogoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jlogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, -1, -1));
+        jPanel1.add(labelLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, 160, 120));
+
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/multiplicar-signo-matematico.png"))); // NOI18N
+        btnEliminar.setToolTipText("Eliminar el logo");
+        btnEliminar.setBorder(null);
+        btnEliminar.setBorderPainted(false);
+        btnEliminar.setContentAreaFilled(false);
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEliminar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/multiplicar-signo-matematico.png"))); // NOI18N
+        btnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/multiplicar-signo-matematico (1).png"))); // NOI18N
+        btnEliminar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/multiplicar-signo-matematico (1).png"))); // NOI18N
+        btnEliminar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/multiplicar-signo-matematico (1).png"))); // NOI18N
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 360, 30, -1));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 620, 590));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtRifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRifActionPerformed
@@ -181,11 +259,16 @@ public class VisCondominio extends javax.swing.JPanel {
     }//GEN-LAST:event_txtRifActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void jlogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlogoActionPerformed
+        
+    }//GEN-LAST:event_jlogoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnLimpiar;
     private javax.swing.JLabel jLabel1;
@@ -203,6 +286,8 @@ public class VisCondominio extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator9;
+    public javax.swing.JButton jlogo;
+    public javax.swing.JLabel labelLogo;
     public javax.swing.JTextField txtCorreo;
     public javax.swing.JTextField txtRazonS;
     public javax.swing.JTextField txtRif;
