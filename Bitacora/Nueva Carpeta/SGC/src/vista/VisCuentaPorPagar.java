@@ -1,15 +1,24 @@
 package vista;
 
 import java.awt.Color;
+import static java.awt.Color.white;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import javax.swing.BorderFactory;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JList;
 import javax.swing.JScrollBar;
 import javax.swing.JTable;
+import javax.swing.ListCellRenderer;
+import javax.swing.plaf.ComboBoxUI;
+import javax.swing.plaf.basic.BasicArrowButton;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 
@@ -30,6 +39,11 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
         tablaGastos.getTableHeader().setDefaultRenderer(new Headercolor());
+        cbxCuenta.setUI(new CustomUI());
+        cbxFondo.setUI(new CustomUI());
+        cbxFormaPago.setUI(new CustomUI());
+        cbxMoneda.setUI(new CustomUI());
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -100,7 +114,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Gasto:");
-        jPanel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, 20));
+        jPanel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 20));
 
         txtGasto.setBackground(new java.awt.Color(0, 94, 159));
         txtGasto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -116,7 +130,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Descripción:");
-        jPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 90, 30));
+        jPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 90, 20));
 
         txtDescripcion.setBackground(new java.awt.Color(0, 94, 159));
         txtDescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -131,45 +145,45 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("<html>\nForma <br> de Pago:\n</html>");
-        jPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, 40));
+        jPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, 40));
 
         cbxFormaPago.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxFormaPago.setNextFocusableComponent(fecha);
-        jPanel.add(cbxFormaPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 240, -1));
+        jPanel.add(cbxFormaPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 133, 240, 30));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("<html>\nFecha <br> de Pago:\n</html>");
-        jPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, 40));
+        jPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, 40));
 
         fecha.setNextFocusableComponent(cbxMoneda);
-        jPanel.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 240, -1));
+        jPanel.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 240, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("<HTML>Moneda<BR>a pagar:</HTML>");
-        jPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 60, 40));
+        jPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 60, 40));
 
         cbxMoneda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Bolívar", "Dólar" }));
         cbxMoneda.setNextFocusableComponent(cbxFondo);
-        jPanel.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 240, -1));
+        jPanel.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 243, 240, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("<html>\nFondo <br> Retirado:\n</html>");
-        jPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, -1));
+        jPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, -1, -1));
 
         cbxFondo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxFondo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una moneda" }));
         cbxFondo.setEnabled(false);
         cbxFondo.setNextFocusableComponent(txtMonto);
-        jPanel.add(cbxFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, 260, -1));
+        jPanel.add(cbxFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 23, 260, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Monto:");
-        jPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, -1, 20));
+        jPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, -1, 20));
 
         txtMonto.setBackground(new java.awt.Color(0, 94, 159));
         txtMonto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -204,11 +218,11 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("<html> Cuenta a<br>Transferir: </html>");
-        panelReferencia.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        panelReferencia.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
         cbxCuenta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxCuenta.setNextFocusableComponent(txtPariedad);
-        panelReferencia.add(cbxCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 260, -1));
+        panelReferencia.add(cbxCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 260, 30));
 
         jPanel.add(panelReferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 380, 120));
 
@@ -218,19 +232,19 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("<HTML>Tasa de<BR>cambio:</HTML>");
-        panelPariedad.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 40));
+        panelPariedad.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, 40));
 
         txtPariedad.setBackground(new java.awt.Color(0, 94, 159));
         txtPariedad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPariedad.setForeground(new java.awt.Color(255, 255, 255));
         txtPariedad.setBorder(null);
         txtPariedad.setNextFocusableComponent(btnProcesar);
-        panelPariedad.add(txtPariedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 260, 20));
+        panelPariedad.add(txtPariedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 260, 20));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        panelPariedad.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 260, 10));
+        panelPariedad.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 260, 10));
 
-        jPanel.add(panelPariedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 350, 60));
+        jPanel.add(panelPariedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 370, 60));
 
         add(jPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 750, 280));
 
@@ -410,4 +424,85 @@ static public class Headercolor extends DefaultTableCellHeaderRenderer {
             graphics2D.dispose();
         }
     }
+    
+    static public class CustomUI extends BasicComboBoxUI{
+        
+    
+    
+    public Color blue = new Color(0,94,159);
+    
+    public static ComboBoxUI createUI(JComponent cbxMoneda) {
+        
+         return new CustomUI();
+     }
+ 
+    @Override 
+    public JButton createArrowButton() {        
+        BasicArrowButton basicArrowButton = new BasicArrowButton(BasicArrowButton.SOUTH, //Direccion de la flecha
+                Color.WHITE, //Color de fondo
+                new Color(0,94,159),//sombra
+                new Color(0,94,159),//darkShadow
+                Color.WHITE //highlight
+                );         
+        //se quita el efecto 3d del boton, sombra y darkShadow no se aplican 
+        basicArrowButton.setBorder(BorderFactory.createLineBorder(blue,2));
+        basicArrowButton.setContentAreaFilled(false);        
+        return basicArrowButton;
+    }        
+ 
+     //Se puede usar un JButton para usar un icono personalizado en lugar del arrow
+     /* 
+45  @Override 
+46  protected JButton createArrowButton() { 
+47  JButton button = new JButton(); 
+48  //se quita el efecto 3d del boton, sombra y darkShadow no se aplican 
+49  button.setText("");
+50  button.setBorder(BorderFactory.createLineBorder(red,2));
+51  button.setContentAreaFilled(false);
+52  button.setIcon( new ImageIcon(getClass().getResource("/org/bolivia/res/estrella.png")) );
+53  return button;
+54  } 
+55  */
+     
+    
+    public void paintCurrentValueBackground(Graphics g, Rectangle bounds, boolean hasFocus)
+    {
+        
+        g.setColor( blue );
+        g.setFont(new Font("Tahoma", Font.BOLD, 14));
+        g.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
+    }
+    
+    
+     //Pinta los items
+    @Override
+    public ListCellRenderer createRenderer()
+    {
+        return new DefaultListCellRenderer() {      
+             
+        @Override
+        public Component getListCellRendererComponent(JList list,Object value,int index,
+           boolean isSelected,boolean cellHasFocus) {
+       
+        super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
+        list.setSelectionBackground(blue);
+        list.setForeground(white);
+        
+        if (isSelected)
+        {
+             setBackground( blue );
+             setForeground(new Color(255,255,255));
+        }
+        else
+        {
+             setBackground( Color.WHITE );            
+             setForeground( new Color(0,94,159));
+        }
+            
+            return this;
+            }
+        };
+        }
+    }
+    
 }

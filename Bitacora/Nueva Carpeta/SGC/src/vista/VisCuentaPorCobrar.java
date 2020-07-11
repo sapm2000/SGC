@@ -214,7 +214,7 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
         txtMonto.setForeground(new java.awt.Color(255, 255, 255));
         txtMonto.setToolTipText("Ingrese el monto");
         txtMonto.setBorder(null);
-        jPanel2.add(txtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 240, 20));
+        jPanel2.add(txtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 240, 20));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 130, 270, 20));
@@ -275,7 +275,7 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
         jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 10, -1, 40));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, 240, 20));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 240, 20));
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 1230, 280));
 

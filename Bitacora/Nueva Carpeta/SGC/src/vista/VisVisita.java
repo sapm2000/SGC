@@ -94,6 +94,7 @@ public class VisVisita extends javax.swing.JPanel {
         jSeparator12 = new javax.swing.JSeparator();
         jLabel12 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -126,33 +127,33 @@ public class VisVisita extends javax.swing.JPanel {
         txtApellido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtApellido.setForeground(new java.awt.Color(255, 255, 255));
         txtApellido.setBorder(null);
-        jPanel2.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 260, 20));
+        jPanel2.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 270, 20));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Cédula:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 60, 20));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 60, 20));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Apellido:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, 20));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, -1, 20));
 
         txtNombre.setBackground(new java.awt.Color(0, 94, 159));
         txtNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(255, 255, 255));
         txtNombre.setBorder(null);
-        jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 260, 20));
+        jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 270, 20));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 260, 10));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 270, 10));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator6.setOpaque(true);
         jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 740, 0));
 
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 260, 10));
+        jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 270, 10));
 
         btnCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCedula.setForeground(new java.awt.Color(255, 255, 255));
@@ -165,28 +166,28 @@ public class VisVisita extends javax.swing.JPanel {
         btnCedula.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
         btnCedula.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
         btnCedula.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
-        jPanel2.add(btnCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 40, 40));
+        jPanel2.add(btnCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 40, 40));
 
         txtCedula.setBackground(new java.awt.Color(0, 94, 159));
         txtCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCedula.setForeground(new java.awt.Color(255, 255, 255));
         txtCedula.setBorder(null);
-        jPanel2.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 170, 20));
+        jPanel2.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 170, 20));
 
         jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 210, 10));
+        jPanel2.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 210, 10));
 
         cbxUnidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel2.add(cbxUnidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 260, 30));
+        jPanel2.add(cbxUnidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 270, 30));
 
         cbxCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxCedula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "V", "E" }));
-        jPanel2.add(cbxCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 50, 30));
+        jPanel2.add(cbxCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 50, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Nombre:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 70, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 70, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -199,39 +200,39 @@ public class VisVisita extends javax.swing.JPanel {
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Color:");
-        panelAuto.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 20));
+        panelAuto.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, 20));
 
         txtColor.setBackground(new java.awt.Color(0, 94, 159));
         txtColor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtColor.setForeground(new java.awt.Color(255, 255, 255));
         txtColor.setBorder(null);
-        panelAuto.add(txtColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 240, 20));
+        panelAuto.add(txtColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 270, 20));
 
         jSeparator11.setForeground(new java.awt.Color(255, 255, 255));
-        panelAuto.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 240, 10));
+        panelAuto.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 270, 10));
 
         jSeparator9.setForeground(new java.awt.Color(255, 255, 255));
-        panelAuto.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 240, 10));
+        panelAuto.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 270, 10));
 
         txtModelo.setBackground(new java.awt.Color(0, 94, 159));
         txtModelo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtModelo.setForeground(new java.awt.Color(255, 255, 255));
         txtModelo.setBorder(null);
-        panelAuto.add(txtModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 240, 20));
+        panelAuto.add(txtModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 270, 20));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Modelo:");
-        panelAuto.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, 20));
+        panelAuto.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, 20));
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
-        panelAuto.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 230, 10));
+        panelAuto.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 270, 10));
 
         txtAcompanantes.setBackground(new java.awt.Color(0, 94, 159));
         txtAcompanantes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtAcompanantes.setForeground(new java.awt.Color(255, 255, 255));
         txtAcompanantes.setBorder(null);
-        panelAuto.add(txtAcompanantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 230, 20));
+        panelAuto.add(txtAcompanantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 270, 20));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
@@ -242,22 +243,22 @@ public class VisVisita extends javax.swing.JPanel {
         txtMatricula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtMatricula.setForeground(new java.awt.Color(255, 255, 255));
         txtMatricula.setBorder(null);
-        panelAuto.add(txtMatricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 240, 20));
+        panelAuto.add(txtMatricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 270, 20));
 
         jSeparator10.setForeground(new java.awt.Color(255, 255, 255));
-        panelAuto.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 240, 10));
+        panelAuto.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 270, 10));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Matrícula:");
-        panelAuto.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, 20));
+        panelAuto.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, -1, 20));
 
-        jPanel2.add(panelAuto, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 370, 210));
+        jPanel2.add(panelAuto, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 420, 210));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Unidad:");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+        jLabel13.setText("<html>\nNúmero de <br> Unidad:\n</html>");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, -1, -1));
 
         buttonGroup.add(rBtnSi);
         rBtnSi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -274,7 +275,7 @@ public class VisVisita extends javax.swing.JPanel {
                 rBtnSiItemStateChanged(evt);
             }
         });
-        jPanel2.add(rBtnSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 50, -1));
+        jPanel2.add(rBtnSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 50, -1));
 
         buttonGroup.add(rBtnNo);
         rBtnNo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -293,16 +294,17 @@ public class VisVisita extends javax.swing.JPanel {
                 rBtnNoItemStateChanged(evt);
             }
         });
-        jPanel2.add(rBtnNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 60, -1));
+        jPanel2.add(rBtnNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 60, -1));
 
         btnEntrada.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEntrada.setForeground(new java.awt.Color(255, 255, 255));
         btnEntrada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional.png"))); // NOI18N
         btnEntrada.setText("Registrar Entrada");
         btnEntrada.setToolTipText("Agregar visita");
+        btnEntrada.setBorder(null);
         btnEntrada.setBorderPainted(false);
         btnEntrada.setContentAreaFilled(false);
-        btnEntrada.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEntrada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEntrada.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btnEntrada.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btnEntrada.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
@@ -311,29 +313,31 @@ public class VisVisita extends javax.swing.JPanel {
                 btnEntradaActionPerformed(evt);
             }
         });
-        jPanel2.add(btnEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, -1, -1));
+        jPanel2.add(btnEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 240, -1, -1));
 
         btnSalida.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnSalida.setForeground(new java.awt.Color(255, 255, 255));
         btnSalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional.png"))); // NOI18N
         btnSalida.setText("Registrar Salida");
         btnSalida.setToolTipText("Agregar visita");
+        btnSalida.setBorder(null);
         btnSalida.setBorderPainted(false);
         btnSalida.setContentAreaFilled(false);
-        btnSalida.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSalida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalida.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btnSalida.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btnSalida.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
-        jPanel2.add(btnSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 220, -1, -1));
+        jPanel2.add(btnSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 240, -1, -1));
 
         btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional.png"))); // NOI18N
         btnNuevo.setText("Nuevo registro");
         btnNuevo.setToolTipText("Agregar visita");
+        btnNuevo.setBorder(null);
         btnNuevo.setBorderPainted(false);
         btnNuevo.setContentAreaFilled(false);
-        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNuevo.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btnNuevo.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btnNuevo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
@@ -342,9 +346,9 @@ public class VisVisita extends javax.swing.JPanel {
                 btnNuevoActionPerformed(evt);
             }
         });
-        jPanel2.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, -1, -1));
+        jPanel2.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 240, -1, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, 280));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 880, 280));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 850, -1));
@@ -362,7 +366,7 @@ public class VisVisita extends javax.swing.JPanel {
         tabla.setRowHeight(35);
         jScrollPane3.setViewportView(tabla);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 740, 170));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 970, 170));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
@@ -379,10 +383,13 @@ public class VisVisita extends javax.swing.JPanel {
         jPanel1.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 400, 240, 10));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, -1, 300));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, 300));
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 850, -1));
+
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 370, -1, 300));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 1030, 610));
     }// </editor-fold>//GEN-END:initComponents
@@ -426,6 +433,7 @@ public class VisVisita extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

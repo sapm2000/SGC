@@ -1,6 +1,8 @@
 package controlador;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -10,6 +12,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -91,6 +95,14 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
         Validacion.pegar(com);
 
         CtrlVentana.cambiarVista(vista);
+        vista.cbxCuenta.addItemListener(this);
+        stylecombo(vista.cbxCuenta);
+        vista.cbxFondo.addItemListener(this);
+        stylecombo(vista.cbxFondo);
+        vista.cbxFormaPago.addItemListener(this);
+        stylecombo(vista.cbxFormaPago);
+        vista.cbxMoneda.addItemListener(this);
+        stylecombo(vista.cbxMoneda);
     }
 
     @Override
@@ -170,6 +182,10 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
     @Override
     public void itemStateChanged(ItemEvent e) {
+        vista.cbxCuenta.setFocusable(false);
+        vista.cbxFondo.setFocusable(false);
+        vista.cbxFormaPago.setFocusable(false);
+        vista.cbxMoneda.setFocusable(false);
 
         if (e.getSource() == vista.cbxFormaPago) {
 
@@ -590,4 +606,12 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
         return resultado;
     }
+    
+    public void stylecombo(JComboBox c) {
+        c.setFont(new Font("Tahoma", Font.BOLD, 14));
+        c.setForeground(Color.WHITE);
+
+        c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
+    }
+    
 }
