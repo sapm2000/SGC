@@ -97,6 +97,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
         this.vista.txtNumeroUnidad.addKeyListener(this);
 
         this.catalogo.tabla.addMouseListener(this);
+        this.catalogo.txtBuscar.addKeyListener(this);
 
         this.vista.tablaPropietarios.addMouseListener(this);
         this.vista.btnGuardar.addActionListener(this);
