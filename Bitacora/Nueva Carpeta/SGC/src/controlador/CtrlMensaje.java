@@ -372,6 +372,8 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
                 return resu;
             }
         };
+        
+        
 
         catalogo.tablaRecibidos.setModel(modeloT);
         catalogo.tablaRecibidos.getTableHeader().setReorderingAllowed(false);

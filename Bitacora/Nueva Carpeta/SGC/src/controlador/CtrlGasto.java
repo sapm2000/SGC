@@ -55,7 +55,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
     private ArrayList<Proveedores> listaProveedores;
     private ArrayList<Asambleas> listaAsambleas;
     private ArrayList<ConceptoGasto> listaConcepto;
-
+    DefaultTableModel dm;
     private Funcion permiso;
 
     public CtrlGasto() {
@@ -365,6 +365,8 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
             }
         };
 
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
@@ -464,6 +466,8 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
             }
         };
 
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
@@ -536,6 +540,8 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
             }
         };
 
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
@@ -866,7 +872,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
     }
 
     private void filtro(String consulta, JTable jtableBuscar) {
-        DefaultTableModel dm = (DefaultTableModel) jtableBuscar.getModel();
+        dm = (DefaultTableModel) jtableBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
         jtableBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));

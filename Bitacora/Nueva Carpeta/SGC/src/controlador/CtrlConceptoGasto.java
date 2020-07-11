@@ -38,7 +38,7 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
     private VisConceptoGasto vista;
     private ConceptoGasto modelo;
     private ArrayList<ConceptoGasto> lista;
-
+    DefaultTableModel dm;
     private CategoriaGasto modCategoria;
     private ArrayList<CategoriaGasto> listaCategoria;
 
@@ -157,17 +157,17 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
 //            if (modelo.Buscarcuo(modelo)) {
 //                JOptionPane.showMessageDialog(null, "no se puede eliminar si tiene gastos por procesar asignados");
 //            } else {
-                if (modelo.eliminar(modelo)) {
-                    modelo.setId(Integer.parseInt(vista.txtId.getText()));
-                    JOptionPane.showMessageDialog(null, "Registro Eliminado");
-                    CtrlVentana.cambiarVista(catalogo);
-                    llenarTabla(catalogo.tabla);
+            if (modelo.eliminar(modelo)) {
+                modelo.setId(Integer.parseInt(vista.txtId.getText()));
+                JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                CtrlVentana.cambiarVista(catalogo);
+                llenarTabla(catalogo.tabla);
 
-                } else {
+            } else {
 
-                    JOptionPane.showMessageDialog(null, "Error al Eliminar");
+                JOptionPane.showMessageDialog(null, "Error al Eliminar");
 
-                }
+            }
 //            }
 
         }
@@ -216,6 +216,8 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
             }
 
         };
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
@@ -270,7 +272,7 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
 //            }
 //
 //        };
-//        tablaD.setModel(modeloT);
+//         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);        tablaD.setRowSorter(tr);                        tablaD.setModel(modeloT);
 //        tablaD.getTableHeader().setReorderingAllowed(false);
 //        tablaD.getTableHeader().setResizingAllowed(false);
 //
@@ -336,7 +338,7 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
     }
 
     private void filtro(String consulta, JTable tablaBuscar) {
-        DefaultTableModel dm = (DefaultTableModel) tablaBuscar.getModel();
+        dm = (DefaultTableModel) tablaBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
         tablaBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));

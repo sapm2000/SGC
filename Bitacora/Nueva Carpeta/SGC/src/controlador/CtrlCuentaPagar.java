@@ -46,7 +46,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
     private Fondo modFondo;
     private ArrayList<Fondo> listaFondo;
-
+    DefaultTableModel dm;
     int fila;
 
     public CtrlCuentaPagar() {
@@ -355,7 +355,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
     }
 
     private void filtro(String consulta, JTable jtableBuscar) {
-        DefaultTableModel dm = (DefaultTableModel) jtableBuscar.getModel();
+        dm = (DefaultTableModel) jtableBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
         jtableBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));
@@ -376,6 +376,8 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
             }
         };
 
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
@@ -430,6 +432,8 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
         lista = modelo.listar();
 
         DefaultTableModel modeloT = new DefaultTableModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
 
