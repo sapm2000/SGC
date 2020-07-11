@@ -331,6 +331,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                                             }
                                         }
                                         LlenartablaSancion(catalogo.tabla);
+                                        CtrlVentana.cambiarVista(catalogo);
                                     } else {
 
                                         JOptionPane.showMessageDialog(null, "error al guardar");
