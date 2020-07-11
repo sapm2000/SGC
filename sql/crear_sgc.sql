@@ -224,7 +224,7 @@ CREATE TABLE recibo (
     mes smallint NOT NULL,
     anio smallint NOT NULL,
     monto_dolar double precision NOT NULL,
-    id_gasto bigint REFERENCES gasto (id),
+    id_gasto bigint,
     id_unidad bigint REFERENCES unidad (id),
     tipo_gasto character varying,
     monto_bolivar double precision,
@@ -699,7 +699,7 @@ BEGIN
 	INSERT INTO recibo (
 		id_unidad, id_gasto, mes, anio, monto_dolar, monto_bolivar, tipo_gasto, moneda_dominante, paridad, saldo_restante_bolivar, saldo_restante_dolar, alicuota
 	) VALUES (
-		id_unidad2, id_gasto2, mes2, anio2, monto_dolar2, monto_bolivar2, tipo_gasto2, moneda_dominante2, paridad2, saldo_restante_bolivar2, saldo_restante_dolar2, alicuota2
+		id_unidad2, id_gasto2, mes2, anio2, monto_dolar2, monto_bolivar2, tipo_gasto2, moneda_dominante2, paridad2, monto_bolivar2, monto_dolar2, alicuota2
 	);
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
