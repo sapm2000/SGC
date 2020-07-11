@@ -96,7 +96,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
             }
 
         };
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
         tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
@@ -158,7 +158,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                 return resu;
             }
         };
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
         tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
@@ -199,7 +199,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                 return false;
             }
         };
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
         tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
@@ -248,7 +248,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                 return resu;
             }
         };
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
         tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);

@@ -162,7 +162,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
             }
 
         };
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
         tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
@@ -259,7 +259,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
             }
 
         };
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
         tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);

@@ -301,7 +301,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
         DefaultTableModel modeloT = new DefaultTableModel();
         int ind;
 
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
         vista.tabla.setRowSorter(tr);
 
         vista.tabla.setModel(modeloT);

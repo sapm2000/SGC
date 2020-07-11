@@ -376,7 +376,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
             }
         };
 
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
         tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
@@ -432,7 +432,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
         lista = modelo.listar();
 
         DefaultTableModel modeloT = new DefaultTableModel();
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
         tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);

@@ -313,7 +313,7 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
             }
         };
 
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
         catalogo.tablaEnviados.setRowSorter(tr);
 
         catalogo.tablaEnviados.setModel(modeloT);
@@ -376,7 +376,7 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
             }
         };
 
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
         catalogo.tablaRecibidos.setRowSorter(tr);
         catalogo.tablaRecibidos.setModel(modeloT);
         catalogo.tablaRecibidos.getTableHeader().setReorderingAllowed(false);
@@ -452,7 +452,7 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
             }
         };
 
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
         vista.tablaUsuarios.setRowSorter(tr);
         vista.tablaUsuarios.setModel(modeloT);
         vista.tablaUsuarios.getTableHeader().setReorderingAllowed(false);

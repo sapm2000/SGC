@@ -216,7 +216,7 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
             }
 
         };
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
         tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
@@ -272,7 +272,7 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
 //            }
 //
 //        };
-//         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);        tablaD.setRowSorter(tr);                        tablaD.setModel(modeloT);
+//         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);        tablaD.setRowSorter(tr);                        tablaD.setModel(modeloT);
 //        tablaD.getTableHeader().setReorderingAllowed(false);
 //        tablaD.getTableHeader().setResizingAllowed(false);
 //
