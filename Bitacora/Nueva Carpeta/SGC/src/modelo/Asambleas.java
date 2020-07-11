@@ -19,7 +19,7 @@ public class Asambleas extends ConexionBD {
     public Boolean registrar() {
         try {
             int i;
-
+            boolean resul = false;
             ps = null;
             con = getConexion();
 
@@ -34,6 +34,8 @@ public class Asambleas extends ConexionBD {
 
             if (ps.execute()) {
                 rs = ps.getResultSet();
+                rs.next();
+                resul = rs.getBoolean(1);
 
             } else {
                 return false;
@@ -42,8 +44,7 @@ public class Asambleas extends ConexionBD {
             if (buscarId()) {
 
                 if (registrarAsistentes()) {
-                    rs.next();
-                    return rs.getBoolean(1);
+                    return resul;
 
                 } else {
                     return false;

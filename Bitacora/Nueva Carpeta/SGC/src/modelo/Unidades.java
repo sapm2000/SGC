@@ -154,6 +154,7 @@ public class Unidades extends ConexionBD {
         con = getConexion();
 
         int ind;
+        boolean resul = false;
 
         //Registro de los datos de la tabla unidad
         String sql = "SELECT agregar_unidad(?,?,?,?,?)";
@@ -171,6 +172,8 @@ public class Unidades extends ConexionBD {
 
             if (ps.execute()) {
                 rs = ps.getResultSet();
+                rs.next();
+                resul = rs.getBoolean(1);
 
             } else {
                 return false;
@@ -207,8 +210,7 @@ public class Unidades extends ConexionBD {
 
             }
 
-            rs.next();
-            return rs.getBoolean(1);
+            return resul;
 
         } catch (SQLException e) {
             System.err.println(e);
@@ -383,7 +385,7 @@ public class Unidades extends ConexionBD {
             con = getConexion();
 
             int ind;
-
+            boolean resul = false;
             String sql = "SELECT modificar_unidad(?,?,?,?,?)";
 
             ps = con.prepareStatement(sql);
@@ -397,14 +399,15 @@ public class Unidades extends ConexionBD {
 
             if (ps.execute()) {
                 rs = ps.getResultSet();
+                rs.next();
+                resul = rs.getBoolean(1);
 
             } else {
                 return false;
             }
 
             if (modificarPropietarios()) {
-                rs.next();
-                return rs.getBoolean(1);
+                return resul;
             } else {
                 return false;
 

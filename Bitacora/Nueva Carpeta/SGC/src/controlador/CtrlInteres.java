@@ -143,7 +143,7 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
                         limpiar();
                     } else {
 
-                        if (modin.registrarinteres(modin)) {
+                        if (modin.registrar(modin)) {
                             JOptionPane.showMessageDialog(null, "Registro Guardado");
                             Llenartablainteres(catalogo.tabla);
                         }

@@ -317,6 +317,7 @@ public class VisGasto extends javax.swing.JPanel {
         bgrpAsamblea.add(si);
         si.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         si.setForeground(new java.awt.Color(255, 255, 255));
+        si.setSelected(true);
         si.setText("Si");
         si.setContentAreaFilled(false);
         si.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
