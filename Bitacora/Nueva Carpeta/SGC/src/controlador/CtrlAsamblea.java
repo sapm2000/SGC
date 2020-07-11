@@ -57,6 +57,7 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
 
         this.catalogo.btnNuevo.addActionListener(this);
         this.catalogo.tabla.addMouseListener(this);
+        this.catalogo.txtBuscar.addKeyListener(this);
         vista.btnSalir.addActionListener(this);
         this.vista.btnGuardar.addActionListener(this);
         this.vista.txtBuscarPropietario.addKeyListener(this);

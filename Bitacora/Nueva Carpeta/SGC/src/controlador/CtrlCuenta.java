@@ -91,6 +91,7 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
         this.vista.txtCedula.addKeyListener(this);
         this.vista.txtN_cuenta.addKeyListener(this);
         this.vista.txtBeneficiario.addKeyListener(this);
+        this.catalogo.txtBuscar.addKeyListener(this);
 
         CtrlVentana.cambiarVista(catalogo);
     }

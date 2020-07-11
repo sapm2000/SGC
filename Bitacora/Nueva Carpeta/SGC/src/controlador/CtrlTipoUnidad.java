@@ -2,10 +2,14 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Funcion;
@@ -15,7 +19,7 @@ import sgc.SGC;
 import vista.Catalogo;
 import vista.VisTipoUnidad;
 
-public class CtrlTipoUnidad implements ActionListener, MouseListener {
+public class CtrlTipoUnidad implements ActionListener, MouseListener, KeyListener {
 
     private VisTipoUnidad vista;
     private Catalogo catalogo;
@@ -34,7 +38,7 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener {
 
         CtrlVentana.cambiarVista(catalogo);
         catalogo.lblTitulo.setText("Tipo de Unidad");
-
+        this.catalogo.txtBuscar.addKeyListener(this);
         this.catalogo.btnNuevo.addActionListener(this);
         this.catalogo.tabla.addMouseListener(this);
         this.vista.btnGuardar.addActionListener(this);
@@ -262,6 +266,33 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener {
         }
 
         return resultado;
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+     
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+       
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if (e.getSource() == catalogo.txtBuscar) {
+
+            filtro(catalogo.txtBuscar.getText(), catalogo.tabla);
+
+        }
+    }
+    
+     private void filtro(String consulta, JTable tablaBuscar) {
+        dm = (DefaultTableModel) tablaBuscar.getModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+
+        tablaBuscar.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(consulta));
     }
 
 }
