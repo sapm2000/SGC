@@ -302,7 +302,7 @@ CREATE TABLE puente_asambleas_propietario(
 -- DROP TABLE puente_cobro_factura;
 CREATE TABLE puente_cobro_factura (
 	id serial NOT NULL PRIMARY KEY,
-    id_detalle_pagos bigint NOT NULL REFERENCES detalle_pagos (id),
+    id_recibo bigint NOT NULL REFERENCES detalle_pagos (id),
     id_cobro bigint NOT NULL REFERENCES cobro_unidad (id),
     parte_monto double precision NOT NULL,
     moneda character varying 
