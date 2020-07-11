@@ -74,7 +74,7 @@ public class CtrlCategoriaGasto implements ActionListener, MouseListener, KeyLis
             }
 
         };
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
         tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
@@ -103,59 +103,7 @@ public class CtrlCategoriaGasto implements ActionListener, MouseListener, KeyLis
 
     }
 
-    public void Llenartablai(JTable tablaD) {
-
-        listaCatGas = modelo.lCategGasi();
-        DefaultTableModel modeloT = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-
-                boolean resu = false;
-                if (column == 0) {
-                    resu = false;
-                }
-                if (column == 1) {
-                    resu = false;
-                }
-
-                if (column == 2) {
-                    resu = true;
-                }
-                return resu;
-            }
-
-        };
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
-        tablaD.setRowSorter(tr);
-        tablaD.setModel(modeloT);
-        tablaD.getTableHeader().setReorderingAllowed(false);
-        tablaD.getTableHeader().setResizingAllowed(false);
-
-        modeloT.addColumn("Nombre");
-        modeloT.addColumn("Descripcion");
-        modeloT.addColumn("Seleccione");
-
-        Object[] columna = new Object[3];
-
-        int numRegistro = listaCatGas.size();
-
-        for (int i = 0; i < numRegistro; i++) {
-
-            columna[0] = listaCatGas.get(i).getNombre();
-            columna[1] = listaCatGas.get(i).getDescripcion();
-
-            modeloT.addRow(columna);
-
-        }
-
-        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-        tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
-
-    }
-
+    
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == catalogo.btnNuevo) {

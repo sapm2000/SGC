@@ -265,7 +265,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
         };
 
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
         catalogo.tabla.setRowSorter(tr);
 
         catalogo.tabla.setModel(modeloT);

@@ -220,7 +220,7 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener {
         lista = modelo.listar();
 
         DefaultTableModel modeloT = new DefaultTableModel();
-         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
         catalogo.tabla.setRowSorter(tr);
         catalogo.tabla.setModel(modeloT);
        

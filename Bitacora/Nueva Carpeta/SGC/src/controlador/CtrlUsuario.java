@@ -307,7 +307,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener {
         listaUsu = modelo.listar();
 
         DefaultTableModel modeloT = new DefaultTableModel();
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
         tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
 
