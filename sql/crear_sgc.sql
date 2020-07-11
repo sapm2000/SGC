@@ -50,7 +50,7 @@ CREATE TABLE interes (
 	nombre character varying(50) NOT NULL,
 	factor double precision NOT NULL,
 	activo boolean DEFAULT true,
-	id_condominio int REFERENCES condominio (rif)
+	id_condominio character varying REFERENCES condominio (rif)
 );
 
 -- persona
@@ -149,7 +149,7 @@ CREATE TABLE gasto(
     id serial NOT NULL PRIMARY KEY,
     nombre character varying(50) NOT null,
     tipo character varying(20) NOT null,
-    id_proveedor character varying(15) NOT NULL,
+    id_proveedor character varying(15) NOT NULL REFERENCES proveedores (cedula),
     calcular_por character varying(20) NOT NULL,
     mes int NOT NULL,
     anio int NOT NULL,
