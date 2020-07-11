@@ -71,6 +71,7 @@ public class Gasto extends ConexionBD {
             return false;
 
         } finally {
+            
             try {
                 con.close();
 
@@ -83,6 +84,7 @@ public class Gasto extends ConexionBD {
     public Boolean registrar() {
         try {
             int ind;
+            boolean resul = false;
 
             ps = null;
             con = getConexion();
@@ -114,6 +116,8 @@ public class Gasto extends ConexionBD {
 
             if (ps.execute()) {
                 rs = ps.getResultSet();
+                rs.next();
+                resul = rs.getBoolean(1);
 
             } else {
                 return false;
@@ -122,9 +126,7 @@ public class Gasto extends ConexionBD {
             if (buscarId()) {
 
                 if (registrarConceptos()) {
-                    rs.next();
-                    return rs.getBoolean(1);
-
+                    return resul;
                 }
             }
 
@@ -324,6 +326,7 @@ public class Gasto extends ConexionBD {
 
         try {
             int ind;
+            boolean resul = false;
 
             ps = null;
             con = getConexion();
@@ -354,19 +357,21 @@ public class Gasto extends ConexionBD {
             ps.setDouble(ind++, getSaldo());
             ps.setString(ind++, getMoneda());
             ps.setInt(ind++, SGC.usuarioActual.getId());
+            
             if (ps.execute()) {
                 rs = ps.getResultSet();
+                rs.next();
+                resul = rs.getBoolean(1);
 
             } else {
                 return false;
             }
 
             if (modificarConceptos()) {
-                rs.next();
-                return rs.getBoolean(1);
+                return resul;
 
             } else {
-                return true;
+                return false;
             }
 
         } catch (SQLException e) {

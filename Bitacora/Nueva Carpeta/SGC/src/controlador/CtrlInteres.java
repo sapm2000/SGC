@@ -85,6 +85,8 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
             }
 
         };
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
@@ -143,7 +145,7 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
                         limpiar();
                     } else {
 
-                        if (modin.registrarinteres(modin)) {
+                        if (modin.registrar(modin)) {
                             JOptionPane.showMessageDialog(null, "Registro Guardado");
                             Llenartablainteres(catalogo.tabla);
                         }

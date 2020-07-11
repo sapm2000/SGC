@@ -77,6 +77,9 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
             }
 
         };
+
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(dm);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);

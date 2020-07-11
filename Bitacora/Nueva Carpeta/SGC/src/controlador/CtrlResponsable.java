@@ -32,7 +32,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
     private modelo.Responsable modelo;
 
     private ArrayList<Responsable> lista;
-
+    DefaultTableModel dm;
     private Funcion permiso;
 
     int fila;
@@ -246,7 +246,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
     }
 
     private void filtro(String consulta, JTable jtableBuscar) {
-        DefaultTableModel dm = (DefaultTableModel) jtableBuscar.getModel();
+        dm = (DefaultTableModel) jtableBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
         jtableBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));
@@ -265,7 +265,11 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
         };
 
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        catalogo.tabla.setRowSorter(tr);
+
         catalogo.tabla.setModel(modeloT);
+
         catalogo.tabla.getTableHeader().setReorderingAllowed(false);
         catalogo.tabla.getTableHeader().setResizingAllowed(false);
 
@@ -401,7 +405,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
     @Override
     public void keyPressed(KeyEvent e) {
-        
+
     }
 
     @Override

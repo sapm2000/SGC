@@ -39,7 +39,7 @@ import vista.VisCerrarMes.CustomUI;
  *
  * @author rma
  */
-public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListener, ItemListener{
+public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListener, ItemListener {
 
     private VisCerrarMes vista;
     private CerrarMes modc;
@@ -69,12 +69,12 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
         this.modin = new Interes();
         this.catalogo = new Catalogo();
         catalogo.lblTitulo.setText("Cerrar mes");
-        
+
         CtrlVentana.cambiarVista(catalogo);
-        
+
         vista.cbxMoneda.addItemListener(this);
         stylecombo(vista.cbxMoneda);
-        
+
         Llenartabla(catalogo.tabla);
         vista.jButton1.addActionListener(this);
         vista.btnSalir.addActionListener(this);
@@ -94,6 +94,8 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
             }
 
         };
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
@@ -131,10 +133,10 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
 
     @Override
     public void actionPerformed(ActionEvent e) {
-       
+
         if (e.getSource() == catalogo.btnNuevo) {
             CtrlVentana.cambiarVista(vista);
-            
+
         }
         if (e.getSource() == vista.jButton1) {
             Calendar c1 = Calendar.getInstance();
@@ -229,7 +231,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
 
                                                         double parte_cuota = parte_periodo * listaunidades.get(w).getAlicuota();
                                                         if (listaGastos.get(z).getMoneda().equals("Bolívar")) {
-                                                            
+
                                                             double paridad = Double.parseDouble(vista.txtParidad.getText());
                                                             double total_dolar = parte_cuota / paridad;
                                                             modc.setMonto_bolivar(parte_cuota);
@@ -254,7 +256,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                                     }
                                                 } else {
                                                     for (int w = 0; w < numRegistro; w++) {
-                                                        
+
                                                         double parte_cuota = parte_periodo / numRegistro;
                                                         modc.setId(listaGastos.get(z).getId());
                                                         if (listaGastos.get(z).getMoneda().equals("Bolívar")) {
@@ -306,7 +308,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                     double monto = 0;
                                     modc.gasto.setId(listasanciones.get(j).getId());
                                     if (vista.cbxMoneda.getSelectedItem().toString().equals("Dólar")) {
-                                        
+
                                         modc.buscartotal(modc, 2);
                                         monto = modc.getMonto_dolar();
                                     } else {
@@ -321,7 +323,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                     modc.uni.setId(listasanciones.get(j).uni.getId());
 
                                     if (vista.cbxMoneda.getSelectedItem().toString().equals("Dólar")) {
-                                        
+
                                         modc.setMonto_dolar(var3);
                                         modc.setMonto_bolivar(var3 * Double.parseDouble(vista.txtParidad.getText()));
 
@@ -462,15 +464,13 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
     @Override
     public void itemStateChanged(ItemEvent e) {
         vista.cbxMoneda.setFocusable(false);
-    } 
-    
-    public void stylecombo (JComboBox c) {
-        c.setFont(new Font("Tahoma", Font.BOLD, 14));
-        c.setForeground(Color.WHITE);
-        
-        c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
     }
 
-    
+    public void stylecombo(JComboBox c) {
+        c.setFont(new Font("Tahoma", Font.BOLD, 14));
+        c.setForeground(Color.WHITE);
+
+        c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
+    }
 
 }

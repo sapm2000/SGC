@@ -36,7 +36,7 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
     private VisCuenta vista;
     private Cuenta modelo;
     private ArrayList<Cuenta> lista;
-
+    DefaultTableModel dm;
     private Persona modPersona;
     private Banco modBanco;
     private ArrayList<Banco> listaBanco;
@@ -239,12 +239,12 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
                 vista.cbxCedula.setSelectedItem(modelo.getBeneficiario().getCedula().split("-")[0]);
                 vista.txtCedula.setText(modelo.getBeneficiario().getCedula().split("-")[1]);
                 vista.txtBeneficiario.setText(modelo.getBeneficiario().getpNombre() + " " + modelo.getBeneficiario().getpApellido());
-            }else{
+            } else {
                 vista.cbxCedula.setEnabled(false);
                 vista.cbxCedula.setSelectedItem("J");
                 vista.txtCedula.setText(modelo.getCondominio().getRif().split("-")[1]);
                 vista.txtBeneficiario.setText(modelo.getCondominio().getRazonS());
-                        
+
             }
             vista.cbxBanco.setSelectedItem(modelo.getBanco().getNombre_banco());
             vista.cbxTipo.setSelectedItem(modelo.getTipo());
@@ -327,7 +327,7 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
     }
 
     private void filtro(String consulta, JTable jtableBuscar) {
-        DefaultTableModel dm = (DefaultTableModel) jtableBuscar.getModel();
+        dm = (DefaultTableModel) jtableBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
         jtableBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));
@@ -354,6 +354,8 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
             }
         };
 
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);

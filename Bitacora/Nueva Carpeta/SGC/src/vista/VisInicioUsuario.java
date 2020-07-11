@@ -5,6 +5,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import static javax.swing.BorderFactory.createLineBorder;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -20,6 +25,25 @@ public class VisInicioUsuario extends javax.swing.JFrame {
         initComponents();
 
         this.setLocationRelativeTo(null);
+        
+         File fichero = new File("test.txt");
+        int cantidad = 8;
+        String cadena = fichero.getAbsolutePath();
+        /* Total de elementos a Eliminar*/
+ /* Total de elementos a Mostrar*/
+        int m = Math.max(0, cadena.length() - cantidad);
+        String ruta = (cadena.substring(0, cadena.length() - cantidad));
+        String ruta2 = "src\\fondo\\logo.png";
+        Image img = null;
+
+        try {
+            img = new ImageIcon(ImageIO.read(new File(ruta + ruta2))).getImage();
+            ImageIcon img2 = new ImageIcon(img.getScaledInstance(200, 200, Image.SCALE_SMOOTH));
+            jLabel2.setIcon(img2);
+        } catch (IOException ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
 
         ctrlU = new CtrlUsuarioL(this);
 
@@ -70,7 +94,7 @@ public class VisInicioUsuario extends javax.swing.JFrame {
         btnEnviar.setBorder(null);
         btnEnviar.setBorderPainted(false);
         btnEnviar.setContentAreaFilled(false);
-        btnEnviar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEnviar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEnviar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/next (3).png"))); // NOI18N
         btnEnviar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/next (3).png"))); // NOI18N
         btnEnviar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/next (3).png"))); // NOI18N
@@ -90,7 +114,7 @@ public class VisInicioUsuario extends javax.swing.JFrame {
         btnMinimizar.setBorder(null);
         btnMinimizar.setBorderPainted(false);
         btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMinimizar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
         btnMinimizar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menos (2).png"))); // NOI18N
@@ -113,7 +137,7 @@ public class VisInicioUsuario extends javax.swing.JFrame {
         btnExit.setBorder(null);
         btnExit.setBorderPainted(false);
         btnExit.setContentAreaFilled(false);
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnExit.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnExit.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
         btnExit.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (2).png"))); // NOI18N
@@ -161,8 +185,6 @@ public class VisInicioUsuario extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setText("<html>\n<center>Sistema de Administración <br> para el Control del Condominio</center>\n</html>");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/condominio1 (2).png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, 180));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user (2).png"))); // NOI18N
@@ -176,7 +198,7 @@ public class VisInicioUsuario extends javax.swing.JFrame {
         checkViewPass.setForeground(new java.awt.Color(0, 54, 159));
         checkViewPass.setText("Ver clave");
         checkViewPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)));
-        checkViewPass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        checkViewPass.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         checkViewPass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (2).png"))); // NOI18N
         checkViewPass.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion-en-blanco (3).png"))); // NOI18N
         checkViewPass.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casilla-de-verificacion (3).png"))); // NOI18N
@@ -299,7 +321,7 @@ public class VisInicioUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnMinimizar;
     public javax.swing.JCheckBox checkViewPass;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    public javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;

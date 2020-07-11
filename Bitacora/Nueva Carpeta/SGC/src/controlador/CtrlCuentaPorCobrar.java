@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableRowSorter;
 import modelo.CerrarMes;
 import modelo.Cuenta;
 import modelo.CuentasPorCobrar;
@@ -55,6 +56,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
     ArrayList<Cuenta> listaCuenta;
     ArrayList<FormaPago> listaformapago;
     int x;
+    DefaultTableModel dm;
 
     public CtrlCuentaPorCobrar() {
         String hola = "";
@@ -92,7 +94,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                 stylecombo(vista.jComboForma);
                 vista.jComboUnidad.addItemListener(this);
                 stylecombo(vista.jComboUnidad);
-                
+
                 vista.jComboFondo.removeAllItems(); //limpiamos los combobox
                 modfon.setMoneda("Bolívar"); //seteamos la moneda por defecto (bs)
                 listafondo = modfon.listar(2);
@@ -113,10 +115,11 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                 };
                 Validacion.copiar(components);
                 Validacion.pegar(com);
-            } if (hola==null) {
+            }
+            if (hola == null) {
                 break;
             } else {
-                
+
             }
         } while (isValidDouble(hola) == false); //ciclo que repite mientras no ingresen un numero valido
 
@@ -159,6 +162,8 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
             }
 
         };
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
@@ -204,7 +209,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(6).setCellRenderer(tcr);
-        
+
         TableColumnModel columnModel = tablaD.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(25);
         columnModel.getColumn(1).setPreferredWidth(18);
@@ -214,7 +219,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         columnModel.getColumn(5).setPreferredWidth(35);
         columnModel.getColumn(6).setPreferredWidth(35);
         columnModel.getColumn(7).setPreferredWidth(40);
-        
+
     }
 
     public void Llenartablapagados(JTable tablaD) { //igual que la funcion anterior pero para las factura que ya esten pagadas
@@ -254,6 +259,8 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
             }
 
         };
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
@@ -299,7 +306,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(6).setCellRenderer(tcr);
-        
+
         TableColumnModel columnModel = tablaD.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(25);
         columnModel.getColumn(1).setPreferredWidth(18);
@@ -706,11 +713,11 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         return isValid;
     }
 
-    public void stylecombo (JComboBox c) {
+    public void stylecombo(JComboBox c) {
         c.setFont(new Font("Tahoma", Font.BOLD, 14));
         c.setForeground(Color.WHITE);
-        
+
         c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
     }
-    
+
 }

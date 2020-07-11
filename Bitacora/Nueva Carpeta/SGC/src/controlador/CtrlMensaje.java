@@ -33,7 +33,7 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
     private Mensaje modelo;
     private ArrayList<Mensaje> listaRecibidos;
     private ArrayList<Mensaje> listaEnviados;
-
+    DefaultTableModel dm;
     private Usuario modUsuario;
     private ArrayList<Usuario> listaUsuarios;
 
@@ -313,6 +313,9 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
             }
         };
 
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        catalogo.tablaEnviados.setRowSorter(tr);
+
         catalogo.tablaEnviados.setModel(modeloT);
         catalogo.tablaEnviados.getTableHeader().setReorderingAllowed(false);
         catalogo.tablaEnviados.getTableHeader().setResizingAllowed(false);
@@ -373,6 +376,8 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
             }
         };
 
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        catalogo.tablaRecibidos.setRowSorter(tr);
         catalogo.tablaRecibidos.setModel(modeloT);
         catalogo.tablaRecibidos.getTableHeader().setReorderingAllowed(false);
         catalogo.tablaRecibidos.getTableHeader().setResizingAllowed(false);
@@ -447,6 +452,8 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
             }
         };
 
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        vista.tablaUsuarios.setRowSorter(tr);
         vista.tablaUsuarios.setModel(modeloT);
         vista.tablaUsuarios.getTableHeader().setReorderingAllowed(false);
         vista.tablaUsuarios.getTableHeader().setResizingAllowed(false);
@@ -532,7 +539,7 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
     }
 
     private void filtro(String consulta, JTable jtableBuscar) {
-        DefaultTableModel dm = (DefaultTableModel) jtableBuscar.getModel();
+        dm = (DefaultTableModel) jtableBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
         jtableBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));

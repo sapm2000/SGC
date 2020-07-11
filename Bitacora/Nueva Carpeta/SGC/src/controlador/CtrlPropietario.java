@@ -22,7 +22,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Funcion;
 import modelo.Propietarios;
-import sgc.SGC;
 import vista.Catalogo;
 import vista.VisPropietario;
 
@@ -107,10 +106,10 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
 
                     }
                 } else {
-                    
+
                     if (modelo.existe()) {
                         JOptionPane.showMessageDialog(null, "Esta persona ya está registrada");
-                        
+
                     } else {
 
                         if (modelo.existePersona()) {
@@ -119,6 +118,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
                             if (modelo.registrar(true)) {
                                 JOptionPane.showMessageDialog(null, "Registro guardado");
                                 CtrlVentana.cambiarVista(catalogo);
+                                System.out.println("poli1");
                                 llenarTabla();
 
                             } else {
@@ -126,10 +126,11 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
                             }
 
                         } else {
-                            
+
                             if (modelo.registrar(false)) {
                                 JOptionPane.showMessageDialog(null, "Registro guardado");
                                 CtrlVentana.cambiarVista(catalogo);
+                                System.out.println("poli2");
                                 llenarTabla();
 
                             } else {
@@ -140,7 +141,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
                 }
             }
         }
-        
+
         if (e.getSource() == vista.btnModificar) {
             if (validar()) {
                 modelo.setpNombre(vista.txtPnombre.getText());
@@ -183,7 +184,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
 
     private void permisoBtn() {
 
-        for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
+        for (Funcion funcionbtn : sgc.SGC.usuarioActual.getTipoU().getFunciones()) {
             if (funcionbtn.getNombre().equals("Propietarios")) {
                 permiso = funcionbtn;
 
@@ -268,6 +269,8 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
 
         };
 
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        catalogo.tabla.setRowSorter(tr);
         catalogo.tabla.setModel(modeloT);
         catalogo.tabla.getTableHeader().setReorderingAllowed(false);
         catalogo.tabla.getTableHeader().setResizingAllowed(false);

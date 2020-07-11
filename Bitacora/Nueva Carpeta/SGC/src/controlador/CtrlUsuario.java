@@ -29,7 +29,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener {
     private ArrayList<Persona> listaPersona;
     private ArrayList<TipoUsuario> listaTipo;
     private TipoUsuario modTipo;
-    private DefaultTableModel dm;
+    DefaultTableModel dm;
 
     //Constructor de inicializacion de variables
     public CtrlUsuario() {
@@ -307,6 +307,8 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener {
         listaUsu = modelo.listar();
 
         DefaultTableModel modeloT = new DefaultTableModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
 
         modeloT.addColumn("Usuario");

@@ -49,7 +49,8 @@ CREATE TABLE interes (
 	id serial NOT NULL PRIMARY KEY,
 	nombre character varying(50) NOT NULL,
 	factor double precision NOT NULL,
-	activo bigint NOT NULL
+	activo boolean DEFAULT true,
+	id_condominio character varying REFERENCES condominio (rif)
 );
 
 -- persona
@@ -60,7 +61,7 @@ CREATE TABLE persona(
  	p_apellido character varying(25) NOT NULL,
 	s_apellido character varying(25) DEFAULT '',
 	telefono character varying(12),
-	correo character varying(60) UNIQUE,
+	correo character varying(60),
 	activo boolean NOT null DEFAULT true
 );
 
@@ -148,7 +149,7 @@ CREATE TABLE gasto(
     id serial NOT NULL PRIMARY KEY,
     nombre character varying(50) NOT null,
     tipo character varying(20) NOT null,
-    id_proveedor character varying(15) NOT NULL,
+    id_proveedor character varying(15) NOT NULL REFERENCES proveedores (cedula),
     calcular_por character varying(20) NOT NULL,
     mes int NOT NULL,
     anio int NOT NULL,
@@ -223,7 +224,7 @@ CREATE TABLE recibo (
     mes smallint NOT NULL,
     anio smallint NOT NULL,
     monto_dolar double precision NOT NULL,
-    id_gasto bigint REFERENCES gasto (id),
+    id_gasto bigint,
     id_unidad bigint REFERENCES unidad (id),
     tipo_gasto character varying,
     monto_bolivar double precision,
@@ -301,7 +302,7 @@ CREATE TABLE puente_asambleas_propietario(
 -- DROP TABLE puente_cobro_factura;
 CREATE TABLE puente_cobro_factura (
 	id serial NOT NULL PRIMARY KEY,
-    id_detalle_pagos bigint NOT NULL REFERENCES detalle_pagos (id),
+    id_recibo bigint NOT NULL REFERENCES detalle_pagos (id),
     id_cobro bigint NOT NULL REFERENCES cobro_unidad (id),
     parte_monto double precision NOT NULL,
     moneda character varying 
@@ -310,7 +311,7 @@ CREATE TABLE puente_cobro_factura (
 -- puente_gasto_concepto
 CREATE TABLE puente_gasto_concepto (
 	id serial NOT null PRIMARY KEY,
-	id_gasto int REFERENCES concepto_gasto (id),
+	id_gasto int REFERENCES gasto (id),
 	id_concepto int REFERENCES concepto_gasto (id),
 	monto double precision NOT null
 );
@@ -698,7 +699,7 @@ BEGIN
 	INSERT INTO recibo (
 		id_unidad, id_gasto, mes, anio, monto_dolar, monto_bolivar, tipo_gasto, moneda_dominante, paridad, saldo_restante_bolivar, saldo_restante_dolar, alicuota
 	) VALUES (
-		id_unidad2, id_gasto2, mes2, anio2, monto_dolar2, monto_bolivar2, tipo_gasto2, moneda_dominante2, paridad2, saldo_restante_bolivar2, saldo_restante_dolar2, alicuota2
+		id_unidad2, id_gasto2, mes2, anio2, monto_dolar2, monto_bolivar2, tipo_gasto2, moneda_dominante2, paridad2, monto_bolivar2, monto_dolar2, alicuota2
 	);
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
@@ -1339,13 +1340,13 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION agregar_interes(
 	nombre2 character varying,
 	factor2 double precision,
-	id_condominio2 character varying,
+	rif_condominio2 character varying,
 	id_usuario2 integer
 ) RETURNS boolean AS $$
 DECLARE
 	resul int;
 BEGIN
-	INSERT INTO interes (nombre, factor, id_condominio) VALUES (nombre2, factor2, id_condominio2);
+	INSERT INTO interes (nombre, factor, rif_condominio) VALUES (nombre2, factor2, rif_condominio2);
 	GET DIAGNOSTICS resul = ROW_COUNT;
 	
 	IF resul > 0 THEN

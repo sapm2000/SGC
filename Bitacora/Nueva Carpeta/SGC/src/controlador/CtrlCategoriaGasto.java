@@ -74,6 +74,8 @@ public class CtrlCategoriaGasto implements ActionListener, MouseListener, KeyLis
             }
 
         };
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
@@ -123,6 +125,8 @@ public class CtrlCategoriaGasto implements ActionListener, MouseListener, KeyLis
             }
 
         };
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);

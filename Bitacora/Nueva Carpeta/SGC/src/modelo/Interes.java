@@ -13,7 +13,7 @@ public class Interes extends ConexionBD {
 
     private Connection con;
 
-    public boolean registrarinteres(Interes modin) {
+    public boolean registrar(Interes modin) {
 
         int ind;
         ps = null;

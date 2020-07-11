@@ -83,6 +83,8 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
             }
         };
 
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
 

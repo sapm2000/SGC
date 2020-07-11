@@ -96,6 +96,8 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
             }
 
         };
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
@@ -156,6 +158,8 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                 return resu;
             }
         };
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
@@ -195,6 +199,8 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                 return false;
             }
         };
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
@@ -242,6 +248,8 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                 return resu;
             }
         };
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
@@ -331,6 +339,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                                             }
                                         }
                                         LlenartablaSancion(catalogo.tabla);
+                                        CtrlVentana.cambiarVista(catalogo);
                                     } else {
 
                                         JOptionPane.showMessageDialog(null, "error al guardar");
@@ -653,17 +662,17 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
         tr.setRowFilter(RowFilter.regexFilter(consulta));
 
     }
-    
+
     @Override
     public void itemStateChanged(ItemEvent e) {
         vista.cbxMoneda.setFocusable(false);
         vista.jComboBox1.setFocusable(false);
-    } 
-    
-    public void stylecombo (JComboBox c) {
+    }
+
+    public void stylecombo(JComboBox c) {
         c.setFont(new Font("Tahoma", Font.BOLD, 14));
         c.setForeground(Color.WHITE);
-        
+
         c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
     }
 }

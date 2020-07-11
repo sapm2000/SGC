@@ -33,7 +33,7 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
     private VisAsamblea vista;
     private Asambleas modelo;
     private ArrayList<Asambleas> lista;
-
+    DefaultTableModel dm;
     private Propietarios modPropietario;
     private ArrayList<Propietarios> listaPropietario;
 
@@ -238,7 +238,7 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
     }
 
     private void filtro(String consulta, JTable tablaBuscar) {
-        DefaultTableModel dm = (DefaultTableModel) tablaBuscar.getModel();
+        dm = (DefaultTableModel) tablaBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
 
         tablaBuscar.setRowSorter(tr);
@@ -269,6 +269,8 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
             }
         };
 
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
@@ -337,6 +339,8 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
             }
         };
 
+         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
 
         tablaD.getTableHeader().setReorderingAllowed(false);

@@ -36,7 +36,7 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
 
     JFileChooser seleccionar = new JFileChooser();
     File archivo;
-    byte[] imagen ;
+    byte[] imagen;
     FileInputStream entrada;
     FileOutputStream salida;
     ImageIcon img2 = null;
@@ -51,6 +51,7 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
 
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
+        this.vista.btnEliminar.addActionListener(this);
         this.vista.jlogo.addActionListener(this);
         this.vista.txtRif.addKeyListener(this);
         this.vista.txtRazonS.addKeyListener(this);
@@ -78,6 +79,7 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
         ventana.setSize(1366, 662);
         ventana.add(vista);
 
+        this.vista.btnEliminar.addActionListener(this);
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
         this.vista.jlogo.addActionListener(this);
@@ -90,6 +92,10 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
     }
 
     public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == vista.btnEliminar) {
+            vista.labelLogo.setIcon(null);
+        }
 
         if (e.getSource() == vista.jlogo) {
             if (seleccionar.showDialog(null, null) == JFileChooser.APPROVE_OPTION) {
@@ -149,6 +155,32 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
 
                 } else {
                     if (modelo.registrar()) {
+                         if (vista.labelLogo.getIcon() != null) {
+                            ImageIcon icon = (ImageIcon) img3;
+
+                            BufferedImage image = new BufferedImage(icon.getIconWidth(),
+                                    icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+                            Graphics2D g2 = image.createGraphics();
+
+                            g2.drawImage(icon.getImage(), 0, 0, icon.getImageObserver());
+
+                            g2.dispose();
+                            File fichero = new File("test.txt");
+
+                            int cantidad = 8;
+                            String cadena = fichero.getAbsolutePath();
+                            /* Total de elementos a Eliminar*/
+ /* Total de elementos a Mostrar*/
+                            int m = Math.max(0, cadena.length() - cantidad);
+                            String ruta = (cadena.substring(0, cadena.length() - cantidad));
+                            String ruta2 = "\\src\\fondo\\logo.png";
+                            System.out.println(ruta);
+                            try {
+                                ImageIO.write(image, "png", new File(ruta + ruta2));
+                            } catch (IOException ex) {
+                                JOptionPane.showMessageDialog(null, "error");
+                            }
+                        }
                         JOptionPane.showMessageDialog(null, "Datos registrados");
                         SGC.condominioActual = modelo;
 

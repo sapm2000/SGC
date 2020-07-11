@@ -54,7 +54,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
     ArrayList<CerrarMes> listaDominante;
     ArrayList<CerrarMes> listaCierremes;
     ArrayList<CerrarMes> listax;
-
+    DefaultTableModel dm;
     private ArrayList<Unidades> listaUnidades;
     private ArrayList<Propietarios> listaPropietarios;
     private ArrayList<TipoUnidad> listaTipoUnidad;
@@ -494,6 +494,8 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
             }
         };
 
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
 
         tablaD.getTableHeader().setReorderingAllowed(false);
@@ -596,6 +598,8 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
             }
 
         };
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
@@ -665,6 +669,8 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
             }
 
         };
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
@@ -713,6 +719,8 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
             }
 
         };
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
@@ -755,6 +763,8 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
             }
 
         };
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
@@ -816,6 +826,8 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
         };
 
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
@@ -877,7 +889,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
     }
 
     private void filtro(String consulta, JTable jtableBuscar) {
-        DefaultTableModel dm = (DefaultTableModel) jtableBuscar.getModel();
+        dm = (DefaultTableModel) jtableBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
         jtableBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));

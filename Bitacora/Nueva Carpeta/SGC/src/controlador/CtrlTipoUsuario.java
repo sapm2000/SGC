@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableRowSorter;
 import modelo.Funcion;
 import modelo.TipoUsuario;
 import sgc.SGC;
@@ -23,7 +24,7 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener {
 
     private Funcion modFuncion;
     private Funcion permiso;
-
+    DefaultTableModel dm;
     private ArrayList<TipoUsuario> lista;
     private ArrayList<Funcion> listaFuncion;
 
@@ -228,6 +229,8 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener {
         lista = modelo.listar();
 
         DefaultTableModel modeloT = new DefaultTableModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        catalogo.tabla.setRowSorter(tr);
         catalogo.tabla.setModel(modeloT);
 
         modeloT.addColumn("Tipo de Usuario");
