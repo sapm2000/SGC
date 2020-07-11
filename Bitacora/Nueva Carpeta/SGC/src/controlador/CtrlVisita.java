@@ -28,7 +28,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
     private VisVisita vista = new VisVisita();
     private Visita modelo;
     private ArrayList<Visita> lista;
-
+    DefaultTableModel dm;
     private Persona modeloP;
     private Unidades modUnidad;
     private ArrayList<Unidades> listaUnidad;
@@ -301,6 +301,9 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
         DefaultTableModel modeloT = new DefaultTableModel();
         int ind;
 
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        vista.tabla.setRowSorter(tr);
+
         vista.tabla.setModel(modeloT);
 
         modeloT.addColumn("Unidad");
@@ -390,7 +393,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
     }
 
     private void filtro(String consulta, JTable jtableBuscar) {
-        DefaultTableModel dm = (DefaultTableModel) jtableBuscar.getModel();
+        dm = (DefaultTableModel) jtableBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
         jtableBuscar.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(consulta));

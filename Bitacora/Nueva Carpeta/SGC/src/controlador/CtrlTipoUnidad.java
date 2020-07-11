@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import modelo.Funcion;
 import modelo.TipoUnidad;
 import modelo.Unidades;
@@ -23,6 +24,7 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener {
     private Funcion permiso;
     private ArrayList<Unidades> listaunidades;
     private ArrayList<TipoUnidad> lista;
+    DefaultTableModel dm;
 
     public CtrlTipoUnidad() {
         this.catalogo = new Catalogo();
@@ -218,7 +220,10 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener {
         lista = modelo.listar();
 
         DefaultTableModel modeloT = new DefaultTableModel();
+         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        catalogo.tabla.setRowSorter(tr);
         catalogo.tabla.setModel(modeloT);
+       
 
         modeloT.addColumn("Tipo de Unidad");
         modeloT.addColumn("Área");

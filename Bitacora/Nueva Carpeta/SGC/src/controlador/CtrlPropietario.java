@@ -106,10 +106,10 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
 
                     }
                 } else {
-                    
+
                     if (modelo.existe()) {
                         JOptionPane.showMessageDialog(null, "Esta persona ya está registrada");
-                        
+
                     } else {
 
                         if (modelo.existePersona()) {
@@ -126,7 +126,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
                             }
 
                         } else {
-                            
+
                             if (modelo.registrar(false)) {
                                 JOptionPane.showMessageDialog(null, "Registro guardado");
                                 CtrlVentana.cambiarVista(catalogo);
@@ -141,7 +141,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
                 }
             }
         }
-        
+
         if (e.getSource() == vista.btnModificar) {
             if (validar()) {
                 modelo.setpNombre(vista.txtPnombre.getText());
@@ -269,6 +269,8 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
 
         };
 
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        catalogo.tabla.setRowSorter(tr);
         catalogo.tabla.setModel(modeloT);
         catalogo.tabla.getTableHeader().setReorderingAllowed(false);
         catalogo.tabla.getTableHeader().setResizingAllowed(false);

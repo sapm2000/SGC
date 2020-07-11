@@ -29,7 +29,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener {
     private ArrayList<Persona> listaPersona;
     private ArrayList<TipoUsuario> listaTipo;
     private TipoUsuario modTipo;
-    private DefaultTableModel dm;
+    DefaultTableModel dm;
 
     //Constructor de inicializacion de variables
     public CtrlUsuario() {
