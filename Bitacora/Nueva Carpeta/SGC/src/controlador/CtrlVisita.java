@@ -16,7 +16,10 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Persona;
 import modelo.Unidades;
@@ -302,21 +305,23 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
         int ind;
 
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
+        vista.tabla.getTableHeader().setReorderingAllowed(false);
+        vista.tabla.getTableHeader().setResizingAllowed(false);
         vista.tabla.setRowSorter(tr);
 
         vista.tabla.setModel(modeloT);
 
-        modeloT.addColumn("Unidad");
+        modeloT.addColumn("<html>Número de <br> Unidad</html>");
         modeloT.addColumn("Cédula");
         modeloT.addColumn("Nombre");
-        modeloT.addColumn("Fecha de entrada");
-        modeloT.addColumn("Hora de entrada");
-        modeloT.addColumn("Fecha de salida");
-        modeloT.addColumn("Hora de salida");
+        modeloT.addColumn("<html>Fecha de <br> Entrada</html>");
+        modeloT.addColumn("<html>Hora de <br> Entrada</html>");
+        modeloT.addColumn("<html>Fecha de <br> Salida</html>");
+        modeloT.addColumn("<html>Hora de <br> Salida</html>");
         modeloT.addColumn("Matrícula");
         modeloT.addColumn("Modelo");
         modeloT.addColumn("Color");
-        modeloT.addColumn("Número de Acompañantes");
+        modeloT.addColumn("<html>Número de <br> Acompañantes</html>");
 
         Object[] columna = new Object[modeloT.getColumnCount()];
 
@@ -338,7 +343,22 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
 
             modeloT.addRow(columna);
         }
+        
+        TableColumnModel columnModel = vista.tabla.getColumnModel();
+        columnModel.getColumn(0).setPreferredWidth(35);
+        columnModel.getColumn(1).setPreferredWidth(10);
+        columnModel.getColumn(2).setPreferredWidth(30);
+        columnModel.getColumn(3).setPreferredWidth(25);
+        columnModel.getColumn(4).setPreferredWidth(25);
+        columnModel.getColumn(5).setPreferredWidth(25);
+        columnModel.getColumn(6).setPreferredWidth(25);
+        columnModel.getColumn(7).setPreferredWidth(20);
+        columnModel.getColumn(8).setPreferredWidth(20);
+        columnModel.getColumn(9).setPreferredWidth(15);
+        columnModel.getColumn(10).setPreferredWidth(60);
     }
+    
+    
 
     public void stylecombo(JComboBox c) {
         c.setFont(new Font("Tahoma", Font.BOLD, 14));
