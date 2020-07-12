@@ -44,7 +44,7 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
 
         catalogo.lblTitulo.setText("Banco");
         CtrlVentana.cambiarVista(catalogo);
-        Llenartabla(catalogo.tabla);
+        llenarTabla(catalogo.tabla);
 
         permisoBtn();
 
@@ -66,7 +66,7 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
 
     }
 
-    public void Llenartabla(JTable tablaD) {
+    public void llenarTabla(JTable tablaD) {
 
         listaBanco = modban.listar();
         dm = new DefaultTableModel() {
@@ -128,7 +128,7 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
                 if (modban.buscarInactivo(modban)) {
                     modban.activar(modban);
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
-                    Llenartabla(catalogo.tabla);
+                    llenarTabla(catalogo.tabla);
                     limpiar();
                     CtrlVentana.cambiarVista(catalogo);
 
@@ -137,7 +137,7 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
                     if (modban.registrar(modban)) {
 
                         JOptionPane.showMessageDialog(null, "Registro Guardado");
-                        Llenartabla(catalogo.tabla);
+                        llenarTabla(catalogo.tabla);
                         limpiar();
                         CtrlVentana.cambiarVista(catalogo);
 
@@ -161,7 +161,7 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
 
                     JOptionPane.showMessageDialog(null, "Registro Eliminado");
                     CtrlVentana.cambiarVista(catalogo);
-                    Llenartabla(catalogo.tabla);
+                    llenarTabla(catalogo.tabla);
 
                 } else {
 
@@ -186,7 +186,7 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
 
                         JOptionPane.showMessageDialog(null, "Registro modificado");
                         CtrlVentana.cambiarVista(catalogo);
-                        Llenartabla(catalogo.tabla);
+                        llenarTabla(catalogo.tabla);
                         limpiar();
 
                     } else {

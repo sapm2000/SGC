@@ -27,7 +27,7 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
     public static DecimalFormatSymbols simbolos = DecimalFormatSymbols.getInstance(Locale.ENGLISH);
 
     public static DecimalFormat formato1 = new DecimalFormat("##.####", simbolos);
-     public static DecimalFormat formatopago = new DecimalFormat("##.#####", simbolos);
+    public static DecimalFormat formatopago = new DecimalFormat("##.#####", simbolos);
     //public static DecimalFormat formato1 = new DecimalFormat("#.##", simbolos);
     public static DecimalFormat formato2 = new DecimalFormat("##.####", simbolos);
     public static DecimalFormat formatoalicuota = new DecimalFormat("#.##%", simbolos);
@@ -37,7 +37,6 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
         return sDate;
     }
 
-    /*---FUNCIÓN PARA EVITAR EL COPY & PASTE---*/
     public static String formatoDecimal(Double dec) {
         DecimalFormat format = new DecimalFormat();
         format.setMaximumFractionDigits(4);
@@ -46,6 +45,24 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
         return format.format(dec);
     }
 
+    /**
+     * Este método recibe una cadena de caracteres con un número de cuenta
+     * bancaria y la formateapara separar con elcaracter "-", el código del
+     * banco, el código de la oficina del banco donde se aperturó la cuenta, el
+     * código postal, y el número de cuenta
+     *
+     * @param numeroCuenta La cadena de caracteres a formatear
+     *
+     * @return un objeto {@code String} que contiene la cadena formateada
+     */
+    public static String formatoNumeroCuenta(String numeroCuenta) {
+        String numFormateado;
+
+        numFormateado = numeroCuenta.substring(0, 4) + "-" + numeroCuenta.substring(4, 8) + "-" + numeroCuenta.substring(8, 10) + "-" + numeroCuenta.substring(10);
+        return numFormateado;
+    }
+
+    /*---FUNCIÓN PARA EVITAR EL COPY & PASTE---*/
     public static void evitarPegar(java.awt.event.KeyEvent evt) {
 
         char c = evt.getKeyChar();
@@ -112,13 +129,12 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
             //se sigue buscando a partir de la posición siguiente a la encontrada
             posicion = cadena.indexOf(caracter, posicion + 1);
         }
-       
+
         return contador;
     }
 
     public static void soloUnPunto(java.awt.event.KeyEvent e, String cadena) {
 
-        
         int contador = contarCaracteres(cadena, '.');
         if (contador < 1) {
 

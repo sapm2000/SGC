@@ -29,7 +29,7 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
     private Catalogo catalogo;
     ArrayList<Condominio> listaCondo;
 
-    private Interes modin;
+    private Interes modelo;
 
     Funcion permiso;
 
@@ -41,7 +41,7 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
         this.vista = new VisInteres();
         this.catalogo = new Catalogo();
         this.catalogo.setVisible(true);
-        this.modin = new Interes();
+        this.modelo = new Interes();
 
         catalogo.lblTitulo.setText("Interés");
         CtrlVentana.cambiarVista(catalogo);
@@ -76,7 +76,7 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
 
     public void Llenartablainteres(JTable tablaD) {
 
-        listainteres = modin.listarInteres();
+        listainteres = modelo.listarInteres();
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -119,6 +119,7 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == catalogo.btnNuevo) {
+            
             this.vista.btnModificar.setEnabled(false);
             this.vista.btnGuardar.setEnabled(true);
             this.vista.btnEliminar.setEnabled(false);
@@ -131,47 +132,55 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
         }
 
         if (e.getSource() == vista.btnGuardar) {
+            
             if (validar()) {
-                modin.setNombre(vista.txtNombreinteres.getText());
-                modin.setFactor(Integer.parseInt(vista.txtFactor.getText()));
-                if (modin.buscarduplicados(modin)) {
+                
+                modelo.setNombre(vista.txtNombreinteres.getText());
+                modelo.setFactor(Integer.parseInt(vista.txtFactor.getText()));
+                
+                if (modelo.buscarduplicados(modelo)) {
+                    
                     JOptionPane.showMessageDialog(null, "este registro ya existe");
+                    
                 } else {
 
-                    if (modin.buscarInactivo(modin)) {
-                        modin.activarInteres(modin);
+                    if (modelo.buscarInactivo(modelo)) {
+                        
+                        modelo.activarInteres(modelo);
                         JOptionPane.showMessageDialog(null, "Registro Guardado");
                         Llenartablainteres(catalogo.tabla);
+                        CtrlVentana.cambiarVista(catalogo);
                         limpiar();
+                        
                     } else {
 
-                        if (modin.registrar(modin)) {
+                        if (modelo.registrar(modelo)) {
                             JOptionPane.showMessageDialog(null, "Registro Guardado");
                             Llenartablainteres(catalogo.tabla);
+                            CtrlVentana.cambiarVista(catalogo);
                         }
-
                     }
                 }
             }
-
         }
 
         if (e.getSource() == vista.btnModificar) {
+            
             if (validar()) {
 
-                modin.setNombre(vista.txtNombreinteres.getText());
-                modin.setFactor(Double.parseDouble(vista.txtFactor.getText()));
+                modelo.setNombre(vista.txtNombreinteres.getText());
+                modelo.setFactor(Double.parseDouble(vista.txtFactor.getText()));
 
-                modin.setId(Integer.parseInt(vista.txtId.getText()));
-                int x = modin.getId();
-                if (modin.buscarduplicados(modin) && modin.getId() != x) {
+                modelo.setId(Integer.parseInt(vista.txtId.getText()));
+                int x = modelo.getId();
+                if (modelo.buscarduplicados(modelo) && modelo.getId() != x) {
                     JOptionPane.showMessageDialog(null, "este registro ya existe");
                 } else {
-                    if (modin.buscarInactivo(modin)) {
+                    if (modelo.buscarInactivo(modelo)) {
                         JOptionPane.showMessageDialog(null, "no puede colocar un interes que ya existio, si quiere colocar este interes debe registrarlo nuevamente");
 
                     } else {
-                        if (modin.modificar_Interes(modin)) {
+                        if (modelo.modificar_Interes(modelo)) {
 
                             JOptionPane.showMessageDialog(null, "Registro Modificado");
 
@@ -185,9 +194,9 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
         }
 
         if (e.getSource() == vista.btnEliminar) {
-            modin.setId(Integer.parseInt(vista.txtId.getText()));
+            modelo.setId(Integer.parseInt(vista.txtId.getText()));
 
-            modin.eliminarInteres(modin);
+            modelo.eliminarInteres(modelo);
             JOptionPane.showMessageDialog(null, "registro eliminado");
             CtrlVentana.cambiarVista(catalogo);
             Llenartablainteres(catalogo.tabla);
@@ -267,16 +276,16 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
 
         String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
 
-        modin.setId(Integer.parseInt(String.valueOf(dato)));
+        modelo.setId(Integer.parseInt(String.valueOf(dato)));
 
-        modin.buscarInteres(modin);
+        modelo.buscarInteres(modelo);
 
         vista.btnEliminar.setEnabled(true);
         vista.btnGuardar.setEnabled(false);
         vista.btnModificar.setEnabled(true);
 
-        vista.txtFactor.setText(String.valueOf(modin.getFactor()));
-        vista.txtNombreinteres.setText(modin.getNombre());
+        vista.txtFactor.setText(String.valueOf(modelo.getFactor()));
+        vista.txtNombreinteres.setText(modelo.getNombre());
         vista.txtId.setText(dato);
         vista.txtId.setVisible(false);
 
