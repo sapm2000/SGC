@@ -331,7 +331,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
         if (listaCuenta != null) {
 
             for (Cuenta item : listaCuenta) {
-                vista.cbxCuenta.addItem(item.getN_cuenta() + " - " + item.getBanco().getNombre_banco());
+                vista.cbxCuenta.addItem(Validacion.formatoNumeroCuenta(item.getN_cuenta() + " - " + item.getBanco().getNombre_banco()));
             }
         }
     }

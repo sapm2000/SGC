@@ -25,7 +25,7 @@ import modelo.FormaPago;
 import modelo.Funcion;
 import sgc.SGC;
 import vista.Catalogo;
-import vista.formaDePago;
+import vista.VisFormaPago;
 
 /**
  *
@@ -34,7 +34,7 @@ import vista.formaDePago;
 public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener, WindowListener {
 
     private FormaPago modfor;
-    private formaDePago vista;
+    private VisFormaPago vista;
     Funcion permiso;
     private Catalogo catalogo;
     DefaultTableModel dm;
@@ -43,7 +43,7 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
 
     public CtrlFormaPago() {
         this.modfor = new FormaPago();
-        this.vista = new formaDePago();
+        this.vista = new VisFormaPago();
         this.catalogo = new Catalogo();
 
         catalogo.lblTitulo.setText("Forma de Pago");
@@ -109,13 +109,11 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
 
         if (e.getSource() == catalogo.btnNuevo) {
 
-            this.vista.setVisible(true);
+            CtrlVentana.cambiarVista(vista);
             this.vista.btnEliminar.setEnabled(false);
             this.vista.btnGuardar.setEnabled(true);
-            this.vista.txtid.setVisible(false);
             this.vista.btnModificar.setEnabled(false);
             vista.txtFormaPago.setText("");
-            vista.txtid.setText("");
 
         }
 
@@ -127,6 +125,8 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
                     modfor.activar(modfor);
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
                     Llenartabla(catalogo.tabla);
+                    vista.setVisible(false);
+                    catalogo.setVisible(true);
                     limpiar();
                 } else {
 
@@ -134,6 +134,8 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
 
                         JOptionPane.showMessageDialog(null, "Registro Guardado");
                         Llenartabla(catalogo.tabla);
+                        vista.setVisible(false);
+                        catalogo.setVisible(true);
                         limpiar();
 
                     } else {
@@ -148,7 +150,6 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
         if (e.getSource() == vista.btnModificar) {
             if (validar()) {
                 modfor.setForma_pago(vista.txtFormaPago.getText());
-                modfor.setId(Integer.parseInt(vista.txtid.getText()));
                 if (modfor.buscarInactivo(modfor)) {
                     JOptionPane.showMessageDialog(null, "no puede colocar el nombre de un metodo de pago que ya existio, si quiere colocar este nombre debe registrarlo nuevamente");
                 } else {
@@ -156,7 +157,8 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
                     if (modfor.modificar(modfor)) {
 
                         JOptionPane.showMessageDialog(null, "Registro modificado");
-                        vista.dispose();
+                        vista.setVisible(false);
+                        catalogo.setVisible(true);
                         Llenartabla(catalogo.tabla);
                         limpiar();
 
@@ -171,12 +173,11 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
 
         if (e.getSource() == vista.btnEliminar) {
 
-            modfor.setId(Integer.parseInt(vista.txtid.getText()));
-
             if (modfor.eliminar(modfor)) {
 
                 JOptionPane.showMessageDialog(null, "Registro Eliminado");
-                vista.dispose();
+                vista.setVisible(false);
+                catalogo.setVisible(true);
                 Llenartabla(catalogo.tabla);
 
             } else {
@@ -271,13 +272,11 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
 
         modfor.buscar(modfor);
 
-        vista.setVisible(true);
+        CtrlVentana.cambiarVista(vista);
+
         vista.txtFormaPago.setText(modfor.getForma_pago());
 
-        vista.txtid.setText(Integer.toString(modfor.getId()));
-
         vista.btnGuardar.setEnabled(false);
-        vista.txtid.setVisible(false);
         vista.btnModificar.setEnabled(true);
         vista.btnEliminar.setEnabled(true);
     }

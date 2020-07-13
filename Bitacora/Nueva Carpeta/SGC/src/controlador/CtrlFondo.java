@@ -14,6 +14,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -52,6 +53,8 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
         catalogo.lblTitulo.setText("Fondo");
         vista.cbxMoneda.addItemListener(this);
         stylecombo(vista.cbxMoneda);
+        
+        vista.jDateChooser1.setMaxSelectableDate(new Date());
 
         llenarTabla(catalogo.tabla);
         permisoBtn();
@@ -136,7 +139,6 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == catalogo.btnNuevo) {
-            vista.txtId.setVisible(false);
             this.vista.btnModificar.setEnabled(false);
             this.vista.btnGuardar.setEnabled(true);
             this.vista.btnEliminar.setEnabled(false);
@@ -193,7 +195,6 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                 modelo.setObservacion(vista.txaObservaciones.getText());
                 modelo.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
 
-                modelo.setId(Integer.parseInt(vista.txtId.getText()));
                 int var7 = 0;
                 var7 = modelo.getId();
 
@@ -345,12 +346,10 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
         vista.btnEliminar.setEnabled(true);
         vista.btnModificar.setEnabled(true);
 
-        modelo.buscar(modelo);
+        modelo = lista.get(fila);
 
         vista.txaDescripcion.setText(modelo.getDescripcion());
         vista.txaObservaciones.setText(modelo.getObservacion());
-        vista.txtId.setText(String.valueOf(modelo.getId()));
-        vista.txtId.setVisible(false);
         vista.txtTipo.setText(modelo.getTipo());
         vista.jDateChooser1.setDate(modelo.getFecha());
         vista.txtMontoInicial.setText(String.valueOf(Validacion.formato1.format(modelo.getMonto_inicial())));

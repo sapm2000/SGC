@@ -2126,7 +2126,7 @@ CREATE OR REPLACE VIEW v_condominio AS
 -- v_cuenta
 -- DROP VIEW v_cuenta;
 CREATE OR REPLACE VIEW v_cuenta AS
-	SELECT n_cuenta, tipo, id_banco, nombre_banco AS banco, ci_persona, per.p_nombre AS nombre, per.p_apellido AS apellido, rif_condominio, razon_social, cue.activo
+	SELECT OVERLAY(n_cuenta PLACING 'XXXXXXXXXXXX' FROM 5 FOR 12) AS n_cuenta, tipo, id_banco, nombre_banco AS banco, ci_persona, per.p_nombre AS nombre, per.p_apellido AS apellido, rif_condominio, razon_social, cue.activo
 	FROM cuenta AS cue
 	INNER JOIN banco AS ban ON ban.id = cue.id_banco
 	LEFT JOIN persona AS per ON per.cedula = cue.ci_persona
