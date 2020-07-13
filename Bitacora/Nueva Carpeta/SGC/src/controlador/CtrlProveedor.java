@@ -351,7 +351,7 @@ public class CtrlProveedor implements ActionListener, WindowListener, KeyListene
         if (ke.getSource() == vista.txtCedulaRif) {
             Validacion.soloNumeros(ke);
             Validacion.Espacio(ke);
-            Validacion.limite(ke, vista.txtCedulaRif.getText(), 9);
+            Validacion.limite(ke, vista.txtCedulaRif.getText(), 8);
         }
         if (ke.getSource() == vista.txtNombre) {
 
