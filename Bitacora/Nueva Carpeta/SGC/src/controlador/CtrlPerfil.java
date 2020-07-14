@@ -7,8 +7,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import javax.swing.BorderFactory;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import modelo.Usuario;
 import sgc.SGC;
 import vista.VisPerfil;
@@ -73,9 +78,35 @@ public class CtrlPerfil implements ActionListener, ItemListener {
         respuesta = Validacion.encriptar(vista.txtRespuesta.getText());
 
         if (usuario.modificarPregunta(vista.txtPregunta.getText(), respuesta, pass)) {
-            JOptionPane.showMessageDialog(vista, "Datos modificados");
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(vista, "Datos modificados ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
         } else {
-            JOptionPane.showMessageDialog(vista, "Datos no modificados");
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(vista, "Datos no modificados ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
         }
 
@@ -91,12 +122,51 @@ public class CtrlPerfil implements ActionListener, ItemListener {
             passActual = Validacion.encriptar(vista.txtPassActual.getText());
 
             if (usuario.modificarClave(passNuevo, passActual)) {
-                JOptionPane.showMessageDialog(vista, "Datos modificados");
+
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                int botonDialogo = JOptionPane.OK_OPTION;
+                Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(vista, "Datos modificados ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
             } else {
-                JOptionPane.showMessageDialog(vista, "Datos no modificados");
+
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                int botonDialogo = JOptionPane.OK_OPTION;
+                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(vista, "Datos no modificados ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
             }
         } else {
-            JOptionPane.showMessageDialog(vista, "Contraseñas no coinciden");
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(vista, "Contraseñas no coinciden ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
         }
 
     }
@@ -111,11 +181,11 @@ public class CtrlPerfil implements ActionListener, ItemListener {
         vista.txtPregunta.setText(usuario.getPregunta());
 
     }
-    
-    public void stylecombo (JComboBox c) {
+
+    public void stylecombo(JComboBox c) {
         c.setFont(new Font("Tahoma", Font.BOLD, 14));
         c.setForeground(Color.WHITE);
-        
+
         c.setBorder(BorderFactory.createLineBorder(new Color(0, 94, 159), 2));
     }
 

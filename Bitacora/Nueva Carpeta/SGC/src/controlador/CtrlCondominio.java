@@ -1,6 +1,8 @@
 package controlador;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -17,12 +19,16 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.TableColumn;
 import modelo.Condominio;
 import modelo.Funcion;
@@ -110,7 +116,19 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
 
                     vista.labelLogo.setIcon((img2));
                 } else {
-                    JOptionPane.showMessageDialog(null, "archivo no compatible");
+                    UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+                        
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/no.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+                        
+                    JOptionPane.showMessageDialog(null, "Archivo no compatible ", "Incompatibilidad",JOptionPane.WARNING_MESSAGE,  p);
                 }
             }
         }
@@ -147,10 +165,34 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
                             try {
                                 ImageIO.write(image, "png", new File(ruta + ruta2));
                             } catch (IOException ex) {
-                                JOptionPane.showMessageDialog(null, "error");
+                                UIManager UI = new UIManager();
+                                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+                                
+                                int botonDialogo = JOptionPane.OK_OPTION;
+                                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                                UIManager.put("Button.background", Color.white);
+                                UIManager.put("Button.font", Color.blue);
+                                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                UIManager.put("Label.background", Color.blue);
+                                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+                                
+                                JOptionPane.showMessageDialog(null, "Error ", "Advertencia",JOptionPane.WARNING_MESSAGE,  p);
                             }
                         }
-                        JOptionPane.showMessageDialog(null, "Datos actualizados");
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+                        
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+                        
+                        JOptionPane.showMessageDialog(null, "Datos actualizados ", "Actualizacion de datos",JOptionPane.WARNING_MESSAGE,  p);
                     }
 
                 } else {
@@ -178,10 +220,36 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
                             try {
                                 ImageIO.write(image, "png", new File(ruta + ruta2));
                             } catch (IOException ex) {
-                                JOptionPane.showMessageDialog(null, "error");
+                                
+                                UIManager UI = new UIManager();
+                                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+                                
+                                int botonDialogo = JOptionPane.OK_OPTION;
+                                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                                UIManager.put("Button.background", Color.white);
+                                UIManager.put("Button.font", Color.blue);
+                                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                UIManager.put("Label.background", Color.blue);
+                                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+                                
+                                JOptionPane.showMessageDialog(null, "Error ", "Advertencia",JOptionPane.WARNING_MESSAGE,  p);
                             }
                         }
-                        JOptionPane.showMessageDialog(null, "Datos registrados");
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+                        
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        
+                        JOptionPane.showMessageDialog(null, "Datos registrados ", "Registro de datos",JOptionPane.WARNING_MESSAGE,  p);
                         SGC.condominioActual = modelo;
 
                         CtrlVentana ctrlMenu = new CtrlVentana();
@@ -317,27 +385,39 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
         String msj = "";
 
         if (vista.txtRif.getText().isEmpty()) {
-            msj += "El campo RIF no puede estar vacío\n";
+            msj += "El campo RIF no puede estar vacío \n";
             resultado = false;
         }
 
         if (vista.txtRazonS.getText().isEmpty()) {
-            msj += "El campo razón social no puede estar vacío\n";
+            msj += "El campo razón social no puede estar vacío \n";
             resultado = false;
         }
 
         if (vista.txtTelefono.getText().isEmpty()) {
-            msj += "El campo teléfono no puede estar vacío\n";
+            msj += "El campo teléfono no puede estar vacío \n";
             resultado = false;
         }
 
         if (vista.txtCorreo.getText().isEmpty()) {
-            msj += "El campo correo electrónico no puede estar vacío\n";
+            msj += "El campo correo electrónico no puede estar vacío \n";
             resultado = false;
         }
 
         if (!resultado) {
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+            
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+            
+            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;

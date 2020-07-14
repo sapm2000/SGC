@@ -16,12 +16,17 @@ import java.awt.event.WindowListener;
 import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -293,11 +298,37 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                 modsan.setMes(vista.jMonthChooser1.getMonth() + 1);
                 modsan.setAño(vista.jYearChooser1.getYear());
                 if (modsan.getAño() < 2000 || modsan.getAño() > 2100) {
-                    JOptionPane.showMessageDialog(null, "seleccione un año valido");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "seleccione un año valido", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                 } else {
                     modsan.setTipo(vista.jComboBox1.getSelectedItem().toString());
                     if (modsan.getTipo().equals("Seleccione el Tipo de Deuda")) {
-                        JOptionPane.showMessageDialog(null, "seleccione un tipo de deuda");
+
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "seleccione un tipo de deuda ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                     } else {
                         modsan.setDescripcion(vista.txaDescripcion.getText());
                         modsan.setMonto(Double.parseDouble(vista.txtmonto.getText()));
@@ -314,18 +345,70 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                             }
                         }
                         if (j == 0) {
-                            JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
+
+                            UIManager UI = new UIManager();
+                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                            int botonDialogo = JOptionPane.OK_OPTION;
+                            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                            UIManager.put("Button.background", Color.white);
+                            UIManager.put("Button.font", Color.blue);
+                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                            UIManager.put("Label.background", Color.blue);
+                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                            JOptionPane.showMessageDialog(null, "Debe seleccionar al menos 1 registro de la tabla ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                         } else {
 
                             if (modc.buscarfechas(modc)) {
-                                JOptionPane.showMessageDialog(null, "no puede registrar Sanciones a un periodo ya cerrado");
+
+                                UIManager UI = new UIManager();
+                                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                int botonDialogo = JOptionPane.OK_OPTION;
+                                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                                UIManager.put("Button.background", Color.white);
+                                UIManager.put("Button.font", Color.blue);
+                                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                UIManager.put("Label.background", Color.blue);
+                                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                JOptionPane.showMessageDialog(null, "No puede registrar Sanciones a un periodo ya cerrado ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                             } else {
 
                                 if (modsan.buscarSancionRepetido(modsan) && modsan.getTipo().equals("Interes de mora")) {
-                                    JOptionPane.showMessageDialog(null, "No puede guardar mas de un interes de mora al mes");
+
+                                    UIManager UI = new UIManager();
+                                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                    int botonDialogo = JOptionPane.OK_OPTION;
+                                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                                    UIManager.put("Button.background", Color.white);
+                                    UIManager.put("Button.font", Color.blue);
+                                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                    UIManager.put("Label.background", Color.blue);
+                                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                    JOptionPane.showMessageDialog(null, "No puede guardar mas de un interes de mora al mes ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                                 } else {
                                     if (modsan.registrarsancion(modsan)) {
-                                        JOptionPane.showMessageDialog(null, "Registro Guardado");
+
+                                        UIManager UI = new UIManager();
+                                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                        int botonDialogo = JOptionPane.OK_OPTION;
+                                        Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                                        UIManager.put("Button.background", Color.white);
+                                        UIManager.put("Button.font", Color.blue);
+                                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                        UIManager.put("Label.background", Color.blue);
+                                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                        JOptionPane.showMessageDialog(null, "Registro Guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
                                         modsan.buscId(modsan);
                                         listaunidades = moduni.listar();
 
@@ -342,7 +425,19 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                                         CtrlVentana.cambiarVista(catalogo);
                                     } else {
 
-                                        JOptionPane.showMessageDialog(null, "error al guardar");
+                                        UIManager UI = new UIManager();
+                                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                        int botonDialogo = JOptionPane.OK_OPTION;
+                                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                                        UIManager.put("Button.background", Color.white);
+                                        UIManager.put("Button.font", Color.blue);
+                                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                        UIManager.put("Label.background", Color.blue);
+                                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                        JOptionPane.showMessageDialog(null, "Error al guardar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                                     }
                                 }
@@ -360,11 +455,37 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                 modsan.setMes(vista.jMonthChooser1.getMonth() + 1);
                 modsan.setAño(vista.jYearChooser1.getYear());
                 if (modsan.getAño() < 2000 || modsan.getAño() > 2100) {
-                    JOptionPane.showMessageDialog(null, "seleccione un año valido");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Seleccione un año valido ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                 } else {
                     modsan.setTipo(vista.jComboBox1.getSelectedItem().toString());
                     if (modsan.getTipo().equals("Seleccione el Tipo de Deuda")) {
-                        JOptionPane.showMessageDialog(null, "seleccione un tipo de deuda");
+
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "Seleccione un tipo de deuda ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                     } else {
                         modsan.setDescripcion(vista.txaDescripcion.getText());
                         modsan.setId(Integer.parseInt(vista.txtId.getText()));
@@ -387,16 +508,55 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                             }
                         }
                         if (j == 0) {
-                            JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
+
+                            UIManager UI = new UIManager();
+                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                            int botonDialogo = JOptionPane.OK_OPTION;
+                            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                            UIManager.put("Button.background", Color.white);
+                            UIManager.put("Button.font", Color.blue);
+                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                            UIManager.put("Label.background", Color.blue);
+                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                            JOptionPane.showMessageDialog(null, "Debe seleccionar al menos 1 registro de la tabla ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                         } else {
 
                             if (modc.buscarfechas(modc)) {
-                                JOptionPane.showMessageDialog(null, "no puede registrar Sanciones a un periodo ya cerrado");
+
+                                UIManager UI = new UIManager();
+                                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                int botonDialogo = JOptionPane.OK_OPTION;
+                                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                                UIManager.put("Button.background", Color.white);
+                                UIManager.put("Button.font", Color.blue);
+                                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                UIManager.put("Label.background", Color.blue);
+                                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                JOptionPane.showMessageDialog(null, "No puede registrar Sanciones a un periodo ya cerrado ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                             } else {
 
                                 if (x == 0 || x == modsan.getId()) {
                                     if (modsan.modificarSancion(modsan)) {
-                                        JOptionPane.showMessageDialog(null, "Registro Modificado");
+
+                                        UIManager UI = new UIManager();
+                                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                        int botonDialogo = JOptionPane.OK_OPTION;
+                                        Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                                        UIManager.put("Button.background", Color.white);
+                                        UIManager.put("Button.font", Color.blue);
+                                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                        UIManager.put("Label.background", Color.blue);
+                                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                        JOptionPane.showMessageDialog(null, "Registro Modificado ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
 
                                         modsan.borrarpuentesancion(modsan);
                                         listaunimod = modsan.listarunidadesmod();
@@ -413,11 +573,36 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                                         CtrlVentana.cambiarVista(catalogo);
                                     } else {
 
-                                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe");
+                                        UIManager UI = new UIManager();
+                                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                        int botonDialogo = JOptionPane.OK_OPTION;
+                                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                                        UIManager.put("Button.background", Color.white);
+                                        UIManager.put("Button.font", Color.blue);
+                                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                        UIManager.put("Label.background", Color.blue);
+                                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                        JOptionPane.showMessageDialog(null, "Este registro ya existe ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                                     }
                                 } else {
-                                    JOptionPane.showMessageDialog(null, "Este Registro Ya Existes");
+
+                                    UIManager UI = new UIManager();
+                                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                    int botonDialogo = JOptionPane.OK_OPTION;
+                                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                                    UIManager.put("Button.background", Color.white);
+                                    UIManager.put("Button.font", Color.blue);
+                                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                    UIManager.put("Label.background", Color.blue);
+                                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                    JOptionPane.showMessageDialog(null, "Este registro ya existe ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                                 }
                             }
 
@@ -432,7 +617,20 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
             modsan.setId(Integer.parseInt(vista.txtId.getText()));
             modsan.borrarpuentesancion(modsan);
             modsan.eliminarsancion(modsan);
-            JOptionPane.showMessageDialog(null, "registro eliminado");
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/multiplication-sign.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, "Registro eliminado ", "Eliminación de datos", JOptionPane.INFORMATION_MESSAGE, p);
             CtrlVentana.cambiarVista(catalogo);
             LlenartablaSancion(catalogo.tabla);
         }
@@ -510,7 +708,20 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
             vista.btnEliminar.setEnabled(false);
             vista.btnModificar.setEnabled(false);
             vista.btnGuardar.setEnabled(false);
-            JOptionPane.showMessageDialog(null, "las sanciones procesadas no pueden ser modificados ni eliminados");
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, "Las sanciones procesadas no pueden ser modificados ni eliminados ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
         } else {
             vista.btnEliminar.setEnabled(true);
             vista.btnModificar.setEnabled(true);
@@ -637,19 +848,31 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
 
         if (vista.txtmonto.getText().isEmpty()) {
 
-            msj += "El campo monto no puede estar vacio\n";
+            msj += "El campo monto no puede estar vacío \n";
             resultado = false;
         }
 
         if (vista.txaDescripcion.getText().isEmpty()) {
 
-            msj += "El campo descripción no puede estar vacio\n";
+            msj += "El campo descripción no puede estar vacío \n";
             resultado = false;
         }
 
         if (!resultado) {
 
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;

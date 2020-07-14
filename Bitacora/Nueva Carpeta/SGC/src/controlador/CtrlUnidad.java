@@ -19,12 +19,17 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -148,7 +153,20 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
                 }
 
                 if (j == 0) {
-                    JOptionPane.showMessageDialog(null, "Debe seleccionar al menos 1 registro de la tabla");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar al menos 1 registro de la tabla ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                 } else {
                     for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
@@ -159,17 +177,52 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
                     }
 
                     if (modelo.existeInactivo()) {
-                        JOptionPane.showMessageDialog(null, "Este número de únidad ya existe en la BD, se recuperarán los datos para el nuevo registro");
+
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "Este número de únidad ya existe en la base de datos, se recuperarán los datos para el nuevo registro ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                         try {
                             if (modelo.reactivar()) {
-                                JOptionPane.showMessageDialog(null, "Unidad reactivada");
+
+                                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                Icon a = new ImageIcon(getClass().getResource("/img/check.png"));
+                                UIManager.put("Button.background", Color.white);
+                                UIManager.put("Button.font", Color.blue);
+                                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                UIManager.put("Label.background", Color.blue);
+                                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                JOptionPane.showMessageDialog(null, "Unidad reactivada ", "Reactivación", JOptionPane.INFORMATION_MESSAGE, a);
                                 CtrlVentana.cambiarVista(catalogo);
 
                                 llenarTabla(catalogo.tabla);
 
                             } else {
-                                JOptionPane.showMessageDialog(null, "No se pudo reactivar");
+
+                                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                Icon d = new ImageIcon(getClass().getResource("/img/warning.png"));
+                                UIManager.put("Button.background", Color.white);
+                                UIManager.put("Button.font", Color.blue);
+                                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                UIManager.put("Label.background", Color.blue);
+                                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                JOptionPane.showMessageDialog(null, "No se pudo reactivar ", "Advertencia", JOptionPane.WARNING_MESSAGE, d);
                             }
 
                         } catch (SQLException ex) {
@@ -178,7 +231,19 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
                     } else {
                         if (modelo.existe()) {
-                            JOptionPane.showMessageDialog(null, "Este número de unidad ya existe");
+
+                            UIManager UI = new UIManager();
+                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                            UIManager.put("Button.background", Color.white);
+                            UIManager.put("Button.font", Color.blue);
+                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                            UIManager.put("Label.background", Color.blue);
+                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                            JOptionPane.showMessageDialog(null, "Este número de unidad ya existe ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                         } else {
                             if (modelo.registrar()) {
@@ -196,12 +261,35 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 //                                    modelo.actualizarAlicuota(modelo);
 //                                }
 
-                                JOptionPane.showMessageDialog(null, "Registro Guardado");
+                                UIManager UI = new UIManager();
+                                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                                UIManager.put("Button.background", Color.white);
+                                UIManager.put("Button.font", Color.blue);
+                                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                UIManager.put("Label.background", Color.blue);
+                                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                JOptionPane.showMessageDialog(null, "Registro Guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
                                 CtrlVentana.cambiarVista(catalogo);
                                 llenarTabla(catalogo.tabla);
 
                             } else {
-                                JOptionPane.showMessageDialog(null, "No se pudo registrar");
+
+                                UIManager UI = new UIManager();
+                                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                                UIManager.put("Button.background", Color.white);
+                                UIManager.put("Button.font", Color.blue);
+                                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                UIManager.put("Label.background", Color.blue);
+                                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                JOptionPane.showMessageDialog(null, "No se pudo registrar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                             }
                         }
                     }
@@ -230,7 +318,19 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
                     }
                 }
                 if (j == 0) {
-                    JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar al menos 1 registro de la tabla ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                 } else {
                     modelo.getPropietario().clear();
 
@@ -242,13 +342,37 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
                     }
 
                     if (modelo.modificar()) {
-                        JOptionPane.showMessageDialog(null, "Registro Modificado");
+
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "Registro Modificado ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
 
                         llenarTabla(catalogo.tabla);
                         CtrlVentana.cambiarVista(catalogo);
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "No se pudo modificar");
+
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "No se pudo modificar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                     }
                 }
@@ -257,12 +381,36 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
         if (e.getSource() == vista.btnEliminar) {
             if (modelo.eliminar()) {
-                JOptionPane.showMessageDialog(null, "Registro eliminado");
+
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(null, "Registro eliminado ", "Eliminación de datos", JOptionPane.INFORMATION_MESSAGE, p);
                 CtrlVentana.cambiarVista(catalogo);
                 llenarTabla(catalogo.tabla);
 
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo eliminar");
+
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                Icon p = new ImageIcon(getClass().getResource("/img/multiplication-sign.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(null, "No se pudo eliminar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
             }
 
@@ -282,13 +430,37 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == catalogo.tabla) {
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            Icon p = new ImageIcon(getClass().getResource("/img/pregunta.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
             String[] options = {"Ver detalles de pago", "Modificar datos"};
-            int result = JOptionPane.showOptionDialog(null, "Seleccione si desea ver detalles de pago o modificar datos", "MENÚ", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+            int result = JOptionPane.showOptionDialog(null, "¿Desea ver detalles de pago o modificar datos?", "MENÚ", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, p, options, options[0]);
 
             if (result == 0) {
                 String hola = "";
                 do {
                     hola = "";
+
+                    
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
                     hola = JOptionPane.showInputDialog("ingrese la paridad a trabajar"); //ventana que se despliega para que ingresen la paridad 
                     modc.setParidad(Double.parseDouble(hola));
                     int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
@@ -907,31 +1079,43 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
         String msj = "";
 
         if (vista.txtNumeroUnidad.getText().isEmpty()) {
-            msj += "El campo número de unidad no puede estar vacío\n";
+            msj += "El campo número de unidad no puede estar vacío \n";
             resultado = false;
         }
 
         if (vista.cbxTipo.getSelectedIndex() == 0) {
-            msj += "Debe seleccionar un Tipo de unidad\n";
+            msj += "Debe seleccionar un Tipo de unidad \n";
             resultado = false;
         }
 
         if (vista.txtDireccion.getText().isEmpty()) {
-            msj += "El campo dirección no puede estar vacío\n";
+            msj += "El campo dirección no puede estar vacío \n";
             resultado = false;
         }
 
         if (vista.txtDocumento.getText().isEmpty()) {
-            msj += "El campo número de documento no puede estar vacío\n";
+            msj += "El campo número de documento no puede estar vacío \n";
             resultado = false;
 
         } else if (vista.txtDocumento.getText().length() != 15) {
-            msj += "El número de documento debe contener 15 caracteres\n";
+            msj += "El número de documento debe contener 15 carácteres \n";
             resultado = false;
         }
 
         if (!resultado) {
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
+            
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+            
+            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;

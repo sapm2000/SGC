@@ -1,15 +1,26 @@
 package controlador;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Persona;
@@ -18,7 +29,7 @@ import modelo.Usuario;
 import vista.Catalogo;
 import vista.VisUsuario;
 
-public class CtrlUsuario implements ActionListener, MouseListener, KeyListener {
+public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, ItemListener {
 
     private Usuario modelo;
     private VisUsuario vista;
@@ -42,6 +53,8 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener {
 
         crearCbxTipoU();
         llenarTabla(catalogo.tabla);
+        vista.cbxTipo.addItemListener(this);
+        stylecombo(vista.cbxTipo);
         CtrlVentana.cambiarVista(catalogo);
         catalogo.lblTitulo.setText("Usuario");
         this.vista.btnGuardar.addActionListener(this);
@@ -78,33 +91,115 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener {
                 modelo.getTipoU().setId(listaTipo.get(ind).getId());
 
                 if (modelo.existeInactivo()) {
-                    JOptionPane.showMessageDialog(null, "Esta persona ya tiene un usuario en la BD, se recuperarán los datos");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Esta persona ya tiene un usuario en la base de datos, se recuperarán los datos ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                     if (modelo.reactivar()) {
-                        JOptionPane.showMessageDialog(null, "Usuario habilitado");
+
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        Icon a = new ImageIcon(getClass().getResource("/img/check.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "Usuario habilitado ", "Habilitar", JOptionPane.WARNING_MESSAGE, a);
                         llenarTabla(catalogo.tabla);
                         CtrlVentana.cambiarVista(catalogo);
                         limpiar();
                     } else {
-                        JOptionPane.showMessageDialog(null, "No se pudo habilitar el usuario");
+
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        Icon a = new ImageIcon(getClass().getResource("/img/warning.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "No se pudo habilitar el usuario ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                     }
                 } else {
                     if (modelo.tieneUsuario()) {
-                        JOptionPane.showMessageDialog(null, "Esta persona ya tiene un usuario");
+
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "Esta persona ya tiene un usuario ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                     } else {
                         if (modelo.existe()) {
-                            JOptionPane.showMessageDialog(null, "Este nombre de usuario ya existe");
+
+                            UIManager UI = new UIManager();
+                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                            UIManager.put("Button.background", Color.white);
+                            UIManager.put("Button.font", Color.blue);
+                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                            UIManager.put("Label.background", Color.blue);
+                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                            JOptionPane.showMessageDialog(null, "Este nombre de usuario ya existe ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                         } else {
 
                             if (modelo.registrar()) {
-                                JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
+
+                                UIManager UI = new UIManager();
+                                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                                UIManager.put("Button.background", Color.white);
+                                UIManager.put("Button.font", Color.blue);
+                                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                UIManager.put("Label.background", Color.blue);
+                                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
                                 llenarTabla(catalogo.tabla);
                                 CtrlVentana.cambiarVista(catalogo);
                                 limpiar();
                             } else {
-                                JOptionPane.showMessageDialog(null, "Error al Registrar Usuario");
+
+                                UIManager UI = new UIManager();
+                                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                                UIManager.put("Button.background", Color.white);
+                                UIManager.put("Button.font", Color.blue);
+                                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                UIManager.put("Label.background", Color.blue);
+                                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                JOptionPane.showMessageDialog(null, "Error al Registrar Usuario ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                             }
                         }
@@ -162,7 +257,19 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener {
             int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
             modelo = listaUsu.get(fila);
 
-            int result = JOptionPane.showConfirmDialog(catalogo, "¿Desea Eliminar Usuario?", "ELIMINAR USUARIO", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.YES_NO_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/pregunta.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            int result = JOptionPane.showConfirmDialog(catalogo, "¿Desea Eliminar Usuario?", "Eliminar usuario", botonDialogo, JOptionPane.WARNING_MESSAGE, p);
             if (result == 0) {
                 modelo.eliminar();
                 llenarTabla(catalogo.tabla);
@@ -248,48 +355,59 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener {
 
         if (vista.txtCedula.getText().isEmpty()) {
 
-            msj += "Debe seleccionar una persona\n";
+            msj += "Debe seleccionar una persona \n";
             resultado = false;
         }
         if (vista.txtUsuario.getText().isEmpty()) {
 
-            msj += "El campo Usuario no puede estar vacío\n";
+            msj += "El campo Usuario no puede estar vacío \n";
             resultado = false;
         }
 
         if (String.valueOf(vista.txtClave.getPassword()).isEmpty()) {
 
-            msj += "El campo Contraseña no puede estar vacío\n";
+            msj += "El campo Contraseña no puede estar vacío \n";
             resultado = false;
         } else if (String.valueOf(vista.txtClave2.getPassword()).isEmpty()) {
-            msj += "El campo Repetir Contraseña no puede estar vacío\n";
+            msj += "El campo Repetir Contraseña no puede estar vacío \n";
             resultado = false;
 
         } else if (!String.valueOf(vista.txtClave.getPassword()).equals(String.valueOf(vista.txtClave2.getPassword()))) {
             System.out.println(String.valueOf(vista.txtClave.getPassword()) + " " + vista.txtClave2.getPassword().toString());
-            msj += "Las Contraseñas no coinciden\n";
+            msj += "Las Contraseñas no coinciden \n";
             resultado = false;
 
         }
         if (vista.txtPregunta.getText().isEmpty()) {
 
-            msj += "El campo Pregunta de Seguridad no puede estar vacío\n";
+            msj += "El campo Pregunta de Seguridad no puede estar vacío \n";
             resultado = false;
         }
         if (vista.txtRespuesta.getText().isEmpty()) {
 
-            msj += "El campo Respuesta secreta no puede estar vacío\n";
+            msj += "El campo Respuesta secreta no puede estar vacío \n";
             resultado = false;
         }
         if (vista.cbxTipo.getSelectedItem() == null) {
 
-            msj += "Debe seleccionar Tipo de Usuario";
+            msj += "Debe seleccionar Tipo de Usuario ";
             resultado = false;
         }
 
         if (!resultado) {
 
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
+            UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+            
+            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;
@@ -359,4 +477,16 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener {
 
     }
 
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        vista.cbxTipo.setFocusable(false);
+    }
+
+    public void stylecombo(JComboBox c) {
+        c.setFont(new Font("Tahoma", Font.BOLD, 14));
+        c.setForeground(Color.WHITE);
+
+        c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
+    }
+    
 }

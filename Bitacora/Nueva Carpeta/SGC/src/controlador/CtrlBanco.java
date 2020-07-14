@@ -1,6 +1,8 @@
 package controlador;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -10,12 +12,17 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import static javax.swing.BorderFactory.createLineBorder;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -127,7 +134,20 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
                 modban.setNombre_banco(vista.txtnombre_banco.getText());
                 if (modban.buscarInactivo(modban)) {
                     modban.activar(modban);
-                    JOptionPane.showMessageDialog(null, "Registro Guardado");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Registro guardado", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
                     llenarTabla(catalogo.tabla);
                     limpiar();
                     CtrlVentana.cambiarVista(catalogo);
@@ -136,14 +156,38 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
 
                     if (modban.registrar(modban)) {
 
-                        JOptionPane.showMessageDialog(null, "Registro Guardado");
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "Registro Modificado", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
                         llenarTabla(catalogo.tabla);
                         limpiar();
                         CtrlVentana.cambiarVista(catalogo);
 
                     } else {
 
-                        JOptionPane.showMessageDialog(null, "No se pudo registrar");
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "No se pudo registrar", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                     }
                 }
             }
@@ -154,18 +198,51 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
             modban.setId(Integer.parseInt(vista.txtid.getText()));
 
             if (modban.buscacuentas(modban)) {
-                JOptionPane.showMessageDialog(null, "No puede eliminar el banco porque tiene cuentas asignadas");
+
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                int botonDialogo = JOptionPane.OK_OPTION;
+                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(null, "No puede eliminar el banco porque tiene cuentas asignadas", "Información", JOptionPane.INFORMATION_MESSAGE, p);
             } else {
 
                 if (modban.eliminar(modban)) {
 
-                    JOptionPane.showMessageDialog(null, "Registro Eliminado");
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/multiplication-sign.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Registro Eliminado", "Información", JOptionPane.INFORMATION_MESSAGE, p);
                     CtrlVentana.cambiarVista(catalogo);
                     llenarTabla(catalogo.tabla);
 
                 } else {
 
-                    JOptionPane.showMessageDialog(null, "Error al Eliminar");
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Error al Eliminar", "Información", JOptionPane.WARNING_MESSAGE, p);
 
                 }
 
@@ -179,19 +256,55 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
 
                 if (modban.buscarInactivo(modban)) {
 
-                    JOptionPane.showMessageDialog(null, "no puede colocar el nombre de un banco que ya existio, si quiere colocar este nombre debe registrarlo nuevamente");
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "No puede colocar el nombre de un banco que ya existio, si quiere colocar este nombre debe registrarlo nuevamente", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                 } else {
                     if (modban.modificar(modban)) {
 
-                        JOptionPane.showMessageDialog(null, "Registro modificado");
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "Registro modificado", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
                         CtrlVentana.cambiarVista(catalogo);
                         llenarTabla(catalogo.tabla);
                         limpiar();
 
                     } else {
 
-                        JOptionPane.showMessageDialog(null, "Este Registro ya Existe");
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "Este registro ya existe", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                     }
                 }
@@ -361,13 +474,25 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
 
         if (vista.txtnombre_banco.getText().isEmpty()) {
 
-            msj += "El campo nombre del banco no puede estar vacío\n";
+            msj += "El campo nombre del banco no puede estar vacío \n";
             resultado = false;
         }
 
         if (!resultado) {
 
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;

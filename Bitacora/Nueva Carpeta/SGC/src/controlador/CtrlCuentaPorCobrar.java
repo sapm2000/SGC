@@ -17,11 +17,16 @@ import java.awt.event.KeyListener;
 import static java.lang.String.valueOf;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -59,12 +64,26 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
     DefaultTableModel dm;
 
     public CtrlCuentaPorCobrar() {
-        String hola = "";
+        Object hola = "";
+        String e = "";
         do {
             hola = "";
-            hola = JOptionPane.showInputDialog("ingrese la paridad a trabajar"); //ventana que se despliega para que ingresen la paridad 
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
 
-            if (hola != null && isValidDouble(hola) == true) {
+            Icon q = new ImageIcon(getClass().getResource("/img/pregunta.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Input.border", createLineBorder(new Color(0, 94, 159), 3));
+            UIManager.put("Input.font", new Font("Tahoma", Font.BOLD, 12));
+
+            hola = JOptionPane.showInputDialog(null, "¿A que paridad va a trabajar?, Por favor ingrese ", null, 0, q, null, null); //ventana que se despliega para que ingresen la paridad 
+            e = String.valueOf(hola);
+            if (e != null && isValidDouble(e) == true) {
                 this.vista = new VisCuentaPorCobrar();
                 this.modcuen = new CuentasPorCobrar();
                 this.moduni = new Unidades();
@@ -73,8 +92,8 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                 this.modc = new CerrarMes();
                 this.modfor = new FormaPago();
 
-                modc.setParidad(Double.parseDouble(hola)); //seteamos la paridad para que busque los gastos en la bd y los multiplique por la paridad
-                vista.txtParidad.setText(hola); // seteamos la paridad en la caja de texto para que este cargada al abrir la vantana
+                modc.setParidad(Double.parseDouble(e)); //seteamos la paridad para que busque los gastos en la bd y los multiplique por la paridad
+                vista.txtParidad.setText(e); // seteamos la paridad en la caja de texto para que este cargada al abrir la vantana
 
                 vista.jComboUnidad.addItemListener(this);
                 vista.btnGuardar.addActionListener(this);
@@ -116,12 +135,13 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                 Validacion.copiar(components);
                 Validacion.pegar(com);
             }
+            System.out.println(hola);
             if (hola == null) {
                 break;
             } else {
 
             }
-        } while (isValidDouble(hola) == false); //ciclo que repite mientras no ingresen un numero valido
+        } while (isValidDouble(e) == false); //ciclo que repite mientras no ingresen un numero valido
 
     }
 
@@ -345,10 +365,36 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                     }
                 }
                 if (j == 0) { //si no hay ninguna marcada detiene la ejecucion y muestra un mensaje
-                    JOptionPane.showMessageDialog(null, "debe seleccionar al menos 1 registro de la tabla");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar al menos 1 registro de la tabla ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                 } else {
                     if (ind2 == -2) { //si la opcion seleccionada en cuenta es la de "seleccione" lance un mensaje y detenga la ejecucion
-                        JOptionPane.showMessageDialog(null, "seleccione una cuenta");
+
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "Seleccione una cuenta ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                     } else {
                         if (ind2 == -1) { //si la opcion seleccionada en cuenta es la de "otros" seteo esa palabra en el numero de cuenta
                             modcuen.setId_cuenta("Otros");
@@ -358,7 +404,20 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
                         int ind1 = vista.jComboFondo.getSelectedIndex() - 1;  //declaro un contador y le doy el valor del index del combobox restanto 1 opcion que esta fuera de la lista(el "seleccione")
                         if (ind1 == -1) { //si la opcion seleccionada en fondos es la de "seleccione" lance un mensaje y detenga la ejecucion
-                            JOptionPane.showMessageDialog(null, "seleccione el fondo a depositar");
+
+                            UIManager UI = new UIManager();
+                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                            int botonDialogo = JOptionPane.OK_OPTION;
+                            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                            UIManager.put("Button.background", Color.white);
+                            UIManager.put("Button.font", Color.blue);
+                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                            UIManager.put("Label.background", Color.blue);
+                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                            JOptionPane.showMessageDialog(null, "Seleccione el fondo a depositar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                         } else {
 
                             modcuen.setId_fondo(listafondo.get(ind1).getId()); //seteo el id del fondo del combobox
@@ -366,7 +425,20 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                             int ind = vista.jComboUnidad.getSelectedIndex() - 1; //declaro un contador y le doy el valor del index del combobox restanto 1 opcion que esta fuera de la lista(el "seleccione")
 
                             if (ind == -1) { //si la opcion seleccionada en unidad es la de "seleccione" lance un mensaje y detenga la ejecucion
-                                JOptionPane.showMessageDialog(null, "seleccione el numero de la unidad");
+
+                                UIManager UI = new UIManager();
+                                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                int botonDialogo = JOptionPane.OK_OPTION;
+                                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                                UIManager.put("Button.background", Color.white);
+                                UIManager.put("Button.font", Color.blue);
+                                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                UIManager.put("Label.background", Color.blue);
+                                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                JOptionPane.showMessageDialog(null, "Seleccione el número de la unidad ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                             } else {
                                 modcuen.uni.setId(listaunidades.get(ind).getId()); //seteo el id de la unidad 
                                 modcuen.setMonto(Double.parseDouble(vista.txtMonto.getText())); //seteo el monto ingresado en la casilla de monto
@@ -388,7 +460,20 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                 }
 
                                 if ((modcuen.getMonto() > total_dolar && vista.cbxMoneda.getSelectedItem().toString().equals("Dólar")) || (modcuen.getMonto() > total_bs && vista.cbxMoneda.getSelectedItem().toString().equals("Bolívar"))) {
-                                    JOptionPane.showMessageDialog(null, "No puede ingresar mas dinero de lo que debe"); //si el monto ingresado es superior al que ha selccionado en al tabla detiene la ejecucion y lanza mensaje
+
+                                    UIManager UI = new UIManager();
+                                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                    int botonDialogo = JOptionPane.OK_OPTION;
+                                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                                    UIManager.put("Button.background", Color.white);
+                                    UIManager.put("Button.font", Color.blue);
+                                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                    UIManager.put("Label.background", Color.blue);
+                                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                    JOptionPane.showMessageDialog(null, "No puede ingresar mas dinero de lo que debe ", "Advertencia", JOptionPane.WARNING_MESSAGE, p); //si el monto ingresado es superior al que ha selccionado en al tabla detiene la ejecucion y lanza mensaje
                                 } else {
                                     modcuen.setParidad(Double.parseDouble(vista.txtParidad.getText())); //seteo la paridad que se va a utilizar para calcular el pago
                                     modcuen.setMoneda(vista.cbxMoneda.getSelectedItem().toString()); //seteo la moneda 
@@ -398,7 +483,19 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                         modfon.setSaldo(var4); //seteo el nuevo saldo del fondo
                                         modfon.fondear(modfon); //registro el nuevo saldo del monto
 
-                                        JOptionPane.showMessageDialog(null, "registro guardado");
+                                        UIManager UI = new UIManager();
+                                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                        int botonDialogo = JOptionPane.OK_OPTION;
+                                        Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                                        UIManager.put("Button.background", Color.white);
+                                        UIManager.put("Button.font", Color.blue);
+                                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                        UIManager.put("Label.background", Color.blue);
+                                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                        JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
                                         modcuen.buscId(modcuen); //busco el ultimo id que viene siendo el pago que acabo de cargar
                                         double monto_total = Double.parseDouble(vista.txtMonto.getText()); //declaro variable que obtiene el valor del monto ingresado
 
@@ -642,25 +739,37 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
         if (vista.txtMonto.getText().isEmpty()) {
 
-            msj += "El campo monto no puede estar vacio\n";
+            msj += "El campo monto no puede estar vacío \n";
             resultado = false;
         }
 
         if (vista.txtReferencia.getText().isEmpty()) {
 
-            msj += "El campo de número de referencia no puede estar vacío\n";
+            msj += "El campo de número de referencia no puede estar vacío \n";
             resultado = false;
         }
 
         if (vista.txtDescripcion.getText().isEmpty()) {
 
-            msj += "El campo descripción no puede estar vacío\n";
+            msj += "El campo descripción no puede estar vacío \n";
             resultado = false;
         }
 
         if (!resultado) {
 
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;

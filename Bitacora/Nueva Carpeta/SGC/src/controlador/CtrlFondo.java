@@ -16,12 +16,17 @@ import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.BorderFactory;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -53,7 +58,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
         catalogo.lblTitulo.setText("Fondo");
         vista.cbxMoneda.addItemListener(this);
         stylecombo(vista.cbxMoneda);
-        
+
         vista.jDateChooser1.setMaxSelectableDate(new Date());
 
         llenarTabla(catalogo.tabla);
@@ -159,7 +164,20 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
             if (validar()) {
                 modelo.setTipo(vista.txtTipo.getText());
                 if (vista.jDateChooser1.getDate() == null) {
-                    JOptionPane.showMessageDialog(null, "Ingrese la fecha de creación del fondo");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Ingrese la fecha de creación del fondo ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                 } else {
                     java.sql.Date sqlDate = convert(vista.jDateChooser1.getDate());
                     modelo.setFecha(sqlDate);
@@ -169,17 +187,55 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                     modelo.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
 
                     if (modelo.buscar(modelo)) {
-                        JOptionPane.showMessageDialog(null, "Este fondo ya está registrado");
+
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "Este fondo ya está registrado ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                     } else {
 
                         if (modelo.registrar(modelo)) {
 
-                            JOptionPane.showMessageDialog(null, "Registro guardado");
+                            UIManager UI = new UIManager();
+                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                            int botonDialogo = JOptionPane.OK_OPTION;
+                            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                            UIManager.put("Button.background", Color.white);
+                            UIManager.put("Button.font", Color.blue);
+                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                            UIManager.put("Label.background", Color.blue);
+                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                            JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
                             llenarTabla(catalogo.tabla);
                             CtrlVentana.cambiarVista(catalogo);
 
                         } else {
-                            JOptionPane.showMessageDialog(null, "No se pudo registrar");
+
+                            UIManager UI = new UIManager();
+                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                            int botonDialogo = JOptionPane.OK_OPTION;
+                            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                            UIManager.put("Button.background", Color.white);
+                            UIManager.put("Button.font", Color.blue);
+                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                            UIManager.put("Label.background", Color.blue);
+                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                            JOptionPane.showMessageDialog(null, "No se pudo registrar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                         }
                     }
                 }
@@ -208,20 +264,71 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                         if (total > 0) {
                             if (modelo.modificar(modelo)) {
 
-                                JOptionPane.showMessageDialog(null, "Registro modificado");
+                                UIManager UI = new UIManager();
+                                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                int botonDialogo = JOptionPane.OK_OPTION;
+                                Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                                UIManager.put("Button.background", Color.white);
+                                UIManager.put("Button.font", Color.blue);
+                                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                UIManager.put("Label.background", Color.blue);
+                                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                JOptionPane.showMessageDialog(null, "Registro modificado ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
                                 llenarTabla(catalogo.tabla);
                                 CtrlVentana.cambiarVista(catalogo);
 
                             } else {
-                                JOptionPane.showMessageDialog(null, "Este registro ya existe");
+
+                                UIManager UI = new UIManager();
+                                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                int botonDialogo = JOptionPane.OK_OPTION;
+                                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                                UIManager.put("Button.background", Color.white);
+                                UIManager.put("Button.font", Color.blue);
+                                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                UIManager.put("Label.background", Color.blue);
+                                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                JOptionPane.showMessageDialog(null, "Este registro ya existe ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                             }
 
                         } else {
-                            JOptionPane.showMessageDialog(null, "El saldo no puede ser negativo");
+
+                            UIManager UI = new UIManager();
+                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                            int botonDialogo = JOptionPane.OK_OPTION;
+                            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                            UIManager.put("Button.background", Color.white);
+                            UIManager.put("Button.font", Color.blue);
+                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                            UIManager.put("Label.background", Color.blue);
+                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                            JOptionPane.showMessageDialog(null, "El saldo no puede ser negativo ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                         }
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "No pudo ser modificado el fondo");
+
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "No pudo ser modificado el fondo ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                     }
 
                 } else {
@@ -234,16 +341,54 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                     if (total > 0) {
                         if (modelo.modificar(modelo)) {
 
-                            JOptionPane.showMessageDialog(null, "Registro modificado");
+                            UIManager UI = new UIManager();
+                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                            int botonDialogo = JOptionPane.OK_OPTION;
+                            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                            UIManager.put("Button.background", Color.white);
+                            UIManager.put("Button.font", Color.blue);
+                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                            UIManager.put("Label.background", Color.blue);
+                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                            JOptionPane.showMessageDialog(null, "Registro modificado ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
                             llenarTabla(catalogo.tabla);
                             CtrlVentana.cambiarVista(catalogo);
 
                         } else {
-                            JOptionPane.showMessageDialog(null, "Este registro ya existe");
+
+                            UIManager UI = new UIManager();
+                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                            int botonDialogo = JOptionPane.OK_OPTION;
+                            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                            UIManager.put("Button.background", Color.white);
+                            UIManager.put("Button.font", Color.blue);
+                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                            UIManager.put("Label.background", Color.blue);
+                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                            JOptionPane.showMessageDialog(null, "Este registro ya existe ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                         }
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "El saldo no puede ser negativo");
+
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "El saldo no puede ser negativo ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                     }
                 }
             }
@@ -255,16 +400,55 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
             if (saldo == 0) {
 
                 if (modelo.eliminar(modelo)) {
-                    JOptionPane.showMessageDialog(null, "Registro eliminado");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/multiplication-sign.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Registro eliminado ", "Información", JOptionPane.INFORMATION_MESSAGE, p);
                     llenarTabla(catalogo.tabla);
                     CtrlVentana.cambiarVista(catalogo);
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error al eliminar");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Error al eliminar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                 }
 
             } else {
-                JOptionPane.showMessageDialog(null, "No se puede eliminar un fondo con saldo mayor a 0");
+
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                int botonDialogo = JOptionPane.OK_OPTION;
+                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(null, "No se puede eliminar un fondo con saldo mayor a 0 ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
             }
         }
 
@@ -296,24 +480,36 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
 
         if (vista.txtMontoInicial.getText().isEmpty()) {
 
-            msj += "El campo monto inicial no puede estar vacío\n";
+            msj += "El campo monto inicial no puede estar vacío \n";
             resultado = false;
         }
 
         if (vista.txtTipo.getText().isEmpty()) {
 
-            msj += "El campo tipo no puede estar vacío\n";
+            msj += "El campo tipo no puede estar vacío \n";
             resultado = false;
         }
         if (vista.cbxMoneda.getSelectedIndex() == 0) {
 
-            msj += "Debe selccionar una moneda\n";
+            msj += "Debe selccionar una moneda \n";
             resultado = false;
         }
 
         if (!resultado) {
 
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/multiplication-sign.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;
