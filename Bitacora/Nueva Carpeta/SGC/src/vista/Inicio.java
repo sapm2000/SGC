@@ -24,6 +24,7 @@ public class Inicio extends javax.swing.JPanel {
      */
     public Inicio() {
         initComponents();
+        jLabel5.setText(sgc.SGC.condominioActual.getRazonS());
         File fichero = new File("test.txt");
         int cantidad = 8;
         String cadena = fichero.getAbsolutePath();
@@ -70,8 +71,7 @@ public class Inicio extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 94, 159));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("¡Bienvenido al Menú de Datos Compartidos!");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 780, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 780, 30));
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 130, 280, 220));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -82,7 +82,7 @@ public class Inicio extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -90,7 +90,7 @@ public class Inicio extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     public javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
+    public javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
