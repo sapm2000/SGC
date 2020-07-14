@@ -23,9 +23,9 @@ CREATE TABLE categoriagasto(
 
 -- condominio
 CREATE TABLE condominio(
-	rif character varying(10) NOT NULL PRIMARY KEY,
+	rif character varying(11) NOT NULL PRIMARY KEY,
 	razon_social character varying(200) NOT null,
-	telefono character varying(11) NOT null,
+	telefono character varying(12) NOT null,
 	correo_electronico character varying(80) DEFAULT '',
 	activo boolean NOT NULL DEFAULT true
 );
@@ -50,7 +50,7 @@ CREATE TABLE interes (
 	nombre character varying(50) NOT NULL,
 	factor double precision NOT NULL,
 	activo boolean DEFAULT true,
-	id_condominio character varying REFERENCES condominio (rif)
+	rif_condominio character varying REFERENCES condominio (rif)
 );
 
 -- persona
@@ -2126,7 +2126,7 @@ CREATE OR REPLACE VIEW v_condominio AS
 -- v_cuenta
 -- DROP VIEW v_cuenta;
 CREATE OR REPLACE VIEW v_cuenta AS
-	SELECT OVERLAY(n_cuenta PLACING 'XXXXXXXXXXXX' FROM 5 FOR 12) AS n_cuenta, tipo, id_banco, nombre_banco AS banco, ci_persona, per.p_nombre AS nombre, per.p_apellido AS apellido, rif_condominio, razon_social, cue.activo
+	SELECT n_cuenta, tipo, id_banco, nombre_banco AS banco, ci_persona, per.p_nombre AS nombre, per.p_apellido AS apellido, rif_condominio, razon_social, cue.activo
 	FROM cuenta AS cue
 	INNER JOIN banco AS ban ON ban.id = cue.id_banco
 	LEFT JOIN persona AS per ON per.cedula = cue.ci_persona
