@@ -316,6 +316,12 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
             msj += "El campo descripción no puede estar vacío\n";
             resultado = false;
         }
+        
+        if (vista.cbxCategoria.getSelectedIndex() == 0) {
+
+            msj += "Debe Seleccionar una categoría";
+            resultado = false;
+        }
 
         if (!resultado) {
 

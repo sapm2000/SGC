@@ -254,19 +254,7 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
         DefaultTableModel modeloT = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                boolean resu = false;
-
-                switch (column) {
-                    case 0:
-                    case 1:
-                    case 2:
-                        resu = false;
-                        break;
-                    default:
-                        break;
-                }
-
-                return resu;
+                return false;
             }
         };
 
@@ -276,7 +264,6 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
         tablaD.getTableHeader().setReorderingAllowed(false);
         tablaD.getTableHeader().setResizingAllowed(false);
 
-        modeloT.addColumn("<html>Nº de<br>Asamblea</html>");
         modeloT.addColumn("<html>Nombre de <br>Asamblea</html>");
         modeloT.addColumn("Descripción");
         modeloT.addColumn("Fecha");
@@ -288,7 +275,6 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
 
         for (int i = 0; i < numRegistro; i++) {
             ind = 0;
-            columna[ind++] = lista.get(i).getId();
             columna[ind++] = lista.get(i).getNombre();
             columna[ind++] = lista.get(i).getDescripcion();
             columna[ind++] = lista.get(i).getFecha();
@@ -389,7 +375,9 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
     }
 
     private void permisoBtn() {
+        
         for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
+            
             if (funcionbtn.getNombre().equals("Asambleas")) {
                 permiso = funcionbtn;
             }
@@ -407,6 +395,11 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
 
         if (vista.txaDescripcion.getText().isEmpty()) {
             msj += "El campo Descripción no puede estar vacío\n";
+            resultado = false;
+        }
+        
+        if(vista.txtFecha.getDate() == null) {
+            msj += "El campo Fecha no puede estar vacío\n";
             resultado = false;
         }
 

@@ -23,7 +23,6 @@ public class VisCuenta extends javax.swing.JPanel {
      */
     public VisCuenta() {
         initComponents();
-        cbxCedula.setUI(new VisCerrarMes.CustomUI());
         cbxBanco.setUI(new VisCerrarMes.CustomUI());
         cbxTipo.setUI(new VisCerrarMes.CustomUI());
         txtBeneficiario.setEditable(false);
@@ -63,8 +62,7 @@ public class VisCuenta extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         cbxTipo = new javax.swing.JComboBox<>();
-        cbxCedula = new javax.swing.JComboBox<>();
-        btnCedula = new javax.swing.JButton();
+        btnBuscarPersona = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
@@ -99,11 +97,6 @@ public class VisCuenta extends javax.swing.JPanel {
         btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
         btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
         btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible (2).png"))); // NOI18N
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
-            }
-        });
         jPanel3.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 70, -1));
         //btnGuardar.addActionListener(ctrl);
 
@@ -194,6 +187,7 @@ public class VisCuenta extends javax.swing.JPanel {
         jLabel2.setText("<html>\nN° de <br> Cuenta:\n</html>");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 60, 30));
 
+        txtBeneficiario.setEditable(false);
         txtBeneficiario.setBackground(new java.awt.Color(0, 94, 159));
         txtBeneficiario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtBeneficiario.setForeground(new java.awt.Color(255, 255, 255));
@@ -206,19 +200,20 @@ public class VisCuenta extends javax.swing.JPanel {
         jLabel4.setText("Beneficiario:");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, 20));
 
+        txtCedula.setEditable(false);
         txtCedula.setBackground(new java.awt.Color(0, 94, 159));
         txtCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtCedula.setForeground(new java.awt.Color(255, 255, 255));
         txtCedula.setToolTipText("Ingrese la cédula o el rif");
         txtCedula.setBorder(null);
-        jPanel2.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 210, 20));
+        jPanel2.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 270, 20));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 310, 10));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 250, 10));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 310, 10));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 310, 10));
@@ -226,39 +221,14 @@ public class VisCuenta extends javax.swing.JPanel {
         cbxTipo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ahorro", "Corriente" }));
         cbxTipo.setToolTipText("Seleccione el tipo de cuenta");
-        cbxTipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxTipoActionPerformed(evt);
-            }
-        });
-        cbxTipo.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                cbxTipoPropertyChange(evt);
-            }
-        });
         jPanel2.add(cbxTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 310, 30));
 
-        cbxCedula.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cbxCedula.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "V", "E", "J" }));
-        cbxCedula.setToolTipText("Seleccione el tipo de cuenta");
-        cbxCedula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxCedulaActionPerformed(evt);
-            }
-        });
-        cbxCedula.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                cbxCedulaPropertyChange(evt);
-            }
-        });
-        jPanel2.add(cbxCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 13, 50, 30));
-
-        btnCedula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda.png"))); // NOI18N
-        btnCedula.setBorder(null);
-        btnCedula.setBorderPainted(false);
-        btnCedula.setContentAreaFilled(false);
-        btnCedula.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel2.add(btnCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 40, 40));
+        btnBuscarPersona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda.png"))); // NOI18N
+        btnBuscarPersona.setBorder(null);
+        btnBuscarPersona.setBorderPainted(false);
+        btnBuscarPersona.setContentAreaFilled(false);
+        btnBuscarPersona.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel2.add(btnBuscarPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 40, 40));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 480, 280));
 
@@ -272,36 +242,15 @@ public class VisCuenta extends javax.swing.JPanel {
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 570, 530));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbxTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxTipoActionPerformed
-
-    private void cbxTipoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cbxTipoPropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxTipoPropertyChange
-
-    private void cbxCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCedulaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxCedulaActionPerformed
-
-    private void cbxCedulaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cbxCedulaPropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxCedulaPropertyChange
-
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnCedula;
+    public javax.swing.JButton btnBuscarPersona;
     public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnModificar;
     public javax.swing.JButton btnSalir;
     public javax.swing.JComboBox<String> cbxBanco;
-    public javax.swing.JComboBox<String> cbxCedula;
     public javax.swing.JComboBox<String> cbxTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

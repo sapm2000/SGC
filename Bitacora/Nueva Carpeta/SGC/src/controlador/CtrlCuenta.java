@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -36,24 +37,37 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
     private VisCuenta vista;
     private Cuenta modelo;
     private ArrayList<Cuenta> lista;
-    DefaultTableModel dm;
+
+    private Catalogo catPersonas;
     private Persona modPersona;
+    private ArrayList<Persona> listaPersonas;
     private Banco modBanco;
     private ArrayList<Banco> listaBanco;
 
+    private JFrame ventanaBuscar;
+
     private Funcion permiso;
+
+    private DefaultTableModel dm;
 
     public CtrlCuenta() {
         this.catalogo = new Catalogo();
         this.vista = new VisCuenta();
         this.modelo = new Cuenta();
 
-        this.modBanco = new Banco();
+        catPersonas = new Catalogo();
+        catPersonas.lblTitulo.setText("Buscar Persona");
+        catPersonas.remove(catPersonas.btnNuevo);
+
+        ventanaBuscar = new JFrame("Buscar Persona");
+        ventanaBuscar.setSize(1366, 740);
+        ventanaBuscar.add(catPersonas);
+
         this.modPersona = new Persona();
+        this.modBanco = new Banco();
 
         catalogo.lblTitulo.setText("Cuenta");
 
-        stylecombo(vista.cbxCedula);
         stylecombo(vista.cbxBanco);
         stylecombo(vista.cbxTipo);
 
@@ -77,21 +91,22 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
 
         this.catalogo.btnNuevo.addActionListener(this);
         this.catalogo.tabla.addMouseListener(this);
+        this.catalogo.txtBuscar.addKeyListener(this);
 
         this.vista.txtCedula.addActionListener(this);
-        this.vista.btnCedula.addActionListener(this);
+        this.vista.btnBuscarPersona.addActionListener(this);
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnModificar.addActionListener(this);
         this.vista.btnEliminar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
         this.vista.btnSalir.addActionListener(this);
-        vista.cbxCedula.addItemListener(this);
         vista.cbxBanco.addItemListener(this);
         vista.cbxTipo.addItemListener(this);
         this.vista.txtCedula.addKeyListener(this);
         this.vista.txtN_cuenta.addKeyListener(this);
         this.vista.txtBeneficiario.addKeyListener(this);
-        this.catalogo.txtBuscar.addKeyListener(this);
+
+        this.catPersonas.tabla.addMouseListener(this);
 
         CtrlVentana.cambiarVista(catalogo);
     }
@@ -102,7 +117,6 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
             limpiar();
 
             vista.txtN_cuenta.setEditable(true);
-            vista.cbxCedula.setEnabled(true);
             this.vista.btnGuardar.setEnabled(true);
             this.vista.btnModificar.setEnabled(false);
             this.vista.btnEliminar.setEnabled(false);
@@ -110,13 +124,16 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
             CtrlVentana.cambiarVista(vista);
         }
 
+        if (e.getSource() == vista.btnBuscarPersona) {
+            llenarTablaPersonas(catPersonas.tabla);
+            ventanaBuscar.setVisible(true);
+        }
+
         if (e.getSource() == vista.btnGuardar) {
             if (validar()) {
                 int ind;
-                String cedula;
 
-                cedula = vista.cbxCedula.getSelectedItem() + "-" + vista.txtCedula.getText();
-                modelo.getBeneficiario().setCedula(cedula);
+                modelo.getBeneficiario().setCedula(vista.txtCedula.getText());
                 ind = vista.cbxBanco.getSelectedIndex() - 1;
                 modelo.getBanco().setId(listaBanco.get(ind).getId());
                 modelo.setTipo(vista.cbxTipo.getSelectedItem().toString());
@@ -157,16 +174,12 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
         if (e.getSource() == vista.btnModificar) {
             if (validar()) {
                 int ind;
-                String cedula;
 
                 modelo.setN_cuenta(vista.txtN_cuenta.getText());
-                cedula = vista.cbxCedula.getSelectedItem() + "-" + vista.txtCedula.getText();
-                modelo.getBeneficiario().setCedula(cedula);
+                modelo.getBeneficiario().setCedula(vista.txtCedula.getText());
                 modelo.setTipo(vista.cbxTipo.getSelectedItem().toString());
                 ind = vista.cbxBanco.getSelectedIndex() - 1;
                 modelo.getBanco().setId(listaBanco.get(ind).getId());
-
-                String j = modelo.getN_cuenta();
 
                 if (modelo.modificar()) {
                     JOptionPane.showMessageDialog(null, "Registro modificado");
@@ -192,22 +205,6 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
             limpiar();
         }
 
-        if (e.getSource() == vista.txtCedula || e.getSource() == vista.btnCedula) {
-            String letra = vista.cbxCedula.getSelectedItem().toString();
-            String documento = letra + "-" + vista.txtCedula.getText();
-
-            if (letra == "V" || letra == "E") {
-                modPersona.setCedula(documento);
-
-                if (modPersona.buscar()) {
-                    vista.txtBeneficiario.setText(modPersona.getpNombre() + " " + modPersona.getpApellido());
-
-                } else {
-                    JOptionPane.showMessageDialog(vista, "No se ha encontrado una persona con esta cédula");
-                }
-            }
-        }
-
         if (e.getSource() == vista.btnSalir) {
             CtrlVentana.cambiarVista(catalogo);
         }
@@ -224,7 +221,9 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
 
     @Override
     public void mouseClicked(MouseEvent e) {
+
         if (e.getSource() == catalogo.tabla) {
+            
             int fila;
 
             fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
@@ -233,20 +232,20 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
             if (permiso.getModificar()) {
                 vista.btnModificar.setEnabled(true);
             }
+            
             if (permiso.getEliminar()) {
                 vista.btnEliminar.setEnabled(true);
             }
+            
             if (modelo.getBeneficiario().getCedula() != null) {
-                vista.cbxCedula.setSelectedItem(modelo.getBeneficiario().getCedula().split("-")[0]);
-                vista.txtCedula.setText(modelo.getBeneficiario().getCedula().split("-")[1]);
+                vista.txtCedula.setText(modelo.getBeneficiario().getCedula());
                 vista.txtBeneficiario.setText(modelo.getBeneficiario().getpNombre() + " " + modelo.getBeneficiario().getpApellido());
+                
             } else {
-                vista.cbxCedula.setEnabled(false);
-                vista.cbxCedula.setSelectedItem("J");
-                vista.txtCedula.setText(modelo.getCondominio().getRif().split("-")[1]);
+                vista.txtCedula.setText(modelo.getCondominio().getRif());
                 vista.txtBeneficiario.setText(modelo.getCondominio().getRazonS());
-
             }
+
             vista.cbxBanco.setSelectedItem(modelo.getBanco().getNombre_banco());
             vista.cbxTipo.setSelectedItem(modelo.getTipo());
             vista.txtN_cuenta.setText(modelo.getN_cuenta());
@@ -258,6 +257,18 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
             vista.btnEliminar.setEnabled(true);
 
             CtrlVentana.cambiarVista(vista);
+        }
+
+        if (e.getSource() == catPersonas.tabla) {
+            int fila;
+
+            fila = catPersonas.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
+            modPersona = listaPersonas.get(fila);
+
+            vista.txtCedula.setText(modPersona.getCedula());
+            vista.txtBeneficiario.setText(modPersona.getpNombre() + " " + modPersona.getpApellido());
+
+            ventanaBuscar.setVisible(false);
         }
     }
 
@@ -335,7 +346,6 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
     }
 
     public void limpiar() {
-        vista.cbxCedula.setSelectedIndex(0);
         vista.txtCedula.setText("");
         vista.cbxBanco.setSelectedIndex(0);
         vista.cbxTipo.setSelectedIndex(0);
@@ -372,9 +382,10 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
         int numRegistro = lista.size();
 
         for (int i = 0; i < numRegistro; i++) {
+            
             ind = 0;
             columna[ind++] = lista.get(i).getBanco().getNombre_banco();
-            columna[ind++] = lista.get(i).getN_cuenta();
+            columna[ind++] = Validacion.formatoNumeroCuenta(lista.get(i).getN_cuenta());
 
             if (lista.get(i).getBeneficiario().getCedula() != null) {
                 columna[ind++] = lista.get(i).getBeneficiario().getCedula();
@@ -393,7 +404,55 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
 
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        
         for (int i = 0; i < modeloT.getColumnCount(); i++) {
+            tablaD.getColumnModel().getColumn(i).setCellRenderer(tcr);
+        }
+    }
+
+    public void llenarTablaPersonas(JTable tablaD) {
+
+        listaPersonas = modPersona.listarP();
+        int ind;
+
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                return false;
+            }
+        };
+
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
+        tablaD.setRowSorter(tr);
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
+
+        modeloT.addColumn("Cédula");
+        modeloT.addColumn("Nombre");
+        modeloT.addColumn("Apellido");
+
+        Object[] columna = new Object[modeloT.getColumnCount()];
+
+        int numRegistro = lista.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            ind = 0;
+
+            columna[ind++] = listaPersonas.get(i).getCedula();
+            columna[ind++] = listaPersonas.get(i).getpNombre();
+            columna[ind++] = listaPersonas.get(i).getpApellido();
+
+            modeloT.addRow(columna);
+        }
+
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+
+        for (int i = 0; i < modeloT.getColumnCount(); i++) {
+
             tablaD.getColumnModel().getColumn(i).setCellRenderer(tcr);
         }
     }
@@ -411,6 +470,10 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
         if (vista.txtN_cuenta.getText().isEmpty()) {
             msj += "El campo N° de Cuenta no puede estar vacío\n";
             resultado = false;
+            
+        } else if (vista.txtN_cuenta.getText().length() < 20) {
+            msj += "El N° de Cuenta debe contener 20 dígitos\n";
+            resultado = false;
         }
 
         if (vista.txtBeneficiario.getText().isEmpty()) {
@@ -427,29 +490,15 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        vista.cbxCedula.setFocusable(false);
+
         vista.cbxBanco.setFocusable(false);
         vista.cbxTipo.setFocusable(false);
-
-        if (e.getSource() == vista.cbxCedula) {
-
-            if (vista.cbxCedula.getSelectedItem().equals("J")) {
-                vista.txtCedula.setEnabled(false);
-                vista.txtBeneficiario.setEnabled(false);
-                vista.txtCedula.setText(SGC.condominioActual.getRif().split("-")[1]);
-                vista.txtBeneficiario.setText(SGC.condominioActual.getRazonS());
-
-            } else {
-                vista.txtCedula.setEnabled(true);
-                vista.txtBeneficiario.setEnabled(true);
-            }
-        }
     }
 
     public void stylecombo(JComboBox c) {
+
         c.setFont(new Font("Tahoma", Font.BOLD, 14));
         c.setForeground(Color.WHITE);
-
         c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
     }
 
