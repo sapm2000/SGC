@@ -80,6 +80,48 @@ public class Gasto extends ConexionBD {
             }
         }
     }
+    
+     public boolean eliminar() {
+
+        ps = null;
+        con = getConexion();
+
+        String sql = "SELECT eliminar_gasto(?,?);";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+
+            ps.setInt(1, getId());
+            ps.setInt(2, SGC.usuarioActual.getId());
+
+            if (ps.execute()) {
+                rs = ps.getResultSet();
+                rs.next();
+                return rs.getBoolean(1);
+
+            } else {
+                return false;
+            }
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+        } finally {
+            try {
+
+                con.close();
+
+            } catch (SQLException e) {
+
+                System.err.println(e);
+
+            }
+
+        }
+
+    }
 
     public Boolean registrar() {
         try {

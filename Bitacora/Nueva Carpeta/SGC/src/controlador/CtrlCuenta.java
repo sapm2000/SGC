@@ -114,6 +114,7 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == catalogo.btnNuevo) {
+            
             limpiar();
 
             vista.txtN_cuenta.setEditable(true);
@@ -125,12 +126,15 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
         }
 
         if (e.getSource() == vista.btnBuscarPersona) {
+
             llenarTablaPersonas(catPersonas.tabla);
             ventanaBuscar.setVisible(true);
         }
 
         if (e.getSource() == vista.btnGuardar) {
+            
             if (validar()) {
+                
                 int ind;
 
                 modelo.getBeneficiario().setCedula(vista.txtCedula.getText());
@@ -140,9 +144,11 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
                 modelo.setN_cuenta(vista.txtN_cuenta.getText());
 
                 if (modelo.buscarInactivo(modelo)) {
+                    
                     JOptionPane.showMessageDialog(null, "Esta cuenta ya está registrada en la BD, se recuperarán los datos");
 
                     if (modelo.reactivar()) {
+                        
                         JOptionPane.showMessageDialog(null, "Cuenta habilitada");
                         llenarTabla(catalogo.tabla);
                         CtrlVentana.cambiarVista(catalogo);
@@ -153,8 +159,11 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
                     }
 
                 } else {
+                    
                     if (!modelo.existe()) {
+                        
                         if (modelo.registrar()) {
+                            
                             JOptionPane.showMessageDialog(null, "Registro guardado");
                             llenarTabla(catalogo.tabla);
                             CtrlVentana.cambiarVista(catalogo);
@@ -172,10 +181,11 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
         }
 
         if (e.getSource() == vista.btnModificar) {
+
             if (validar()) {
+
                 int ind;
 
-                modelo.setN_cuenta(vista.txtN_cuenta.getText());
                 modelo.getBeneficiario().setCedula(vista.txtCedula.getText());
                 modelo.setTipo(vista.cbxTipo.getSelectedItem().toString());
                 ind = vista.cbxBanco.getSelectedIndex() - 1;
@@ -193,12 +203,16 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
         }
 
         if (e.getSource() == vista.btnEliminar) {
-            modelo.setN_cuenta(vista.txtN_cuenta.getText());
 
-            modelo.eliminar();
-            JOptionPane.showMessageDialog(null, "Registro eliminado");
-            llenarTabla(catalogo.tabla);
-            CtrlVentana.cambiarVista(catalogo);
+            if (modelo.eliminar()) {
+                
+                JOptionPane.showMessageDialog(null, "Registro eliminado");
+                llenarTabla(catalogo.tabla);
+                CtrlVentana.cambiarVista(catalogo);
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo eliminar");
+            }
         }
 
         if (e.getSource() == vista.btnLimpiar) {
@@ -223,7 +237,7 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
     public void mouseClicked(MouseEvent e) {
 
         if (e.getSource() == catalogo.tabla) {
-            
+
             int fila;
 
             fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
@@ -232,15 +246,15 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
             if (permiso.getModificar()) {
                 vista.btnModificar.setEnabled(true);
             }
-            
+
             if (permiso.getEliminar()) {
                 vista.btnEliminar.setEnabled(true);
             }
-            
+
             if (modelo.getBeneficiario().getCedula() != null) {
                 vista.txtCedula.setText(modelo.getBeneficiario().getCedula());
                 vista.txtBeneficiario.setText(modelo.getBeneficiario().getpNombre() + " " + modelo.getBeneficiario().getpApellido());
-                
+
             } else {
                 vista.txtCedula.setText(modelo.getCondominio().getRif());
                 vista.txtBeneficiario.setText(modelo.getCondominio().getRazonS());
@@ -248,7 +262,7 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
 
             vista.cbxBanco.setSelectedItem(modelo.getBanco().getNombre_banco());
             vista.cbxTipo.setSelectedItem(modelo.getTipo());
-            vista.txtN_cuenta.setText(modelo.getN_cuenta());
+            vista.txtN_cuenta.setText(Validacion.formatoNumeroCuenta(modelo.getN_cuenta()));
 
             vista.txtN_cuenta.setEditable(false);
 
@@ -382,7 +396,7 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
         int numRegistro = lista.size();
 
         for (int i = 0; i < numRegistro; i++) {
-            
+
             ind = 0;
             columna[ind++] = lista.get(i).getBanco().getNombre_banco();
             columna[ind++] = Validacion.formatoNumeroCuenta(lista.get(i).getN_cuenta());
@@ -404,7 +418,7 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
 
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        
+
         for (int i = 0; i < modeloT.getColumnCount(); i++) {
             tablaD.getColumnModel().getColumn(i).setCellRenderer(tcr);
         }
@@ -435,7 +449,7 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
 
         Object[] columna = new Object[modeloT.getColumnCount()];
 
-        int numRegistro = lista.size();
+        int numRegistro = listaPersonas.size();
 
         for (int i = 0; i < numRegistro; i++) {
 
@@ -470,7 +484,7 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
         if (vista.txtN_cuenta.getText().isEmpty()) {
             msj += "El campo N° de Cuenta no puede estar vacío\n";
             resultado = false;
-            
+
         } else if (vista.txtN_cuenta.getText().length() < 20) {
             msj += "El N° de Cuenta debe contener 20 dígitos\n";
             resultado = false;

@@ -47,7 +47,6 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
         this.catalogo = new Catalogo();
 
         catalogo.lblTitulo.setText("Forma de Pago");
-        CtrlVentana.cambiarVista(catalogo);
         Llenartabla(catalogo.tabla);
         permisoBtn();
 
@@ -62,7 +61,7 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
         this.catalogo.btnNuevo.addActionListener(this);
         this.catalogo.tabla.addMouseListener(this);
         this.catalogo.txtBuscar.addKeyListener(this);
-        catalogo.setVisible(true);
+        CtrlVentana.cambiarVista(catalogo);
 
     }
 
@@ -125,8 +124,7 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
                     modfor.activar(modfor);
                     JOptionPane.showMessageDialog(null, "Registro Guardado");
                     Llenartabla(catalogo.tabla);
-                    vista.setVisible(false);
-                    catalogo.setVisible(true);
+                    CtrlVentana.cambiarVista(catalogo);
                     limpiar();
                 } else {
 
@@ -134,8 +132,7 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
 
                         JOptionPane.showMessageDialog(null, "Registro Guardado");
                         Llenartabla(catalogo.tabla);
-                        vista.setVisible(false);
-                        catalogo.setVisible(true);
+                        CtrlVentana.cambiarVista(catalogo);
                         limpiar();
 
                     } else {
@@ -157,8 +154,7 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
                     if (modfor.modificar(modfor)) {
 
                         JOptionPane.showMessageDialog(null, "Registro modificado");
-                        vista.setVisible(false);
-                        catalogo.setVisible(true);
+                        CtrlVentana.cambiarVista(catalogo);
                         Llenartabla(catalogo.tabla);
                         limpiar();
 
@@ -176,8 +172,7 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
             if (modfor.eliminar(modfor)) {
 
                 JOptionPane.showMessageDialog(null, "Registro Eliminado");
-                vista.setVisible(false);
-                catalogo.setVisible(true);
+                CtrlVentana.cambiarVista(catalogo);
                 Llenartabla(catalogo.tabla);
 
             } else {
