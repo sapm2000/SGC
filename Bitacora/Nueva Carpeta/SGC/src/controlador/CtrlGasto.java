@@ -330,6 +330,25 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
         }
 
         if (e.getSource() == vista.btnEliminar) {
+            System.out.println(modelo.getMonto());
+            System.out.println(modelo.getSaldo());
+            if (modelo.getMonto().equals(modelo.getSaldo())) {
+                System.out.println("poli1");
+                if (modelo.eliminar()) {    
+                    System.out.println("poli2");
+                    JOptionPane.showMessageDialog(null, "Registro eliminado");
+                    llenarTabla(catalogo.tabla);
+                    CtrlVentana.cambiarVista(catalogo);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo eliminar");
+
+                }
+            } else if (modelo.getMonto() > modelo.getSaldo()){
+                System.out.println("poli 3");
+                JOptionPane.showMessageDialog(null, "No se puede eliminar porque el gasto esta siendo pagado");
+
+            }
+
         }
 
         if (e.getSource() == vista.btnLimpiar) {

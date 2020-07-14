@@ -45,6 +45,8 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener, KeyListene
         this.vista.btnModificar.addActionListener(this);
         this.vista.btnEliminar.addActionListener(this);
         this.vista.btnSalir.addActionListener(this);
+        this.vista.txtArea.addKeyListener(this);
+        this.vista.txtNombre.addKeyListener(this);
 
         llenarTabla();
         permisoBtn();
@@ -259,6 +261,12 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener, KeyListene
         if (vista.txtArea.getText().isEmpty()) {
             msj += "El campo Área no puede estar vacío \n";
             resultado = false;
+        } else if (Double.parseDouble(vista.txtArea.getText()) < 10) {
+             msj += "El campo Área debe ser mayor que 10";
+            resultado = false;
+        } else if (Double.parseDouble(vista.txtArea.getText()) > 150) {
+             msj += "El campo Área debe ser manor que 150";
+            resultado = false;
         }
 
         if (!resultado) {
@@ -269,7 +277,21 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener, KeyListene
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(KeyEvent ke) {
+        
+        if (ke.getSource() == vista.txtNombre) {
+
+            Validacion.Espacio(ke);
+            Validacion.limite(ke, vista.txtNombre.getText(), 10);
+        }
+        if (ke.getSource() == vista.txtArea) {
+
+            Validacion.soloNumeros(ke);
+            Validacion.Espacio(ke);
+            Validacion.soloUnPunto(ke, vista.txtArea.getText());
+            Validacion.limite(ke, vista.txtArea.getText(), 4);
+        }
+
      
     }
 

@@ -58,7 +58,7 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
     public static String formatoNumeroCuenta(String numeroCuenta) {
         String numFormateado;
 
-        numFormateado = numeroCuenta.substring(0, 4) + "-" + numeroCuenta.substring(4, 8) + "-" + numeroCuenta.substring(8, 10) + "-" + numeroCuenta.substring(10);
+        numFormateado = numeroCuenta.substring(0, 4) + "-" + "XXXX" + "-" + "XX" + "-" + "XXXXXX" + numeroCuenta.substring(16);
         return numFormateado;
     }
 

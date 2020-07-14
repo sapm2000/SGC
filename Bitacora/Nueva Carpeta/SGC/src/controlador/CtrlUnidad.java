@@ -407,6 +407,11 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
             Validacion.limite(ke, vista.txtNumeroUnidad.getText(), 10);
         }
 
+        if (ke.getSource() == vista.txtDocumento) {
+            Validacion.Espacio(ke);
+            Validacion.limite(ke, vista.txtNumeroUnidad.getText(), 15);
+        }
+
         if (ke.getSource() == vista.txtDireccion) {
             Validacion.limite(ke, vista.txtDireccion.getText(), 200);
         }
@@ -918,6 +923,10 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
         if (vista.txtDocumento.getText().isEmpty()) {
             msj += "El campo número de documento no puede estar vacío\n";
+            resultado = false;
+
+        } else if (vista.txtDocumento.getText().length() != 15) {
+            msj += "El número de documento debe contener 15 caracteres\n";
             resultado = false;
         }
 

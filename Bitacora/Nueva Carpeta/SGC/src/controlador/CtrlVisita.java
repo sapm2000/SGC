@@ -13,6 +13,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -24,6 +25,7 @@ import javax.swing.table.TableRowSorter;
 import modelo.Persona;
 import modelo.Unidades;
 import modelo.Visita;
+import vista.Catalogo;
 import vista.VisVisita;
 
 public class CtrlVisita implements ActionListener, ItemListener, MouseListener, KeyListener {
@@ -31,27 +33,42 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
     private VisVisita vista = new VisVisita();
     private Visita modelo;
     private ArrayList<Visita> lista;
-    DefaultTableModel dm;
-    private Persona modeloP;
+
+    private Catalogo catPersonas;
+    private Persona modPersona;
+    private ArrayList<Persona> listaPersonas;
     private Unidades modUnidad;
     private ArrayList<Unidades> listaUnidad;
 
+    private JFrame ventanaBuscar;
+
     private boolean personaExiste;
+    private DefaultTableModel dm;
 
     public CtrlVisita() {
         this.modelo = new Visita();
         this.vista = new VisVisita();
         this.modUnidad = new Unidades();
-        this.modeloP = new Persona();
 
-        this.vista.txtCedula.addActionListener(this);
-        this.vista.btnCedula.addActionListener(this);
+        catPersonas = new Catalogo();
+        catPersonas.lblTitulo.setText("Buscar Persona");
+        catPersonas.remove(catPersonas.btnNuevo);
+
+        ventanaBuscar = new JFrame("Buscar Persona");
+        ventanaBuscar.setSize(1366, 740);
+        ventanaBuscar.add(catPersonas);
+
+        this.modPersona = new Persona();
+
+        this.vista.btnBuscarPersona.addActionListener(this);
         this.vista.btnNuevo.addActionListener(this);
         this.vista.btnEntrada.addActionListener(this);
         this.vista.btnSalida.addActionListener(this);
         vista.cbxCedula.addItemListener(this);
         vista.cbxUnidad.addItemListener(this);
         this.vista.tabla.addMouseListener(this);
+
+        this.catPersonas.tabla.addMouseListener(this);
 
         vista.btnSalida.setEnabled(false);
         vista.txtNombre.setEditable(false);
@@ -69,24 +86,24 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == vista.txtCedula) {
-            buscarVisitante();
-        }
+        if (e.getSource() == vista.btnBuscarPersona) {
 
-        if (e.getSource() == vista.btnCedula) {
-            buscarVisitante();
+            llenarTablaPersonas(catPersonas.tabla);
+            ventanaBuscar.setVisible(true);
         }
 
         if (e.getSource() == vista.btnEntrada) {
 
             if (validar()) {
+
                 int ind;
                 boolean auto;
 
-                modelo.getVisitante().setCedula(modeloP.getCedula());
+                modelo.getVisitante().setCedula(modPersona.getCedula());
                 ind = vista.cbxUnidad.getSelectedIndex() - 1;
 
                 if (!personaExiste) {
+
                     modelo.getVisitante().setpNombre(vista.txtNombre.getText());
                     modelo.getVisitante().setpApellido(vista.txtApellido.getText());
                 }
@@ -95,6 +112,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
                 auto = vista.rBtnSi.isSelected();
 
                 if (auto) {
+
                     modelo.setMatricula(vista.txtMatricula.getText());
                     modelo.setModelo(vista.txtModelo.getText());
                     modelo.setColor(vista.txtColor.getText());
@@ -135,6 +153,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
         if (e.getSource() == vista.btnSalida) {
 
             if (modelo.registrarSalida()) {
+
                 JOptionPane.showMessageDialog(null, "Salida registrada");
                 vista.btnEntrada.setEnabled(true);
                 vista.btnSalida.setEnabled(false);
@@ -152,7 +171,6 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
             limpiar();
             vista.btnEntrada.setEnabled(true);
             vista.btnSalida.setEnabled(false);
-
         }
     }
 
@@ -163,6 +181,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
 
     @Override
     public void mouseClicked(MouseEvent e) {
+
         if (e.getSource() == vista.tabla) {
 
             int fila = this.vista.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
@@ -174,15 +193,30 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
             vista.txtNombre.setText(modelo.getVisitante().getpNombre());
             vista.txtApellido.setText(modelo.getVisitante().getpApellido());
             vista.cbxUnidad.setSelectedItem(modelo.getUnidad().getN_unidad());
+
             if (modelo.getMatricula() != null) {
+
                 vista.rBtnSi.setSelected(true);
                 vista.txtMatricula.setText(modelo.getMatricula());
                 vista.txtModelo.setText(modelo.getModelo());
                 vista.txtColor.setText(modelo.getColor());
                 vista.txtAcompanantes.setText(modelo.getNumPeronas().toString());
             }
-            vista.btnEntrada.setEnabled(false);
 
+            vista.btnEntrada.setEnabled(false);
+        }
+
+        if (e.getSource() == catPersonas.tabla) {
+            int fila;
+
+            fila = catPersonas.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
+            modPersona = listaPersonas.get(fila);
+
+            vista.txtCedula.setText(modPersona.getCedula());
+            vista.txtNombre.setText(modPersona.getpNombre());
+            vista.txtApellido.setText(modPersona.getpApellido());
+
+            ventanaBuscar.setVisible(false);
         }
     }
 
@@ -204,6 +238,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
 
     @Override
     public void keyTyped(KeyEvent e) {
+
         if (e.getSource() == vista.txtCedula) {
             Validacion.soloNumeros(e);
             Validacion.Espacio(e);
@@ -215,26 +250,31 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
             Validacion.Espacio(e);
             Validacion.limite(e, vista.txtNombre.getText(), 25);
         }
+
         if (e.getSource() == vista.txtApellido) {
             Validacion.soloLetras(e);
             Validacion.Espacio(e);
             Validacion.limite(e, vista.txtApellido.getText(), 25);
         }
+
         if (e.getSource() == vista.txtAcompanantes) {
             Validacion.soloNumeros(e);
             Validacion.Espacio(e);
             Validacion.limite(e, vista.txtAcompanantes.getText(), 2);
         }
+
         if (e.getSource() == vista.txtMatricula) {
             Validacion.Espacio(e);
             Validacion.limite(e, vista.txtMatricula.getText(), 10);
 
         }
+
         if (e.getSource() == vista.txtColor) {
             Validacion.soloLetras(e);
             Validacion.Espacio(e);
             Validacion.limite(e, vista.txtColor.getText(), 15);
         }
+
         if (e.getSource() == vista.txtModelo) {
             Validacion.Espacio(e);
             Validacion.limite(e, vista.txtModelo.getText(), 25);
@@ -247,34 +287,20 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
 
     @Override
     public void keyReleased(KeyEvent e) {
+
         if (e.getSource() == vista.txtBusqueda) {
 
             filtro(vista.txtBusqueda.getText(), vista.tabla);
         }
-    }
 
-    private void buscarVisitante() {
-        String cedula = vista.cbxCedula.getSelectedItem() + "-" + vista.txtCedula.getText();
-        modeloP.setCedula(cedula);
+        if (e.getSource() == catPersonas.txtBuscar) {
 
-        if (modeloP.buscar()) {
-            personaExiste = true;
-            vista.txtNombre.setEditable(false);
-            vista.txtApellido.setEditable(false);
-            vista.txtNombre.setText(modeloP.getpNombre());
-            vista.txtApellido.setText(modeloP.getpApellido());
-
-        } else {
-            personaExiste = false;
-            vista.txtNombre.setText(null);
-            vista.txtApellido.setText(null);
-            vista.txtNombre.setEditable(true);
-            vista.txtApellido.setEditable(true);
-            JOptionPane.showMessageDialog(null, "No se encontró a la persona\n\nIngrese Nombre y Apellido");
+            filtro(catPersonas.txtBuscar.getText(), catPersonas.tabla);
         }
     }
 
     private void crearCbxUnidad() {
+        
         listaUnidad = modUnidad.listar();
         vista.cbxUnidad.addItem("Seleccione...");
         vista.cbxUnidad.setFocusable(false);
@@ -288,6 +314,10 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
     }
 
     public void limpiar() {
+
+        modelo = new Visita();
+        modPersona = new Persona();
+        modUnidad = new Unidades();
         vista.cbxCedula.setSelectedIndex(0);
         vista.txtCedula.setText("");
         vista.txtNombre.setText("");
@@ -300,6 +330,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
     }
 
     public void llenarTabla() {
+
         lista = modelo.listar();
         DefaultTableModel modeloT = new DefaultTableModel();
         int ind;
@@ -328,6 +359,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
         int numRegistro = lista.size();
 
         for (int i = 0; i < numRegistro; i++) {
+            
             ind = 0;
             columna[ind++] = lista.get(i).getUnidad().getN_unidad();
             columna[ind++] = lista.get(i).getVisitante().getCedula();
@@ -343,7 +375,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
 
             modeloT.addRow(columna);
         }
-        
+
         TableColumnModel columnModel = vista.tabla.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(35);
         columnModel.getColumn(1).setPreferredWidth(10);
@@ -357,16 +389,63 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
         columnModel.getColumn(9).setPreferredWidth(15);
         columnModel.getColumn(10).setPreferredWidth(60);
     }
-    
-    
+
+    public void llenarTablaPersonas(JTable tablaD) {
+
+        listaPersonas = modPersona.listarP();
+        int ind;
+
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                return false;
+            }
+        };
+
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
+        tablaD.setRowSorter(tr);
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
+
+        modeloT.addColumn("Cédula");
+        modeloT.addColumn("Nombre");
+        modeloT.addColumn("Apellido");
+
+        Object[] columna = new Object[modeloT.getColumnCount()];
+
+        int numRegistro = listaPersonas.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            ind = 0;
+
+            columna[ind++] = listaPersonas.get(i).getCedula();
+            columna[ind++] = listaPersonas.get(i).getpNombre();
+            columna[ind++] = listaPersonas.get(i).getpApellido();
+
+            modeloT.addRow(columna);
+        }
+
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+
+        for (int i = 0; i < modeloT.getColumnCount(); i++) {
+
+            tablaD.getColumnModel().getColumn(i).setCellRenderer(tcr);
+        }
+    }
 
     public void stylecombo(JComboBox c) {
+        
         c.setFont(new Font("Tahoma", Font.BOLD, 14));
         c.setForeground(Color.WHITE);
         c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
     }
 
     private Boolean validar() {
+        
         boolean resultado = true;
         String mensaje = "";
 

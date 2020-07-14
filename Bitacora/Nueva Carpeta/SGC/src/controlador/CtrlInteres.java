@@ -136,7 +136,7 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
             if (validar()) {
                 
                 modelo.setNombre(vista.txtNombreinteres.getText());
-                modelo.setFactor(Integer.parseInt(vista.txtFactor.getText()));
+                modelo.setFactor(Double.parseDouble(vista.txtFactor.getText()));
                 
                 if (modelo.buscarduplicados(modelo)) {
                     
@@ -240,6 +240,12 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
 
             msj += "El campo factor de interes no puede estar vacio\n";
             resultado = false;
+        } else if (Double.parseDouble(vista.txtFactor.getText())  <= 0 ) {
+            msj += "El campo factor de interes tiene que ser mayor que 0\n";
+            resultado = false;
+        }else if (Double.parseDouble(vista.txtFactor.getText()) > 100 ) {
+            msj += "El campo factor de interes debe ser menor o igual a 100 \n";
+            resultado = false;
         }
 
         if (vista.txtNombreinteres.getText().isEmpty()) {
@@ -315,7 +321,7 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
         if (e.getSource() == vista.txtFactor) {
-            Validacion.limite(e, vista.txtFactor.getText(), 6);
+            Validacion.limite(e, vista.txtFactor.getText(), 4);
             Validacion.Espacio(e);
             Validacion.soloUnPunto(e, vista.txtFactor.getText());
         }

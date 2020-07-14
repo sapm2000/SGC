@@ -142,6 +142,7 @@ public class Persona extends ConexionBD {
             int ind;
 
             while (rs.next()) {
+                
                 mod = new Persona();
                 ind = 1;
                 mod.setCedula(rs.getString(ind++));
@@ -149,21 +150,20 @@ public class Persona extends ConexionBD {
                 mod.setpApellido(rs.getString(ind++));
                 mod.setCorreo(rs.getString(ind++));
                 mod.setTelefono(rs.getString(ind++));
+                
                 personas.add(mod);
             }
+            
             return personas;
 
         } catch (SQLException e) {
+            
             System.err.println(e);
             return null;
 
         } finally {
-            try {
-                con.close();
-
-            } catch (SQLException e) {
-                System.err.println(e);
-            }
+            
+            cerrar();
         }
     }
 
