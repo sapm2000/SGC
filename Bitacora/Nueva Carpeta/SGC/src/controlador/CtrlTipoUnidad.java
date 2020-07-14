@@ -1,5 +1,7 @@
 package controlador;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -7,9 +9,14 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Funcion;
@@ -73,10 +80,34 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener, KeyListene
                 modelo.setArea(Float.valueOf(vista.txtArea.getText()));
 
                 if (modelo.buscarInactivo()) {
-                    JOptionPane.showMessageDialog(null, "Este Tipo de unidad ya está registrado en la BD, se recuperarán los datos");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Este Tipo de unidad ya está registrado en la base de datos, se recuperarán los datos ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                     if (modelo.reactivar()) {
-                        JOptionPane.showMessageDialog(null, "Tipo de unidad habilitado");
+
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        Icon a = new ImageIcon(getClass().getResource("/img/warning.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "Tipo de unidad habilitado ", "Advertencia", JOptionPane.WARNING_MESSAGE, a);
                         modelo.areaTotal();
                         float area = modelo.getArea();
 
@@ -93,16 +124,52 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener, KeyListene
                         CtrlVentana.cambiarVista(catalogo);
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "No se pudo habilitar el Tipo de unidad");
+
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        Icon b = new ImageIcon(getClass().getResource("/img/warning.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "No se pudo habilitar el Tipo de unidad ", "Advertencia", JOptionPane.WARNING_MESSAGE, b);
                     }
 
                 } else {
                     if (modelo.existe()) {
-                        JOptionPane.showMessageDialog(null, "Este Tipo de unidad ya existe");
+
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        Icon d = new ImageIcon(getClass().getResource("/img/warning.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "Este Tipo de unidad ya existe ", "Advertencia", JOptionPane.WARNING_MESSAGE, d);
 
                     } else {
                         if (modelo.registrar()) {
-                            JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
+
+                            UIManager UI = new UIManager();
+                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                            int botonDialogo = JOptionPane.OK_OPTION;
+                            Icon f = new ImageIcon(getClass().getResource("/img/check.png"));
+                            UIManager.put("Button.background", Color.white);
+                            UIManager.put("Button.font", Color.blue);
+                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                            UIManager.put("Label.background", Color.blue);
+                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                            JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, f);
                             llenarTabla();
                             modelo.areaTotal();
                             float area = modelo.getArea();
@@ -121,7 +188,20 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener, KeyListene
                             vista.txtArea.setText("");
 
                         } else {
-                            JOptionPane.showMessageDialog(null, "ERROR AL REGISTRAR");
+
+                            UIManager UI = new UIManager();
+                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                            int botonDialogo = JOptionPane.OK_OPTION;
+                            Icon g = new ImageIcon(getClass().getResource("/img/warning.png"));
+                            UIManager.put("Button.background", Color.white);
+                            UIManager.put("Button.font", Color.blue);
+                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                            UIManager.put("Label.background", Color.blue);
+                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                            JOptionPane.showMessageDialog(null, "Error al guardar ", "Advertencia", JOptionPane.WARNING_MESSAGE, g);
                         }
                     }
                 }
@@ -134,7 +214,20 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener, KeyListene
                 modelo.setArea(Float.valueOf(vista.txtArea.getText()));
 
                 if (modelo.modificar()) {
-                    JOptionPane.showMessageDialog(null, "Registro modificado");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon h = new ImageIcon(getClass().getResource("/img/check.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Registro modificado ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, h);
                     modelo.areaTotal();
                     float area = modelo.getArea();
 
@@ -151,19 +244,58 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener, KeyListene
                     CtrlVentana.cambiarVista(catalogo);
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "No se pudo modificar");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon j = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "No se pudo modificar ", "Advertencia", JOptionPane.WARNING_MESSAGE, j);
                 }
             }
         }
 
         if (e.getSource() == vista.btnEliminar) {
             if (modelo.eliminar()) {
-                JOptionPane.showMessageDialog(null, "Registro eliminado");
+
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                int botonDialogo = JOptionPane.OK_OPTION;
+                Icon k = new ImageIcon(getClass().getResource("/img/multiplication-sign.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(null, "Registro eliminado ", "Eliminacion de datos", JOptionPane.INFORMATION_MESSAGE, k);
                 CtrlVentana.cambiarVista(catalogo);
                 llenarTabla();
 
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo eliminar");
+
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                int botonDialogo = JOptionPane.OK_OPTION;
+                Icon l = new ImageIcon(getClass().getResource("/img/warning.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(null, "No se pudo eliminar ", "Advertencia", JOptionPane.WARNING_MESSAGE, l);
             }
         }
 
@@ -226,10 +358,9 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener, KeyListene
         lista = modelo.listar();
 
         DefaultTableModel modeloT = new DefaultTableModel();
-         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
         catalogo.tabla.setRowSorter(tr);
         catalogo.tabla.setModel(modeloT);
-       
 
         modeloT.addColumn("Tipo de Unidad");
         modeloT.addColumn("Área");
@@ -262,15 +393,28 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener, KeyListene
             msj += "El campo Área no puede estar vacío \n";
             resultado = false;
         } else if (Double.parseDouble(vista.txtArea.getText()) < 10) {
-             msj += "El campo Área debe ser mayor que 10";
+            msj += "El campo Área debe ser mayor que 10 ";
             resultado = false;
         } else if (Double.parseDouble(vista.txtArea.getText()) > 150) {
-             msj += "El campo Área debe ser manor que 150";
+            msj += "El campo Área debe ser manor que 150 ";
             resultado = false;
         }
 
         if (!resultado) {
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon m = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, m);
         }
 
         return resultado;
@@ -278,7 +422,7 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener, KeyListene
 
     @Override
     public void keyTyped(KeyEvent ke) {
-        
+
         if (ke.getSource() == vista.txtNombre) {
 
             Validacion.Espacio(ke);
@@ -292,12 +436,11 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener, KeyListene
             Validacion.limite(ke, vista.txtArea.getText(), 4);
         }
 
-     
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-       
+
     }
 
     @Override
@@ -308,8 +451,8 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener, KeyListene
 
         }
     }
-    
-     private void filtro(String consulta, JTable tablaBuscar) {
+
+    private void filtro(String consulta, JTable tablaBuscar) {
         dm = (DefaultTableModel) tablaBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
 

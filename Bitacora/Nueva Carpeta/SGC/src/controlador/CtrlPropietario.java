@@ -12,11 +12,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -97,44 +102,142 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
                 if (modelo.existeInactivo()) {
 
                     if (modelo.reactivar()) {
-                        JOptionPane.showMessageDialog(null, "Registro Guardado");
+
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "Registro Guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
                         CtrlVentana.cambiarVista(catalogo);
                         llenarTabla();
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "No se pudo reactivar");
+
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "No se pudo reactivar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                     }
                 } else {
 
                     if (modelo.existe()) {
-                        JOptionPane.showMessageDialog(null, "Esta persona ya está registrada");
+
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "Esta persona ya está registrada ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                     } else {
 
                         if (modelo.existePersona()) {
-                            JOptionPane.showMessageDialog(null, "Esta persona está registrada en la BD como responsable, se utilizarán los datos de ese registro");
+
+                            UIManager UI = new UIManager();
+                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                            int botonDialogo = JOptionPane.OK_OPTION;
+                            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                            UIManager.put("Button.background", Color.white);
+                            UIManager.put("Button.font", Color.blue);
+                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                            UIManager.put("Label.background", Color.blue);
+                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                            JOptionPane.showMessageDialog(null, "Esta persona está registrada en la BD como responsable, se utilizarán los datos de ese registro ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                             if (modelo.registrar(true)) {
-                                JOptionPane.showMessageDialog(null, "Registro guardado");
+
+                                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                Icon f = new ImageIcon(getClass().getResource("/img/check.png"));
+                                UIManager.put("Button.background", Color.white);
+                                UIManager.put("Button.font", Color.blue);
+                                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                UIManager.put("Label.background", Color.blue);
+                                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, f);
                                 CtrlVentana.cambiarVista(catalogo);
                                 System.out.println("poli1");
                                 llenarTabla();
 
                             } else {
-                                JOptionPane.showMessageDialog(null, "Error al registrar");
+
+                                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                Icon l = new ImageIcon(getClass().getResource("/img/warning.png"));
+                                UIManager.put("Button.background", Color.white);
+                                UIManager.put("Button.font", Color.blue);
+                                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                UIManager.put("Label.background", Color.blue);
+                                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                JOptionPane.showMessageDialog(null, "Error al registrar ", "Advertencia", JOptionPane.WARNING_MESSAGE, l);
                             }
 
                         } else {
 
                             if (modelo.registrar(false)) {
-                                JOptionPane.showMessageDialog(null, "Registro guardado");
+
+                                UIManager UI = new UIManager();
+                                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                Icon a = new ImageIcon(getClass().getResource("/img/warning.png"));
+                                UIManager.put("Button.background", Color.white);
+                                UIManager.put("Button.font", Color.blue);
+                                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                UIManager.put("Label.background", Color.blue);
+                                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, a);
                                 CtrlVentana.cambiarVista(catalogo);
                                 System.out.println("poli2");
                                 llenarTabla();
 
                             } else {
-                                JOptionPane.showMessageDialog(null, "Error al registrar");
+
+                                UIManager UI = new UIManager();
+                                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                Icon s = new ImageIcon(getClass().getResource("/img/warning.png"));
+                                UIManager.put("Button.background", Color.white);
+                                UIManager.put("Button.font", Color.blue);
+                                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                UIManager.put("Label.background", Color.blue);
+                                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                JOptionPane.showMessageDialog(null, "Error al registrar ", "Advertencia", JOptionPane.WARNING_MESSAGE, s);
                             }
                         }
                     }
@@ -152,24 +255,72 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
                 modelo.setTelefono(vista.txtTelefono.getText());
 
                 if (modelo.modificar()) {
-                    JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    Icon d = new ImageIcon(getClass().getResource("/img/check.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Registro modificado ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, d);
                     CtrlVentana.cambiarVista(catalogo);
                     llenarTabla();
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "ERROR AL MODIFICAR");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    Icon h = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Eror al modificar ", "Advertencia", JOptionPane.WARNING_MESSAGE, h);
 
                 }
             }
         }
         if (e.getSource() == vista.btnEliminar) {
             if (modelo.eliminar()) {
-                JOptionPane.showMessageDialog(null, "REGISTRO ELIMINADO");
+
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                Icon j = new ImageIcon(getClass().getResource("/img/multiplication-sign.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(null, "Registro eliminado", "Información", JOptionPane.INFORMATION_MESSAGE, j);
                 CtrlVentana.cambiarVista(catalogo);
                 llenarTabla();
 
             } else {
-                JOptionPane.showMessageDialog(null, "ERROR AL ELIMINAR");
+
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                Icon k = new ImageIcon(getClass().getResource("/img/warning.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(null, "Error al eliminar", "Advertencia", JOptionPane.WARNING_MESSAGE, k);
 
             }
         }
@@ -313,23 +464,23 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
         String mensaje = "";
 
         if (vista.txtCedula.getText().isEmpty()) {
-            mensaje += "El campo Cédula no puede estar vacío\n";
+            mensaje += "El campo Cédula no puede estar vacío \n";
             resultado = false;
         }
         if (vista.txtPnombre.getText().isEmpty()) {
-            mensaje += "El campo Primer Nombre no puede estar vacío\n";
+            mensaje += "El campo Primer Nombre no puede estar vacío \n";
             resultado = false;
         }
         if (vista.txtPapellido.getText().isEmpty()) {
-            mensaje += "El campo Primer Apellido no puede estar vacío\n";
+            mensaje += "El campo Primer Apellido no puede estar vacío \n";
             resultado = false;
         }
         if (vista.txtCorreo.getText().isEmpty()) {
-            mensaje += "El campo Correo no puede estar vacío\n";
+            mensaje += "El campo Correo no puede estar vacío \n";
             resultado = false;
         }
         if (vista.txtTelefono.getText().isEmpty()) {
-            mensaje += "El campo Teléfono no puede estar vacío\n";
+            mensaje += "El campo Teléfono no puede estar vacío \n";
             resultado = false;
         } else if (vista.txtTelefono.getText().length() < 11) {
             mensaje += "Número Incompleto";
@@ -337,7 +488,19 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
         }
 
         if (resultado == false) {
-            JOptionPane.showMessageDialog(vista, mensaje);
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            Icon k = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(vista, mensaje, "Advertencia", JOptionPane.WARNING_MESSAGE, k);
         }
 
         return resultado;

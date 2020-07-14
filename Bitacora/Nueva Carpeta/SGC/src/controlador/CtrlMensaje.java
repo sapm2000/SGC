@@ -2,6 +2,7 @@ package controlador;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -11,11 +12,16 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -89,14 +95,40 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
                 }
 
                 if (modelo.enviarMensaje()) {
-                    JOptionPane.showMessageDialog(null, "Mensaje enviado");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Mensaje enviado ", "Mensaje", JOptionPane.INFORMATION_MESSAGE, p);
                     llenarTablaEnviados();
                     llenarTablaRecibidos();
                     contenedor.setComponentAt(1, catalogo);
                     catalogo.repaint();
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "No se pudo enviar");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "No se pudo enviar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                 }
             }
         }
@@ -124,7 +156,20 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
                         if (listaRecibidos.get(i).eliminarRecibido()) {
 
                         } else {
-                            JOptionPane.showMessageDialog(catalogo, "No se pudo eliminar");
+
+                            UIManager UI = new UIManager();
+                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                            int botonDialogo = JOptionPane.OK_OPTION;
+                            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                            UIManager.put("Button.background", Color.white);
+                            UIManager.put("Button.font", Color.blue);
+                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                            UIManager.put("Label.background", Color.blue);
+                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                            JOptionPane.showMessageDialog(catalogo, "No se pudo eliminar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                         }
                     }
                 }
@@ -144,7 +189,20 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
                         if (listaEnviados.get(i).eliminarEnviado()) {
 
                         } else {
-                            JOptionPane.showMessageDialog(catalogo, "No se pudo eliminar");
+
+                            UIManager UI = new UIManager();
+                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                            int botonDialogo = JOptionPane.OK_OPTION;
+                            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                            UIManager.put("Button.background", Color.white);
+                            UIManager.put("Button.font", Color.blue);
+                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                            UIManager.put("Label.background", Color.blue);
+                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                            JOptionPane.showMessageDialog(catalogo, "No se pudo eliminar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                         }
                     }
                 }
@@ -499,12 +557,12 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
         String msj = "";
 
         if (vista.txtAsunto.getText().isEmpty()) {
-            msj += "El campo de asunto no puede estar vacío\n";
+            msj += "El campo de asunto no puede estar vacío \n";
             resultado = false;
         }
 
         if (vista.txaMensaje.getText().isEmpty()) {
-            msj += "El campo de mensaje no puede estar vacío\n";
+            msj += "El campo de mensaje no puede estar vacío \n";
             resultado = false;
         }
 
@@ -521,12 +579,25 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
 
         //Si no se seleccionó ningún concepto
         if (numUsuariosSeleccionados == 0) {
-            msj += "Debe seleccionar al menos un concepto en la tabla\n";
+            msj += "Debe seleccionar al menos un concepto en la tabla \n";
             resultado = false;
         }
 
         if (!resultado) {
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;

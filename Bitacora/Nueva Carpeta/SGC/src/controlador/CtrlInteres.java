@@ -1,6 +1,8 @@
 package controlador;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -8,11 +10,16 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -119,7 +126,7 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == catalogo.btnNuevo) {
-            
+
             this.vista.btnModificar.setEnabled(false);
             this.vista.btnGuardar.setEnabled(true);
             this.vista.btnEliminar.setEnabled(false);
@@ -132,30 +139,68 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
         }
 
         if (e.getSource() == vista.btnGuardar) {
-            
+
             if (validar()) {
-                
+
                 modelo.setNombre(vista.txtNombreinteres.getText());
                 modelo.setFactor(Double.parseDouble(vista.txtFactor.getText()));
-                
+
                 if (modelo.buscarduplicados(modelo)) {
-                    
-                    JOptionPane.showMessageDialog(null, "este registro ya existe");
-                    
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Este registro ya existe ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+
                 } else {
 
                     if (modelo.buscarInactivo(modelo)) {
-                        
+
                         modelo.activarInteres(modelo);
-                        JOptionPane.showMessageDialog(null, "Registro Guardado");
+
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "Registro Guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
                         Llenartablainteres(catalogo.tabla);
                         CtrlVentana.cambiarVista(catalogo);
                         limpiar();
-                        
+
                     } else {
 
                         if (modelo.registrar(modelo)) {
-                            JOptionPane.showMessageDialog(null, "Registro Guardado");
+
+                            UIManager UI = new UIManager();
+                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                            int botonDialogo = JOptionPane.OK_OPTION;
+                            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                            UIManager.put("Button.background", Color.white);
+                            UIManager.put("Button.font", Color.blue);
+                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                            UIManager.put("Label.background", Color.blue);
+                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                            JOptionPane.showMessageDialog(null, "Registro Guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
                             Llenartablainteres(catalogo.tabla);
                             CtrlVentana.cambiarVista(catalogo);
                         }
@@ -165,7 +210,7 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
         }
 
         if (e.getSource() == vista.btnModificar) {
-            
+
             if (validar()) {
 
                 modelo.setNombre(vista.txtNombreinteres.getText());
@@ -174,15 +219,53 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
                 modelo.setId(Integer.parseInt(vista.txtId.getText()));
                 int x = modelo.getId();
                 if (modelo.buscarduplicados(modelo) && modelo.getId() != x) {
-                    JOptionPane.showMessageDialog(null, "este registro ya existe");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Este registro ya existe ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                 } else {
                     if (modelo.buscarInactivo(modelo)) {
-                        JOptionPane.showMessageDialog(null, "no puede colocar un interes que ya existio, si quiere colocar este interes debe registrarlo nuevamente");
+
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "No puede colocar un interes que ya existio, si quiere colocar este interes debe registrarlo nuevamente", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                     } else {
                         if (modelo.modificar_Interes(modelo)) {
 
-                            JOptionPane.showMessageDialog(null, "Registro Modificado");
+                            UIManager UI = new UIManager();
+                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                            int botonDialogo = JOptionPane.OK_OPTION;
+                            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                            UIManager.put("Button.background", Color.white);
+                            UIManager.put("Button.font", Color.blue);
+                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                            UIManager.put("Label.background", Color.blue);
+                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                            JOptionPane.showMessageDialog(null, "Registro Modificado ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
 
                             Llenartablainteres(catalogo.tabla);
                             CtrlVentana.cambiarVista(catalogo);
@@ -197,7 +280,20 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
             modelo.setId(Integer.parseInt(vista.txtId.getText()));
 
             modelo.eliminarInteres(modelo);
-            JOptionPane.showMessageDialog(null, "registro eliminado");
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/multiplication-sign.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, "Registro eliminado ", "Información", JOptionPane.INFORMATION_MESSAGE, p);
             CtrlVentana.cambiarVista(catalogo);
             Llenartablainteres(catalogo.tabla);
         }
@@ -238,25 +334,37 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
 
         if (vista.txtFactor.getText().isEmpty()) {
 
-            msj += "El campo factor de interes no puede estar vacio\n";
+            msj += "El campo factor de interes no puede estar vacio \n";
             resultado = false;
-        } else if (Double.parseDouble(vista.txtFactor.getText())  <= 0 ) {
-            msj += "El campo factor de interes tiene que ser mayor que 0\n";
+        } else if (Double.parseDouble(vista.txtFactor.getText()) <= 0) {
+            msj += "El campo factor de interes tiene que ser mayor que 0 \n";
             resultado = false;
-        }else if (Double.parseDouble(vista.txtFactor.getText()) > 100 ) {
+        } else if (Double.parseDouble(vista.txtFactor.getText()) > 100) {
             msj += "El campo factor de interes debe ser menor o igual a 100 \n";
             resultado = false;
         }
 
         if (vista.txtNombreinteres.getText().isEmpty()) {
 
-            msj += "El campo nombre de interes no puede estar vacio\n";
+            msj += "El campo nombre de interes no puede estar vacio \n";
             resultado = false;
         }
 
         if (!resultado) {
 
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;

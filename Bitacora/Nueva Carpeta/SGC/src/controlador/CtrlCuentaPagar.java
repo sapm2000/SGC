@@ -13,12 +13,17 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -148,7 +153,20 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
                     if (modelo.getFondo().restarFondo(modelo.getMonto().floatValue())) {
 
                         if (modGasto.restarSaldo(montoARestar)) {
-                            JOptionPane.showMessageDialog(null, "Pago registrado");
+
+                            UIManager UI = new UIManager();
+                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                            int botonDialogo = JOptionPane.OK_OPTION;
+                            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                            UIManager.put("Button.background", Color.white);
+                            UIManager.put("Button.font", Color.blue);
+                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                            UIManager.put("Label.background", Color.blue);
+                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                            JOptionPane.showMessageDialog(null, "Pago registrado ", "Pagado", JOptionPane.INFORMATION_MESSAGE, p);
 
                         } else {
                             System.out.println("Error al restar el saldo del gasto");
@@ -159,7 +177,20 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
                     }
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error al registrar el pago");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Error al registrar el pago ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                 }
 
                 llenarTablaGastos(vista.tablaGastos, "Pendiente");
@@ -457,13 +488,13 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
         modeloT.addColumn("Descripción");
         modeloT.addColumn("Monto");
         modeloT.addColumn("Moneda");
-        modeloT.addColumn("Tasa de cambio");
+        modeloT.addColumn("Tasa de Cambio");
         modeloT.addColumn("Fecha");
         modeloT.addColumn("Gasto");
         modeloT.addColumn("Nro Cuenta");
         modeloT.addColumn("Banco");
         modeloT.addColumn("Tipo de Fondo");
-        modeloT.addColumn("Forma de pago");
+        modeloT.addColumn("Forma de Pago");
 
         Object[] columna = new Object[modeloT.getColumnCount()];
 
@@ -502,7 +533,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
         if (vista.txtGasto.getText().isEmpty()) {
             resultado = false;
-            mensaje += "Debe seleccionar un Gasto\n";
+            mensaje += "Debe seleccionar un Gasto \n";
 
         } else {
             gastoEstaSeleccionado = true;
@@ -511,12 +542,12 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
         if (vista.txtDescripcion.getText().isEmpty()) {
             resultado = false;
-            mensaje += "El campo Descripción no puede estar vacío\n";
+            mensaje += "El campo Descripción no puede estar vacío \n";
         }
 
         if (vista.cbxFormaPago.getSelectedIndex() == 0) {
             resultado = false;
-            mensaje += "Debe seleccionar una Forma de Pago\n";
+            mensaje += "Debe seleccionar una Forma de Pago \n";
 
         } else {
             formaPagoEstaSeleccionado = true;
@@ -524,12 +555,12 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
         if (vista.fecha.getDate() == null) {
             resultado = false;
-            mensaje += "Debe seleccionar una Fecha de pago\n";
+            mensaje += "Debe seleccionar una Fecha de pago \n";
         }
 
         if (vista.cbxMoneda.getSelectedIndex() == 0) {
             resultado = false;
-            mensaje += "Debe seleccionar una Moneda a pagar\n";
+            mensaje += "Debe seleccionar una Moneda a pagar \n";
 
         } else {
             monedaEstaSeleccionado = true;
@@ -537,7 +568,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
             if (vista.cbxFondo.getSelectedIndex() == 0) {
                 resultado = false;
-                mensaje += "Debe seleccionar un Fondo\n";
+                mensaje += "Debe seleccionar un Fondo \n";
 
             } else {
                 saldoFondo = listaFondo.get(vista.cbxFondo.getSelectedIndex() - 1).getSaldo();
@@ -547,20 +578,20 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
         if (fondoEstaSeleccionado && vista.txtMonto.getText().isEmpty()) {
             resultado = false;
-            mensaje += "El campo Monto no puede estar vacío\n";
+            mensaje += "El campo Monto no puede estar vacío \n";
 
         } else if (fondoEstaSeleccionado) {
             monto = Double.parseDouble(vista.txtMonto.getText());
 
             if (monto <= 0) {
                 resultado = false;
-                mensaje += "El monto debe ser mayor que 0\n";
+                mensaje += "El monto debe ser mayor que 0 \n";
 
             } else {
                 if (moneda.equals(modGasto.getMoneda())) {
                     if (gastoEstaSeleccionado && monto > saldoFactura) {
                         resultado = false;
-                        mensaje += "El monto no puede ser mayor al saldo restante de la factura\n";
+                        mensaje += "El monto no puede ser mayor al saldo restante de la factura \n";
                     }
 
                 } else {
@@ -568,13 +599,13 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
                     if (gastoEstaSeleccionado && montoNuevo > saldoFactura) {
                         resultado = false;
-                        mensaje += "El monto no puede ser mayor al saldo restante de la factura\n";
+                        mensaje += "El monto no puede ser mayor al saldo restante de la factura \n";
                     }
                 }
 
                 if (gastoEstaSeleccionado && monto > saldoFondo) {
                     resultado = false;
-                    mensaje += "El monto no puede ser mayor al Fondo\n";
+                    mensaje += "El monto no puede ser mayor al Fondo \n";
                 }
             }
         }
@@ -583,12 +614,12 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
             if (vista.txtReferencia.getText().isEmpty()) {
                 resultado = false;
-                mensaje += "El campo Número de Referencia no puede estar vacío\n";
+                mensaje += "El campo Número de Referencia no puede estar vacío \n";
             }
 
             if (vista.cbxCuenta.getSelectedIndex() == 0) {
                 resultado = false;
-                mensaje += "Debe seleccionar una Cuenta a transferir\n";
+                mensaje += "Debe seleccionar una Cuenta a transferir \n";
             }
         }
 
@@ -596,22 +627,35 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
             if (!vista.cbxMoneda.getSelectedItem().toString().equals(modGasto.getMoneda()) && vista.txtPariedad.getText().isEmpty()) {
                 resultado = false;
-                mensaje += "El campo Tasa de cambio no puede estar vacío\n";
+                mensaje += "El campo Tasa de cambio no puede estar vacío \n";
             }
         }
 
         if (resultado == false) {
-            JOptionPane.showMessageDialog(vista, mensaje);
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(vista, mensaje, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;
     }
-    
+
     public void stylecombo(JComboBox c) {
         c.setFont(new Font("Tahoma", Font.BOLD, 14));
         c.setForeground(Color.WHITE);
 
         c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
     }
-    
+
 }

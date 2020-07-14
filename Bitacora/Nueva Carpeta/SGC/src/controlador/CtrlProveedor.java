@@ -15,13 +15,18 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import static javax.swing.BorderFactory.createLineBorder;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -32,7 +37,7 @@ import sgc.SGC;
 import vista.Catalogo;
 import vista.VisProveedor;
 
-public class CtrlProveedor implements ActionListener, WindowListener, KeyListener, MouseListener, ItemListener{
+public class CtrlProveedor implements ActionListener, WindowListener, KeyListener, MouseListener, ItemListener {
 
     private Catalogo catalogo;
     private VisProveedor vista;
@@ -162,12 +167,38 @@ public class CtrlProveedor implements ActionListener, WindowListener, KeyListene
                 modelo.setDireccion(vista.txaDireccion.getText());
 
                 if (modelo.registrar(modelo)) {
-                    JOptionPane.showMessageDialog(null, "Registro guardado");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
                     llenarTabla(catalogo.tabla);
                     CtrlVentana.cambiarVista(catalogo);
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "No se pudo registrar");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "No se pudo registrar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                 }
             }
         }
@@ -191,12 +222,37 @@ public class CtrlProveedor implements ActionListener, WindowListener, KeyListene
 
                 if (modelo.modificar()) {
 
-                    JOptionPane.showMessageDialog(null, "Registro modificado");
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Registro modificado ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
                     llenarTabla(catalogo.tabla);
                     CtrlVentana.cambiarVista(catalogo);
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "No se pudo modificar");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "No se pudo modificar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                 }
             }
         }
@@ -211,17 +267,56 @@ public class CtrlProveedor implements ActionListener, WindowListener, KeyListene
             modelo.setCedulaRif(letra + "-" + cedulaRif);
 
             if (modelo.buscarGasto(modelo)) {
-                JOptionPane.showMessageDialog(null, "No se puede eliminar si tiene gastos por procesar asignados");
+
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                int botonDialogo = JOptionPane.OK_OPTION;
+                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(null, "No se puede eliminar si tiene gastos por procesar asignados ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
             } else {
 
                 if (modelo.eliminar(modelo)) {
-                    JOptionPane.showMessageDialog(null, "Registro eliminado");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/multiplication-sign.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Registro eliminado ", "Eliminación de datos", JOptionPane.INFORMATION_MESSAGE, p);
                     llenarTabla(catalogo.tabla);
                     CtrlVentana.cambiarVista(catalogo);
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "No se pudo eliminar");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "No se pudo eliminar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                 }
             }
         }
@@ -263,42 +358,55 @@ public class CtrlProveedor implements ActionListener, WindowListener, KeyListene
 
         if (vista.txtCedulaRif.getText().isEmpty()) {
 
-            msj += "El campo C.I./RIF no puede estar vacío\n";
+            msj += "El campo C.I./RIF no puede estar vacío \n";
             resultado = false;
         }
 
         if (vista.txtNombre.getText().isEmpty()) {
 
-            msj += "El campo Nombre o Razón Social no puede estar vacío\n";
+            msj += "El campo Nombre o Razón Social no puede estar vacío \n";
             resultado = false;
         }
 
         if (vista.txtTelefono.getText().isEmpty()) {
 
-            msj += "El campo Teléfono no puede estar vacío\n";
+            msj += "El campo Teléfono no puede estar vacío \n";
             resultado = false;
         }
 
         if (vista.txtCorreo.getText().isEmpty()) {
 
-            msj += "El campo Correo Electrónico no puede estar vacío\n";
+            msj += "El campo Correo Electrónico no puede estar vacío \n";
             resultado = false;
         }
 
         if (vista.txtContacto.getText().isEmpty()) {
 
-            msj += "El campo Nombre del Contanto no puede estar vacío\n";
+            msj += "El campo Nombre del Contanto no puede estar vacío \n";
             resultado = false;
         }
 
         if (vista.txaDireccion.getText().isEmpty()) {
 
-            msj += "El campo Dirección no puede estar vacío\n";
+            msj += "El campo Dirección no puede estar vacío \n";
             resultado = false;
         }
 
         if (!resultado) {
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;
@@ -460,7 +568,7 @@ public class CtrlProveedor implements ActionListener, WindowListener, KeyListene
         tc.setCellEditor(table.getDefaultEditor(Boolean.class));
         tc.setCellRenderer(table.getDefaultRenderer(Boolean.class));
     }
-    
+
     public void itemStateChanged(ItemEvent e) {
         vista.cbxCedulaRif.setFocusable(false);
     }

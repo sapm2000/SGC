@@ -1,5 +1,7 @@
 package controlador;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -7,9 +9,14 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
@@ -101,7 +108,19 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener, KeyListen
                 }
 
                 if ((j + k + l + m) == 0) {
-                    JOptionPane.showMessageDialog(null, "Debe seleccionar al menos una Función");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar al menos una Función ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                 } else {
                     boolean registrar = false, modificar = false, eliminar = false, todo = false;
@@ -160,13 +179,37 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener, KeyListen
                     }
 
                     if (modelo.registrar()) {
-                        JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO");
+
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
                         llenarTabla();
                         CtrlVentana.cambiarVista(catalogo);
                         vista.txtTipo.setText("");
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "ERROR AL REGISTRAR");
+
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "Error al registrar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                     }
                 }
@@ -265,7 +308,18 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener, KeyListen
         }
         if (!resultado) {
 
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+            
+            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;
@@ -306,12 +360,12 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener, KeyListen
 
     @Override
     public void keyTyped(KeyEvent e) {
-     
+
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-       
+
     }
 
     @Override
@@ -322,8 +376,8 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener, KeyListen
 
         }
     }
-    
-     private void filtro(String consulta, JTable tablaBuscar) {
+
+    private void filtro(String consulta, JTable tablaBuscar) {
         dm = (DefaultTableModel) tablaBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
 

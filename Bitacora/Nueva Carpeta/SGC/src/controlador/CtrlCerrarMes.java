@@ -16,11 +16,16 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.BorderFactory;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -152,7 +157,20 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                 }
                 if (mm <= messis) {
                     if (modc.buscarfechas(modc)) {
-                        JOptionPane.showMessageDialog(null, "Este mes ya se ha cerrado");
+
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "Este mes ya se ha cerrado ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                     } else {
                         modc.setMes_cierre(vista.jMonthChooser1.getMonth() + 1);
                         modc.setAño_cierre(vista.jYearChooser1.getYear());
@@ -409,20 +427,71 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
 
                         if (numReales > 0) {
 
-                            JOptionPane.showMessageDialog(null, "Cierre satisfactorio");
+                            UIManager UI = new UIManager();
+                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                            int botonDialogo = JOptionPane.OK_OPTION;
+                            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                            UIManager.put("Button.background", Color.white);
+                            UIManager.put("Button.font", Color.blue);
+                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                            UIManager.put("Label.background", Color.blue);
+                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                            JOptionPane.showMessageDialog(null, "Cierre satisfactorio ", "¡Felicidades!", JOptionPane.INFORMATION_MESSAGE, p);
                             Llenartabla(catalogo.tabla);
                             CtrlVentana.cambiarVista(catalogo);
                         } else {
 
                             modc.borrarnulo(modc);
-                            JOptionPane.showMessageDialog(null, "No hay gastos por cerrar");
+
+                            UIManager UI = new UIManager();
+                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                            int botonDialogo = JOptionPane.OK_OPTION;
+                            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                            UIManager.put("Button.background", Color.white);
+                            UIManager.put("Button.font", Color.blue);
+                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                            UIManager.put("Label.background", Color.blue);
+                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                            JOptionPane.showMessageDialog(null, "No hay gastos por cerrar ", "¡Felicidades!", JOptionPane.INFORMATION_MESSAGE, p);
                         }
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "No puede cerrar un mes que no ha concluido");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "No puede cerrar un mes que no ha concluido ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "No puede cerrar un mes que no ha concluido");
+
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                int botonDialogo = JOptionPane.OK_OPTION;
+                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(null, "No puede cerrar un mes que no ha concluido ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
             }
         }
         if (e.getSource() == vista.btnSalir) {

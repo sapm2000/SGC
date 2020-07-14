@@ -1,6 +1,8 @@
 package controlador;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -11,11 +13,16 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import static java.lang.String.valueOf;
 import java.util.ArrayList;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -98,7 +105,20 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
                 }
 
                 if (j == 0) {
-                    JOptionPane.showMessageDialog(null, "Debe seleccionar al menos 1 registro de la tabla");
+
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar al menos 1 registro de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                 } else {
                     for (int fila = 0; fila < vista.tablaAsistentes.getRowCount(); fila++) {
@@ -109,12 +129,36 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
                     }
 
                     if (modelo.registrar()) {
-                        JOptionPane.showMessageDialog(null, "Registro guardado");
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "Registro guardado", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
                         llenarTabla(catalogo.tabla);
                         CtrlVentana.cambiarVista(catalogo);
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "No se pudo registrar");
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "No se pudo registrar", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                     }
                 }
@@ -326,7 +370,7 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
             }
         };
 
-         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
         tablaD.setRowSorter(tr);
         tablaD.setModel(modeloT);
 
@@ -375,9 +419,9 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
     }
 
     private void permisoBtn() {
-        
+
         for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
-            
+
             if (funcionbtn.getNombre().equals("Asambleas")) {
                 permiso = funcionbtn;
             }
@@ -397,14 +441,27 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
             msj += "El campo Descripción no puede estar vacío\n";
             resultado = false;
         }
-        
-        if(vista.txtFecha.getDate() == null) {
+
+        if (vista.txtFecha.getDate() == null) {
             msj += "El campo Fecha no puede estar vacío\n";
             resultado = false;
         }
 
         if (!resultado) {
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;

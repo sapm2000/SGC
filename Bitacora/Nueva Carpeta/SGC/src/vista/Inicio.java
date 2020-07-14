@@ -24,7 +24,7 @@ public class Inicio extends javax.swing.JPanel {
      */
     public Inicio() {
         initComponents();
-        jLabel5.setText(sgc.SGC.condominioActual.getRazonS());
+        jLabel5.setText("Bienvenidos a "+sgc.SGC.condominioActual.getRazonS());
         File fichero = new File("test.txt");
         int cantidad = 8;
         String cadena = fichero.getAbsolutePath();

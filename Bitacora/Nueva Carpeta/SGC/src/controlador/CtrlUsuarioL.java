@@ -1,10 +1,17 @@
 package controlador;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import static javax.swing.BorderFactory.createLineBorder;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 import modelo.Condominio;
 import modelo.Usuario;
 import sgc.SGC;
@@ -79,8 +86,21 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
         String pass = new String(p);
 
         if (vistaU.txtUsuario.getText().isEmpty() || pass.isEmpty()) {
+            
+            UIManager UI = new UIManager();
 
-            JOptionPane.showMessageDialog(null, "Debe Digitar un Usuario y una contraseña", "Error en la operacion", JOptionPane.ERROR_MESSAGE);
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.YES_NO_OPTION;
+            Icon y = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, "Debe ingresar un Usuario y una Contraseña", "Error en la operacion", JOptionPane.ERROR_MESSAGE, y);
 
         } else {
 
@@ -103,12 +123,40 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
                     CtrlVentana ctrlMenu = new CtrlVentana();
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "Los datos del condominio no están configurados\nIngrese los datos a continuación", "Información", JOptionPane.INFORMATION_MESSAGE);
+                    
+                    UIManager UI = new UIManager();
+
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.YES_NO_OPTION;
+                    Icon y = new ImageIcon(getClass().getResource("/img/warning.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+                    
+                    JOptionPane.showMessageDialog(null, "Los datos del condominio no están configurados,\npor favor ingrese los datos a continuación", "Información", JOptionPane.INFORMATION_MESSAGE, y);
                     condominio = new CtrlCondominio(false);
                 }
 
             } else {
-                JOptionPane.showMessageDialog(null, "Acceso Denegado", "Error", JOptionPane.ERROR_MESSAGE);
+                
+                UIManager UI = new UIManager();
+
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                int botonDialogo = JOptionPane.YES_NO_OPTION;
+                Icon y = new ImageIcon(getClass().getResource("/img/no.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+                
+                JOptionPane.showMessageDialog(null, "Acceso Denegado", "Error", JOptionPane.ERROR_MESSAGE, y);
             }
         }
     }
