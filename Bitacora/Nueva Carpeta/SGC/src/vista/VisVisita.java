@@ -298,16 +298,17 @@ public class VisVisita extends javax.swing.JPanel {
 
         btnEntrada.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEntrada.setForeground(new java.awt.Color(255, 255, 255));
-        btnEntrada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional.png"))); // NOI18N
+        btnEntrada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/door.png"))); // NOI18N
         btnEntrada.setText("Registrar Entrada");
         btnEntrada.setToolTipText("Agregar visita");
         btnEntrada.setBorder(null);
         btnEntrada.setBorderPainted(false);
         btnEntrada.setContentAreaFilled(false);
         btnEntrada.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnEntrada.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
-        btnEntrada.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
-        btnEntrada.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
+        btnEntrada.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enter (1).png"))); // NOI18N
+        btnEntrada.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enter.png"))); // NOI18N
+        btnEntrada.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enter (1).png"))); // NOI18N
+        btnEntrada.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enter.png"))); // NOI18N
         btnEntrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntradaActionPerformed(evt);
@@ -317,16 +318,17 @@ public class VisVisita extends javax.swing.JPanel {
 
         btnSalida.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnSalida.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional.png"))); // NOI18N
+        btnSalida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/door.png"))); // NOI18N
         btnSalida.setText("Registrar Salida");
         btnSalida.setToolTipText("Agregar visita");
         btnSalida.setBorder(null);
         btnSalida.setBorderPainted(false);
         btnSalida.setContentAreaFilled(false);
         btnSalida.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnSalida.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
-        btnSalida.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
-        btnSalida.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
+        btnSalida.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logout (3).png"))); // NOI18N
+        btnSalida.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logout (4).png"))); // NOI18N
+        btnSalida.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logout (3).png"))); // NOI18N
+        btnSalida.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logout (4).png"))); // NOI18N
         jPanel2.add(btnSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 240, -1, -1));
 
         btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
