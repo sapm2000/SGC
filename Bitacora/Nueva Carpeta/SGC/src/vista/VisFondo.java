@@ -85,10 +85,10 @@ public class VisFondo extends javax.swing.JPanel {
         txaObservaciones = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         txaDescripcion = new javax.swing.JTextArea();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         cbxMoneda = new javax.swing.JComboBox<>();
+        jDateChooser1 = new rojeru_san.componentes.RSDateChooser();
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
@@ -264,10 +264,6 @@ public class VisFondo extends javax.swing.JPanel {
 
         jPanel2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 280, 90));
 
-        jDateChooser1.setToolTipText("Ingrese la fecha");
-        jPanel2.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 140, -1));
-        jDateChooser1.getDateEditor().setEnabled(false);
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("<html>\nMonto <br> Inicial:\n</hmtl>");
@@ -276,10 +272,11 @@ public class VisFondo extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText(" Fecha de creación:");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 140, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 30));
 
         cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Bolívar", "Dólar" }));
         jPanel2.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 130, 30));
+        jPanel2.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, -1, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
 
@@ -309,7 +306,7 @@ public class VisFondo extends javax.swing.JPanel {
     public javax.swing.JButton btnModificar;
     public javax.swing.JButton btnSalir;
     public javax.swing.JComboBox<String> cbxMoneda;
-    public com.toedter.calendar.JDateChooser jDateChooser1;
+    public rojeru_san.componentes.RSDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
