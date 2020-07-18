@@ -54,14 +54,14 @@ public class VisCerrarMes extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jYearChooser1 = new com.toedter.calendar.JYearChooser();
-        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
         jLabel1 = new javax.swing.JLabel();
         cbxMoneda = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         txtParidad = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        jMonthChooser1 = new newscomponents.RSDateMonth();
+        jYearChooser1 = new rojeru_san.componentes.RSYearDate();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
@@ -92,16 +92,10 @@ public class VisCerrarMes extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(0, 94, 159));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jYearChooser1.setToolTipText("Elija el año a cerrar");
-        jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, -1, 30));
-
-        jMonthChooser1.setToolTipText("Elija el mes a cerrar");
-        jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, 30));
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Mes a Cerrar:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 100, 30));
+        jLabel1.setText("<html>\nMes a <br> Cerrar:\n</html>");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 60, 30));
 
         cbxMoneda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxMoneda.setForeground(new java.awt.Color(255, 255, 255));
@@ -133,6 +127,8 @@ public class VisCerrarMes extends javax.swing.JPanel {
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 180, 10));
+        jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 100, 20));
+        jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 110, 20));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 320, 210));
 
@@ -176,11 +172,11 @@ public class VisCerrarMes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    public com.toedter.calendar.JMonthChooser jMonthChooser1;
+    private newscomponents.RSDateMonth jMonthChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator2;
-    public com.toedter.calendar.JYearChooser jYearChooser1;
+    private rojeru_san.componentes.RSYearDate jYearChooser1;
     public javax.swing.JTextField txtParidad;
     // End of variables declaration//GEN-END:variables
 static public class CustomUI extends BasicComboBoxUI{

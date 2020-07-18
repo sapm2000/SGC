@@ -98,10 +98,10 @@ public class VisGasto extends javax.swing.JPanel {
         jLabel17 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         cbxMoneda = new javax.swing.JComboBox<>();
-        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
-        jYearChooser1 = new com.toedter.calendar.JYearChooser();
         jSeparator5 = new javax.swing.JSeparator();
         txtNombre = new javax.swing.JTextField();
+        jMonthChooser1 = new newscomponents.RSDateMonth();
+        jYearChooser1 = new rojeru_san.componentes.RSYearDate();
         jLabel10 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -376,12 +376,6 @@ public class VisGasto extends javax.swing.JPanel {
         cbxMoneda.setToolTipText("Calcular la cuota especial por...");
         jPanel2.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 280, 30));
 
-        jMonthChooser1.setToolTipText("Elija el mes a cerrar");
-        jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, -1, 30));
-
-        jYearChooser1.setToolTipText("Elija el año a cerrar");
-        jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, -1, 30));
-
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 280, 10));
 
@@ -390,6 +384,8 @@ public class VisGasto extends javax.swing.JPanel {
         txtNombre.setForeground(new java.awt.Color(255, 255, 255));
         txtNombre.setBorder(null);
         jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 280, 20));
+        jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 150, -1));
+        jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 120, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
@@ -472,7 +468,7 @@ public class VisGasto extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
-    public com.toedter.calendar.JMonthChooser jMonthChooser1;
+    private newscomponents.RSDateMonth jMonthChooser1;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -484,7 +480,7 @@ public class VisGasto extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     public javax.swing.JTable jTable;
-    public com.toedter.calendar.JYearChooser jYearChooser1;
+    private rojeru_san.componentes.RSYearDate jYearChooser1;
     public javax.swing.JComboBox<String> jcombotipo;
     public javax.swing.JLabel labelAsamblea;
     public javax.swing.JLabel labelmense;
