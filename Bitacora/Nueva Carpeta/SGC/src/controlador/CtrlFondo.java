@@ -14,7 +14,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.BorderFactory;
 import static javax.swing.BorderFactory.createLineBorder;
 import javax.swing.Icon;
@@ -59,7 +58,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
         vista.cbxMoneda.addItemListener(this);
         stylecombo(vista.cbxMoneda);
 
-        vista.jDateChooser1.setMaxSelectableDate(new Date());
+//        vista.jDateChooser1.set(new Date());
 
         llenarTabla(catalogo.tabla);
         permisoBtn();
@@ -154,7 +153,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
             vista.txaObservaciones.setText("");
             vista.txtMontoInicial.setText("");
             vista.txtTipo.setText("");
-            vista.jDateChooser1.setDate(null);
+            vista.jDateChooser1.setDatoFecha(null);
             vista.cbxMoneda.setSelectedIndex(0);
 
             CtrlVentana.cambiarVista(vista);
@@ -163,7 +162,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
         if (e.getSource() == vista.btnGuardar) {
             if (validar()) {
                 modelo.setTipo(vista.txtTipo.getText());
-                if (vista.jDateChooser1.getDate() == null) {
+                if (vista.jDateChooser1.getDatoFecha()== null) {
 
                     UIManager UI = new UIManager();
                     UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
@@ -179,7 +178,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
 
                     JOptionPane.showMessageDialog(null, "Ingrese la fecha de creación del fondo ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                 } else {
-                    java.sql.Date sqlDate = convert(vista.jDateChooser1.getDate());
+                    java.sql.Date sqlDate = convert(vista.jDateChooser1.getDatoFecha());
                     modelo.setFecha(sqlDate);
                     modelo.setDescripcion(vista.txaDescripcion.getText());
                     modelo.setObservacion(vista.txaObservaciones.getText());
@@ -245,7 +244,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
         if (e.getSource() == vista.btnModificar) {
             if (validar()) {
                 modelo.setTipo(vista.txtTipo.getText());
-                java.sql.Date sqlDate = convert(vista.jDateChooser1.getDate());
+                java.sql.Date sqlDate = convert(vista.jDateChooser1.getDatoFecha());
                 modelo.setFecha(sqlDate);
                 modelo.setDescripcion(vista.txaDescripcion.getText());
                 modelo.setObservacion(vista.txaObservaciones.getText());
@@ -469,7 +468,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
         vista.txtTipo.setText(null);
         vista.txaDescripcion.setText(null);
         vista.txaObservaciones.setText(null);
-        vista.jDateChooser1.setDate(null);
+        vista.jDateChooser1.setDatoFecha(null);
         vista.cbxMoneda.setSelectedIndex(0);
     }
 
@@ -547,7 +546,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
         vista.txaDescripcion.setText(modelo.getDescripcion());
         vista.txaObservaciones.setText(modelo.getObservacion());
         vista.txtTipo.setText(modelo.getTipo());
-        vista.jDateChooser1.setDate(modelo.getFecha());
+        vista.jDateChooser1.setDatoFecha(modelo.getFecha());
         vista.txtMontoInicial.setText(String.valueOf(Validacion.formato1.format(modelo.getMonto_inicial())));
         vista.cbxMoneda.setSelectedItem(modelo.getMoneda());
         saldo = modelo.getSaldo();
