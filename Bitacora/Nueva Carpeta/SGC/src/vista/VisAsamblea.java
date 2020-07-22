@@ -60,7 +60,7 @@ public class VisAsamblea extends javax.swing.JPanel {
         txtBuscarPropietario = new javax.swing.JTextField();
         jSeparator8 = new javax.swing.JSeparator();
         btnGuardar = new javax.swing.JButton();
-        txtFecha = new com.toedter.calendar.JDateChooser();
+        txtFecha = new rojeru_san.componentes.RSDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaAsistentes = new javax.swing.JTable();
         btnSalir = new javax.swing.JButton();
@@ -69,6 +69,7 @@ public class VisAsamblea extends javax.swing.JPanel {
         jLabel17 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         txtid = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -85,7 +86,7 @@ public class VisAsamblea extends javax.swing.JPanel {
         txtNombre.setForeground(new java.awt.Color(255, 255, 255));
         txtNombre.setToolTipText("Nombre de la asamblea");
         txtNombre.setBorder(null);
-        jPanel4.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 150, 20));
+        jPanel4.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 180, 20));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -100,7 +101,7 @@ public class VisAsamblea extends javax.swing.JPanel {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Fecha:");
-        jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 50, 20));
+        jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 50, 30));
 
         jScrollPane4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
@@ -118,13 +119,13 @@ public class VisAsamblea extends javax.swing.JPanel {
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator5.setOpaque(true);
-        jPanel4.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 460, -1));
+        jPanel4.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 570, -1));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel13.setText("Selecciona los Asistentes a la Asamblea.\n");
-        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 360, -1));
+        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 360, -1));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -132,7 +133,7 @@ public class VisAsamblea extends javax.swing.JPanel {
         jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, 20));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel4.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 150, 10));
+        jPanel4.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 180, 10));
 
         txtBuscarPropietario.setBackground(new java.awt.Color(0, 94, 159));
         txtBuscarPropietario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -157,13 +158,9 @@ public class VisAsamblea extends javax.swing.JPanel {
         btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
         btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
         jPanel4.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 160, -1));
+        jPanel4.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 220, 30));
 
-        txtFecha.setToolTipText("Fecha en la que se realizó la asamblea");
-        txtFecha.setMinSelectableDate(new java.util.Date(-62135751509000L));
-        jPanel4.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, 150, 30));
-        txtFecha.getDateEditor().setEnabled(false);
-
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 480, 280));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 570, 280));
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
@@ -204,11 +201,14 @@ public class VisAsamblea extends javax.swing.JPanel {
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, -1, 20));
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, -1, 320));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, 320));
 
         txtid.setEditable(false);
         txtid.setEnabled(false);
         jPanel1.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 20, -1));
+
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, 320));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 760, 600));
     }// </editor-fold>//GEN-END:initComponents
@@ -225,6 +225,7 @@ public class VisAsamblea extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel4;
@@ -236,7 +237,7 @@ public class VisAsamblea extends javax.swing.JPanel {
     public javax.swing.JTable tablaAsistentes;
     public javax.swing.JTextArea txaDescripcion;
     public javax.swing.JTextField txtBuscarPropietario;
-    public com.toedter.calendar.JDateChooser txtFecha;
+    private rojeru_san.componentes.RSDateChooser txtFecha;
     public javax.swing.JTextField txtNombre;
     public javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables

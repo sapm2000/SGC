@@ -62,7 +62,6 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         cbxFormaPago = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        fecha = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         cbxMoneda = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
@@ -80,6 +79,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         txtPariedad = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
+        fecha = new rojeru_san.componentes.RSDateChooser();
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -155,9 +155,6 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("<html>\nFecha <br> de Pago:\n</html>");
         jPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, 40));
-
-        fecha.setNextFocusableComponent(cbxMoneda);
-        jPanel.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 240, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -245,6 +242,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         panelPariedad.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 260, 10));
 
         jPanel.add(panelPariedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 370, 60));
+        jPanel.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, 30));
 
         add(jPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 750, 280));
 
@@ -341,7 +339,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
     public javax.swing.JComboBox<String> cbxFondo;
     public javax.swing.JComboBox<String> cbxFormaPago;
     public javax.swing.JComboBox<String> cbxMoneda;
-    public com.toedter.calendar.JDateChooser fecha;
+    private rojeru_san.componentes.RSDateChooser fecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
