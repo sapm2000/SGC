@@ -961,7 +961,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
             columna[0] = listadetallesancion.get(i).san.getTipo();
             columna[1] = listadetallesancion.get(i).san.getDescripcion();
-            if (listadetallesancion.get(i).san.getTipo().equals("Interes de mora")) {
+            if (listadetallesancion.get(i).san.getTipo().equals("INTERES DE MORA")) {
                 columna[2] = listadetallesancion.get(i).san.getMonto() + "%";
             } else {
                 columna[2] = "";

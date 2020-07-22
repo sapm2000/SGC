@@ -378,7 +378,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                                 JOptionPane.showMessageDialog(null, "No puede registrar Sanciones a un periodo ya cerrado ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                             } else {
 
-                                if (modsan.buscarSancionRepetido(modsan) && modsan.getTipo().equals("Interes de mora")) {
+                                if (modsan.buscarSancionRepetido(modsan) && modsan.getTipo().equals("INTERES DE MORA")) {
 
                                     UIManager UI = new UIManager();
                                     UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));

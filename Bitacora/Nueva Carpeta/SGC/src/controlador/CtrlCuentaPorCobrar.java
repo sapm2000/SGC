@@ -397,7 +397,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                         JOptionPane.showMessageDialog(null, "Seleccione una cuenta ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                     } else {
                         if (ind2 == -1) { //si la opcion seleccionada en cuenta es la de "otros" seteo esa palabra en el numero de cuenta
-                            modcuen.setId_cuenta("Otros");
+                            modcuen.setId_cuenta("OTROS");
                         } else { //de lo contrario tome el valor normal del combobox
                             modcuen.setId_cuenta(listaCuenta.get(ind2).getN_cuenta());
                         }
@@ -691,7 +691,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
     private void crearCbxCuenta(ArrayList<Cuenta> datos) { //funcion para crear combobox cuenta
         vista.jComboCuenta.addItem("Seleccione la cuenta depositada");
-        vista.jComboCuenta.addItem("Otros");
+        vista.jComboCuenta.addItem("OTROS");
         vista.jComboCuenta.setFocusable(false);
         if (datos != null) {
             for (Cuenta datosX : datos) {

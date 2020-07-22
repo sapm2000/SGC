@@ -322,7 +322,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                 id_sancion[j] = listasanciones.get(j).getId();
                                 String var = String.valueOf(tipo_sancion[j]);
 
-                                if (var.equals("Interes de mora")) {
+                                if (var.equals("INTERES DE MORA")) {
                                     double monto = 0;
                                     modc.gasto.setId(listasanciones.get(j).getId());
                                     if (vista.cbxMoneda.getSelectedItem().toString().equals("Dólar")) {
@@ -360,7 +360,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
 
                                 }
 
-                                if (var.equals("Multa")) {
+                                if (var.equals("MULTA")) {
 
                                     modc.setId(listasanciones.get(j).getId());
                                     if (listasanciones.get(j).getMoneda().equals("Dólar")) {
