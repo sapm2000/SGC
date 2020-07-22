@@ -100,7 +100,7 @@ public class VisGasto extends javax.swing.JPanel {
         cbxMoneda = new javax.swing.JComboBox<>();
         jSeparator5 = new javax.swing.JSeparator();
         txtNombre = new javax.swing.JTextField();
-        jMonthChooser1 = new newscomponents.RSDateMonth();
+        jMonthChooser1 = new org.netbeans.modules.form.InvalidComponent();
         jYearChooser1 = new rojeru_san.componentes.RSYearDate();
         jLabel10 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -238,7 +238,7 @@ public class VisGasto extends javax.swing.JPanel {
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, -1, 30));
 
         jCalcular.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jCalcular.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alicuota", "Total de Inmuebles" }));
+        jCalcular.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ALICUOTA", "TOTAL DE INMUEBLES" }));
         jCalcular.setToolTipText("Calcular la cuota especial por...");
         jPanel2.add(jCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 280, 30));
 
@@ -273,7 +273,7 @@ public class VisGasto extends javax.swing.JPanel {
         jPanel2.add(txtProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 240, 20));
 
         jcombotipo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jcombotipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Extraordinario", "Ordinario" }));
+        jcombotipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EXTRAORDINARIO", "ORDINARIO" }));
         jcombotipo.setToolTipText("Seleccione el tipo de gasto");
         jPanel2.add(jcombotipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 280, 30));
 
@@ -372,7 +372,7 @@ public class VisGasto extends javax.swing.JPanel {
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 60, 30));
 
         cbxMoneda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Bolívar", "Dólar" }));
+        cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "BOLÍVAR", "DÓLAR" }));
         cbxMoneda.setToolTipText("Calcular la cuota especial por...");
         jPanel2.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 280, 30));
 
@@ -468,7 +468,7 @@ public class VisGasto extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
-    private newscomponents.RSDateMonth jMonthChooser1;
+    private org.netbeans.modules.form.InvalidComponent jMonthChooser1;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

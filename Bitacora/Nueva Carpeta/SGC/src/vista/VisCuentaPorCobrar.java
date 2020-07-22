@@ -255,7 +255,7 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
 
         cbxMoneda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxMoneda.setForeground(new java.awt.Color(255, 255, 255));
-        cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bolívar", "Dólar" }));
+        cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BOLÍVAR", "DÓLAR" }));
         cbxMoneda.setToolTipText("Calcular la cuota especial por...");
         cbxMoneda.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         cbxMoneda.addActionListener(new java.awt.event.ActionListener() {

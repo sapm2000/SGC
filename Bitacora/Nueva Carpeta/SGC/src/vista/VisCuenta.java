@@ -219,7 +219,7 @@ public class VisCuenta extends javax.swing.JPanel {
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 310, 10));
 
         cbxTipo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cbxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ahorro", "Corriente" }));
+        cbxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AHORRO", "CORRIENTE" }));
         cbxTipo.setToolTipText("Seleccione el tipo de cuenta");
         jPanel2.add(cbxTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 310, 30));
 

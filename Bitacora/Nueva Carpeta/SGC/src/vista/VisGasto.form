@@ -403,8 +403,8 @@
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
-                    <StringItem index="0" value="Alicuota"/>
-                    <StringItem index="1" value="Total de Inmuebles"/>
+                    <StringItem index="0" value="ALICUOTA"/>
+                    <StringItem index="1" value="TOTAL DE INMUEBLES"/>
                   </StringArray>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Calcular la cuota especial por..."/>
@@ -524,8 +524,8 @@
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
-                    <StringItem index="0" value="Extraordinario"/>
-                    <StringItem index="1" value="Ordinario"/>
+                    <StringItem index="0" value="EXTRAORDINARIO"/>
+                    <StringItem index="1" value="ORDINARIO"/>
                   </StringArray>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Seleccione el tipo de gasto"/>
@@ -884,8 +884,8 @@
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="3">
                     <StringItem index="0" value="Seleccione"/>
-                    <StringItem index="1" value="Bol&#xed;var"/>
-                    <StringItem index="2" value="D&#xf3;lar"/>
+                    <StringItem index="1" value="BOL&#xcd;VAR"/>
+                    <StringItem index="2" value="D&#xd3;LAR"/>
                   </StringArray>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Calcular la cuota especial por..."/>
@@ -936,7 +936,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="newscomponents.RSDateMonth" name="jMonthChooser1">
+            <Component class="org.netbeans.modules.form.InvalidComponent" name="jMonthChooser1">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="100" y="230" width="150" height="-1"/>
