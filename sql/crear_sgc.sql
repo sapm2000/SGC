@@ -1916,6 +1916,245 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+-------- funciones mayúsculas --------
+-- mayuscula_asambleas
+-- DROP FUNCTION mayuscula_asamblea();
+CREATE OR REPLACE FUNCTION mayuscula_asambleas() RETURNS TRIGGER AS $$
+BEGIN
+
+	NEW.nombre = UPPER(NEW.nombre);
+	NEW.descripcion = UPPER(NEW.descripcion);
+
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- mayuscula_banco
+-- DROP FUNCTION mayuscula_banco();
+CREATE OR REPLACE FUNCTION mayuscula_banco() RETURNS TRIGGER AS $$
+BEGIN
+
+	NEW.nombre_banco = UPPER(NEW.nombre_banco);
+
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- mayuscula_categoriagasto
+-- DROP FUNCTION mayuscula_categoriagasto();
+CREATE OR REPLACE FUNCTION mayuscula_categoriagasto() RETURNS TRIGGER AS $$
+BEGIN
+
+	NEW.nombre = UPPER(NEW.nombre);
+	NEW.descripcion = UPPER(NEW.descripcion);
+
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- mayuscula_cobro_unidad
+-- DROP FUNCTION mayuscula_cobro_unidad();
+CREATE OR REPLACE FUNCTION mayuscula_cobro_unidad() RETURNS TRIGGER AS $$
+BEGIN
+
+	NEW.descripcion = UPPER(NEW.descripcion);
+
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- mayuscula_concepto_gasto
+-- DROP FUNCTION mayuscula_concepto_gasto();
+CREATE OR REPLACE FUNCTION mayuscula_concepto_gasto() RETURNS TRIGGER AS $$
+BEGIN
+	
+	NEW.nom_concepto = UPPER(NEW.nom_concepto);
+	NEW.descripcion = UPPER(NEW.descripcion);
+	
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- mayuscula_condominio
+-- DROP FUNCTION mayuscula_condominio();
+CREATE OR REPLACE FUNCTION mayuscula_condominio() RETURNS TRIGGER AS $$
+BEGIN
+	
+	NEW.razon_social = UPPER(NEW.razon_social);
+	NEW.correo_electronico = UPPER(NEW.correo_electronico);
+	
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- mayuscula_cuenta
+-- DROP FUNCTION mayuscula_cuenta();
+CREATE OR REPLACE FUNCTION mayuscula_cuenta() RETURNS TRIGGER AS $$
+BEGIN
+	
+	NEW.tipo = UPPER(NEW.tipo);
+	
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- mayuscula_cuenta_pagar
+-- DROP FUNCTION mayuscula_cuenta_pagar();
+CREATE OR REPLACE FUNCTION mayuscula_cuenta_pagar() RETURNS TRIGGER AS $$
+BEGIN
+	
+	NEW.descripcion = UPPER(NEW.descripcion);	
+	
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- mayuscula_detalle_pagos
+-- DROP FUNCTION mayuscula_detalle_pagos();
+CREATE OR REPLACE FUNCTION mayuscula_detalle_pagos() RETURNS TRIGGER AS $$
+BEGIN
+	
+	NEW.tipo_gasto = UPPER(NEW.tipo_gasto);
+	
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- mayuscula_fondos
+-- DROP FUNCTION mayuscula_fondos();
+CREATE OR REPLACE FUNCTION mayuscula_fondos() RETURNS TRIGGER AS $$
+BEGIN
+	
+	NEW.tipo = UPPER(NEW.tipo);
+	NEW.descripcion = UPPER(NEW.descripcion);
+	NEW.observaciones = UPPER(NEW.observaciones);
+	
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- mayuscula_forma_pago
+-- DROP FUNCTION mayuscula_forma_pago();
+CREATE OR REPLACE FUNCTION mayuscula_forma_pago() RETURNS TRIGGER AS $$
+BEGIN
+	
+	NEW.forma_pago = UPPER(NEW.forma_pago);
+	
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- mayuscula_gasto
+-- DROP FUNCTION mayuscula_gasto();
+CREATE OR REPLACE FUNCTION mayuscula_gasto() RETURNS TRIGGER AS $$
+BEGIN
+	
+	NEW.nombre = UPPER(NEW.nombre);
+	NEW.tipo = UPPER(NEW.tipo);
+	NEW.observacion = UPPER(NEW.observacion);
+	
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- mayuscula_interes
+-- DROP FUNCTION mayuscula_interes();
+CREATE OR REPLACE FUNCTION mayuscula_interes() RETURNS TRIGGER AS $$
+BEGIN
+	
+	NEW.nombre = UPPER(NEW.nombre);
+	
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- mayuscula_persona
+-- DROP FUNCTION mayuscula_persona();
+CREATE OR REPLACE FUNCTION mayuscula_persona() RETURNS TRIGGER AS $$
+BEGIN
+	
+	NEW.p_nombre = UPPER(NEW.p_nombre);
+	NEW.s_nombre = UPPER(NEW.s_nombre);
+	NEW.p_apellido = UPPER(NEW.p_apellido);
+	NEW.s_apellido = UPPER(NEW.s_apellido);
+	NEW.correo = UPPER(NEW.correo);
+	
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- mayuscula_proveedores
+-- DROP FUNCTION mayuscula_proveedores();
+CREATE OR REPLACE FUNCTION mayuscula_proveedores() RETURNS TRIGGER AS $$
+BEGIN
+	
+	NEW.nombre = UPPER(NEW.nombre);
+	NEW.correo = UPPER(NEW.correo);
+	NEW.contacto = UPPER(NEW.contacto);
+	NEW.direccion = UPPER(NEW.direccion);
+	
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- mayuscula_sancion
+-- DROP FUNCTION mayuscula_sancion();
+CREATE OR REPLACE FUNCTION mayuscula_sancion() RETURNS TRIGGER AS $$
+BEGIN
+	
+	NEW.descripcion = UPPER(NEW.descripcion);
+	
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- mayuscula_tipo_unidad
+-- DROP FUNCTION mayuscula_tipo_unidad();
+CREATE OR REPLACE FUNCTION mayuscula_tipo_unidad() RETURNS TRIGGER AS $$
+BEGIN
+	
+	NEW.tipo = UPPER(NEW.tipo);
+	
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- mayuscula_tipo_usuario
+-- DROP FUNCTION mayuscula_tipo_usuario();
+CREATE OR REPLACE FUNCTION mayuscula_tipo_usuario() RETURNS TRIGGER AS $$
+BEGIN
+	
+	NEW.tipo = UPPER(NEW.tipo);
+	
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- mayuscula_unidad
+-- DROP FUNCTION mayuscula_unidad();
+CREATE OR REPLACE FUNCTION mayuscula_unidad() RETURNS TRIGGER AS $$
+BEGIN
+	
+	NEW.n_unidad = UPPER(NEW.n_unidad);
+	NEW.n_documento = UPPER(NEW.n_documento);
+	NEW.n_direccion = UPPER(NEW.n_direccion);
+
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- mayuscula_visita
+-- DROP FUNCTION mayuscula_visita();
+CREATE OR REPLACE FUNCTION mayuscula_visita() RETURNS TRIGGER AS $$
+BEGIN
+	
+	NEW.matricula = UPPER(NEW.matricula);
+	NEW.modelo = UPPER(NEW.modelo);
+	NEW.color = UPPER(NEW.color);
+
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
 
 -------- funciones trigger --------
 -- calcular_alicuota
@@ -1948,9 +2187,143 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+--------- Trigers mayúsculas --------
+-- tg_mayuscula_asamblea
+CREATE TRIGGER tg_mayuscula_asambleas
+BEFORE INSERT OR UPDATE
+ON asambleas
+FOR EACH ROW
+EXECUTE PROCEDURE mayuscula_asambleas();
+
+-- tg_mayuscula_banco
+CREATE TRIGGER tg_mayuscula_banco
+BEFORE INSERT OR UPDATE
+ON banco
+FOR EACH ROW
+EXECUTE PROCEDURE mayuscula_banco();
+
+-- tg_mayuscula_categoriagasto
+CREATE TRIGGER tg_mayuscula_categoriagasto
+BEFORE INSERT OR UPDATE
+ON categoriagasto
+FOR EACH ROW
+EXECUTE PROCEDURE mayuscula_categoriagasto();
+
+-- tg_mayuscula_cobro_unidad
+CREATE TRIGGER tg_mayuscula_cobro_unidad
+BEFORE INSERT OR UPDATE
+ON cobro_unidad
+FOR EACH ROW
+EXECUTE PROCEDURE mayuscula_cobro_unidad();
+
+-- tg_mayuscula_concepto_gasto
+CREATE TRIGGER tg_mayuscula_concepto_gasto
+BEFORE INSERT OR UPDATE
+ON concepto_gasto
+FOR EACH ROW
+EXECUTE PROCEDURE mayuscula_concepto_gasto();
+
+-- tg_mayuscula_condominio
+CREATE TRIGGER tg_mayuscula_condominio
+BEFORE INSERT OR UPDATE
+ON condominio
+FOR EACH ROW
+EXECUTE PROCEDURE mayuscula_condominio();
+
+-- tg_mayuscula_cuenta
+CREATE TRIGGER tg_mayuscula_cuenta
+BEFORE INSERT OR UPDATE
+ON cuenta
+FOR EACH ROW
+EXECUTE PROCEDURE mayuscula_cuenta();
+
+-- tg_mayuscula_cuenta_pagar
+CREATE TRIGGER tg_mayuscula_cuenta_pagar
+BEFORE INSERT OR UPDATE
+ON cuenta_pagar
+FOR EACH ROW
+EXECUTE PROCEDURE mayuscula_cuenta_pagar();
+
+-- tg_mayuscula_detalle_pagos
+CREATE TRIGGER tg_mayuscula_detalle_pagos
+BEFORE INSERT OR UPDATE
+ON detalle_pagos
+FOR EACH ROW
+EXECUTE PROCEDURE mayuscula_detalle_pagos();
+
+-- tg_mayuscula_fondos
+CREATE TRIGGER tg_mayuscula_fondos
+BEFORE INSERT OR UPDATE
+ON fondos
+FOR EACH ROW
+EXECUTE PROCEDURE mayuscula_fondos();
+
+-- tg_mayuscula_gasto
+CREATE TRIGGER tg_mayuscula_gasto
+BEFORE INSERT OR UPDATE
+ON gasto
+FOR EACH ROW
+EXECUTE PROCEDURE mayuscula_gasto();
+
+-- tg_mayuscula_interes
+CREATE TRIGGER tg_mayuscula_interes
+BEFORE INSERT OR UPDATE
+ON interes
+FOR EACH ROW
+EXECUTE PROCEDURE mayuscula_interes();
+
+-- tg_mayuscula_persona
+CREATE TRIGGER tg_mayuscula_persona
+BEFORE INSERT OR UPDATE
+ON persona
+FOR EACH ROW
+EXECUTE PROCEDURE mayuscula_persona();
+
+-- tg_mayuscula_proveedores
+CREATE TRIGGER tg_mayuscula_proveedores
+BEFORE INSERT OR UPDATE
+ON proveedores
+FOR EACH ROW
+EXECUTE PROCEDURE mayuscula_proveedores();
+
+-- tg_mayuscula_sancion
+CREATE TRIGGER tg_mayuscula_sancion
+BEFORE INSERT OR UPDATE
+ON sancion
+FOR EACH ROW
+EXECUTE PROCEDURE mayuscula_sancion();
+
+-- tg_mayuscula_tipo_unidad
+CREATE TRIGGER tg_mayuscula_tipo_unidad
+BEFORE INSERT OR UPDATE
+ON tipo_unidad
+FOR EACH ROW
+EXECUTE PROCEDURE mayuscula_tipo_unidad();
+
+-- tg_mayuscula_tipo_usuario
+CREATE TRIGGER tg_mayuscula_tipo_usuario
+BEFORE INSERT OR UPDATE
+ON tipo_usuario
+FOR EACH ROW
+EXECUTE PROCEDURE mayuscula_tipo_usuario();
+
+-- tg_mayuscula_unidad
+CREATE TRIGGER tg_mayuscula_unidad
+BEFORE INSERT OR UPDATE
+ON unidad
+FOR EACH ROW
+EXECUTE PROCEDURE mayuscula_unidad();
+
+-- tg_mayuscula_visita
+CREATE TRIGGER tg_mayuscula_visita
+BEFORE INSERT OR UPDATE
+ON visita
+FOR EACH ROW
+EXECUTE PROCEDURE mayuscula_visita();
+
 -------- Triggers ---------
 --tg_asamblea
-CREATE TRIGGER tg_asamblea
+CREATE TRIGGER tg_asambleas
 BEFORE INSERT
 ON asambleas
 FOR EACH ROW
