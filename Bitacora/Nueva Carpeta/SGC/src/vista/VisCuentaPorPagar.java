@@ -162,7 +162,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         jPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 60, 40));
 
         cbxMoneda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Bolívar", "Dólar" }));
+        cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "BOLÍVAR", "DÓLAR" }));
         cbxMoneda.setNextFocusableComponent(cbxFondo);
         jPanel.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 243, 240, 30));
 
