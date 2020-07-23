@@ -92,13 +92,13 @@ public class FormaPago extends ConexionBD {
         ps = null;
         rs = null;
 
-        String sql = "SELECT * FROM  where activo=true";
+        String sql = "SELECT * FROM forma_pago where activo=true";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
 
             while (rs.next()) {
-
+                
                 modfor = new FormaPago();
 
                 modfor.setId(rs.getInt(1));
