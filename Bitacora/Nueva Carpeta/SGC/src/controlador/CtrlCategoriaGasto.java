@@ -43,6 +43,7 @@ public class CtrlCategoriaGasto implements ActionListener, MouseListener, KeyLis
     ArrayList<CategoriaGasto> listaCatGas;
 
     public CtrlCategoriaGasto() {
+        
         this.catalogo = new Catalogo();
         this.vista = new VisCategoriaGasto();
         this.modelo = new CategoriaGasto();

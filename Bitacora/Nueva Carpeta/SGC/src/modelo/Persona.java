@@ -41,8 +41,8 @@ public class Persona extends ConexionBD {
         this.correo = correo;
         this.telefono = telefono;
     }
-    
-        public Boolean buscar() {
+
+    public Boolean buscar() {
         try {
             rs = null;
             ps = null;
@@ -84,6 +84,41 @@ public class Persona extends ConexionBD {
                 System.err.println(e);
             }
         }
+    }
+
+    public int contar() {
+
+        ps = null;
+        rs = null;
+        con = getConexion();
+
+        String sql = "SELECT COUNT(*) FROM persona WHERE activo = true;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            rs.next();
+
+            int count = rs.getInt("count");
+
+            return count;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return 0;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
     }
 
     public Boolean existePersona() {
@@ -142,7 +177,7 @@ public class Persona extends ConexionBD {
             int ind;
 
             while (rs.next()) {
-                
+
                 mod = new Persona();
                 ind = 1;
                 mod.setCedula(rs.getString(ind++));
@@ -150,19 +185,19 @@ public class Persona extends ConexionBD {
                 mod.setpApellido(rs.getString(ind++));
                 mod.setCorreo(rs.getString(ind++));
                 mod.setTelefono(rs.getString(ind++));
-                
+
                 personas.add(mod);
             }
-            
+
             return personas;
 
         } catch (SQLException e) {
-            
+
             System.err.println(e);
             return null;
 
         } finally {
-            
+
             cerrar();
         }
     }

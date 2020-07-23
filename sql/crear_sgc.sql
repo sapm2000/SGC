@@ -2137,7 +2137,7 @@ BEGIN
 	
 	NEW.n_unidad = UPPER(NEW.n_unidad);
 	NEW.n_documento = UPPER(NEW.n_documento);
-	NEW.n_direccion = UPPER(NEW.n_direccion);
+	NEW.direccion = UPPER(NEW.direccion);
 
 	RETURN NEW;
 END;
@@ -2178,20 +2178,20 @@ DECLARE
 	receptor_bd integer;
 BEGIN
 	emisor_bd := true;
-	RAISE INFO 'Consultando si el emisor eliminó el mensaje con id: %...', OLD.id;
+	--RAISE INFO 'Consultando si el emisor eliminó el mensaje con id: %...', OLD.id;
 	emisor_bd := (SELECT activo_emisor FROM mensaje AS msj WHERE msj.id = NEW.id);
-	RAISE INFO 'El resultado es %', emisor_bd;
+	--RAISE INFO 'El resultado es %', emisor_bd;
 
 	IF emisor_bd = true THEN
-		RAISE INFO 'Emisor no ha eliminado el mensaje';
+		--RAISE INFO 'Emisor no ha eliminado el mensaje';
 		RETURN null;
 	
 	ELSE
-		RAISE INFO 'Emisor eliminó el mensaje. Buscando en receptores...';
+		--RAISE INFO 'Emisor eliminó el mensaje. Buscando en receptores...';
 		receptor_bd := (SELECT COUNT(*) FROM puente_mensaje_usuario WHERE activo_receptor = true AND id_mensaje = OLD.id);
 	
 		IF receptor_bd = 0 THEN
-			RAISE INFO 'Todos los receptores eliminaron el mensaje';
+			--RAISE INFO 'Todos los receptores eliminaron el mensaje';
 			DELETE FROM puente_mensaje_usuario WHERE id_mensaje = OLD.id;
 			DELETE FROM mensaje WHERE id = old.id;
 			
@@ -2342,6 +2342,7 @@ FOR EACH ROW
 EXECUTE PROCEDURE mayuscula_tipo_usuario();
 
 -- tg_mayuscula_unidad
+-- DROP TRIGGER tg_mayuscula_unidad
 CREATE TRIGGER tg_mayuscula_unidad
 BEFORE INSERT OR UPDATE
 ON unidad

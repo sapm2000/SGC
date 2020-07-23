@@ -56,6 +56,47 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
     private DefaultTableModel dm;
 
     public CtrlCuenta() {
+        this.modPersona = new Persona();
+        this.modBanco = new Banco();
+
+        if (modPersona.contar() == 0) {
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, "No existen Personas, debe registrar una para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
+
+            new CtrlResponsable();
+
+        } else if (modBanco.contar() == 0) {
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, "No existen bancos, debe registrar uno para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
+       
+            new CtrlBanco();
+
+        } else {
+
         this.catalogo = new Catalogo();
         this.vista = new VisCuenta();
         this.modelo = new Cuenta();
@@ -67,9 +108,6 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
         ventanaBuscar = new JFrame("Buscar Persona");
         ventanaBuscar.setSize(1366, 740);
         ventanaBuscar.add(catPersonas);
-
-        this.modPersona = new Persona();
-        this.modBanco = new Banco();
 
         catalogo.lblTitulo.setText("Cuenta");
 
@@ -114,6 +152,7 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
         this.catPersonas.tabla.addMouseListener(this);
 
         CtrlVentana.cambiarVista(catalogo);
+        }
     }
 
     public void actionPerformed(ActionEvent e) {

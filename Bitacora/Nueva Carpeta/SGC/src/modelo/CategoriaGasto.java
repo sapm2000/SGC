@@ -172,7 +172,7 @@ public class CategoriaGasto extends ConexionBD {
         rs = null;
         con = getConexion();
 
-        String sql = "SELECT COUNT(*) FROM categoriagasto;";
+        String sql = "SELECT COUNT(*) FROM categoriagasto WHERE activo = true;";
 
         try {
 

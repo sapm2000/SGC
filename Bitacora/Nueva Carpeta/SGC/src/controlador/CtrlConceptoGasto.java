@@ -51,11 +51,31 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
 
     public CtrlConceptoGasto() {
 
+        this.modCategoria = new CategoriaGasto();
+
+        if (modCategoria.contar() == 0) {
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, "No existen categorías, debe registrar una para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
+       
+            new CtrlCategoriaGasto();
+
+        } else {
+
         this.catalogo = new Catalogo();
         this.vista = new VisConceptoGasto();
         this.modelo = new ConceptoGasto();
-
-        this.modCategoria = new CategoriaGasto();
 
         catalogo.lblTitulo.setText("Concepto Gasto");
 
@@ -82,6 +102,8 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
         CtrlVentana.cambiarVista(catalogo);
         vista.cbxCategoria.addItemListener(this);
         stylecombo(vista.cbxCategoria);
+        
+        }
     }
 
     @Override
