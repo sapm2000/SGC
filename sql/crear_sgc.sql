@@ -2542,6 +2542,7 @@ EXECUTE PROCEDURE eliminar_mensaje();
 
 -------- Otros trigger --------
 
+-- tg_restar_saldo
 CREATE TRIGGER tg_restar_saldo
 AFTER INSERT
 ON cuenta_pagar
