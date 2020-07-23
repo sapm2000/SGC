@@ -2292,6 +2292,13 @@ ON fondos
 FOR EACH ROW
 EXECUTE PROCEDURE mayuscula_fondos();
 
+-- tg_mayuscula_forma_pago
+CREATE TRIGGER tg_mayuscula_forma_pago
+BEFORE INSERT OR UPDATE
+ON forma_pago
+FOR EACH ROW
+EXECUTE PROCEDURE mayuscula_forma_pago();
+
 -- tg_mayuscula_gasto
 CREATE TRIGGER tg_mayuscula_gasto
 BEFORE INSERT OR UPDATE
