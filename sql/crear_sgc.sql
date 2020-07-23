@@ -2211,17 +2211,20 @@ $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION pagar_gasto() RETURNS TRIGGER AS $$
 DECLARE
+
 	saldo_bd double precision;
+	
 BEGIN
 	
-	UPDATE fondos SET saldo = saldo - OLD.monto WHERE id = OLD.id_fondo;
-	UPDATE gasto SET saldo = saldo - OLD.monto WHERE id = OLD.id_gasto;
+	UPDATE fondos SET saldo = saldo - NEW.monto WHERE id = NEW.id_fondo;
+
+	UPDATE gasto SET saldo = saldo - NEW.monto WHERE id = NEW.id_gasto;
 	
-	saldo_bd := (SELECT saldo FROM gasto WHERE id = OLD.id_gasto);
+	saldo_bd := (SELECT saldo FROM gasto WHERE id = NEW.id_gasto);
 
 	IF saldo_bd = 0 THEN
 	
-		UPDATE gasto SET pagado = 'Pagado' WHERE id = OLD.id_gasto;
+		UPDATE gasto SET pagado = 'Pagado' WHERE id = NEW.id_gasto;
 		
 	END IF;
 	
