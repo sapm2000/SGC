@@ -48,6 +48,41 @@ public class FormaPago extends ConexionBD {
         }
 
     }
+    
+    public int contar() {
+
+        ps = null;
+        rs = null;
+        con = getConexion();
+
+        String sql = "SELECT COUNT(*) FROM forma_pago WHERE activo = true;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            rs.next();
+
+            int count = rs.getInt("count");
+
+            return count;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return 0;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
 
     public ArrayList<FormaPago> listar() {
         ArrayList listaFormaPago = new ArrayList();
@@ -57,7 +92,7 @@ public class FormaPago extends ConexionBD {
         ps = null;
         rs = null;
 
-        String sql = "SELECT * FROM forma_pago where activo=true";
+        String sql = "SELECT * FROM  where activo=true";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();

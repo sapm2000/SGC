@@ -84,56 +84,132 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
             hola = JOptionPane.showInputDialog(null, "¿A que paridad va a trabajar?, Por favor ingrese ", null, 0, q, null, null); //ventana que se despliega para que ingresen la paridad 
             e = String.valueOf(hola);
             if (e != null && isValidDouble(e) == true) {
-                this.vista = new VisCuentaPorCobrar();
-                this.modcuen = new CuentasPorCobrar();
                 this.moduni = new Unidades();
-                this.modfon = new Fondo();
-                this.modcu = new Cuenta();
-                this.modc = new CerrarMes();
                 this.modfor = new FormaPago();
+                this.modcu = new Cuenta();
+                this.modfon = new Fondo();
 
-                modc.setParidad(Double.parseDouble(e)); //seteamos la paridad para que busque los gastos en la bd y los multiplique por la paridad
-                vista.txtParidad.setText(e); // seteamos la paridad en la caja de texto para que este cargada al abrir la vantana
+                if (moduni.contar() == 0) {
 
-                vista.jComboUnidad.addItemListener(this);
-                vista.btnGuardar.addActionListener(this);
-                vista.txtMonto.addKeyListener(this);
-                vista.txtDescripcion.addKeyListener(this);
-                vista.txtReferencia.addKeyListener(this);
-                vista.cbxMoneda.addItemListener(this);
-                CtrlVentana.cambiarVista(vista); //funcion para que abra la ventana
+                    new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
 
-                vista.cbxMoneda.addItemListener(this);
-                stylecombo(vista.cbxMoneda);
-                vista.jComboCuenta.addItemListener(this);
-                stylecombo(vista.jComboCuenta);
-                vista.jComboFondo.addItemListener(this);
-                stylecombo(vista.jComboFondo);
-                vista.jComboForma.addItemListener(this);
-                stylecombo(vista.jComboForma);
-                vista.jComboUnidad.addItemListener(this);
-                stylecombo(vista.jComboUnidad);
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                vista.jComboFondo.removeAllItems(); //limpiamos los combobox
-                modfon.setMoneda("Bolívar"); //seteamos la moneda por defecto (bs)
-                listafondo = modfon.listar(2);
-                crearCbxFondo(listafondo); //llenamos el combobox con la funcion de arriba (arraylist)
+                    JOptionPane.showMessageDialog(null, "No existen Unidades, debe registrar una para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
 
-                listaunidades = moduni.listar();
-                crearCbxUnidad(listaunidades); //llenamos el combobox con la funcion de arriba (arraylist)
+                    new CtrlUnidad();
 
-                listaCuenta = modcu.listarcuenta();
-                crearCbxCuenta(listaCuenta); //llenamos el combobox con la funcion de arriba (arraylist)v
+                } else if (modfor.contar() == 0) {
 
-                listaformapago = modfor.listar();
-                crearCbxFormadePago(listaformapago); //llenamos el combobox con la funcion de arriba (arraylist)
+                    new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
 
-                Component[] components = vista.jPanel2.getComponents();
-                JComponent[] com = {
-                    vista.txtReferencia, vista.txtDescripcion, vista.txtMonto
-                };
-                Validacion.copiar(components);
-                Validacion.pegar(com);
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "No existen Forma de Pagos, debe registrar uno para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
+
+                    new CtrlFormaPago();
+
+                } else if (modcu.contar() == 0) {
+
+                    new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "No existen Cuentas, debe registrar una para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
+
+                    new CtrlCuenta();
+
+                } else if (modfon.contar() == 0) {
+
+                    new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                    JOptionPane.showMessageDialog(null, "No existen Fondos, debe registrar uno para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
+
+                    new CtrlFondo();
+
+                } else {
+
+                    this.vista = new VisCuentaPorCobrar();
+                    this.modcuen = new CuentasPorCobrar();
+                    this.modc = new CerrarMes();
+
+                    modc.setParidad(Double.parseDouble(e)); //seteamos la paridad para que busque los gastos en la bd y los multiplique por la paridad
+                    vista.txtParidad.setText(e); // seteamos la paridad en la caja de texto para que este cargada al abrir la vantana
+
+                    vista.jComboUnidad.addItemListener(this);
+                    vista.btnGuardar.addActionListener(this);
+                    vista.txtMonto.addKeyListener(this);
+                    vista.txtDescripcion.addKeyListener(this);
+                    vista.txtReferencia.addKeyListener(this);
+                    vista.cbxMoneda.addItemListener(this);
+                    CtrlVentana.cambiarVista(vista); //funcion para que abra la ventana
+
+                    vista.cbxMoneda.addItemListener(this);
+                    stylecombo(vista.cbxMoneda);
+                    vista.jComboCuenta.addItemListener(this);
+                    stylecombo(vista.jComboCuenta);
+                    vista.jComboFondo.addItemListener(this);
+                    stylecombo(vista.jComboFondo);
+                    vista.jComboForma.addItemListener(this);
+                    stylecombo(vista.jComboForma);
+                    vista.jComboUnidad.addItemListener(this);
+                    stylecombo(vista.jComboUnidad);
+
+                    vista.jComboFondo.removeAllItems(); //limpiamos los combobox
+                    modfon.setMoneda("Bolívar"); //seteamos la moneda por defecto (bs)
+                    listafondo = modfon.listar(2);
+                    crearCbxFondo(listafondo); //llenamos el combobox con la funcion de arriba (arraylist)
+
+                    listaunidades = moduni.listar();
+                    crearCbxUnidad(listaunidades); //llenamos el combobox con la funcion de arriba (arraylist)
+
+                    listaCuenta = modcu.listarcuenta();
+                    crearCbxCuenta(listaCuenta); //llenamos el combobox con la funcion de arriba (arraylist)v
+
+                    listaformapago = modfor.listar();
+                    crearCbxFormadePago(listaformapago); //llenamos el combobox con la funcion de arriba (arraylist)
+
+                    Component[] components = vista.jPanel2.getComponents();
+                    JComponent[] com = {
+                        vista.txtReferencia, vista.txtDescripcion, vista.txtMonto
+                    };
+                    Validacion.copiar(components);
+                    Validacion.pegar(com);
+                }
             }
             System.out.println(hola);
             if (hola == null) {
@@ -660,7 +736,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         if (datos != null) {
             for (Unidades datosX : datos) {
                 moduni = datosX;
-                vista.jComboUnidad.addItem(moduni.getN_unidad());
+                vista.jComboUnidad.addItem(moduni.getNumeroUnidad());
             }
 
         }

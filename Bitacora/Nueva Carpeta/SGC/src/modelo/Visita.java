@@ -43,7 +43,7 @@ public class Visita extends ConexionBD {
 
                 visita.setId(rs.getInt("id"));
                 visita.getUnidad().setId(rs.getInt("id_unidad"));
-                visita.getUnidad().setN_unidad(rs.getString("n_unidad"));
+                visita.getUnidad().setNumeroUnidad(rs.getString("n_unidad"));
                 visita.getVisitante().setCedula(rs.getString("cedula"));
                 visita.getVisitante().setpNombre(rs.getString("nombre"));
                 visita.getVisitante().setpApellido(rs.getString("apellido"));

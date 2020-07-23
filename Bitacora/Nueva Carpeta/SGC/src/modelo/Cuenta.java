@@ -56,6 +56,41 @@ public class Cuenta extends ConexionBD {
         }
 
     }
+    
+     public int contar() {
+
+        ps = null;
+        rs = null;
+        con = getConexion();
+
+        String sql = "SELECT COUNT(*) FROM cuenta WHERE activo = true;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            rs.next();
+
+            int count = rs.getInt("count");
+
+            return count;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return 0;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
 
     public Boolean existeInactivo() {
         try {

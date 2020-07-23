@@ -12,12 +12,12 @@ import sgc.SGC;
 public class Unidades extends ConexionBD {
 
     private int id;
-    private String N_unidad;
+    private String numeroUnidad;
     private String documento;
     private String direccion;
     private float alicuota;
     private Condominio condominio;
-    private ArrayList<Propietarios> propietario;
+    private ArrayList<Propietarios> propietarios;
     private java.sql.Date fecha_desde;
     private java.sql.Date fecha_hasta;
     private TipoUnidad tipo_Unidad = new TipoUnidad();
@@ -29,25 +29,26 @@ public class Unidades extends ConexionBD {
 
     public Unidades() {
         condominio = new Condominio();
-        propietario = new ArrayList();
+        propietarios = new ArrayList();
 
     }
 
-    public boolean buscId(Unidades moduni) {
+    public boolean buscarId() {
 
         ps = null;
         rs = null;
         con = getConexion();
-        String sql = "SELECT MAX(id) as id from unidades";
+        String sql = "SELECT id from unidad WHERE n_unidad = ?;";
 
         try {
 
             ps = con.prepareStatement(sql);
-
+            ps.setString(1, numeroUnidad);
             rs = ps.executeQuery();
+
             if (rs.next()) {
 
-                moduni.setId(rs.getInt("id"));
+                id = rs.getInt("id");
 
                 return true;
             }
@@ -60,6 +61,7 @@ public class Unidades extends ConexionBD {
             return false;
 
         } finally {
+
             try {
 
                 con.close();
@@ -67,89 +69,99 @@ public class Unidades extends ConexionBD {
             } catch (SQLException e) {
 
                 System.err.println(e);
-
             }
+        }
+    }
 
+    public int contar() {
+
+        ps = null;
+        rs = null;
+        con = getConexion();
+
+        String sql = "SELECT COUNT(*) FROM unidad WHERE activo = true;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            rs.next();
+
+            int count = rs.getInt("count");
+
+            return count;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return 0;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
 
     }
 
     public Boolean reactivar() throws SQLException {
+
         try {
+
             ps = null;
             con = getConexion();
+            boolean resul = false;
+            int ind;
 
             if (vaciarPropietarios()) {
-                int ind;
 
                 String sql = "SELECT reactivar_unidad(?,?)";
 
                 ps = con.prepareStatement(sql);
 
                 ind = 1;
-                ps.setString(ind++, getN_unidad());
+                ps.setString(ind++, getNumeroUnidad());
                 ps.setInt(ind++, SGC.usuarioActual.getId());
 
                 if (ps.execute()) {
+
                     rs = ps.getResultSet();
+                    rs.next();
+                    resul = rs.getBoolean(1);
 
                 } else {
+
                     return false;
                 }
 
-                //Se selecciona el id de la unidad que se acaba de registrar
-                sql = "SELECT id FROM v_unidad WHERE n_unidad = ?";
+                if (buscarId()) {
 
-                ps = con.prepareStatement(sql);
+                    for (int i = 0; i < propietarios.size(); i++) {
 
-                ind = 1;
-
-                ps.setString(ind++, getN_unidad());
-
-                rs = ps.executeQuery();
-
-                if (rs.next()) {
-                    setId(rs.getInt(1));
-
+                        agregarPropietario(propietarios.get(i).getCedula());
+                    }
                 }
-
-                //Registro de los datos del puente
-                sql = "INSERT INTO puente_unidad_propietarios(ci_propietario, id_unidad, estado) VALUES (?,?,?);";
-
-                ps = con.prepareStatement(sql);
-
-                for (int i = 0; i < getPropietario().size(); i++) {
-                    ind = 1;
-                    ps.setString(ind++, getPropietario().get(i).getCedula());
-                    ps.setInt(ind++, getId());
-                    ps.setInt(ind++, getEstatus());
-
-                    ps.execute();
-
-                }
-
-                rs.next();
-                return rs.getBoolean(1);
-
-            } else {
-                return false;
-
             }
+
+            return resul;
+
         } catch (SQLException e) {
+
             System.err.println(e);
             return false;
 
         } finally {
-            try {
-                con.close();
 
-            } catch (SQLException e) {
-                System.err.println(e);
-            }
+            cerrar();
         }
     }
 
     public boolean registrar() {
+
         ps = null;
         con = getConexion();
 
@@ -160,93 +172,72 @@ public class Unidades extends ConexionBD {
         String sql = "SELECT agregar_unidad(?,?,?,?,?)";
 
         try {
+
             ps = con.prepareStatement(sql);
 
             ind = 1;
 
-            ps.setString(ind++, getN_unidad());
+            ps.setString(ind++, getNumeroUnidad());
             ps.setString(ind++, getDocumento());
             ps.setString(ind++, getDireccion());
             ps.setInt(ind++, getTipo_Unidad().getId());
             ps.setInt(ind++, SGC.usuarioActual.getId());
 
             if (ps.execute()) {
+
                 rs = ps.getResultSet();
                 rs.next();
                 resul = rs.getBoolean(1);
 
             } else {
+
                 return false;
             }
 
-            //Se selecciona el id de la unidad que se acaba de registrar
-            sql = "SELECT id FROM v_unidad WHERE n_unidad = ?";
+            if (buscarId()) {
 
-            ps = con.prepareStatement(sql);
+                for (int i = 0; i < getPropietarios().size(); i++) {
 
-            ind = 1;
-
-            ps.setString(ind++, getN_unidad());
-
-            rs = ps.executeQuery();
-
-            if (rs.next()) {
-                setId(rs.getInt(1));
-
-            }
-
-            //Registro de los datos del puente
-            sql = "INSERT INTO puente_unidad_propietarios(ci_propietario, id_unidad, estado) VALUES (?,?,?);";
-
-            ps = con.prepareStatement(sql);
-
-            for (int j = 0; j < getPropietario().size(); j++) {
-                ind = 1;
-                ps.setString(ind++, getPropietario().get(j).getCedula());
-                ps.setInt(ind++, getId());
-                ps.setInt(ind++, getEstatus());
-
-                ps.execute();
-
+                    agregarPropietario(propietarios.get(i).getCedula());
+                }
             }
 
             return resul;
 
         } catch (SQLException e) {
+
             System.err.println(e);
             return false;
 
         } finally {
-            try {
-                con.close();
 
-            } catch (SQLException e) {
-                System.err.println(e);
-
-            }
+            cerrar();
         }
     }
 
     private Boolean agregarPropietario(String cedula) throws SQLException {
+
         ps = null;
 
         int ind;
 
         String sql = "INSERT INTO puente_unidad_propietarios(ci_propietario, id_unidad, estado) VALUES (?,?,1);";
 
+        con = getConexion();
         ps = con.prepareStatement(sql);
 
         ind = 1;
         ps.setString(ind++, cedula);
         ps.setInt(ind++, getId());
-
         ps.execute();
 
-        return true;
+        cerrar();
 
+        return true;
     }
 
     public ArrayList<Unidades> listar() {
+
         ArrayList listaUnidades = new ArrayList();
         Unidades unidad = new Unidades();
 
@@ -269,7 +260,7 @@ public class Unidades extends ConexionBD {
                 unidad = new Unidades();
 
                 unidad.setId(rs.getInt("id"));
-                unidad.setN_unidad(rs.getString("n_unidad"));
+                unidad.setNumeroUnidad(rs.getString("n_unidad"));
                 unidad.setDocumento(rs.getString("n_documento"));
                 unidad.setDireccion(rs.getString("direccion"));
                 unidad.setAlicuota(rs.getFloat("alicuota"));
@@ -282,7 +273,7 @@ public class Unidades extends ConexionBD {
                 rs2 = ps.executeQuery();
 
                 while (rs2.next()) {
-                    unidad.getPropietario().add(new Propietarios(rs2.getString("ci_persona"), rs2.getString("p_nombre"), rs2.getString("s_nombre"), rs2.getString("p_apellido"), rs2.getString("s_apellido"), rs2.getString("telefono"), rs2.getString("correo")));
+                    unidad.getPropietarios().add(new Propietarios(rs2.getString("ci_persona"), rs2.getString("p_nombre"), rs2.getString("s_nombre"), rs2.getString("p_apellido"), rs2.getString("s_apellido"), rs2.getString("telefono"), rs2.getString("correo")));
                 }
 
                 listaUnidades.add(unidad);
@@ -292,12 +283,8 @@ public class Unidades extends ConexionBD {
             System.err.println(e);
 
         } finally {
-            try {
-                con.close();
 
-            } catch (SQLException e) {
-                System.err.println(e);
-            }
+            cerrar();
         }
 
         return listaUnidades;
@@ -364,19 +351,11 @@ public class Unidades extends ConexionBD {
 
             System.err.println(e);
             return false;
+
         } finally {
-            try {
 
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
+            cerrar();
         }
-
     }
 
     public boolean modificar() {
@@ -451,7 +430,7 @@ public class Unidades extends ConexionBD {
 
             }
 
-            numNuevos = getPropietario().size();
+            numNuevos = getPropietarios().size();
             numViejos = propietariosViejos.size();
 
             // Ciclo que recorre los propietarios nuevos
@@ -459,9 +438,9 @@ public class Unidades extends ConexionBD {
                 // Ciclo que recorre los propietarios viejos
                 for (int i = 0; i < numViejos; i++) {
                     // Si el propietario de la lista de nuevos coincide con el de la BD
-                    if (getPropietario().get(j).getCedula().equals(propietariosViejos.get(i).getCedula())) {
+                    if (getPropietarios().get(j).getCedula().equals(propietariosViejos.get(i).getCedula())) {
                         // No se hace nada con él y se elimina de ambos arreglos para dejar de compararlos
-                        getPropietario().remove(j);
+                        getPropietarios().remove(j);
                         numNuevos--;
                         propietariosViejos.remove(i);
                         numViejos--;
@@ -471,10 +450,10 @@ public class Unidades extends ConexionBD {
                 }
 
                 // Si el propietario nuevo no está en la lista de viejos
-                if (getPropietario().size() > 0) {
+                if (getPropietarios().size() > 0) {
                     // Se agrega como nuevo propietario y se elimina del arreglo de nuevos
-                    agregarPropietario(getPropietario().get(j).getCedula());
-                    getPropietario().remove(j);
+                    agregarPropietario(getPropietarios().get(j).getCedula());
+                    getPropietarios().remove(j);
                     numNuevos--;
                     j--;
 
@@ -531,7 +510,7 @@ public class Unidades extends ConexionBD {
         ps = con.prepareStatement(sql);
 
         ind = 1;
-        ps.setString(ind++, getN_unidad());
+        ps.setString(ind++, getNumeroUnidad());
 
         rs = ps.executeQuery();
 
@@ -645,7 +624,7 @@ public class Unidades extends ConexionBD {
             ps = con.prepareStatement(sql);
 
             ind = 1;
-            ps.setString(ind++, getN_unidad());
+            ps.setString(ind++, getNumeroUnidad());
 
             rs = ps.executeQuery();
 
@@ -657,20 +636,25 @@ public class Unidades extends ConexionBD {
             }
 
         } catch (SQLException ex) {
+
             Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
         } finally {
+
             try {
+
                 con.close();
 
             } catch (SQLException e) {
+
                 System.err.println(e);
             }
         }
     }
 
     public Boolean existeInactivo() {
+
         con = getConexion();
         ps = null;
         rs = null;
@@ -680,30 +664,34 @@ public class Unidades extends ConexionBD {
         String sql = "SELECT n_unidad FROM v_unidades_inactivas WHERE n_unidad = ?;";
 
         try {
+
             ps = con.prepareStatement(sql);
 
             ind = 1;
-            ps.setString(ind++, getN_unidad());
+            ps.setString(ind++, getNumeroUnidad());
 
             rs = ps.executeQuery();
 
             if (rs.next()) {
+
                 return true;
 
             } else {
                 return false;
-
             }
 
         } catch (SQLException ex) {
+
             Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
         } finally {
+
             try {
                 con.close();
 
             } catch (SQLException e) {
+
                 System.err.println(e);
             }
         }
@@ -764,12 +752,12 @@ public class Unidades extends ConexionBD {
         this.id = id;
     }
 
-    public String getN_unidad() {
-        return N_unidad;
+    public String getNumeroUnidad() {
+        return numeroUnidad;
     }
 
-    public void setN_unidad(String N_unidad) {
-        this.N_unidad = N_unidad;
+    public void setNumeroUnidad(String numeroUnidad) {
+        this.numeroUnidad = numeroUnidad;
     }
 
     public String getDireccion() {
@@ -796,12 +784,12 @@ public class Unidades extends ConexionBD {
         this.condominio = condominio;
     }
 
-    public ArrayList<Propietarios> getPropietario() {
-        return propietario;
+    public ArrayList<Propietarios> getPropietarios() {
+        return propietarios;
     }
 
-    public void setPropietario(ArrayList<Propietarios> propietario) {
-        this.propietario = propietario;
+    public void setPropietarios(ArrayList<Propietarios> propietarios) {
+        this.propietarios = propietarios;
     }
 
     public Date getFecha_desde() {

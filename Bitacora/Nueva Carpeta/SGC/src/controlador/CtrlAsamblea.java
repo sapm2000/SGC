@@ -47,29 +47,52 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
     private Funcion permiso;
 
     public CtrlAsamblea() {
-        this.catalogo = new Catalogo();
-        this.vista = new VisAsamblea();
-        this.modelo = new Asambleas();
         this.modPropietario = new Propietarios();
 
-        catalogo.lblTitulo.setText("Asambleas");
+        if (modPropietario.contar() == 0) {
 
-        llenarTabla(catalogo.tabla);
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
 
-        permisoBtn();
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-        if (permiso.getRegistrar()) {
-            catalogo.btnNuevo.setEnabled(true);
+            JOptionPane.showMessageDialog(null, "No existen Propietarios, debe registrar uno para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
+
+            new CtrlTipoUnidad();
+
+        } else {
+
+            this.catalogo = new Catalogo();
+            this.vista = new VisAsamblea();
+            this.modelo = new Asambleas();
+
+            catalogo.lblTitulo.setText("Asambleas");
+
+            llenarTabla(catalogo.tabla);
+
+            permisoBtn();
+
+            if (permiso.getRegistrar()) {
+                catalogo.btnNuevo.setEnabled(true);
+            }
+
+            this.catalogo.btnNuevo.addActionListener(this);
+            this.catalogo.tabla.addMouseListener(this);
+            this.catalogo.txtBuscar.addKeyListener(this);
+            vista.btnSalir.addActionListener(this);
+            this.vista.btnGuardar.addActionListener(this);
+            this.vista.txtBuscarPropietario.addKeyListener(this);
+
+            CtrlVentana.cambiarVista(catalogo);
+
         }
-
-        this.catalogo.btnNuevo.addActionListener(this);
-        this.catalogo.tabla.addMouseListener(this);
-        this.catalogo.txtBuscar.addKeyListener(this);
-        vista.btnSalir.addActionListener(this);
-        this.vista.btnGuardar.addActionListener(this);
-        this.vista.txtBuscarPropietario.addKeyListener(this);
-
-        CtrlVentana.cambiarVista(catalogo);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -442,7 +465,7 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
             resultado = false;
         }
 
-        if (vista.txtFecha.getDatoFecha()== null) {
+        if (vista.txtFecha.getDatoFecha() == null) {
             msj += "El campo Fecha no puede estar vacío\n";
             resultado = false;
         }

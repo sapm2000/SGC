@@ -63,6 +63,41 @@ public class Fondo extends ConexionBD {
             }
         }
     }
+    
+    public int contar() {
+
+        ps = null;
+        rs = null;
+        con = getConexion();
+
+        String sql = "SELECT COUNT(*) FROM fondos WHERE activo = true;";
+
+        try {
+
+            ps = con.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            rs.next();
+
+            int count = rs.getInt("count");
+
+            return count;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return 0;
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
+
+    }
 
     public ArrayList<Fondo> listar(int status) {
         ArrayList listaFondo = new ArrayList();

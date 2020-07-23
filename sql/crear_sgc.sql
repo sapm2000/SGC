@@ -2342,7 +2342,7 @@ FOR EACH ROW
 EXECUTE PROCEDURE mayuscula_tipo_usuario();
 
 -- tg_mayuscula_unidad
--- DROP TRIGGER tg_mayuscula_unidad
+-- DROP TRIGGER tg_mayuscula_unidad;
 CREATE TRIGGER tg_mayuscula_unidad
 BEFORE INSERT OR UPDATE
 ON unidad

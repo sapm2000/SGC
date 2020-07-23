@@ -48,6 +48,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
         this.modelo = new Usuario();
         this.vista = new VisUsuario();
         this.catalogo = new Catalogo();
+
         this.modPersona = new Persona();
         this.modTipo = new TipoUsuario();
 
@@ -397,16 +398,16 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
         if (!resultado) {
 
             UIManager UI = new UIManager();
-                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
-                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
 
-                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
-                        UIManager.put("Button.background", Color.white);
-                        UIManager.put("Button.font", Color.blue);
-                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-                        UIManager.put("Label.background", Color.blue);
-                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-            
+            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
             JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
         }
 
@@ -488,5 +489,5 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
 
         c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
     }
-    
+
 }

@@ -63,6 +63,7 @@ public class Usuario extends ConexionBD {
             }
         }
     }
+    
 
     public Boolean existe() {
         con = getConexion();

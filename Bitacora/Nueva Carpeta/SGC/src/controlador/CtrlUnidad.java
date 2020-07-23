@@ -74,50 +74,96 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
     private ArrayList<CerrarMes> listadetalleinteres;
 
     public CtrlUnidad() {
-        this.catalogo = new Catalogo();
-        this.vista = new VisUnidad();
-        this.modelo = new Unidades();
-
-        catalogo.lblTitulo.setText("Unidades");
-        CtrlVentana.cambiarVista(catalogo);
-        vista.cbxTipo.addItemListener(this);
-        stylecombo(vista.cbxTipo);
-        llenarTabla(catalogo.tabla);
-        permisoBtn();
-
-        if (permiso.getRegistrar()) {
-            catalogo.btnNuevo.setEnabled(true);
-        }
 
         tipoUnidad = new TipoUnidad();
-        this.detacun = new detallecuenta();
-        this.detare = new detalleRecibo();
-        this.modc = new CerrarMes();
         modPropietario = new Propietarios();
 
-        crearCbxTipoU();
+        if (tipoUnidad.contar() == 0) {
 
-        this.catalogo.btnNuevo.addActionListener(this);
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
 
-        this.vista.txtNumeroUnidad.addKeyListener(this);
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-        this.catalogo.tabla.addMouseListener(this);
-        this.catalogo.txtBuscar.addKeyListener(this);
+            JOptionPane.showMessageDialog(null, "No existen Tipos de Unidades, debe registrar una para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
 
-        this.vista.tablaPropietarios.addMouseListener(this);
-        this.vista.btnGuardar.addActionListener(this);
-        this.vista.btnLimpiar.addActionListener(this);
-        this.vista.btnEliminar.addActionListener(this);
-        this.vista.btnModificar.addActionListener(this);
-        this.vista.btnSalir.addActionListener(this);
-        this.detacun.txtBuscar.addKeyListener(this);
-        this.detacun.jTable1.addMouseListener(this);
+            new CtrlTipoUnidad();
 
-        this.catalogo.setVisible(true);
+        } else if (modPropietario.contar() == 0) {
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, "No existen Propietarios, debe registrar uno para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
+
+            new CtrlPropietario();
+
+        } else {
+
+            this.modelo = new Unidades();
+            this.catalogo = new Catalogo();
+            this.vista = new VisUnidad();
+
+            catalogo.lblTitulo.setText("Unidades");
+            CtrlVentana.cambiarVista(catalogo);
+            vista.cbxTipo.addItemListener(this);
+            stylecombo(vista.cbxTipo);
+            llenarTabla(catalogo.tabla);
+            permisoBtn();
+
+            if (permiso.getRegistrar()) {
+                catalogo.btnNuevo.setEnabled(true);
+            }
+
+            this.detacun = new detallecuenta();
+            this.detare = new detalleRecibo();
+            this.modc = new CerrarMes();
+
+            crearCbxTipoU();
+
+            this.catalogo.btnNuevo.addActionListener(this);
+
+
+            this.catalogo.tabla.addMouseListener(this);
+            this.catalogo.txtBuscar.addKeyListener(this);
+
+            this.vista.btnGuardar.addActionListener(this);
+            this.vista.btnLimpiar.addActionListener(this);
+            this.vista.btnEliminar.addActionListener(this);
+            this.vista.btnModificar.addActionListener(this);
+            this.vista.btnSalir.addActionListener(this);
+            this.vista.tablaPropietarios.addMouseListener(this);
+            this.vista.txtNumeroUnidad.addKeyListener(this);
+            this.vista.txtDocumento.addKeyListener(this);
+            this.vista.txtDireccion.addKeyListener(this);
+            
+            this.detacun.txtBuscar.addKeyListener(this);
+            this.detacun.jTable1.addMouseListener(this);
+
+            this.catalogo.setVisible(true);
+        }
     }
 
     public void actionPerformed(ActionEvent e) {
+        
         if (e.getSource() == catalogo.btnNuevo) {
+            
             this.vista.btnGuardar.setEnabled(true);
             this.vista.btnModificar.setEnabled(false);
             this.vista.btnEliminar.setEnabled(false);
@@ -131,13 +177,16 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
         }
 
         if (e.getSource() == vista.btnGuardar) {
+            
             if (validar()) {
+                
                 if (vista.tablaPropietarios.isEditing()) {//si se esta edtando la tabla
+                    
                     vista.tablaPropietarios.getCellEditor().stopCellEditing();//detenga la edicion
                 }
 
                 modelo = new Unidades();
-                modelo.setN_unidad(vista.txtNumeroUnidad.getText());
+                modelo.setNumeroUnidad(vista.txtNumeroUnidad.getText());
                 modelo.setDocumento(vista.txtDocumento.getText());
                 int ind = vista.cbxTipo.getSelectedIndex() - 1;
                 modelo.getTipo_Unidad().setId(listaTipoUnidad.get(ind).getId());
@@ -169,9 +218,12 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
                     JOptionPane.showMessageDialog(null, "Debe seleccionar al menos 1 registro de la tabla ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                 } else {
+                    
                     for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
+                        
                         if (valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
-                            modelo.getPropietario().add(new Propietarios(vista.tablaPropietarios.getValueAt(i, 0).toString()));
+                            
+                            modelo.getPropietarios().add(new Propietarios(vista.tablaPropietarios.getValueAt(i, 0).toString()));
                             modelo.setEstatus(1);
                         }
                     }
@@ -303,7 +355,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
                     vista.tablaPropietarios.getCellEditor().stopCellEditing();//detenga la edicion
                 }
 
-                modelo.setN_unidad(vista.txtNumeroUnidad.getText());
+                modelo.setNumeroUnidad(vista.txtNumeroUnidad.getText());
                 modelo.setDocumento(vista.txtDocumento.getText());
                 int ind = vista.cbxTipo.getSelectedIndex() - 1;
                 modelo.getTipo_Unidad().setId(listaTipoUnidad.get(ind).getId());
@@ -332,11 +384,11 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
                     JOptionPane.showMessageDialog(null, "Debe seleccionar al menos 1 registro de la tabla ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                 } else {
-                    modelo.getPropietario().clear();
+                    modelo.getPropietarios().clear();
 
                     for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
                         if (valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
-                            modelo.getPropietario().add(new Propietarios(vista.tablaPropietarios.getValueAt(i, 0).toString()));
+                            modelo.getPropietarios().add(new Propietarios(vista.tablaPropietarios.getValueAt(i, 0).toString()));
 
                         }
                     }
@@ -450,11 +502,9 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
                 do {
                     hola = "";
 
-                    
                     UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
                     UI.put("Panel.background", new ColorUIResource(255, 255, 255));
 
-                    
                     UIManager.put("Button.background", Color.white);
                     UIManager.put("Button.font", Color.blue);
                     UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
@@ -500,7 +550,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
                 modelo = listaUnidades.get(fila);
 
-                vista.txtNumeroUnidad.setText(modelo.getN_unidad());
+                vista.txtNumeroUnidad.setText(modelo.getNumeroUnidad());
                 vista.cbxTipo.setSelectedItem(modelo.getTipo_Unidad().getNombre());
                 vista.txtDocumento.setText(modelo.getDocumento());
                 vista.txtDireccion.setText(modelo.getDireccion());
@@ -581,7 +631,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
         if (ke.getSource() == vista.txtDocumento) {
             Validacion.Espacio(ke);
-            Validacion.limite(ke, vista.txtNumeroUnidad.getText(), 15);
+            Validacion.limite(ke, vista.txtDocumento.getText(), 15);
         }
 
         if (ke.getSource() == vista.txtDireccion) {
@@ -715,10 +765,10 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
                 columna[ind++] = listaPropietarios.get(i).getTelefono();
                 columna[ind++] = listaPropietarios.get(i).getCorreo();
 
-                for (int j = 0; j < modelo.getPropietario().size(); j++) {
+                for (int j = 0; j < modelo.getPropietarios().size(); j++) {
                     ind = 4;
 
-                    if (listaPropietarios.get(i).getCedula().equals(modelo.getPropietario().get(j).getCedula())) {
+                    if (listaPropietarios.get(i).getCedula().equals(modelo.getPropietarios().get(j).getCedula())) {
                         columna[ind++] = Boolean.TRUE;
                         break;
 
@@ -1025,7 +1075,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
         for (int i = 0; i < numRegistro; i++) {
             ind = 0;
 
-            columna[ind++] = listaUnidades.get(i).getN_unidad();
+            columna[ind++] = listaUnidades.get(i).getNumeroUnidad();
             columna[ind++] = listaUnidades.get(i).getDireccion();
             columna[ind++] = listaUnidades.get(i).getTipo_Unidad().getNombre();
             columna[ind++] = listaUnidades.get(i).getTipo_Unidad().getArea();
@@ -1103,7 +1153,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
         }
 
         if (!resultado) {
-            
+
             UIManager UI = new UIManager();
             UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
             UI.put("Panel.background", new ColorUIResource(255, 255, 255));
@@ -1114,7 +1164,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
             UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-            
+
             JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
         }
 

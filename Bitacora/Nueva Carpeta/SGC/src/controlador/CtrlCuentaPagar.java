@@ -60,12 +60,69 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
     public CtrlCuentaPagar() {
 
+        this.modFormaPago = new FormaPago();
+        this.modFondo = new Fondo();
+        this.modGasto = new Gasto();
+        
+        if (modFormaPago.contar() == 0) {
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, "No existen Forma de Gagos, debe registrar una para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
+
+            new CtrlFormaPago();
+
+        } else if (modFondo.contar() == 0) {
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, "No existen Fondos, debe registrar uno para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
+       
+            new CtrlFondo();
+
+        } else if (modGasto.contar() == 0) {
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, "No existen Gastos, debe registrar uno para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
+       
+            new CtrlGasto();
+
+        } else {
+        
         this.vista = new VisCuentaPorPagar();
         this.modelo = new CuentaPagar();
 
-        this.modGasto = new Gasto();
-        this.modFormaPago = new FormaPago();
-        this.modFondo = new Fondo();
         this.modCuenta = new Cuenta();
 
         this.catPagos = new Catalogo();
@@ -108,6 +165,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
         stylecombo(vista.cbxFormaPago);
         vista.cbxMoneda.addItemListener(this);
         stylecombo(vista.cbxMoneda);
+        }
     }
 
     @Override

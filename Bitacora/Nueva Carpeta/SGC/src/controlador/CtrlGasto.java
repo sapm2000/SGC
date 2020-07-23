@@ -64,12 +64,51 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
     private Funcion permiso;
 
     public CtrlGasto() {
+        this.modConcepto = new ConceptoGasto();
+        this.modProveedor = new Proveedores();
+
+        if (modConcepto.contar() == 0) {
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, "No existen Conceptos, debe registrar uno para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
+
+            new CtrlConceptoGasto();
+            
+
+        } else if (modProveedor.contar() == 0) {
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, "No existen Proveedores, debe registrar uno para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
+       
+            new CtrlProveedor();
+
+        } else {
+        
         this.catalogo = new Catalogo();
         this.vista = new VisGasto();
         this.modelo = new Gasto();
-
-        this.modConcepto = new ConceptoGasto();
-        this.modProveedor = new Proveedores();
         this.modAsamblea = new Asambleas();
         this.modc = new CerrarMes();
         this.catProveedores = new buscarProveedor();
@@ -113,7 +152,8 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
         stylecombo(vista.jCalcular);
         vista.jcombotipo.addItemListener(this);
         stylecombo(vista.jcombotipo);
-
+        
+        }
     }
 
     public void actionPerformed(ActionEvent e) {

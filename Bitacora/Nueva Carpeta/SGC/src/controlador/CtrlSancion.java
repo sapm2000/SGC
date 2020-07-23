@@ -55,10 +55,32 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
     DefaultTableModel dm;
 
     public CtrlSancion() {
+        
+        this.moduni = new Unidades();
+        
+        if (moduni.contar() == 0) {
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, "No existen unidades, debe registrar una para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
+
+            new CtrlUnidad();
+            
+        } else {
+        
         this.vista = new VisSancion();
         this.catalogo = new Catalogo();
         this.modsan = new Sancion();
-        this.moduni = new Unidades();
         this.modc = new CerrarMes();
 
         catalogo.lblTitulo.setText("Sanciones");
@@ -88,6 +110,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
         vista.txaDescripcion.addKeyListener(this);
         this.catalogo.setVisible(true);
 
+        }
     }
 
     public void LlenartablaSancion(JTable tablaD) {
@@ -178,7 +201,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = listaunimod.get(i).uni.getN_unidad();
+            columna[0] = listaunimod.get(i).uni.getNumeroUnidad();
 
             if (listaunimod.get(i).getId() != 0) {
                 columna[1] = Boolean.TRUE;
@@ -219,7 +242,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = listaunimod.get(i).uni.getN_unidad();
+            columna[0] = listaunimod.get(i).uni.getNumeroUnidad();
 
             if (listaunimod.get(i).getId() != 0) {
                 columna[1] = Boolean.TRUE;
@@ -268,7 +291,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
 
         for (int i = 0; i < numRegistro; i++) {
 
-            columna[0] = listaunidades.get(i).getN_unidad();
+            columna[0] = listaunidades.get(i).getNumeroUnidad();
 
             modeloT.addRow(columna);
 

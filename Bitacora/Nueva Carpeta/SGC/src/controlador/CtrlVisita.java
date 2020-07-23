@@ -51,9 +51,31 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
     private DefaultTableModel dm;
 
     public CtrlVisita() {
+        
+        this.modUnidad = new Unidades();
+        
+        if (modUnidad.contar() == 0) {
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, "No existen Unidades, debe registrar una para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
+
+            new CtrlUnidad();
+
+        } else {
+        
         this.modelo = new Visita();
         this.vista = new VisVisita();
-        this.modUnidad = new Unidades();
 
         catPersonas = new Catalogo();
         catPersonas.lblTitulo.setText("Buscar Persona");
@@ -86,6 +108,8 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
         llenarTabla();
 
         CtrlVentana.cambiarVista(vista);
+        
+        }
     }
 
     @Override
@@ -287,7 +311,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
             vista.txtCedula.setText(modelo.getVisitante().getCedula());
             vista.txtNombre.setText(modelo.getVisitante().getpNombre());
             vista.txtApellido.setText(modelo.getVisitante().getpApellido());
-            vista.cbxUnidad.setSelectedItem(modelo.getUnidad().getN_unidad());
+            vista.cbxUnidad.setSelectedItem(modelo.getUnidad().getNumeroUnidad());
 
             if (modelo.getMatricula() != null) {
 
@@ -403,7 +427,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
         if (listaUnidad != null) {
 
             for (Unidades datosX : listaUnidad) {
-                vista.cbxUnidad.addItem(datosX.getN_unidad());
+                vista.cbxUnidad.addItem(datosX.getNumeroUnidad());
             }
         }
     }
@@ -456,7 +480,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
         for (int i = 0; i < numRegistro; i++) {
 
             ind = 0;
-            columna[ind++] = lista.get(i).getUnidad().getN_unidad();
+            columna[ind++] = lista.get(i).getUnidad().getNumeroUnidad();
             columna[ind++] = lista.get(i).getVisitante().getCedula();
             columna[ind++] = lista.get(i).getVisitante().getpNombre() + " " + lista.get(i).getVisitante().getpApellido();
             columna[ind++] = lista.get(i).getFechaEntrada();

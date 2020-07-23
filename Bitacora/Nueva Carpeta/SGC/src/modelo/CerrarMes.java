@@ -517,7 +517,7 @@ public class CerrarMes extends ConexionBD {
 
                 modc = new CerrarMes();
 
-                modc.uni.setN_unidad(rs.getString(1));
+                modc.uni.setNumeroUnidad(rs.getString(1));
                 modc.setMes_cierre(rs.getInt(2));
                 modc.setAño_cierre(rs.getInt(3));
                 modc.setMonto_dolar(rs.getDouble(4));

@@ -347,7 +347,7 @@ public class Sancion extends ConexionBD {
                 modsan = new Sancion();
 
                 //prs = new Persona();
-                modsan.uni.setN_unidad(rs.getString("n_unidad"));
+                modsan.uni.setNumeroUnidad(rs.getString("n_unidad"));
                 modsan.uni.setId(rs.getInt("id"));
                 modsan.setId(rs.getInt("id_sancion"));
 
@@ -388,7 +388,7 @@ public class Sancion extends ConexionBD {
                 modsan = new Sancion();
 
                 //prs = new Persona();
-                modsan.uni.setN_unidad(rs.getString("n_unidad"));
+                modsan.uni.setNumeroUnidad(rs.getString("n_unidad"));
                 modsan.uni.setId(rs.getInt("id"));
                 modsan.setId(rs.getInt("id_sancion"));
 
