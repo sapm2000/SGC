@@ -100,8 +100,8 @@ public class VisGasto extends javax.swing.JPanel {
         cbxMoneda = new javax.swing.JComboBox<>();
         jSeparator5 = new javax.swing.JSeparator();
         txtNombre = new javax.swing.JTextField();
-        jMonthChooser1 = new org.netbeans.modules.form.InvalidComponent();
-        jYearChooser1 = new rojeru_san.componentes.RSYearDate();
+        txtAño = new rojeru_san.componentes.RSYearDate();
+        txtMes = new newscomponents.RSDateMonth();
         jLabel10 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -148,7 +148,6 @@ public class VisGasto extends javax.swing.JPanel {
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salvar.png"))); // NOI18N
         btnGuardar.setToolTipText("Guardar");
-        btnGuardar.setBorder(null);
         btnGuardar.setBorderPainted(false);
         btnGuardar.setContentAreaFilled(false);
         btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -160,7 +159,6 @@ public class VisGasto extends javax.swing.JPanel {
 
         btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/contrato.png"))); // NOI18N
         btnModificar.setToolTipText("Modificar");
-        btnModificar.setBorder(null);
         btnModificar.setBorderPainted(false);
         btnModificar.setContentAreaFilled(false);
         btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -191,7 +189,6 @@ public class VisGasto extends javax.swing.JPanel {
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar (4).png"))); // NOI18N
         btnEliminar.setToolTipText("Eliminar");
-        btnEliminar.setBorder(null);
         btnEliminar.setBorderPainted(false);
         btnEliminar.setContentAreaFilled(false);
         btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -213,7 +210,6 @@ public class VisGasto extends javax.swing.JPanel {
 
         btnBuscarproveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda.png"))); // NOI18N
         btnBuscarproveedor.setToolTipText("Buscar proveedor");
-        btnBuscarproveedor.setBorder(null);
         btnBuscarproveedor.setBorderPainted(false);
         btnBuscarproveedor.setContentAreaFilled(false);
         btnBuscarproveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -384,8 +380,8 @@ public class VisGasto extends javax.swing.JPanel {
         txtNombre.setForeground(new java.awt.Color(255, 255, 255));
         txtNombre.setBorder(null);
         jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 280, 20));
-        jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 150, -1));
-        jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 120, 30));
+        jPanel2.add(txtAño, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 120, 30));
+        jPanel2.add(txtMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 140, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
@@ -403,7 +399,6 @@ public class VisGasto extends javax.swing.JPanel {
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow.png"))); // NOI18N
         btnSalir.setToolTipText("Volver al catálogo");
-        btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
         btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -468,7 +463,6 @@ public class VisGasto extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
-    private org.netbeans.modules.form.InvalidComponent jMonthChooser1;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -480,7 +474,6 @@ public class VisGasto extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     public javax.swing.JTable jTable;
-    private rojeru_san.componentes.RSYearDate jYearChooser1;
     public javax.swing.JComboBox<String> jcombotipo;
     public javax.swing.JLabel labelAsamblea;
     public javax.swing.JLabel labelmense;
@@ -489,6 +482,8 @@ public class VisGasto extends javax.swing.JPanel {
     public javax.swing.JPanel panelTipo;
     public javax.swing.JRadioButton si;
     public javax.swing.JTextArea txaObservaciones;
+    public rojeru_san.componentes.RSYearDate txtAño;
+    public newscomponents.RSDateMonth txtMes;
     public javax.swing.JTextField txtNmeses;
     public javax.swing.JTextField txtNombre;
     public javax.swing.JTextField txtProveedor;

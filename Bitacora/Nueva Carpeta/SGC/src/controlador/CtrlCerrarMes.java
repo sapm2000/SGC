@@ -38,7 +38,6 @@ import modelo.Unidades;
 import vista.Catalogo;
 import vista.PantallaPrincipal;
 import vista.VisCerrarMes;
-import vista.VisCerrarMes.CustomUI;
 
 /**
  *
@@ -148,8 +147,8 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
             int messis = (c1.get(Calendar.MONTH)) + 1;
             int anniosis = (c1.get(Calendar.YEAR));
 
-            modc.setMes_cierre(vista.jMonthChooser1.getMonth() + 1);
-            modc.setAño_cierre(vista.jYearChooser1.getYear());
+            modc.setMes_cierre(vista.txtMes.getSelectedIndex() + 1);
+            modc.setAño_cierre(vista.txtAño.getYear());
             int mm = modc.getMes_cierre();
             if (modc.getAño_cierre() <= anniosis) {
                 if (modc.getAño_cierre() < anniosis) {
@@ -172,8 +171,8 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
 
                         JOptionPane.showMessageDialog(null, "Este mes ya se ha cerrado ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                     } else {
-                        modc.setMes_cierre(vista.jMonthChooser1.getMonth() + 1);
-                        modc.setAño_cierre(vista.jYearChooser1.getYear());
+                        modc.setMes_cierre(vista.txtMes.getSelectedIndex() + 1);
+                        modc.setAño_cierre(vista.txtAño.getYear());
                         listaunidades = moduni.listar();
 
                         int numRegistro = listaunidades.size();
@@ -186,8 +185,8 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
 
                         int numReales = 0;
 
-                        int mes = vista.jMonthChooser1.getMonth() + 1;
-                        int año = vista.jYearChooser1.getYear();
+                        int mes = vista.txtMes.getSelectedIndex() + 1;
+                        int año = vista.txtAño.getYear();
                         if (numCuotas == 0) {
 
                         } else {

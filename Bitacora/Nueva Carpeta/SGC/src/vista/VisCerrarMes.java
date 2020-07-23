@@ -8,13 +8,11 @@ package vista;
 import java.awt.Color;
 import static java.awt.Color.white;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JList;
@@ -22,8 +20,6 @@ import javax.swing.ListCellRenderer;
 import javax.swing.plaf.ComboBoxUI;
 import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
-import javax.swing.text.MutableAttributeSet;
-import javax.swing.text.StyleConstants;
 import vista.VisCerrarMes.CustomUI;
 
 /**
@@ -60,8 +56,8 @@ public class VisCerrarMes extends javax.swing.JPanel {
         txtParidad = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jMonthChooser1 = new newscomponents.RSDateMonth();
-        jYearChooser1 = new rojeru_san.componentes.RSYearDate();
+        txtAño = new rojeru_san.componentes.RSYearDate();
+        txtMes = new newscomponents.RSDateMonth();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
@@ -78,9 +74,8 @@ public class VisCerrarMes extends javax.swing.JPanel {
         jButton1.setForeground(new java.awt.Color(0, 94, 159));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/1imageonline-co-merged-image.png"))); // NOI18N
         jButton1.setText("<html>\n<br><br><br>Procesar el Pago y Descargar el Recibo\n</html>");
-        jButton1.setBorder(null);
         jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.setHideActionText(true);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setIconTextGap(10);
@@ -127,8 +122,8 @@ public class VisCerrarMes extends javax.swing.JPanel {
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 180, 10));
-        jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 100, 20));
-        jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 110, 20));
+        jPanel2.add(txtAño, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 110, 20));
+        jPanel2.add(txtMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 110, 20));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 320, 210));
 
@@ -172,11 +167,11 @@ public class VisCerrarMes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private newscomponents.RSDateMonth jMonthChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator2;
-    private rojeru_san.componentes.RSYearDate jYearChooser1;
+    public rojeru_san.componentes.RSYearDate txtAño;
+    public newscomponents.RSDateMonth txtMes;
     public javax.swing.JTextField txtParidad;
     // End of variables declaration//GEN-END:variables
 static public class CustomUI extends BasicComboBoxUI{

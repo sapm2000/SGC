@@ -147,8 +147,8 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
                 modelo.setTipo(vista.jcombotipo.getSelectedItem().toString());
                 modelo.setProveedor(modProveedor);
                 modelo.setCalcular(vista.jCalcular.getSelectedItem().toString());
-                modelo.setMes(vista.jMonthChooser1.getMonth() + 1);
-                modelo.setAnio(vista.jYearChooser1.getYear());
+                modelo.setMes(vista.txtMes.getSelectedIndex() + 1);
+                modelo.setAnio(vista.txtAño.getYear());
                 modelo.setObservacion(vista.txaObservaciones.getText());
                 modelo.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
 
@@ -281,8 +281,8 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
                 modelo.setTipo(vista.jcombotipo.getSelectedItem().toString());
                 modelo.setProveedor(modProveedor);
                 modelo.setCalcular(vista.jCalcular.getSelectedItem().toString());
-                modelo.setMes(vista.jMonthChooser1.getMonth() + 1);
-                modelo.setAnio(vista.jYearChooser1.getYear());
+                modelo.setMes(vista.txtMes.getSelectedIndex() + 1);
+                modelo.setAnio(vista.txtAño.getYear());
                 modelo.setObservacion(vista.txaObservaciones.getText());
                 modelo.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
 
@@ -873,8 +873,8 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
             vista.txtProveedor.setText(modProveedor.getNombre());
             vista.jCalcular.setSelectedItem(modelo.getCalcular());
             vista.cbxMoneda.setSelectedItem(modelo.getMoneda());
-            vista.jMonthChooser1.setMonth(modelo.getMes() - 1);
-            vista.jYearChooser1.setYear(modelo.getAnio());
+            vista.txtMes.setSelectedIndex(modelo.getMes() - 1);
+            vista.txtAño.setYear(modelo.getAnio());
             vista.txaObservaciones.setText(modelo.getObservacion());
             vista.txtNmeses.setText(String.valueOf(modelo.getNumMeses()));
 

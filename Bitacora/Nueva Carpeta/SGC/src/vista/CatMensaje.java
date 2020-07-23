@@ -82,10 +82,9 @@ public class CatMensaje extends javax.swing.JPanel {
         btnMensaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/email.png"))); // NOI18N
         btnMensaje.setText("Nuevo Mensaje");
         btnMensaje.setToolTipText("Crear un nuevo mensaje");
-        btnMensaje.setBorder(null);
         btnMensaje.setBorderPainted(false);
         btnMensaje.setContentAreaFilled(false);
-        btnMensaje.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMensaje.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMensaje.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/email.png"))); // NOI18N
         btnMensaje.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/email (1).png"))); // NOI18N
         btnMensaje.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/email (1).png"))); // NOI18N
@@ -131,15 +130,14 @@ public class CatMensaje extends javax.swing.JPanel {
         btnEliminar.setForeground(new java.awt.Color(0, 94, 159));
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eemail.png"))); // NOI18N
         btnEliminar.setText(" Eliminar");
-        btnEliminar.setBorder(null);
         btnEliminar.setBorderPainted(false);
         btnEliminar.setContentAreaFilled(false);
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEliminar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eemail.png"))); // NOI18N
         btnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eemail (1).png"))); // NOI18N
         btnEliminar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eemail (1).png"))); // NOI18N
         btnEliminar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eemail (1).png"))); // NOI18N
-        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 130, 130, -1));
+        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 120, 130, 20));
 
         jSeparator6.setBackground(new java.awt.Color(0, 94, 159));
         jSeparator6.setForeground(new java.awt.Color(0, 94, 159));

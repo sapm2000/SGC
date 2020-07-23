@@ -79,7 +79,7 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
 
             vista.txtNombre.setText("");
             vista.txaDescripcion.setText("");
-            vista.txtFecha.setDate(null);
+            vista.txtFecha.setDatoFecha(null);
 
             llenarTablaPropietarios(vista.tablaAsistentes, "Registrar");
             addCheckBox(2, vista.tablaAsistentes);
@@ -94,7 +94,7 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
                 modelo = new Asambleas();
                 modelo.setNombre(vista.txtNombre.getText());
                 modelo.setDescripcion(vista.txaDescripcion.getText());
-                modelo.setFecha(new java.sql.Date(vista.txtFecha.getDate().getTime()));
+                modelo.setFecha(new java.sql.Date(vista.txtFecha.getDatoFecha().getTime()));
 
                 j = 0;
 
@@ -181,7 +181,7 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
 
         vista.txtNombre.setText(modelo.getNombre());
         vista.txaDescripcion.setText(modelo.getDescripcion());
-        vista.txtFecha.setDate(modelo.getFecha());
+        vista.txtFecha.setDatoFecha(modelo.getFecha());
 
         llenarTablaPropietarios(vista.tablaAsistentes, "Consultar");
 
@@ -442,7 +442,7 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
             resultado = false;
         }
 
-        if (vista.txtFecha.getDate() == null) {
+        if (vista.txtFecha.getDatoFecha()== null) {
             msj += "El campo Fecha no puede estar vacío\n";
             resultado = false;
         }

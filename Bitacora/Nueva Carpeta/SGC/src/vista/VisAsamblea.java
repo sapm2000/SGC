@@ -12,7 +12,6 @@ import javax.swing.JScrollBar;
 import javax.swing.JTable;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
-import vista.buscarProveedor.MyScrollBarUI;
 
 public class VisAsamblea extends javax.swing.JPanel {
 
@@ -150,10 +149,9 @@ public class VisAsamblea extends javax.swing.JPanel {
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible.png"))); // NOI18N
         btnGuardar.setText("Guardar Asamblea");
         btnGuardar.setToolTipText("Guardar");
-        btnGuardar.setBorder(null);
         btnGuardar.setBorderPainted(false);
         btnGuardar.setContentAreaFilled(false);
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
         btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
         btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
@@ -180,10 +178,9 @@ public class VisAsamblea extends javax.swing.JPanel {
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow.png"))); // NOI18N
         btnSalir.setToolTipText("Volver al catálogo");
-        btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalir.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow.png"))); // NOI18N
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow (1).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow (1).png"))); // NOI18N
@@ -237,7 +234,7 @@ public class VisAsamblea extends javax.swing.JPanel {
     public javax.swing.JTable tablaAsistentes;
     public javax.swing.JTextArea txaDescripcion;
     public javax.swing.JTextField txtBuscarPropietario;
-    private rojeru_san.componentes.RSDateChooser txtFecha;
+    public rojeru_san.componentes.RSDateChooser txtFecha;
     public javax.swing.JTextField txtNombre;
     public javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables

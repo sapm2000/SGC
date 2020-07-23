@@ -544,7 +544,10 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="rojeru_san.componentes.RSDateChooser" name="jDateChooser1">
+        <Component class="rojeru_san.componentes.RSDateChooser" name="txtFecha">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="490" y="210" width="-1" height="-1"/>
@@ -701,13 +704,10 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;br&gt;&lt;br&gt;&lt;br&gt;Procesar el Pago y Descargar el Recibo&#xa;&lt;/html&gt;"/>
         <Property name="toolTipText" type="java.lang.String" value="Procesar el pago y descargar el recibo"/>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="null"/>
-        </Property>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Por defecto"/>
+          <Color id="Default Cursor"/>
         </Property>
         <Property name="hideActionText" type="boolean" value="true"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>

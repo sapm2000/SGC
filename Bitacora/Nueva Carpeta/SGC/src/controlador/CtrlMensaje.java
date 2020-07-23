@@ -141,10 +141,44 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
 
         // Si el usuario presiona el botón Eliminar
         if (e.getSource() == catalogo.btnEliminar) {
+
             int indice = catalogo.panelBandejas.getSelectedIndex();
+            
+                // Si la pestaña seleccionada del panel de pestañas es Enviados
+            if (indice == 0) {
+
+                // Para cada fila de la tabla Enviados
+                for (int i = 0; i < catalogo.tablaEnviados.getRowCount(); i++) {
+
+                    //Si el mensaje actual fue seleccionado
+                    if (String.valueOf(catalogo.tablaEnviados.getValueAt(i, 3)) == "true") {
+
+                        //Se obtiene el mensaje seleccionado y lo elimina
+                        if (listaEnviados.get(i).eliminarEnviado()) {
+                            
+                        } else {
+
+                            UIManager UI = new UIManager();
+                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                            int botonDialogo = JOptionPane.OK_OPTION;
+                            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                            UIManager.put("Button.background", Color.white);
+                            UIManager.put("Button.font", Color.blue);
+                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                            UIManager.put("Label.background", Color.blue);
+                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                            JOptionPane.showMessageDialog(catalogo, "No se pudo eliminar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        }
+                    }
+                }
+
+                llenarTablaEnviados();
 
             // Si la pestaña seleccionada del panel de pestañas es Recibidos
-            if (indice == 0) {
+            } else if (indice == 1) {
 
                 // Para cada fila de la tabla Recibidos
                 for (int i = 0; i < catalogo.tablaRecibidos.getRowCount(); i++) {
@@ -175,39 +209,6 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
                 }
 
                 llenarTablaRecibidos();
-
-                // Si la pestaña seleccionada del panel de pestañas es Enviados
-            } else if (indice == 1) {
-
-                // Para cada fila de la tabla Enviados
-                for (int i = 0; i < catalogo.tablaEnviados.getRowCount(); i++) {
-
-                    //Si el mensaje actual fue seleccionado
-                    if (String.valueOf(catalogo.tablaEnviados.getValueAt(i, 3)) == "true") {
-
-                        //Se obtiene el mensaje seleccionado y lo elimina
-                        if (listaEnviados.get(i).eliminarEnviado()) {
-
-                        } else {
-
-                            UIManager UI = new UIManager();
-                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
-                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
-
-                            int botonDialogo = JOptionPane.OK_OPTION;
-                            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
-                            UIManager.put("Button.background", Color.white);
-                            UIManager.put("Button.font", Color.blue);
-                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-                            UIManager.put("Label.background", Color.blue);
-                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-
-                            JOptionPane.showMessageDialog(catalogo, "No se pudo eliminar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
-                        }
-                    }
-                }
-
-                llenarTablaEnviados();
             }
         }
     }

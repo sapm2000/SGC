@@ -95,7 +95,7 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
         cbxMoneda = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        jDateChooser1 = new rojeru_san.componentes.RSDateChooser();
+        txtFecha = new rojeru_san.componentes.RSDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -272,7 +272,7 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 240, 20));
-        jPanel2.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, -1, -1));
+        jPanel2.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, -1, -1));
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 1230, 280));
 
@@ -328,7 +328,6 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/1imageonline-co-merged-image.png"))); // NOI18N
         btnGuardar.setText("<html>\n<br><br><br>Procesar el Pago y Descargar el Recibo\n</html>");
         btnGuardar.setToolTipText("Procesar el pago y descargar el recibo");
-        btnGuardar.setBorder(null);
         btnGuardar.setBorderPainted(false);
         btnGuardar.setContentAreaFilled(false);
         btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -372,7 +371,6 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
     public javax.swing.JComboBox<String> jComboFondo;
     public javax.swing.JComboBox<String> jComboForma;
     public javax.swing.JComboBox<String> jComboUnidad;
-    private rojeru_san.componentes.RSDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -404,6 +402,7 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
     public javax.swing.JTable jTable1;
     public javax.swing.JTable jTable2;
     public javax.swing.JTextArea txtDescripcion;
+    public rojeru_san.componentes.RSDateChooser txtFecha;
     public javax.swing.JTextField txtMonto;
     public javax.swing.JTextField txtParidad;
     public javax.swing.JTextField txtReferencia;

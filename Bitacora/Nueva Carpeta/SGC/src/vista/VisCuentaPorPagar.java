@@ -79,7 +79,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         txtPariedad = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
-        fecha = new rojeru_san.componentes.RSDateChooser();
+        txtFecha = new rojeru_san.componentes.RSDateChooser();
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -148,7 +148,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         jPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, 40));
 
         cbxFormaPago.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        cbxFormaPago.setNextFocusableComponent(fecha);
+        cbxFormaPago.setNextFocusableComponent(txtFecha);
         jPanel.add(cbxFormaPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 133, 240, 30));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -242,7 +242,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         panelPariedad.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 260, 10));
 
         jPanel.add(panelPariedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 370, 60));
-        jPanel.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, 30));
+        jPanel.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, 30));
 
         add(jPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 750, 280));
 
@@ -269,7 +269,6 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         btnProcesar.setForeground(new java.awt.Color(0, 94, 159));
         btnProcesar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/1imageonline-co-merged-image.png"))); // NOI18N
         btnProcesar.setText("<html>\n<br><br><br>Procesar el Pago y Descargar el Recibo\n</html>");
-        btnProcesar.setBorder(null);
         btnProcesar.setContentAreaFilled(false);
         btnProcesar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnProcesar.setHideActionText(true);
@@ -288,7 +287,6 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         btnMostrarProcesados.setForeground(new java.awt.Color(0, 94, 159));
         btnMostrarProcesados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/management.png"))); // NOI18N
         btnMostrarProcesados.setText("Mostrar Procesado");
-        btnMostrarProcesados.setBorder(null);
         btnMostrarProcesados.setBorderPainted(false);
         btnMostrarProcesados.setContentAreaFilled(false);
         btnMostrarProcesados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -306,7 +304,6 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         btnPagos.setForeground(new java.awt.Color(0, 94, 159));
         btnPagos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice.png"))); // NOI18N
         btnPagos.setText("Mostrar Pagos");
-        btnPagos.setBorder(null);
         btnPagos.setBorderPainted(false);
         btnPagos.setContentAreaFilled(false);
         btnPagos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -339,7 +336,6 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
     public javax.swing.JComboBox<String> cbxFondo;
     public javax.swing.JComboBox<String> cbxFormaPago;
     public javax.swing.JComboBox<String> cbxMoneda;
-    private rojeru_san.componentes.RSDateChooser fecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -367,6 +363,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
     public javax.swing.JPanel panelReferencia;
     public javax.swing.JTable tablaGastos;
     public javax.swing.JTextField txtDescripcion;
+    public rojeru_san.componentes.RSDateChooser txtFecha;
     public javax.swing.JTextField txtGasto;
     public javax.swing.JTextField txtMonto;
     public javax.swing.JTextField txtPariedad;

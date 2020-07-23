@@ -95,7 +95,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
         llenarTablaGastos(vista.tablaGastos, "Pendiente");
 
         Component[] components = vista.jPanel.getComponents();
-        JComponent[] com = {vista.fecha, vista.txtDescripcion, vista.txtMonto, vista.txtGasto, vista.txtPariedad};
+        JComponent[] com = {vista.txtFecha, vista.txtDescripcion, vista.txtMonto, vista.txtGasto, vista.txtPariedad};
         Validacion.copiar(components);
         Validacion.pegar(com);
 
@@ -134,7 +134,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
                 modelo.setDescripcion(vista.txtDescripcion.getText());
                 modelo.setMonto(Double.parseDouble(vista.txtMonto.getText()));
-                modelo.setFecha(new java.sql.Date(vista.fecha.getDate().getTime()));
+                modelo.setFecha(new java.sql.Date(vista.txtFecha.getDatoFecha().getTime()));
                 ind = vista.cbxFondo.getSelectedIndex() - 1;
                 modelo.setFondo(listaFondo.get(ind));
                 modelo.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
@@ -553,7 +553,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
             formaPagoEstaSeleccionado = true;
         }
 
-        if (vista.fecha.getDate() == null) {
+        if (vista.txtFecha.getDatoFecha()== null) {
             resultado = false;
             mensaje += "Debe seleccionar una Fecha de pago \n";
         }

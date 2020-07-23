@@ -443,7 +443,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                 modcuen.uni.setId(listaunidades.get(ind).getId()); //seteo el id de la unidad 
                                 modcuen.setMonto(Double.parseDouble(vista.txtMonto.getText())); //seteo el monto ingresado en la casilla de monto
                                 modcuen.setReferencia(vista.txtReferencia.getText()); //seteo el numero de referencia
-                                java.sql.Date sqlDate = convert(vista.jDateChooser1.getDate()); //seteo la fecha y la convierto a formato sql
+                                java.sql.Date sqlDate = convert(vista.txtFecha.getDatoFecha()); //seteo la fecha y la convierto a formato sql
                                 modcuen.setFecha(sqlDate);
 
                                 double total_dolar = 0; //declaro un par de variables que serviran para obtener el total 
