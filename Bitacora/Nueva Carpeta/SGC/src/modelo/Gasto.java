@@ -54,7 +54,7 @@ public class Gasto extends ConexionBD {
         rs = null;
         con = getConexion();
 
-        String sql = "SELECT COUNT(*) FROM gasto WHERE activo = true;";
+        String sql = "SELECT COUNT(*) FROM gasto;";
 
         try {
 
@@ -590,36 +590,36 @@ public class Gasto extends ConexionBD {
         return true;
     }
 
-    public Boolean restarSaldo(Double saldoNuevo) {
-        ps = null;
-        con = getConexion();
-        int ind;
-
-        String sql = "SELECT pagar_gasto(?,?)";
-
-        try {
-            ind = 1;
-            ps = con.prepareStatement(sql);
-            ps.setInt(ind++, getId());
-            ps.setDouble(ind++, saldoNuevo);
-            ps.execute();
-
-            return true;
-
-        } catch (Exception e) {
-            System.err.println(e);
-            return false;
-
-        } finally {
-
-            try {
-                con.close();
-
-            } catch (Exception e) {
-                System.err.println(e);
-            }
-        }
-    }
+//    public Boolean restarSaldo(Double saldoNuevo) {
+//        ps = null;
+//        con = getConexion();
+//        int ind;
+//
+//        String sql = "SELECT pagar_gasto(?,?)";
+//
+//        try {
+//            ind = 1;
+//            ps = con.prepareStatement(sql);
+//            ps.setInt(ind++, getId());
+//            ps.setDouble(ind++, saldoNuevo);
+//            ps.execute();
+//
+//            return true;
+//
+//        } catch (Exception e) {
+//            System.err.println(e);
+//            return false;
+//
+//        } finally {
+//
+//            try {
+//                con.close();
+//
+//            } catch (Exception e) {
+//                System.err.println(e);
+//            }
+//        }
+//    }
 
     private Boolean retirarConceptos(ArrayList<ConceptoGasto> conceptos) throws SQLException {
         ps = null;

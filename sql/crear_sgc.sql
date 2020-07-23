@@ -377,8 +377,9 @@ CREATE TABLE IF NOT EXISTS bitacora (
 
 
 -------- Funciones --------
--- pagar_gasto
-CREATE OR REPLACE FUNCTION pagar_gasto(id2 integer, monto2 double precision) RETURNS void AS $$
+--pagar_gasto
+-- DROP FUNCTION pagar_gasto;
+/*CREATE OR REPLACE FUNCTION pagar_gasto(id2 integer, monto2 double precision) RETURNS void AS $$
 DECLARE
 	saldo_bd double precision;
 BEGIN
@@ -390,7 +391,7 @@ BEGIN
 		UPDATE gasto SET pagado = 'Pagado' WHERE id = id2;
 	END IF;
 END;
-$$ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql;*/
 
 -- cambiar_pregunta
 CREATE OR REPLACE FUNCTION cambiar_pregunta(usuario2 character varying, pregunta2 character varying, respuesta2 character varying, password2 character varying) RETURNS boolean AS $$
@@ -2157,6 +2158,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 -------- funciones trigger --------
+
 -- calcular_alicuota
 CREATE OR REPLACE FUNCTION calcular_alicuota() RETURNS TRIGGER AS $$
 DECLARE
@@ -2201,6 +2203,29 @@ BEGIN
 			RETURN null;
 		END IF;
 	END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+-- pagar_gasto
+-- DROP FUNCTION pagar_gasto;
+
+CREATE OR REPLACE FUNCTION pagar_gasto() RETURNS TRIGGER AS $$
+DECLARE
+	saldo_bd double precision;
+BEGIN
+	
+	UPDATE fondos SET saldo = saldo - OLD.monto WHERE id = OLD.id_fondo;
+	UPDATE gasto SET saldo = saldo - OLD.monto WHERE id = OLD.id_gasto;
+	
+	saldo_bd := (SELECT saldo FROM gasto WHERE id = OLD.id_gasto);
+
+	IF saldo_bd = 0 THEN
+	
+		UPDATE gasto SET pagado = 'Pagado' WHERE id = OLD.id_gasto;
+		
+	END IF;
+	
+	RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -2512,6 +2537,13 @@ ON puente_mensaje_usuario
 FOR EACH ROW
 EXECUTE PROCEDURE eliminar_mensaje();
 
+-------- Otros trigger --------
+
+CREATE TRIGGER tg_restar_saldo
+AFTER INSERT
+ON cuenta_pagar
+FOR EACH ROW
+EXECUTE PROCEDURE pagar_gasto();
 
 -------- Vistas --------
 -- v_propietario

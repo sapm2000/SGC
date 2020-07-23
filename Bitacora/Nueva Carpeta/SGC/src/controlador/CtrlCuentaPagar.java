@@ -208,9 +208,9 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
                 if (modelo.registrar()) {
 
-                    if (modelo.getFondo().restarFondo(modelo.getMonto().floatValue())) {
+//                    if (modelo.getFondo().restarFondo(modelo.getMonto().floatValue())) {
 
-                        if (modGasto.restarSaldo(montoARestar)) {
+//                        if (modGasto.restarSaldo(montoARestar)) {
 
                             UIManager UI = new UIManager();
                             UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
@@ -226,13 +226,13 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
                             JOptionPane.showMessageDialog(null, "Pago registrado ", "Pagado", JOptionPane.INFORMATION_MESSAGE, p);
 
-                        } else {
-                            System.out.println("Error al restar el saldo del gasto");
-                        }
+//                        } else {
+//                            System.out.println("Error al restar el saldo del gasto");
+//                        }
 
-                    } else {
-                        System.out.println("Error al restar el saldo del fondo");
-                    }
+//                    } else {
+//                        System.out.println("Error al restar el saldo del fondo");
+//                    }
 
                 } else {
 
@@ -280,7 +280,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
             if (vista.cbxFormaPago.getSelectedIndex() != 0) {
 
-                if (!vista.cbxFormaPago.getSelectedItem().toString().equals("Efectivo")) {
+                if (!vista.cbxFormaPago.getSelectedItem().toString().equals("EFECTIVO")) {
                     vista.panelReferencia.setVisible(true);
 
                 } else {

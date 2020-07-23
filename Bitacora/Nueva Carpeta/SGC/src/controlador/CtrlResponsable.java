@@ -298,13 +298,30 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
             }
         }
         if (e.getSource() == vista.btnEliminar) {
-            if (modelo.eliminar()) {
+            
+                if (modelo.tieneUsuario()) {
+                    
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                Icon n = new ImageIcon(getClass().getResource("/img/multiplication-sign.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(null, "No se pudo eliminar, el Responsable tiene un Usuario", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, n);
+                CtrlVentana.cambiarVista(catalogo);
+                      
+                }else if (modelo.eliminar()) {
 
                 UIManager UI = new UIManager();
                 UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
                 UI.put("Panel.background", new ColorUIResource(255, 255, 255));
 
-                Icon n = new ImageIcon(getClass().getResource("/img/multiplicatio-sign.png"));
+                Icon n = new ImageIcon(getClass().getResource("/img/multiplication-sign.png"));
                 UIManager.put("Button.background", Color.white);
                 UIManager.put("Button.font", Color.blue);
                 UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
@@ -332,6 +349,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
             }
         }
+        
         if (e.getSource() == vista.btnLimpiar) {
             limpiar();
         }
