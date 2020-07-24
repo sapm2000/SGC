@@ -271,6 +271,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
 
                     //Se guardan en el modelo el monto y el saldo
                     modelo.setMonto(montoTotal);
+                    JOptionPane.showMessageDialog(null, montoTotal);
                     modelo.setSaldo(montoTotal);
 
                     //Si se logró el registro
@@ -327,13 +328,13 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
                 modelo.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
 
                 //Se verifica si el monto es ordinario o extraordinario
-                if (modelo.getTipo().equals("Ordinario")) {
+                if (modelo.getTipo().equals("ORDINARIO")) {
                     //Si es ordinario, el número de meses que aplica es == 1
                     modelo.setNumMeses(1);
                     modelo.setMesesRestantes(1);
                     modelo.setAsamblea(null);
 
-                } else if (modelo.getTipo().equals("Extraordinario")) {
+                } else if (modelo.getTipo().equals("EXTRAORDINARIO")) {
                     //Si es extraordinario, el número de meses que aplica se obtiene del usuario
                     modelo.setNumMeses(Integer.parseInt(vista.txtNmeses.getText()));
                     modelo.setMesesRestantes(modelo.getNumMeses());
@@ -776,7 +777,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
             resultado = false;
         }
 
-        if (vista.jcombotipo.getSelectedItem().equals("Extraordinario")) {
+        if (vista.jcombotipo.getSelectedItem().equals("EXTRAORDINARIO")) {
 
             if (vista.txtNmeses.getText().isEmpty()) {
                 msj += "El campo Número de meses no puede estar vacío \n";

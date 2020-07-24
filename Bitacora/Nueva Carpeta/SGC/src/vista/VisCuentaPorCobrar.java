@@ -272,6 +272,16 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 240, 20));
+
+        txtFecha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        txtFecha.setForeground(new java.awt.Color(0, 151, 255));
+        txtFecha.setColorBackground(new java.awt.Color(0, 94, 159));
+        txtFecha.setColorButtonHover(new java.awt.Color(0, 151, 255));
+        txtFecha.setColorDiaActual(new java.awt.Color(0, 151, 255));
+        txtFecha.setColorForeground(new java.awt.Color(0, 94, 159));
+        txtFecha.setFgText(new java.awt.Color(0, 151, 255));
+        txtFecha.setFormatoFecha("dd/MM/yyyy");
+        txtFecha.setFuente(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel2.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, -1, -1));
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 1230, 280));

@@ -74,6 +74,7 @@ public class VisCerrarMes extends javax.swing.JPanel {
         jButton1.setForeground(new java.awt.Color(0, 94, 159));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/1imageonline-co-merged-image.png"))); // NOI18N
         jButton1.setText("<html>\n<br><br><br>Procesar el Pago y Descargar el Recibo\n</html>");
+        jButton1.setBorder(null);
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.setHideActionText(true);
@@ -82,7 +83,7 @@ public class VisCerrarMes extends javax.swing.JPanel {
         jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/2imageonline-co-merged-image.png"))); // NOI18N
         jButton1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/2imageonline-co-merged-image.png"))); // NOI18N
         jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/2imageonline-co-merged-image.png"))); // NOI18N
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 220, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 220, 60));
 
         jPanel2.setBackground(new java.awt.Color(0, 94, 159));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -90,7 +91,7 @@ public class VisCerrarMes extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("<html>\nMes a <br> Cerrar:\n</html>");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 60, 30));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 60, 30));
 
         cbxMoneda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxMoneda.setForeground(new java.awt.Color(255, 255, 255));
@@ -102,12 +103,12 @@ public class VisCerrarMes extends javax.swing.JPanel {
                 cbxMonedaActionPerformed(evt);
             }
         });
-        jPanel2.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 140, 30));
+        jPanel2.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 140, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("<html>\nSeleccione la <br> moneda que <br> mantendra el valor:\n</html>");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, -1, -1));
 
         txtParidad.setBackground(new java.awt.Color(0, 94, 159));
         txtParidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -118,12 +119,31 @@ public class VisCerrarMes extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Paridad:");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, -1, -1));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 180, 10));
-        jPanel2.add(txtAño, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 110, 20));
-        jPanel2.add(txtMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 110, 20));
+
+        txtAño.setBackground(new java.awt.Color(255, 255, 255));
+        txtAño.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        txtAño.setForeground(new java.awt.Color(255, 255, 255));
+        txtAño.setToolTipText("Elija el año");
+        txtAño.setColorBackground(new java.awt.Color(0, 94, 159));
+        txtAño.setColorButtonHover(new java.awt.Color(0, 151, 255));
+        txtAño.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel2.add(txtAño, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 130, 30));
+
+        txtMes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        txtMes.setColorArrow(new java.awt.Color(0, 94, 159));
+        txtMes.setColorBorde(new java.awt.Color(255, 255, 255));
+        txtMes.setColorBoton(new java.awt.Color(255, 255, 255));
+        txtMes.setColorDisabledIndex(new java.awt.Color(255, 255, 255));
+        txtMes.setColorDisabledIndexText(new java.awt.Color(0, 94, 159));
+        txtMes.setColorFondo(new java.awt.Color(0, 94, 159));
+        txtMes.setColorListaItemsTXT(new java.awt.Color(0, 94, 159));
+        txtMes.setColorSeleccion(new java.awt.Color(0, 94, 159));
+        txtMes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel2.add(txtMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 120, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 320, 210));
 
