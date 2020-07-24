@@ -290,46 +290,6 @@ public class Unidades extends ConexionBD {
         return listaUnidades;
     }
 
-    public boolean buscarsancion(Unidades moduni) {
-
-        ps = null;
-        rs = null;
-        con = getConexion();
-        String sql = "SELECT * FROM unidades inner join puente_sancion_unidad on puente_sancion_unidad.id_unidad=unidades.id inner join sancion on puente_sancion_unidad.id_sancion=sancion.id where unidades.id=? and estado='Pendiente'";
-
-        try {
-
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, moduni.getId());
-
-            rs = ps.executeQuery();
-            if (rs.next()) {
-
-                return true;
-            }
-
-            return false;
-
-        } catch (SQLException e) {
-
-            System.err.println(e);
-            return false;
-
-        } finally {
-            try {
-
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
-
-        }
-
-    }
-
     public boolean actualizarAlicuota(Unidades modelo) {
 
         ps = null;

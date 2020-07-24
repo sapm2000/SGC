@@ -2577,6 +2577,14 @@ CREATE OR REPLACE VIEW v_asambleas_propietario AS
 	FROM v_propietario AS pr
 	INNER JOIN puente_asambleas_propietario AS pu ON pu.ci_propietario = pr.ci_persona
 	INNER JOIN asambleas AS asa ON asa.id = pu.id_asamblea;
+	
+-- v_bitacora
+--DROP VIEW v_bitacora;
+CREATE OR REPLACE VIEW v_bitacora AS
+	SELECT id_bitacora, operacion, tabla, usu.usuario, usu.ci_persona AS cedula,
+	CONCAT(per.p_nombre,' ', per.p_apellido) AS persona, valor_viejo, valor_nuevo, fecha_hora AS fecha FROM bitacora 
+	INNER JOIN usuario AS usu ON id_usuario = usu.id 
+	INNER JOIN persona AS per ON cedula = usu.ci_persona;  
 
 -- v_concepto_gasto
 CREATE OR REPLACE VIEW v_concepto_gasto AS
@@ -2728,7 +2736,7 @@ CREATE OR REPLACE VIEW v_tipo_unidad_inactivo AS
 -- v_unidad
 -- DROP VIEW v_unidad;
 CREATE OR REPLACE VIEW v_unidad AS
-	SELECT u.id, n_unidad, n_documento, direccion, alicuota, tu.id AS id_tipo, tu.tipo, tu.area
+	SELECT u.id, n_unidad, n_documento, direccion, alicuota, tu.id AS id_tipo, tu.tipo, (SELECT area FROM tipo_unidad WHERE id = u.id_tipo) AS area
 	FROM unidad AS u
 	INNER JOIN tipo_unidad AS tu ON tu.id = u.id_tipo
 	WHERE u.activo = true;
