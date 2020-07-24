@@ -119,8 +119,8 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
             columna[0] = listaCierremes.get(i).uni.getNumeroUnidad();
             columna[1] = listaCierremes.get(i).getMes_cierre();
             columna[2] = listaCierremes.get(i).getAño_cierre();
-            columna[3] = listaCierremes.get(i).getMonto_dolar();
-            columna[4] = listaCierremes.get(i).getMonto_bolivar();
+            columna[3] = Validacion.formatopago.format(listaCierremes.get(i).getMonto_dolar());
+            columna[4] = Validacion.formatopago.format(listaCierremes.get(i).getMonto_bolivar());
 
             modeloT.addRow(columna);
 

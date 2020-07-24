@@ -375,12 +375,12 @@ public class Sancion extends ConexionBD {
         ps = null;
         rs = null;
 
-        String sql = "select unidades.id, unidades.n_unidad, puente_sancion_unidad.id_sancion from unidades left join puente_sancion_unidad on puente_sancion_unidad.id_unidad=unidades.id and puente_sancion_unidad.id_sancion=?  where unidades.id_condominio=?";
+        String sql = "select unidad.id, unidad.n_unidad, puente_sancion_unidad.id_sancion from unidad left join puente_sancion_unidad on puente_sancion_unidad.id_unidad=unidad.id and puente_sancion_unidad.id_sancion=?";
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
 
-            ps.setString(2, SGC.condominioActual.getRif());
+           
 
             rs = ps.executeQuery();
 

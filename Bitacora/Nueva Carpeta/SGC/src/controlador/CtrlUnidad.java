@@ -139,7 +139,6 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
             this.catalogo.btnNuevo.addActionListener(this);
 
-
             this.catalogo.tabla.addMouseListener(this);
             this.catalogo.txtBuscar.addKeyListener(this);
 
@@ -152,7 +151,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
             this.vista.txtNumeroUnidad.addKeyListener(this);
             this.vista.txtDocumento.addKeyListener(this);
             this.vista.txtDireccion.addKeyListener(this);
-            
+
             this.detacun.txtBuscar.addKeyListener(this);
             this.detacun.jTable1.addMouseListener(this);
 
@@ -161,9 +160,9 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
     }
 
     public void actionPerformed(ActionEvent e) {
-        
+
         if (e.getSource() == catalogo.btnNuevo) {
-            
+
             this.vista.btnGuardar.setEnabled(true);
             this.vista.btnModificar.setEnabled(false);
             this.vista.btnEliminar.setEnabled(false);
@@ -177,11 +176,11 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
         }
 
         if (e.getSource() == vista.btnGuardar) {
-            
+
             if (validar()) {
-                
+
                 if (vista.tablaPropietarios.isEditing()) {//si se esta edtando la tabla
-                    
+
                     vista.tablaPropietarios.getCellEditor().stopCellEditing();//detenga la edicion
                 }
 
@@ -218,11 +217,11 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
                     JOptionPane.showMessageDialog(null, "Debe seleccionar al menos 1 registro de la tabla ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
 
                 } else {
-                    
+
                     for (int i = 0; i < vista.tablaPropietarios.getRowCount(); i++) {
-                        
+
                         if (valueOf(vista.tablaPropietarios.getValueAt(i, 4)) == "true") {
-                            
+
                             modelo.getPropietarios().add(new Propietarios(vista.tablaPropietarios.getValueAt(i, 0).toString()));
                             modelo.setEstatus(1);
                         }
@@ -855,8 +854,8 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
                 columna[0] = listaCierremes.get(i).getMes_cierre();
                 columna[1] = listaCierremes.get(i).getAño_cierre();
-                columna[2] = listaCierremes.get(i).getMonto_bolivar();
-                columna[3] = listaCierremes.get(i).getMonto_dolar();
+                columna[2] = Validacion.formatopago.format(listaCierremes.get(i).getMonto_bolivar());
+                columna[3] = Validacion.formatopago.format(listaCierremes.get(i).getMonto_dolar());
                 columna[4] = Validacion.formatopago.format(listaCierremes.get(i).getSaldo_restante_dolar()); //limito los decimales
                 columna[5] = Validacion.formatopago.format(listaCierremes.get(i).getSaldo_restante_bs());
                 columna[6] = listaCierremes.get(i).getMoneda_dominante();
@@ -918,8 +917,8 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
             columna[0] = listadetallegasto.get(i).prove.getCedulaRif();
             columna[1] = listadetallegasto.get(i).prove.getNombre();
-            columna[2] = listadetallegasto.get(i).getMonto_bolivar();
-            columna[3] = listadetallegasto.get(i).getMonto_dolar();
+            columna[2] = Validacion.formatopago.format(listadetallegasto.get(i).getMonto_bolivar());
+            columna[3] = Validacion.formatopago.format(listadetallegasto.get(i).getMonto_dolar());
             columna[4] = listadetallegasto.get(i).concep.getNombre();
             columna[5] = listadetallegasto.get(i).getTipo_gasto();
 
@@ -967,8 +966,8 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
             columna[0] = listadetalleinteres.get(i).in.getNombre();
             String var6 = String.valueOf(listadetalleinteres.get(i).in.getFactor()) + "%";
             columna[1] = var6;
-            columna[2] = listadetalleinteres.get(i).getMonto_dolar();
-            columna[3] = listadetalleinteres.get(i).getMonto_bolivar();
+            columna[2] = Validacion.formatopago.format(listadetalleinteres.get(i).getMonto_dolar());
+            columna[3] = Validacion.formatopago.format(listadetalleinteres.get(i).getMonto_bolivar());
 
             modeloT.addRow(columna);
 
@@ -1016,8 +1015,8 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
             } else {
                 columna[2] = "";
             }
-            columna[3] = listadetallesancion.get(i).getMonto_dolar();
-            columna[4] = listadetallesancion.get(i).getMonto_bolivar();
+            columna[3] = Validacion.formatopago.format(listadetallesancion.get(i).getMonto_dolar());
+            columna[4] = Validacion.formatopago.format(listadetallesancion.get(i).getMonto_bolivar());
 
             modeloT.addRow(columna);
 
