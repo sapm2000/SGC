@@ -357,10 +357,10 @@ CREATE TABLE puente_tipo_funcion (
 	id serial NOT null PRIMARY KEY,
 	id_tipo int NOT null REFERENCES tipo_usuario (id),
 	id_funcion int NOT null REFERENCES funcion (id),
+	ver boolean,
 	registrar boolean,
 	modificar boolean,
-	eliminar boolean,
-	todo boolean
+	eliminar boolean
 );
 
 -------- Otras tablas --------
@@ -2542,6 +2542,7 @@ EXECUTE PROCEDURE eliminar_mensaje();
 
 -------- Otros trigger --------
 
+-- tg_restar_saldo
 CREATE TRIGGER tg_restar_saldo
 AFTER INSERT
 ON cuenta_pagar
@@ -2563,7 +2564,7 @@ CREATE OR REPLACE VIEW v_propietario_inactivo AS
 	INNER JOIN persona AS per ON per.cedula = pro.ci_persona
 	WHERE pro.activo = false;
 
--- asambleas
+-- v_asambleas
 -- DROP VIEW v_asambleas;
 CREATE OR REPLACE VIEW v_asambleas AS
 	SELECT asa.id, asa.nombre, asa.descripcion, asa.fecha
@@ -2576,6 +2577,14 @@ CREATE OR REPLACE VIEW v_asambleas_propietario AS
 	FROM v_propietario AS pr
 	INNER JOIN puente_asambleas_propietario AS pu ON pu.ci_propietario = pr.ci_persona
 	INNER JOIN asambleas AS asa ON asa.id = pu.id_asamblea;
+	
+-- v_bitacora
+--DROP VIEW v_bitacora;
+CREATE OR REPLACE VIEW v_bitacora AS
+	SELECT id_bitacora, operacion, tabla, usu.usuario, usu.ci_persona AS cedula,
+	CONCAT(per.p_nombre,' ', per.p_apellido) AS persona, valor_viejo, valor_nuevo, fecha_hora AS fecha FROM bitacora 
+	INNER JOIN usuario AS usu ON id_usuario = usu.id 
+	INNER JOIN persona AS per ON cedula = usu.ci_persona;  
 
 -- v_concepto_gasto
 CREATE OR REPLACE VIEW v_concepto_gasto AS
@@ -2597,15 +2606,6 @@ CREATE OR REPLACE VIEW v_cuenta AS
 	LEFT JOIN persona AS per ON per.cedula = cue.ci_persona
 	LEFT JOIN condominio AS co ON co.rif = cue.rif_condominio
 	WHERE cue.activo = true;
-
--- v_cuenta_inactivo
--- DROP VIEW v_cuenta_inactivo;
-CREATE OR REPLACE VIEW v_cuenta_inactivo AS
-	SELECT n_cuenta, tipo, id_banco, nombre_banco AS banco, ci_persona, per.p_nombre AS nombre, per.p_apellido AS apellido, rif_condominio, cue.activo
-	FROM cuenta AS cue
-	INNER JOIN banco AS ban ON ban.id = cue.id_banco
-	INNER JOIN persona AS per ON per.cedula = cue.ci_persona
-	WHERE cue.activo = false;
 
 -- v_cuenta_pagar
 -- DROP VIEW v_cuenta_pagar;
@@ -2690,7 +2690,16 @@ CREATE OR REPLACE VIEW v_perfil AS
 -- v_permisos
 -- DROP VIEW v_permisos;
 CREATE OR REPLACE VIEW v_permisos AS
-	SELECT usuario, tipo.id AS id_tipo, tipo.tipo, id_funcion, funcion, registrar, modificar, eliminar, todo
+	SELECT usuario, tipo.id AS id_tipo, tipo.tipo, id_funcion, funcion, ver, registrar, modificar, eliminar
+	FROM puente_tipo_funcion AS puente
+	INNER JOIN tipo_usuario AS tipo ON tipo.id = puente.id_tipo
+	INNER JOIN funcion AS f ON f.id = puente.id_funcion
+	INNER JOIN usuario AS u ON u.id_tipo_usuario = puente.id_tipo;
+
+-- v_tipo_permisos
+-- DROP VIEW v_tipo_permisos;
+CREATE OR REPLACE VIEW v_tipo_permisos AS
+	SELECT usuario, tipo.id AS id_tipo, tipo.tipo, id_funcion, funcion, ver, registrar, modificar, eliminar
 	FROM puente_tipo_funcion AS puente
 	INNER JOIN tipo_usuario AS tipo ON tipo.id = puente.id_tipo
 	INNER JOIN funcion AS f ON f.id = puente.id_funcion
@@ -2703,13 +2712,6 @@ CREATE OR REPLACE VIEW v_responsable AS
 	INNER JOIN persona AS per ON per.cedula = r.ci_persona
 	WHERE r.activo = true;
 
--- v_responsable_inactivo
-CREATE OR REPLACE VIEW v_responsable_inactivo AS
-	SELECT r.ci_persona, p_nombre, s_nombre, p_apellido, s_apellido, telefono, correo
-	FROM responsable AS r
-	INNER JOIN persona AS per ON per.cedula = r.ci_persona
-	WHERE r.activo = false;
-
 -- v_tipo_unidad
 -- DROP v_tipo_unidad
 CREATE OR REPLACE VIEW v_tipo_unidad AS
@@ -2717,17 +2719,10 @@ CREATE OR REPLACE VIEW v_tipo_unidad AS
 	FROM tipo_unidad AS tu
 	WHERE tu.activo = true;
 
--- v_tipo_unidad_inactivo
--- DROP v_tipo_unidad_inactivo
-CREATE OR REPLACE VIEW v_tipo_unidad_inactivo AS
-	SELECT tu.id, tu.tipo, tu.area
-	FROM tipo_unidad AS tu
-	WHERE tu.activo = false;
-
 -- v_unidad
 -- DROP VIEW v_unidad;
 CREATE OR REPLACE VIEW v_unidad AS
-	SELECT u.id, n_unidad, n_documento, direccion, alicuota, tu.id AS id_tipo, tu.tipo, tu.area
+	SELECT u.id, n_unidad, n_documento, direccion, alicuota, tu.id AS id_tipo, tu.tipo, (SELECT area FROM tipo_unidad WHERE id = u.id_tipo) AS area
 	FROM unidad AS u
 	INNER JOIN tipo_unidad AS tu ON tu.id = u.id_tipo
 	WHERE u.activo = true;
@@ -2740,13 +2735,6 @@ CREATE OR REPLACE VIEW v_unidad_propietario AS
 	INNER JOIN unidad AS u ON u.id = puente.id_unidad
 	WHERE u.activo = true  AND estado = 1;
 
--- v_unidades_inactivas
--- DROP VIEW v_unidades_inactivas;
-CREATE OR REPLACE VIEW v_unidades_inactivas AS
-	SELECT id, n_unidad, n_documento, direccion
-	FROM unidad
-	WHERE activo = false;
-
 -- v_usuario
 -- DROP VIEW v_usuario;
 CREATE OR REPLACE VIEW v_usuario AS	
@@ -2754,12 +2742,6 @@ CREATE OR REPLACE VIEW v_usuario AS
 	FROM usuario AS u
 	INNER JOIN persona AS pe ON pe.cedula = u.ci_persona
 	WHERE u.activo = true;
-
--- v_usuario_inactivo
-CREATE OR REPLACE VIEW v_usuario_inactivo AS	
-	SELECT id, usuario, ci_persona
-	FROM usuario
-	WHERE activo = false;
 
 -- v_visita
 -- DROP VIEW v_visita;
