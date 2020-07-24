@@ -480,6 +480,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        
         if (e.getSource() == catalogo.tabla) {
 
             UIManager UI = new UIManager();
@@ -497,8 +498,11 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
             int result = JOptionPane.showOptionDialog(null, "¿Desea ver detalles de pago o modificar datos?", "MENÚ", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, p, options, options[0]);
 
             if (result == 0) {
+                
                 String hola = "";
+                
                 do {
+                    
                     hola = "";
 
                     UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
@@ -528,10 +532,13 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
                     detacun.txtMesesdeuda.setText(String.valueOf(fa));
 
                     if (hola == null) {
+                        
                         break;
+                        
                     } else {
 
                     }
+                    
                 } while (isValidDouble(hola) == false); //ciclo que repite mientras no ingresen un numero valido
 
             }

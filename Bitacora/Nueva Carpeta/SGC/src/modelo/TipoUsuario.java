@@ -1,6 +1,7 @@
 package modelo;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -15,54 +16,55 @@ public class TipoUsuario extends ConexionBD {
     private Connection con;
 
     public TipoUsuario() {
+
         funciones = new ArrayList();
 
     }
 
     public TipoUsuario(Integer id, String nombre, ArrayList<Funcion> funciones) {
+
         this.id = id;
         this.nombre = nombre;
         this.funciones = funciones;
+
     }
 
-    public ArrayList<TipoUsuario> listar() {
-        try {
-            ArrayList<TipoUsuario> listar = new ArrayList();
-            con = getConexion();
-            ps = null;
-            TipoUsuario mod;
+    public boolean buscarId() {
 
-            String sql = "SELECT * FROM tipo_usuario;";
+        ps = null;
+        rs = null;
+        con = getConexion();
+
+        String sql = "SELECT id FROM tipo_usuario WHERE tipo = ?;";
+
+        try {
 
             ps = con.prepareStatement(sql);
-
+            ps.setString(1, nombre.toUpperCase());
             rs = ps.executeQuery();
 
-            while (rs.next()) {
-                mod = new TipoUsuario();
-                mod.setId(rs.getInt("id"));
-                mod.setNombre(rs.getString("tipo"));
-                listar.add(mod);
+            if (rs.next()) {
 
+                id = rs.getInt("id");
+
+                return true;
             }
 
-            return listar;
+            return false;
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
 
         } finally {
-            try {
-                con.close();
 
-            } catch (SQLException e) {
-                System.err.println(e);
-            }
+            cerrar();
+
         }
     }
-    
-     public int contar() {
+
+    public int contar() {
 
         ps = null;
         rs = null;
@@ -88,17 +90,78 @@ public class TipoUsuario extends ConexionBD {
             return 0;
 
         } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                System.err.println(e);
-            }
-        }
 
+            cerrar();
+
+        }
+    }
+
+    public ArrayList<TipoUsuario> listar() {
+
+        try {
+
+            ArrayList<TipoUsuario> lista = new ArrayList();
+            con = getConexion();
+            ps = null;
+            TipoUsuario item;
+
+            String sql = "SELECT * FROM v_tipo_usuario;";
+
+            ps = con.prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            ResultSet rs2;
+            Funcion funcion;
+            sql = "SELECT * FROM v_tipo_funcion WHERE id = ?;";
+            ps = con.prepareStatement(sql);
+
+            while (rs.next()) {
+
+                item = new TipoUsuario();
+                item.setId(rs.getInt("id"));
+                item.setNombre(rs.getString("tipo"));
+
+                ps.setInt(1, item.id);
+
+                rs2 = ps.executeQuery();
+
+                while (rs2.next()) {
+
+                    funcion = new Funcion();
+                    funcion.setId(rs2.getInt("id_funcion"));
+                    funcion.setNombre(rs2.getString("funcion"));
+                    funcion.setVer(rs2.getBoolean("ver"));
+                    funcion.setRegistrar(rs2.getBoolean("registrar"));
+                    funcion.setModificar(rs2.getBoolean("modificar"));
+                    funcion.setEliminar(rs2.getBoolean("eliminar"));
+
+                    item.funciones.add(funcion);
+
+                }
+
+                lista.add(item);
+
+            }
+
+            return lista;
+
+        } catch (SQLException ex) {
+
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+
+        } finally {
+
+            cerrar();
+
+        }
     }
 
     public Boolean registrar() {
+
         try {
+
             con = getConexion();
             ps = null;
 
@@ -112,86 +175,78 @@ public class TipoUsuario extends ConexionBD {
             ps.setString(i++, getNombre());
             ps.execute();
 
-            sql = "SELECT id FROM tipo_usuario WHERE tipo = ?;";
+            if (buscarId()) {
 
-            i = 1;
+                if (registrarFunciones()) {
 
-            ps = con.prepareStatement(sql);
-            ps.setString(i++, getNombre());
-            rs = ps.executeQuery();
+                    return true;
 
-            while (rs.next()) {
-                setId(rs.getInt("id"));
-
+                }
             }
 
-            if (registrarFunciones()) {
-                return true;
-
-            } else {
-                return false;
-
-            }
+            return false;
 
         } catch (SQLException e) {
+
             System.err.println(e);
             return false;
 
         } finally {
-            try {
-                con.close();
 
-            } catch (SQLException e) {
-                System.err.println(e);
+            cerrar();
 
-            }
         }
     }
 
-    public Boolean registrarFunciones() {
+    public boolean registrarFunciones() {
+
         try {
+
             con = getConexion();
             ps = null;
 
             int ind;
 
-            String sql = "INSERT INTO puente_tipo_funcion(id_tipo, id_funcion, registrar, modificar, eliminar, todo) VALUES(?,?,?,?,?,?);";
+            String sql = "INSERT INTO puente_tipo_funcion(id_tipo, id_funcion, ver, registrar, modificar, eliminar) VALUES(?,?,?,?,?,?);";
 
             ps = con.prepareStatement(sql);
 
-            System.out.println("se registraran " + getFunciones().size() + " funciones");
+            System.out.println("Se registraran " + getFunciones().size() + " funciones");
+
             for (int i = 0; i < getFunciones().size(); i++) {
+
                 ind = 1;
                 ps.setInt(ind++, getId());
                 ps.setInt(ind++, getFunciones().get(i).getId());
+                ps.setBoolean(ind++, getFunciones().get(i).getVer());
                 ps.setBoolean(ind++, getFunciones().get(i).getRegistrar());
                 ps.setBoolean(ind++, getFunciones().get(i).getModificar());
                 ps.setBoolean(ind++, getFunciones().get(i).getEliminar());
-                ps.setBoolean(ind++, getFunciones().get(i).getTodo());
-                System.out.println("se registra la funcion " + getFunciones().get(i).getNombre());
+                System.out.println("se registró la función " + getFunciones().get(i).getNombre());
+                System.out.println("ver: " + getFunciones().get(i).getVer());
                 System.out.println("registrar: " + getFunciones().get(i).getRegistrar());
                 System.out.println("modificar: " + getFunciones().get(i).getModificar());
                 System.out.println("eliminar: " + getFunciones().get(i).getEliminar());
-                System.out.println("todo: " + getFunciones().get(i).getTodo());
                 System.out.println("");
-                ps.execute();
 
+                if (ps.executeUpdate() != 1) {
+
+                    return false;
+
+                }
             }
 
             return true;
 
         } catch (SQLException e) {
+
             System.err.println(e);
             return false;
 
         } finally {
-            try {
-                con.close();
 
-            } catch (SQLException e) {
-                System.err.println(e);
+            cerrar();
 
-            }
         }
     }
 

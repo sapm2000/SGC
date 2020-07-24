@@ -64,6 +64,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
     private Funcion permiso;
 
     public CtrlGasto() {
+        
         this.modConcepto = new ConceptoGasto();
         this.modProveedor = new Proveedores();
 
@@ -84,7 +85,6 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
             JOptionPane.showMessageDialog(null, "No existen Conceptos, debe registrar uno para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
 
             new CtrlConceptoGasto();
-            
 
         } else if (modProveedor.contar() == 0) {
 
@@ -101,66 +101,68 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
             JOptionPane.showMessageDialog(null, "No existen Proveedores, debe registrar uno para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
-       
+
             new CtrlProveedor();
 
         } else {
-        
-        this.catalogo = new Catalogo();
-        this.vista = new VisGasto();
-        this.modelo = new Gasto();
-        this.modAsamblea = new Asambleas();
-        this.modc = new CerrarMes();
-        this.catProveedores = new buscarProveedor();
 
-        catalogo.lblTitulo.setText("Gasto");
+            this.catalogo = new Catalogo();
+            this.vista = new VisGasto();
+            this.modelo = new Gasto();
+            this.modAsamblea = new Asambleas();
+            this.modc = new CerrarMes();
+            this.catProveedores = new buscarProveedor();
 
-        llenarTabla(catalogo.tabla);
-        permisoBtn();
+            catalogo.lblTitulo.setText("Gasto");
 
-        if (permiso.getRegistrar()) {
-            catalogo.btnNuevo.setEnabled(true);
-        }
+            llenarTabla(catalogo.tabla);
+            permisoBtn();
 
-        this.catalogo.btnNuevo.addActionListener(this);
-        this.catalogo.tabla.addMouseListener(this);
-        this.catalogo.txtBuscar.addKeyListener(this);
-        this.catProveedores.jTable1.addMouseListener(this);
+            if (permiso.getRegistrar()) {
+                catalogo.btnNuevo.setEnabled(true);
+            }
 
-        crearCbxAsamblea();
+            this.catalogo.btnNuevo.addActionListener(this);
+            this.catalogo.tabla.addMouseListener(this);
+            this.catalogo.txtBuscar.addKeyListener(this);
+            this.catProveedores.jTable1.addMouseListener(this);
 
-        this.vista.btnGuardar.addActionListener(this);
-        this.vista.btnLimpiar.addActionListener(this);
-        this.vista.btnModificar.addActionListener(this);
-        this.vista.btnEliminar.addActionListener(this);
-        this.vista.btnBuscarproveedor.addActionListener(this);
-        this.vista.btnSalir.addActionListener(this);
-        this.vista.jcombotipo.addItemListener(this);
-        this.vista.si.addItemListener(this);
-        this.vista.no.addItemListener(this);
-        this.vista.jTable.addMouseListener(this);
-        this.vista.jTable.addKeyListener(this);
-        vista.txtNmeses.addKeyListener(this);
-        vista.txaObservaciones.addKeyListener(this);
+            crearCbxAsamblea();
 
-        CtrlVentana.cambiarVista(catalogo);
-        vista.cbxMoneda.addItemListener(this);
-        stylecombo(vista.cbxMoneda);
-        vista.jAsamblea.addItemListener(this);
-        stylecombo(vista.jAsamblea);
-        vista.jCalcular.addItemListener(this);
-        stylecombo(vista.jCalcular);
-        vista.jcombotipo.addItemListener(this);
-        stylecombo(vista.jcombotipo);
-        
+            this.vista.btnGuardar.addActionListener(this);
+            this.vista.btnLimpiar.addActionListener(this);
+            this.vista.btnModificar.addActionListener(this);
+            this.vista.btnEliminar.addActionListener(this);
+            this.vista.btnBuscarproveedor.addActionListener(this);
+            this.vista.btnSalir.addActionListener(this);
+            this.vista.jcombotipo.addItemListener(this);
+            this.vista.si.addItemListener(this);
+            this.vista.no.addItemListener(this);
+            this.vista.jTable.addMouseListener(this);
+            this.vista.jTable.addKeyListener(this);
+            vista.txtNmeses.addKeyListener(this);
+            vista.txaObservaciones.addKeyListener(this);
+
+            CtrlVentana.cambiarVista(catalogo);
+            vista.cbxMoneda.addItemListener(this);
+            stylecombo(vista.cbxMoneda);
+            vista.jAsamblea.addItemListener(this);
+            stylecombo(vista.jAsamblea);
+            vista.jCalcular.addItemListener(this);
+            stylecombo(vista.jCalcular);
+            vista.jcombotipo.addItemListener(this);
+            stylecombo(vista.jcombotipo);
+
         }
     }
 
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == catalogo.btnNuevo) {
+            
+            modelo = new Gasto();
+            
             llenarTablaConcepto(vista.jTable, "Registrar");
-            addCheckBox(2, vista.jTable);
 
             this.vista.btnGuardar.setEnabled(true);
             this.vista.btnModificar.setEnabled(false);
@@ -182,134 +184,9 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
         if (e.getSource() == vista.btnGuardar) {
 
             if (validar()) {
-                //Se guardan en el modelo los datos básicos
-                modelo.setNombre(vista.txtNombre.getText());
-                modelo.setTipo(vista.jcombotipo.getSelectedItem().toString());
-                modelo.setProveedor(modProveedor);
-                modelo.setCalcular(vista.jCalcular.getSelectedItem().toString());
-                modelo.setMes(vista.txtMes.getSelectedIndex() + 1);
-                modelo.setAnio(vista.txtAño.getYear());
-                modelo.setObservacion(vista.txaObservaciones.getText());
-                modelo.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
 
-                //Se verifica si el monto es ordinario o extraordinario
-                if (modelo.getTipo().equals("ORDINARIO")) {
-                    //Si es ordinario, el número de meses que aplica es == 1
-                    modelo.setNumMeses(1);
-                    modelo.setMesesRestantes(1);
+                registrar();
 
-                } else if (modelo.getTipo().equals("EXTRAORDINARIO")) {
-                    //Si es extraordinario, el número de meses que aplica se obtiene del usuario
-                    modelo.setNumMeses(Integer.parseInt(vista.txtNmeses.getText()));
-                    modelo.setMesesRestantes(modelo.getNumMeses());
-
-                    //Se verifica si el gasto fue seleccionado en una asamblea y se guarda la asamblea en ese caso
-                    if (vista.si.isSelected()) {
-                        modelo.setAsamblea(listaAsambleas.get(vista.jAsamblea.getSelectedIndex() - 1));
-                    }
-                }
-
-                int mes = 0;
-                int bre = 0;
-                mes = modelo.getMes();
-
-                for (int i = 0; i < modelo.getNumMeses(); i++) {
-
-                    if (mes + i > 12) {
-                        mes = mes - 12;
-
-                        if (mes + 1 > 24) {
-                            mes = mes - 12;
-                        }
-                    }
-
-                    modc.setMes_cierre(mes + i);
-                    modc.setAño_cierre(modelo.getAnio());
-
-                    if (modc.buscarfechas(modc)) {
-                        bre = 1;
-
-                    } else {
-                    }
-                }
-
-                if (bre == 1) {
-
-                    UIManager UI = new UIManager();
-                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
-                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
-
-                    int botonDialogo = JOptionPane.OK_OPTION;
-                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
-                    UIManager.put("Button.background", Color.white);
-                    UIManager.put("Button.font", Color.blue);
-                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-                    UIManager.put("Label.background", Color.blue);
-                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-
-                    JOptionPane.showMessageDialog(null, "No puede registrar gastos que incluyan un período ya cerrado ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
-
-                } else {
-                    Double monto;
-                    Double montoTotal = 0.;
-
-                    //Se recorre cada concepto de la tabla
-                    for (int i = 0; i < vista.jTable.getRowCount(); i++) {
-
-                        //Si el concepto actual fue seleccionado
-                        if (valueOf(vista.jTable.getValueAt(i, 2)) == "true") {
-                            //Se obtiene el monto
-                            monto = Double.parseDouble(vista.jTable.getValueAt(i, 3).toString());
-                            //Se suma el monto al monto total
-                            montoTotal += monto;
-                            //Se guarda el concepto actual
-                            modelo.getConceptos().add(listaConcepto.get(i));
-                            //Y se guarda el monto individual de cada concepto
-                            modelo.getMontoConceptos().add(monto);
-                        }
-                    }
-
-                    //Se guardan en el modelo el monto y el saldo
-                    modelo.setMonto(montoTotal);
-                    JOptionPane.showMessageDialog(null, montoTotal);
-                    modelo.setSaldo(montoTotal);
-
-                    //Si se logró el registro
-                    if (modelo.registrar()) {
-
-                        UIManager UI = new UIManager();
-                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
-                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
-
-                        int botonDialogo = JOptionPane.OK_OPTION;
-                        Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
-                        UIManager.put("Button.background", Color.white);
-                        UIManager.put("Button.font", Color.blue);
-                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-                        UIManager.put("Label.background", Color.blue);
-                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-
-                        JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
-                        llenarTabla(catalogo.tabla);
-                        CtrlVentana.cambiarVista(catalogo);
-
-                    } else {
-
-                        UIManager UI = new UIManager();
-                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
-                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
-
-                        int botonDialogo = JOptionPane.OK_OPTION;
-                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
-                        UIManager.put("Button.background", Color.white);
-                        UIManager.put("Button.font", Color.blue);
-                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-                        UIManager.put("Label.background", Color.blue);
-                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-
-                        JOptionPane.showMessageDialog(null, "No se pudo registrar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
-                    }
-                }
             }
         }
 
@@ -702,6 +579,8 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
         for (int i = 0; i < modeloT.getColumnCount(); i++) {
             tablaD.getColumnModel().getColumn(i).setCellRenderer(tcr);
         }
+
+        addCheckBox(2, vista.jTable);
 //        String[] moneda = {"Bolívares","Dólares","Petros"};
 //        JComboBox cbx = new JComboBox(moneda);
 //        TableColumn tc = tablaD.getColumnModel().getColumn(4);
@@ -761,6 +640,139 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
                 permiso = funcionbtn;
             }
         }
+    }
+
+    private void registrar() {
+
+        //Se guardan en el modelo los datos básicos
+        modelo.setNombre(vista.txtNombre.getText());
+        modelo.setTipo(vista.jcombotipo.getSelectedItem().toString());
+        modelo.setProveedor(modProveedor);
+        modelo.setCalcular(vista.jCalcular.getSelectedItem().toString());
+        modelo.setMes(vista.txtMes.getSelectedIndex() + 1);
+        modelo.setAnio(vista.txtAño.getYear());
+        modelo.setObservacion(vista.txaObservaciones.getText());
+        modelo.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
+
+        //Se verifica si el monto es ordinario o extraordinario
+        if (modelo.getTipo().equals("ORDINARIO")) {
+            //Si es ordinario, el número de meses que aplica es == 1
+            modelo.setNumMeses(1);
+            modelo.setMesesRestantes(1);
+
+        } else if (modelo.getTipo().equals("EXTRAORDINARIO")) {
+            //Si es extraordinario, el número de meses que aplica se obtiene del usuario
+            modelo.setNumMeses(Integer.parseInt(vista.txtNmeses.getText()));
+            modelo.setMesesRestantes(modelo.getNumMeses());
+
+            //Se verifica si el gasto fue seleccionado en una asamblea y se guarda la asamblea en ese caso
+            if (vista.si.isSelected()) {
+                modelo.setAsamblea(listaAsambleas.get(vista.jAsamblea.getSelectedIndex() - 1));
+            }
+        }
+
+        int mes = 0;
+        int bre = 0;
+        mes = modelo.getMes();
+
+        for (int i = 0; i < modelo.getNumMeses(); i++) {
+
+            if (mes + i > 12) {
+                mes = mes - 12;
+
+                if (mes + 1 > 24) {
+                    mes = mes - 12;
+                }
+            }
+
+            modc.setMes_cierre(mes + i);
+            modc.setAño_cierre(modelo.getAnio());
+
+            if (modc.buscarfechas(modc)) {
+                bre = 1;
+
+            } else {
+            }
+        }
+
+        if (bre == 1) {
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, "No puede registrar gastos que incluyan un período ya cerrado ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+
+        } else {
+            Double monto;
+            Double montoTotal = 0.;
+
+            //Se recorre cada concepto de la tabla
+            for (int i = 0; i < vista.jTable.getRowCount(); i++) {
+
+                //Si el concepto actual fue seleccionado
+                if (valueOf(vista.jTable.getValueAt(i, 2)) == "true") {
+                    //Se obtiene el monto
+                    monto = Double.parseDouble(vista.jTable.getValueAt(i, 3).toString());
+                    //Se suma el monto al monto total
+                    montoTotal += monto;
+                    //Se guarda el concepto actual
+                    modelo.getConceptos().add(listaConcepto.get(i));
+                    //Y se guarda el monto individual de cada concepto
+                    modelo.getMontoConceptos().add(monto);
+                }
+            }
+
+            //Se guardan en el modelo el monto y el saldo
+            modelo.setMonto(montoTotal);
+            JOptionPane.showMessageDialog(null, montoTotal);
+            modelo.setSaldo(montoTotal);
+
+            //Si se logró el registro
+            if (modelo.registrar()) {
+
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                int botonDialogo = JOptionPane.OK_OPTION;
+                Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                llenarTabla(catalogo.tabla);
+                CtrlVentana.cambiarVista(catalogo);
+
+            } else {
+
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                int botonDialogo = JOptionPane.OK_OPTION;
+                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(null, "No se pudo registrar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            }
+        }
+
     }
 
     private Boolean validar() {
@@ -920,7 +932,6 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
             vista.txtNmeses.setText(String.valueOf(modelo.getNumMeses()));
 
             llenarTablaConcepto(vista.jTable, "Consultar");
-            addCheckBox(2, vista.jTable);
 
             //Si el modelo no tiene asamblea
             if (modelo.getAsamblea() == null) {
@@ -948,17 +959,17 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
                 vista.btnBuscarproveedor.setVisible(false);
 
                 UIManager UI = new UIManager();
-                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
-                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
 
-                    int botonDialogo = JOptionPane.OK_OPTION;
-                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
-                    UIManager.put("Button.background", Color.white);
-                    UIManager.put("Button.font", Color.blue);
-                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-                    UIManager.put("Label.background", Color.blue);
-                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-                
+                int botonDialogo = JOptionPane.OK_OPTION;
+                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
                 JOptionPane.showMessageDialog(vista, "Las cuotas especiales en proceso no puenden ser modificadas ni eliminadas ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
             }
 
@@ -1099,12 +1110,12 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        
+
         vista.cbxMoneda.setFocusable(false);
         vista.jcombotipo.setFocusable(false);
         vista.jCalcular.setFocusable(false);
         vista.jAsamblea.setFocusable(false);
-        
+
         if (e.getSource() == vista.jcombotipo) {
 
             if (vista.jcombotipo.getSelectedItem().equals("ORDINARIO")) {

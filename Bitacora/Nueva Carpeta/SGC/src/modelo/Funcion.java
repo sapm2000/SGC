@@ -10,10 +10,10 @@ public class Funcion extends ConexionBD {
 
     private Integer id;
     private String nombre;
+    private Boolean ver;
     private Boolean registrar;
     private Boolean modificar;
     private Boolean eliminar;
-    private Boolean todo;
 
     private Connection con;
 
@@ -29,17 +29,19 @@ public class Funcion extends ConexionBD {
         this.nombre = nombre;
     }
 
-    public Funcion(Integer id, String nombre, Boolean registrar, Boolean modificar, Boolean eliminar, Boolean todo) {
+    public Funcion(Integer id, String nombre, Boolean ver, Boolean registrar, Boolean modificar, Boolean eliminar) {
         this.id = id;
         this.nombre = nombre;
+        this.ver = ver;
         this.registrar = registrar;
         this.modificar = modificar;
         this.eliminar = eliminar;
-        this.todo = todo;
     }
 
     public ArrayList<Funcion> listar() {
+
         try {
+
             ArrayList<Funcion> listar = new ArrayList();
             con = getConexion();
             ps = null;
@@ -52,6 +54,7 @@ public class Funcion extends ConexionBD {
             rs = ps.executeQuery();
 
             while (rs.next()) {
+
                 mod = new Funcion();
                 mod.setId(rs.getInt("id"));
                 mod.setNombre(rs.getString("funcion"));
@@ -62,15 +65,20 @@ public class Funcion extends ConexionBD {
             return listar;
 
         } catch (SQLException ex) {
+
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
         } finally {
+
             try {
+
                 con.close();
 
             } catch (SQLException e) {
+
                 System.err.println(e);
+
             }
         }
     }
@@ -89,6 +97,14 @@ public class Funcion extends ConexionBD {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Boolean getVer() {
+        return ver;
+    }
+
+    public void setVer(Boolean ver) {
+        this.ver = ver;
     }
 
     public Boolean getRegistrar() {
@@ -113,14 +129,6 @@ public class Funcion extends ConexionBD {
 
     public void setEliminar(Boolean eliminar) {
         this.eliminar = eliminar;
-    }
-
-    public Boolean getTodo() {
-        return todo;
-    }
-
-    public void setTodo(Boolean todo) {
-        this.todo = todo;
     }
 
 }
