@@ -2696,15 +2696,6 @@ CREATE OR REPLACE VIEW v_permisos AS
 	INNER JOIN funcion AS f ON f.id = puente.id_funcion
 	INNER JOIN usuario AS u ON u.id_tipo_usuario = puente.id_tipo;
 
--- v_tipo_permisos
--- DROP VIEW v_tipo_permisos;
-CREATE OR REPLACE VIEW v_tipo_permisos AS
-	SELECT usuario, tipo.id AS id_tipo, tipo.tipo, id_funcion, funcion, ver, registrar, modificar, eliminar
-	FROM puente_tipo_funcion AS puente
-	INNER JOIN tipo_usuario AS tipo ON tipo.id = puente.id_tipo
-	INNER JOIN funcion AS f ON f.id = puente.id_funcion
-	INNER JOIN usuario AS u ON u.id_tipo_usuario = puente.id_tipo;
-
 -- v_responsable
 CREATE OR REPLACE VIEW v_responsable AS
 	SELECT r.ci_persona, p_nombre, s_nombre, p_apellido, s_apellido, telefono, correo
@@ -2712,11 +2703,26 @@ CREATE OR REPLACE VIEW v_responsable AS
 	INNER JOIN persona AS per ON per.cedula = r.ci_persona
 	WHERE r.activo = true;
 
+-- v_tipo_funcion
+-- DROP VIEW v_tipo_funcion;
+CREATE OR REPLACE VIEW v_tipo_funcion AS
+	SELECT tipo.id, id_funcion, funcion, ver, registrar, modificar, eliminar
+	FROM puente_tipo_funcion AS puente
+	INNER JOIN tipo_usuario AS tipo ON tipo.id = puente.id_tipo
+	INNER JOIN funcion AS f ON f.id = puente.id_funcion;
+
 -- v_tipo_unidad
 -- DROP v_tipo_unidad
 CREATE OR REPLACE VIEW v_tipo_unidad AS
 	SELECT tu.id, tu.tipo, tu.area
 	FROM tipo_unidad AS tu
+	WHERE tu.activo = true;
+
+-- v_tipo_usuario
+-- DROP VIEW v_tipo_usuario;
+CREATE OR REPLACE VIEW v_tipo_usuario AS
+	SELECT tu.id, tu.tipo
+	FROM tipo_usuario AS tu
 	WHERE tu.activo = true;
 
 -- v_unidad

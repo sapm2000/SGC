@@ -20,8 +20,8 @@ INSERT INTO forma_pago(forma_pago) VALUES ('Punto de venta');
 INSERT INTO funcion (funcion) VALUES ('Asambleas');
 INSERT INTO funcion (funcion) VALUES ('Banco');
 INSERT INTO funcion (funcion) VALUES ('Categoria Gastos');
-INSERT INTO funcion (funcion) VALUES ('Concepto Gastos');
 --INSERT INTO funcion (funcion) VALUES ('Comunicados');
+INSERT INTO funcion (funcion) VALUES ('Concepto Gastos');
 INSERT INTO funcion (funcion) VALUES ('Condominio');
 INSERT INTO funcion (funcion) VALUES ('Cuenta');
 INSERT INTO funcion (funcion) VALUES ('Cuentas por cobrar');
@@ -50,7 +50,7 @@ INSERT INTO persona (cedula, p_nombre, p_apellido, telefono, correo) VALUES ('V-
 INSERT INTO tipo_usuario (tipo) VALUES ('Administrador');
 
 -- puente_tipo_funcion
-INSERT INTO puente_tipo_funcion (id_tipo, id_funcion, registrar, modificar, eliminar, todo) VALUES
+INSERT INTO puente_tipo_funcion (id_tipo, id_funcion, ver, registrar, modificar, eliminar) VALUES
 (1, 1, true, true, true, true),
 (1, 2, true, true, true, true),
 (1, 3, true, true, true, true),
