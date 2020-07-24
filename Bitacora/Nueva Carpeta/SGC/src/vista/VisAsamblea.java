@@ -100,7 +100,7 @@ public class VisAsamblea extends javax.swing.JPanel {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Fecha:");
-        jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 50, 30));
+        jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 50, 40));
 
         jScrollPane4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 
@@ -155,8 +155,18 @@ public class VisAsamblea extends javax.swing.JPanel {
         btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
         btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
         btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
-        jPanel4.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 160, -1));
-        jPanel4.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 220, 30));
+        jPanel4.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 190, -1));
+
+        txtFecha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        txtFecha.setForeground(new java.awt.Color(0, 151, 255));
+        txtFecha.setColorBackground(new java.awt.Color(0, 94, 159));
+        txtFecha.setColorButtonHover(new java.awt.Color(0, 151, 255));
+        txtFecha.setColorDiaActual(new java.awt.Color(0, 151, 255));
+        txtFecha.setColorForeground(new java.awt.Color(0, 94, 159));
+        txtFecha.setFgText(new java.awt.Color(0, 151, 255));
+        txtFecha.setFormatoFecha("dd/MM/yyyy");
+        txtFecha.setFuente(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jPanel4.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 220, 40));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 570, 280));
 

@@ -76,10 +76,10 @@ public class VisSancion extends javax.swing.JPanel {
         txaDescripcion = new javax.swing.JTextArea();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
-        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
-        jYearChooser1 = new com.toedter.calendar.JYearChooser();
         cbxMoneda = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
+        jMonthChooser1 = new newscomponents.RSDateMonth();
+        jYearChooser1 = new rojeru_san.componentes.RSYearDate();
         btnSalir = new javax.swing.JButton();
         txtId = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -97,6 +97,8 @@ public class VisSancion extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -111,7 +113,7 @@ public class VisSancion extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("<html>\nMes a <br> Aplicar:\n</html>");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 50, 30));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 50, 30));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -121,12 +123,12 @@ public class VisSancion extends javax.swing.JPanel {
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el Tipo de Deuda", "MULTA", "INTERES DE MORA" }));
         jComboBox1.setToolTipText("Seleccione el tipo de deuda de la sanción");
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 3, 180, 30));
+        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 3, 230, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Descripción:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 90, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 90, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -138,7 +140,7 @@ public class VisSancion extends javax.swing.JPanel {
         txtmonto.setForeground(new java.awt.Color(255, 255, 255));
         txtmonto.setToolTipText("Ingrese el monto si el tipo de deuda es multa, sino ingrese en porcentaje sin el simbolo de porcentaje");
         txtmonto.setBorder(null);
-        jPanel2.add(txtmonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 160, 20));
+        jPanel2.add(txtmonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 210, 20));
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -154,22 +156,16 @@ public class VisSancion extends javax.swing.JPanel {
         txaDescripcion.setBorder(null);
         jScrollPane1.setViewportView(txaDescripcion);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 210, 140));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 210, 180));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 160, 10));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 210, 10));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("<html> * Si el tipo de deuda es interes de <br> mora ingresar el porcentaje de interes. </html>");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 250, 30));
-
-        jMonthChooser1.setToolTipText("Seleccione el mes en el cual se aplica la sanción");
-        jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 110, 30));
-
-        jYearChooser1.setToolTipText("Seleccione el año en el cual se le aplica la sanción");
-        jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 60, 30));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 250, 30));
 
         cbxMoneda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BOLÍVAR", "DÓLAR" }));
@@ -179,14 +175,35 @@ public class VisSancion extends javax.swing.JPanel {
                 cbxMonedaActionPerformed(evt);
             }
         });
-        jPanel2.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 180, 30));
+        jPanel2.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 230, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Monto (*):");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 80, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 80, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, -1, 260));
+        jMonthChooser1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        jMonthChooser1.setColorArrow(new java.awt.Color(0, 94, 159));
+        jMonthChooser1.setColorBorde(new java.awt.Color(255, 255, 255));
+        jMonthChooser1.setColorBoton(new java.awt.Color(255, 255, 255));
+        jMonthChooser1.setColorDisabledIndex(new java.awt.Color(255, 255, 255));
+        jMonthChooser1.setColorDisabledIndexText(new java.awt.Color(0, 94, 159));
+        jMonthChooser1.setColorFondo(new java.awt.Color(0, 94, 159));
+        jMonthChooser1.setColorListaItemsTXT(new java.awt.Color(0, 94, 159));
+        jMonthChooser1.setColorSeleccion(new java.awt.Color(0, 94, 159));
+        jMonthChooser1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 110, 30));
+
+        jYearChooser1.setBackground(new java.awt.Color(255, 255, 255));
+        jYearChooser1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        jYearChooser1.setForeground(new java.awt.Color(255, 255, 255));
+        jYearChooser1.setToolTipText("Elija el año");
+        jYearChooser1.setColorBackground(new java.awt.Color(0, 94, 159));
+        jYearChooser1.setColorButtonHover(new java.awt.Color(0, 151, 255));
+        jYearChooser1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 120, 30));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 530, 260));
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow.png"))); // NOI18N
         btnSalir.setToolTipText("Volver al catálogo");
@@ -201,7 +218,7 @@ public class VisSancion extends javax.swing.JPanel {
         jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
 
         txtId.setEnabled(false);
-        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
+        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -225,7 +242,7 @@ public class VisSancion extends javax.swing.JPanel {
         jTable1.setRowHeight(35);
         jScrollPane2.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 450, 150));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 500, 150));
 
         jPanel3.setBackground(new java.awt.Color(0, 94, 159));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -298,7 +315,7 @@ public class VisSancion extends javax.swing.JPanel {
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 540, 360, 80));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondobtn1chiqui.png"))); // NOI18N
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 510, -1, 100));
@@ -308,7 +325,13 @@ public class VisSancion extends javax.swing.JPanel {
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, -1));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, -1));
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, -1, -1));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 640, 620));
     }// </editor-fold>//GEN-END:initComponents
@@ -334,6 +357,8 @@ public class VisSancion extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -341,7 +366,7 @@ public class VisSancion extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
-    public com.toedter.calendar.JMonthChooser jMonthChooser1;
+    public newscomponents.RSDateMonth jMonthChooser1;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -352,7 +377,7 @@ public class VisSancion extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     public javax.swing.JTable jTable1;
-    public com.toedter.calendar.JYearChooser jYearChooser1;
+    public rojeru_san.componentes.RSYearDate jYearChooser1;
     public javax.swing.JTextArea txaDescripcion;
     public javax.swing.JTextField txtId;
     public javax.swing.JTextField txtmonto;

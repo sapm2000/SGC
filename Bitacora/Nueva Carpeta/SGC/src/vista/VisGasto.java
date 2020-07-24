@@ -380,7 +380,23 @@ public class VisGasto extends javax.swing.JPanel {
         txtNombre.setForeground(new java.awt.Color(255, 255, 255));
         txtNombre.setBorder(null);
         jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 280, 20));
+
+        txtAño.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        txtAño.setColorBackground(new java.awt.Color(0, 94, 159));
+        txtAño.setColorButtonHover(new java.awt.Color(0, 151, 255));
+        txtAño.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel2.add(txtAño, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 120, 30));
+
+        txtMes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        txtMes.setColorArrow(new java.awt.Color(0, 94, 159));
+        txtMes.setColorBorde(new java.awt.Color(255, 255, 255));
+        txtMes.setColorBoton(new java.awt.Color(255, 255, 255));
+        txtMes.setColorDisabledIndex(new java.awt.Color(255, 255, 255));
+        txtMes.setColorDisabledIndexText(new java.awt.Color(0, 94, 159));
+        txtMes.setColorFondo(new java.awt.Color(0, 94, 159));
+        txtMes.setColorListaItemsTXT(new java.awt.Color(0, 94, 159));
+        txtMes.setColorSeleccion(new java.awt.Color(0, 94, 159));
+        txtMes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel2.add(txtMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 140, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));

@@ -276,6 +276,15 @@ public class VisFondo extends javax.swing.JPanel {
 
         cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "BOLÍVAR", "DÓLAR" }));
         jPanel2.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 130, 30));
+
+        jDateChooser1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        jDateChooser1.setColorBackground(new java.awt.Color(0, 94, 159));
+        jDateChooser1.setColorButtonHover(new java.awt.Color(0, 151, 255));
+        jDateChooser1.setColorDiaActual(new java.awt.Color(0, 151, 255));
+        jDateChooser1.setColorForeground(new java.awt.Color(0, 94, 159));
+        jDateChooser1.setFgText(new java.awt.Color(0, 151, 255));
+        jDateChooser1.setFormatoFecha("dd/MM/yyyy");
+        jDateChooser1.setFuente(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel2.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, -1, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));

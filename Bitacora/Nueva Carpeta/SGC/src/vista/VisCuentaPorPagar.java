@@ -159,12 +159,12 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("<HTML>Moneda<BR>a pagar:</HTML>");
-        jPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 60, 40));
+        jPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 60, 40));
 
         cbxMoneda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "BOLÍVAR", "DÓLAR" }));
         cbxMoneda.setNextFocusableComponent(cbxFondo);
-        jPanel.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 243, 240, 30));
+        jPanel.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 240, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -242,9 +242,19 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         panelPariedad.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 260, 10));
 
         jPanel.add(panelPariedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 370, 60));
-        jPanel.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, 30));
 
-        add(jPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 750, 280));
+        txtFecha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        txtFecha.setForeground(new java.awt.Color(0, 151, 255));
+        txtFecha.setColorBackground(new java.awt.Color(0, 94, 159));
+        txtFecha.setColorButtonHover(new java.awt.Color(0, 151, 255));
+        txtFecha.setColorDiaActual(new java.awt.Color(0, 151, 255));
+        txtFecha.setColorForeground(new java.awt.Color(0, 94, 159));
+        txtFecha.setFgText(new java.awt.Color(0, 151, 255));
+        txtFecha.setFormatoFecha("dd/MM/yyyy");
+        txtFecha.setFuente(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, 40));
+
+        add(jPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 750, 290));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 810, 310));
