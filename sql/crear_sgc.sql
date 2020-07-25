@@ -407,7 +407,7 @@ BEGIN
 		UPDATE usuario SET pregunta = pregunta2, respuesta = respuesta2 WHERE usuario = usuario2;
 		RETURN TRUE;
 	
-	ELSE 
+	ELSE
 		RETURN FALSE;
 	END IF;
 	END;
@@ -2579,17 +2579,9 @@ EXECUTE PROCEDURE pagar_gasto();
 -------- Vistas --------
 -- v_propietario
 CREATE OR REPLACE VIEW v_propietario AS
-	SELECT pro.ci_persona, p_nombre, s_nombre, p_apellido, s_apellido, telefono, correo
+	SELECT pro.ci_persona, p_nombre, s_nombre, p_apellido, s_apellido, telefono, correo, pro.activo 
 	FROM propietario AS pro
-	INNER JOIN persona AS per ON per.cedula = pro.ci_persona
-	WHERE pro.activo = true;
-
--- v_propietario_inactivo
-CREATE OR REPLACE VIEW v_propietario_inactivo AS
-	SELECT pro.ci_persona, p_nombre, s_nombre, p_apellido, s_apellido, telefono, correo
-	FROM propietario AS pro
-	INNER JOIN persona AS per ON per.cedula = pro.ci_persona
-	WHERE pro.activo = false;
+	INNER JOIN persona AS per ON per.cedula = pro.ci_persona;
 
 -- v_asambleas
 -- DROP VIEW v_asambleas;
@@ -2725,10 +2717,9 @@ CREATE OR REPLACE VIEW v_permisos AS
 
 -- v_responsable
 CREATE OR REPLACE VIEW v_responsable AS
-	SELECT r.ci_persona, p_nombre, s_nombre, p_apellido, s_apellido, telefono, correo
+	SELECT r.ci_persona, p_nombre, s_nombre, p_apellido, s_apellido, telefono, correo, r.activo 
 	FROM responsable AS r
-	INNER JOIN persona AS per ON per.cedula = r.ci_persona
-	WHERE r.activo = true;
+	INNER JOIN persona AS per ON per.cedula = r.ci_persona;
 
 -- v_tipo_funcion
 -- DROP VIEW v_tipo_funcion;

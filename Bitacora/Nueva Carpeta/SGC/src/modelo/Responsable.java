@@ -58,7 +58,7 @@ public class Responsable extends Persona {
         ps = null;
         rs = null;
 
-        String sql = "SELECT * FROM v_responsable;";
+        String sql = "SELECT * FROM v_responsable WHERE activo = true;";
 
         try {
             ps = con.prepareStatement(sql);
@@ -105,7 +105,7 @@ public class Responsable extends Persona {
 
         int ind;
 
-        String sql = "SELECT ci_persona FROM v_responsable WHERE ci_persona = ?;";
+        String sql = "SELECT ci_persona FROM v_responsable WHERE ci_persona = ? AND activo = true;";
 
         try {
             ps = con.prepareStatement(sql);
@@ -183,7 +183,7 @@ public class Responsable extends Persona {
 
         int ind;
 
-        String sql = "SELECT ci_persona FROM v_responsable_inactivo WHERE ci_persona = ?;";
+        String sql = "SELECT ci_persona FROM v_responsable WHERE ci_persona = ? AND activo = false;";
 
         try {
             ps = con.prepareStatement(sql);
