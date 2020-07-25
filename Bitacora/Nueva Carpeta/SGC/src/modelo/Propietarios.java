@@ -31,13 +31,14 @@ public class Propietarios extends Persona {
     }
 
     public Boolean existe() {
+        
         con = getConexion();
         ps = null;
         rs = null;
 
         int ind;
 
-        String sql = "SELECT ci_persona FROM v_propietario WHERE ci_persona = ?;";
+        String sql = "SELECT ci_persona FROM v_propietario WHERE ci_persona = ? AND activo = true;";
 
         try {
             ps = con.prepareStatement(sql);
@@ -112,7 +113,7 @@ public class Propietarios extends Persona {
 
         int ind;
 
-        String sql = "SELECT ci_persona FROM v_propietario_inactivo WHERE ci_persona = ?;";
+        String sql = "SELECT ci_persona FROM v_propietario WHERE ci_persona = ? AND activo = false;";
 
         try {
             ps = con.prepareStatement(sql);
@@ -303,7 +304,7 @@ public class Propietarios extends Persona {
         ps = null;
         rs = null;
 
-        String sql = "SELECT * FROM v_propietario";
+        String sql = "SELECT * FROM v_propietario WHERE activo = true";
 
         try {
             ps = con.prepareStatement(sql);
