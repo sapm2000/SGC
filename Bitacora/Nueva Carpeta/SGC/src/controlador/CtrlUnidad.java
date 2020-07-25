@@ -39,7 +39,7 @@ import modelo.CerrarMes;
 import modelo.Funcion;
 import modelo.Propietarios;
 import modelo.TipoUnidad;
-import modelo.Unidades;
+import modelo.Unidad;
 import sgc.SGC;
 import vista.Catalogo;
 import vista.VisUnidad;
@@ -49,7 +49,7 @@ import vista.detallecuenta;
 public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, WindowListener, ItemListener {
 
     private VisUnidad vista;
-    private Unidades modelo;
+    private Unidad modelo;
     private Catalogo catalogo;
     int fa = 0;
     private Propietarios modPropietario;
@@ -60,7 +60,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
     ArrayList<CerrarMes> listaCierremes;
     ArrayList<CerrarMes> listax;
     DefaultTableModel dm;
-    private ArrayList<Unidades> listaUnidades;
+    private ArrayList<Unidad> listaUnidades;
     private ArrayList<Propietarios> listaPropietarios;
     private ArrayList<TipoUnidad> listaTipoUnidad;
 
@@ -116,7 +116,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
         } else {
 
-            this.modelo = new Unidades();
+            this.modelo = new Unidad();
             this.catalogo = new Catalogo();
             this.vista = new VisUnidad();
 
@@ -184,11 +184,11 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
                     vista.tablaPropietarios.getCellEditor().stopCellEditing();//detenga la edicion
                 }
 
-                modelo = new Unidades();
+                modelo = new Unidad();
                 modelo.setNumeroUnidad(vista.txtNumeroUnidad.getText());
                 modelo.setDocumento(vista.txtDocumento.getText());
                 int ind = vista.cbxTipo.getSelectedIndex() - 1;
-                modelo.getTipo_Unidad().setId(listaTipoUnidad.get(ind).getId());
+                modelo.getTipo().setId(listaTipoUnidad.get(ind).getId());
                 modelo.setDireccion(vista.txtDireccion.getText());
 
                 int j = 0;
@@ -357,7 +357,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
                 modelo.setNumeroUnidad(vista.txtNumeroUnidad.getText());
                 modelo.setDocumento(vista.txtDocumento.getText());
                 int ind = vista.cbxTipo.getSelectedIndex() - 1;
-                modelo.getTipo_Unidad().setId(listaTipoUnidad.get(ind).getId());
+                modelo.getTipo().setId(listaTipoUnidad.get(ind).getId());
                 modelo.setDireccion(vista.txtDireccion.getText());
 
                 int j = 0;
@@ -557,7 +557,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
                 modelo = listaUnidades.get(fila);
 
                 vista.txtNumeroUnidad.setText(modelo.getNumeroUnidad());
-                vista.cbxTipo.setSelectedItem(modelo.getTipo_Unidad().getNombre());
+                vista.cbxTipo.setSelectedItem(modelo.getTipo().getNombre());
                 vista.txtDocumento.setText(modelo.getDocumento());
                 vista.txtDireccion.setText(modelo.getDireccion());
 
@@ -1083,8 +1083,8 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
             columna[ind++] = listaUnidades.get(i).getNumeroUnidad();
             columna[ind++] = listaUnidades.get(i).getDireccion();
-            columna[ind++] = listaUnidades.get(i).getTipo_Unidad().getNombre();
-            columna[ind++] = listaUnidades.get(i).getTipo_Unidad().getArea();
+            columna[ind++] = listaUnidades.get(i).getTipo().getNombre();
+            columna[ind++] = listaUnidades.get(i).getTipo().getArea();
             columna[ind++] = listaUnidades.get(i).getDocumento();
             columna[ind++] = Validacion.formatoalicuota.format(listaUnidades.get(i).getAlicuota());
 

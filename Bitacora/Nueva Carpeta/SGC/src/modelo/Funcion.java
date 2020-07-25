@@ -20,6 +20,10 @@ public class Funcion extends ConexionBD {
     public Funcion() {
     }
 
+    public Funcion(Integer id) {
+        this.id = id;
+    }
+
     public Funcion(String nombre) {
         this.nombre = nombre;
     }

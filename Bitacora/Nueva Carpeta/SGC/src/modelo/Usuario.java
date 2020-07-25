@@ -42,7 +42,7 @@ public class Usuario extends ConexionBD {
             getTipoU().setNombre(rs.getString("tipo"));
 
             do {
-                funciones.add(new Funcion(rs.getInt("id_funcion"), rs.getString("funcion"), rs.getBoolean("registrar"), rs.getBoolean("modificar"), rs.getBoolean("eliminar"), rs.getBoolean("todo")));
+                funciones.add(new Funcion(rs.getInt("id_funcion"), rs.getString("funcion"), rs.getBoolean("ver"), rs.getBoolean("registrar"), rs.getBoolean("modificar"), rs.getBoolean("eliminar")));
             } while (rs.next());
 
             getTipoU().setFunciones(funciones);
@@ -91,7 +91,7 @@ public class Usuario extends ConexionBD {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Unidad.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
         } finally {
@@ -130,7 +130,7 @@ public class Usuario extends ConexionBD {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Unidad.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
         } finally {
@@ -326,7 +326,7 @@ public class Usuario extends ConexionBD {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Unidad.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
         } finally {
@@ -436,7 +436,7 @@ public class Usuario extends ConexionBD {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Unidad.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
         } finally {

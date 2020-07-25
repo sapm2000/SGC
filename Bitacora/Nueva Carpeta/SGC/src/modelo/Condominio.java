@@ -112,7 +112,7 @@ public class Condominio extends ConexionBD {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Unidad.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         } finally {
             try {

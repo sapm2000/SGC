@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import sgc.SGC;
 
 public class TipoUsuario extends ConexionBD {
 
@@ -27,6 +28,29 @@ public class TipoUsuario extends ConexionBD {
         this.nombre = nombre;
         this.funciones = funciones;
 
+    }
+
+    private Boolean agregarFuncion(Funcion funcion) throws SQLException {
+
+        ps = null;
+
+        int ind;
+
+        String sql = "INSERT INTO puente_tipo_funcion (id_tipo, id_funcion, ver, registrar, modificar, eliminar) VALUES (?,?,?,?,?,?);";
+
+        con = getConexion();
+        ps = con.prepareStatement(sql);
+
+        ind = 1;
+        ps.setInt(ind++, id);
+        ps.setInt(ind++, funcion.getId());
+        ps.setBoolean(ind++, funcion.getVer());
+        ps.setBoolean(ind++, funcion.getRegistrar());
+        ps.setBoolean(ind++, funcion.getModificar());
+        ps.setBoolean(ind++, funcion.getEliminar());
+        ps.execute();
+
+        return true;
     }
 
     public boolean buscarId() {
@@ -158,6 +182,182 @@ public class TipoUsuario extends ConexionBD {
         }
     }
 
+    public boolean modificar() {
+
+        try {
+            ps = null;
+            con = getConexion();
+
+            int ind;
+            boolean resul = false;
+
+            String sql = "SELECT modificar_tipo_usuario(?,?,?);";
+
+            ps = con.prepareStatement(sql);
+
+            ind = 1;
+            ps.setString(ind++, getNombre());
+            ps.setInt(ind++, getId());
+            ps.setInt(ind++, SGC.usuarioActual.getId());
+
+            if (ps.execute()) {
+
+                rs = ps.getResultSet();
+                rs.next();
+                resul = rs.getBoolean(1);
+
+            } else {
+
+                return false;
+
+            }
+
+            if (modificarFunciones()) {
+
+                return resul;
+
+            } else {
+
+                return false;
+
+            }
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+
+            cerrar();
+
+        }
+    }
+
+    private Boolean modificarFunciones() {
+
+        Funcion item;
+        ArrayList<Funcion> funcionesViejas;
+        int numNuevos;
+        int numViejos;
+
+        ps = null;
+
+        String sql = "SELECT id_funcion, funcion, ver, registrar, modificar, eliminar FROM v_tipo_funcion WHERE id = ?;";
+
+        try {
+            ps = con.prepareStatement(sql);
+
+            ps.setInt(1, getId());
+
+            rs = ps.executeQuery();
+
+            funcionesViejas = new ArrayList();
+
+            while (rs.next()) {
+
+                item = new Funcion();
+                item.setId(rs.getInt("id_funcion"));
+                item.setNombre(rs.getString("funcion"));
+                item.setVer(rs.getBoolean("ver"));
+                item.setRegistrar(rs.getBoolean("registrar"));
+                item.setModificar(rs.getBoolean("modificar"));
+                item.setEliminar(rs.getBoolean("eliminar"));
+                funcionesViejas.add(item);
+
+            }
+
+            numNuevos = getFunciones().size();
+            numViejos = funcionesViejas.size();
+            
+            boolean procesado;
+
+            // Por cada función nueva
+            for (int j = 0; j < numNuevos; j++) {
+                
+                procesado = false;
+
+                // Por cada función vieja
+                for (int i = 0; i < numViejos; i++) {
+
+                    // Si la función de la lista de nuevos y sus permisos coincide con la de la BD
+                    if (getFunciones().get(j).equals(funcionesViejas.get(i))) {
+
+                        // No se hace nada con ella y se elimina de ambos arreglos para dejar de compararlos
+                        getFunciones().remove(j);
+                        numNuevos--;
+                        funcionesViejas.remove(i);
+                        numViejos--;
+                        break;
+
+                    // En cambio, si la función coincide, pero no sus permisos
+                    } else if (getFunciones().get(j).getId() == funcionesViejas.get(i).getId()) {
+                        
+                        // Se modifica la función del tipo de usuario y se elimina de ambos arreglos para dejar de compararlos
+                        modificarPermisosFuncion(getFunciones().get(j));
+                        
+                        getFunciones().remove(j);
+                        numNuevos--;
+                        funcionesViejas.remove(i);
+                        numViejos--;
+                        break;
+
+                    }
+                }
+
+                // Si la función nueva no ha sido procesada
+                if (!procesado) {
+
+                    // Se agrega como nueva función y se elimina del arreglo de nuevas
+                    agregarFuncion(getFunciones().get(j));
+                    getFunciones().remove(j);
+                    numNuevos--;
+                    j--;
+
+                } else {
+                    
+                    //Se reduce el índice que recorre las funciones nuevas
+                    j--;
+                }
+            }
+
+            // Se retiran las funciones viejas que quedaron en el arreglo de viejas (ya que fueron eliminadas)
+            retirarFunciones(funcionesViejas);
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.err.println(e);
+            return false;
+
+        } finally {
+
+            cerrar();
+
+        }
+    }
+
+    private boolean modificarPermisosFuncion(Funcion funcion) throws SQLException {
+        
+        int ind;
+        ps = null;
+
+        String sql = "UPDATE puente_tipo_funcion SET ver = ?, registrar = ?, modificar = ?, eliminar = ? WHERE id_tipo = ? AND id_funcion = ?;";
+
+        ps = con.prepareStatement(sql);
+
+        ind = 1;
+        ps.setBoolean(ind++, funcion.getVer());
+        ps.setBoolean(ind++, funcion.getRegistrar());
+        ps.setBoolean(ind++, funcion.getModificar());
+        ps.setBoolean(ind++, funcion.getEliminar());
+        ps.setInt(ind++, id);
+        ps.setInt(ind++, funcion.getId());
+
+        return ps.executeUpdate() == 1;
+    }
+
     public Boolean registrar() {
 
         try {
@@ -248,6 +448,26 @@ public class TipoUsuario extends ConexionBD {
             cerrar();
 
         }
+    }
+
+    private Boolean retirarFunciones(ArrayList<Funcion> funciones) throws SQLException {
+        ps = null;
+
+        int ind;
+
+        String sql = "DELETE FROM puente_tipo_funcion WHERE id_tipo = ? AND id_funcion = ?";
+
+        ps = con.prepareStatement(sql);
+
+        for (int i = 0; i < funciones.size(); i++) {
+            ind = 1;
+            ps.setInt(ind++, getId());
+            ps.setInt(ind++, funciones.get(i).getId());
+            ps.execute();
+
+        }
+
+        return true;
     }
 
     public Integer getId() {

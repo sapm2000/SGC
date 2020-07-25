@@ -473,14 +473,14 @@ public class Gasto extends ConexionBD {
             ArrayList<Double> montosViejos;
             ConceptoGasto item;
 
+            int numNuevos;
+            int numViejos;
+
             conceptosViejos = new ArrayList();
             montosViejos = new ArrayList();
 
             ps = null;
             con = getConexion();
-
-            int numNuevos;
-            int numViejos;
 
             String sql = "SELECT id_concepto, monto FROM v_gasto_concepto WHERE id_gasto = ?;";
 
@@ -489,11 +489,13 @@ public class Gasto extends ConexionBD {
             rs = ps.executeQuery();
 
             while (rs.next()) {
+                
                 item = new ConceptoGasto();
                 item.setId(rs.getInt("id_concepto"));
                 conceptosViejos.add(item);
                 montosViejos.add(rs.getDouble("monto"));
                 System.out.println("se obtuvo el id_concepto = " + item.getId() + " con el monto " + rs.getDouble("monto"));
+                
             }
 
             numNuevos = getConceptos().size();
@@ -511,27 +513,33 @@ public class Gasto extends ConexionBD {
 
                     // Si el concepto de la lista de nuevos y su monto coincide con el de la BD
                     if (getConceptos().get(j).getId().equals(conceptosViejos.get(i).getId()) && getMontoConceptos().get(j).equals(montosViejos.get(i))) {
+                        
                         // No se hace nada con él y se elimina de ambos arreglos junto a su monto para dejar de compararlos
                         getConceptos().remove(j);
                         getMontoConceptos().remove(j);
                         numNuevos--;
+                        
                         conceptosViejos.remove(i);
                         montosViejos.remove(i);
                         numViejos--;
+                        
                         procesado = true;
                         break;
 
                         //En cambio, si el concepto coincide, pero el monto es diferente
                     } else if (getConceptos().get(j).getId().equals(conceptosViejos.get(i).getId()) && !getMontoConceptos().get(j).equals(montosViejos.get(i))) {
+                        
                         //Se modifica el monto del concepto y se elimina de ambos arreglos junto al monto para dejar de compararlos
                         modificarMontoConcepto(getConceptos().get(j).getId(), getMontoConceptos().get(j));
                         System.out.println("se modificó el monto del concepto " + getConceptos().get(j).getId() + ", de " + montosViejos.get(i) + " a " + getMontoConceptos().get(j));
                         getConceptos().remove(j);
                         getMontoConceptos().remove(j);
                         numNuevos--;
+                        
                         conceptosViejos.remove(i);
                         montosViejos.remove(i);
                         numViejos--;
+                        
                         procesado = true;
                         break;
                     }
@@ -539,6 +547,7 @@ public class Gasto extends ConexionBD {
 
                 // Si el concepto nuevo no ha sido procesado
                 if (!procesado) {
+                    
                     // Se agrega como nuevo concepto y se elimina del arreglo de nuevos
                     agregarConcepto(getConceptos().get(j).getId(), getMontoConceptos().get(j));
                     System.out.println("se agrego el concepto " + getConceptos().get(j).getId() + " con el monto " + getMontoConceptos().get(j));
@@ -548,7 +557,7 @@ public class Gasto extends ConexionBD {
                     j--;
 
                 } else {
-                    //Se reduce el indice que recorre los conceptos nuevos
+                    //Se reduce el índice que recorre los conceptos nuevos
                     j--;
                 }
             }

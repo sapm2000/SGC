@@ -69,8 +69,13 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener, KeyListen
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == catalogo.btnNuevo) {
+            
+            modelo = new TipoUsuario();
+            
+            this.vista.btnGuardar.setEnabled(true);
             this.vista.btnGuardar.setVisible(true);
             this.vista.btnModificar.setVisible(false);
+            
             CtrlVentana.cambiarVista(vista);
 
             llenarTablaFuncion("Registrar");
@@ -86,130 +91,16 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener, KeyListen
         }
 
         if (e.getSource() == vista.btnModificar) {
+            
+            if (validar()) {
+                
+                modificar();
 
+            }
         }
 
         if (e.getSource() == vista.btnSalir) {
             CtrlVentana.cambiarVista(catalogo);
-        }
-    }
-
-    private void permisoBtn() {
-
-        for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
-            if (funcionbtn.getNombre().equals("Responsables")) {
-                permiso = funcionbtn;
-
-            }
-
-        }
-
-    }
-
-    private void registrar() {
-
-        //Si se está edtando la tabla
-        if (vista.tabla.isEditing()) {
-
-            //Detiene la edición
-            vista.tabla.getCellEditor().stopCellEditing();
-        }
-
-        modelo = new TipoUsuario();
-        modelo.setNombre(vista.txtTipo.getText());
-
-        boolean ver = false;
-        boolean registrar = false;
-        boolean modificar = false;
-        boolean eliminar = false;
-
-        // Por cada fila de la tabla
-        for (int i = 0, indFunciones = 0; i < vista.tabla.getRowCount(); i++) {
-
-            //Si Ver fue seleccionado
-            if (String.valueOf(vista.tabla.getValueAt(i, 1)) == "true") {
-
-                ver = true;
-
-            } else {
-
-                ver = false;
-            }
-
-            //Si Registrar fue seleccionado
-            if (String.valueOf(vista.tabla.getValueAt(i, 2)) == "true") {
-
-                registrar = true;
-
-            } else {
-
-                registrar = false;
-            }
-
-            //Si Modificar fue seleccionado
-            if (String.valueOf(vista.tabla.getValueAt(i, 3)) == "true") {
-
-                modificar = true;
-
-            } else {
-
-                modificar = false;
-            }
-
-            //Si Eliminar fue seleccionado
-            if (String.valueOf(vista.tabla.getValueAt(i, 4)) == "true") {
-
-                eliminar = true;
-
-            } else {
-
-                eliminar = false;
-            }
-
-            if (ver) {
-
-                modelo.getFunciones().add(listaFuncion.get(i));
-                modelo.getFunciones().get(indFunciones).setVer(true);
-                modelo.getFunciones().get(indFunciones).setRegistrar(registrar);
-                modelo.getFunciones().get(indFunciones).setModificar(modificar);
-                modelo.getFunciones().get(indFunciones).setEliminar(eliminar);
-
-                indFunciones++;
-            }
-        }
-
-        if (modelo.registrar()) {
-
-            UIManager UI = new UIManager();
-            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
-            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
-
-            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
-            UIManager.put("Button.background", Color.white);
-            UIManager.put("Button.font", Color.blue);
-            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-            UIManager.put("Label.background", Color.blue);
-            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-
-            JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
-            llenarTabla();
-            CtrlVentana.cambiarVista(catalogo);
-            vista.txtTipo.setText("");
-
-        } else {
-
-            UIManager UI = new UIManager();
-            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
-            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
-
-            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
-            UIManager.put("Button.background", Color.white);
-            UIManager.put("Button.font", Color.blue);
-            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-            UIManager.put("Label.background", Color.blue);
-            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-
-            JOptionPane.showMessageDialog(null, "Error al registrar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
         }
     }
 
@@ -218,16 +109,24 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener, KeyListen
 
         if (e.getSource() == catalogo.tabla) {
 
+            // Obtiene la fila seleccionada de la tabla
             int fila = catalogo.tabla.getSelectedRow();
 
+            // Obtiene el modelo correspondiente de la lista
             modelo = lista.get(fila);
 
+            // Llena el formulario con los datos obtenidos del modelo
             vista.txtTipo.setText(modelo.getNombre());
 
+            // Deshabilita el botón guardar y habilita modificar
             vista.btnGuardar.setEnabled(false);
+            vista.btnModificar.setEnabled(true);
+            vista.btnModificar.setVisible(true);
 
+            // Llena la tabla de funciones seleccionando las funciones del tipo de usuario consultado
             llenarTablaFuncion("Modificar");
 
+            // Muestra el formulario
             CtrlVentana.cambiarVista(vista);
         }
 
@@ -272,6 +171,25 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener, KeyListen
 
     @Override
     public void mouseExited(MouseEvent e) {
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+        if (e.getSource() == catalogo.txtBuscar) {
+
+            filtro(catalogo.txtBuscar.getText(), catalogo.tabla);
+        }
     }
 
     public void addCheckBox(int column, JTable table) {
@@ -460,22 +378,246 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener, KeyListen
         addCheckBox(4, vista.tabla);
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
+    private void modificar() {
 
+        //Si se está edtando la tabla
+        if (vista.tabla.isEditing()) {
+
+            //Detiene la edición
+            vista.tabla.getCellEditor().stopCellEditing();
+        }
+
+        modelo.setNombre(vista.txtTipo.getText());
+        
+        // Se vacían las funciones actuales para agregar las nuevas
+        modelo.getFunciones().clear();
+
+        // Variables para almacenar el valor de los checkbox
+        boolean ver = false;
+        boolean registrar = false;
+        boolean modificar = false;
+        boolean eliminar = false;
+
+        // Por cada fila de la tabla
+        for (int i = 0, indFunciones = 0; i < vista.tabla.getRowCount(); i++) {
+
+            //Si Ver fue seleccionado
+            if (String.valueOf(vista.tabla.getValueAt(i, 1)) == "true") {
+
+                ver = true;
+
+            } else {
+
+                ver = false;
+            }
+
+            //Si Registrar fue seleccionado
+            if (String.valueOf(vista.tabla.getValueAt(i, 2)) == "true") {
+
+                registrar = true;
+
+            } else {
+
+                registrar = false;
+            }
+
+            //Si Modificar fue seleccionado
+            if (String.valueOf(vista.tabla.getValueAt(i, 3)) == "true") {
+
+                modificar = true;
+
+            } else {
+
+                modificar = false;
+            }
+
+            //Si Eliminar fue seleccionado
+            if (String.valueOf(vista.tabla.getValueAt(i, 4)) == "true") {
+
+                eliminar = true;
+
+            } else {
+
+                eliminar = false;
+            }
+
+            // Si Ver fue seleccionado
+            if (ver) {
+
+                // Añade la función a la lista de funciones del tipo de usuario
+                modelo.getFunciones().add(listaFuncion.get(i));
+                modelo.getFunciones().get(indFunciones).setVer(true);
+                modelo.getFunciones().get(indFunciones).setRegistrar(registrar);
+                modelo.getFunciones().get(indFunciones).setModificar(modificar);
+                modelo.getFunciones().get(indFunciones).setEliminar(eliminar);
+
+                indFunciones++;
+            }
+        }
+
+        // Si se logra modificar
+        if (modelo.modificar()) {
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            // Informa al usuario
+            JOptionPane.showMessageDialog(null, "Registro modificado ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
+            // Actualiza la tabla para reflejar los cambios
+            llenarTabla();
+            // Muestra el catálogo
+            CtrlVentana.cambiarVista(catalogo);
+            vista.txtTipo.setText("");
+
+        } else {
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, "Error al modificar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            
+        }
     }
 
-    @Override
-    public void keyPressed(KeyEvent e) {
+    private void permisoBtn() {
 
+        for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
+
+            if (funcionbtn.getNombre().equals("Responsables")) {
+
+                permiso = funcionbtn;
+
+            }
+        }
     }
 
-    @Override
-    public void keyReleased(KeyEvent e) {
+    private void registrar() {
 
-        if (e.getSource() == catalogo.txtBuscar) {
+        //Si se está edtando la tabla
+        if (vista.tabla.isEditing()) {
 
-            filtro(catalogo.txtBuscar.getText(), catalogo.tabla);
+            //Detiene la edición
+            vista.tabla.getCellEditor().stopCellEditing();
+        }
+
+        modelo = new TipoUsuario();
+        modelo.setNombre(vista.txtTipo.getText());
+
+        // Variables para almacenar el valor de los checkbox
+        boolean ver = false;
+        boolean registrar = false;
+        boolean modificar = false;
+        boolean eliminar = false;
+
+        // Por cada fila de la tabla
+        for (int i = 0, indFunciones = 0; i < vista.tabla.getRowCount(); i++) {
+
+            //Si Ver fue seleccionado
+            if (String.valueOf(vista.tabla.getValueAt(i, 1)) == "true") {
+
+                ver = true;
+
+            } else {
+
+                ver = false;
+            }
+
+            //Si Registrar fue seleccionado
+            if (String.valueOf(vista.tabla.getValueAt(i, 2)) == "true") {
+
+                registrar = true;
+
+            } else {
+
+                registrar = false;
+            }
+
+            //Si Modificar fue seleccionado
+            if (String.valueOf(vista.tabla.getValueAt(i, 3)) == "true") {
+
+                modificar = true;
+
+            } else {
+
+                modificar = false;
+            }
+
+            //Si Eliminar fue seleccionado
+            if (String.valueOf(vista.tabla.getValueAt(i, 4)) == "true") {
+
+                eliminar = true;
+
+            } else {
+
+                eliminar = false;
+            }
+
+            // Si Ver fue seleccionado
+            if (ver) {
+
+                // Añade la función a la lista de funciones del tipo de usuario
+                modelo.getFunciones().add(listaFuncion.get(i));
+                modelo.getFunciones().get(indFunciones).setVer(true);
+                modelo.getFunciones().get(indFunciones).setRegistrar(registrar);
+                modelo.getFunciones().get(indFunciones).setModificar(modificar);
+                modelo.getFunciones().get(indFunciones).setEliminar(eliminar);
+
+                indFunciones++;
+            }
+        }
+
+        // Si se logra registrar
+        if (modelo.registrar()) {
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            // Informa al usuario
+            JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
+            // Actualiza la tabla para reflejar los cambios
+            llenarTabla();
+            // Muestra el catálogo
+            CtrlVentana.cambiarVista(catalogo);
+            vista.txtTipo.setText("");
+
+        } else {
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, "Error al registrar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
         }
     }
 

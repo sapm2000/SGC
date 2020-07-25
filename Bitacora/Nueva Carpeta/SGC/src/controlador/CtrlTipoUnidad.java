@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Funcion;
 import modelo.TipoUnidad;
-import modelo.Unidades;
+import modelo.Unidad;
 import sgc.SGC;
 import vista.Catalogo;
 import vista.VisTipoUnidad;
@@ -31,9 +31,9 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener, KeyListene
     private VisTipoUnidad vista;
     private Catalogo catalogo;
     private TipoUnidad modelo;
-    private Unidades unidades;
+    private Unidad unidades;
     private Funcion permiso;
-    private ArrayList<Unidades> listaunidades;
+    private ArrayList<Unidad> listaunidades;
     private ArrayList<TipoUnidad> lista;
     DefaultTableModel dm;
 
@@ -41,7 +41,7 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener, KeyListene
         this.catalogo = new Catalogo();
         this.vista = new VisTipoUnidad();
         this.modelo = new TipoUnidad();
-        this.unidades = new Unidades();
+        this.unidades = new Unidad();
 
         CtrlVentana.cambiarVista(catalogo);
         catalogo.lblTitulo.setText("Tipo de Unidad");
@@ -114,7 +114,7 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener, KeyListene
                         listaunidades = unidades.listarArea();
                         int x = listaunidades.size();
                         for (int i = 0; i < x; i++) {
-                            float total = listaunidades.get(i).getTipo_Unidad().getArea() / area;
+                            float total = listaunidades.get(i).getTipo().getArea() / area;
                             unidades.setAlicuota(total);
 
                             unidades.setId(listaunidades.get(i).getId());
@@ -177,7 +177,7 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener, KeyListene
                             listaunidades = unidades.listarArea();
                             int x = listaunidades.size();
                             for (int i = 0; i < x; i++) {
-                                float total = listaunidades.get(i).getTipo_Unidad().getArea() / area;
+                                float total = listaunidades.get(i).getTipo().getArea() / area;
                                 unidades.setAlicuota(total);
 
                                 unidades.setId(listaunidades.get(i).getId());
@@ -234,7 +234,7 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener, KeyListene
                     listaunidades = unidades.listarArea();
                     int x = listaunidades.size();
                     for (int i = 0; i < x; i++) {
-                        float total = listaunidades.get(i).getTipo_Unidad().getArea() / area;
+                        float total = listaunidades.get(i).getTipo().getArea() / area;
                         unidades.setAlicuota(total);
 
                         unidades.setId(listaunidades.get(i).getId());

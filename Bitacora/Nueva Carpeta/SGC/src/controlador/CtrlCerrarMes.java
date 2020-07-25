@@ -34,7 +34,7 @@ import modelo.Gasto;
 
 import modelo.Interes;
 import modelo.Sancion;
-import modelo.Unidades;
+import modelo.Unidad;
 import vista.Catalogo;
 import vista.PantallaPrincipal;
 import vista.VisCerrarMes;
@@ -47,8 +47,8 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
 
     private VisCerrarMes vista;
     private CerrarMes modc;
-    private Unidades moduni;
-    ArrayList<Unidades> listaunidades;
+    private Unidad moduni;
+    ArrayList<Unidad> listaunidades;
 
     ArrayList<Gasto> listaGastos;
     ArrayList<Sancion> listasanciones;
@@ -66,7 +66,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
 
         this.vista = new VisCerrarMes();
         this.modc = new CerrarMes();
-        this.moduni = new Unidades();
+        this.moduni = new Unidad();
 
         this.modcuo = new Gasto();
         this.modsan = new Sancion();

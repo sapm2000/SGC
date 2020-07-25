@@ -124,7 +124,7 @@ public class Responsable extends Persona {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Unidad.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
         } finally {
@@ -163,7 +163,7 @@ public class Responsable extends Persona {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Unidad.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
         } finally {
@@ -202,7 +202,7 @@ public class Responsable extends Persona {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Unidad.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
         } finally {
