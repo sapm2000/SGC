@@ -1765,6 +1765,33 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+-------- Funciones tipo_usuario --------
+-- modificar_tipo_usuario
+-- DROP FUNCTION modificar_tipo_usuario;
+CREATE OR REPLACE FUNCTION modificar_tipo_usuario (
+	_tipo character varying,
+	_id integer,
+	_id_usuario integer
+) RETURNS boolean AS $$
+DECLARE
+	resul int;
+	
+BEGIN
+	UPDATE tipo_usuario SET tipo = _tipo WHERE id = _id;
+	GET DIAGNOSTICS resul = ROW_COUNT;
+
+	IF resul > 0 THEN
+	
+ 		UPDATE bitacora SET id_usuario = _id_usuario, operacion = 'Modificado'
+		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
+		RETURN true;
+		
+	ELSE
+		RETURN false;
+	END IF;
+END;
+$$ LANGUAGE plpgsql;
+
 -------- Funciones Unidades --------
 -- agregar_unidad
 -- DROP FUNCTION agregar_unidad;

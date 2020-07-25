@@ -34,7 +34,7 @@ import javax.swing.table.TableRowSorter;
 import modelo.CerrarMes;
 import modelo.Funcion;
 import modelo.Sancion;
-import modelo.Unidades;
+import modelo.Unidad;
 import sgc.SGC;
 import vista.Catalogo;
 import vista.VisSancion;
@@ -45,18 +45,18 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
     private Catalogo catalogo;
     private Sancion modsan;
     private CerrarMes modc;
-    private Unidades moduni;
+    private Unidad moduni;
 
     Funcion permiso;
 
-    ArrayList<Unidades> listaunidades;
+    ArrayList<Unidad> listaunidades;
     ArrayList<Sancion> listaSancion;
     ArrayList<Sancion> listaunimod;
     DefaultTableModel dm;
 
     public CtrlSancion() {
         
-        this.moduni = new Unidades();
+        this.moduni = new Unidad();
         
         if (moduni.contar() == 0) {
 

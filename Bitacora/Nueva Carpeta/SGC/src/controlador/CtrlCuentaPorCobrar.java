@@ -37,7 +37,7 @@ import modelo.Cuenta;
 import modelo.CuentasPorCobrar;
 import modelo.Fondo;
 import modelo.FormaPago;
-import modelo.Unidades;
+import modelo.Unidad;
 import vista.VisCuentaPorCobrar;
 
 /**
@@ -48,7 +48,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
     private VisCuentaPorCobrar vista;
     private CuentasPorCobrar modcuen;
-    private Unidades moduni;
+    private Unidad moduni;
     private Fondo modfon;
     private Cuenta modcu;
     private CerrarMes modc;
@@ -56,7 +56,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
     ArrayList<CerrarMes> listaCierremes;
     ArrayList<CerrarMes> listaDominante;
     ArrayList<CerrarMes> lista_detalles;
-    ArrayList<Unidades> listaunidades;
+    ArrayList<Unidad> listaunidades;
     ArrayList<Fondo> listafondo;
     ArrayList<Cuenta> listaCuenta;
     ArrayList<FormaPago> listaformapago;
@@ -84,7 +84,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
             hola = JOptionPane.showInputDialog(null, "¿A que paridad va a trabajar?, Por favor ingrese ", null, 0, q, null, null); //ventana que se despliega para que ingresen la paridad 
             e = String.valueOf(hola);
             if (e != null && isValidDouble(e) == true) {
-                this.moduni = new Unidades();
+                this.moduni = new Unidad();
                 this.modfor = new FormaPago();
                 this.modcu = new Cuenta();
                 this.modfon = new Fondo();
@@ -730,11 +730,11 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
     }
 
-    private void crearCbxUnidad(ArrayList<Unidades> datos) { //funcion para crear combobox unidades
+    private void crearCbxUnidad(ArrayList<Unidad> datos) { //funcion para crear combobox unidades
         vista.jComboUnidad.addItem("Seleccione el numero de la unidad");
         vista.jComboUnidad.setFocusable(false);
         if (datos != null) {
-            for (Unidades datosX : datos) {
+            for (Unidad datosX : datos) {
                 moduni = datosX;
                 vista.jComboUnidad.addItem(moduni.getNumeroUnidad());
             }

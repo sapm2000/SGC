@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class CuentasPorCobrar extends ConexionBD {
 
     private int id;
-    public Unidades uni = new Unidades();
+    public Unidad uni = new Unidad();
     private double monto;
     private String descripcion;
     private String id_cuenta;

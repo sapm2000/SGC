@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Persona;
-import modelo.Unidades;
+import modelo.Unidad;
 import modelo.Visita;
 import vista.Catalogo;
 import vista.VisVisita;
@@ -42,8 +42,8 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
     private Catalogo catPersonas;
     private Persona modPersona;
     private ArrayList<Persona> listaPersonas;
-    private Unidades modUnidad;
-    private ArrayList<Unidades> listaUnidad;
+    private Unidad modUnidad;
+    private ArrayList<Unidad> listaUnidad;
 
     private JFrame ventanaBuscar;
 
@@ -52,7 +52,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
 
     public CtrlVisita() {
         
-        this.modUnidad = new Unidades();
+        this.modUnidad = new Unidad();
         
         if (modUnidad.contar() == 0) {
 
@@ -426,7 +426,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
 
         if (listaUnidad != null) {
 
-            for (Unidades datosX : listaUnidad) {
+            for (Unidad datosX : listaUnidad) {
                 vista.cbxUnidad.addItem(datosX.getNumeroUnidad());
             }
         }
@@ -436,7 +436,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
 
         modelo = new Visita();
         modPersona = new Persona();
-        modUnidad = new Unidades();
+        modUnidad = new Unidad();
         vista.cbxCedula.setSelectedIndex(0);
         vista.txtCedula.setText("");
         vista.txtNombre.setText("");

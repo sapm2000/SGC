@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import sgc.SGC;
 
-public class Unidades extends ConexionBD {
+public class Unidad extends ConexionBD {
 
     private int id;
     private String numeroUnidad;
@@ -20,14 +20,14 @@ public class Unidades extends ConexionBD {
     private ArrayList<Propietarios> propietarios;
     private java.sql.Date fecha_desde;
     private java.sql.Date fecha_hasta;
-    private TipoUnidad tipo_Unidad = new TipoUnidad();
+    private TipoUnidad tipo = new TipoUnidad();
 
     private Connection con;
 
     private int estatus;
     private int id_puente;
 
-    public Unidades() {
+    public Unidad() {
         condominio = new Condominio();
         propietarios = new ArrayList();
 
@@ -180,7 +180,7 @@ public class Unidades extends ConexionBD {
             ps.setString(ind++, getNumeroUnidad());
             ps.setString(ind++, getDocumento());
             ps.setString(ind++, getDireccion());
-            ps.setInt(ind++, getTipo_Unidad().getId());
+            ps.setInt(ind++, getTipo().getId());
             ps.setInt(ind++, SGC.usuarioActual.getId());
 
             if (ps.execute()) {
@@ -236,10 +236,10 @@ public class Unidades extends ConexionBD {
         return true;
     }
 
-    public ArrayList<Unidades> listar() {
+    public ArrayList<Unidad> listar() {
 
         ArrayList listaUnidades = new ArrayList();
-        Unidades unidad = new Unidades();
+        Unidad unidad = new Unidad();
 
         con = getConexion();
         ps = null;
@@ -257,16 +257,16 @@ public class Unidades extends ConexionBD {
             ps = con.prepareStatement(sql);
 
             while (rs.next()) {
-                unidad = new Unidades();
+                unidad = new Unidad();
 
                 unidad.setId(rs.getInt("id"));
                 unidad.setNumeroUnidad(rs.getString("n_unidad"));
                 unidad.setDocumento(rs.getString("n_documento"));
                 unidad.setDireccion(rs.getString("direccion"));
                 unidad.setAlicuota(rs.getFloat("alicuota"));
-                unidad.getTipo_Unidad().setId(rs.getInt("id_tipo"));
-                unidad.getTipo_Unidad().setNombre(rs.getString("tipo"));
-                unidad.getTipo_Unidad().setArea(rs.getFloat("area"));
+                unidad.getTipo().setId(rs.getInt("id_tipo"));
+                unidad.getTipo().setNombre(rs.getString("tipo"));
+                unidad.getTipo().setArea(rs.getFloat("area"));
 
                 ps.setInt(1, unidad.getId());
 
@@ -290,7 +290,7 @@ public class Unidades extends ConexionBD {
         return listaUnidades;
     }
 
-    public boolean actualizarAlicuota(Unidades modelo) {
+    public boolean actualizarAlicuota(Unidad modelo) {
 
         ps = null;
         con = getConexion();
@@ -332,7 +332,7 @@ public class Unidades extends ConexionBD {
             ind = 1;
             ps.setString(ind++, getDocumento());
             ps.setString(ind++, getDireccion());
-            ps.setInt(ind++, getTipo_Unidad().getId());
+            ps.setInt(ind++, getTipo().getId());
             ps.setInt(ind++, getId());
             ps.setInt(ind++, SGC.usuarioActual.getId());
 
@@ -491,7 +491,7 @@ public class Unidades extends ConexionBD {
         return true;
     }
 
-    public boolean eliminarPuenteUnidad(Unidades moduni) {
+    public boolean eliminarPuenteUnidad(Unidad moduni) {
 
         ps = null;
         con = getConexion();
@@ -597,7 +597,7 @@ public class Unidades extends ConexionBD {
 
         } catch (SQLException ex) {
 
-            Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Unidad.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
         } finally {
@@ -642,7 +642,7 @@ public class Unidades extends ConexionBD {
 
         } catch (SQLException ex) {
 
-            Logger.getLogger(Unidades.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Unidad.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
         } finally {
@@ -657,9 +657,9 @@ public class Unidades extends ConexionBD {
         }
     }
 
-    public ArrayList<Unidades> listarArea() {
+    public ArrayList<Unidad> listarArea() {
         ArrayList listaUnidad = new ArrayList();
-        Unidades uni;
+        Unidad uni;
 
         con = getConexion();
         ps = null;
@@ -673,8 +673,8 @@ public class Unidades extends ConexionBD {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                uni = new Unidades();
-                uni.tipo_Unidad.setArea(rs.getFloat(1));
+                uni = new Unidad();
+                uni.tipo.setArea(rs.getFloat(1));
                 uni.setId(rs.getInt(2));
 
                 listaUnidad.add(uni);
@@ -728,12 +728,12 @@ public class Unidades extends ConexionBD {
         this.direccion = direccion;
     }
 
-    public TipoUnidad getTipo_Unidad() {
-        return tipo_Unidad;
+    public TipoUnidad getTipo() {
+        return tipo;
     }
 
-    public void setTipo_Unidad(TipoUnidad tipo_Unidad) {
-        this.tipo_Unidad = tipo_Unidad;
+    public void setTipo(TipoUnidad tipo) {
+        this.tipo = tipo;
     }
 
     public Condominio getCondominio() {

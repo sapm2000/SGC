@@ -12,7 +12,7 @@ public class CerrarMes extends ConexionBD {
     private int año_cierre;
     private double monto_dolar;
     private double monto_bolivar;
-    public Unidades uni = new Unidades();
+    public Unidad uni = new Unidad();
     public ConceptoGasto concep = new ConceptoGasto();
     public Sancion san = new Sancion();
     public Interes in = new Interes();

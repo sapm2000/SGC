@@ -12,7 +12,7 @@ public class Sancion extends ConexionBD {
     private int año;
     private double monto;
     private String descripcion;
-    public Unidades uni = new Unidades();
+    public Unidad uni = new Unidad();
     private int cantidad_de_unidades;
     private String estado;
     private int id;

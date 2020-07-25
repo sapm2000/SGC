@@ -8,7 +8,7 @@ import sgc.SGC;
 public class Visita extends ConexionBD {
 
     private Integer id;
-    private Unidades unidad = new Unidades();
+    private Unidad unidad = new Unidad();
     private Persona visitante = new Persona();
     private Integer numPeronas;
     private String fechaEntrada;
@@ -169,11 +169,11 @@ public class Visita extends ConexionBD {
         this.id = id;
     }
 
-    public Unidades getUnidad() {
+    public Unidad getUnidad() {
         return unidad;
     }
 
-    public void setUnidad(Unidades unidad) {
+    public void setUnidad(Unidad unidad) {
         this.unidad = unidad;
     }
 
