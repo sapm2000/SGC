@@ -738,7 +738,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
 
             //Se guardan en el modelo el monto y el saldo
             modelo.setMonto(montoTotal);
-            JOptionPane.showMessageDialog(null, montoTotal);
+           
             modelo.setSaldo(montoTotal);
 
             //Si se logró el registro
