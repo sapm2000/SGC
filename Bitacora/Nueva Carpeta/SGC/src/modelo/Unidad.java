@@ -246,7 +246,7 @@ public class Unidad extends ConexionBD {
         rs = null;
         ResultSet rs2 = null;
 
-        String sql = "SELECT * FROM v_unidad";
+        String sql = "SELECT * FROM v_unidad WHERE activo = true";
 
         try {
             ps = con.prepareStatement(sql);
@@ -295,7 +295,7 @@ public class Unidad extends ConexionBD {
         ps = null;
         con = getConexion();
 
-        String sql = "UPDATE unidad SET alicuota=? WHERE id=?;";
+        String sql = "UPDATE unidad SET alicuota = ? WHERE id = ?;";
 
         try {
 
@@ -579,7 +579,7 @@ public class Unidad extends ConexionBD {
 
             int ind;
 
-            String sql = "SELECT n_unidad FROM v_unidad WHERE n_unidad = ?;";
+            String sql = "SELECT n_unidad FROM v_unidad WHERE n_unidad = ? AND activo = true;";
 
             ps = con.prepareStatement(sql);
 
@@ -621,7 +621,7 @@ public class Unidad extends ConexionBD {
 
         int ind;
 
-        String sql = "SELECT n_unidad FROM v_unidades_inactivas WHERE n_unidad = ?;";
+        String sql = "SELECT n_unidad FROM v_unidad WHERE n_unidad = ? AND activo = false;";
 
         try {
 

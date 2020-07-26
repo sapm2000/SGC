@@ -69,13 +69,13 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener, KeyListen
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == catalogo.btnNuevo) {
-            
+
             modelo = new TipoUsuario();
-            
+
             this.vista.btnGuardar.setEnabled(true);
             this.vista.btnGuardar.setVisible(true);
             this.vista.btnModificar.setVisible(false);
-            
+
             CtrlVentana.cambiarVista(vista);
 
             llenarTablaFuncion("Registrar");
@@ -91,9 +91,9 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener, KeyListen
         }
 
         if (e.getSource() == vista.btnModificar) {
-            
+
             if (validar()) {
-                
+
                 modificar();
 
             }
@@ -332,7 +332,6 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener, KeyListen
 
             // Por cada función de la BD
             for (int i = 0; i < numRegistro; i++) {
-                System.out.println("revisando la función: " + listaFuncion.get(i).getNombre());
 
                 ind = 0;
                 // Añade el nombre de la función a la tabla
@@ -345,13 +344,8 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener, KeyListen
 
                     // Si la función actual de la lista corresponde a la función actual del tipo de usuario seleccionado
                     if (listaFuncion.get(i).getId().equals(modelo.getFunciones().get(j).getId())) {
-                        System.out.println("la funcion: " + modelo.getFunciones().get(j).getNombre() + " tiene permisos");
 
                         // Añade el valor de los checkbox
-                        System.out.println(modelo.getFunciones().get(j).getVer());
-                        System.out.println(modelo.getFunciones().get(j).getRegistrar());
-                        System.out.println(modelo.getFunciones().get(j).getModificar());
-                        System.out.println(modelo.getFunciones().get(j).getEliminar());
                         fila[ind++] = modelo.getFunciones().get(j).getVer();
                         fila[ind++] = modelo.getFunciones().get(j).getRegistrar();
                         fila[ind++] = modelo.getFunciones().get(j).getModificar();
@@ -388,7 +382,7 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener, KeyListen
         }
 
         modelo.setNombre(vista.txtTipo.getText());
-        
+
         // Se vacían las funciones actuales para agregar las nuevas
         modelo.getFunciones().clear();
 
@@ -491,7 +485,7 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener, KeyListen
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
             JOptionPane.showMessageDialog(null, "Error al modificar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
-            
+
         }
     }
 

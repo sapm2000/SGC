@@ -354,7 +354,7 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
             this.vista.btnEliminar.setEnabled(false);
             this.vista.txtNombreC.setEnabled(true);
             vista.cbxCategoria.removeAllItems();
-            listaCategoria = modCategoria.lCategGas();
+            listaCategoria = modCategoria.listar();
             crearCbxCategoria(listaCategoria);
 
             CtrlVentana.cambiarVista(vista);
@@ -561,7 +561,7 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
 
         modelo.buscarC(modelo);
 
-        listaCategoria = modCategoria.lCategGas();
+        listaCategoria = modCategoria.listar();
         crearCbxCategoria(listaCategoria);
         vista.txtId.setText(modelo.getId() + "");
         vista.txtNombreC.setText(modelo.getNombre());
