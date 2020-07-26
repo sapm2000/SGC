@@ -16,7 +16,7 @@ CREATE TABLE banco (
 -- categoriagasto
 CREATE TABLE categoriagasto(
 	id serial NOT NULL PRIMARY KEY,
-	nombre character varying(50) NOT NULL,
+	nombre character varying(50) NOT NULL UNIQUE,
 	descripcion character varying(200),
 	activo boolean NOT NULL DEFAULT true
 );
@@ -34,7 +34,7 @@ CREATE TABLE condominio(
 -- DROP TABLE forma_pago;
 CREATE TABLE forma_pago (
     id serial NOT NULL PRIMARY KEY,
-    forma_pago character varying NOT NULL,
+    forma_pago character varying NOT NULL UNIQUE,
     activo boolean NOT NULL DEFAULT TRUE
 );
 
@@ -92,7 +92,7 @@ CREATE TABLE sancion (
 CREATE TABLE tipo_unidad(
 	id serial PRIMARY KEY,
 	area double precision NOT NULL,
-	tipo character varying(60),
+	tipo character varying(60) UNIQUE,
 	activo boolean NOT null DEFAULT true
 );
 
@@ -195,8 +195,8 @@ CREATE TABLE responsable(
 -- unidad
 CREATE TABLE unidad (
 	id serial NOT null PRIMARY KEY,
-	n_unidad character varying(10) NOT NULL,
-	n_documento character varying(15) NOT NULL,
+	n_unidad character varying(10) NOT NULL UNIQUE,
+	n_documento character varying(15) NOT NULL UNIQUE,
     direccion character varying(200) NOT NULL,
     activo boolean DEFAULT true,
     alicuota double precision,
@@ -2732,9 +2732,16 @@ CREATE OR REPLACE VIEW v_tipo_funcion AS
 -- v_tipo_unidad
 -- DROP v_tipo_unidad
 CREATE OR REPLACE VIEW v_tipo_unidad AS
-	SELECT tu.id, tu.tipo, tu.area
+	SELECT tu.id, tu.tipo, tu.area, activo
+	FROM tipo_unidad AS tu;
+
+-- v_area_total
+-- DROP VIEW v_area_total;
+CREATE VIEW v_area_total AS 
+	SELECT SUM(area) AS area 
 	FROM tipo_unidad AS tu
-	WHERE tu.activo = true;
+	INNER JOIN unidad AS u ON u.id_tipo = tu.id 
+	WHERE u.activo = true;
 
 -- v_tipo_usuario
 -- DROP VIEW v_tipo_usuario;
@@ -2746,10 +2753,9 @@ CREATE OR REPLACE VIEW v_tipo_usuario AS
 -- v_unidad
 -- DROP VIEW v_unidad;
 CREATE OR REPLACE VIEW v_unidad AS
-	SELECT u.id, n_unidad, n_documento, direccion, alicuota, tu.id AS id_tipo, tu.tipo, (SELECT area FROM tipo_unidad WHERE id = u.id_tipo) AS area
+	SELECT u.id, n_unidad, n_documento, direccion, alicuota, tu.id AS id_tipo, tu.tipo, (SELECT area FROM tipo_unidad WHERE id = u.id_tipo) AS area, u.activo
 	FROM unidad AS u
-	INNER JOIN tipo_unidad AS tu ON tu.id = u.id_tipo
-	WHERE u.activo = true;
+	INNER JOIN tipo_unidad AS tu ON tu.id = u.id_tipo;
 
 -- v_unidad_propietario
 CREATE OR REPLACE VIEW v_unidad_propietario AS

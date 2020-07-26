@@ -3,6 +3,8 @@ package modelo;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sgc.SGC;
 
 public class CategoriaGasto extends ConexionBD {
@@ -51,87 +53,52 @@ public class CategoriaGasto extends ConexionBD {
 
     }
 
-    public ArrayList<CategoriaGasto> lCategGas() {
-        ArrayList listaPersona = new ArrayList();
-        CategoriaGasto CategoriaGasto;
+    public ArrayList<CategoriaGasto> listar() {
+
+        ArrayList<CategoriaGasto> lista;
+        CategoriaGasto item;
+
+        lista = new ArrayList();
 
         con = getConexion();
         ps = null;
         rs = null;
 
-        String sql = "SELECT id, nombre, descripcion FROM categoriagasto where activo=true;";
+        String sql = "SELECT id, nombre, descripcion FROM categoriagasto WHERE activo = true;";
         try {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                CategoriaGasto = new CategoriaGasto();
+                item = new CategoriaGasto();
 
-                //prs = new Persona();
-                CategoriaGasto.setId(rs.getInt(1));
-                CategoriaGasto.setNombre(rs.getString(2));
-                CategoriaGasto.setDescripcion(rs.getString(3));
+                item.setId(rs.getInt(1));
+                item.setNombre(rs.getString(2));
+                item.setDescripcion(rs.getString(3));
 
-                listaPersona.add(CategoriaGasto);
+                lista.add(item);
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
+
+            System.err.println(e);
+
         } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                System.err.println(e);
-            }
+
+            cerrar();
+
         }
 
-        return listaPersona;
-
+        return lista;
     }
 
-    public ArrayList<CategoriaGasto> lCategGasi() {
-        ArrayList listaPersona = new ArrayList();
-        CategoriaGasto CategoriaGasto;
-
-        con = getConexion();
-        ps = null;
-        rs = null;
-
-        String sql = "SELECT id, nombre, descripcion FROM categoriagasto where activo=false;";
-        try {
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                CategoriaGasto = new CategoriaGasto();
-
-                //prs = new Persona();
-                CategoriaGasto.setId(rs.getInt(1));
-                CategoriaGasto.setNombre(rs.getString(2));
-                CategoriaGasto.setDescripcion(rs.getString(3));
-
-                listaPersona.add(CategoriaGasto);
-            }
-
-        } catch (Exception e) {
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                System.err.println(e);
-            }
-        }
-
-        return listaPersona;
-
-    }
-
-    public boolean Buscar(CategoriaGasto catagc) {
+    public boolean buscar(CategoriaGasto catagc) {
 
         ps = null;
         rs = null;
         con = getConexion();
 
-        String sql = "SELECT * FROM categoriagasto WHERE nombre=? and activo=true ";
+        String sql = "SELECT * FROM categoriagasto WHERE nombre = ? AND activo = true ";
 
         try {
 
@@ -165,8 +132,8 @@ public class CategoriaGasto extends ConexionBD {
         }
 
     }
-    
-     public int contar() {
+
+    public int contar() {
 
         ps = null;
         rs = null;
@@ -361,7 +328,39 @@ public class CategoriaGasto extends ConexionBD {
 
     }
 
-    public boolean activar(CategoriaGasto prs) {
+    public boolean existe(boolean activo) {
+
+        int ind;
+
+        ps = null;
+        rs = null;
+        ind = 1;
+
+        String sql = "SELECT * FROM categoriagasto WHERE nombre  = ? AND activo = ?";
+
+        con = getConexion();
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(ind++, nombre.toUpperCase());
+            ps.setBoolean(ind++, activo);
+            rs = ps.executeQuery();
+            
+            return rs.next();
+            
+        } catch (SQLException ex) {
+            
+            Logger.getLogger(CategoriaGasto.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+            
+        } finally {
+            
+            cerrar();
+        }
+    }
+
+    public boolean reactivar(CategoriaGasto prs) {
+        
         int ind;
         ps = null;
         con = getConexion();
@@ -371,7 +370,7 @@ public class CategoriaGasto extends ConexionBD {
         try {
             ind = 1;
             ps = con.prepareStatement(sql);
-            ps.setString(ind++, prs.getNombre());
+            ps.setString(ind++, prs.getNombre().toUpperCase());
             ps.setString(ind++, prs.getDescripcion());
             ps.setInt(ind++, SGC.usuarioActual.getId());
 

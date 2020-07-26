@@ -24,7 +24,7 @@ public class TipoUnidad extends ConexionBD {
             rs = null;
             con = getConexion();
 
-            String sql = "SELECT * FROM v_tipo_unidad_inactivo WHERE tipo=?";
+            String sql = "SELECT * FROM v_tipo_unidad WHERE tipo = ? AND activo = false;";
 
             ps = con.prepareStatement(sql);
             ps.setString(1, getNombre());
@@ -50,14 +50,14 @@ public class TipoUnidad extends ConexionBD {
             }
         }
     }
-    
+
     public int contar() {
 
         ps = null;
         rs = null;
         con = getConexion();
 
-        String sql = "SELECT COUNT(*) FROM tipo_unidad WHERE activo = true;";
+        String sql = "SELECT COUNT(*) FROM v_tipo_unidad WHERE activo = true;";
 
         try {
 
@@ -92,7 +92,7 @@ public class TipoUnidad extends ConexionBD {
             rs = null;
             con = getConexion();
 
-            String sql = "SELECT sum(area) as area from tipo_unidad inner join unidad ON unidad.id_tipo = tipo_unidad.id where unidad.activo=true";
+            String sql = "SELECT * FROM v_area_total;";
 
             ps = con.prepareStatement(sql);
 
@@ -125,7 +125,7 @@ public class TipoUnidad extends ConexionBD {
             con = getConexion();
             int ind;
 
-            String sql = "SELECT eliminar_tipo_unidad (?,?);";
+            String sql = "SELECT eliminar_tipo_unidad(?,?);";
 
             ind = 1;
             ps = con.prepareStatement(sql);
@@ -163,7 +163,7 @@ public class TipoUnidad extends ConexionBD {
 
             int ind;
 
-            String sql = "SELECT tipo FROM v_tipo_unidad WHERE tipo = ?;";
+            String sql = "SELECT tipo FROM v_tipo_unidad WHERE tipo = ? AND activo = true;";
 
             ps = con.prepareStatement(sql);
 
@@ -202,7 +202,7 @@ public class TipoUnidad extends ConexionBD {
             ps = null;
             rs = null;
 
-            String sql = "SELECT * FROM v_tipo_unidad";
+            String sql = "SELECT * FROM v_tipo_unidad WHERE activo = true;";
 
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();

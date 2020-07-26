@@ -43,13 +43,13 @@ public class CtrlCategoriaGasto implements ActionListener, MouseListener, KeyLis
     ArrayList<CategoriaGasto> listaCatGas;
 
     public CtrlCategoriaGasto() {
-        
+
         this.catalogo = new Catalogo();
         this.vista = new VisCategoriaGasto();
         this.modelo = new CategoriaGasto();
 
         catalogo.lblTitulo.setText("Categoría Gastos");
-        Llenartabla(catalogo.tabla);
+        llenarTabla(catalogo.tabla);
 
         permisoBtn();
 
@@ -71,256 +71,40 @@ public class CtrlCategoriaGasto implements ActionListener, MouseListener, KeyLis
         CtrlVentana.cambiarVista(catalogo);
     }
 
-    public void Llenartabla(JTable tablaD) {
-
-        listaCatGas = modelo.lCategGas();
-        DefaultTableModel modeloT = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-
-                return false;
-            }
-
-        };
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
-        tablaD.setRowSorter(tr);
-        tablaD.setModel(modeloT);
-        tablaD.getTableHeader().setReorderingAllowed(false);
-        tablaD.getTableHeader().setResizingAllowed(false);
-
-        modeloT.addColumn("Nombre");
-        modeloT.addColumn("Descripción");
-
-        Object[] columna = new Object[2];
-
-        int numRegistro = listaCatGas.size();
-
-        for (int i = 0; i < numRegistro; i++) {
-
-            columna[0] = listaCatGas.get(i).getNombre();
-            columna[1] = listaCatGas.get(i).getDescripcion();
-
-            modeloT.addRow(columna);
-
-        }
-
-        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-        tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
-
-    }
-
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == catalogo.btnNuevo) {
-            this.vista.btnEliminar.setEnabled(false);
+
             this.vista.btnGuardar.setEnabled(true);
-            this.vista.txtId.setVisible(false);
             this.vista.btnModificar.setEnabled(false);
+            this.vista.btnEliminar.setEnabled(false);
+            this.vista.txtId.setVisible(false);
+
+            vista.txtId.setText("");
             vista.txtnombre.setText("");
             vista.txtdescripcion.setText("");
-            vista.txtId.setText("");
 
             CtrlVentana.cambiarVista(vista);
         }
 
         if (e.getSource() == vista.btnGuardar) {
+
             if (validar()) {
-                modelo.setNombre(vista.txtnombre.getText());
-                modelo.setDescripcion(vista.txtdescripcion.getText());
 
-                if (modelo.buscarInactivo(modelo)) {
-                    if (modelo.activar(modelo)) {
-
-                        UIManager UI = new UIManager();
-                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
-                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
-
-                        int botonDialogo = JOptionPane.OK_OPTION;
-                        Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
-                        UIManager.put("Button.background", Color.white);
-                        UIManager.put("Button.font", Color.blue);
-                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-                        UIManager.put("Label.background", Color.blue);
-                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-
-                        JOptionPane.showMessageDialog(null, "Registro guardado", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
-                        Llenartabla(catalogo.tabla);
-                        CtrlVentana.cambiarVista(catalogo);
-
-                    } else {
-
-                        UIManager UI = new UIManager();
-                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
-                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
-
-                        int botonDialogo = JOptionPane.OK_OPTION;
-                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
-                        UIManager.put("Button.background", Color.white);
-                        UIManager.put("Button.font", Color.blue);
-                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-                        UIManager.put("Label.background", Color.blue);
-                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-
-                        JOptionPane.showMessageDialog(null, "No se pudo registrar", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
-                    }
-
-                } else {
-
-                    if (modelo.registrar(modelo)) {
-
-                        UIManager UI = new UIManager();
-                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
-                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
-
-                        int botonDialogo = JOptionPane.OK_OPTION;
-                        Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
-                        UIManager.put("Button.background", Color.white);
-                        UIManager.put("Button.font", Color.blue);
-                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-                        UIManager.put("Label.background", Color.blue);
-                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-
-                        JOptionPane.showMessageDialog(null, "Registro guardado", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
-                        Llenartabla(catalogo.tabla);
-                        CtrlVentana.cambiarVista(catalogo);
-
-                    } else {
-
-                        UIManager UI = new UIManager();
-                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
-                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
-
-                        int botonDialogo = JOptionPane.OK_OPTION;
-                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
-                        UIManager.put("Button.background", Color.white);
-                        UIManager.put("Button.font", Color.blue);
-                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-                        UIManager.put("Label.background", Color.blue);
-                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-
-                        JOptionPane.showMessageDialog(null, "No se pudo registrar", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
-                    }
-                }
+                registrar();
             }
         }
 
         if (e.getSource() == vista.btnEliminar) {
-            modelo.setId(Integer.parseInt(vista.txtId.getText()));
-            if (modelo.Buscarcon(modelo)) {
 
-                UIManager UI = new UIManager();
-                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
-                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
-
-                int botonDialogo = JOptionPane.OK_OPTION;
-                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
-                UIManager.put("Button.background", Color.white);
-                UIManager.put("Button.font", Color.blue);
-                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-                UIManager.put("Label.background", Color.blue);
-                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-
-                JOptionPane.showMessageDialog(null, "No se puede eliminar si tiene conceptos asignados", "Información", JOptionPane.INFORMATION_MESSAGE, p);
-            } else {
-                if (modelo.eliminar(modelo)) {
-
-                    UIManager UI = new UIManager();
-                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
-                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
-
-                    int botonDialogo = JOptionPane.OK_OPTION;
-                    Icon p = new ImageIcon(getClass().getResource("/img/multiplication-sign.png"));
-                    UIManager.put("Button.background", Color.white);
-                    UIManager.put("Button.font", Color.blue);
-                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-                    UIManager.put("Label.background", Color.blue);
-                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-
-                    JOptionPane.showMessageDialog(null, "Registro Eliminado", "Información", JOptionPane.INFORMATION_MESSAGE, p);
-                    Llenartabla(catalogo.tabla);
-                    CtrlVentana.cambiarVista(catalogo);
-
-                } else {
-
-                    UIManager UI = new UIManager();
-                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
-                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
-
-                    int botonDialogo = JOptionPane.OK_OPTION;
-                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
-                    UIManager.put("Button.background", Color.white);
-                    UIManager.put("Button.font", Color.blue);
-                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-                    UIManager.put("Label.background", Color.blue);
-                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-                    
-                    JOptionPane.showMessageDialog(null, "Error al Eliminar", "¡Cuidado!", JOptionPane.WARNING_MESSAGE, p);
-
-                }
-
-            }
+            eliminar();
         }
 
         if (e.getSource() == vista.btnModificar) {
+
             if (validar()) {
-                modelo.setNombre(vista.txtnombre.getText());
-                modelo.setDescripcion(vista.txtdescripcion.getText());
-                modelo.setId(Integer.parseInt(vista.txtId.getText()));
 
-                if (modelo.buscarInactivo(modelo)) {
-
-                    UIManager UI = new UIManager();
-                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
-                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
-
-                    int botonDialogo = JOptionPane.OK_OPTION;
-                    Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
-                    UIManager.put("Button.background", Color.white);
-                    UIManager.put("Button.font", Color.blue);
-                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-                    UIManager.put("Label.background", Color.blue);
-                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-                    
-                    JOptionPane.showMessageDialog(null, "No puede colocar el nombre de una categoria que ya existio, si quiere colocar este nombre debe registrarlo nuevamente", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
-
-                } else {
-                    if (modelo.modificar(modelo)) {
-
-                        UIManager UI = new UIManager();
-                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
-                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
-
-                        int botonDialogo = JOptionPane.OK_OPTION;
-                        Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
-                        UIManager.put("Button.background", Color.white);
-                        UIManager.put("Button.font", Color.blue);
-                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-                        UIManager.put("Label.background", Color.blue);
-                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-                        
-                        JOptionPane.showMessageDialog(null, "Registro modificado", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
-                        Llenartabla(catalogo.tabla);
-                        CtrlVentana.cambiarVista(catalogo);
-
-                    } else {
-
-                        UIManager UI = new UIManager();
-                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
-                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
-
-                        int botonDialogo = JOptionPane.OK_OPTION;
-                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
-                        UIManager.put("Button.background", Color.white);
-                        UIManager.put("Button.font", Color.blue);
-                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-                        UIManager.put("Label.background", Color.blue);
-                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-                        
-                        JOptionPane.showMessageDialog(null, "Este registro ya existe", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
-                    }
-                }
+                modificar();
             }
         }
 
@@ -336,31 +120,24 @@ public class CtrlCategoriaGasto implements ActionListener, MouseListener, KeyLis
         }
     }
 
-    public void limpiar() {
-
-        vista.txtnombre.setText(null);
-        vista.txtdescripcion.setText(null);
-
-    }
-
     @Override
     public void mouseClicked(MouseEvent e) {
-        // primero, obtengo la fila seleccionada
 
+        // primero, obtengo la fila seleccionada
         int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
-        int columna = this.catalogo.tabla.getSelectedColumn(); // luego, obtengo la columna seleccionada
         String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
 
         if (permiso.getModificar()) {
             vista.btnModificar.setEnabled(true);
         }
+        
         if (permiso.getEliminar()) {
             vista.btnEliminar.setEnabled(true);
         }
 
         modelo.setNombre(String.valueOf(dato));
 
-        modelo.Buscar(modelo);
+        modelo.buscar(modelo);
 
         vista.txtnombre.setText(modelo.getNombre());
 
@@ -391,6 +168,175 @@ public class CtrlCategoriaGasto implements ActionListener, MouseListener, KeyLis
     @Override
     public void mouseExited(MouseEvent e) {
 
+    }
+
+    public void limpiar() {
+
+        vista.txtnombre.setText(null);
+        vista.txtdescripcion.setText(null);
+
+    }
+
+    public void llenarTabla(JTable tablaD) {
+
+        listaCatGas = modelo.listar();
+        
+        DefaultTableModel modeloT = new DefaultTableModel() {
+            
+            @Override
+            public boolean isCellEditable(int row, int column) {
+
+                return false;
+            }
+        };
+
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(modeloT);
+        tablaD.setRowSorter(tr);
+        tablaD.setModel(modeloT);
+        tablaD.getTableHeader().setReorderingAllowed(false);
+        tablaD.getTableHeader().setResizingAllowed(false);
+
+        modeloT.addColumn("Nombre");
+        modeloT.addColumn("Descripción");
+
+        Object[] columna = new Object[2];
+
+        int numRegistro = listaCatGas.size();
+
+        for (int i = 0; i < numRegistro; i++) {
+
+            columna[0] = listaCatGas.get(i).getNombre();
+            columna[1] = listaCatGas.get(i).getDescripcion();
+
+            modeloT.addRow(columna);
+
+        }
+
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tablaD.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tablaD.getColumnModel().getColumn(1).setCellRenderer(tcr);
+
+    }
+
+    private void modificar() {
+
+        modelo.setNombre(vista.txtnombre.getText());
+        modelo.setDescripcion(vista.txtdescripcion.getText());
+        modelo.setId(Integer.parseInt(vista.txtId.getText()));
+
+        if (modelo.buscarInactivo(modelo)) {
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, "No puede colocar el nombre de una categoria que ya existio, si quiere colocar este nombre debe registrarlo nuevamente", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+
+        } else {
+
+            if (modelo.modificar(modelo)) {
+
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                int botonDialogo = JOptionPane.OK_OPTION;
+                Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(null, "Registro modificado", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                llenarTabla(catalogo.tabla);
+                CtrlVentana.cambiarVista(catalogo);
+
+            } else {
+
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                int botonDialogo = JOptionPane.OK_OPTION;
+                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(null, "Este registro ya existe", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            }
+        }
+    }
+
+    private void eliminar() {
+
+        modelo.setId(Integer.parseInt(vista.txtId.getText()));
+
+        if (modelo.Buscarcon(modelo)) {
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, "No se puede eliminar si tiene conceptos asignados", "Información", JOptionPane.INFORMATION_MESSAGE, p);
+
+        } else {
+
+            if (modelo.eliminar(modelo)) {
+
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                int botonDialogo = JOptionPane.OK_OPTION;
+                Icon p = new ImageIcon(getClass().getResource("/img/multiplication-sign.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(null, "Registro Eliminado", "Información", JOptionPane.INFORMATION_MESSAGE, p);
+                llenarTabla(catalogo.tabla);
+                CtrlVentana.cambiarVista(catalogo);
+
+            } else {
+
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                int botonDialogo = JOptionPane.OK_OPTION;
+                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(null, "Error al Eliminar", "¡Cuidado!", JOptionPane.WARNING_MESSAGE, p);
+            }
+        }
     }
 
     private void filtro(String consulta, JTable jtableBuscar) {
@@ -470,13 +416,109 @@ public class CtrlCategoriaGasto implements ActionListener, MouseListener, KeyLis
     private void permisoBtn() {
 
         for (Funcion funcionbtn : SGC.usuarioActual.getTipoU().getFunciones()) {
-            if (funcionbtn.getNombre().equals("Responsables")) {
-                permiso = funcionbtn;
 
+            if (funcionbtn.getNombre().equals("Responsables")) {
+
+                permiso = funcionbtn;
+            }
+        }
+    }
+
+    private void registrar() {
+
+        modelo.setNombre(vista.txtnombre.getText());
+        modelo.setDescripcion(vista.txtdescripcion.getText());
+
+        if (modelo.existe(true)) {
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, "Ya esxiste un registro con ese nombre ", "Error", JOptionPane.INFORMATION_MESSAGE, p);
+
+        } else if (modelo.existe(false)) {
+
+            if (modelo.reactivar(modelo)) {
+
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                int botonDialogo = JOptionPane.OK_OPTION;
+                Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                llenarTabla(catalogo.tabla);
+                CtrlVentana.cambiarVista(catalogo);
+
+            } else {
+
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                int botonDialogo = JOptionPane.OK_OPTION;
+                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(null, "No se pudo registrar", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
             }
 
-        }
+        } else {
 
+            if (modelo.registrar(modelo)) {
+
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                int botonDialogo = JOptionPane.OK_OPTION;
+                Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(null, "Registro guardado", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                llenarTabla(catalogo.tabla);
+                CtrlVentana.cambiarVista(catalogo);
+
+            } else {
+
+                UIManager UI = new UIManager();
+                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                int botonDialogo = JOptionPane.OK_OPTION;
+                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                UIManager.put("Button.background", Color.white);
+                UIManager.put("Button.font", Color.blue);
+                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                UIManager.put("Label.background", Color.blue);
+                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                JOptionPane.showMessageDialog(null, "No se pudo registrar", "Error", JOptionPane.WARNING_MESSAGE, p);
+            }
+        }
     }
 
     private Boolean validar() {
@@ -508,7 +550,7 @@ public class CtrlCategoriaGasto implements ActionListener, MouseListener, KeyLis
             UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-            
+
             JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
         }
 

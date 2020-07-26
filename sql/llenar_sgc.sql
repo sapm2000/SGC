@@ -32,7 +32,6 @@ INSERT INTO funcion (funcion) VALUES ('Gasto');
 INSERT INTO funcion (funcion) VALUES ('Generar recibo');
 INSERT INTO funcion (funcion) VALUES ('Gestionar Usuario');
 INSERT INTO funcion (funcion) VALUES ('Intereses');
---INSERT INTO funcion (funcion) VALUES ('Pago de cuotas especiales');
 INSERT INTO funcion (funcion) VALUES ('Propietarios');
 INSERT INTO funcion (funcion) VALUES ('Proveedores');
 INSERT INTO funcion (funcion) VALUES ('Recibo');
@@ -77,4 +76,3 @@ INSERT INTO puente_tipo_funcion (id_tipo, id_funcion, ver, registrar, modificar,
 
 -- usuario
 INSERT INTO usuario (usuario, password, pregunta, respuesta, ci_persona, id_tipo_usuario) VALUES ('Ingresar Usuario', '455831477b82574f6bf871193f2f761d', 'pregunta', 'respuesta', 'V-00000000', 1);
-
