@@ -19,7 +19,6 @@ public class TipoUsuario extends ConexionBD {
     public TipoUsuario() {
 
         funciones = new ArrayList();
-
     }
 
     public TipoUsuario(Integer id, String nombre, ArrayList<Funcion> funciones) {
@@ -27,7 +26,6 @@ public class TipoUsuario extends ConexionBD {
         this.id = id;
         this.nombre = nombre;
         this.funciones = funciones;
-
     }
 
     private Boolean agregarFuncion(Funcion funcion) throws SQLException {
@@ -184,14 +182,15 @@ public class TipoUsuario extends ConexionBD {
 
     public boolean modificar() {
 
+        ps = null;
+        con = getConexion();
+
+        int ind;
+        boolean resul = false;
+
+        String sql = "SELECT modificar_tipo_usuario(?,?,?);";
+
         try {
-            ps = null;
-            con = getConexion();
-
-            int ind;
-            boolean resul = false;
-
-            String sql = "SELECT modificar_tipo_usuario(?,?,?);";
 
             ps = con.prepareStatement(sql);
 
@@ -238,18 +237,19 @@ public class TipoUsuario extends ConexionBD {
 
         Funcion item;
         ArrayList<Funcion> funcionesViejas;
+
         int numNuevos;
         int numViejos;
 
         ps = null;
+        con = getConexion();
 
         String sql = "SELECT id_funcion, funcion, ver, registrar, modificar, eliminar FROM v_tipo_funcion WHERE id = ?;";
 
         try {
+
             ps = con.prepareStatement(sql);
-
             ps.setInt(1, getId());
-
             rs = ps.executeQuery();
 
             funcionesViejas = new ArrayList();
@@ -257,51 +257,61 @@ public class TipoUsuario extends ConexionBD {
             while (rs.next()) {
 
                 item = new Funcion();
+                
                 item.setId(rs.getInt("id_funcion"));
                 item.setNombre(rs.getString("funcion"));
                 item.setVer(rs.getBoolean("ver"));
                 item.setRegistrar(rs.getBoolean("registrar"));
                 item.setModificar(rs.getBoolean("modificar"));
                 item.setEliminar(rs.getBoolean("eliminar"));
+                
                 funcionesViejas.add(item);
+                System.out.println("se obtuvo la funcion = " + item.getNombre() + " con los permisos " + rs.getBoolean("ver") + " " + rs.getBoolean("registrar") + " " + rs.getBoolean("modificar") + " " + rs.getBoolean("eliminar"));
 
             }
 
             numNuevos = getFunciones().size();
             numViejos = funcionesViejas.size();
-            
+
             boolean procesado;
 
             // Por cada función nueva
             for (int j = 0; j < numNuevos; j++) {
-                
+
                 procesado = false;
 
                 // Por cada función vieja
                 for (int i = 0; i < numViejos; i++) {
 
-                    // Si la función de la lista de nuevos y sus permisos coincide con la de la BD
-                    if (getFunciones().get(j).equals(funcionesViejas.get(i))) {
+                    // Si la función de la lista de nuevos y sus permisos coinciden con la de la BD
+                    if (getFunciones().get(j).esIgual(funcionesViejas.get(i))) {
+                        System.out.println("no se hace nada con la función " + getFunciones().get(j).getNombre());
 
                         // No se hace nada con ella y se elimina de ambos arreglos para dejar de compararlos
                         getFunciones().remove(j);
                         numNuevos--;
+                        
                         funcionesViejas.remove(i);
                         numViejos--;
+                        
+                        procesado = true;
                         break;
 
-                    // En cambio, si la función coincide, pero no sus permisos
-                    } else if (getFunciones().get(j).getId() == funcionesViejas.get(i).getId()) {
-                        
+                        // En cambio, si la función coincide, pero no sus permisos
+                    } else if (getFunciones().get(j).getId() == funcionesViejas.get(i).getId() && !getFunciones().get(j).esIgual(funcionesViejas.get(i))) {
+
                         // Se modifica la función del tipo de usuario y se elimina de ambos arreglos para dejar de compararlos
                         modificarPermisosFuncion(getFunciones().get(j));
-                        
+                        System.out.println("se modificaron los permisos de la función " + getFunciones().get(j).getNombre() + ", de " + funcionesViejas.get(i).getVer() + funcionesViejas.get(i).getRegistrar() + funcionesViejas.get(i).getModificar() + funcionesViejas.get(i).getEliminar() + " a " + getFunciones().get(j).getVer() + getFunciones().get(j).getRegistrar() + getFunciones().get(j).getModificar() + getFunciones().get(j).getEliminar());
+
                         getFunciones().remove(j);
                         numNuevos--;
+                        
                         funcionesViejas.remove(i);
                         numViejos--;
+                        
+                        procesado = true;
                         break;
-
                     }
                 }
 
@@ -310,12 +320,14 @@ public class TipoUsuario extends ConexionBD {
 
                     // Se agrega como nueva función y se elimina del arreglo de nuevas
                     agregarFuncion(getFunciones().get(j));
+                    System.out.println("se agrego la función " + getFunciones().get(j).getNombre() + " con los permisos " + getFunciones().get(j).getVer() + getFunciones().get(j).getRegistrar() + getFunciones().get(j).getModificar() + getFunciones().get(j).getEliminar());
+                    
                     getFunciones().remove(j);
                     numNuevos--;
                     j--;
 
                 } else {
-                    
+
                     //Se reduce el índice que recorre las funciones nuevas
                     j--;
                 }
@@ -339,7 +351,7 @@ public class TipoUsuario extends ConexionBD {
     }
 
     private boolean modificarPermisosFuncion(Funcion funcion) throws SQLException {
-        
+
         int ind;
         ps = null;
 
@@ -411,8 +423,6 @@ public class TipoUsuario extends ConexionBD {
 
             ps = con.prepareStatement(sql);
 
-            System.out.println("Se registraran " + getFunciones().size() + " funciones");
-
             for (int i = 0; i < getFunciones().size(); i++) {
 
                 ind = 1;
@@ -422,17 +432,10 @@ public class TipoUsuario extends ConexionBD {
                 ps.setBoolean(ind++, getFunciones().get(i).getRegistrar());
                 ps.setBoolean(ind++, getFunciones().get(i).getModificar());
                 ps.setBoolean(ind++, getFunciones().get(i).getEliminar());
-                System.out.println("se registró la función " + getFunciones().get(i).getNombre());
-                System.out.println("ver: " + getFunciones().get(i).getVer());
-                System.out.println("registrar: " + getFunciones().get(i).getRegistrar());
-                System.out.println("modificar: " + getFunciones().get(i).getModificar());
-                System.out.println("eliminar: " + getFunciones().get(i).getEliminar());
-                System.out.println("");
 
                 if (ps.executeUpdate() != 1) {
 
                     return false;
-
                 }
             }
 
@@ -464,6 +467,7 @@ public class TipoUsuario extends ConexionBD {
             ps.setInt(ind++, getId());
             ps.setInt(ind++, funciones.get(i).getId());
             ps.execute();
+            System.out.println("se retiró la función = " + funciones.get(i).getNombre());
 
         }
 

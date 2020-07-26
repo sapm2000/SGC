@@ -42,6 +42,11 @@ public class Funcion extends ConexionBD {
         this.eliminar = eliminar;
     }
 
+    public boolean esIgual(Funcion funcion) {
+        
+        return id == funcion.id && ver == funcion.ver && registrar == funcion.registrar && modificar == funcion.modificar && eliminar == funcion.eliminar;
+    }
+
     public ArrayList<Funcion> listar() {
 
         try {

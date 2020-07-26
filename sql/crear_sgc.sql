@@ -104,13 +104,6 @@ CREATE TABLE tipo_usuario (
 );
 
 -------- Tablas con Claves Foráneas --------
---cierre_de_mes
-CREATE TABLE cierre_de_mes(
-	id serial NOT NULL PRIMARY KEY,	
-	mes bigint NOT NULL,
-	anio bigint NOT NULL,
-	id_condominio character varying(15) NOT NULL REFERENCES condominio(rif)
-);
 
 -- concepto_gasto
 CREATE TABLE concepto_gasto(
