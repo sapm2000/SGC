@@ -143,310 +143,20 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
 
         }
         if (e.getSource() == vista.jButton1) {
-            Calendar c1 = Calendar.getInstance();
-            int messis = (c1.get(Calendar.MONTH)) + 1;
-            int anniosis = (c1.get(Calendar.YEAR));
-
-            modc.setMes_cierre(vista.txtMes.getSelectedIndex() + 1);
-            modc.setAño_cierre(vista.txtAño.getYear());
-            int mm = modc.getMes_cierre();
-            if (modc.getAño_cierre() <= anniosis) {
-                if (modc.getAño_cierre() < anniosis) {
-                    mm = mm - 13;
-                }
-                if (mm <= messis) {
-                    if (modc.buscarfechas(modc)) {
-
-                        UIManager UI = new UIManager();
-                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
-                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
-
-                        int botonDialogo = JOptionPane.OK_OPTION;
-                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
-                        UIManager.put("Button.background", Color.white);
-                        UIManager.put("Button.font", Color.blue);
-                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-                        UIManager.put("Label.background", Color.blue);
-                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-
-                        JOptionPane.showMessageDialog(null, "Este mes ya se ha cerrado ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
-                    } else {
-                        modc.setMes_cierre(vista.txtMes.getSelectedIndex() + 1);
-                        modc.setAño_cierre(vista.txtAño.getYear());
-                        listaunidades = moduni.listar();
-
-                        int numRegistro = listaunidades.size();
-
-                        listaGastos = modcuo.listarGastos();
-
-                        int numCuotas = listaGastos.size();
-                        Object[] tipo_cuota = new Object[numCuotas];
-                        Object[] id_cuota = new Object[numCuotas];
-
-                        int numReales = 0;
-
-                        int mes = vista.txtMes.getSelectedIndex() + 1;
-                        int año = vista.txtAño.getYear();
-                        if (numCuotas == 0) {
-
-                        } else {
-
-                            for (int z = 0; z < numCuotas; z++) {
-                                id_cuota[z] = listaGastos.get(z).getId();
-                                int mes_c = listaGastos.get(z).getMes();
-                                int año_c = listaGastos.get(z).getAnio();
-                                int meses_r = listaGastos.get(z).getNumMeses();
-                                tipo_cuota[z] = listaGastos.get(z).getCalcular();
-                                int var1 = mes_c + meses_r;
-                                double monto_t = listaGastos.get(z).getMonto();
-
-                                double parte_periodo = monto_t / meses_r;
-
-                                if (año >= año_c) {
-
-                                    if (año > año_c) {
-                                        mes_c = mes_c - 11;
-
-                                    }
-
-                                    if (mes >= mes_c) {
-
-                                        if (var1 > 13) {
-                                            int var2 = var1;
-                                            var1 = var1 - 12;
-                                            año_c = año_c + 1;
-                                            if (var2 > 25) {
-                                                var1 = var1 - 12;
-                                                año_c = año_c + 1;
-                                            }
-                                        }
-
-                                        if (año <= año_c) {
-
-                                            if (mes < var1) {
-
-                                                String tipo = String.valueOf(tipo_cuota[z]);
-
-                                                if (numRegistro > 0) {
-                                                    modc.gasto.setMesesRestantes(meses_r - 1);
-                                                    modc.gasto.setId(Integer.parseInt(String.valueOf(id_cuota[z])));
-
-                                                    if (modc.gasto.getMesesRestantes() == 0) {
-                                                        modc.setEstado("Mensualidad Completada");
-                                                        modc.actualizar_cuota(modc);
-
-                                                    } else {
-                                                        modc.setEstado("Mensualidad en Proceso");
-                                                        modc.actualizar_cuota(modc);
-
-                                                    }
-                                                }
-
-                                                if (tipo.equals("ALICUOTA")) {
-
-                                                    for (int w = 0; w < numRegistro; w++) {
-
-                                                        double parte_cuota = parte_periodo * listaunidades.get(w).getAlicuota();
-
-                                                        if (listaGastos.get(z).getMoneda().equals("BOLÍVAR")) {
-
-                                                            double paridad = Double.parseDouble(vista.txtParidad.getText());
-                                                            double total_dolar = parte_cuota / paridad;
-                                                            modc.setMonto_bolivar(parte_cuota);
-                                                            modc.setMonto_dolar(total_dolar);
-                                                            System.out.println(total_dolar);
-                                                            System.out.println(parte_cuota);
-                                                        } else {
-                                                            double paridad = Double.parseDouble(vista.txtParidad.getText());
-                                                            double total_bolivar = parte_cuota * paridad;
-                                                            modc.setMonto_bolivar(total_bolivar);
-                                                            modc.setMonto_dolar(parte_cuota);
-                                                        }
-                                                        modc.setId(listaGastos.get(z).getId());
-                                                        modc.setParidad(Double.parseDouble(vista.txtParidad.getText()));
-                                                        modc.setMoneda_dominante(vista.cbxMoneda.getSelectedItem().toString());
-                                                        modc.gasto.setId(Integer.parseInt(String.valueOf(id_cuota[z])));
-                                                        modc.setTipo_gasto(listaGastos.get(z).getTipo());
-                                                        modc.uni.setId(listaunidades.get(w).getId());
-                                                        modc.uni.setAlicuota(listaunidades.get(w).getAlicuota());
-                                                        modc.registrar_cuota(modc);
-
-                                                        numReales = numReales + 1;
-
-                                                    }
-                                                } else {
-                                                    for (int w = 0; w < numRegistro; w++) {
-
-                                                        double parte_cuota = parte_periodo / numRegistro;
-                                                        modc.setId(listaGastos.get(z).getId());
-                                                        if (listaGastos.get(z).getMoneda().equals("BOLÍVAR")) {
-                                                            double paridad = Double.parseDouble(vista.txtParidad.getText());
-                                                            double total_dolar = parte_cuota / paridad;
-                                                            modc.setMonto_bolivar(parte_cuota);
-                                                            modc.setMonto_dolar(total_dolar);
-                                                        } else {
-                                                            double paridad = Double.parseDouble(vista.txtParidad.getText());
-                                                            double total_bolivar = parte_cuota * paridad;
-                                                            modc.setMonto_bolivar(total_bolivar);
-                                                            modc.setMonto_dolar(parte_cuota);
-                                                        }
-                                                        modc.uni.setId(listaunidades.get(w).getId());
-                                                        modc.setTipo_gasto(listaGastos.get(z).getTipo());
-                                                        modc.setParidad(Double.parseDouble(vista.txtParidad.getText()));
-                                                        modc.setMoneda_dominante(vista.cbxMoneda.getSelectedItem().toString());
-                                                        modc.uni.setAlicuota(listaunidades.get(w).getAlicuota());
-                                                        modc.registrar_cuota(modc);
-
-                                                        numReales = numReales + 1;
-
-                                                    }
-                                                }
-
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        modsan.setMes(modc.getMes_cierre());
-                        modsan.setAño(modc.getAño_cierre());
-                        listasanciones = modsan.listarSancionesCerrarmes();
-                        int numSanciones = listasanciones.size();
-                        Object[] tipo_sancion = new Object[numSanciones];
-                        Object[] factor_sancion = new Object[numSanciones];
-                        Object[] id_sancion = new Object[numSanciones];
-                        if (numReales == 0) {
-
-                        } else {
-                            for (int j = 0; j < numSanciones; j++) {
-                                tipo_sancion[j] = listasanciones.get(j).getTipo();
-                                factor_sancion[j] = listasanciones.get(j).getMonto();
-                                id_sancion[j] = listasanciones.get(j).getId();
-                                String var = String.valueOf(tipo_sancion[j]);
-
-                                if (var.equals("INTERES DE MORA")) {
-                                    double monto = 0;
-                                    modc.gasto.setId(listasanciones.get(j).getId());
-                                    if (vista.cbxMoneda.getSelectedItem().toString().equals("DÓLAR")) {
-
-                                        modc.buscartotal(modc, 2);
-                                        monto = modc.getMonto_dolar();
-                                    } else {
-                                        modc.buscartotal(modc, 1);
-                                        monto = modc.getMonto_bolivar();
-                                    }
-
-                                    double totalf = Double.parseDouble(String.valueOf(factor_sancion[j])) / 100;
-                                    double var3 = monto * totalf;
-
-                                    modc.gasto.setId(Integer.parseInt(String.valueOf(id_sancion[j])));
-                                    modc.uni.setId(listasanciones.get(j).uni.getId());
-
-                                    if (vista.cbxMoneda.getSelectedItem().toString().equals("DÓLAR")) {
-
-                                        modc.setMonto_dolar(var3);
-                                        modc.setMonto_bolivar(var3 * Double.parseDouble(vista.txtParidad.getText()));
-
-                                    } else {
-                                        modc.setMonto_bolivar(var3);
-                                        modc.setMonto_dolar(var3 / Double.parseDouble(vista.txtParidad.getText()));
-
-                                    }
-                                    modc.setParidad(Double.parseDouble(vista.txtParidad.getText()));
-                                    modc.setMoneda_dominante(vista.cbxMoneda.getSelectedItem().toString());
-
-                                    modc.setEstado("Procesado");
-                                    modc.setTipo_gasto("Sancion");
-                                    modc.guardarsancionpro(modc);
-                                    modc.actualizarSancion(modc);
-
-                                }
-
-                                if (var.equals("MULTA")) {
-
-                                    modc.setId(listasanciones.get(j).getId());
-                                    if (listasanciones.get(j).getMoneda().equals("DÓLAR")) {
-                                        modc.setMonto_dolar(listasanciones.get(j).getMonto());
-                                        modc.setMonto_bolivar(listasanciones.get(j).getMonto() * Double.parseDouble(vista.txtParidad.getText()));
-                                    } else {
-                                        modc.setMonto_bolivar(listasanciones.get(j).getMonto());
-                                        modc.setMonto_dolar(listasanciones.get(j).getMonto() / Double.parseDouble(vista.txtParidad.getText()));
-                                    }
-
-                                    modc.gasto.setId(Integer.parseInt(String.valueOf(id_sancion[j])));
-                                    modc.uni.setId(listasanciones.get(j).uni.getId());
-                                    modc.setTipo_gasto("Sancion");
-
-                                    modc.setParidad(Double.parseDouble(vista.txtParidad.getText()));
-                                    modc.setMoneda_dominante(vista.cbxMoneda.getSelectedItem().toString());
-
-                                    modc.setEstado("Procesado");
-                                    modc.guardarsancionpro(modc);
-                                    modc.actualizarSancion(modc);
-
-                                }
-                            }
-                        }
-
-                        listainteres = modin.listarInteres();
-                        int numInteres = listainteres.size();
-                        Object[] id_interes = new Object[numInteres];
-                        Object[] factor = new Object[numInteres];
-                        if (numReales == 0) {
-
-                        } else {
-                            for (int l = 0; l < numInteres; l++) {
-                                id_interes[l] = listainteres.get(l).getId();
-                                factor[l] = listainteres.get(l).getFactor();
-
-                                for (int w = 0; w < numRegistro; w++) {
-                                    modc.uni.setId(listaunidades.get(w).getId());
-                                    double monto = 0;
-
-                                    modc.buscartotal(modc, 1);
-                                    monto = modc.getMonto_bolivar();
-
-                                    double var9 = Double.parseDouble(String.valueOf(factor[l])) / 100;
-
-                                    double parte_cuota = monto * var9;
-
-                                    modc.setMonto_dolar(parte_cuota / Double.parseDouble(vista.txtParidad.getText()));
-                                    modc.setMonto_bolivar(parte_cuota);
-                                    modc.gasto.setId(listainteres.get(l).getId());
-
-                                    modc.uni.setId(listaunidades.get(w).getId());
-                                    modc.setTipo_gasto("Interes");
-
-                                    modc.setParidad(Double.parseDouble(vista.txtParidad.getText()));
-                                    modc.setMoneda_dominante(vista.cbxMoneda.getSelectedItem().toString());
-
-                                    modc.registrar_interes(modc);
-
-                                }
-
-                            }
-                        }
-
-                        if (numReales > 0) {
-
-                            UIManager UI = new UIManager();
-                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
-                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
-
-                            int botonDialogo = JOptionPane.OK_OPTION;
-                            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
-                            UIManager.put("Button.background", Color.white);
-                            UIManager.put("Button.font", Color.blue);
-                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-                            UIManager.put("Label.background", Color.blue);
-                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-
-                            JOptionPane.showMessageDialog(null, "Cierre satisfactorio ", "¡Felicidades!", JOptionPane.INFORMATION_MESSAGE, p);
-                            Llenartabla(catalogo.tabla);
-                            CtrlVentana.cambiarVista(catalogo);
-                        } else {
-
-                            modc.borrarnulo(modc);
+            if (validar()) {
+                Calendar c1 = Calendar.getInstance();
+                int messis = (c1.get(Calendar.MONTH)) + 1;
+                int anniosis = (c1.get(Calendar.YEAR));
+
+                modc.setMes_cierre(vista.txtMes.getSelectedIndex() + 1);
+                modc.setAño_cierre(vista.txtAño.getYear());
+                int mm = modc.getMes_cierre();
+                if (modc.getAño_cierre() <= anniosis) {
+                    if (modc.getAño_cierre() < anniosis) {
+                        mm = mm - 13;
+                    }
+                    if (mm <= messis) {
+                        if (modc.buscarfechas(modc)) {
 
                             UIManager UI = new UIManager();
                             UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
@@ -460,8 +170,318 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "No hay gastos por cerrar ", "¡Felicidades!", JOptionPane.INFORMATION_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "Este mes ya se ha cerrado ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        } else {
+                            modc.setMes_cierre(vista.txtMes.getSelectedIndex() + 1);
+                            modc.setAño_cierre(vista.txtAño.getYear());
+                            listaunidades = moduni.listar();
+
+                            int numRegistro = listaunidades.size();
+
+                            listaGastos = modcuo.listarGastos();
+
+                            int numCuotas = listaGastos.size();
+                            Object[] tipo_cuota = new Object[numCuotas];
+                            Object[] id_cuota = new Object[numCuotas];
+
+                            int numReales = 0;
+
+                            int mes = vista.txtMes.getSelectedIndex() + 1;
+                            int año = vista.txtAño.getYear();
+                            if (numCuotas == 0) {
+
+                            } else {
+
+                                for (int z = 0; z < numCuotas; z++) {
+                                    id_cuota[z] = listaGastos.get(z).getId();
+                                    int mes_c = listaGastos.get(z).getMes();
+                                    int año_c = listaGastos.get(z).getAnio();
+                                    int meses_r = listaGastos.get(z).getMesesRestantes();
+                                    System.out.println(listaGastos.get(z).getMesesRestantes());
+                                    tipo_cuota[z] = listaGastos.get(z).getCalcular();
+                                    int var1 = mes_c + meses_r;
+                                    double monto_t = listaGastos.get(z).getMonto();
+
+                                    double parte_periodo = monto_t / meses_r;
+
+                                    if (año >= año_c) {
+
+                                        if (año > año_c) {
+                                            mes_c = mes_c - 11;
+
+                                        }
+
+                                        if (mes >= mes_c) {
+
+                                            if (var1 > 13) {
+                                                int var2 = var1;
+                                                var1 = var1 - 12;
+                                                año_c = año_c + 1;
+                                                if (var2 > 25) {
+                                                    var1 = var1 - 12;
+                                                    año_c = año_c + 1;
+                                                }
+                                            }
+
+                                            if (año <= año_c) {
+
+                                                if (mes < var1) {
+
+                                                    String tipo = String.valueOf(tipo_cuota[z]);
+
+                                                    if (numRegistro > 0) {
+                                                        System.out.println(meses_r);
+                                                        modc.gasto.setMesesRestantes(meses_r - 1);
+                                                        System.out.println(modc.gasto.getMesesRestantes());
+                                                        modc.gasto.setId(Integer.parseInt(String.valueOf(id_cuota[z])));
+
+                                                        if (modc.gasto.getMesesRestantes() == 0) {
+                                                            modc.setEstado("Mensualidad Completada");
+                                                            modc.actualizar_cuota(modc);
+
+                                                        } else {
+                                                            modc.setEstado("Mensualidad en Proceso");
+                                                            modc.actualizar_cuota(modc);
+
+                                                        }
+                                                    }
+
+                                                    if (tipo.equals("ALICUOTA")) {
+
+                                                        for (int w = 0; w < numRegistro; w++) {
+
+                                                            double parte_cuota = parte_periodo * listaunidades.get(w).getAlicuota();
+
+                                                            if (listaGastos.get(z).getMoneda().equals("BOLÍVAR")) {
+
+                                                                double paridad = Double.parseDouble(vista.txtParidad.getText());
+                                                                double total_dolar = parte_cuota / paridad;
+                                                                modc.setMonto_bolivar(parte_cuota);
+                                                                modc.setMonto_dolar(total_dolar);
+                                                                System.out.println(total_dolar);
+                                                                System.out.println(parte_cuota);
+                                                            } else {
+                                                                double paridad = Double.parseDouble(vista.txtParidad.getText());
+                                                                double total_bolivar = parte_cuota * paridad;
+                                                                modc.setMonto_bolivar(total_bolivar);
+                                                                modc.setMonto_dolar(parte_cuota);
+                                                            }
+                                                            modc.setId(listaGastos.get(z).getId());
+                                                            modc.setParidad(Double.parseDouble(vista.txtParidad.getText()));
+                                                            modc.setMoneda_dominante(vista.cbxMoneda.getSelectedItem().toString());
+                                                            modc.gasto.setId(Integer.parseInt(String.valueOf(id_cuota[z])));
+                                                            modc.setTipo_gasto(listaGastos.get(z).getTipo());
+                                                            modc.uni.setId(listaunidades.get(w).getId());
+                                                            modc.uni.setAlicuota(listaunidades.get(w).getAlicuota());
+                                                            modc.registrar_cuota(modc);
+
+                                                            numReales = numReales + 1;
+
+                                                        }
+                                                    } else {
+                                                        for (int w = 0; w < numRegistro; w++) {
+
+                                                            double parte_cuota = parte_periodo / numRegistro;
+                                                            modc.setId(listaGastos.get(z).getId());
+                                                            if (listaGastos.get(z).getMoneda().equals("BOLÍVAR")) {
+                                                                double paridad = Double.parseDouble(vista.txtParidad.getText());
+                                                                double total_dolar = parte_cuota / paridad;
+                                                                modc.setMonto_bolivar(parte_cuota);
+                                                                modc.setMonto_dolar(total_dolar);
+                                                            } else {
+                                                                double paridad = Double.parseDouble(vista.txtParidad.getText());
+                                                                double total_bolivar = parte_cuota * paridad;
+                                                                modc.setMonto_bolivar(total_bolivar);
+                                                                modc.setMonto_dolar(parte_cuota);
+                                                            }
+                                                            modc.uni.setId(listaunidades.get(w).getId());
+                                                            modc.setTipo_gasto(listaGastos.get(z).getTipo());
+                                                            modc.setParidad(Double.parseDouble(vista.txtParidad.getText()));
+                                                            modc.setMoneda_dominante(vista.cbxMoneda.getSelectedItem().toString());
+                                                            modc.uni.setAlicuota(listaunidades.get(w).getAlicuota());
+                                                            modc.registrar_cuota(modc);
+
+                                                            numReales = numReales + 1;
+
+                                                        }
+                                                    }
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            modsan.setMes(modc.getMes_cierre());
+                            modsan.setAño(modc.getAño_cierre());
+                            listasanciones = modsan.listarSancionesCerrarmes();
+                            int numSanciones = listasanciones.size();
+                            Object[] tipo_sancion = new Object[numSanciones];
+                            Object[] factor_sancion = new Object[numSanciones];
+                            Object[] id_sancion = new Object[numSanciones];
+                            if (numReales == 0) {
+
+                            } else {
+                                for (int j = 0; j < numSanciones; j++) {
+                                    tipo_sancion[j] = listasanciones.get(j).getTipo();
+                                    factor_sancion[j] = listasanciones.get(j).getMonto();
+                                    id_sancion[j] = listasanciones.get(j).getId();
+                                    String var = String.valueOf(tipo_sancion[j]);
+
+                                    if (var.equals("INTERES DE MORA")) {
+                                        double monto = 0;
+                                        modc.gasto.setId(listasanciones.get(j).getId());
+                                        if (vista.cbxMoneda.getSelectedItem().toString().equals("DÓLAR")) {
+
+                                            modc.buscartotal(modc, 2);
+                                            monto = modc.getMonto_dolar();
+                                        } else {
+                                            modc.buscartotal(modc, 1);
+                                            monto = modc.getMonto_bolivar();
+                                        }
+
+                                        double totalf = Double.parseDouble(String.valueOf(factor_sancion[j])) / 100;
+                                        double var3 = monto * totalf;
+
+                                        modc.gasto.setId(Integer.parseInt(String.valueOf(id_sancion[j])));
+                                        modc.uni.setId(listasanciones.get(j).uni.getId());
+
+                                        if (vista.cbxMoneda.getSelectedItem().toString().equals("DÓLAR")) {
+
+                                            modc.setMonto_dolar(var3);
+                                            modc.setMonto_bolivar(var3 * Double.parseDouble(vista.txtParidad.getText()));
+
+                                        } else {
+                                            modc.setMonto_bolivar(var3);
+                                            modc.setMonto_dolar(var3 / Double.parseDouble(vista.txtParidad.getText()));
+
+                                        }
+                                        modc.setParidad(Double.parseDouble(vista.txtParidad.getText()));
+                                        modc.setMoneda_dominante(vista.cbxMoneda.getSelectedItem().toString());
+
+                                        modc.setEstado("Procesado");
+                                        modc.setTipo_gasto("Sancion");
+                                        modc.guardarsancionpro(modc);
+                                        modc.actualizarSancion(modc);
+
+                                    }
+
+                                    if (var.equals("MULTA")) {
+
+                                        modc.setId(listasanciones.get(j).getId());
+                                        if (listasanciones.get(j).getMoneda().equals("DÓLAR")) {
+                                            modc.setMonto_dolar(listasanciones.get(j).getMonto());
+                                            modc.setMonto_bolivar(listasanciones.get(j).getMonto() * Double.parseDouble(vista.txtParidad.getText()));
+                                        } else {
+                                            modc.setMonto_bolivar(listasanciones.get(j).getMonto());
+                                            modc.setMonto_dolar(listasanciones.get(j).getMonto() / Double.parseDouble(vista.txtParidad.getText()));
+                                        }
+
+                                        modc.gasto.setId(Integer.parseInt(String.valueOf(id_sancion[j])));
+                                        modc.uni.setId(listasanciones.get(j).uni.getId());
+                                        modc.setTipo_gasto("Sancion");
+
+                                        modc.setParidad(Double.parseDouble(vista.txtParidad.getText()));
+                                        modc.setMoneda_dominante(vista.cbxMoneda.getSelectedItem().toString());
+
+                                        modc.setEstado("Procesado");
+                                        modc.guardarsancionpro(modc);
+                                        modc.actualizarSancion(modc);
+
+                                    }
+                                }
+                            }
+
+                            listainteres = modin.listarInteres();
+                            int numInteres = listainteres.size();
+                            Object[] id_interes = new Object[numInteres];
+                            Object[] factor = new Object[numInteres];
+                            if (numReales == 0) {
+
+                            } else {
+                                for (int l = 0; l < numInteres; l++) {
+                                    id_interes[l] = listainteres.get(l).getId();
+                                    factor[l] = listainteres.get(l).getFactor();
+
+                                    for (int w = 0; w < numRegistro; w++) {
+                                        modc.uni.setId(listaunidades.get(w).getId());
+                                        double monto = 0;
+
+                                        modc.buscartotal(modc, 1);
+                                        monto = modc.getMonto_bolivar();
+
+                                        double var9 = Double.parseDouble(String.valueOf(factor[l])) / 100;
+
+                                        double parte_cuota = monto * var9;
+
+                                        modc.setMonto_dolar(parte_cuota / Double.parseDouble(vista.txtParidad.getText()));
+                                        modc.setMonto_bolivar(parte_cuota);
+                                        modc.gasto.setId(listainteres.get(l).getId());
+
+                                        modc.uni.setId(listaunidades.get(w).getId());
+                                        modc.setTipo_gasto("Interes");
+
+                                        modc.setParidad(Double.parseDouble(vista.txtParidad.getText()));
+                                        modc.setMoneda_dominante(vista.cbxMoneda.getSelectedItem().toString());
+
+                                        modc.registrar_interes(modc);
+
+                                    }
+
+                                }
+                            }
+
+                            if (numReales > 0) {
+
+                                UIManager UI = new UIManager();
+                                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                int botonDialogo = JOptionPane.OK_OPTION;
+                                Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                                UIManager.put("Button.background", Color.white);
+                                UIManager.put("Button.font", Color.blue);
+                                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                UIManager.put("Label.background", Color.blue);
+                                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                JOptionPane.showMessageDialog(null, "Cierre satisfactorio ", "¡Felicidades!", JOptionPane.INFORMATION_MESSAGE, p);
+                                Llenartabla(catalogo.tabla);
+                                CtrlVentana.cambiarVista(catalogo);
+                            } else {
+
+                                modc.borrarnulo(modc);
+
+                                UIManager UI = new UIManager();
+                                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                                int botonDialogo = JOptionPane.OK_OPTION;
+                                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                                UIManager.put("Button.background", Color.white);
+                                UIManager.put("Button.font", Color.blue);
+                                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                                UIManager.put("Label.background", Color.blue);
+                                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                                JOptionPane.showMessageDialog(null, "No hay gastos por cerrar ", "¡Felicidades!", JOptionPane.INFORMATION_MESSAGE, p);
+                            }
                         }
+                    } else {
+
+                        UIManager UI = new UIManager();
+                        UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                        UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+                        int botonDialogo = JOptionPane.OK_OPTION;
+                        Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+                        UIManager.put("Button.background", Color.white);
+                        UIManager.put("Button.font", Color.blue);
+                        UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                        UIManager.put("Label.background", Color.blue);
+                        UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+                        JOptionPane.showMessageDialog(null, "No puede cerrar un mes que no ha concluido ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                     }
                 } else {
 
@@ -479,21 +499,6 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
 
                     JOptionPane.showMessageDialog(null, "No puede cerrar un mes que no ha concluido ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                 }
-            } else {
-
-                UIManager UI = new UIManager();
-                UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
-                UI.put("Panel.background", new ColorUIResource(255, 255, 255));
-
-                int botonDialogo = JOptionPane.OK_OPTION;
-                Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
-                UIManager.put("Button.background", Color.white);
-                UIManager.put("Button.font", Color.blue);
-                UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-                UIManager.put("Label.background", Color.blue);
-                UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-
-                JOptionPane.showMessageDialog(null, "No puede cerrar un mes que no ha concluido ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
             }
         }
         if (e.getSource() == vista.btnSalir) {
@@ -542,6 +547,36 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
         c.setForeground(Color.WHITE);
 
         c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
+    }
+
+    private Boolean validar() {
+
+        Boolean resultado = true;
+        String msj = "";
+
+        if (vista.txtParidad.getText().isEmpty()) {
+
+            msj += "El campo paridad no puede estar vacío \n";
+            resultado = false;
+        }
+        if (!resultado) {
+
+            UIManager UI = new UIManager();
+            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+
+            int botonDialogo = JOptionPane.OK_OPTION;
+            Icon p = new ImageIcon(getClass().getResource("/img/warning.png"));
+            UIManager.put("Button.background", Color.white);
+            UIManager.put("Button.font", Color.blue);
+            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+            UIManager.put("Label.background", Color.blue);
+            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
+
+            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+        }
+
+        return resultado;
     }
 
 }

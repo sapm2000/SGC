@@ -383,8 +383,8 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
                 columna[0] = listaCierremes.get(i).getMes_cierre();
                 columna[1] = listaCierremes.get(i).getAño_cierre();
-                columna[2] = listaCierremes.get(i).getMonto_bolivar();
-                columna[3] = listaCierremes.get(i).getMonto_dolar();
+                columna[2] = Validacion.formatopago.format(listaCierremes.get(i).getMonto_bolivar());
+                columna[3] =  Validacion.formatopago.format(listaCierremes.get(i).getMonto_dolar());
                 columna[4] = listaCierremes.get(i).getSaldo_restante_dolar();
                 columna[5] = listaCierremes.get(i).getSaldo_restante_bs();
                 columna[6] = listaCierremes.get(i).getMoneda_dominante();
@@ -557,6 +557,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                         double var4 = listafondo.get(ind1).getSaldo() + modcuen.getMonto();// declaro una variable que se le asigna el valor de la sumatoria del valor anterior del fondo + el monto ingresado
                                         modfon.setId(listafondo.get(ind1).getId()); //seteo el id del fondo
                                         modfon.setSaldo(var4); //seteo el nuevo saldo del fondo
+                                        System.out.println(var4);
                                         modfon.fondear(modfon); //registro el nuevo saldo del monto
 
                                         UIManager UI = new UIManager();
@@ -759,7 +760,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         if (datos != null) {
             for (Fondo datosX : datos) {
                 modfon = datosX;
-                vista.jComboFondo.addItem(modfon.getTipo() + " " + modfon.getSaldo() + " " + modfon.getMoneda());
+                vista.jComboFondo.addItem(modfon.getTipo() + " " +Validacion.formatopago.format( modfon.getSaldo() )+ " " + modfon.getMoneda());
             }
 
         }
