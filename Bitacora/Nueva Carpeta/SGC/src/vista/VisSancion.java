@@ -26,7 +26,6 @@ import javax.swing.plaf.basic.BasicArrowButton;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
-import vista.buscarProveedor.MyScrollBarUI;
 
 /**
  *
@@ -78,8 +77,8 @@ public class VisSancion extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         cbxMoneda = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jMonthChooser1 = new newscomponents.RSDateMonth();
-        jYearChooser1 = new rojeru_san.componentes.RSYearDate();
+        txtMes = new newscomponents.RSDateMonth();
+        txtAnio = new rojeru_san.componentes.RSYearDate();
         btnSalir = new javax.swing.JButton();
         txtId = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -182,26 +181,25 @@ public class VisSancion extends javax.swing.JPanel {
         jLabel6.setText("Monto (*):");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 80, -1));
 
-        jMonthChooser1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
-        jMonthChooser1.setColorArrow(new java.awt.Color(0, 94, 159));
-        jMonthChooser1.setColorBorde(new java.awt.Color(255, 255, 255));
-        jMonthChooser1.setColorBoton(new java.awt.Color(255, 255, 255));
-        jMonthChooser1.setColorDisabledIndex(new java.awt.Color(255, 255, 255));
-        jMonthChooser1.setColorDisabledIndexText(new java.awt.Color(0, 94, 159));
-        jMonthChooser1.setColorFondo(new java.awt.Color(0, 94, 159));
-        jMonthChooser1.setColorListaItemsTXT(new java.awt.Color(0, 94, 159));
-        jMonthChooser1.setColorSeleccion(new java.awt.Color(0, 94, 159));
-        jMonthChooser1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel2.add(jMonthChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 110, 30));
+        txtMes.setColorArrow(new java.awt.Color(0, 94, 159));
+        txtMes.setColorBorde(new java.awt.Color(255, 255, 255));
+        txtMes.setColorBoton(new java.awt.Color(255, 255, 255));
+        txtMes.setColorDisabledIndex(new java.awt.Color(255, 255, 255));
+        txtMes.setColorDisabledIndexText(new java.awt.Color(0, 94, 159));
+        txtMes.setColorFondo(new java.awt.Color(0, 94, 159));
+        txtMes.setColorListaItemsTXT(new java.awt.Color(0, 94, 159));
+        txtMes.setColorSeleccion(new java.awt.Color(0, 94, 159));
+        txtMes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel2.add(txtMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 110, 30));
 
-        jYearChooser1.setBackground(new java.awt.Color(255, 255, 255));
-        jYearChooser1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
-        jYearChooser1.setForeground(new java.awt.Color(255, 255, 255));
-        jYearChooser1.setToolTipText("Elija el año");
-        jYearChooser1.setColorBackground(new java.awt.Color(0, 94, 159));
-        jYearChooser1.setColorButtonHover(new java.awt.Color(0, 151, 255));
-        jYearChooser1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel2.add(jYearChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 120, 30));
+        txtAnio.setBackground(new java.awt.Color(255, 255, 255));
+        txtAnio.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        txtAnio.setForeground(new java.awt.Color(255, 255, 255));
+        txtAnio.setToolTipText("Elija el año");
+        txtAnio.setColorBackground(new java.awt.Color(0, 94, 159));
+        txtAnio.setColorButtonHover(new java.awt.Color(0, 151, 255));
+        txtAnio.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel2.add(txtAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 120, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 530, 260));
 
@@ -366,7 +364,6 @@ public class VisSancion extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
-    public newscomponents.RSDateMonth jMonthChooser1;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -377,9 +374,10 @@ public class VisSancion extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     public javax.swing.JTable jTable1;
-    public rojeru_san.componentes.RSYearDate jYearChooser1;
     public javax.swing.JTextArea txaDescripcion;
+    public rojeru_san.componentes.RSYearDate txtAnio;
     public javax.swing.JTextField txtId;
+    public newscomponents.RSDateMonth txtMes;
     public javax.swing.JTextField txtmonto;
     // End of variables declaration//GEN-END:variables
 static public class Headercolor extends DefaultTableCellHeaderRenderer {
