@@ -480,7 +480,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        
+        outer:
         if (e.getSource() == catalogo.tabla) {
 
             UIManager UI = new UIManager();
@@ -498,11 +498,11 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
             int result = JOptionPane.showOptionDialog(null, "¿Desea ver detalles de pago o modificar datos?", "MENÚ", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, p, options, options[0]);
 
             if (result == 0) {
-                
+
                 String hola = "";
-                
+
                 do {
-                    
+
                     hola = "";
 
                     UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
@@ -515,32 +515,33 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
                     hola = JOptionPane.showInputDialog("ingrese la paridad a trabajar"); //ventana que se despliega para que ingresen la paridad 
-                    modc.setParidad(Double.parseDouble(hola));
-                    int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
-                    listaUnidades = modelo.listar();
-                    String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
-
-                    String dato2 = String.valueOf(this.catalogo.tabla.getValueAt(fila, 3)); // por ultimo, obtengo el valor de la celda
-                    detacun.setVisible(true);
-                    modc.uni.setId(listaUnidades.get(fila).getId());
-                    detacun.txtArea.setText(dato2);
-                    listaDominante = modc.listarDominantes();
-                    fa = 0;
-                    Llenartabla(detacun.jTable1, listaDominante);
-                    detacun.txtUnidad.setText(dato);
-
-                    detacun.txtMesesdeuda.setText(String.valueOf(fa));
-
                     if (hola == null) {
-                        
-                        break;
-                        
+
+                        break outer;
+
+                    } else if (hola.isEmpty()) {
+
+                        break outer;
                     } else {
 
                     }
-                    
-                } while (isValidDouble(hola) == false); //ciclo que repite mientras no ingresen un numero valido
 
+                } while (isValidDouble(hola) == false); //ciclo que repite mientras no ingresen un numero valido
+                modc.setParidad(Double.parseDouble(hola));
+                int fila = this.catalogo.tabla.getSelectedRow(); // primero, obtengo la fila seleccionada
+                listaUnidades = modelo.listar();
+                String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, 0)); // por ultimo, obtengo el valor de la celda
+
+                String dato2 = String.valueOf(this.catalogo.tabla.getValueAt(fila, 3)); // por ultimo, obtengo el valor de la celda
+                detacun.setVisible(true);
+                modc.uni.setId(listaUnidades.get(fila).getId());
+                detacun.txtArea.setText(dato2);
+                listaDominante = modc.listarDominantes();
+                fa = 0;
+                Llenartabla(detacun.jTable1, listaDominante);
+                detacun.txtUnidad.setText(dato);
+
+                detacun.txtMesesdeuda.setText(String.valueOf(fa));
             }
 
             if (result == 1) {
@@ -856,7 +857,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
             fa = fa + listax.size();
             listaCierremes = modc.listarpagostotales(listaDominante.get(s).getMoneda_dominante()); // buscamos los datos por cada mes, año, unidad, se suman y multiplican/dividen por la paridad para obtener el total a mostrar
             int numRegistro = listaCierremes.size();
-
+           
             for (int i = 0; i < numRegistro; i++) { //llenamos la columna con los datos obtenidos
 
                 columna[0] = listaCierremes.get(i).getMes_cierre();

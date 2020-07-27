@@ -181,7 +181,6 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
         jPanel2.add(jComboCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 73, 240, 30));
 
         jComboForma.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jComboForma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Transferencia", "Deposito", "Cheque", "Efectivo" }));
         jComboForma.setToolTipText("Seleccione la forma de pago");
         jPanel2.add(jComboForma, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 3, 240, 30));
 
