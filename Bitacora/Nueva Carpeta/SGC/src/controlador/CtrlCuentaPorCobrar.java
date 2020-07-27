@@ -190,7 +190,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                     stylecombo(vista.jComboUnidad);
 
                     vista.jComboFondo.removeAllItems(); //limpiamos los combobox
-                    modfon.setMoneda("Bolívar"); //seteamos la moneda por defecto (bs)
+                    modfon.setMoneda("BOLÍVAR"); //seteamos la moneda por defecto (bs)
                     listafondo = modfon.listar(2);
                     crearCbxFondo(listafondo); //llenamos el combobox con la funcion de arriba (arraylist)
 
@@ -286,8 +286,8 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
                 columna[0] = listaCierremes.get(i).getMes_cierre();
                 columna[1] = listaCierremes.get(i).getAño_cierre();
-                columna[2] = listaCierremes.get(i).getMonto_bolivar();
-                columna[3] = listaCierremes.get(i).getMonto_dolar();
+                columna[2] = Validacion.formatopago.format(listaCierremes.get(i).getMonto_bolivar());
+                columna[3] = Validacion.formatopago.format(listaCierremes.get(i).getMonto_dolar());
                 columna[4] = Validacion.formatopago.format(listaCierremes.get(i).getSaldo_restante_dolar()); //limito los decimales
                 columna[5] = Validacion.formatopago.format(listaCierremes.get(i).getSaldo_restante_bs());
                 columna[6] = listaCierremes.get(i).getMoneda_dominante();
@@ -535,7 +535,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                     }
                                 }
 
-                                if ((modcuen.getMonto() > total_dolar && vista.cbxMoneda.getSelectedItem().toString().equals("Dólar")) || (modcuen.getMonto() > total_bs && vista.cbxMoneda.getSelectedItem().toString().equals("Bolívar"))) {
+                                if ((modcuen.getMonto() > total_dolar && vista.cbxMoneda.getSelectedItem().toString().equals("DÓLAR")) || (modcuen.getMonto() > total_bs && vista.cbxMoneda.getSelectedItem().toString().equals("BOLÍVAR"))) {
 
                                     UIManager UI = new UIManager();
                                     UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
@@ -584,9 +584,9 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                                     modc.uni.setId(listaunidades.get(vista.jComboUnidad.getSelectedIndex() - 1).getId());//seteo el id de la unidad de acuerdo al que se alla seleccionado en el combobox
                                                     lista_detalles = modc.listardetallesgastos();//listo el detalle de todos los gastos que tiene el recibo individualmente
 
-                                                    if (vista.cbxMoneda.getSelectedItem().toString().equals("Bolívar")) {//si la moneda en la que se va a realizar el pago es en bs
-                                                        if ((vista.jTable1.getValueAt(i, 6).equals("Bolívar"))) {//si el recibo la moneda dominante es en bs
-
+                                                    if (vista.cbxMoneda.getSelectedItem().toString().equals("BOLÍVAR")) {//si la moneda en la que se va a realizar el pago es en bs
+                                                        if ((vista.jTable1.getValueAt(i, 6).equals("BOLÍVAR"))) {//si el recibo la moneda dominante es en bs
+                                                           
                                                             double montototal = 0;
                                                             double varsaldo = 0;
                                                             for (int q = 0; q < lista_detalles.size(); q++) {// ciclo para pagar cada uno de los gastos dentro del recibo
@@ -614,7 +614,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                                             }
                                                         }
 
-                                                        if ((vista.jTable1.getValueAt(i, 6).equals("Dólar"))) {//si el recibo la moneda dominante es en dolar
+                                                        if ((vista.jTable1.getValueAt(i, 6).equals("DÓLAR"))) {//si el recibo la moneda dominante es en dolar
 
                                                             double varsaldo = 0;
                                                             double montototal = 0;
@@ -646,8 +646,8 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                                         }
 
                                                     }
-                                                    if (vista.cbxMoneda.getSelectedItem().toString().equals("Dólar")) {//si la moneda en la que se va a realizar el pago es en dolar
-                                                        if ((vista.jTable1.getValueAt(i, 6).equals("Dólar"))) {//si el recibo la moneda dominante es en dolar
+                                                    if (vista.cbxMoneda.getSelectedItem().toString().equals("DÓLAR")) {//si la moneda en la que se va a realizar el pago es en dolar
+                                                        if ((vista.jTable1.getValueAt(i, 6).equals("DÓLAR"))) {//si el recibo la moneda dominante es en dolar
 
                                                             double varsaldo = 0;
                                                             double montototal = 0;
@@ -674,12 +674,12 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                                                 }
                                                             }
                                                         }
-                                                        if ((vista.jTable1.getValueAt(i, 6).equals("Bolívar"))) {//si el recibo la moneda dominante es en bs
+                                                        if ((vista.jTable1.getValueAt(i, 6).equals("BOLÍVAR"))) {//si el recibo la moneda dominante es en bs
                                                             double varsaldo = 0;
                                                             double montototal = 0;
                                                             for (int q = 0; q < lista_detalles.size(); q++) {// ciclo para pagar cada uno de los gastos dentro del recibo
                                                                 if (monto_total > 0) {//si todavia queda dinero sin utilizar continua el ciclo
-
+                                                                     JOptionPane.showMessageDialog(null, "msfmdskgnjfd");
                                                                     varsaldo = lista_detalles.get(q).getSaldo_restante_bs() - (monto_total * Double.parseDouble(vista.txtParidad.getText())); //esta variable es igual al saldo restante del gasto menos el monto ingresado dividido por la paridad
                                                                     montototal = monto_total; //esta variable mantiene el valor del monto ingresado siempre que sea positivo
                                                                     monto_total = monto_total - (lista_detalles.get(q).getSaldo_restante_bs() / Double.parseDouble(vista.txtParidad.getText()));//el monto restante disponible para continuar el ciclo es = al monto ingresado-el saldo restante del gasto/la paridad

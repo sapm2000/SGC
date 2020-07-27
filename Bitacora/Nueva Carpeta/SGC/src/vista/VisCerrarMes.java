@@ -95,7 +95,7 @@ public class VisCerrarMes extends javax.swing.JPanel {
 
         cbxMoneda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxMoneda.setForeground(new java.awt.Color(255, 255, 255));
-        cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bolívar", "Dólar" }));
+        cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BOLÍVAR", "DÓLAR" }));
         cbxMoneda.setToolTipText("Calcular la cuota especial por...");
         cbxMoneda.setBorder(null);
         cbxMoneda.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +133,6 @@ public class VisCerrarMes extends javax.swing.JPanel {
         txtAño.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel2.add(txtAño, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 130, 30));
 
-        txtMes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
         txtMes.setColorArrow(new java.awt.Color(0, 94, 159));
         txtMes.setColorBorde(new java.awt.Color(255, 255, 255));
         txtMes.setColorBoton(new java.awt.Color(255, 255, 255));

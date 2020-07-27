@@ -295,7 +295,7 @@ CREATE TABLE puente_asambleas_propietario(
 -- DROP TABLE puente_cobro_factura;
 CREATE TABLE puente_cobro_factura (
 	id serial NOT NULL PRIMARY KEY,
-    id_recibo bigint NOT NULL REFERENCES detalle_pagos (id),
+    id_recibo bigint NOT NULL REFERENCES recibo (id),
     id_cobro bigint NOT NULL REFERENCES cobro_unidad (id),
     parte_monto double precision NOT NULL,
     moneda character varying 
@@ -425,6 +425,20 @@ BEGIN
 	END IF;
 	END;
 $$ LANGUAGE plpgsql;
+
+-- limpiar_mensaje
+-- DROP FUNCTION limpiar_mensaje;
+
+	CREATE FUNCTION limpiar_mensaje() RETURNS void AS $$
+	BEGIN
+
+		DELETE FROM puente_mensaje_usuario AS pu WHERE (SELECT id FROM mensaje AS me WHERE pu.id_mensaje = me.id) = id_mensaje AND ((LOCALTIMESTAMP(0)::DATE) - (SELECT fecha FROM mensaje AS me WHERE pu.id_mensaje = me.id)::DATE > 90) ;
+		
+		DELETE FROM mensaje WHERE (LOCALTIMESTAMP(0)::DATE - fecha::DATE) > 90;
+	 
+	END;
+	$$ LANGUAGE plpgsql;
+		
 	
 -- login
 CREATE FUNCTION login(usu character varying, pass character varying) RETURNS boolean AS $$
