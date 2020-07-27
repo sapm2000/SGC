@@ -914,10 +914,10 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
         modeloT.addColumn("Razón Social");
         modeloT.addColumn("monto bs");
         modeloT.addColumn("monto $");
-        modeloT.addColumn("concepto");
+        
         modeloT.addColumn("tipo de gasto");
 
-        Object[] columna = new Object[6];
+        Object[] columna = new Object[5];
 
         int numRegistro = listadetallegasto.size();
 
@@ -927,8 +927,8 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
             columna[1] = listadetallegasto.get(i).prove.getNombre();
             columna[2] = Validacion.formatopago.format(listadetallegasto.get(i).getMonto_bolivar());
             columna[3] = Validacion.formatopago.format(listadetallegasto.get(i).getMonto_dolar());
-            columna[4] = listadetallegasto.get(i).concep.getNombre();
-            columna[5] = listadetallegasto.get(i).getTipo_gasto();
+           
+            columna[4] = listadetallegasto.get(i).getTipo_gasto();
 
             modeloT.addRow(columna);
 
@@ -940,7 +940,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
-        tablaD.getColumnModel().getColumn(5).setCellRenderer(tcr);
+      
     }
 
     public void llenardetalleinteres(JTable tablaD, String mone) {
