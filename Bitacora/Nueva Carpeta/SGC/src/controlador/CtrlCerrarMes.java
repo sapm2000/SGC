@@ -242,17 +242,20 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                                     }
                                                 }
 
-                                                if (tipo.equals("Alicuota")) {
+                                                if (tipo.equals("ALICUOTA")) {
 
                                                     for (int w = 0; w < numRegistro; w++) {
 
                                                         double parte_cuota = parte_periodo * listaunidades.get(w).getAlicuota();
-                                                        if (listaGastos.get(z).getMoneda().equals("Bolívar")) {
+
+                                                        if (listaGastos.get(z).getMoneda().equals("BOLÍVAR")) {
 
                                                             double paridad = Double.parseDouble(vista.txtParidad.getText());
                                                             double total_dolar = parte_cuota / paridad;
                                                             modc.setMonto_bolivar(parte_cuota);
                                                             modc.setMonto_dolar(total_dolar);
+                                                            System.out.println(total_dolar);
+                                                            System.out.println(parte_cuota);
                                                         } else {
                                                             double paridad = Double.parseDouble(vista.txtParidad.getText());
                                                             double total_bolivar = parte_cuota * paridad;
@@ -276,7 +279,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
 
                                                         double parte_cuota = parte_periodo / numRegistro;
                                                         modc.setId(listaGastos.get(z).getId());
-                                                        if (listaGastos.get(z).getMoneda().equals("Bolívar")) {
+                                                        if (listaGastos.get(z).getMoneda().equals("BOLÍVAR")) {
                                                             double paridad = Double.parseDouble(vista.txtParidad.getText());
                                                             double total_dolar = parte_cuota / paridad;
                                                             modc.setMonto_bolivar(parte_cuota);
@@ -324,7 +327,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                 if (var.equals("INTERES DE MORA")) {
                                     double monto = 0;
                                     modc.gasto.setId(listasanciones.get(j).getId());
-                                    if (vista.cbxMoneda.getSelectedItem().toString().equals("Dólar")) {
+                                    if (vista.cbxMoneda.getSelectedItem().toString().equals("DÓLAR")) {
 
                                         modc.buscartotal(modc, 2);
                                         monto = modc.getMonto_dolar();
@@ -339,7 +342,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                     modc.gasto.setId(Integer.parseInt(String.valueOf(id_sancion[j])));
                                     modc.uni.setId(listasanciones.get(j).uni.getId());
 
-                                    if (vista.cbxMoneda.getSelectedItem().toString().equals("Dólar")) {
+                                    if (vista.cbxMoneda.getSelectedItem().toString().equals("DÓLAR")) {
 
                                         modc.setMonto_dolar(var3);
                                         modc.setMonto_bolivar(var3 * Double.parseDouble(vista.txtParidad.getText()));
@@ -362,7 +365,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                 if (var.equals("MULTA")) {
 
                                     modc.setId(listasanciones.get(j).getId());
-                                    if (listasanciones.get(j).getMoneda().equals("Dólar")) {
+                                    if (listasanciones.get(j).getMoneda().equals("DÓLAR")) {
                                         modc.setMonto_dolar(listasanciones.get(j).getMonto());
                                         modc.setMonto_bolivar(listasanciones.get(j).getMonto() * Double.parseDouble(vista.txtParidad.getText()));
                                     } else {

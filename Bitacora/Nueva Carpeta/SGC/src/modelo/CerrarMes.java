@@ -249,8 +249,8 @@ public class CerrarMes extends ConexionBD {
             ps.setString(ind++, getTipo_gasto());
             ps.setString(ind++, getMoneda_dominante());
             ps.setDouble(ind++, getParidad());
-            ps.setDouble(ind++, getMonto_dolar());
             ps.setDouble(ind++, getMonto_bolivar());
+            ps.setDouble(ind++, getMonto_dolar());
             ps.setDouble(ind++, uni.getAlicuota());
             ps.setInt(ind++, SGC.usuarioActual.getId());
             
