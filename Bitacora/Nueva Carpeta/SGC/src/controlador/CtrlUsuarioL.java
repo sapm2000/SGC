@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import modelo.Condominio;
+import modelo.Mensaje;
 import modelo.Usuario;
 import sgc.SGC;
 import vista.PantallaPrincipal;
@@ -25,10 +26,15 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
     PantallaPrincipal pp = new PantallaPrincipal();
     private CtrlCondominio condominio;
     private Condominio modCondominio;
+    
+    private Mensaje modMsj;
 
     public CtrlUsuarioL(VisInicioUsuario vistau) {
 
         this.vistaU = vistau;
+        
+        modMsj = new Mensaje();
+        
         eventos();
 
     }
@@ -110,12 +116,14 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
             usu.setPassword(Validacion.encriptar(pass));
 
             if (usu.login()) {
+                
                 usu.consultarPerfil();
                 SGC.usuarioActual = usu;
                 vistaU.dispose();
 
                 modCondominio = new Condominio();
-
+                modMsj.eliminarMensaje();
+                
                 if (modCondominio.existe()) {
                     modCondominio.buscar();
                     SGC.condominioActual = modCondominio;

@@ -425,6 +425,20 @@ BEGIN
 	END IF;
 	END;
 $$ LANGUAGE plpgsql;
+
+-- limpiar_mensaje
+-- DROP FUNCTION limpiar_mensaje;
+
+	CREATE FUNCTION limpiar_mensaje() RETURNS void AS $$
+	BEGIN
+
+		DELETE FROM puente_mensaje_usuario AS pu WHERE (SELECT id FROM mensaje AS me WHERE pu.id_mensaje = me.id) = id_mensaje AND (((SELECT fecha FROM mensaje AS me WHERE pu.id_mensaje = me.id)::DATE - LOCALTIMESTAMP(0)::DATE) > 24) ;
+		
+		DELETE FROM mensaje WHERE (fecha::DATE - LOCALTIMESTAMP(0)::DATE) > 24;
+	 
+	END;
+	$$ LANGUAGE plpgsql;
+		
 	
 -- login
 CREATE FUNCTION login(usu character varying, pass character varying) RETURNS boolean AS $$

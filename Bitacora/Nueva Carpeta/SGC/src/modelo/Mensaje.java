@@ -276,8 +276,8 @@ public class Mensaje extends ConexionBD {
             con = getConexion();
 
             String sql = "INSERT INTO puente_mensaje_usuario(id_mensaje, receptor) VALUES (?,?);";
-
             ps = con.prepareStatement(sql);
+
             ind = 1;
             ps.setInt(ind++, getId());
 
@@ -300,6 +300,24 @@ public class Mensaje extends ConexionBD {
                 System.err.println(e);
             }
         }
+    }
+    
+    public void eliminarMensaje() {
+        
+      try{ 
+          
+      ps = null;
+      con = getConexion();
+      String sql = "SELECT limpiar_mensaje();";
+      ps.executeQuery(sql);
+      
+      } 
+      catch (SQLException e){
+          System.err.println(e);
+      }finally{
+          cerrar();
+      }     
+
     }
 
     public Integer getId() {
