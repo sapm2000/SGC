@@ -309,7 +309,8 @@ public class Mensaje extends ConexionBD {
       ps = null;
       con = getConexion();
       String sql = "SELECT limpiar_mensaje();";
-      ps.executeQuery(sql);
+      ps = con.prepareStatement(sql);
+      ps.executeQuery();
       
       } 
       catch (SQLException e){

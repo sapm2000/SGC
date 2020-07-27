@@ -12,6 +12,8 @@ import java.awt.event.MouseListener;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -171,6 +173,22 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
                 map.put(KeyStroke.getKeyStroke(KeyEvent.VK_C, Event.CTRL_MASK), "null");
             }
         }
+    }
+    
+    public static boolean email(String correo){
+        Pattern pat = null;
+        Matcher mat = null;
+        pat = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+						+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        
+        mat = pat.matcher(correo);
+        
+        if(mat.find()){
+            return true;
+        }else{
+            return false;
+        }
+        
     }
 
     public static String encriptar(String textoSinEncriptar) {
