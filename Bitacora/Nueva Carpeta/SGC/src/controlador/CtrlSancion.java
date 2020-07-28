@@ -15,6 +15,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import static java.lang.String.valueOf;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.swing.BorderFactory;
 import static javax.swing.BorderFactory.createLineBorder;
 import javax.swing.Icon;
@@ -55,9 +56,9 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
     DefaultTableModel dm;
 
     public CtrlSancion() {
-        
+
         this.moduni = new Unidad();
-        
+
         if (moduni.contar() == 0) {
 
             UIManager UI = new UIManager();
@@ -75,40 +76,40 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
             JOptionPane.showMessageDialog(null, "No existen unidades, debe registrar una para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
 
             new CtrlUnidad();
-            
+
         } else {
-        
-        this.vista = new VisSancion();
-        this.catalogo = new Catalogo();
-        this.modsan = new Sancion();
-        this.modc = new CerrarMes();
 
-        catalogo.lblTitulo.setText("Sanciones");
-        CtrlVentana.cambiarVista(catalogo);
-        vista.cbxMoneda.addItemListener(this);
-        stylecombo(vista.cbxMoneda);
-        vista.jComboBox1.addItemListener(this);
-        stylecombo(vista.jComboBox1);
-        LlenartablaSancion(catalogo.tabla);
-        permisoBtn();
+            this.vista = new VisSancion();
+            this.catalogo = new Catalogo();
+            this.modsan = new Sancion();
+            this.modc = new CerrarMes();
 
-        if (permiso.getRegistrar()) {
-            catalogo.btnNuevo.setEnabled(true);
-        }
+            catalogo.lblTitulo.setText("Sanciones");
+            CtrlVentana.cambiarVista(catalogo);
+            vista.cbxMoneda.addItemListener(this);
+            stylecombo(vista.cbxMoneda);
+            vista.jComboBox1.addItemListener(this);
+            stylecombo(vista.jComboBox1);
+            LlenartablaSancion(catalogo.tabla);
+            permisoBtn();
 
-        this.catalogo.btnNuevo.addActionListener(this);
-        this.catalogo.txtBuscar.addKeyListener(this);
-        this.catalogo.tabla.addMouseListener(this);
-        this.vista.btnEliminar.addActionListener(this);
-        this.vista.txtAnio.addKeyListener(this);
+            if (permiso.getRegistrar()) {
+                catalogo.btnNuevo.setEnabled(true);
+            }
 
-        this.vista.btnGuardar.addActionListener(this);
-        this.vista.btnLimpiar.addActionListener(this);
-        this.vista.btnModificar.addActionListener(this);
-        this.vista.btnSalir.addActionListener(this);
-        vista.txtmonto.addKeyListener(this);
-        vista.txaDescripcion.addKeyListener(this);
-        this.catalogo.setVisible(true);
+            this.catalogo.btnNuevo.addActionListener(this);
+            this.catalogo.txtBuscar.addKeyListener(this);
+            this.catalogo.tabla.addMouseListener(this);
+            this.vista.btnEliminar.addActionListener(this);
+            this.vista.txtAnio.addKeyListener(this);
+
+            this.vista.btnGuardar.addActionListener(this);
+            this.vista.btnLimpiar.addActionListener(this);
+            this.vista.btnModificar.addActionListener(this);
+            this.vista.btnSalir.addActionListener(this);
+            vista.txtmonto.addKeyListener(this);
+            vista.txaDescripcion.addKeyListener(this);
+            this.catalogo.setVisible(true);
 
         }
     }
@@ -309,6 +310,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
             this.vista.btnGuardar.setEnabled(true);
             this.vista.btnEliminar.setEnabled(false);
             vista.txtId.setVisible(false);
+            limpiar();
             llenartablaunidades(vista.jTable1);
             addCheckBox(1, vista.jTable1);
 
@@ -319,7 +321,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
             if (validar()) {
                 int j = 0;
                 modsan.setMes(vista.txtMes.getSelectedIndex() + 1);
-                modsan.setAño(vista.txtAnio.getYear());
+                modsan.setAño(Integer.parseInt(vista.txtAnio.getSelectedItem().toString()));
                 if (modsan.getAño() < 2000 || modsan.getAño() > 2100) {
 
                     UIManager UI = new UIManager();
@@ -358,7 +360,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                         modsan.setEstado("Pendiente");
                         modsan.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
                         modc.setMes_cierre(vista.txtMes.getSelectedIndex() + 1);
-                        modc.setAño_cierre(vista.txtAnio.getYear());
+                        modc.setAño_cierre(Integer.parseInt(vista.txtAnio.getSelectedItem().toString()));
 
                         for (int i = 0; i < vista.jTable1.getRowCount(); i++) {
                             if (valueOf(vista.jTable1.getValueAt(i, 1)) == "true") {
@@ -476,7 +478,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
             if (validar()) {
                 int j = 0;
                 modsan.setMes(vista.txtMes.getSelectedIndex() + 1);
-                modsan.setAño(vista.txtAnio.getYear());
+                modsan.setAño(Integer.parseInt(vista.txtAnio.getSelectedItem().toString()));
                 if (modsan.getAño() < 2000 || modsan.getAño() > 2100) {
 
                     UIManager UI = new UIManager();
@@ -521,7 +523,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                         }
 
                         modc.setMes_cierre(vista.txtMes.getSelectedIndex() + 1);
-                        modc.setAño_cierre(vista.txtAnio.getYear());
+                        modc.setAño_cierre(Integer.parseInt(vista.txtAnio.getSelectedItem().toString()));
 
                         for (int i = 0; i < vista.jTable1.getRowCount(); i++) {
                             if (valueOf(vista.jTable1.getValueAt(i, 1)) == "true") {
@@ -673,8 +675,11 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
         vista.txtmonto.setText(null);
         vista.txaDescripcion.setText(null);
         vista.jComboBox1.setSelectedItem("Seleccione el Tipo de Deuda");
-        vista.txtMes.setSelectedIndex(0);
-        vista.txtAnio.setYear(0);
+        Calendar c1 = Calendar.getInstance();
+        int messis = (c1.get(Calendar.MONTH));
+        int anniosis = (c1.get(Calendar.YEAR));
+        vista.txtMes.setSelectedIndex(messis);
+        vista.txtAnio.setSelectedItem(anniosis);
         llenartablaunidadesmod(vista.jTable1);
         addCheckBox(1, vista.jTable1);
 
@@ -718,7 +723,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
         vista.jComboBox1.setSelectedItem(modsan.getTipo());
         int mes = modsan.getMes() - 1;
         vista.txtMes.setSelectedIndex(mes);
-        vista.txtAnio.setYear(modsan.getAño());
+        vista.txtAnio.setSelectedItem(modsan.getAño());
         vista.cbxMoneda.setSelectedItem(modsan.getMoneda());
         if (modsan.getEstado().equals("Pendiente")) {
             llenartablaunidadesmod(vista.jTable1);
@@ -789,7 +794,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
             Validacion.limite(e, vista.txaDescripcion.getText(), 200);
         }
         if (e.getSource() == vista.txtAnio) {
-            Validacion.limite(e, String.valueOf(vista.txtAnio.getYear()), 4);
+            Validacion.limite(e, String.valueOf(Integer.parseInt(vista.txtAnio.getSelectedItem().toString())), 4);
             Validacion.soloNumeros(e);
         }
     }
