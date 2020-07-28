@@ -679,9 +679,11 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
         int messis = (c1.get(Calendar.MONTH));
         int anniosis = (c1.get(Calendar.YEAR));
         vista.txtMes.setSelectedIndex(messis);
-        vista.txtAnio.setSelectedItem(anniosis);
+        int aniio = anniosis - 1920;
+        vista.txtAnio.setSelectedIndex(aniio);
         llenartablaunidadesmod(vista.jTable1);
         addCheckBox(1, vista.jTable1);
+        System.out.println(anniosis);
 
     }
 
@@ -723,7 +725,10 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
         vista.jComboBox1.setSelectedItem(modsan.getTipo());
         int mes = modsan.getMes() - 1;
         vista.txtMes.setSelectedIndex(mes);
-        vista.txtAnio.setSelectedItem(modsan.getAño());
+        int anio = modsan.getAño();
+        int aniio = anio - 1920;
+        vista.txtAnio.setSelectedIndex(aniio);
+
         vista.cbxMoneda.setSelectedItem(modsan.getMoneda());
         if (modsan.getEstado().equals("Pendiente")) {
             llenartablaunidadesmod(vista.jTable1);
