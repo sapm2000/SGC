@@ -138,17 +138,17 @@ public class VisTipoUsuario extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Tipo de Usuario:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, 20));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, 20));
 
         txtTipo.setBackground(new java.awt.Color(0, 94, 159));
         txtTipo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtTipo.setForeground(new java.awt.Color(255, 255, 255));
         txtTipo.setToolTipText("Ingrese el nombre del tipo de usuario");
         txtTipo.setBorder(null);
-        jPanel2.add(txtTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 230, 20));
+        jPanel2.add(txtTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 260, 20));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 230, 10));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 260, 10));
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
 

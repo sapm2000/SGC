@@ -279,7 +279,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="400" y="150" width="50" height="20"/>
+              <AbsoluteConstraints x="400" y="150" width="70" height="20"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -523,7 +523,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="800" y="10" width="-1" height="40"/>
+              <AbsoluteConstraints x="800" y="16" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -730,10 +730,13 @@
         </Property>
         <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;br&gt;&lt;br&gt;&lt;br&gt;Procesar el Pago y Descargar el Recibo&#xa;&lt;/html&gt;"/>
         <Property name="toolTipText" type="java.lang.String" value="Procesar el pago y descargar el recibo"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="null"/>
+        </Property>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
+          <Color id="Cursor de Mano"/>
         </Property>
         <Property name="hideActionText" type="boolean" value="true"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>

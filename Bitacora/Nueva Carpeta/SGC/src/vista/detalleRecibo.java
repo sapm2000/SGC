@@ -275,8 +275,11 @@ public class detalleRecibo extends javax.swing.JFrame {
         jLabel9.setText("Detalles de Cuenta");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, -1, -1));
 
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 400, 10, 190));
+
+        jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 400, 1130, 20));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

@@ -200,7 +200,7 @@ public class VisFondo extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Moneda:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, -1, 30));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, -1, 30));
 
         txtMontoInicial.setBackground(new java.awt.Color(0, 94, 159));
         txtMontoInicial.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -212,25 +212,25 @@ public class VisFondo extends javax.swing.JPanel {
                 txtMontoInicialActionPerformed(evt);
             }
         });
-        jPanel2.add(txtMontoInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 120, 20));
+        jPanel2.add(txtMontoInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 120, 20));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Tipo:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 40, 20));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 40, 20));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 130, 10));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 130, 10));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 120, 10));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 120, 10));
 
         txtTipo.setBackground(new java.awt.Color(0, 94, 159));
         txtTipo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtTipo.setForeground(new java.awt.Color(255, 255, 255));
         txtTipo.setToolTipText("Ingrese el tipo de fondo");
         txtTipo.setBorder(null);
-        jPanel2.add(txtTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 130, 20));
+        jPanel2.add(txtTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 130, 20));
 
         jScrollPane3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
         jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -267,7 +267,7 @@ public class VisFondo extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("<html>\nMonto <br> Inicial:\n</hmtl>");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, 30));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, -1, 30));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -275,7 +275,7 @@ public class VisFondo extends javax.swing.JPanel {
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 30));
 
         cbxMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "BOLÍVAR", "DÓLAR" }));
-        jPanel2.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 130, 30));
+        jPanel2.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 130, 30));
 
         jDateChooser1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
         jDateChooser1.setColorBackground(new java.awt.Color(0, 94, 159));

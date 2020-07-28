@@ -65,7 +65,6 @@ public class VisMensaje extends javax.swing.JPanel {
         jSeparator5 = new javax.swing.JSeparator();
         btnEnviar = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JSeparator();
-        jSeparator7 = new javax.swing.JSeparator();
         jSeparator8 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaUsuarios = new javax.swing.JTable();
@@ -88,14 +87,14 @@ public class VisMensaje extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Asunto:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
 
         txtAsunto.setBackground(new java.awt.Color(0, 94, 159));
         txtAsunto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtAsunto.setForeground(new java.awt.Color(255, 255, 255));
         txtAsunto.setToolTipText("Coloque aquí el asunto del mensaje");
         txtAsunto.setBorder(null);
-        jPanel2.add(txtAsunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 320, 20));
+        jPanel2.add(txtAsunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 350, 20));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -112,7 +111,7 @@ public class VisMensaje extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Mensaje:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 70, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 70, -1));
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -127,7 +126,7 @@ public class VisMensaje extends javax.swing.JPanel {
         txaMensaje.setWrapStyleWord(true);
         jScrollPane1.setViewportView(txaMensaje);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 320, 120));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 350, 120));
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator5.setOpaque(true);
@@ -153,10 +152,7 @@ public class VisMensaje extends javax.swing.JPanel {
         jPanel2.add(btnEnviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 210, 160, 20));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 320, 10));
-
-        jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 320, 10));
+        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 350, 10));
 
         jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 220, 10));
@@ -240,7 +236,6 @@ public class VisMensaje extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     public javax.swing.JTable tablaUsuarios;
     public javax.swing.JTextArea txaMensaje;

@@ -102,33 +102,33 @@ public class detallecuenta extends javax.swing.JFrame {
         txtUnidad.setToolTipText("No se puede modificar este dato");
         txtUnidad.setBorder(null);
         txtUnidad.setEnabled(false);
-        jPanel2.add(txtUnidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 180, 20));
+        jPanel2.add(txtUnidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 210, 20));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("N° de Unidad:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 100, -1));
+        jLabel1.setText("<html>\nNúmero <br> de Unidad:\n</html>");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 80, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Areá:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, 20));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("<html> Meses <br> de  Deuda: </html>");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 70, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 70, -1));
 
         txtBuscar.setBackground(new java.awt.Color(0, 94, 159));
         txtBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtBuscar.setForeground(new java.awt.Color(255, 255, 255));
         txtBuscar.setBorder(null);
-        jPanel2.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 180, 20));
+        jPanel2.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 220, 20));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Buscar:");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, 20));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, 20));
 
         txtMesesdeuda.setBackground(new java.awt.Color(0, 94, 159));
         txtMesesdeuda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -136,7 +136,7 @@ public class detallecuenta extends javax.swing.JFrame {
         txtMesesdeuda.setToolTipText("No se puede modificar este dato");
         txtMesesdeuda.setBorder(null);
         txtMesesdeuda.setEnabled(false);
-        jPanel2.add(txtMesesdeuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 180, 20));
+        jPanel2.add(txtMesesdeuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 210, 20));
 
         txtArea.setBackground(new java.awt.Color(0, 94, 159));
         txtArea.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -144,19 +144,19 @@ public class detallecuenta extends javax.swing.JFrame {
         txtArea.setToolTipText("No se puede modificar este dato");
         txtArea.setBorder(null);
         txtArea.setEnabled(false);
-        jPanel2.add(txtArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 180, 20));
+        jPanel2.add(txtArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 210, 20));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 180, 10));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 210, 10));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 180, 10));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 210, 10));
 
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 180, 10));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 220, 10));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 180, 10));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 210, 10));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator6.setOpaque(true);
