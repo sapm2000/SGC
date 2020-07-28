@@ -329,10 +329,16 @@ public class Ventana extends javax.swing.JFrame {
         menuReporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/data-analytics.png"))); // NOI18N
         menuReporte.setText("Reportes");
         menuReporte.setToolTipText("Reportes del sistema");
-        menuReporte.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        menuReporte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menuReporte.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        menuReporte.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jBitacora.setText("Bitacora");
+        jBitacora.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jBitacora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/edit.png"))); // NOI18N
+        jBitacora.setText("Bitácora");
+        jBitacora.setToolTipText("Historia sobre las acciones que se realizan en el sistema");
+        jBitacora.setBorder(null);
+        jBitacora.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menuReporte.add(jBitacora);
 
         barraMenu.add(menuReporte);
