@@ -104,7 +104,7 @@ public class VisConceptoGasto extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Categoría:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 80, 30));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 80, 30));
 
         txtNombreC.setBackground(new java.awt.Color(0, 94, 159));
         txtNombreC.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -115,7 +115,7 @@ public class VisConceptoGasto extends javax.swing.JPanel {
 
         cbxCategoria.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxCategoria.setToolTipText("Seleccione una categoría");
-        jPanel2.add(cbxCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 320, 30));
+        jPanel2.add(cbxCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 320, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -125,7 +125,7 @@ public class VisConceptoGasto extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Descripción:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 90, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 90, -1));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 320, 10));
@@ -144,7 +144,7 @@ public class VisConceptoGasto extends javax.swing.JPanel {
         txtDescripcion.setWrapStyleWord(true);
         jScrollPane1.setViewportView(txtDescripcion);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 71, 320, 110));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 320, 110));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 460, 260));
 
