@@ -102,6 +102,7 @@ public class VisGasto extends javax.swing.JPanel {
         txtNombre = new javax.swing.JTextField();
         txtAño = new rojeru_san.componentes.RSYearDate();
         txtMes = new newscomponents.RSDateMonth();
+        jSeparator6 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -141,7 +142,7 @@ public class VisGasto extends javax.swing.JPanel {
         jTable.setRowHeight(35);
         jScrollPane1.setViewportView(jTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 410, 610, 110));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 760, 110));
 
         jPanel3.setBackground(new java.awt.Color(0, 94, 159));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -221,7 +222,7 @@ public class VisGasto extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Nombre:");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, 20));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, -1, 20));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -285,7 +286,7 @@ public class VisGasto extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Proveedor:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, 20));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, 20));
 
         panelTipo.setBackground(new java.awt.Color(0, 94, 159));
         panelTipo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -293,22 +294,22 @@ public class VisGasto extends javax.swing.JPanel {
         labelmense.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelmense.setForeground(new java.awt.Color(255, 255, 255));
         labelmense.setText("<html> Número de Meses <br> que Aplica: </html>");
-        panelTipo.add(labelmense, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 130, -1));
+        panelTipo.add(labelmense, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, -1));
 
         txtNmeses.setBackground(new java.awt.Color(0, 94, 159));
         txtNmeses.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtNmeses.setForeground(new java.awt.Color(255, 255, 255));
         txtNmeses.setToolTipText("Ingrese el número de meses que aplica");
         txtNmeses.setBorder(null);
-        panelTipo.add(txtNmeses, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 200, 20));
+        panelTipo.add(txtNmeses, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 200, 20));
 
         barritahorizontal.setForeground(new java.awt.Color(255, 255, 255));
-        panelTipo.add(barritahorizontal, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 200, 10));
+        panelTipo.add(barritahorizontal, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 200, 10));
 
         fue_elegido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         fue_elegido.setForeground(new java.awt.Color(255, 255, 255));
         fue_elegido.setText("¿Fué elegido en una asamblea?");
-        panelTipo.add(fue_elegido, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, -1, -1));
+        panelTipo.add(fue_elegido, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
 
         bgrpAsamblea.add(si);
         si.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -321,12 +322,12 @@ public class VisGasto extends javax.swing.JPanel {
         si.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dot (1).png"))); // NOI18N
         si.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button (1).png"))); // NOI18N
         si.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button.png"))); // NOI18N
-        panelTipo.add(si, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
+        panelTipo.add(si, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, -1, -1));
 
         barrita.setForeground(new java.awt.Color(255, 255, 255));
         barrita.setOrientation(javax.swing.SwingConstants.VERTICAL);
         barrita.setOpaque(true);
-        panelTipo.add(barrita, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, -1, 20));
+        panelTipo.add(barrita, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, -1, 20));
 
         bgrpAsamblea.add(no);
         no.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -339,7 +340,7 @@ public class VisGasto extends javax.swing.JPanel {
         no.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dot (1).png"))); // NOI18N
         no.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button (1).png"))); // NOI18N
         no.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/radio-on-button.png"))); // NOI18N
-        panelTipo.add(no, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, -1, -1));
+        panelTipo.add(no, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, -1, -1));
 
         panelAsamblea.setBackground(new java.awt.Color(0, 94, 159));
         panelAsamblea.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -347,20 +348,20 @@ public class VisGasto extends javax.swing.JPanel {
         labelAsamblea.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labelAsamblea.setForeground(new java.awt.Color(255, 255, 255));
         labelAsamblea.setText("Asamblea:");
-        panelAsamblea.add(labelAsamblea, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, 30));
+        panelAsamblea.add(labelAsamblea, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 80, 30));
 
         jAsamblea.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jAsamblea.setToolTipText("Seleccione una asamblea");
-        panelAsamblea.add(jAsamblea, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 240, 30));
+        panelAsamblea.add(jAsamblea, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 240, 30));
 
         panelTipo.add(panelAsamblea, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 360, 40));
 
-        jPanel2.add(panelTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 380, 170));
+        jPanel2.add(panelTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 360, 170));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Seleccione el concepto gasto");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, -1, -1));
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -373,7 +374,7 @@ public class VisGasto extends javax.swing.JPanel {
         jPanel2.add(cbxMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 280, 30));
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 280, 10));
+        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 140, 10));
 
         txtNombre.setBackground(new java.awt.Color(0, 94, 159));
         txtNombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -387,7 +388,6 @@ public class VisGasto extends javax.swing.JPanel {
         txtAño.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel2.add(txtAño, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 120, 30));
 
-        txtMes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
         txtMes.setColorArrow(new java.awt.Color(0, 94, 159));
         txtMes.setColorBorde(new java.awt.Color(255, 255, 255));
         txtMes.setColorBoton(new java.awt.Color(255, 255, 255));
@@ -398,6 +398,9 @@ public class VisGasto extends javax.swing.JPanel {
         txtMes.setColorSeleccion(new java.awt.Color(0, 94, 159));
         txtMes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel2.add(txtMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 140, -1));
+
+        jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 280, 10));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
@@ -487,6 +490,7 @@ public class VisGasto extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     public javax.swing.JTable jTable;

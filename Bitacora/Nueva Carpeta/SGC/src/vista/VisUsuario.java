@@ -169,7 +169,7 @@ public class VisUsuario extends javax.swing.JPanel {
         txtPregunta.setToolTipText("Ingrese una pregunta de seguridad");
         txtPregunta.setBorder(null);
         txtPregunta.setOpaque(false);
-        jPanel2.add(txtPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 230, 20));
+        jPanel2.add(txtPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 230, 20));
 
         txtRespuesta.setBackground(new java.awt.Color(0, 94, 159));
         txtRespuesta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -210,7 +210,7 @@ public class VisUsuario extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("<HTML>Pregunta de<BR>seguridad:</HTML>");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 90, 30));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 90, 40));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -239,7 +239,7 @@ public class VisUsuario extends javax.swing.JPanel {
         jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 230, 10));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 230, 10));
+        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 230, 10));
 
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 230, 10));

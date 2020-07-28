@@ -114,7 +114,7 @@ public class VisAsamblea extends javax.swing.JPanel {
         txaDescripcion.setWrapStyleWord(true);
         jScrollPane4.setViewportView(txaDescripcion);
 
-        jPanel4.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 65, 360, 110));
+        jPanel4.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 65, 460, 110));
 
         jSeparator5.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator5.setOpaque(true);
@@ -124,7 +124,7 @@ public class VisAsamblea extends javax.swing.JPanel {
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel13.setText("Selecciona los Asistentes a la Asamblea.\n");
-        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 360, -1));
+        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 360, -1));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -139,10 +139,10 @@ public class VisAsamblea extends javax.swing.JPanel {
         txtBuscarPropietario.setForeground(new java.awt.Color(255, 255, 255));
         txtBuscarPropietario.setToolTipText("Buscador");
         txtBuscarPropietario.setBorder(null);
-        jPanel4.add(txtBuscarPropietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 190, 20));
+        jPanel4.add(txtBuscarPropietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 250, 20));
 
         jSeparator8.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel4.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 190, 10));
+        jPanel4.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 250, 10));
 
         btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
@@ -155,7 +155,7 @@ public class VisAsamblea extends javax.swing.JPanel {
         btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
         btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
         btnGuardar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
-        jPanel4.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 190, -1));
+        jPanel4.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, 190, -1));
 
         txtFecha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
         txtFecha.setForeground(new java.awt.Color(0, 151, 255));

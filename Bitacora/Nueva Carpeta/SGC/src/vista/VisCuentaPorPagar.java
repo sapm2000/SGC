@@ -169,18 +169,18 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("<html>\nFondo <br> Retirado:\n</html>");
-        jPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 20, -1, -1));
+        jPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, -1));
 
         cbxFondo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxFondo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una moneda" }));
         cbxFondo.setEnabled(false);
         cbxFondo.setNextFocusableComponent(txtMonto);
-        jPanel.add(cbxFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 23, 260, 30));
+        jPanel.add(cbxFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, 260, 30));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Monto:");
-        jPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, -1, 20));
+        jPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, 70, 20));
 
         txtMonto.setBackground(new java.awt.Color(0, 94, 159));
         txtMonto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -189,10 +189,10 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         txtMonto.setBorder(null);
         txtMonto.setEnabled(false);
         txtMonto.setNextFocusableComponent(txtReferencia);
-        jPanel.add(txtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 260, 20));
+        jPanel.add(txtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 260, 20));
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 260, 10));
+        jPanel.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 260, 10));
 
         panelReferencia.setBackground(new java.awt.Color(0, 94, 159));
         panelReferencia.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -200,28 +200,28 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("<html>\nNúmero de <br> Referencia:\n</html>");
-        panelReferencia.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 40));
+        panelReferencia.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, 40));
 
         txtReferencia.setBackground(new java.awt.Color(0, 94, 159));
         txtReferencia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtReferencia.setForeground(new java.awt.Color(255, 255, 255));
         txtReferencia.setBorder(null);
         txtReferencia.setNextFocusableComponent(cbxCuenta);
-        panelReferencia.add(txtReferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 260, 20));
+        panelReferencia.add(txtReferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 260, 20));
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
-        panelReferencia.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 260, 10));
+        panelReferencia.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 260, 10));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("<html> Cuenta a<br>Transferir: </html>");
-        panelReferencia.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+        panelReferencia.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
 
         cbxCuenta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxCuenta.setNextFocusableComponent(txtPariedad);
-        panelReferencia.add(cbxCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 260, 30));
+        panelReferencia.add(cbxCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 260, 30));
 
-        jPanel.add(panelReferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 380, 120));
+        jPanel.add(panelReferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 120, 360, 120));
 
         panelPariedad.setBackground(new java.awt.Color(0, 94, 159));
         panelPariedad.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -241,7 +241,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         panelPariedad.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 260, 10));
 
-        jPanel.add(panelPariedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 370, 60));
+        jPanel.add(panelPariedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 360, 60));
 
         txtFecha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
         txtFecha.setForeground(new java.awt.Color(0, 151, 255));
@@ -254,7 +254,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         txtFecha.setFuente(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, 40));
 
-        add(jPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 750, 290));
+        add(jPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, 760, 290));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 810, 310));
@@ -279,8 +279,9 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         btnProcesar.setForeground(new java.awt.Color(0, 94, 159));
         btnProcesar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/1imageonline-co-merged-image.png"))); // NOI18N
         btnProcesar.setText("<html>\n<br><br><br>Procesar el Pago y Descargar el Recibo\n</html>");
+        btnProcesar.setBorder(null);
         btnProcesar.setContentAreaFilled(false);
-        btnProcesar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnProcesar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProcesar.setHideActionText(true);
         btnProcesar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnProcesar.setIconTextGap(10);
@@ -297,6 +298,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         btnMostrarProcesados.setForeground(new java.awt.Color(0, 94, 159));
         btnMostrarProcesados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/management.png"))); // NOI18N
         btnMostrarProcesados.setText("Mostrar Procesado");
+        btnMostrarProcesados.setBorder(null);
         btnMostrarProcesados.setBorderPainted(false);
         btnMostrarProcesados.setContentAreaFilled(false);
         btnMostrarProcesados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -314,6 +316,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         btnPagos.setForeground(new java.awt.Color(0, 94, 159));
         btnPagos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice.png"))); // NOI18N
         btnPagos.setText("Mostrar Pagos");
+        btnPagos.setBorder(null);
         btnPagos.setBorderPainted(false);
         btnPagos.setContentAreaFilled(false);
         btnPagos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -325,7 +328,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
                 btnPagosActionPerformed(evt);
             }
         });
-        add(btnPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, 160, 40));
+        add(btnPagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, 150, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMostrarProcesadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarProcesadosActionPerformed

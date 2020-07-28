@@ -219,7 +219,7 @@ public class VisResponsable extends javax.swing.JPanel {
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("<html>\nNúmero de <br> Teléfono:\n</html>");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 90, -1));
 
         txtPnombre.setBackground(new java.awt.Color(0, 94, 159));
         txtPnombre.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
