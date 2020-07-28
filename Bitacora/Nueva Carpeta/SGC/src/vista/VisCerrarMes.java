@@ -56,7 +56,7 @@ public class VisCerrarMes extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         txtParidad = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtAño = new rojeru_san.componentes.RSYearDate();
+        txtAnio = new rojeru_san.componentes.RSYearDate();
         txtMes = new newscomponents.RSDateMonth();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
@@ -123,13 +123,13 @@ public class VisCerrarMes extends javax.swing.JPanel {
         jLabel5.setText("Paridad:");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, -1, -1));
 
-        txtAño.setBackground(new java.awt.Color(255, 255, 255));
-        txtAño.setForeground(new java.awt.Color(255, 255, 255));
-        txtAño.setToolTipText("Elija el año");
-        txtAño.setColorBackground(new java.awt.Color(0, 94, 159));
-        txtAño.setColorButtonHover(new java.awt.Color(0, 151, 255));
-        txtAño.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel2.add(txtAño, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 130, 30));
+        txtAnio.setBackground(new java.awt.Color(255, 255, 255));
+        txtAnio.setForeground(new java.awt.Color(255, 255, 255));
+        txtAnio.setToolTipText("Elija el año");
+        txtAnio.setColorBackground(new java.awt.Color(0, 94, 159));
+        txtAnio.setColorButtonHover(new java.awt.Color(0, 151, 255));
+        txtAnio.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel2.add(txtAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 130, 30));
 
         txtMes.setColorArrow(new java.awt.Color(0, 94, 159));
         txtMes.setColorBorde(new java.awt.Color(255, 255, 255));
@@ -194,7 +194,7 @@ public class VisCerrarMes extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private rojeru_san.componentes.RSYearDate txtAño;
+    public rojeru_san.componentes.RSYearDate txtAnio;
     public newscomponents.RSDateMonth txtMes;
     public javax.swing.JTextField txtParidad;
     // End of variables declaration//GEN-END:variables

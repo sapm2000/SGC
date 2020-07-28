@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
@@ -30,7 +32,7 @@ import modelo.Responsable;
 import sgc.SGC;
 import vista.Catalogo;
 
-public class CtrlResponsable implements ActionListener, MouseListener, KeyListener, ItemListener {
+public class CtrlResponsable implements ActionListener, MouseListener, KeyListener, ItemListener, FocusListener {
 
     private Catalogo catalogo;
     private vista.VisResponsable vista;
@@ -84,6 +86,8 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
             vista.txtSapellido.addKeyListener(this);
             vista.txtTelefono.addKeyListener(this);
             vista.txtCorreo.addKeyListener(this);
+            vista.txtCorreo.addFocusListener(this);
+            
 
             CtrlVentana.cambiarVista(vista);
             vista.cbxCedula.addItemListener(this);
@@ -584,7 +588,6 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
         }
         if (e.getSource() == vista.txtCorreo) {
-
             Validacion.Espacio(e);
             Validacion.limite(e, vista.txtCorreo.getText(), 60);
         }
@@ -614,6 +617,21 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
         c.setForeground(Color.WHITE);
 
         c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        if(Validacion.email(vista.txtCorreo.getText())){
+        
+        }else{
+            JOptionPane.showMessageDialog(null, "Email incorrecto");
+            vista.txtCorreo.requestFocus();
+        }
+        
     }
 
 }

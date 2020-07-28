@@ -41,6 +41,8 @@ INSERT INTO funcion (funcion) VALUES ('Tipo de unidad');
 INSERT INTO funcion (funcion) VALUES ('Tipo de usuario');
 INSERT INTO funcion (funcion) VALUES ('Unidades');
 INSERT INTO funcion (funcion) VALUES ('Visitas autorizadas');
+INSERT INTO funcion (funcion) VALUES ('Bitacora');
+
 
 -- persona
 INSERT INTO persona (cedula, p_nombre, p_apellido, telefono, correo) VALUES ('V-00000000', 'Admin', 'Istrador', '0000-0000000', 'admin@admin.com');
@@ -72,7 +74,8 @@ INSERT INTO puente_tipo_funcion (id_tipo, id_funcion, ver, registrar, modificar,
 (1, 20, true, true, true, true),
 (1, 21, true, true, true, true),
 (1, 22, true, true, true, true),
-(1, 23, true, true, true, true);
+(1, 23, true, true, true, true),
+(1, 24, true, true, true, true);
 
 -- usuario
 INSERT INTO usuario (usuario, password, pregunta, respuesta, ci_persona, id_tipo_usuario) VALUES ('Ingresar Usuario', '455831477b82574f6bf871193f2f761d', 'pregunta', 'respuesta', 'V-00000000', 1);

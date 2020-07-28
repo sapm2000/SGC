@@ -80,12 +80,13 @@ public class CtrlVentana implements ActionListener {
         ventana.jSancion.addActionListener(this);
         ventana.jUnidades.addActionListener(this);
         ventana.jFondo.addActionListener(this);
-        
+
         ventana.pCuentasporCobrar.addActionListener(this);
         ventana.pCuentapagar.addActionListener(this);
         ventana.pVisitas.addActionListener(this);
-        
+
         ventana.pCerrarMes.addActionListener(this);
+        ventana.jBitacora.addActionListener(this);
         ventana.jPerfil.addActionListener(this);
     }
 
@@ -140,7 +141,7 @@ public class CtrlVentana implements ActionListener {
         if (e.getSource() == ventana.jCategoria) {
             ctrl = new CtrlCategoriaGasto();
         }
-        
+
         if (e.getSource() == ventana.jConcepto) {
             ctrl = new CtrlConceptoGasto();
         }
@@ -198,9 +199,14 @@ public class CtrlVentana implements ActionListener {
         if (e.getSource() == ventana.pVisitas) {
             ctrl = new CtrlVisita();
         }
-        
+
         if (e.getSource() == ventana.pCerrarMes) {
             ctrl = new CtrlCerrarMes();
+        }
+
+        //Repotes
+        if (e.getSource() == ventana.jBitacora) {
+            ctrl = new CtrlBitacora();
         }
 
         //Perfil
@@ -300,7 +306,10 @@ public class CtrlVentana implements ActionListener {
             if ("Unidades".equals(funcionesX.getNombre())) {
                 ventana.menuArchivo.add(ventana.jUnidades);
             }
-            
+            if ("Bitacora".equals(funcionesX.getNombre())) {
+                ventana.menuReporte.add(ventana.jBitacora);
+            }
+
             if ("Asambleas".equals(funcionesX.getNombre())) {
                 ventana.menuProceso.add(ventana.pAsamblea);
             }

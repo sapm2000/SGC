@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
@@ -30,7 +32,7 @@ import modelo.Propietarios;
 import vista.Catalogo;
 import vista.VisPropietario;
 
-public class CtrlPropietario implements ActionListener, MouseListener, KeyListener, ItemListener {
+public class CtrlPropietario implements ActionListener, MouseListener, KeyListener, ItemListener, FocusListener {
 
     VisPropietario vista;
     Propietarios modelo;
@@ -82,6 +84,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
             vista.txtSapellido.addKeyListener(this);
             vista.txtTelefono.addKeyListener(this);
             vista.txtCorreo.addKeyListener(this);
+            vista.txtCorreo.addFocusListener(this);
 
             CtrlVentana.cambiarVista(vista);
             vista.cbxCedula.addItemListener(this);
@@ -585,5 +588,19 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
         c.setForeground(Color.WHITE);
 
         c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        if(Validacion.email(vista.txtCorreo.getText())){
+        
+        }else{
+            JOptionPane.showMessageDialog(null, "Email incorrecto");
+            vista.txtCorreo.requestFocus();
+        }
     }
 }

@@ -149,7 +149,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                 int anniosis = (c1.get(Calendar.YEAR));
 
                 modc.setMes_cierre(vista.txtMes.getSelectedIndex() + 1);
-                modc.setAño_cierre(vista.txtAño.getYear());
+                modc.setAño_cierre(vista.txtAnio.getYear());
                 int mm = modc.getMes_cierre();
                 if (modc.getAño_cierre() <= anniosis) {
                     if (modc.getAño_cierre() < anniosis) {
@@ -173,7 +173,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                             JOptionPane.showMessageDialog(null, "Este mes ya se ha cerrado ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                         } else {
                             modc.setMes_cierre(vista.txtMes.getSelectedIndex() + 1);
-                            modc.setAño_cierre(vista.txtAño.getYear());
+                            modc.setAño_cierre(vista.txtAnio.getYear());
                             listaunidades = moduni.listar();
 
                             int numRegistro = listaunidades.size();
@@ -187,7 +187,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                             int numReales = 0;
 
                             int mes = vista.txtMes.getSelectedIndex() + 1;
-                            int año = vista.txtAño.getYear();
+                            int año = vista.txtAnio.getYear();
                             if (numCuotas == 0) {
 
                             } else {
