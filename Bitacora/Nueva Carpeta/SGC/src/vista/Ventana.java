@@ -44,6 +44,7 @@ public class Ventana extends javax.swing.JFrame {
         pCerrarMes = new javax.swing.JMenuItem();
         pVisitas = new javax.swing.JMenuItem();
         menuReporte = new javax.swing.JMenu();
+        jBitacora = new javax.swing.JMenuItem();
         menuAyudas = new javax.swing.JMenu();
         menuPerfil = new javax.swing.JMenu();
         jPerfil = new javax.swing.JMenuItem();
@@ -330,6 +331,10 @@ public class Ventana extends javax.swing.JFrame {
         menuReporte.setToolTipText("Reportes del sistema");
         menuReporte.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         menuReporte.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        jBitacora.setText("Bitacora");
+        menuReporte.add(jBitacora);
+
         barraMenu.add(menuReporte);
 
         menuAyudas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/educacion.png"))); // NOI18N
@@ -478,6 +483,7 @@ public class Ventana extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JMenuBar barraMenu;
     public javax.swing.JMenuItem jBanco;
+    public javax.swing.JMenuItem jBitacora;
     public javax.swing.JMenuItem jCategoria;
     public javax.swing.JMenuItem jConcepto;
     public javax.swing.JMenuItem jCondominio;
