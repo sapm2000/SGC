@@ -5,7 +5,7 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2020-07-28 21:06:29
+-- Started on 2020-07-28 21:19:55
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,7 +19,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 292 (class 1255 OID 67339)
+-- TOC entry 292 (class 1255 OID 68979)
 -- Name: agregar_asambleas(character varying, date, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -47,7 +47,7 @@ $$;
 ALTER FUNCTION public.agregar_asambleas(nombre2 character varying, fecha2 date, descripcion2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 293 (class 1255 OID 67340)
+-- TOC entry 293 (class 1255 OID 68980)
 -- Name: agregar_banco(character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -74,7 +74,7 @@ $$;
 ALTER FUNCTION public.agregar_banco(nombre2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 294 (class 1255 OID 67341)
+-- TOC entry 294 (class 1255 OID 68981)
 -- Name: agregar_categoria(integer, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -102,7 +102,7 @@ $$;
 ALTER FUNCTION public.agregar_categoria(id_usuario2 integer, nombre2 character varying, descripcion2 character varying) OWNER TO postgres;
 
 --
--- TOC entry 295 (class 1255 OID 67342)
+-- TOC entry 295 (class 1255 OID 68982)
 -- Name: agregar_concepto(character varying, character varying, integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -130,7 +130,7 @@ $$;
 ALTER FUNCTION public.agregar_concepto(nombre2 character varying, descripcion2 character varying, id_categoria2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 296 (class 1255 OID 67343)
+-- TOC entry 296 (class 1255 OID 68983)
 -- Name: agregar_condominio(integer, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -160,7 +160,7 @@ $$;
 ALTER FUNCTION public.agregar_condominio(id_usuario2 integer, rif2 character varying, razon_social2 character varying, telefono2 character varying, correo_electronico2 character varying) OWNER TO postgres;
 
 --
--- TOC entry 297 (class 1255 OID 67344)
+-- TOC entry 297 (class 1255 OID 68984)
 -- Name: agregar_cuenta(character varying, character varying, integer, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -197,7 +197,7 @@ $$;
 ALTER FUNCTION public.agregar_cuenta(n_cuenta2 character varying, tipo2 character varying, id_banco2 integer, ci_rif2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 299 (class 1255 OID 67345)
+-- TOC entry 299 (class 1255 OID 68985)
 -- Name: agregar_cuenta_pagar(character varying, character varying, character varying, double precision, date, double precision, integer, integer, character varying, integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -227,7 +227,7 @@ $$;
 ALTER FUNCTION public.agregar_cuenta_pagar(descripcion2 character varying, num_ref2 character varying, moneda2 character varying, monto2 double precision, fecha2 date, tasa_cambio2 double precision, id_gasto2 integer, id_forma_pago2 integer, n_cuenta2 character varying, id_fondo2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 301 (class 1255 OID 67346)
+-- TOC entry 301 (class 1255 OID 68986)
 -- Name: agregar_fondos(integer, character varying, date, character varying, character varying, double precision, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -256,7 +256,7 @@ $$;
 ALTER FUNCTION public.agregar_fondos(id_usuario2 integer, tipo2 character varying, fecha2 date, descripcion2 character varying, observaciones2 character varying, monto_inicial2 double precision, moneda2 character varying) OWNER TO postgres;
 
 --
--- TOC entry 302 (class 1255 OID 67347)
+-- TOC entry 302 (class 1255 OID 68987)
 -- Name: agregar_forma_pago(character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -284,7 +284,7 @@ $$;
 ALTER FUNCTION public.agregar_forma_pago(nombre2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 316 (class 1255 OID 67348)
+-- TOC entry 316 (class 1255 OID 68988)
 -- Name: agregar_gasto(character varying, character varying, character varying, character varying, integer, integer, integer, integer, text, integer, double precision, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -312,7 +312,7 @@ $$;
 ALTER FUNCTION public.agregar_gasto(nombre2 character varying, tipo2 character varying, id_proveedor2 character varying, calcular_por2 character varying, mes2 integer, anio2 integer, n_meses2 integer, id_asamblea2 integer, observacion2 text, meses_restantes2 integer, monto2 double precision, moneda2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 317 (class 1255 OID 67349)
+-- TOC entry 317 (class 1255 OID 68989)
 -- Name: agregar_interes(character varying, double precision, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -340,7 +340,7 @@ $$;
 ALTER FUNCTION public.agregar_interes(nombre2 character varying, factor2 double precision, rif_condominio2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 318 (class 1255 OID 67350)
+-- TOC entry 318 (class 1255 OID 68990)
 -- Name: agregar_propietario(character varying, character varying, character varying, character varying, character varying, character varying, character varying, boolean, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -386,7 +386,7 @@ $$;
 ALTER FUNCTION public.agregar_propietario(_cedula character varying, _p_nombre character varying, _s_nombre character varying, _p_apellido character varying, _s_apellido character varying, _telefono character varying, _correo character varying, _existe boolean, _id_usuario integer) OWNER TO postgres;
 
 --
--- TOC entry 319 (class 1255 OID 67351)
+-- TOC entry 319 (class 1255 OID 68991)
 -- Name: agregar_proveedor(character varying, character varying, character varying, character varying, character varying, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -414,7 +414,7 @@ $$;
 ALTER FUNCTION public.agregar_proveedor(cedula2 character varying, nombre2 character varying, telefono2 character varying, correo2 character varying, contacto2 character varying, direccion2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 320 (class 1255 OID 67352)
+-- TOC entry 320 (class 1255 OID 68992)
 -- Name: agregar_sancion(character varying, integer, integer, double precision, character varying, character varying, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -442,7 +442,7 @@ $$;
 ALTER FUNCTION public.agregar_sancion(tipo2 character varying, mes2 integer, anio2 integer, monto2 double precision, descripcion2 character varying, estado2 character varying, moneda2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 321 (class 1255 OID 67353)
+-- TOC entry 321 (class 1255 OID 68993)
 -- Name: agregar_tipo_unidad(character varying, double precision, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -470,7 +470,7 @@ $$;
 ALTER FUNCTION public.agregar_tipo_unidad(tipo2 character varying, area2 double precision, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 322 (class 1255 OID 67354)
+-- TOC entry 322 (class 1255 OID 68994)
 -- Name: agregar_unidad(character varying, character varying, character varying, integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -498,7 +498,7 @@ $$;
 ALTER FUNCTION public.agregar_unidad(n_unidad2 character varying, n_documento2 character varying, direccion2 character varying, id_tipo2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 323 (class 1255 OID 67355)
+-- TOC entry 323 (class 1255 OID 68995)
 -- Name: agregar_visita(integer, character varying, integer, character varying, character varying, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -526,7 +526,7 @@ $$;
 ALTER FUNCTION public.agregar_visita(id_unidad2 integer, ci_persona2 character varying, n_personas2 integer, matricula2 character varying, modelo2 character varying, color2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 324 (class 1255 OID 67356)
+-- TOC entry 324 (class 1255 OID 68996)
 -- Name: calcular_alicuota(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -548,7 +548,7 @@ $$;
 ALTER FUNCTION public.calcular_alicuota() OWNER TO postgres;
 
 --
--- TOC entry 298 (class 1255 OID 67357)
+-- TOC entry 298 (class 1255 OID 68997)
 -- Name: cambiar_clave(character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -577,7 +577,7 @@ $$;
 ALTER FUNCTION public.cambiar_clave(usuario2 character varying, password_nuevo character varying, password_actual character varying) OWNER TO postgres;
 
 --
--- TOC entry 325 (class 1255 OID 67358)
+-- TOC entry 325 (class 1255 OID 68998)
 -- Name: cambiar_pregunta(character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -606,7 +606,7 @@ $$;
 ALTER FUNCTION public.cambiar_pregunta(usuario2 character varying, pregunta2 character varying, respuesta2 character varying, password2 character varying) OWNER TO postgres;
 
 --
--- TOC entry 326 (class 1255 OID 67359)
+-- TOC entry 326 (class 1255 OID 68999)
 -- Name: eliminar_banco(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -635,7 +635,7 @@ $$;
 ALTER FUNCTION public.eliminar_banco(id2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 327 (class 1255 OID 67360)
+-- TOC entry 327 (class 1255 OID 69000)
 -- Name: eliminar_categoria(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -663,7 +663,7 @@ $$;
 ALTER FUNCTION public.eliminar_categoria(id_usuario2 integer, id2 integer) OWNER TO postgres;
 
 --
--- TOC entry 328 (class 1255 OID 67361)
+-- TOC entry 328 (class 1255 OID 69001)
 -- Name: eliminar_concepto(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -691,7 +691,7 @@ $$;
 ALTER FUNCTION public.eliminar_concepto(id2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 329 (class 1255 OID 67362)
+-- TOC entry 329 (class 1255 OID 69002)
 -- Name: eliminar_cuenta(character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -719,7 +719,7 @@ $$;
 ALTER FUNCTION public.eliminar_cuenta(n_cuenta2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 330 (class 1255 OID 67363)
+-- TOC entry 330 (class 1255 OID 69003)
 -- Name: eliminar_fondos(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -747,7 +747,7 @@ $$;
 ALTER FUNCTION public.eliminar_fondos(id_usuario2 integer, id2 integer) OWNER TO postgres;
 
 --
--- TOC entry 331 (class 1255 OID 67364)
+-- TOC entry 331 (class 1255 OID 69004)
 -- Name: eliminar_forma_pago(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -775,7 +775,7 @@ $$;
 ALTER FUNCTION public.eliminar_forma_pago(id2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 332 (class 1255 OID 67365)
+-- TOC entry 332 (class 1255 OID 69005)
 -- Name: eliminar_interes(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -803,7 +803,7 @@ $$;
 ALTER FUNCTION public.eliminar_interes(id2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 333 (class 1255 OID 67366)
+-- TOC entry 333 (class 1255 OID 69006)
 -- Name: eliminar_mensaje(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -845,7 +845,7 @@ $$;
 ALTER FUNCTION public.eliminar_mensaje() OWNER TO postgres;
 
 --
--- TOC entry 334 (class 1255 OID 67367)
+-- TOC entry 334 (class 1255 OID 69007)
 -- Name: eliminar_proveedor(character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -873,7 +873,7 @@ $$;
 ALTER FUNCTION public.eliminar_proveedor(cedula2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 335 (class 1255 OID 67368)
+-- TOC entry 335 (class 1255 OID 69008)
 -- Name: eliminar_sancion(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -901,7 +901,7 @@ $$;
 ALTER FUNCTION public.eliminar_sancion(id2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 336 (class 1255 OID 67369)
+-- TOC entry 336 (class 1255 OID 69009)
 -- Name: eliminar_tipo_unidad(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -929,7 +929,7 @@ $$;
 ALTER FUNCTION public.eliminar_tipo_unidad(tipo2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 300 (class 1255 OID 67370)
+-- TOC entry 300 (class 1255 OID 69010)
 -- Name: eliminar_unidad(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -957,7 +957,7 @@ $$;
 ALTER FUNCTION public.eliminar_unidad(id2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 303 (class 1255 OID 67371)
+-- TOC entry 303 (class 1255 OID 69011)
 -- Name: limpiar_mensaje(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -977,7 +977,7 @@ CREATE FUNCTION public.limpiar_mensaje() RETURNS void
 ALTER FUNCTION public.limpiar_mensaje() OWNER TO postgres;
 
 --
--- TOC entry 291 (class 1255 OID 67372)
+-- TOC entry 291 (class 1255 OID 69012)
 -- Name: llenar_bitacora(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1003,7 +1003,7 @@ $$;
 ALTER FUNCTION public.llenar_bitacora() OWNER TO postgres;
 
 --
--- TOC entry 337 (class 1255 OID 67373)
+-- TOC entry 337 (class 1255 OID 69013)
 -- Name: login(character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1031,7 +1031,7 @@ $$;
 ALTER FUNCTION public.login(usu character varying, pass character varying) OWNER TO postgres;
 
 --
--- TOC entry 338 (class 1255 OID 67374)
+-- TOC entry 338 (class 1255 OID 69014)
 -- Name: mayuscula_asambleas(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1051,7 +1051,7 @@ $$;
 ALTER FUNCTION public.mayuscula_asambleas() OWNER TO postgres;
 
 --
--- TOC entry 339 (class 1255 OID 67375)
+-- TOC entry 339 (class 1255 OID 69015)
 -- Name: mayuscula_banco(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1070,7 +1070,7 @@ $$;
 ALTER FUNCTION public.mayuscula_banco() OWNER TO postgres;
 
 --
--- TOC entry 340 (class 1255 OID 67376)
+-- TOC entry 340 (class 1255 OID 69016)
 -- Name: mayuscula_categoriagasto(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1090,7 +1090,7 @@ $$;
 ALTER FUNCTION public.mayuscula_categoriagasto() OWNER TO postgres;
 
 --
--- TOC entry 341 (class 1255 OID 67377)
+-- TOC entry 341 (class 1255 OID 69017)
 -- Name: mayuscula_cobro_unidad(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1109,7 +1109,7 @@ $$;
 ALTER FUNCTION public.mayuscula_cobro_unidad() OWNER TO postgres;
 
 --
--- TOC entry 342 (class 1255 OID 67378)
+-- TOC entry 342 (class 1255 OID 69018)
 -- Name: mayuscula_concepto_gasto(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1129,7 +1129,7 @@ $$;
 ALTER FUNCTION public.mayuscula_concepto_gasto() OWNER TO postgres;
 
 --
--- TOC entry 343 (class 1255 OID 67379)
+-- TOC entry 343 (class 1255 OID 69019)
 -- Name: mayuscula_condominio(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1149,7 +1149,7 @@ $$;
 ALTER FUNCTION public.mayuscula_condominio() OWNER TO postgres;
 
 --
--- TOC entry 344 (class 1255 OID 67380)
+-- TOC entry 344 (class 1255 OID 69020)
 -- Name: mayuscula_cuenta(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1168,7 +1168,7 @@ $$;
 ALTER FUNCTION public.mayuscula_cuenta() OWNER TO postgres;
 
 --
--- TOC entry 345 (class 1255 OID 67381)
+-- TOC entry 345 (class 1255 OID 69021)
 -- Name: mayuscula_cuenta_pagar(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1187,7 +1187,7 @@ $$;
 ALTER FUNCTION public.mayuscula_cuenta_pagar() OWNER TO postgres;
 
 --
--- TOC entry 346 (class 1255 OID 67382)
+-- TOC entry 346 (class 1255 OID 69022)
 -- Name: mayuscula_detalle_pagos(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1206,7 +1206,7 @@ $$;
 ALTER FUNCTION public.mayuscula_detalle_pagos() OWNER TO postgres;
 
 --
--- TOC entry 347 (class 1255 OID 67383)
+-- TOC entry 347 (class 1255 OID 69023)
 -- Name: mayuscula_fondos(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1227,7 +1227,7 @@ $$;
 ALTER FUNCTION public.mayuscula_fondos() OWNER TO postgres;
 
 --
--- TOC entry 348 (class 1255 OID 67384)
+-- TOC entry 348 (class 1255 OID 69024)
 -- Name: mayuscula_forma_pago(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1246,7 +1246,7 @@ $$;
 ALTER FUNCTION public.mayuscula_forma_pago() OWNER TO postgres;
 
 --
--- TOC entry 349 (class 1255 OID 67385)
+-- TOC entry 349 (class 1255 OID 69025)
 -- Name: mayuscula_gasto(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1267,7 +1267,7 @@ $$;
 ALTER FUNCTION public.mayuscula_gasto() OWNER TO postgres;
 
 --
--- TOC entry 350 (class 1255 OID 67386)
+-- TOC entry 350 (class 1255 OID 69026)
 -- Name: mayuscula_interes(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1286,7 +1286,7 @@ $$;
 ALTER FUNCTION public.mayuscula_interes() OWNER TO postgres;
 
 --
--- TOC entry 351 (class 1255 OID 67387)
+-- TOC entry 351 (class 1255 OID 69027)
 -- Name: mayuscula_persona(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1309,7 +1309,7 @@ $$;
 ALTER FUNCTION public.mayuscula_persona() OWNER TO postgres;
 
 --
--- TOC entry 352 (class 1255 OID 67388)
+-- TOC entry 352 (class 1255 OID 69028)
 -- Name: mayuscula_proveedores(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1331,7 +1331,7 @@ $$;
 ALTER FUNCTION public.mayuscula_proveedores() OWNER TO postgres;
 
 --
--- TOC entry 353 (class 1255 OID 67389)
+-- TOC entry 353 (class 1255 OID 69029)
 -- Name: mayuscula_sancion(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1350,7 +1350,7 @@ $$;
 ALTER FUNCTION public.mayuscula_sancion() OWNER TO postgres;
 
 --
--- TOC entry 354 (class 1255 OID 67390)
+-- TOC entry 354 (class 1255 OID 69030)
 -- Name: mayuscula_tipo_unidad(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1369,7 +1369,7 @@ $$;
 ALTER FUNCTION public.mayuscula_tipo_unidad() OWNER TO postgres;
 
 --
--- TOC entry 355 (class 1255 OID 67391)
+-- TOC entry 355 (class 1255 OID 69031)
 -- Name: mayuscula_tipo_usuario(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1388,7 +1388,7 @@ $$;
 ALTER FUNCTION public.mayuscula_tipo_usuario() OWNER TO postgres;
 
 --
--- TOC entry 356 (class 1255 OID 67392)
+-- TOC entry 356 (class 1255 OID 69032)
 -- Name: mayuscula_unidad(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1409,7 +1409,7 @@ $$;
 ALTER FUNCTION public.mayuscula_unidad() OWNER TO postgres;
 
 --
--- TOC entry 357 (class 1255 OID 67393)
+-- TOC entry 357 (class 1255 OID 69033)
 -- Name: mayuscula_visita(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1430,7 +1430,7 @@ $$;
 ALTER FUNCTION public.mayuscula_visita() OWNER TO postgres;
 
 --
--- TOC entry 358 (class 1255 OID 67394)
+-- TOC entry 358 (class 1255 OID 69034)
 -- Name: modificar_banco(integer, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1458,7 +1458,7 @@ $$;
 ALTER FUNCTION public.modificar_banco(id2 integer, nombre2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 359 (class 1255 OID 67395)
+-- TOC entry 359 (class 1255 OID 69035)
 -- Name: modificar_categoria(integer, character varying, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1486,7 +1486,7 @@ $$;
 ALTER FUNCTION public.modificar_categoria(id_usuario2 integer, nombre2 character varying, descripcion2 character varying, id2 integer) OWNER TO postgres;
 
 --
--- TOC entry 360 (class 1255 OID 67396)
+-- TOC entry 360 (class 1255 OID 69036)
 -- Name: modificar_concepto(integer, character varying, character varying, integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1514,7 +1514,7 @@ $$;
 ALTER FUNCTION public.modificar_concepto(id2 integer, nombre2 character varying, descripcion2 character varying, id_categoria2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 361 (class 1255 OID 67397)
+-- TOC entry 361 (class 1255 OID 69037)
 -- Name: modificar_condominio(integer, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1542,7 +1542,7 @@ $$;
 ALTER FUNCTION public.modificar_condominio(id_usuario2 integer, rif2 character varying, razon_social2 character varying, telefono2 character varying, correo_electronico2 character varying) OWNER TO postgres;
 
 --
--- TOC entry 362 (class 1255 OID 67398)
+-- TOC entry 362 (class 1255 OID 69038)
 -- Name: modificar_cuenta(character varying, integer, character varying, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1571,7 +1571,7 @@ $$;
 ALTER FUNCTION public.modificar_cuenta(tipo2 character varying, id_banco2 integer, ci_persona2 character varying, n_cuenta2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 363 (class 1255 OID 67399)
+-- TOC entry 363 (class 1255 OID 69039)
 -- Name: modificar_fondos(integer, character varying, character varying, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1600,7 +1600,7 @@ $$;
 ALTER FUNCTION public.modificar_fondos(id_usuario2 integer, tipo2 character varying, descripcion2 character varying, observaciones2 character varying, id2 integer) OWNER TO postgres;
 
 --
--- TOC entry 364 (class 1255 OID 67400)
+-- TOC entry 364 (class 1255 OID 69040)
 -- Name: modificar_forma_pago(integer, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1628,7 +1628,7 @@ $$;
 ALTER FUNCTION public.modificar_forma_pago(id2 integer, nombre2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 365 (class 1255 OID 67401)
+-- TOC entry 365 (class 1255 OID 69041)
 -- Name: modificar_gasto(integer, character varying, character varying, character varying, character varying, integer, integer, integer, integer, text, integer, double precision, double precision, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1656,7 +1656,7 @@ $$;
 ALTER FUNCTION public.modificar_gasto(id2 integer, nombre2 character varying, tipo2 character varying, id_proveedor2 character varying, calcular_por2 character varying, mes2 integer, anio2 integer, n_meses2 integer, id_asamblea2 integer, observacion2 text, meses_restantes2 integer, monto2 double precision, saldo2 double precision, moneda2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 366 (class 1255 OID 67402)
+-- TOC entry 366 (class 1255 OID 69042)
 -- Name: modificar_interes(integer, character varying, double precision, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1684,7 +1684,7 @@ $$;
 ALTER FUNCTION public.modificar_interes(id2 integer, nombre2 character varying, factor2 double precision, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 367 (class 1255 OID 67403)
+-- TOC entry 367 (class 1255 OID 69043)
 -- Name: modificar_proveedor(character varying, character varying, character varying, character varying, character varying, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1712,7 +1712,7 @@ $$;
 ALTER FUNCTION public.modificar_proveedor(cedula2 character varying, nombre2 character varying, telefono2 character varying, correo2 character varying, contacto2 character varying, direccion2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 368 (class 1255 OID 67404)
+-- TOC entry 368 (class 1255 OID 69044)
 -- Name: modificar_sancion(character varying, integer, integer, double precision, character varying, character varying, integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1740,7 +1740,7 @@ $$;
 ALTER FUNCTION public.modificar_sancion(tipo2 character varying, mes2 integer, anio2 integer, monto2 double precision, descripcion2 character varying, moneda2 character varying, id2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 369 (class 1255 OID 67405)
+-- TOC entry 369 (class 1255 OID 69045)
 -- Name: modificar_tipo_unidad(character varying, double precision, integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1768,7 +1768,7 @@ $$;
 ALTER FUNCTION public.modificar_tipo_unidad(tipo2 character varying, area2 double precision, id2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 370 (class 1255 OID 67406)
+-- TOC entry 370 (class 1255 OID 69046)
 -- Name: modificar_tipo_usuario(character varying, integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1798,7 +1798,7 @@ $$;
 ALTER FUNCTION public.modificar_tipo_usuario(_tipo character varying, _id integer, _id_usuario integer) OWNER TO postgres;
 
 --
--- TOC entry 371 (class 1255 OID 67407)
+-- TOC entry 371 (class 1255 OID 69047)
 -- Name: modificar_unidad(character varying, character varying, integer, integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1826,7 +1826,7 @@ $$;
 ALTER FUNCTION public.modificar_unidad(n_documento2 character varying, direccion2 character varying, id_tipo2 integer, id2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 372 (class 1255 OID 67408)
+-- TOC entry 372 (class 1255 OID 69048)
 -- Name: pagar_gasto(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1859,7 +1859,7 @@ $$;
 ALTER FUNCTION public.pagar_gasto() OWNER TO postgres;
 
 --
--- TOC entry 373 (class 1255 OID 67409)
+-- TOC entry 373 (class 1255 OID 69049)
 -- Name: reactivar_banco(character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1887,7 +1887,7 @@ $$;
 ALTER FUNCTION public.reactivar_banco(nombre_banco2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 374 (class 1255 OID 67410)
+-- TOC entry 374 (class 1255 OID 69050)
 -- Name: reactivar_categoria(character varying, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1915,7 +1915,7 @@ $$;
 ALTER FUNCTION public.reactivar_categoria(nombre2 character varying, descripcion2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 375 (class 1255 OID 67411)
+-- TOC entry 375 (class 1255 OID 69051)
 -- Name: reactivar_concepto(character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1943,7 +1943,7 @@ $$;
 ALTER FUNCTION public.reactivar_concepto(nombre2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 376 (class 1255 OID 67412)
+-- TOC entry 376 (class 1255 OID 69052)
 -- Name: reactivar_cuenta(character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1971,7 +1971,7 @@ $$;
 ALTER FUNCTION public.reactivar_cuenta(n_cuenta2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 377 (class 1255 OID 67413)
+-- TOC entry 377 (class 1255 OID 69053)
 -- Name: reactivar_fondo(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1999,7 +1999,7 @@ $$;
 ALTER FUNCTION public.reactivar_fondo(id2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 378 (class 1255 OID 67414)
+-- TOC entry 378 (class 1255 OID 69054)
 -- Name: reactivar_forma_pago(character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2027,7 +2027,7 @@ $$;
 ALTER FUNCTION public.reactivar_forma_pago(nombre2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 379 (class 1255 OID 67415)
+-- TOC entry 379 (class 1255 OID 69055)
 -- Name: reactivar_interes(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2055,7 +2055,7 @@ $$;
 ALTER FUNCTION public.reactivar_interes(id2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 380 (class 1255 OID 67416)
+-- TOC entry 380 (class 1255 OID 69056)
 -- Name: reactivar_proveedor(character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2083,7 +2083,7 @@ $$;
 ALTER FUNCTION public.reactivar_proveedor(cedula2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 381 (class 1255 OID 67417)
+-- TOC entry 381 (class 1255 OID 69057)
 -- Name: reactivar_tipo_unidad(character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2111,7 +2111,7 @@ $$;
 ALTER FUNCTION public.reactivar_tipo_unidad(tipo2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 382 (class 1255 OID 67418)
+-- TOC entry 382 (class 1255 OID 69058)
 -- Name: reactivar_unidad(character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2139,7 +2139,7 @@ $$;
 ALTER FUNCTION public.reactivar_unidad(n_unidad2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 383 (class 1255 OID 67419)
+-- TOC entry 383 (class 1255 OID 69059)
 -- Name: registrar_cuota(integer, integer, integer, integer, double precision, double precision, character varying, character varying, double precision, double precision, double precision, double precision, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2171,7 +2171,7 @@ $$;
 ALTER FUNCTION public.registrar_cuota(id_unidad2 integer, id_gasto2 integer, mes2 integer, anio2 integer, monto_dolar2 double precision, monto_bolivar2 double precision, tipo_gasto2 character varying, moneda_dominante2 character varying, paridad2 double precision, saldo_restante_bolivar2 double precision, saldo_restante_dolar2 double precision, alicuota2 double precision, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 384 (class 1255 OID 67420)
+-- TOC entry 384 (class 1255 OID 69060)
 -- Name: registrar_interes(integer, integer, integer, integer, double precision, double precision, character varying, character varying, double precision, double precision, double precision, double precision, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2203,7 +2203,7 @@ $$;
 ALTER FUNCTION public.registrar_interes(id_unidad2 integer, id_gasto2 integer, mes2 integer, anio2 integer, monto_dolar2 double precision, monto_bolivar2 double precision, tipo_gasto2 character varying, moneda_dominante2 character varying, paridad2 double precision, saldo_restante_bolivar2 double precision, saldo_restante_dolar2 double precision, alicuota2 double precision, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 385 (class 1255 OID 67421)
+-- TOC entry 385 (class 1255 OID 69061)
 -- Name: registrar_salida(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2236,7 +2236,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 202 (class 1259 OID 67422)
+-- TOC entry 202 (class 1259 OID 69062)
 -- Name: asambleas; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2251,7 +2251,7 @@ CREATE TABLE public.asambleas (
 ALTER TABLE public.asambleas OWNER TO postgres;
 
 --
--- TOC entry 203 (class 1259 OID 67428)
+-- TOC entry 203 (class 1259 OID 69068)
 -- Name: asambleas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2276,7 +2276,7 @@ ALTER SEQUENCE public.asambleas_id_seq OWNED BY public.asambleas.id;
 
 
 --
--- TOC entry 204 (class 1259 OID 67430)
+-- TOC entry 204 (class 1259 OID 69070)
 -- Name: banco; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2290,7 +2290,7 @@ CREATE TABLE public.banco (
 ALTER TABLE public.banco OWNER TO postgres;
 
 --
--- TOC entry 205 (class 1259 OID 67434)
+-- TOC entry 205 (class 1259 OID 69074)
 -- Name: banco_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2315,7 +2315,7 @@ ALTER SEQUENCE public.banco_id_seq OWNED BY public.banco.id;
 
 
 --
--- TOC entry 206 (class 1259 OID 67436)
+-- TOC entry 206 (class 1259 OID 69076)
 -- Name: bitacora; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2333,7 +2333,7 @@ CREATE TABLE public.bitacora (
 ALTER TABLE public.bitacora OWNER TO postgres;
 
 --
--- TOC entry 207 (class 1259 OID 67443)
+-- TOC entry 207 (class 1259 OID 69083)
 -- Name: bitacora_id_bitacora_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2358,7 +2358,7 @@ ALTER SEQUENCE public.bitacora_id_bitacora_seq OWNED BY public.bitacora.id_bitac
 
 
 --
--- TOC entry 208 (class 1259 OID 67445)
+-- TOC entry 208 (class 1259 OID 69085)
 -- Name: categoriagasto; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2373,7 +2373,7 @@ CREATE TABLE public.categoriagasto (
 ALTER TABLE public.categoriagasto OWNER TO postgres;
 
 --
--- TOC entry 209 (class 1259 OID 67449)
+-- TOC entry 209 (class 1259 OID 69089)
 -- Name: categoriagasto_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2398,7 +2398,7 @@ ALTER SEQUENCE public.categoriagasto_id_seq OWNED BY public.categoriagasto.id;
 
 
 --
--- TOC entry 210 (class 1259 OID 67451)
+-- TOC entry 210 (class 1259 OID 69091)
 -- Name: cobro_unidad; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2420,7 +2420,7 @@ CREATE TABLE public.cobro_unidad (
 ALTER TABLE public.cobro_unidad OWNER TO postgres;
 
 --
--- TOC entry 211 (class 1259 OID 67457)
+-- TOC entry 211 (class 1259 OID 69097)
 -- Name: cobro_unidad_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2445,7 +2445,7 @@ ALTER SEQUENCE public.cobro_unidad_id_seq OWNED BY public.cobro_unidad.id;
 
 
 --
--- TOC entry 212 (class 1259 OID 67459)
+-- TOC entry 212 (class 1259 OID 69099)
 -- Name: concepto_gasto; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2461,7 +2461,7 @@ CREATE TABLE public.concepto_gasto (
 ALTER TABLE public.concepto_gasto OWNER TO postgres;
 
 --
--- TOC entry 213 (class 1259 OID 67463)
+-- TOC entry 213 (class 1259 OID 69103)
 -- Name: concepto_gasto_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2486,7 +2486,7 @@ ALTER SEQUENCE public.concepto_gasto_id_seq OWNED BY public.concepto_gasto.id;
 
 
 --
--- TOC entry 214 (class 1259 OID 67465)
+-- TOC entry 214 (class 1259 OID 69105)
 -- Name: condominio; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2502,7 +2502,7 @@ CREATE TABLE public.condominio (
 ALTER TABLE public.condominio OWNER TO postgres;
 
 --
--- TOC entry 215 (class 1259 OID 67470)
+-- TOC entry 215 (class 1259 OID 69110)
 -- Name: cuenta; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2519,7 +2519,7 @@ CREATE TABLE public.cuenta (
 ALTER TABLE public.cuenta OWNER TO postgres;
 
 --
--- TOC entry 216 (class 1259 OID 67474)
+-- TOC entry 216 (class 1259 OID 69114)
 -- Name: cuenta_pagar; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2541,7 +2541,7 @@ CREATE TABLE public.cuenta_pagar (
 ALTER TABLE public.cuenta_pagar OWNER TO postgres;
 
 --
--- TOC entry 217 (class 1259 OID 67477)
+-- TOC entry 217 (class 1259 OID 69117)
 -- Name: cuenta_pagar_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2566,7 +2566,7 @@ ALTER SEQUENCE public.cuenta_pagar_id_seq OWNED BY public.cuenta_pagar.id;
 
 
 --
--- TOC entry 218 (class 1259 OID 67479)
+-- TOC entry 218 (class 1259 OID 69119)
 -- Name: detalle_pagos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2589,7 +2589,7 @@ CREATE TABLE public.detalle_pagos (
 ALTER TABLE public.detalle_pagos OWNER TO postgres;
 
 --
--- TOC entry 219 (class 1259 OID 67485)
+-- TOC entry 219 (class 1259 OID 69125)
 -- Name: detalle_pagos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2614,7 +2614,7 @@ ALTER SEQUENCE public.detalle_pagos_id_seq OWNED BY public.detalle_pagos.id;
 
 
 --
--- TOC entry 220 (class 1259 OID 67487)
+-- TOC entry 220 (class 1259 OID 69127)
 -- Name: fondos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2634,7 +2634,7 @@ CREATE TABLE public.fondos (
 ALTER TABLE public.fondos OWNER TO postgres;
 
 --
--- TOC entry 221 (class 1259 OID 67494)
+-- TOC entry 221 (class 1259 OID 69134)
 -- Name: fondos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2659,7 +2659,7 @@ ALTER SEQUENCE public.fondos_id_seq OWNED BY public.fondos.id;
 
 
 --
--- TOC entry 222 (class 1259 OID 67496)
+-- TOC entry 222 (class 1259 OID 69136)
 -- Name: forma_pago; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2673,7 +2673,7 @@ CREATE TABLE public.forma_pago (
 ALTER TABLE public.forma_pago OWNER TO postgres;
 
 --
--- TOC entry 223 (class 1259 OID 67503)
+-- TOC entry 223 (class 1259 OID 69143)
 -- Name: forma_pago_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2698,7 +2698,7 @@ ALTER SEQUENCE public.forma_pago_id_seq OWNED BY public.forma_pago.id;
 
 
 --
--- TOC entry 224 (class 1259 OID 67505)
+-- TOC entry 224 (class 1259 OID 69145)
 -- Name: funcion; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2711,7 +2711,7 @@ CREATE TABLE public.funcion (
 ALTER TABLE public.funcion OWNER TO postgres;
 
 --
--- TOC entry 225 (class 1259 OID 67511)
+-- TOC entry 225 (class 1259 OID 69151)
 -- Name: funcion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2736,7 +2736,7 @@ ALTER SEQUENCE public.funcion_id_seq OWNED BY public.funcion.id;
 
 
 --
--- TOC entry 226 (class 1259 OID 67513)
+-- TOC entry 226 (class 1259 OID 69153)
 -- Name: gasto; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2763,7 +2763,7 @@ CREATE TABLE public.gasto (
 ALTER TABLE public.gasto OWNER TO postgres;
 
 --
--- TOC entry 227 (class 1259 OID 67522)
+-- TOC entry 227 (class 1259 OID 69162)
 -- Name: gasto_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2788,7 +2788,7 @@ ALTER SEQUENCE public.gasto_id_seq OWNED BY public.gasto.id;
 
 
 --
--- TOC entry 228 (class 1259 OID 67524)
+-- TOC entry 228 (class 1259 OID 69164)
 -- Name: interes; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2804,7 +2804,7 @@ CREATE TABLE public.interes (
 ALTER TABLE public.interes OWNER TO postgres;
 
 --
--- TOC entry 229 (class 1259 OID 67531)
+-- TOC entry 229 (class 1259 OID 69171)
 -- Name: interes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2829,7 +2829,7 @@ ALTER SEQUENCE public.interes_id_seq OWNED BY public.interes.id;
 
 
 --
--- TOC entry 230 (class 1259 OID 67533)
+-- TOC entry 230 (class 1259 OID 69173)
 -- Name: mensaje; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2846,7 +2846,7 @@ CREATE TABLE public.mensaje (
 ALTER TABLE public.mensaje OWNER TO postgres;
 
 --
--- TOC entry 231 (class 1259 OID 67539)
+-- TOC entry 231 (class 1259 OID 69179)
 -- Name: mensaje_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2871,7 +2871,7 @@ ALTER SEQUENCE public.mensaje_id_seq OWNED BY public.mensaje.id;
 
 
 --
--- TOC entry 232 (class 1259 OID 67541)
+-- TOC entry 232 (class 1259 OID 69181)
 -- Name: persona; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2890,7 +2890,7 @@ CREATE TABLE public.persona (
 ALTER TABLE public.persona OWNER TO postgres;
 
 --
--- TOC entry 233 (class 1259 OID 67547)
+-- TOC entry 233 (class 1259 OID 69187)
 -- Name: propietario; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2903,7 +2903,7 @@ CREATE TABLE public.propietario (
 ALTER TABLE public.propietario OWNER TO postgres;
 
 --
--- TOC entry 234 (class 1259 OID 67551)
+-- TOC entry 234 (class 1259 OID 69191)
 -- Name: proveedores; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2921,7 +2921,7 @@ CREATE TABLE public.proveedores (
 ALTER TABLE public.proveedores OWNER TO postgres;
 
 --
--- TOC entry 235 (class 1259 OID 67555)
+-- TOC entry 235 (class 1259 OID 69195)
 -- Name: puente_asambleas_propietario; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2935,7 +2935,7 @@ CREATE TABLE public.puente_asambleas_propietario (
 ALTER TABLE public.puente_asambleas_propietario OWNER TO postgres;
 
 --
--- TOC entry 236 (class 1259 OID 67558)
+-- TOC entry 236 (class 1259 OID 69198)
 -- Name: puente_asambleas_propietario_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2960,7 +2960,7 @@ ALTER SEQUENCE public.puente_asambleas_propietario_id_seq OWNED BY public.puente
 
 
 --
--- TOC entry 237 (class 1259 OID 67560)
+-- TOC entry 237 (class 1259 OID 69200)
 -- Name: puente_cobro_factura; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2976,7 +2976,7 @@ CREATE TABLE public.puente_cobro_factura (
 ALTER TABLE public.puente_cobro_factura OWNER TO postgres;
 
 --
--- TOC entry 238 (class 1259 OID 67566)
+-- TOC entry 238 (class 1259 OID 69206)
 -- Name: puente_cobro_factura_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3001,7 +3001,7 @@ ALTER SEQUENCE public.puente_cobro_factura_id_seq OWNED BY public.puente_cobro_f
 
 
 --
--- TOC entry 239 (class 1259 OID 67568)
+-- TOC entry 239 (class 1259 OID 69208)
 -- Name: puente_gasto_concepto; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3016,7 +3016,7 @@ CREATE TABLE public.puente_gasto_concepto (
 ALTER TABLE public.puente_gasto_concepto OWNER TO postgres;
 
 --
--- TOC entry 240 (class 1259 OID 67571)
+-- TOC entry 240 (class 1259 OID 69211)
 -- Name: puente_gasto_concepto_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3041,7 +3041,7 @@ ALTER SEQUENCE public.puente_gasto_concepto_id_seq OWNED BY public.puente_gasto_
 
 
 --
--- TOC entry 241 (class 1259 OID 67573)
+-- TOC entry 241 (class 1259 OID 69213)
 -- Name: puente_mensaje_usuario; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3057,7 +3057,7 @@ CREATE TABLE public.puente_mensaje_usuario (
 ALTER TABLE public.puente_mensaje_usuario OWNER TO postgres;
 
 --
--- TOC entry 242 (class 1259 OID 67578)
+-- TOC entry 242 (class 1259 OID 69218)
 -- Name: puente_mensaje_usuario_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3082,7 +3082,7 @@ ALTER SEQUENCE public.puente_mensaje_usuario_id_seq OWNED BY public.puente_mensa
 
 
 --
--- TOC entry 243 (class 1259 OID 67580)
+-- TOC entry 243 (class 1259 OID 69220)
 -- Name: puente_persona_condominio; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3096,7 +3096,7 @@ CREATE TABLE public.puente_persona_condominio (
 ALTER TABLE public.puente_persona_condominio OWNER TO postgres;
 
 --
--- TOC entry 244 (class 1259 OID 67583)
+-- TOC entry 244 (class 1259 OID 69223)
 -- Name: puente_persona_condominio_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3121,7 +3121,7 @@ ALTER SEQUENCE public.puente_persona_condominio_id_seq OWNED BY public.puente_pe
 
 
 --
--- TOC entry 245 (class 1259 OID 67585)
+-- TOC entry 245 (class 1259 OID 69225)
 -- Name: puente_sancion_unidad; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3135,7 +3135,7 @@ CREATE TABLE public.puente_sancion_unidad (
 ALTER TABLE public.puente_sancion_unidad OWNER TO postgres;
 
 --
--- TOC entry 246 (class 1259 OID 67588)
+-- TOC entry 246 (class 1259 OID 69228)
 -- Name: puente_sancion_unidad_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3160,7 +3160,7 @@ ALTER SEQUENCE public.puente_sancion_unidad_id_seq OWNED BY public.puente_sancio
 
 
 --
--- TOC entry 247 (class 1259 OID 67590)
+-- TOC entry 247 (class 1259 OID 69230)
 -- Name: puente_tipo_funcion; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3178,7 +3178,7 @@ CREATE TABLE public.puente_tipo_funcion (
 ALTER TABLE public.puente_tipo_funcion OWNER TO postgres;
 
 --
--- TOC entry 248 (class 1259 OID 67593)
+-- TOC entry 248 (class 1259 OID 69233)
 -- Name: puente_tipo_funcion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3203,7 +3203,7 @@ ALTER SEQUENCE public.puente_tipo_funcion_id_seq OWNED BY public.puente_tipo_fun
 
 
 --
--- TOC entry 249 (class 1259 OID 67595)
+-- TOC entry 249 (class 1259 OID 69235)
 -- Name: puente_unidad_propietarios; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3221,7 +3221,7 @@ CREATE TABLE public.puente_unidad_propietarios (
 ALTER TABLE public.puente_unidad_propietarios OWNER TO postgres;
 
 --
--- TOC entry 250 (class 1259 OID 67600)
+-- TOC entry 250 (class 1259 OID 69240)
 -- Name: puente_unidad_propietarios_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3246,7 +3246,7 @@ ALTER SEQUENCE public.puente_unidad_propietarios_id_seq OWNED BY public.puente_u
 
 
 --
--- TOC entry 251 (class 1259 OID 67602)
+-- TOC entry 251 (class 1259 OID 69242)
 -- Name: recibo; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3270,7 +3270,7 @@ CREATE TABLE public.recibo (
 ALTER TABLE public.recibo OWNER TO postgres;
 
 --
--- TOC entry 252 (class 1259 OID 67608)
+-- TOC entry 252 (class 1259 OID 69248)
 -- Name: recibo_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3295,7 +3295,7 @@ ALTER SEQUENCE public.recibo_id_seq OWNED BY public.recibo.id;
 
 
 --
--- TOC entry 253 (class 1259 OID 67610)
+-- TOC entry 253 (class 1259 OID 69250)
 -- Name: responsable; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3308,7 +3308,7 @@ CREATE TABLE public.responsable (
 ALTER TABLE public.responsable OWNER TO postgres;
 
 --
--- TOC entry 254 (class 1259 OID 67614)
+-- TOC entry 254 (class 1259 OID 69254)
 -- Name: sancion; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3327,7 +3327,7 @@ CREATE TABLE public.sancion (
 ALTER TABLE public.sancion OWNER TO postgres;
 
 --
--- TOC entry 255 (class 1259 OID 67617)
+-- TOC entry 255 (class 1259 OID 69257)
 -- Name: sancion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3352,7 +3352,7 @@ ALTER SEQUENCE public.sancion_id_seq OWNED BY public.sancion.id;
 
 
 --
--- TOC entry 256 (class 1259 OID 67619)
+-- TOC entry 256 (class 1259 OID 69259)
 -- Name: tipo_unidad; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3367,7 +3367,7 @@ CREATE TABLE public.tipo_unidad (
 ALTER TABLE public.tipo_unidad OWNER TO postgres;
 
 --
--- TOC entry 257 (class 1259 OID 67623)
+-- TOC entry 257 (class 1259 OID 69263)
 -- Name: tipo_unidad_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3392,7 +3392,7 @@ ALTER SEQUENCE public.tipo_unidad_id_seq OWNED BY public.tipo_unidad.id;
 
 
 --
--- TOC entry 258 (class 1259 OID 67625)
+-- TOC entry 258 (class 1259 OID 69265)
 -- Name: tipo_usuario; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3406,7 +3406,7 @@ CREATE TABLE public.tipo_usuario (
 ALTER TABLE public.tipo_usuario OWNER TO postgres;
 
 --
--- TOC entry 259 (class 1259 OID 67632)
+-- TOC entry 259 (class 1259 OID 69272)
 -- Name: tipo_usuario_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3431,7 +3431,7 @@ ALTER SEQUENCE public.tipo_usuario_id_seq OWNED BY public.tipo_usuario.id;
 
 
 --
--- TOC entry 260 (class 1259 OID 67634)
+-- TOC entry 260 (class 1259 OID 69274)
 -- Name: unidad; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3449,7 +3449,7 @@ CREATE TABLE public.unidad (
 ALTER TABLE public.unidad OWNER TO postgres;
 
 --
--- TOC entry 261 (class 1259 OID 67638)
+-- TOC entry 261 (class 1259 OID 69278)
 -- Name: unidad_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3474,7 +3474,7 @@ ALTER SEQUENCE public.unidad_id_seq OWNED BY public.unidad.id;
 
 
 --
--- TOC entry 262 (class 1259 OID 67640)
+-- TOC entry 262 (class 1259 OID 69280)
 -- Name: usuario; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3493,7 +3493,7 @@ CREATE TABLE public.usuario (
 ALTER TABLE public.usuario OWNER TO postgres;
 
 --
--- TOC entry 263 (class 1259 OID 67644)
+-- TOC entry 263 (class 1259 OID 69284)
 -- Name: usuario_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3518,7 +3518,7 @@ ALTER SEQUENCE public.usuario_id_seq OWNED BY public.usuario.id;
 
 
 --
--- TOC entry 264 (class 1259 OID 67646)
+-- TOC entry 264 (class 1259 OID 69286)
 -- Name: v_area_total; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3532,7 +3532,7 @@ CREATE VIEW public.v_area_total AS
 ALTER TABLE public.v_area_total OWNER TO postgres;
 
 --
--- TOC entry 265 (class 1259 OID 67650)
+-- TOC entry 265 (class 1259 OID 69290)
 -- Name: v_asambleas; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3547,7 +3547,7 @@ CREATE VIEW public.v_asambleas AS
 ALTER TABLE public.v_asambleas OWNER TO postgres;
 
 --
--- TOC entry 266 (class 1259 OID 67654)
+-- TOC entry 266 (class 1259 OID 69294)
 -- Name: v_propietario; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3567,7 +3567,7 @@ CREATE VIEW public.v_propietario AS
 ALTER TABLE public.v_propietario OWNER TO postgres;
 
 --
--- TOC entry 267 (class 1259 OID 67658)
+-- TOC entry 267 (class 1259 OID 69298)
 -- Name: v_asambleas_propietario; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3585,7 +3585,7 @@ CREATE VIEW public.v_asambleas_propietario AS
 ALTER TABLE public.v_asambleas_propietario OWNER TO postgres;
 
 --
--- TOC entry 268 (class 1259 OID 67662)
+-- TOC entry 268 (class 1259 OID 69302)
 -- Name: v_bandeja_entrada; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3612,7 +3612,7 @@ CREATE VIEW public.v_bandeja_entrada AS
 ALTER TABLE public.v_bandeja_entrada OWNER TO postgres;
 
 --
--- TOC entry 269 (class 1259 OID 67667)
+-- TOC entry 269 (class 1259 OID 69307)
 -- Name: v_bandeja_salida; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3634,7 +3634,7 @@ CREATE VIEW public.v_bandeja_salida AS
 ALTER TABLE public.v_bandeja_salida OWNER TO postgres;
 
 --
--- TOC entry 270 (class 1259 OID 67672)
+-- TOC entry 270 (class 1259 OID 69312)
 -- Name: v_bitacora; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3656,7 +3656,7 @@ CREATE VIEW public.v_bitacora AS
 ALTER TABLE public.v_bitacora OWNER TO postgres;
 
 --
--- TOC entry 271 (class 1259 OID 67677)
+-- TOC entry 271 (class 1259 OID 69317)
 -- Name: v_concepto_gasto; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3674,7 +3674,7 @@ CREATE VIEW public.v_concepto_gasto AS
 ALTER TABLE public.v_concepto_gasto OWNER TO postgres;
 
 --
--- TOC entry 272 (class 1259 OID 67681)
+-- TOC entry 272 (class 1259 OID 69321)
 -- Name: v_condominio; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3689,7 +3689,7 @@ CREATE VIEW public.v_condominio AS
 ALTER TABLE public.v_condominio OWNER TO postgres;
 
 --
--- TOC entry 273 (class 1259 OID 67685)
+-- TOC entry 273 (class 1259 OID 69325)
 -- Name: v_cuenta; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3714,7 +3714,7 @@ CREATE VIEW public.v_cuenta AS
 ALTER TABLE public.v_cuenta OWNER TO postgres;
 
 --
--- TOC entry 274 (class 1259 OID 67690)
+-- TOC entry 274 (class 1259 OID 69330)
 -- Name: v_cuenta_pagar; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3747,7 +3747,7 @@ CREATE VIEW public.v_cuenta_pagar AS
 ALTER TABLE public.v_cuenta_pagar OWNER TO postgres;
 
 --
--- TOC entry 275 (class 1259 OID 67695)
+-- TOC entry 275 (class 1259 OID 69335)
 -- Name: v_dueno_unidad; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3764,7 +3764,7 @@ CREATE VIEW public.v_dueno_unidad AS
 ALTER TABLE public.v_dueno_unidad OWNER TO postgres;
 
 --
--- TOC entry 276 (class 1259 OID 67699)
+-- TOC entry 276 (class 1259 OID 69339)
 -- Name: v_gasto; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3796,7 +3796,7 @@ CREATE VIEW public.v_gasto AS
 ALTER TABLE public.v_gasto OWNER TO postgres;
 
 --
--- TOC entry 277 (class 1259 OID 67704)
+-- TOC entry 277 (class 1259 OID 69344)
 -- Name: v_gasto_concepto; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3814,7 +3814,7 @@ CREATE VIEW public.v_gasto_concepto AS
 ALTER TABLE public.v_gasto_concepto OWNER TO postgres;
 
 --
--- TOC entry 278 (class 1259 OID 67709)
+-- TOC entry 278 (class 1259 OID 69349)
 -- Name: v_mensaje_usuario; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3832,7 +3832,7 @@ CREATE VIEW public.v_mensaje_usuario AS
 ALTER TABLE public.v_mensaje_usuario OWNER TO postgres;
 
 --
--- TOC entry 279 (class 1259 OID 67714)
+-- TOC entry 279 (class 1259 OID 69354)
 -- Name: v_perfil; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3856,7 +3856,7 @@ CREATE VIEW public.v_perfil AS
 ALTER TABLE public.v_perfil OWNER TO postgres;
 
 --
--- TOC entry 280 (class 1259 OID 67719)
+-- TOC entry 280 (class 1259 OID 69359)
 -- Name: v_permisos; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3879,7 +3879,7 @@ CREATE VIEW public.v_permisos AS
 ALTER TABLE public.v_permisos OWNER TO postgres;
 
 --
--- TOC entry 281 (class 1259 OID 67724)
+-- TOC entry 281 (class 1259 OID 69364)
 -- Name: v_responsable; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3899,7 +3899,7 @@ CREATE VIEW public.v_responsable AS
 ALTER TABLE public.v_responsable OWNER TO postgres;
 
 --
--- TOC entry 282 (class 1259 OID 67728)
+-- TOC entry 282 (class 1259 OID 69368)
 -- Name: v_tipo_funcion; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3919,7 +3919,7 @@ CREATE VIEW public.v_tipo_funcion AS
 ALTER TABLE public.v_tipo_funcion OWNER TO postgres;
 
 --
--- TOC entry 283 (class 1259 OID 67732)
+-- TOC entry 283 (class 1259 OID 69372)
 -- Name: v_tipo_unidad; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3934,7 +3934,7 @@ CREATE VIEW public.v_tipo_unidad AS
 ALTER TABLE public.v_tipo_unidad OWNER TO postgres;
 
 --
--- TOC entry 284 (class 1259 OID 67736)
+-- TOC entry 284 (class 1259 OID 69376)
 -- Name: v_tipo_usuario; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3948,7 +3948,7 @@ CREATE VIEW public.v_tipo_usuario AS
 ALTER TABLE public.v_tipo_usuario OWNER TO postgres;
 
 --
--- TOC entry 285 (class 1259 OID 67740)
+-- TOC entry 285 (class 1259 OID 69380)
 -- Name: v_unidad; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3971,7 +3971,7 @@ CREATE VIEW public.v_unidad AS
 ALTER TABLE public.v_unidad OWNER TO postgres;
 
 --
--- TOC entry 286 (class 1259 OID 67745)
+-- TOC entry 286 (class 1259 OID 69385)
 -- Name: v_unidad_propietario; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3997,7 +3997,7 @@ CREATE VIEW public.v_unidad_propietario AS
 ALTER TABLE public.v_unidad_propietario OWNER TO postgres;
 
 --
--- TOC entry 287 (class 1259 OID 67750)
+-- TOC entry 287 (class 1259 OID 69390)
 -- Name: v_usuario; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -4015,7 +4015,7 @@ CREATE VIEW public.v_usuario AS
 ALTER TABLE public.v_usuario OWNER TO postgres;
 
 --
--- TOC entry 288 (class 1259 OID 67754)
+-- TOC entry 288 (class 1259 OID 69394)
 -- Name: visita; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -4037,7 +4037,7 @@ CREATE TABLE public.visita (
 ALTER TABLE public.visita OWNER TO postgres;
 
 --
--- TOC entry 289 (class 1259 OID 67759)
+-- TOC entry 289 (class 1259 OID 69399)
 -- Name: v_visita; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -4064,7 +4064,7 @@ CREATE VIEW public.v_visita AS
 ALTER TABLE public.v_visita OWNER TO postgres;
 
 --
--- TOC entry 290 (class 1259 OID 67764)
+-- TOC entry 290 (class 1259 OID 69404)
 -- Name: visita_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -4089,7 +4089,7 @@ ALTER SEQUENCE public.visita_id_seq OWNED BY public.visita.id;
 
 
 --
--- TOC entry 3074 (class 2604 OID 67766)
+-- TOC entry 3074 (class 2604 OID 69406)
 -- Name: asambleas id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4097,7 +4097,7 @@ ALTER TABLE ONLY public.asambleas ALTER COLUMN id SET DEFAULT nextval('public.as
 
 
 --
--- TOC entry 3076 (class 2604 OID 67767)
+-- TOC entry 3076 (class 2604 OID 69407)
 -- Name: banco id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4105,7 +4105,7 @@ ALTER TABLE ONLY public.banco ALTER COLUMN id SET DEFAULT nextval('public.banco_
 
 
 --
--- TOC entry 3078 (class 2604 OID 67768)
+-- TOC entry 3078 (class 2604 OID 69408)
 -- Name: bitacora id_bitacora; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4113,7 +4113,7 @@ ALTER TABLE ONLY public.bitacora ALTER COLUMN id_bitacora SET DEFAULT nextval('p
 
 
 --
--- TOC entry 3080 (class 2604 OID 67769)
+-- TOC entry 3080 (class 2604 OID 69409)
 -- Name: categoriagasto id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4121,7 +4121,7 @@ ALTER TABLE ONLY public.categoriagasto ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 3081 (class 2604 OID 67770)
+-- TOC entry 3081 (class 2604 OID 69410)
 -- Name: cobro_unidad id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4129,7 +4129,7 @@ ALTER TABLE ONLY public.cobro_unidad ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
--- TOC entry 3083 (class 2604 OID 67771)
+-- TOC entry 3083 (class 2604 OID 69411)
 -- Name: concepto_gasto id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4137,7 +4137,7 @@ ALTER TABLE ONLY public.concepto_gasto ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 3087 (class 2604 OID 67772)
+-- TOC entry 3087 (class 2604 OID 69412)
 -- Name: cuenta_pagar id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4145,7 +4145,7 @@ ALTER TABLE ONLY public.cuenta_pagar ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
--- TOC entry 3088 (class 2604 OID 67773)
+-- TOC entry 3088 (class 2604 OID 69413)
 -- Name: detalle_pagos id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4153,7 +4153,7 @@ ALTER TABLE ONLY public.detalle_pagos ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
--- TOC entry 3090 (class 2604 OID 67774)
+-- TOC entry 3090 (class 2604 OID 69414)
 -- Name: fondos id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4161,7 +4161,7 @@ ALTER TABLE ONLY public.fondos ALTER COLUMN id SET DEFAULT nextval('public.fondo
 
 
 --
--- TOC entry 3092 (class 2604 OID 67775)
+-- TOC entry 3092 (class 2604 OID 69415)
 -- Name: forma_pago id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4169,7 +4169,7 @@ ALTER TABLE ONLY public.forma_pago ALTER COLUMN id SET DEFAULT nextval('public.f
 
 
 --
--- TOC entry 3093 (class 2604 OID 67776)
+-- TOC entry 3093 (class 2604 OID 69416)
 -- Name: funcion id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4177,7 +4177,7 @@ ALTER TABLE ONLY public.funcion ALTER COLUMN id SET DEFAULT nextval('public.func
 
 
 --
--- TOC entry 3097 (class 2604 OID 67777)
+-- TOC entry 3097 (class 2604 OID 69417)
 -- Name: gasto id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4185,7 +4185,7 @@ ALTER TABLE ONLY public.gasto ALTER COLUMN id SET DEFAULT nextval('public.gasto_
 
 
 --
--- TOC entry 3099 (class 2604 OID 67778)
+-- TOC entry 3099 (class 2604 OID 69418)
 -- Name: interes id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4193,7 +4193,7 @@ ALTER TABLE ONLY public.interes ALTER COLUMN id SET DEFAULT nextval('public.inte
 
 
 --
--- TOC entry 3103 (class 2604 OID 67779)
+-- TOC entry 3103 (class 2604 OID 69419)
 -- Name: mensaje id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4201,7 +4201,7 @@ ALTER TABLE ONLY public.mensaje ALTER COLUMN id SET DEFAULT nextval('public.mens
 
 
 --
--- TOC entry 3109 (class 2604 OID 67780)
+-- TOC entry 3109 (class 2604 OID 69420)
 -- Name: puente_asambleas_propietario id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4209,7 +4209,7 @@ ALTER TABLE ONLY public.puente_asambleas_propietario ALTER COLUMN id SET DEFAULT
 
 
 --
--- TOC entry 3110 (class 2604 OID 67781)
+-- TOC entry 3110 (class 2604 OID 69421)
 -- Name: puente_cobro_factura id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4217,7 +4217,7 @@ ALTER TABLE ONLY public.puente_cobro_factura ALTER COLUMN id SET DEFAULT nextval
 
 
 --
--- TOC entry 3111 (class 2604 OID 67782)
+-- TOC entry 3111 (class 2604 OID 69422)
 -- Name: puente_gasto_concepto id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4225,7 +4225,7 @@ ALTER TABLE ONLY public.puente_gasto_concepto ALTER COLUMN id SET DEFAULT nextva
 
 
 --
--- TOC entry 3114 (class 2604 OID 67783)
+-- TOC entry 3114 (class 2604 OID 69423)
 -- Name: puente_mensaje_usuario id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4233,7 +4233,7 @@ ALTER TABLE ONLY public.puente_mensaje_usuario ALTER COLUMN id SET DEFAULT nextv
 
 
 --
--- TOC entry 3115 (class 2604 OID 67784)
+-- TOC entry 3115 (class 2604 OID 69424)
 -- Name: puente_persona_condominio id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4241,7 +4241,7 @@ ALTER TABLE ONLY public.puente_persona_condominio ALTER COLUMN id SET DEFAULT ne
 
 
 --
--- TOC entry 3116 (class 2604 OID 67785)
+-- TOC entry 3116 (class 2604 OID 69425)
 -- Name: puente_sancion_unidad id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4249,7 +4249,7 @@ ALTER TABLE ONLY public.puente_sancion_unidad ALTER COLUMN id SET DEFAULT nextva
 
 
 --
--- TOC entry 3117 (class 2604 OID 67786)
+-- TOC entry 3117 (class 2604 OID 69426)
 -- Name: puente_tipo_funcion id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4257,7 +4257,7 @@ ALTER TABLE ONLY public.puente_tipo_funcion ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
--- TOC entry 3120 (class 2604 OID 67787)
+-- TOC entry 3120 (class 2604 OID 69427)
 -- Name: puente_unidad_propietarios id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4265,7 +4265,7 @@ ALTER TABLE ONLY public.puente_unidad_propietarios ALTER COLUMN id SET DEFAULT n
 
 
 --
--- TOC entry 3121 (class 2604 OID 67788)
+-- TOC entry 3121 (class 2604 OID 69428)
 -- Name: recibo id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4273,7 +4273,7 @@ ALTER TABLE ONLY public.recibo ALTER COLUMN id SET DEFAULT nextval('public.recib
 
 
 --
--- TOC entry 3123 (class 2604 OID 67789)
+-- TOC entry 3123 (class 2604 OID 69429)
 -- Name: sancion id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4281,7 +4281,7 @@ ALTER TABLE ONLY public.sancion ALTER COLUMN id SET DEFAULT nextval('public.sanc
 
 
 --
--- TOC entry 3125 (class 2604 OID 67790)
+-- TOC entry 3125 (class 2604 OID 69430)
 -- Name: tipo_unidad id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4289,7 +4289,7 @@ ALTER TABLE ONLY public.tipo_unidad ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 3127 (class 2604 OID 67791)
+-- TOC entry 3127 (class 2604 OID 69431)
 -- Name: tipo_usuario id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4297,7 +4297,7 @@ ALTER TABLE ONLY public.tipo_usuario ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
--- TOC entry 3129 (class 2604 OID 67792)
+-- TOC entry 3129 (class 2604 OID 69432)
 -- Name: unidad id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4305,7 +4305,7 @@ ALTER TABLE ONLY public.unidad ALTER COLUMN id SET DEFAULT nextval('public.unida
 
 
 --
--- TOC entry 3131 (class 2604 OID 67793)
+-- TOC entry 3131 (class 2604 OID 69433)
 -- Name: usuario id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4313,7 +4313,7 @@ ALTER TABLE ONLY public.usuario ALTER COLUMN id SET DEFAULT nextval('public.usua
 
 
 --
--- TOC entry 3134 (class 2604 OID 67794)
+-- TOC entry 3134 (class 2604 OID 69434)
 -- Name: visita id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4321,7 +4321,7 @@ ALTER TABLE ONLY public.visita ALTER COLUMN id SET DEFAULT nextval('public.visit
 
 
 --
--- TOC entry 3458 (class 0 OID 67422)
+-- TOC entry 3458 (class 0 OID 69062)
 -- Dependencies: 202
 -- Data for Name: asambleas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -4339,7 +4339,7 @@ INSERT INTO public.asambleas VALUES (10, 'CISTERNA', 'REUNION PARA PEDIR UNA CIS
 
 
 --
--- TOC entry 3460 (class 0 OID 67430)
+-- TOC entry 3460 (class 0 OID 69070)
 -- Dependencies: 204
 -- Data for Name: banco; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -4357,7 +4357,7 @@ INSERT INTO public.banco VALUES (10, 'BANCO DEL TESORO', true);
 
 
 --
--- TOC entry 3462 (class 0 OID 67436)
+-- TOC entry 3462 (class 0 OID 69076)
 -- Dependencies: 206
 -- Data for Name: bitacora; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -4908,6 +4908,7 @@ INSERT INTO public.bitacora VALUES (556, 'Modificado', 'unidad', 1, '(2,2,234567
 INSERT INTO public.bitacora VALUES (557, 'UPDATE', 'unidad', NULL, '(3,3,345678912345678,"CALLE 3, CASA NÚMERO 3",t,0.06756756756756757,3)', '(3,3,345678912345678,"CALLE 1",t,0.06756756756756757,3)', '2020-07-28 19:27:55');
 INSERT INTO public.bitacora VALUES (558, 'UPDATE', 'unidad', NULL, '(11,11,112324457445453,"CALLE 11, CASA NÚMERO 11",t,0.10135135135135136,8)', '(11,11,112324457445453,"CALLE 11, CASA NÚMERO 11",t,0.10135135135135136,8)', '2020-07-28 19:27:55');
 INSERT INTO public.bitacora VALUES (559, 'UPDATE', 'unidad', NULL, '(4,4,456789123456789,"CALLE 4, CASA NÚMERO 4",t,0.07432432432432433,4)', '(4,4,456789123456789,"CALLE 4, CASA NÚMERO 4",t,0.07432432432432433,4)', '2020-07-28 19:27:55');
+INSERT INTO public.bitacora VALUES (647, 'Modificado', 'unidad', 1, '(8,8,891234567891234,"CALLE 1",t,0.10135135135135136,8)', '(8,8,891234567891234,"CALLE 1",t,0.10135135135135136,8)', '2020-07-28 19:31:22');
 INSERT INTO public.bitacora VALUES (560, 'UPDATE', 'unidad', NULL, '(5,5,567891234567891,"CALLE 5, CASA NÚMERO 5",t,0.08108108108108109,5)', '(5,5,567891234567891,"CALLE 5, CASA NÚMERO 5",t,0.08108108108108109,5)', '2020-07-28 19:27:55');
 INSERT INTO public.bitacora VALUES (561, 'UPDATE', 'unidad', NULL, '(6,6,678945612345678,"CALLE 6, CASA NÚMERO 6",t,0.08783783783783784,6)', '(6,6,678945612345678,"CALLE 6, CASA NÚMERO 6",t,0.08783783783783784,6)', '2020-07-28 19:27:55');
 INSERT INTO public.bitacora VALUES (562, 'UPDATE', 'unidad', NULL, '(7,7,789123456789123,"CALLE 7, CASA NÚMERO 7",t,0.0945945945945946,7)', '(7,7,789123456789123,"CALLE 7, CASA NÚMERO 7",t,0.0945945945945946,7)', '2020-07-28 19:27:55');
@@ -5002,7 +5003,6 @@ INSERT INTO public.bitacora VALUES (645, 'UPDATE', 'unidad', NULL, '(6,6,6789456
 ",t,0.08783783783783784,6)', '(6,6,678945612345678,"CALLE 6
 ",t,0.08783783783783784,6)', '2020-07-28 19:31:22');
 INSERT INTO public.bitacora VALUES (646, 'UPDATE', 'unidad', NULL, '(7,7,789123456789123,"CALLE 1",t,0.0945945945945946,7)', '(7,7,789123456789123,"CALLE 1",t,0.0945945945945946,7)', '2020-07-28 19:31:22');
-INSERT INTO public.bitacora VALUES (647, 'Modificado', 'unidad', 1, '(8,8,891234567891234,"CALLE 1",t,0.10135135135135136,8)', '(8,8,891234567891234,"CALLE 1",t,0.10135135135135136,8)', '2020-07-28 19:31:22');
 INSERT INTO public.bitacora VALUES (648, 'UPDATE', 'unidad', NULL, '(9,9,912345678912345,"CALLE 9, CASA NÚMERO 9",t,0.10810810810810811,9)', '(9,9,912345678912345,"CALLE 1",t,0.10810810810810811,9)', '2020-07-28 19:31:27');
 INSERT INTO public.bitacora VALUES (649, 'UPDATE', 'unidad', NULL, '(9,9,912345678912345,"CALLE 1",t,0.10810810810810811,9)', '(9,9,912345678912345,"CALLE 1",t,0.10810810810810811,9)', '2020-07-28 19:31:27');
 INSERT INTO public.bitacora VALUES (650, 'UPDATE', 'unidad', NULL, '(4,4,456789123456789,"CALLE 1",t,0.07432432432432433,4)', '(4,4,456789123456789,"CALLE 1",t,0.07432432432432433,4)', '2020-07-28 19:31:27');
@@ -5057,6 +5057,7 @@ INSERT INTO public.bitacora VALUES (690, 'UPDATE', 'unidad', NULL, '(1,1,1234567
 INSERT INTO public.bitacora VALUES (691, 'UPDATE', 'unidad', NULL, '(2,2,234567891234567,"CALLE 1",t,0.060810810810810814,2)', '(2,2,234567891234567,"CALLE 1",t,0.060810810810810814,2)', '2020-07-28 19:34:37');
 INSERT INTO public.bitacora VALUES (692, 'UPDATE', 'unidad', NULL, '(3,3,345678912345678,"CALLE 1",t,0.06756756756756757,3)', '(3,3,345678912345678,"CALLE 1",t,0.06756756756756757,3)', '2020-07-28 19:34:37');
 INSERT INTO public.bitacora VALUES (693, 'UPDATE', 'unidad', NULL, '(5,5,567891234567891,"CALLE 1",t,0.08108108108108109,5)', '(5,5,567891234567891,"CALLE 1",t,0.08108108108108109,5)', '2020-07-28 19:34:37');
+INSERT INTO public.bitacora VALUES (788, 'UPDATE', 'unidad', NULL, '(3,3,345678912345678,"CALLE 1",t,0.0898876404494382,9)', '(3,3,345678912345678,"CALLE 1",t,0.0935672514619883,9)', '2020-07-28 19:35:49');
 INSERT INTO public.bitacora VALUES (694, 'UPDATE', 'unidad', NULL, '(11,11,112324457445453,"CALLE 2",t,0.10135135135135136,8)', '(11,11,112324457445453,"CALLE 2",t,0.10135135135135136,8)', '2020-07-28 19:34:37');
 INSERT INTO public.bitacora VALUES (695, 'UPDATE', 'unidad', NULL, '(7,7,789123456789123,"CALLE 1",t,0.0945945945945946,7)', '(7,7,789123456789123,"CALLE 1",t,0.0945945945945946,7)', '2020-07-28 19:34:37');
 INSERT INTO public.bitacora VALUES (696, 'UPDATE', 'unidad', NULL, '(8,8,891234567891234,"CALLE 1",t,0.10135135135135136,8)', '(8,8,891234567891234,"CALLE 1",t,0.10135135135135136,8)', '2020-07-28 19:34:37');
@@ -5167,7 +5168,6 @@ INSERT INTO public.bitacora VALUES (784, 'UPDATE', 'unidad', NULL, '(9,9,9123456
 INSERT INTO public.bitacora VALUES (785, 'UPDATE', 'unidad', NULL, '(4,4,456789123456789,"CALLE 1",t,0.0898876404494382,9)', '(4,4,456789123456789,"CALLE 1",t,0.0935672514619883,9)', '2020-07-28 19:35:49');
 INSERT INTO public.bitacora VALUES (786, 'UPDATE', 'unidad', NULL, '(12,12,654616846513584,"CALLE 2",t,0.0449438202247191,1)', '(12,12,654616846513584,"CALLE 2",t,0.04678362573099415,1)', '2020-07-28 19:35:49');
 INSERT INTO public.bitacora VALUES (787, 'UPDATE', 'unidad', NULL, '(1,1,123456789123456,"CALLE 1",t,0.0898876404494382,9)', '(1,1,123456789123456,"CALLE 1",t,0.0935672514619883,9)', '2020-07-28 19:35:49');
-INSERT INTO public.bitacora VALUES (788, 'UPDATE', 'unidad', NULL, '(3,3,345678912345678,"CALLE 1",t,0.0898876404494382,9)', '(3,3,345678912345678,"CALLE 1",t,0.0935672514619883,9)', '2020-07-28 19:35:49');
 INSERT INTO public.bitacora VALUES (789, 'UPDATE', 'unidad', NULL, '(5,5,567891234567891,"CALLE 1",t,0.0898876404494382,9)', '(5,5,567891234567891,"CALLE 1",t,0.0935672514619883,9)', '2020-07-28 19:35:49');
 INSERT INTO public.bitacora VALUES (790, 'Modificado', 'unidad', 1, '(11,11,112324457445453,"CALLE 2",t,0.08426966292134831,1)', '(11,11,112324457445453,"CALLE 2",t,0.04678362573099415,1)', '2020-07-28 19:35:49');
 INSERT INTO public.bitacora VALUES (791, 'UPDATE', 'unidad', NULL, '(7,7,789123456789123,"CALLE 1",t,0.08187134502923976,7)', '(7,7,789123456789123,"CALLE 1",t,0.08187134502923976,9)', '2020-07-28 19:35:56');
@@ -6156,6 +6156,7 @@ INSERT INTO public.bitacora VALUES (1703, 'UPDATE', 'unidad', NULL, '(20,20,2342
 INSERT INTO public.bitacora VALUES (1704, 'UPDATE', 'unidad', NULL, '(16,16,332423423432432,"CALLE 2",t,0.017699115044247787,1)', '(16,16,332423423432432,"CALLE 2",t,0.017278617710583154,1)', '2020-07-28 20:02:58');
 INSERT INTO public.bitacora VALUES (1705, 'UPDATE', 'unidad', NULL, '(8,8,891234567891234,"CALLE 1",t,0.035398230088495575,9)', '(8,8,891234567891234,"CALLE 1",t,0.03455723542116631,9)', '2020-07-28 20:02:58');
 INSERT INTO public.bitacora VALUES (1706, 'UPDATE', 'unidad', NULL, '(2,2,234567891234567,"CALLE 1",t,0.035398230088495575,9)', '(2,2,234567891234567,"CALLE 1",t,0.03455723542116631,9)', '2020-07-28 20:02:58');
+INSERT INTO public.bitacora VALUES (2275, 'UPDATE', 'unidad', NULL, '(22,22,425346567908008,"CALLE 3",t,0.015625,2)', '(22,22,425346567908008,"CALLE 3",t,0.015306122448979591,2)', '2020-07-28 20:26:13');
 INSERT INTO public.bitacora VALUES (1707, 'UPDATE', 'unidad', NULL, '(9,9,912345678912345,"CALLE 1",t,0.035398230088495575,9)', '(9,9,912345678912345,"CALLE 1",t,0.03455723542116631,9)', '2020-07-28 20:02:58');
 INSERT INTO public.bitacora VALUES (1708, 'UPDATE', 'unidad', NULL, '(4,4,456789123456789,"CALLE 1",t,0.035398230088495575,9)', '(4,4,456789123456789,"CALLE 1",t,0.03455723542116631,9)', '2020-07-28 20:02:58');
 INSERT INTO public.bitacora VALUES (1709, 'UPDATE', 'unidad', NULL, '(12,12,654616846513584,"CALLE 2",t,0.017699115044247787,1)', '(12,12,654616846513584,"CALLE 2",t,0.017278617710583154,1)', '2020-07-28 20:02:58');
@@ -6304,6 +6305,7 @@ INSERT INTO public.bitacora VALUES (1845, 'UPDATE', 'unidad', NULL, '(12,12,6546
 INSERT INTO public.bitacora VALUES (1846, 'UPDATE', 'unidad', NULL, '(1,1,123456789123456,"CALLE 1",t,0.032989690721649485,9)', '(1,1,123456789123456,"CALLE 1",t,0.03225806451612903,9)', '2020-07-28 20:03:47');
 INSERT INTO public.bitacora VALUES (1847, 'UPDATE', 'unidad', NULL, '(3,3,345678912345678,"CALLE 1",t,0.032989690721649485,9)', '(3,3,345678912345678,"CALLE 1",t,0.03225806451612903,9)', '2020-07-28 20:03:47');
 INSERT INTO public.bitacora VALUES (1848, 'UPDATE', 'unidad', NULL, '(5,5,567891234567891,"CALLE 1",t,0.032989690721649485,9)', '(5,5,567891234567891,"CALLE 1",t,0.03225806451612903,9)', '2020-07-28 20:03:47');
+INSERT INTO public.bitacora VALUES (2276, 'UPDATE', 'unidad', NULL, '(23,23,123123131231312,"CALLE 3",t,0.015625,2)', '(23,23,123123131231312,"CALLE 3",t,0.015306122448979591,2)', '2020-07-28 20:26:13');
 INSERT INTO public.bitacora VALUES (1849, 'UPDATE', 'unidad', NULL, '(11,11,112324457445453,"CALLE 2",t,0.016494845360824743,1)', '(11,11,112324457445453,"CALLE 2",t,0.016129032258064516,1)', '2020-07-28 20:03:47');
 INSERT INTO public.bitacora VALUES (1850, 'UPDATE', 'unidad', NULL, '(7,7,789123456789123,"CALLE 1",t,0.032989690721649485,9)', '(7,7,789123456789123,"CALLE 1",t,0.03225806451612903,9)', '2020-07-28 20:03:47');
 INSERT INTO public.bitacora VALUES (1851, 'UPDATE', 'unidad', NULL, '(10,10,102345678912304,"CALLE 1",t,0.032989690721649485,9)', '(10,10,102345678912304,"CALLE 1",t,0.03225806451612903,9)', '2020-07-28 20:03:47');
@@ -6353,6 +6355,7 @@ INSERT INTO public.bitacora VALUES (1892, 'UPDATE', 'unidad', NULL, '(12,12,6546
 INSERT INTO public.bitacora VALUES (1893, 'UPDATE', 'unidad', NULL, '(1,1,123456789123456,"CALLE 1",t,0.03225806451612903,9)', '(1,1,123456789123456,"CALLE 1",t,0.03155818540433925,9)', '2020-07-28 20:04:06');
 INSERT INTO public.bitacora VALUES (1894, 'UPDATE', 'unidad', NULL, '(3,3,345678912345678,"CALLE 1",t,0.03225806451612903,9)', '(3,3,345678912345678,"CALLE 1",t,0.03155818540433925,9)', '2020-07-28 20:04:06');
 INSERT INTO public.bitacora VALUES (1895, 'UPDATE', 'unidad', NULL, '(5,5,567891234567891,"CALLE 1",t,0.03225806451612903,9)', '(5,5,567891234567891,"CALLE 1",t,0.03155818540433925,9)', '2020-07-28 20:04:06');
+INSERT INTO public.bitacora VALUES (2277, 'UPDATE', 'unidad', NULL, '(28,28,489184914987918,"CALLE 3",t,0.015625,2)', '(28,28,489184914987918,"CALLE 3",t,0.015306122448979591,2)', '2020-07-28 20:26:13');
 INSERT INTO public.bitacora VALUES (1896, 'UPDATE', 'unidad', NULL, '(11,11,112324457445453,"CALLE 2",t,0.016129032258064516,1)', '(11,11,112324457445453,"CALLE 2",t,0.015779092702169626,1)', '2020-07-28 20:04:06');
 INSERT INTO public.bitacora VALUES (1897, 'UPDATE', 'unidad', NULL, '(7,7,789123456789123,"CALLE 1",t,0.03225806451612903,9)', '(7,7,789123456789123,"CALLE 1",t,0.03155818540433925,9)', '2020-07-28 20:04:06');
 INSERT INTO public.bitacora VALUES (1898, 'UPDATE', 'unidad', NULL, '(10,10,102345678912304,"CALLE 1",t,0.03225806451612903,9)', '(10,10,102345678912304,"CALLE 1",t,0.03155818540433925,9)', '2020-07-28 20:04:06');
@@ -6452,6 +6455,7 @@ INSERT INTO public.bitacora VALUES (1986, 'UPDATE', 'unidad', NULL, '(2,2,234567
 INSERT INTO public.bitacora VALUES (1987, 'UPDATE', 'unidad', NULL, '(9,9,912345678912345,"CALLE 1",t,0.03088803088803089,9)', '(9,9,912345678912345,"CALLE 1",t,0.030245746691871456,9)', '2020-07-28 20:04:40');
 INSERT INTO public.bitacora VALUES (1988, 'UPDATE', 'unidad', NULL, '(4,4,456789123456789,"CALLE 1",t,0.03088803088803089,9)', '(4,4,456789123456789,"CALLE 1",t,0.030245746691871456,9)', '2020-07-28 20:04:40');
 INSERT INTO public.bitacora VALUES (1989, 'UPDATE', 'unidad', NULL, '(12,12,654616846513584,"CALLE 2",t,0.015444015444015444,1)', '(12,12,654616846513584,"CALLE 2",t,0.015122873345935728,1)', '2020-07-28 20:04:40');
+INSERT INTO public.bitacora VALUES (2278, 'UPDATE', 'unidad', NULL, '(30,30,324322432424234,"CALLE 3",t,0.015625,2)', '(30,30,324322432424234,"CALLE 3",t,0.015306122448979591,2)', '2020-07-28 20:26:13');
 INSERT INTO public.bitacora VALUES (1990, 'UPDATE', 'unidad', NULL, '(1,1,123456789123456,"CALLE 1",t,0.03088803088803089,9)', '(1,1,123456789123456,"CALLE 1",t,0.030245746691871456,9)', '2020-07-28 20:04:40');
 INSERT INTO public.bitacora VALUES (1991, 'UPDATE', 'unidad', NULL, '(3,3,345678912345678,"CALLE 1",t,0.03088803088803089,9)', '(3,3,345678912345678,"CALLE 1",t,0.030245746691871456,9)', '2020-07-28 20:04:40');
 INSERT INTO public.bitacora VALUES (2601, 'UPDATE', 'unidad', NULL, '(60,60,446465456456456,"CALLE 6",t,,5)', '(60,60,446465456456456,"CALLE 6",t,0.01818181818181818,5)', '2020-07-28 20:28:09');
@@ -6750,10 +6754,6 @@ INSERT INTO public.bitacora VALUES (2271, 'UPDATE', 'unidad', NULL, '(29,29,1234
 INSERT INTO public.bitacora VALUES (2272, 'UPDATE', 'unidad', NULL, '(31,31,242343242423423,"CALLE 4",t,0.017361111111111112,3)', '(31,31,242343242423423,"CALLE 4",t,0.017006802721088437,3)', '2020-07-28 20:26:13');
 INSERT INTO public.bitacora VALUES (2273, 'UPDATE', 'unidad', NULL, '(34,34,673857648634856,"CALLE 4",t,0.017361111111111112,3)', '(34,34,673857648634856,"CALLE 4",t,0.017006802721088437,3)', '2020-07-28 20:26:13');
 INSERT INTO public.bitacora VALUES (2274, 'UPDATE', 'unidad', NULL, '(21,21,213123131231231,"CALLE 3",t,0.015625,2)', '(21,21,213123131231231,"CALLE 3",t,0.015306122448979591,2)', '2020-07-28 20:26:13');
-INSERT INTO public.bitacora VALUES (2275, 'UPDATE', 'unidad', NULL, '(22,22,425346567908008,"CALLE 3",t,0.015625,2)', '(22,22,425346567908008,"CALLE 3",t,0.015306122448979591,2)', '2020-07-28 20:26:13');
-INSERT INTO public.bitacora VALUES (2276, 'UPDATE', 'unidad', NULL, '(23,23,123123131231312,"CALLE 3",t,0.015625,2)', '(23,23,123123131231312,"CALLE 3",t,0.015306122448979591,2)', '2020-07-28 20:26:13');
-INSERT INTO public.bitacora VALUES (2277, 'UPDATE', 'unidad', NULL, '(28,28,489184914987918,"CALLE 3",t,0.015625,2)', '(28,28,489184914987918,"CALLE 3",t,0.015306122448979591,2)', '2020-07-28 20:26:13');
-INSERT INTO public.bitacora VALUES (2278, 'UPDATE', 'unidad', NULL, '(30,30,324322432424234,"CALLE 3",t,0.015625,2)', '(30,30,324322432424234,"CALLE 3",t,0.015306122448979591,2)', '2020-07-28 20:26:13');
 INSERT INTO public.bitacora VALUES (2279, 'UPDATE', 'unidad', NULL, '(33,33,645464646464654,"CALLE 4",t,0.017361111111111112,3)', '(33,33,645464646464654,"CALLE 4",t,0.017006802721088437,3)', '2020-07-28 20:26:13');
 INSERT INTO public.bitacora VALUES (2280, 'UPDATE', 'unidad', NULL, '(35,35,865435745638574,"CALLE 4",t,0.017361111111111112,3)', '(35,35,865435745638574,"CALLE 4",t,0.017006802721088437,3)', '2020-07-28 20:26:13');
 INSERT INTO public.bitacora VALUES (2281, 'UPDATE', 'unidad', NULL, '(36,36,324242424242424,"CALLE 4",t,0.017361111111111112,3)', '(36,36,324242424242424,"CALLE 4",t,0.017006802721088437,3)', '2020-07-28 20:26:13');
@@ -7096,6 +7096,7 @@ INSERT INTO public.bitacora VALUES (2608, 'UPDATE', 'unidad', NULL, '(39,39,6464
 INSERT INTO public.bitacora VALUES (2609, 'UPDATE', 'unidad', NULL, '(43,43,757836386543865,"CALLE 5",t,0.016975308641975308,4)', '(43,43,757836386543865,"CALLE 5",t,0.016666666666666666,4)', '2020-07-28 20:28:09');
 INSERT INTO public.bitacora VALUES (2610, 'UPDATE', 'unidad', NULL, '(46,46,4378Y4757856834,"CALLE 5",t,0.016975308641975308,4)', '(46,46,4378Y4757856834,"CALLE 5",t,0.016666666666666666,4)', '2020-07-28 20:28:09');
 INSERT INTO public.bitacora VALUES (2611, 'UPDATE', 'unidad', NULL, '(26,26,678487848948489,"CALLE 3",t,0.013888888888888888,2)', '(26,26,678487848948489,"CALLE 3",t,0.013636363636363636,2)', '2020-07-28 20:28:09');
+INSERT INTO public.bitacora VALUES (3932, 'UPDATE', 'unidad', NULL, '(79,79,342342423423424,"CALLE 8",t,,7)', '(79,79,342342423423424,"CALLE 8",t,0.015283842794759825,7)', '2020-07-28 20:56:11');
 INSERT INTO public.bitacora VALUES (2612, 'UPDATE', 'unidad', NULL, '(29,29,123456789098765,"CALLE 3",t,0.013888888888888888,2)', '(29,29,123456789098765,"CALLE 3",t,0.013636363636363636,2)', '2020-07-28 20:28:09');
 INSERT INTO public.bitacora VALUES (2613, 'UPDATE', 'unidad', NULL, '(31,31,242343242423423,"CALLE 4",t,0.015432098765432098,3)', '(31,31,242343242423423,"CALLE 4",t,0.015151515151515152,3)', '2020-07-28 20:28:09');
 INSERT INTO public.bitacora VALUES (2614, 'UPDATE', 'unidad', NULL, '(34,34,673857648634856,"CALLE 4",t,0.015432098765432098,3)', '(34,34,673857648634856,"CALLE 4",t,0.015151515151515152,3)', '2020-07-28 20:28:09');
@@ -7195,6 +7196,7 @@ INSERT INTO public.bitacora VALUES (2702, 'UPDATE', 'unidad', NULL, '(53,53,7638
 INSERT INTO public.bitacora VALUES (2703, 'UPDATE', 'unidad', NULL, '(55,55,327643262634872,"CALLE 6",t,0.01818181818181818,5)', '(55,55,327643262634872,"CALLE 6",t,0.017830609212481426,5)', '2020-07-28 20:28:39');
 INSERT INTO public.bitacora VALUES (2704, 'UPDATE', 'unidad', 1, '(59,59,498757854438843,"CALLE 6",t,0.01818181818181818,5)', '(59,59,498757854438843,"CALLE 6",t,0.017830609212481426,5)', '2020-07-28 20:28:39');
 INSERT INTO public.bitacora VALUES (2705, 'Registro', 'unidad', NULL, NULL, '(62,62,465465464646846,"CALLE 7",t,,6)', '2020-07-28 20:28:51');
+INSERT INTO public.bitacora VALUES (4074, 'Registro', 'unidad', NULL, NULL, '(82,81,342342423423429,"CALLE 9",t,,8)', '2020-07-28 20:58:54');
 INSERT INTO public.bitacora VALUES (2706, 'UPDATE', 'unidad', NULL, '(61,61,644656546549864,"CALLE 7",t,0.019316493313521546,6)', '(61,61,644656546549864,"CALLE 7",t,0.018950437317784258,6)', '2020-07-28 20:28:51');
 INSERT INTO public.bitacora VALUES (2707, 'UPDATE', 'unidad', NULL, '(57,57,437589347598759,"CALLE 6",t,0.017830609212481426,5)', '(57,57,437589347598759,"CALLE 6",t,0.01749271137026239,5)', '2020-07-28 20:28:51');
 INSERT INTO public.bitacora VALUES (2708, 'UPDATE', 'unidad', NULL, '(51,51,324342342342342,"CALLE 6",t,0.017830609212481426,5)', '(51,51,324342342342342,"CALLE 6",t,0.01749271137026239,5)', '2020-07-28 20:28:51');
@@ -7291,6 +7293,7 @@ INSERT INTO public.bitacora VALUES (2796, 'UPDATE', 'unidad', NULL, '(39,39,6464
 INSERT INTO public.bitacora VALUES (2797, 'UPDATE', 'unidad', NULL, '(43,43,757836386543865,"CALLE 5",t,0.016034985422740525,4)', '(43,43,757836386543865,"CALLE 5",t,0.015736766809728183,4)', '2020-07-28 20:29:14');
 INSERT INTO public.bitacora VALUES (2798, 'UPDATE', 'unidad', NULL, '(46,46,4378Y4757856834,"CALLE 5",t,0.016034985422740525,4)', '(46,46,4378Y4757856834,"CALLE 5",t,0.015736766809728183,4)', '2020-07-28 20:29:14');
 INSERT INTO public.bitacora VALUES (2799, 'UPDATE', 'unidad', NULL, '(26,26,678487848948489,"CALLE 3",t,0.013119533527696793,2)', '(26,26,678487848948489,"CALLE 3",t,0.012875536480686695,2)', '2020-07-28 20:29:14');
+INSERT INTO public.bitacora VALUES (5069, 'UPDATE', 'unidad', NULL, '(93,92,453874583454387,"CALLE 10",t,,10)', '(93,92,453874583454387,"CALLE 10",t,0.01526032315978456,10)', '2020-07-28 21:03:32');
 INSERT INTO public.bitacora VALUES (2800, 'UPDATE', 'unidad', NULL, '(29,29,123456789098765,"CALLE 3",t,0.013119533527696793,2)', '(29,29,123456789098765,"CALLE 3",t,0.012875536480686695,2)', '2020-07-28 20:29:14');
 INSERT INTO public.bitacora VALUES (2801, 'UPDATE', 'unidad', NULL, '(31,31,242343242423423,"CALLE 4",t,0.014577259475218658,3)', '(31,31,242343242423423,"CALLE 4",t,0.01430615164520744,3)', '2020-07-28 20:29:14');
 INSERT INTO public.bitacora VALUES (2802, 'UPDATE', 'unidad', NULL, '(34,34,673857648634856,"CALLE 4",t,0.014577259475218658,3)', '(34,34,673857648634856,"CALLE 4",t,0.01430615164520744,3)', '2020-07-28 20:29:14');
@@ -7631,6 +7634,7 @@ INSERT INTO public.bitacora VALUES (3126, 'UPDATE', 'unidad', NULL, '(25,25,6279
 INSERT INTO public.bitacora VALUES (3127, 'UPDATE', 'unidad', NULL, '(39,39,646469846948964,"CALLE 4",t,0.013315579227696404,3)', '(39,39,646469846948964,"CALLE 4",t,0.013089005235602094,3)', '2020-07-28 20:30:38');
 INSERT INTO public.bitacora VALUES (3128, 'UPDATE', 'unidad', NULL, '(43,43,757836386543865,"CALLE 5",t,0.014647137150466045,4)', '(43,43,757836386543865,"CALLE 5",t,0.014397905759162303,4)', '2020-07-28 20:30:38');
 INSERT INTO public.bitacora VALUES (3129, 'UPDATE', 'unidad', NULL, '(46,46,4378Y4757856834,"CALLE 5",t,0.014647137150466045,4)', '(46,46,4378Y4757856834,"CALLE 5",t,0.014397905759162303,4)', '2020-07-28 20:30:38');
+INSERT INTO public.bitacora VALUES (5825, 'UPDATE', 'unidad', NULL, '(48,48,778547685437867,"CALLE 5",t,0.008921330089213302,4)', '(48,48,778547685437867,"CALLE 5",t,0.0088,4)', '2020-07-28 21:05:26');
 INSERT INTO public.bitacora VALUES (3130, 'UPDATE', 'unidad', NULL, '(26,26,678487848948489,"CALLE 3",t,0.011984021304926764,2)', '(26,26,678487848948489,"CALLE 3",t,0.011780104712041885,2)', '2020-07-28 20:30:38');
 INSERT INTO public.bitacora VALUES (3131, 'UPDATE', 'unidad', NULL, '(29,29,123456789098765,"CALLE 3",t,0.011984021304926764,2)', '(29,29,123456789098765,"CALLE 3",t,0.011780104712041885,2)', '2020-07-28 20:30:38');
 INSERT INTO public.bitacora VALUES (3132, 'UPDATE', 'unidad', NULL, '(31,31,242343242423423,"CALLE 4",t,0.013315579227696404,3)', '(31,31,242343242423423,"CALLE 4",t,0.013089005235602094,3)', '2020-07-28 20:30:38');
@@ -7680,6 +7684,7 @@ INSERT INTO public.bitacora VALUES (3173, 'UPDATE', 'unidad', NULL, '(41,41,3243
 INSERT INTO public.bitacora VALUES (3174, 'UPDATE', 'unidad', NULL, '(32,32,423642864276864,"CALLE 4",t,0.013089005235602094,3)', '(32,32,423642864276864,"CALLE 4",t,0.01287001287001287,3)', '2020-07-28 20:30:54');
 INSERT INTO public.bitacora VALUES (3175, 'UPDATE', 'unidad', NULL, '(27,27,476324627342842,"CALLE 3",t,0.011780104712041885,2)', '(27,27,476324627342842,"CALLE 3",t,0.011583011583011582,2)', '2020-07-28 20:30:54');
 INSERT INTO public.bitacora VALUES (3176, 'UPDATE', 'unidad', NULL, '(24,24,094323456789876,"CALLE 3",t,0.011780104712041885,2)', '(24,24,094323456789876,"CALLE 3",t,0.011583011583011582,2)', '2020-07-28 20:30:54');
+INSERT INTO public.bitacora VALUES (5826, 'UPDATE', 'unidad', NULL, '(15,15,354355345354354,"CALLE 2",t,0.006488240064882401,1)', '(15,15,354355345354354,"CALLE 2",t,0.0064,1)', '2020-07-28 21:05:26');
 INSERT INTO public.bitacora VALUES (3177, 'UPDATE', 'unidad', NULL, '(20,20,234242342342423,"CALLE 2",t,0.010471204188481676,1)', '(20,20,234242342342423,"CALLE 2",t,0.010296010296010296,1)', '2020-07-28 20:30:54');
 INSERT INTO public.bitacora VALUES (3178, 'UPDATE', 'unidad', NULL, '(16,16,332423423432432,"CALLE 2",t,0.010471204188481676,1)', '(16,16,332423423432432,"CALLE 2",t,0.010296010296010296,1)', '2020-07-28 20:30:54');
 INSERT INTO public.bitacora VALUES (3179, 'UPDATE', 'unidad', NULL, '(8,8,891234567891234,"CALLE 1",t,0.020942408376963352,9)', '(8,8,891234567891234,"CALLE 1",t,0.02059202059202059,9)', '2020-07-28 20:30:54');
@@ -7776,6 +7781,7 @@ INSERT INTO public.bitacora VALUES (3267, 'UPDATE', 'unidad', NULL, '(43,43,7578
 INSERT INTO public.bitacora VALUES (3268, 'UPDATE', 'unidad', NULL, '(46,46,4378Y4757856834,"CALLE 5",t,0.014157014157014158,4)', '(46,46,4378Y4757856834,"CALLE 5",t,0.013924050632911392,4)', '2020-07-28 20:31:07');
 INSERT INTO public.bitacora VALUES (3269, 'UPDATE', 'unidad', NULL, '(26,26,678487848948489,"CALLE 3",t,0.011583011583011582,2)', '(26,26,678487848948489,"CALLE 3",t,0.01139240506329114,2)', '2020-07-28 20:31:07');
 INSERT INTO public.bitacora VALUES (3270, 'UPDATE', 'unidad', NULL, '(29,29,123456789098765,"CALLE 3",t,0.011583011583011582,2)', '(29,29,123456789098765,"CALLE 3",t,0.01139240506329114,2)', '2020-07-28 20:31:07');
+INSERT INTO public.bitacora VALUES (5827, 'UPDATE', 'unidad', NULL, '(17,17,463264385764759,"CALLE 2",t,0.006488240064882401,1)', '(17,17,463264385764759,"CALLE 2",t,0.0064,1)', '2020-07-28 21:05:26');
 INSERT INTO public.bitacora VALUES (3271, 'UPDATE', 'unidad', NULL, '(31,31,242343242423423,"CALLE 4",t,0.01287001287001287,3)', '(31,31,242343242423423,"CALLE 4",t,0.012658227848101266,3)', '2020-07-28 20:31:07');
 INSERT INTO public.bitacora VALUES (3272, 'UPDATE', 'unidad', NULL, '(34,34,673857648634856,"CALLE 4",t,0.01287001287001287,3)', '(34,34,673857648634856,"CALLE 4",t,0.012658227848101266,3)', '2020-07-28 20:31:07');
 INSERT INTO public.bitacora VALUES (3273, 'UPDATE', 'unidad', NULL, '(21,21,213123131231231,"CALLE 3",t,0.011583011583011582,2)', '(21,21,213123131231231,"CALLE 3",t,0.01139240506329114,2)', '2020-07-28 20:31:07');
@@ -8360,6 +8366,7 @@ INSERT INTO public.bitacora VALUES (3834, 'UPDATE', 'unidad', NULL, '(75,75,4376
 INSERT INTO public.bitacora VALUES (3835, 'UPDATE', 'unidad', NULL, '(71,71,324344323484323,"CALLE 8",t,0.015765765765765764,7)', '(71,71,324344323484323,"CALLE 8",t,0.015521064301552107,7)', '2020-07-28 20:55:57');
 INSERT INTO public.bitacora VALUES (3836, 'UPDATE', 'unidad', NULL, '(63,63,684684446456454,"CALLE 7",t,0.01463963963963964,6)', '(63,63,684684446456454,"CALLE 7",t,0.014412416851441241,6)', '2020-07-28 20:55:57');
 INSERT INTO public.bitacora VALUES (3837, 'UPDATE', 'unidad', NULL, '(61,61,644656546549864,"CALLE 7",t,0.01463963963963964,6)', '(61,61,644656546549864,"CALLE 7",t,0.014412416851441241,6)', '2020-07-28 20:55:57');
+INSERT INTO public.bitacora VALUES (5828, 'UPDATE', 'unidad', NULL, '(18,18,353453535345353,"CALLE 2",t,0.006488240064882401,1)', '(18,18,353453535345353,"CALLE 2",t,0.0064,1)', '2020-07-28 21:05:26');
 INSERT INTO public.bitacora VALUES (3838, 'UPDATE', 'unidad', NULL, '(57,57,437589347598759,"CALLE 6",t,0.013513513513513514,5)', '(57,57,437589347598759,"CALLE 6",t,0.013303769401330377,5)', '2020-07-28 20:55:57');
 INSERT INTO public.bitacora VALUES (3839, 'UPDATE', 'unidad', NULL, '(51,51,324342342342342,"CALLE 6",t,0.013513513513513514,5)', '(51,51,324342342342342,"CALLE 6",t,0.013303769401330377,5)', '2020-07-28 20:55:57');
 INSERT INTO public.bitacora VALUES (3840, 'UPDATE', 'unidad', NULL, '(44,44,348537534875637,"CALLE 5",t,0.012387387387387387,4)', '(44,44,348537534875637,"CALLE 5",t,0.012195121951219513,4)', '2020-07-28 20:55:57');
@@ -8456,7 +8463,6 @@ INSERT INTO public.bitacora VALUES (3928, 'UPDATE', 'unidad', NULL, '(9,9,912345
 INSERT INTO public.bitacora VALUES (3929, 'UPDATE', 'unidad', NULL, '(4,4,456789123456789,"CALLE 1",t,0.017738359201773836,9)', '(4,4,456789123456789,"CALLE 1",t,0.017467248908296942,9)', '2020-07-28 20:56:11');
 INSERT INTO public.bitacora VALUES (3930, 'UPDATE', 'unidad', NULL, '(12,12,654616846513584,"CALLE 2",t,0.008869179600886918,1)', '(12,12,654616846513584,"CALLE 2",t,0.008733624454148471,1)', '2020-07-28 20:56:11');
 INSERT INTO public.bitacora VALUES (3931, 'UPDATE', 'unidad', NULL, '(78,78,713817929817391,"CALLE 8",t,0.015521064301552107,7)', '(78,78,713817929817391,"CALLE 8",t,0.015283842794759825,7)', '2020-07-28 20:56:11');
-INSERT INTO public.bitacora VALUES (3932, 'UPDATE', 'unidad', NULL, '(79,79,342342423423424,"CALLE 8",t,,7)', '(79,79,342342423423424,"CALLE 8",t,0.015283842794759825,7)', '2020-07-28 20:56:11');
 INSERT INTO public.bitacora VALUES (3933, 'UPDATE', 'unidad', NULL, '(1,1,123456789123456,"CALLE 1",t,0.017738359201773836,9)', '(1,1,123456789123456,"CALLE 1",t,0.017467248908296942,9)', '2020-07-28 20:56:11');
 INSERT INTO public.bitacora VALUES (3934, 'UPDATE', 'unidad', NULL, '(3,3,345678912345678,"CALLE 1",t,0.017738359201773836,9)', '(3,3,345678912345678,"CALLE 1",t,0.017467248908296942,9)', '2020-07-28 20:56:11');
 INSERT INTO public.bitacora VALUES (3935, 'UPDATE', 'unidad', NULL, '(5,5,567891234567891,"CALLE 1",t,0.017738359201773836,9)', '(5,5,567891234567891,"CALLE 1",t,0.017467248908296942,9)', '2020-07-28 20:56:11');
@@ -8603,7 +8609,6 @@ INSERT INTO public.bitacora VALUES (4069, 'UPDATE', 'unidad', NULL, '(69,69,2342
 INSERT INTO public.bitacora VALUES (4070, 'UPDATE', 'unidad', NULL, '(70,70,S34563745673868,"CALLE 7",t,0.014192139737991267,6)', '(70,70,S34563745673868,"CALLE 7",t,0.013978494623655914,6)', '2020-07-28 20:56:32');
 INSERT INTO public.bitacora VALUES (4071, 'UPDATE', 'unidad', NULL, '(73,73,221321312313123,"CALLE 8",t,0.015283842794759825,7)', '(73,73,221321312313123,"CALLE 8",t,0.015053763440860216,7)', '2020-07-28 20:56:32');
 INSERT INTO public.bitacora VALUES (4072, 'UPDATE', 'unidad', 1, '(77,77,761866483642424,"CALLE 8",t,0.015283842794759825,7)', '(77,77,761866483642424,"CALLE 8",t,0.015053763440860216,7)', '2020-07-28 20:56:32');
-INSERT INTO public.bitacora VALUES (4074, 'Registro', 'unidad', NULL, NULL, '(82,81,342342423423429,"CALLE 9",t,,8)', '2020-07-28 20:58:54');
 INSERT INTO public.bitacora VALUES (4075, 'UPDATE', 'unidad', NULL, '(80,80,768687686348563,"CALLE 8",t,0.015053763440860216,7)', '(80,80,768687686348563,"CALLE 8",t,0.014814814814814815,7)', '2020-07-28 20:58:54');
 INSERT INTO public.bitacora VALUES (4076, 'UPDATE', 'unidad', NULL, '(75,75,43768342734223R,"CALLE 8",t,0.015053763440860216,7)', '(75,75,43768342734223R,"CALLE 8",t,0.014814814814814815,7)', '2020-07-28 20:58:54');
 INSERT INTO public.bitacora VALUES (4077, 'UPDATE', 'unidad', NULL, '(71,71,324344323484323,"CALLE 8",t,0.015053763440860216,7)', '(71,71,324344323484323,"CALLE 8",t,0.014814814814814815,7)', '2020-07-28 20:58:54');
@@ -8945,6 +8950,7 @@ INSERT INTO public.bitacora VALUES (4407, 'UPDATE', 'unidad', 1, '(83,82,4234256
 INSERT INTO public.bitacora VALUES (4408, 'Registro', 'unidad', NULL, NULL, '(86,85,437843278543473,"CALLE 9",t,,8)', '2020-07-28 21:00:49');
 INSERT INTO public.bitacora VALUES (4409, 'UPDATE', 'unidad', NULL, '(84,83,343242423423423,"CALLE 9",t,0.015151515151515152,8)', '(84,83,343242423423423,"CALLE 9",t,0.014925373134328358,8)', '2020-07-28 21:00:49');
 INSERT INTO public.bitacora VALUES (4410, 'UPDATE', 'unidad', NULL, '(80,80,768687686348563,"CALLE 8",t,0.014141414141414142,7)', '(80,80,768687686348563,"CALLE 8",t,0.013930348258706468,7)', '2020-07-28 21:00:49');
+INSERT INTO public.bitacora VALUES (5829, 'UPDATE', 'unidad', NULL, '(19,19,242342423423424,"CALLE 2",t,0.006488240064882401,1)', '(19,19,242342423423424,"CALLE 2",t,0.0064,1)', '2020-07-28 21:05:26');
 INSERT INTO public.bitacora VALUES (4411, 'UPDATE', 'unidad', NULL, '(75,75,43768342734223R,"CALLE 8",t,0.014141414141414142,7)', '(75,75,43768342734223R,"CALLE 8",t,0.013930348258706468,7)', '2020-07-28 21:00:49');
 INSERT INTO public.bitacora VALUES (4412, 'UPDATE', 'unidad', NULL, '(71,71,324344323484323,"CALLE 8",t,0.014141414141414142,7)', '(71,71,324344323484323,"CALLE 8",t,0.013930348258706468,7)', '2020-07-28 21:00:49');
 INSERT INTO public.bitacora VALUES (4413, 'UPDATE', 'unidad', NULL, '(63,63,684684446456454,"CALLE 7",t,0.013131313131313131,6)', '(63,63,684684446456454,"CALLE 7",t,0.012935323383084577,6)', '2020-07-28 21:00:49');
@@ -9041,6 +9047,7 @@ INSERT INTO public.bitacora VALUES (4501, 'UPDATE', 'unidad', NULL, '(57,57,4375
 INSERT INTO public.bitacora VALUES (4502, 'UPDATE', 'unidad', NULL, '(51,51,324342342342342,"CALLE 6",t,0.011940298507462687,5)', '(51,51,324342342342342,"CALLE 6",t,0.011764705882352941,5)', '2020-07-28 21:01:02');
 INSERT INTO public.bitacora VALUES (4503, 'UPDATE', 'unidad', NULL, '(44,44,348537534875637,"CALLE 5",t,0.010945273631840797,4)', '(44,44,348537534875637,"CALLE 5",t,0.010784313725490196,4)', '2020-07-28 21:01:02');
 INSERT INTO public.bitacora VALUES (4504, 'UPDATE', 'unidad', NULL, '(41,41,324342342434242,"CALLE 5",t,0.010945273631840797,4)', '(41,41,324342342434242,"CALLE 5",t,0.010784313725490196,4)', '2020-07-28 21:01:02');
+INSERT INTO public.bitacora VALUES (5830, 'UPDATE', 'unidad', NULL, '(68,67,342434242424323,"CALLE 7",t,0.010543390105433901,6)', '(68,67,342434242424323,"CALLE 7",t,0.0104,6)', '2020-07-28 21:05:26');
 INSERT INTO public.bitacora VALUES (4505, 'UPDATE', 'unidad', NULL, '(32,32,423642864276864,"CALLE 4",t,0.009950248756218905,3)', '(32,32,423642864276864,"CALLE 4",t,0.00980392156862745,3)', '2020-07-28 21:01:02');
 INSERT INTO public.bitacora VALUES (4506, 'UPDATE', 'unidad', NULL, '(27,27,476324627342842,"CALLE 3",t,0.008955223880597015,2)', '(27,27,476324627342842,"CALLE 3",t,0.008823529411764706,2)', '2020-07-28 21:01:02');
 INSERT INTO public.bitacora VALUES (4507, 'UPDATE', 'unidad', NULL, '(24,24,094323456789876,"CALLE 3",t,0.008955223880597015,2)', '(24,24,094323456789876,"CALLE 3",t,0.008823529411764706,2)', '2020-07-28 21:01:02');
@@ -9233,6 +9240,7 @@ INSERT INTO public.bitacora VALUES (4688, 'UPDATE', 'unidad', NULL, '(48,48,7785
 INSERT INTO public.bitacora VALUES (4689, 'UPDATE', 'unidad', NULL, '(15,15,354355345354354,"CALLE 2",t,0.007729468599033816,1)', '(15,15,354355345354354,"CALLE 2",t,0.007619047619047619,1)', '2020-07-28 21:01:26');
 INSERT INTO public.bitacora VALUES (4690, 'UPDATE', 'unidad', NULL, '(17,17,463264385764759,"CALLE 2",t,0.007729468599033816,1)', '(17,17,463264385764759,"CALLE 2",t,0.007619047619047619,1)', '2020-07-28 21:01:26');
 INSERT INTO public.bitacora VALUES (4691, 'UPDATE', 'unidad', NULL, '(18,18,353453535345353,"CALLE 2",t,0.007729468599033816,1)', '(18,18,353453535345353,"CALLE 2",t,0.007619047619047619,1)', '2020-07-28 21:01:26');
+INSERT INTO public.bitacora VALUES (5831, 'UPDATE', 'unidad', NULL, '(64,64,646454784469849,"CALLE 7",t,0.010543390105433901,6)', '(64,64,646454784469849,"CALLE 7",t,0.0104,6)', '2020-07-28 21:05:26');
 INSERT INTO public.bitacora VALUES (4692, 'UPDATE', 'unidad', NULL, '(19,19,242342423423424,"CALLE 2",t,0.007729468599033816,1)', '(19,19,242342423423424,"CALLE 2",t,0.007619047619047619,1)', '2020-07-28 21:01:26');
 INSERT INTO public.bitacora VALUES (4693, 'UPDATE', 'unidad', NULL, '(25,25,627968719149649,"CALLE 3",t,0.008695652173913044,2)', '(25,25,627968719149649,"CALLE 3",t,0.008571428571428572,2)', '2020-07-28 21:01:26');
 INSERT INTO public.bitacora VALUES (4694, 'UPDATE', 'unidad', NULL, '(39,39,646469846948964,"CALLE 4",t,0.00966183574879227,3)', '(39,39,646469846948964,"CALLE 4",t,0.009523809523809525,3)', '2020-07-28 21:01:26');
@@ -9329,6 +9337,9 @@ INSERT INTO public.bitacora VALUES (4782, 'UPDATE', 'unidad', NULL, '(82,81,3423
 INSERT INTO public.bitacora VALUES (4783, 'UPDATE', 'unidad', NULL, '(2,2,234567891234567,"CALLE 1",t,0.015238095238095238,9)', '(2,2,234567891234567,"CALLE 1",t,0.015023474178403756,9)', '2020-07-28 21:01:39');
 INSERT INTO public.bitacora VALUES (4784, 'UPDATE', 'unidad', NULL, '(9,9,912345678912345,"CALLE 1",t,0.015238095238095238,9)', '(9,9,912345678912345,"CALLE 1",t,0.015023474178403756,9)', '2020-07-28 21:01:39');
 INSERT INTO public.bitacora VALUES (4785, 'UPDATE', 'unidad', NULL, '(4,4,456789123456789,"CALLE 1",t,0.015238095238095238,9)', '(4,4,456789123456789,"CALLE 1",t,0.015023474178403756,9)', '2020-07-28 21:01:39');
+INSERT INTO public.bitacora VALUES (5833, 'UPDATE', 'unidad', NULL, '(6,6,678945612345678,"CALLE 1
+",t,0.012976480129764802,9)', '(6,6,678945612345678,"CALLE 1
+",t,0.0128,9)', '2020-07-28 21:05:26');
 INSERT INTO public.bitacora VALUES (4786, 'UPDATE', 'unidad', NULL, '(12,12,654616846513584,"CALLE 2",t,0.007619047619047619,1)', '(12,12,654616846513584,"CALLE 2",t,0.007511737089201878,1)', '2020-07-28 21:01:39');
 INSERT INTO public.bitacora VALUES (4787, 'UPDATE', 'unidad', NULL, '(78,78,713817929817391,"CALLE 8",t,0.013333333333333334,7)', '(78,78,713817929817391,"CALLE 8",t,0.013145539906103286,7)', '2020-07-28 21:01:39');
 INSERT INTO public.bitacora VALUES (4788, 'UPDATE', 'unidad', NULL, '(79,79,342342423423424,"CALLE 8",t,0.013333333333333334,7)', '(79,79,342342423423424,"CALLE 8",t,0.013145539906103286,7)', '2020-07-28 21:01:39');
@@ -9425,6 +9436,7 @@ INSERT INTO public.bitacora VALUES (4876, 'UPDATE', 'unidad', NULL, '(12,12,6546
 INSERT INTO public.bitacora VALUES (4877, 'UPDATE', 'unidad', NULL, '(78,78,713817929817391,"CALLE 8",t,0.013145539906103286,7)', '(78,78,713817929817391,"CALLE 8",t,0.012962962962962963,7)', '2020-07-28 21:01:52');
 INSERT INTO public.bitacora VALUES (4878, 'UPDATE', 'unidad', NULL, '(79,79,342342423423424,"CALLE 8",t,0.013145539906103286,7)', '(79,79,342342423423424,"CALLE 8",t,0.012962962962962963,7)', '2020-07-28 21:01:52');
 INSERT INTO public.bitacora VALUES (4879, 'UPDATE', 'unidad', NULL, '(1,1,123456789123456,"CALLE 1",t,0.015023474178403756,9)', '(1,1,123456789123456,"CALLE 1",t,0.014814814814814815,9)', '2020-07-28 21:01:52');
+INSERT INTO public.bitacora VALUES (5834, 'UPDATE', 'unidad', NULL, '(13,13,7572752522DSADA,"CALLE 2",t,0.006488240064882401,1)', '(13,13,7572752522DSADA,"CALLE 2",t,0.0064,1)', '2020-07-28 21:05:26');
 INSERT INTO public.bitacora VALUES (4880, 'UPDATE', 'unidad', NULL, '(3,3,345678912345678,"CALLE 1",t,0.015023474178403756,9)', '(3,3,345678912345678,"CALLE 1",t,0.014814814814814815,9)', '2020-07-28 21:01:52');
 INSERT INTO public.bitacora VALUES (4881, 'UPDATE', 'unidad', NULL, '(5,5,567891234567891,"CALLE 1",t,0.015023474178403756,9)', '(5,5,567891234567891,"CALLE 1",t,0.014814814814814815,9)', '2020-07-28 21:01:52');
 INSERT INTO public.bitacora VALUES (4882, 'UPDATE', 'unidad', NULL, '(11,11,112324457445453,"CALLE 2",t,0.007511737089201878,1)', '(11,11,112324457445453,"CALLE 2",t,0.007407407407407408,1)', '2020-07-28 21:01:52');
@@ -9618,7 +9630,6 @@ INSERT INTO public.bitacora VALUES (5065, 'UPDATE', 'unidad', NULL, '(5,5,567891
 INSERT INTO public.bitacora VALUES (5066, 'UPDATE', 'unidad', NULL, '(11,11,112324457445453,"CALLE 2",t,0.007292616226071103,1)', '(11,11,112324457445453,"CALLE 2",t,0.00718132854578097,1)', '2020-07-28 21:03:32');
 INSERT INTO public.bitacora VALUES (5067, 'UPDATE', 'unidad', NULL, '(60,60,446465456456456,"CALLE 6",t,0.010938924339106655,5)', '(60,60,446465456456456,"CALLE 6",t,0.010771992818671455,5)', '2020-07-28 21:03:32');
 INSERT INTO public.bitacora VALUES (5068, 'UPDATE', 'unidad', NULL, '(74,74,327684762768476,"CALLE 8",t,0.01276207839562443,7)', '(74,74,327684762768476,"CALLE 8",t,0.012567324955116697,7)', '2020-07-28 21:03:32');
-INSERT INTO public.bitacora VALUES (5069, 'UPDATE', 'unidad', NULL, '(93,92,453874583454387,"CALLE 10",t,,10)', '(93,92,453874583454387,"CALLE 10",t,0.01526032315978456,10)', '2020-07-28 21:03:32');
 INSERT INTO public.bitacora VALUES (5070, 'UPDATE', 'unidad', NULL, '(55,55,327643262634872,"CALLE 6",t,0.010938924339106655,5)', '(55,55,327643262634872,"CALLE 6",t,0.010771992818671455,5)', '2020-07-28 21:03:32');
 INSERT INTO public.bitacora VALUES (5071, 'UPDATE', 'unidad', NULL, '(59,59,498757854438843,"CALLE 6",t,0.010938924339106655,5)', '(59,59,498757854438843,"CALLE 6",t,0.010771992818671455,5)', '2020-07-28 21:03:32');
 INSERT INTO public.bitacora VALUES (5072, 'UPDATE', 'unidad', NULL, '(65,65,564454566454556,"CALLE 7",t,0.011850501367365542,6)', '(65,65,564454566454556,"CALLE 7",t,0.011669658886894075,6)', '2020-07-28 21:03:32');
@@ -10388,17 +10399,6 @@ INSERT INTO public.bitacora VALUES (5821, 'UPDATE', 'unidad', NULL, '(16,16,3324
 INSERT INTO public.bitacora VALUES (5822, 'UPDATE', 'unidad', NULL, '(8,8,891234567891234,"CALLE 1",t,0.012976480129764802,9)', '(8,8,891234567891234,"CALLE 1",t,0.0128,9)', '2020-07-28 21:05:26');
 INSERT INTO public.bitacora VALUES (5823, 'UPDATE', 'unidad', NULL, '(87,86,576854376876846,"CALLE 9",t,0.012165450121654502,8)', '(87,86,576854376876846,"CALLE 9",t,0.012,8)', '2020-07-28 21:05:26');
 INSERT INTO public.bitacora VALUES (5824, 'UPDATE', 'unidad', NULL, '(66,68,454656455564564,"CALLE 7",t,0.010543390105433901,6)', '(66,68,454656455564564,"CALLE 7",t,0.0104,6)', '2020-07-28 21:05:26');
-INSERT INTO public.bitacora VALUES (5825, 'UPDATE', 'unidad', NULL, '(48,48,778547685437867,"CALLE 5",t,0.008921330089213302,4)', '(48,48,778547685437867,"CALLE 5",t,0.0088,4)', '2020-07-28 21:05:26');
-INSERT INTO public.bitacora VALUES (5826, 'UPDATE', 'unidad', NULL, '(15,15,354355345354354,"CALLE 2",t,0.006488240064882401,1)', '(15,15,354355345354354,"CALLE 2",t,0.0064,1)', '2020-07-28 21:05:26');
-INSERT INTO public.bitacora VALUES (5827, 'UPDATE', 'unidad', NULL, '(17,17,463264385764759,"CALLE 2",t,0.006488240064882401,1)', '(17,17,463264385764759,"CALLE 2",t,0.0064,1)', '2020-07-28 21:05:26');
-INSERT INTO public.bitacora VALUES (5828, 'UPDATE', 'unidad', NULL, '(18,18,353453535345353,"CALLE 2",t,0.006488240064882401,1)', '(18,18,353453535345353,"CALLE 2",t,0.0064,1)', '2020-07-28 21:05:26');
-INSERT INTO public.bitacora VALUES (5829, 'UPDATE', 'unidad', NULL, '(19,19,242342423423424,"CALLE 2",t,0.006488240064882401,1)', '(19,19,242342423423424,"CALLE 2",t,0.0064,1)', '2020-07-28 21:05:26');
-INSERT INTO public.bitacora VALUES (5830, 'UPDATE', 'unidad', NULL, '(68,67,342434242424323,"CALLE 7",t,0.010543390105433901,6)', '(68,67,342434242424323,"CALLE 7",t,0.0104,6)', '2020-07-28 21:05:26');
-INSERT INTO public.bitacora VALUES (5831, 'UPDATE', 'unidad', NULL, '(64,64,646454784469849,"CALLE 7",t,0.010543390105433901,6)', '(64,64,646454784469849,"CALLE 7",t,0.0104,6)', '2020-07-28 21:05:26');
-INSERT INTO public.bitacora VALUES (5833, 'UPDATE', 'unidad', NULL, '(6,6,678945612345678,"CALLE 1
-",t,0.012976480129764802,9)', '(6,6,678945612345678,"CALLE 1
-",t,0.0128,9)', '2020-07-28 21:05:26');
-INSERT INTO public.bitacora VALUES (5834, 'UPDATE', 'unidad', NULL, '(13,13,7572752522DSADA,"CALLE 2",t,0.006488240064882401,1)', '(13,13,7572752522DSADA,"CALLE 2",t,0.0064,1)', '2020-07-28 21:05:26');
 INSERT INTO public.bitacora VALUES (5835, 'UPDATE', 'unidad', NULL, '(88,87,345375638476385,"CALLE 9",t,0.012165450121654502,8)', '(88,87,345375638476385,"CALLE 9",t,0.012,8)', '2020-07-28 21:05:26');
 INSERT INTO public.bitacora VALUES (5836, 'UPDATE', 'unidad', NULL, '(89,88,Y75385638765834,"CALLE 9",t,0.012165450121654502,8)', '(89,88,Y75385638765834,"CALLE 9",t,0.012,8)', '2020-07-28 21:05:26');
 INSERT INTO public.bitacora VALUES (5837, 'UPDATE', 'unidad', NULL, '(90,89,544564575874385,"CALLE 9",t,0.012165450121654502,8)', '(90,89,544564575874385,"CALLE 9",t,0.012,8)', '2020-07-28 21:05:26');
@@ -10468,10 +10468,12 @@ INSERT INTO public.bitacora VALUES (5900, 'UPDATE', 'unidad', NULL, '(42,42,3476
 INSERT INTO public.bitacora VALUES (5901, 'UPDATE', 'unidad', NULL, '(45,45,654655556666665,"CALLE 5",t,0.008921330089213302,4)', '(45,45,654655556666665,"CALLE 5",t,0.0088,4)', '2020-07-28 21:05:26');
 INSERT INTO public.bitacora VALUES (5902, 'UPDATE', 'unidad', NULL, '(47,47,432795479843279,"CALLE 5",t,0.008921330089213302,4)', '(47,47,432795479843279,"CALLE 5",t,0.0088,4)', '2020-07-28 21:05:26');
 INSERT INTO public.bitacora VALUES (5903, 'UPDATE', 'unidad', 1, '(49,49,234234242343234,"CALLE 5",t,0.008921330089213302,4)', '(49,49,234234242343234,"CALLE 5",t,0.0088,4)', '2020-07-28 21:05:26');
+INSERT INTO public.bitacora VALUES (5904, 'Modificado', 'gasto', 1, '(1,PAPELERIA,ORDINARIO,J-12345678,ALICUOTA,10,2020,1,,-,1,500000,500000,Pendiente,Pendiente,BOLÍVAR)', '(1,PAPELERIA,ORDINARIO,J-12345678,ALICUOTA,10,2019,1,,-,1,500000,500000,Pendiente,Pendiente,BOLÍVAR)', '2020-07-28 21:19:06');
+INSERT INTO public.bitacora VALUES (5905, 'Modificado', 'gasto', 1, '(2,"COMPRA DE ESCOBAS",ORDINARIO,J-01654632,ALICUOTA,10,2020,1,,-,1,100000,100000,Pendiente,Pendiente,BOLÍVAR)', '(2,"COMPRA DE ESCOBAS",ORDINARIO,J-01654632,ALICUOTA,10,2019,1,,-,1,100000,100000,Pendiente,Pendiente,BOLÍVAR)', '2020-07-28 21:19:19');
 
 
 --
--- TOC entry 3464 (class 0 OID 67445)
+-- TOC entry 3464 (class 0 OID 69085)
 -- Dependencies: 208
 -- Data for Name: categoriagasto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10489,7 +10491,7 @@ INSERT INTO public.categoriagasto VALUES (8, 'SEGUROS', 'CATEGORÍA DE SEGUROS',
 
 
 --
--- TOC entry 3466 (class 0 OID 67451)
+-- TOC entry 3466 (class 0 OID 69091)
 -- Dependencies: 210
 -- Data for Name: cobro_unidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10497,7 +10499,7 @@ INSERT INTO public.categoriagasto VALUES (8, 'SEGUROS', 'CATEGORÍA DE SEGUROS',
 
 
 --
--- TOC entry 3468 (class 0 OID 67459)
+-- TOC entry 3468 (class 0 OID 69099)
 -- Dependencies: 212
 -- Data for Name: concepto_gasto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10560,7 +10562,7 @@ INSERT INTO public.concepto_gasto VALUES (55, 'CORPOLECT', '-', 10, false);
 
 
 --
--- TOC entry 3470 (class 0 OID 67465)
+-- TOC entry 3470 (class 0 OID 69105)
 -- Dependencies: 214
 -- Data for Name: condominio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10569,7 +10571,7 @@ INSERT INTO public.condominio VALUES ('123456789', 'URB. EL JARDÍN', '025401234
 
 
 --
--- TOC entry 3471 (class 0 OID 67470)
+-- TOC entry 3471 (class 0 OID 69110)
 -- Dependencies: 215
 -- Data for Name: cuenta; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10581,7 +10583,7 @@ INSERT INTO public.cuenta VALUES ('01347894501212105416', 'AHORRO', 5, 'V-000000
 
 
 --
--- TOC entry 3472 (class 0 OID 67474)
+-- TOC entry 3472 (class 0 OID 69114)
 -- Dependencies: 216
 -- Data for Name: cuenta_pagar; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10589,7 +10591,7 @@ INSERT INTO public.cuenta VALUES ('01347894501212105416', 'AHORRO', 5, 'V-000000
 
 
 --
--- TOC entry 3474 (class 0 OID 67479)
+-- TOC entry 3474 (class 0 OID 69119)
 -- Dependencies: 218
 -- Data for Name: detalle_pagos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10597,7 +10599,7 @@ INSERT INTO public.cuenta VALUES ('01347894501212105416', 'AHORRO', 5, 'V-000000
 
 
 --
--- TOC entry 3476 (class 0 OID 67487)
+-- TOC entry 3476 (class 0 OID 69127)
 -- Dependencies: 220
 -- Data for Name: fondos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10612,7 +10614,7 @@ INSERT INTO public.fondos VALUES ('PRESTACIONES SOCIALES', '2020-06-01', '-', '-
 
 
 --
--- TOC entry 3478 (class 0 OID 67496)
+-- TOC entry 3478 (class 0 OID 69136)
 -- Dependencies: 222
 -- Data for Name: forma_pago; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10630,7 +10632,7 @@ INSERT INTO public.forma_pago VALUES (10, 'PAYPAL', true);
 
 
 --
--- TOC entry 3480 (class 0 OID 67505)
+-- TOC entry 3480 (class 0 OID 69145)
 -- Dependencies: 224
 -- Data for Name: funcion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10662,13 +10664,11 @@ INSERT INTO public.funcion VALUES (24, 'Bitacora');
 
 
 --
--- TOC entry 3482 (class 0 OID 67513)
+-- TOC entry 3482 (class 0 OID 69153)
 -- Dependencies: 226
 -- Data for Name: gasto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.gasto VALUES (1, 'PAPELERIA', 'ORDINARIO', 'J-12345678', 'ALICUOTA', 10, 2020, 1, NULL, '-', 1, 500000, 500000, 'Pendiente', 'Pendiente', 'BOLÍVAR');
-INSERT INTO public.gasto VALUES (2, 'COMPRA DE ESCOBAS', 'ORDINARIO', 'J-01654632', 'ALICUOTA', 10, 2020, 1, NULL, '-', 1, 100000, 100000, 'Pendiente', 'Pendiente', 'BOLÍVAR');
 INSERT INTO public.gasto VALUES (3, 'LIMPIAPISOS', 'ORDINARIO', 'J-01654632', 'ALICUOTA', 10, 2019, 1, NULL, '-', 1, 50000, 50000, 'Pendiente', 'Pendiente', 'BOLÍVAR');
 INSERT INTO public.gasto VALUES (4, 'ALUMBRADO', 'EXTRAORDINARIO', 'J-34567890', 'ALICUOTA', 10, 2019, 1, NULL, '-', 1, 50, 50, 'Pendiente', 'Pendiente', 'DÓLAR');
 INSERT INTO public.gasto VALUES (5, 'PINTURA', 'ORDINARIO', 'J-34567890', 'ALICUOTA', 10, 2019, 1, NULL, '-', 1, 250, 250, 'Pendiente', 'Pendiente', 'DÓLAR');
@@ -10767,10 +10767,12 @@ INSERT INTO public.gasto VALUES (97, 'REPARACION DE PORTON', 'EXTRAORDINARIO', '
 INSERT INTO public.gasto VALUES (99, 'COMPRA DE ARTICULO DE LIMPIEZA', 'ORDINARIO', 'J-01654632', 'ALICUOTA', 7, 2020, 1, NULL, '-', 1, 60000, 60000, 'Pendiente', 'Pendiente', 'BOLÍVAR');
 INSERT INTO public.gasto VALUES (98, 'PARQUE INFANTIL', 'EXTRAORDINARIO', 'J-34567890', 'ALICUOTA', 7, 2020, 1, 3, '-', 1, 25, 25, 'Pendiente', 'Pendiente', 'DÓLAR');
 INSERT INTO public.gasto VALUES (100, 'COMPRA DE CLORO PARA PISCINA', 'ORDINARIO', 'J-01248325', 'ALICUOTA', 7, 2020, 1, NULL, '-', 1, 5, 5, 'Pendiente', 'Pendiente', 'DÓLAR');
+INSERT INTO public.gasto VALUES (1, 'PAPELERIA', 'ORDINARIO', 'J-12345678', 'ALICUOTA', 10, 2019, 1, NULL, '-', 1, 500000, 500000, 'Pendiente', 'Pendiente', 'BOLÍVAR');
+INSERT INTO public.gasto VALUES (2, 'COMPRA DE ESCOBAS', 'ORDINARIO', 'J-01654632', 'ALICUOTA', 10, 2019, 1, NULL, '-', 1, 100000, 100000, 'Pendiente', 'Pendiente', 'BOLÍVAR');
 
 
 --
--- TOC entry 3484 (class 0 OID 67524)
+-- TOC entry 3484 (class 0 OID 69164)
 -- Dependencies: 228
 -- Data for Name: interes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10780,7 +10782,7 @@ INSERT INTO public.interes VALUES (1, 'COMPENSATORIO', 1, true, '123456789');
 
 
 --
--- TOC entry 3486 (class 0 OID 67533)
+-- TOC entry 3486 (class 0 OID 69173)
 -- Dependencies: 230
 -- Data for Name: mensaje; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10788,7 +10790,7 @@ INSERT INTO public.interes VALUES (1, 'COMPENSATORIO', 1, true, '123456789');
 
 
 --
--- TOC entry 3488 (class 0 OID 67541)
+-- TOC entry 3488 (class 0 OID 69181)
 -- Dependencies: 232
 -- Data for Name: persona; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10808,7 +10810,7 @@ INSERT INTO public.persona VALUES ('V-7888725', 'KATHERINE', 'ALEJANDRA', 'MORA'
 
 
 --
--- TOC entry 3489 (class 0 OID 67547)
+-- TOC entry 3489 (class 0 OID 69187)
 -- Dependencies: 233
 -- Data for Name: propietario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10827,7 +10829,7 @@ INSERT INTO public.propietario VALUES ('V-7888725', true);
 
 
 --
--- TOC entry 3490 (class 0 OID 67551)
+-- TOC entry 3490 (class 0 OID 69191)
 -- Dependencies: 234
 -- Data for Name: proveedores; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10849,7 +10851,7 @@ INSERT INTO public.proveedores VALUES ('J-31365564', 'CÁMARAS SR', '02547899843
 
 
 --
--- TOC entry 3491 (class 0 OID 67555)
+-- TOC entry 3491 (class 0 OID 69195)
 -- Dependencies: 235
 -- Data for Name: puente_asambleas_propietario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10939,7 +10941,7 @@ INSERT INTO public.puente_asambleas_propietario VALUES (82, 10, 'V-7888725');
 
 
 --
--- TOC entry 3493 (class 0 OID 67560)
+-- TOC entry 3493 (class 0 OID 69200)
 -- Dependencies: 237
 -- Data for Name: puente_cobro_factura; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10947,7 +10949,7 @@ INSERT INTO public.puente_asambleas_propietario VALUES (82, 10, 'V-7888725');
 
 
 --
--- TOC entry 3495 (class 0 OID 67568)
+-- TOC entry 3495 (class 0 OID 69208)
 -- Dependencies: 239
 -- Data for Name: puente_gasto_concepto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11055,7 +11057,7 @@ INSERT INTO public.puente_gasto_concepto VALUES (100, 100, 25, 5);
 
 
 --
--- TOC entry 3497 (class 0 OID 67573)
+-- TOC entry 3497 (class 0 OID 69213)
 -- Dependencies: 241
 -- Data for Name: puente_mensaje_usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11063,7 +11065,7 @@ INSERT INTO public.puente_gasto_concepto VALUES (100, 100, 25, 5);
 
 
 --
--- TOC entry 3499 (class 0 OID 67580)
+-- TOC entry 3499 (class 0 OID 69220)
 -- Dependencies: 243
 -- Data for Name: puente_persona_condominio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11071,7 +11073,7 @@ INSERT INTO public.puente_gasto_concepto VALUES (100, 100, 25, 5);
 
 
 --
--- TOC entry 3501 (class 0 OID 67585)
+-- TOC entry 3501 (class 0 OID 69225)
 -- Dependencies: 245
 -- Data for Name: puente_sancion_unidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11090,7 +11092,7 @@ INSERT INTO public.puente_sancion_unidad VALUES (12, 10, 10);
 
 
 --
--- TOC entry 3503 (class 0 OID 67590)
+-- TOC entry 3503 (class 0 OID 69230)
 -- Dependencies: 247
 -- Data for Name: puente_tipo_funcion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11122,7 +11124,7 @@ INSERT INTO public.puente_tipo_funcion VALUES (24, 1, 24, true, true, true, true
 
 
 --
--- TOC entry 3505 (class 0 OID 67595)
+-- TOC entry 3505 (class 0 OID 69235)
 -- Dependencies: 249
 -- Data for Name: puente_unidad_propietarios; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11338,7 +11340,7 @@ INSERT INTO public.puente_unidad_propietarios VALUES (208, 'V-7888725', 101, '20
 
 
 --
--- TOC entry 3507 (class 0 OID 67602)
+-- TOC entry 3507 (class 0 OID 69242)
 -- Dependencies: 251
 -- Data for Name: recibo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11346,7 +11348,7 @@ INSERT INTO public.puente_unidad_propietarios VALUES (208, 'V-7888725', 101, '20
 
 
 --
--- TOC entry 3509 (class 0 OID 67610)
+-- TOC entry 3509 (class 0 OID 69250)
 -- Dependencies: 253
 -- Data for Name: responsable; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11355,7 +11357,7 @@ INSERT INTO public.responsable VALUES ('V-00000000', true);
 
 
 --
--- TOC entry 3510 (class 0 OID 67614)
+-- TOC entry 3510 (class 0 OID 69254)
 -- Dependencies: 254
 -- Data for Name: sancion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11373,7 +11375,7 @@ INSERT INTO public.sancion VALUES (10, 'INTERES DE MORA', 7, 2020, 10000000, '-'
 
 
 --
--- TOC entry 3512 (class 0 OID 67619)
+-- TOC entry 3512 (class 0 OID 69259)
 -- Dependencies: 256
 -- Data for Name: tipo_unidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11391,7 +11393,7 @@ INSERT INTO public.tipo_unidad VALUES (10, 85, 'LIRIO', true);
 
 
 --
--- TOC entry 3514 (class 0 OID 67625)
+-- TOC entry 3514 (class 0 OID 69265)
 -- Dependencies: 258
 -- Data for Name: tipo_usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11400,7 +11402,7 @@ INSERT INTO public.tipo_usuario VALUES (1, 'ADMINISTRADOR', true);
 
 
 --
--- TOC entry 3516 (class 0 OID 67634)
+-- TOC entry 3516 (class 0 OID 69274)
 -- Dependencies: 260
 -- Data for Name: unidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11509,7 +11511,7 @@ INSERT INTO public.unidad VALUES (49, '49', '234234242343234', 'CALLE 5', true, 
 
 
 --
--- TOC entry 3518 (class 0 OID 67640)
+-- TOC entry 3518 (class 0 OID 69280)
 -- Dependencies: 262
 -- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11518,7 +11520,7 @@ INSERT INTO public.usuario VALUES (1, 'Ingresar Usuario', '455831477b82574f6bf87
 
 
 --
--- TOC entry 3520 (class 0 OID 67754)
+-- TOC entry 3520 (class 0 OID 69394)
 -- Dependencies: 288
 -- Data for Name: visita; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11549,7 +11551,7 @@ SELECT pg_catalog.setval('public.banco_id_seq', 10, true);
 -- Name: bitacora_id_bitacora_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.bitacora_id_bitacora_seq', 5903, true);
+SELECT pg_catalog.setval('public.bitacora_id_bitacora_seq', 5905, true);
 
 
 --
@@ -11787,7 +11789,7 @@ SELECT pg_catalog.setval('public.visita_id_seq', 1, false);
 
 
 --
--- TOC entry 3136 (class 2606 OID 67796)
+-- TOC entry 3136 (class 2606 OID 69436)
 -- Name: asambleas asambleas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11796,7 +11798,7 @@ ALTER TABLE ONLY public.asambleas
 
 
 --
--- TOC entry 3138 (class 2606 OID 67798)
+-- TOC entry 3138 (class 2606 OID 69438)
 -- Name: banco banco_nombre_banco_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11805,7 +11807,7 @@ ALTER TABLE ONLY public.banco
 
 
 --
--- TOC entry 3140 (class 2606 OID 67800)
+-- TOC entry 3140 (class 2606 OID 69440)
 -- Name: banco banco_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11814,7 +11816,7 @@ ALTER TABLE ONLY public.banco
 
 
 --
--- TOC entry 3142 (class 2606 OID 67802)
+-- TOC entry 3142 (class 2606 OID 69442)
 -- Name: bitacora bitacora_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11823,7 +11825,7 @@ ALTER TABLE ONLY public.bitacora
 
 
 --
--- TOC entry 3144 (class 2606 OID 67804)
+-- TOC entry 3144 (class 2606 OID 69444)
 -- Name: categoriagasto categoriagasto_nombre_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11832,7 +11834,7 @@ ALTER TABLE ONLY public.categoriagasto
 
 
 --
--- TOC entry 3146 (class 2606 OID 67806)
+-- TOC entry 3146 (class 2606 OID 69446)
 -- Name: categoriagasto categoriagasto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11841,7 +11843,7 @@ ALTER TABLE ONLY public.categoriagasto
 
 
 --
--- TOC entry 3148 (class 2606 OID 67808)
+-- TOC entry 3148 (class 2606 OID 69448)
 -- Name: cobro_unidad cobro_unidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11850,7 +11852,7 @@ ALTER TABLE ONLY public.cobro_unidad
 
 
 --
--- TOC entry 3150 (class 2606 OID 67810)
+-- TOC entry 3150 (class 2606 OID 69450)
 -- Name: concepto_gasto concepto_gasto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11859,7 +11861,7 @@ ALTER TABLE ONLY public.concepto_gasto
 
 
 --
--- TOC entry 3152 (class 2606 OID 67812)
+-- TOC entry 3152 (class 2606 OID 69452)
 -- Name: condominio condominio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11868,7 +11870,7 @@ ALTER TABLE ONLY public.condominio
 
 
 --
--- TOC entry 3156 (class 2606 OID 67814)
+-- TOC entry 3156 (class 2606 OID 69454)
 -- Name: cuenta_pagar cuenta_pagar_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11877,7 +11879,7 @@ ALTER TABLE ONLY public.cuenta_pagar
 
 
 --
--- TOC entry 3154 (class 2606 OID 67816)
+-- TOC entry 3154 (class 2606 OID 69456)
 -- Name: cuenta cuenta_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11886,7 +11888,7 @@ ALTER TABLE ONLY public.cuenta
 
 
 --
--- TOC entry 3158 (class 2606 OID 67818)
+-- TOC entry 3158 (class 2606 OID 69458)
 -- Name: detalle_pagos detalle_pagos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11895,7 +11897,7 @@ ALTER TABLE ONLY public.detalle_pagos
 
 
 --
--- TOC entry 3160 (class 2606 OID 67820)
+-- TOC entry 3160 (class 2606 OID 69460)
 -- Name: fondos fondos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11904,7 +11906,7 @@ ALTER TABLE ONLY public.fondos
 
 
 --
--- TOC entry 3162 (class 2606 OID 67822)
+-- TOC entry 3162 (class 2606 OID 69462)
 -- Name: forma_pago forma_pago_forma_pago_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11913,7 +11915,7 @@ ALTER TABLE ONLY public.forma_pago
 
 
 --
--- TOC entry 3164 (class 2606 OID 67824)
+-- TOC entry 3164 (class 2606 OID 69464)
 -- Name: forma_pago forma_pago_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11922,7 +11924,7 @@ ALTER TABLE ONLY public.forma_pago
 
 
 --
--- TOC entry 3166 (class 2606 OID 67826)
+-- TOC entry 3166 (class 2606 OID 69466)
 -- Name: funcion funcion_funcion_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11931,7 +11933,7 @@ ALTER TABLE ONLY public.funcion
 
 
 --
--- TOC entry 3168 (class 2606 OID 67828)
+-- TOC entry 3168 (class 2606 OID 69468)
 -- Name: funcion funcion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11940,7 +11942,7 @@ ALTER TABLE ONLY public.funcion
 
 
 --
--- TOC entry 3170 (class 2606 OID 67830)
+-- TOC entry 3170 (class 2606 OID 69470)
 -- Name: gasto gasto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11949,7 +11951,7 @@ ALTER TABLE ONLY public.gasto
 
 
 --
--- TOC entry 3172 (class 2606 OID 67832)
+-- TOC entry 3172 (class 2606 OID 69472)
 -- Name: interes interes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11958,7 +11960,7 @@ ALTER TABLE ONLY public.interes
 
 
 --
--- TOC entry 3174 (class 2606 OID 67834)
+-- TOC entry 3174 (class 2606 OID 69474)
 -- Name: mensaje mensaje_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11967,7 +11969,7 @@ ALTER TABLE ONLY public.mensaje
 
 
 --
--- TOC entry 3176 (class 2606 OID 67836)
+-- TOC entry 3176 (class 2606 OID 69476)
 -- Name: persona persona_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11976,7 +11978,7 @@ ALTER TABLE ONLY public.persona
 
 
 --
--- TOC entry 3178 (class 2606 OID 67838)
+-- TOC entry 3178 (class 2606 OID 69478)
 -- Name: propietario propietario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11985,7 +11987,7 @@ ALTER TABLE ONLY public.propietario
 
 
 --
--- TOC entry 3180 (class 2606 OID 67840)
+-- TOC entry 3180 (class 2606 OID 69480)
 -- Name: proveedores proveedores_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11994,7 +11996,7 @@ ALTER TABLE ONLY public.proveedores
 
 
 --
--- TOC entry 3182 (class 2606 OID 67842)
+-- TOC entry 3182 (class 2606 OID 69482)
 -- Name: puente_asambleas_propietario puente_asambleas_propietario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12003,7 +12005,7 @@ ALTER TABLE ONLY public.puente_asambleas_propietario
 
 
 --
--- TOC entry 3184 (class 2606 OID 67844)
+-- TOC entry 3184 (class 2606 OID 69484)
 -- Name: puente_cobro_factura puente_cobro_factura_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12012,7 +12014,7 @@ ALTER TABLE ONLY public.puente_cobro_factura
 
 
 --
--- TOC entry 3186 (class 2606 OID 67846)
+-- TOC entry 3186 (class 2606 OID 69486)
 -- Name: puente_gasto_concepto puente_gasto_concepto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12021,7 +12023,7 @@ ALTER TABLE ONLY public.puente_gasto_concepto
 
 
 --
--- TOC entry 3188 (class 2606 OID 67848)
+-- TOC entry 3188 (class 2606 OID 69488)
 -- Name: puente_mensaje_usuario puente_mensaje_usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12030,7 +12032,7 @@ ALTER TABLE ONLY public.puente_mensaje_usuario
 
 
 --
--- TOC entry 3190 (class 2606 OID 67850)
+-- TOC entry 3190 (class 2606 OID 69490)
 -- Name: puente_persona_condominio puente_persona_condominio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12039,7 +12041,7 @@ ALTER TABLE ONLY public.puente_persona_condominio
 
 
 --
--- TOC entry 3192 (class 2606 OID 67852)
+-- TOC entry 3192 (class 2606 OID 69492)
 -- Name: puente_sancion_unidad puente_sancion_unidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12048,7 +12050,7 @@ ALTER TABLE ONLY public.puente_sancion_unidad
 
 
 --
--- TOC entry 3194 (class 2606 OID 67854)
+-- TOC entry 3194 (class 2606 OID 69494)
 -- Name: puente_tipo_funcion puente_tipo_funcion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12057,7 +12059,7 @@ ALTER TABLE ONLY public.puente_tipo_funcion
 
 
 --
--- TOC entry 3196 (class 2606 OID 67856)
+-- TOC entry 3196 (class 2606 OID 69496)
 -- Name: puente_unidad_propietarios puente_unidad_propietarios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12066,7 +12068,7 @@ ALTER TABLE ONLY public.puente_unidad_propietarios
 
 
 --
--- TOC entry 3198 (class 2606 OID 67858)
+-- TOC entry 3198 (class 2606 OID 69498)
 -- Name: recibo recibo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12075,7 +12077,7 @@ ALTER TABLE ONLY public.recibo
 
 
 --
--- TOC entry 3200 (class 2606 OID 67860)
+-- TOC entry 3200 (class 2606 OID 69500)
 -- Name: responsable responsable_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12084,7 +12086,7 @@ ALTER TABLE ONLY public.responsable
 
 
 --
--- TOC entry 3202 (class 2606 OID 67862)
+-- TOC entry 3202 (class 2606 OID 69502)
 -- Name: sancion sancion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12093,7 +12095,7 @@ ALTER TABLE ONLY public.sancion
 
 
 --
--- TOC entry 3204 (class 2606 OID 67864)
+-- TOC entry 3204 (class 2606 OID 69504)
 -- Name: tipo_unidad tipo_unidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12102,7 +12104,7 @@ ALTER TABLE ONLY public.tipo_unidad
 
 
 --
--- TOC entry 3206 (class 2606 OID 67866)
+-- TOC entry 3206 (class 2606 OID 69506)
 -- Name: tipo_unidad tipo_unidad_tipo_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12111,7 +12113,7 @@ ALTER TABLE ONLY public.tipo_unidad
 
 
 --
--- TOC entry 3208 (class 2606 OID 67868)
+-- TOC entry 3208 (class 2606 OID 69508)
 -- Name: tipo_usuario tipo_usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12120,7 +12122,7 @@ ALTER TABLE ONLY public.tipo_usuario
 
 
 --
--- TOC entry 3210 (class 2606 OID 67870)
+-- TOC entry 3210 (class 2606 OID 69510)
 -- Name: tipo_usuario tipo_usuario_tipo_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12129,7 +12131,7 @@ ALTER TABLE ONLY public.tipo_usuario
 
 
 --
--- TOC entry 3212 (class 2606 OID 67872)
+-- TOC entry 3212 (class 2606 OID 69512)
 -- Name: unidad unidad_n_documento_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12138,7 +12140,7 @@ ALTER TABLE ONLY public.unidad
 
 
 --
--- TOC entry 3214 (class 2606 OID 67874)
+-- TOC entry 3214 (class 2606 OID 69514)
 -- Name: unidad unidad_n_unidad_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12147,7 +12149,7 @@ ALTER TABLE ONLY public.unidad
 
 
 --
--- TOC entry 3216 (class 2606 OID 67876)
+-- TOC entry 3216 (class 2606 OID 69516)
 -- Name: unidad unidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12156,7 +12158,7 @@ ALTER TABLE ONLY public.unidad
 
 
 --
--- TOC entry 3218 (class 2606 OID 67878)
+-- TOC entry 3218 (class 2606 OID 69518)
 -- Name: usuario usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12165,7 +12167,7 @@ ALTER TABLE ONLY public.usuario
 
 
 --
--- TOC entry 3220 (class 2606 OID 67880)
+-- TOC entry 3220 (class 2606 OID 69520)
 -- Name: usuario usuario_usuario_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12174,7 +12176,7 @@ ALTER TABLE ONLY public.usuario
 
 
 --
--- TOC entry 3222 (class 2606 OID 67882)
+-- TOC entry 3222 (class 2606 OID 69522)
 -- Name: visita visita_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12183,7 +12185,7 @@ ALTER TABLE ONLY public.visita
 
 
 --
--- TOC entry 3265 (class 2620 OID 67883)
+-- TOC entry 3265 (class 2620 OID 69523)
 -- Name: asambleas tg_asambleas; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12191,7 +12193,7 @@ CREATE TRIGGER tg_asambleas BEFORE INSERT ON public.asambleas FOR EACH ROW EXECU
 
 
 --
--- TOC entry 3267 (class 2620 OID 67884)
+-- TOC entry 3267 (class 2620 OID 69524)
 -- Name: banco tg_banco; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12199,7 +12201,7 @@ CREATE TRIGGER tg_banco BEFORE INSERT OR UPDATE ON public.banco FOR EACH ROW EXE
 
 
 --
--- TOC entry 3302 (class 2620 OID 67885)
+-- TOC entry 3302 (class 2620 OID 69525)
 -- Name: unidad tg_calcular_alicuota; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12207,7 +12209,7 @@ CREATE TRIGGER tg_calcular_alicuota AFTER INSERT OR UPDATE OF n_documento, direc
 
 
 --
--- TOC entry 3269 (class 2620 OID 67886)
+-- TOC entry 3269 (class 2620 OID 69526)
 -- Name: categoriagasto tg_categoria_gasto; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12215,7 +12217,7 @@ CREATE TRIGGER tg_categoria_gasto BEFORE INSERT OR UPDATE ON public.categoriagas
 
 
 --
--- TOC entry 3272 (class 2620 OID 67887)
+-- TOC entry 3272 (class 2620 OID 69527)
 -- Name: concepto_gasto tg_concepto_gasto; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12223,7 +12225,7 @@ CREATE TRIGGER tg_concepto_gasto BEFORE INSERT OR UPDATE ON public.concepto_gast
 
 
 --
--- TOC entry 3274 (class 2620 OID 67888)
+-- TOC entry 3274 (class 2620 OID 69528)
 -- Name: condominio tg_condominio; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12231,7 +12233,7 @@ CREATE TRIGGER tg_condominio BEFORE INSERT OR UPDATE ON public.condominio FOR EA
 
 
 --
--- TOC entry 3276 (class 2620 OID 67889)
+-- TOC entry 3276 (class 2620 OID 69529)
 -- Name: cuenta tg_cuenta; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12239,7 +12241,7 @@ CREATE TRIGGER tg_cuenta BEFORE INSERT OR UPDATE ON public.cuenta FOR EACH ROW E
 
 
 --
--- TOC entry 3278 (class 2620 OID 67890)
+-- TOC entry 3278 (class 2620 OID 69530)
 -- Name: cuenta_pagar tg_cuenta_pagar; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12247,7 +12249,7 @@ CREATE TRIGGER tg_cuenta_pagar BEFORE INSERT OR UPDATE ON public.cuenta_pagar FO
 
 
 --
--- TOC entry 3290 (class 2620 OID 67891)
+-- TOC entry 3290 (class 2620 OID 69531)
 -- Name: mensaje tg_eliminar_mensaje; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12255,7 +12257,7 @@ CREATE TRIGGER tg_eliminar_mensaje AFTER UPDATE ON public.mensaje FOR EACH ROW E
 
 
 --
--- TOC entry 3295 (class 2620 OID 67892)
+-- TOC entry 3295 (class 2620 OID 69532)
 -- Name: puente_mensaje_usuario tg_eliminar_puente_mensaje; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12263,7 +12265,7 @@ CREATE TRIGGER tg_eliminar_puente_mensaje AFTER UPDATE ON public.puente_mensaje_
 
 
 --
--- TOC entry 3282 (class 2620 OID 67893)
+-- TOC entry 3282 (class 2620 OID 69533)
 -- Name: fondos tg_fondos; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12271,7 +12273,7 @@ CREATE TRIGGER tg_fondos BEFORE INSERT OR UPDATE ON public.fondos FOR EACH ROW E
 
 
 --
--- TOC entry 3284 (class 2620 OID 67894)
+-- TOC entry 3284 (class 2620 OID 69534)
 -- Name: forma_pago tg_forma_pago; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12279,7 +12281,7 @@ CREATE TRIGGER tg_forma_pago BEFORE INSERT OR UPDATE ON public.forma_pago FOR EA
 
 
 --
--- TOC entry 3286 (class 2620 OID 67895)
+-- TOC entry 3286 (class 2620 OID 69535)
 -- Name: gasto tg_gasto; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12287,7 +12289,7 @@ CREATE TRIGGER tg_gasto BEFORE INSERT OR UPDATE ON public.gasto FOR EACH ROW EXE
 
 
 --
--- TOC entry 3288 (class 2620 OID 67896)
+-- TOC entry 3288 (class 2620 OID 69536)
 -- Name: interes tg_interes; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12295,7 +12297,7 @@ CREATE TRIGGER tg_interes BEFORE INSERT OR UPDATE ON public.interes FOR EACH ROW
 
 
 --
--- TOC entry 3266 (class 2620 OID 67897)
+-- TOC entry 3266 (class 2620 OID 69537)
 -- Name: asambleas tg_mayuscula_asambleas; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12303,7 +12305,7 @@ CREATE TRIGGER tg_mayuscula_asambleas BEFORE INSERT OR UPDATE ON public.asamblea
 
 
 --
--- TOC entry 3268 (class 2620 OID 67898)
+-- TOC entry 3268 (class 2620 OID 69538)
 -- Name: banco tg_mayuscula_banco; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12311,7 +12313,7 @@ CREATE TRIGGER tg_mayuscula_banco BEFORE INSERT OR UPDATE ON public.banco FOR EA
 
 
 --
--- TOC entry 3270 (class 2620 OID 67899)
+-- TOC entry 3270 (class 2620 OID 69539)
 -- Name: categoriagasto tg_mayuscula_categoriagasto; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12319,7 +12321,7 @@ CREATE TRIGGER tg_mayuscula_categoriagasto BEFORE INSERT OR UPDATE ON public.cat
 
 
 --
--- TOC entry 3271 (class 2620 OID 67900)
+-- TOC entry 3271 (class 2620 OID 69540)
 -- Name: cobro_unidad tg_mayuscula_cobro_unidad; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12327,7 +12329,7 @@ CREATE TRIGGER tg_mayuscula_cobro_unidad BEFORE INSERT OR UPDATE ON public.cobro
 
 
 --
--- TOC entry 3273 (class 2620 OID 67901)
+-- TOC entry 3273 (class 2620 OID 69541)
 -- Name: concepto_gasto tg_mayuscula_concepto_gasto; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12335,7 +12337,7 @@ CREATE TRIGGER tg_mayuscula_concepto_gasto BEFORE INSERT OR UPDATE ON public.con
 
 
 --
--- TOC entry 3275 (class 2620 OID 67902)
+-- TOC entry 3275 (class 2620 OID 69542)
 -- Name: condominio tg_mayuscula_condominio; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12343,7 +12345,7 @@ CREATE TRIGGER tg_mayuscula_condominio BEFORE INSERT OR UPDATE ON public.condomi
 
 
 --
--- TOC entry 3277 (class 2620 OID 67903)
+-- TOC entry 3277 (class 2620 OID 69543)
 -- Name: cuenta tg_mayuscula_cuenta; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12351,7 +12353,7 @@ CREATE TRIGGER tg_mayuscula_cuenta BEFORE INSERT OR UPDATE ON public.cuenta FOR 
 
 
 --
--- TOC entry 3279 (class 2620 OID 67904)
+-- TOC entry 3279 (class 2620 OID 69544)
 -- Name: cuenta_pagar tg_mayuscula_cuenta_pagar; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12359,7 +12361,7 @@ CREATE TRIGGER tg_mayuscula_cuenta_pagar BEFORE INSERT OR UPDATE ON public.cuent
 
 
 --
--- TOC entry 3281 (class 2620 OID 67905)
+-- TOC entry 3281 (class 2620 OID 69545)
 -- Name: detalle_pagos tg_mayuscula_detalle_pagos; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12367,7 +12369,7 @@ CREATE TRIGGER tg_mayuscula_detalle_pagos BEFORE INSERT OR UPDATE ON public.deta
 
 
 --
--- TOC entry 3283 (class 2620 OID 67906)
+-- TOC entry 3283 (class 2620 OID 69546)
 -- Name: fondos tg_mayuscula_fondos; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12375,7 +12377,7 @@ CREATE TRIGGER tg_mayuscula_fondos BEFORE INSERT OR UPDATE ON public.fondos FOR 
 
 
 --
--- TOC entry 3285 (class 2620 OID 67907)
+-- TOC entry 3285 (class 2620 OID 69547)
 -- Name: forma_pago tg_mayuscula_forma_pago; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12383,7 +12385,7 @@ CREATE TRIGGER tg_mayuscula_forma_pago BEFORE INSERT OR UPDATE ON public.forma_p
 
 
 --
--- TOC entry 3287 (class 2620 OID 67908)
+-- TOC entry 3287 (class 2620 OID 69548)
 -- Name: gasto tg_mayuscula_gasto; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12391,7 +12393,7 @@ CREATE TRIGGER tg_mayuscula_gasto BEFORE INSERT OR UPDATE ON public.gasto FOR EA
 
 
 --
--- TOC entry 3289 (class 2620 OID 67909)
+-- TOC entry 3289 (class 2620 OID 69549)
 -- Name: interes tg_mayuscula_interes; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12399,7 +12401,7 @@ CREATE TRIGGER tg_mayuscula_interes BEFORE INSERT OR UPDATE ON public.interes FO
 
 
 --
--- TOC entry 3291 (class 2620 OID 67910)
+-- TOC entry 3291 (class 2620 OID 69550)
 -- Name: persona tg_mayuscula_persona; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12407,7 +12409,7 @@ CREATE TRIGGER tg_mayuscula_persona BEFORE INSERT OR UPDATE ON public.persona FO
 
 
 --
--- TOC entry 3293 (class 2620 OID 67911)
+-- TOC entry 3293 (class 2620 OID 69551)
 -- Name: proveedores tg_mayuscula_proveedores; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12415,7 +12417,7 @@ CREATE TRIGGER tg_mayuscula_proveedores BEFORE INSERT OR UPDATE ON public.provee
 
 
 --
--- TOC entry 3297 (class 2620 OID 67912)
+-- TOC entry 3297 (class 2620 OID 69552)
 -- Name: sancion tg_mayuscula_sancion; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12423,7 +12425,7 @@ CREATE TRIGGER tg_mayuscula_sancion BEFORE INSERT OR UPDATE ON public.sancion FO
 
 
 --
--- TOC entry 3299 (class 2620 OID 67913)
+-- TOC entry 3299 (class 2620 OID 69553)
 -- Name: tipo_unidad tg_mayuscula_tipo_unidad; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12431,7 +12433,7 @@ CREATE TRIGGER tg_mayuscula_tipo_unidad BEFORE INSERT OR UPDATE ON public.tipo_u
 
 
 --
--- TOC entry 3301 (class 2620 OID 67914)
+-- TOC entry 3301 (class 2620 OID 69554)
 -- Name: tipo_usuario tg_mayuscula_tipo_usuario; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12439,7 +12441,7 @@ CREATE TRIGGER tg_mayuscula_tipo_usuario BEFORE INSERT OR UPDATE ON public.tipo_
 
 
 --
--- TOC entry 3303 (class 2620 OID 67915)
+-- TOC entry 3303 (class 2620 OID 69555)
 -- Name: unidad tg_mayuscula_unidad; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12447,7 +12449,7 @@ CREATE TRIGGER tg_mayuscula_unidad BEFORE INSERT OR UPDATE ON public.unidad FOR 
 
 
 --
--- TOC entry 3305 (class 2620 OID 67916)
+-- TOC entry 3305 (class 2620 OID 69556)
 -- Name: visita tg_mayuscula_visita; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12455,7 +12457,7 @@ CREATE TRIGGER tg_mayuscula_visita BEFORE INSERT OR UPDATE ON public.visita FOR 
 
 
 --
--- TOC entry 3292 (class 2620 OID 67917)
+-- TOC entry 3292 (class 2620 OID 69557)
 -- Name: propietario tg_propietario; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12463,7 +12465,7 @@ CREATE TRIGGER tg_propietario BEFORE INSERT OR UPDATE ON public.propietario FOR 
 
 
 --
--- TOC entry 3294 (class 2620 OID 67918)
+-- TOC entry 3294 (class 2620 OID 69558)
 -- Name: proveedores tg_proveedores; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12471,7 +12473,7 @@ CREATE TRIGGER tg_proveedores BEFORE INSERT OR UPDATE ON public.proveedores FOR 
 
 
 --
--- TOC entry 3296 (class 2620 OID 67919)
+-- TOC entry 3296 (class 2620 OID 69559)
 -- Name: recibo tg_recibo; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12479,7 +12481,7 @@ CREATE TRIGGER tg_recibo BEFORE INSERT OR UPDATE ON public.recibo FOR EACH ROW E
 
 
 --
--- TOC entry 3280 (class 2620 OID 67920)
+-- TOC entry 3280 (class 2620 OID 69560)
 -- Name: cuenta_pagar tg_restar_saldo; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12487,7 +12489,7 @@ CREATE TRIGGER tg_restar_saldo AFTER INSERT ON public.cuenta_pagar FOR EACH ROW 
 
 
 --
--- TOC entry 3298 (class 2620 OID 67921)
+-- TOC entry 3298 (class 2620 OID 69561)
 -- Name: sancion tg_sancion; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12495,7 +12497,7 @@ CREATE TRIGGER tg_sancion BEFORE INSERT OR UPDATE ON public.sancion FOR EACH ROW
 
 
 --
--- TOC entry 3300 (class 2620 OID 67922)
+-- TOC entry 3300 (class 2620 OID 69562)
 -- Name: tipo_unidad tg_tipo_unidad; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12503,7 +12505,7 @@ CREATE TRIGGER tg_tipo_unidad BEFORE INSERT OR UPDATE ON public.tipo_unidad FOR 
 
 
 --
--- TOC entry 3304 (class 2620 OID 67923)
+-- TOC entry 3304 (class 2620 OID 69563)
 -- Name: unidad tg_unidad; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12511,7 +12513,7 @@ CREATE TRIGGER tg_unidad BEFORE INSERT OR UPDATE ON public.unidad FOR EACH ROW E
 
 
 --
--- TOC entry 3306 (class 2620 OID 67924)
+-- TOC entry 3306 (class 2620 OID 69564)
 -- Name: visita tg_visita; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12519,7 +12521,7 @@ CREATE TRIGGER tg_visita BEFORE INSERT ON public.visita FOR EACH ROW EXECUTE FUN
 
 
 --
--- TOC entry 3223 (class 2606 OID 67925)
+-- TOC entry 3223 (class 2606 OID 69565)
 -- Name: bitacora bitacora_id_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12528,7 +12530,7 @@ ALTER TABLE ONLY public.bitacora
 
 
 --
--- TOC entry 3224 (class 2606 OID 67930)
+-- TOC entry 3224 (class 2606 OID 69570)
 -- Name: cobro_unidad cobro_unidad_id_cuenta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12537,7 +12539,7 @@ ALTER TABLE ONLY public.cobro_unidad
 
 
 --
--- TOC entry 3225 (class 2606 OID 67935)
+-- TOC entry 3225 (class 2606 OID 69575)
 -- Name: cobro_unidad cobro_unidad_id_fondo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12546,7 +12548,7 @@ ALTER TABLE ONLY public.cobro_unidad
 
 
 --
--- TOC entry 3226 (class 2606 OID 67940)
+-- TOC entry 3226 (class 2606 OID 69580)
 -- Name: cobro_unidad cobro_unidad_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12555,7 +12557,7 @@ ALTER TABLE ONLY public.cobro_unidad
 
 
 --
--- TOC entry 3227 (class 2606 OID 67945)
+-- TOC entry 3227 (class 2606 OID 69585)
 -- Name: concepto_gasto concepto_gasto_id_categoria_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12564,7 +12566,7 @@ ALTER TABLE ONLY public.concepto_gasto
 
 
 --
--- TOC entry 3228 (class 2606 OID 67950)
+-- TOC entry 3228 (class 2606 OID 69590)
 -- Name: cuenta cuenta_ci_persona_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12573,7 +12575,7 @@ ALTER TABLE ONLY public.cuenta
 
 
 --
--- TOC entry 3229 (class 2606 OID 67955)
+-- TOC entry 3229 (class 2606 OID 69595)
 -- Name: cuenta cuenta_id_banco_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12582,7 +12584,7 @@ ALTER TABLE ONLY public.cuenta
 
 
 --
--- TOC entry 3231 (class 2606 OID 67960)
+-- TOC entry 3231 (class 2606 OID 69600)
 -- Name: cuenta_pagar cuenta_pagar_id_fondo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12591,7 +12593,7 @@ ALTER TABLE ONLY public.cuenta_pagar
 
 
 --
--- TOC entry 3232 (class 2606 OID 67965)
+-- TOC entry 3232 (class 2606 OID 69605)
 -- Name: cuenta_pagar cuenta_pagar_id_forma_pago_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12600,7 +12602,7 @@ ALTER TABLE ONLY public.cuenta_pagar
 
 
 --
--- TOC entry 3233 (class 2606 OID 67970)
+-- TOC entry 3233 (class 2606 OID 69610)
 -- Name: cuenta_pagar cuenta_pagar_id_gasto_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12609,7 +12611,7 @@ ALTER TABLE ONLY public.cuenta_pagar
 
 
 --
--- TOC entry 3234 (class 2606 OID 67975)
+-- TOC entry 3234 (class 2606 OID 69615)
 -- Name: cuenta_pagar cuenta_pagar_n_cuenta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12618,7 +12620,7 @@ ALTER TABLE ONLY public.cuenta_pagar
 
 
 --
--- TOC entry 3230 (class 2606 OID 67980)
+-- TOC entry 3230 (class 2606 OID 69620)
 -- Name: cuenta cuenta_rif_condominio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12627,7 +12629,7 @@ ALTER TABLE ONLY public.cuenta
 
 
 --
--- TOC entry 3235 (class 2606 OID 67985)
+-- TOC entry 3235 (class 2606 OID 69625)
 -- Name: detalle_pagos detalle_pagos_id_gasto_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12636,7 +12638,7 @@ ALTER TABLE ONLY public.detalle_pagos
 
 
 --
--- TOC entry 3236 (class 2606 OID 67990)
+-- TOC entry 3236 (class 2606 OID 69630)
 -- Name: detalle_pagos detalle_pagos_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12645,7 +12647,7 @@ ALTER TABLE ONLY public.detalle_pagos
 
 
 --
--- TOC entry 3237 (class 2606 OID 67995)
+-- TOC entry 3237 (class 2606 OID 69635)
 -- Name: gasto gasto_id_asamblea_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12654,7 +12656,7 @@ ALTER TABLE ONLY public.gasto
 
 
 --
--- TOC entry 3238 (class 2606 OID 68000)
+-- TOC entry 3238 (class 2606 OID 69640)
 -- Name: gasto gasto_id_proveedor_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12663,7 +12665,7 @@ ALTER TABLE ONLY public.gasto
 
 
 --
--- TOC entry 3239 (class 2606 OID 68005)
+-- TOC entry 3239 (class 2606 OID 69645)
 -- Name: interes interes_rif_condominio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12672,7 +12674,7 @@ ALTER TABLE ONLY public.interes
 
 
 --
--- TOC entry 3240 (class 2606 OID 68010)
+-- TOC entry 3240 (class 2606 OID 69650)
 -- Name: mensaje mensaje_emisor_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12681,7 +12683,7 @@ ALTER TABLE ONLY public.mensaje
 
 
 --
--- TOC entry 3241 (class 2606 OID 68015)
+-- TOC entry 3241 (class 2606 OID 69655)
 -- Name: propietario propietario_ci_persona_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12690,7 +12692,7 @@ ALTER TABLE ONLY public.propietario
 
 
 --
--- TOC entry 3242 (class 2606 OID 68020)
+-- TOC entry 3242 (class 2606 OID 69660)
 -- Name: puente_asambleas_propietario puente_asambleas_propietario_ci_propietario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12699,7 +12701,7 @@ ALTER TABLE ONLY public.puente_asambleas_propietario
 
 
 --
--- TOC entry 3243 (class 2606 OID 68025)
+-- TOC entry 3243 (class 2606 OID 69665)
 -- Name: puente_asambleas_propietario puente_asambleas_propietario_id_asamblea_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12708,7 +12710,7 @@ ALTER TABLE ONLY public.puente_asambleas_propietario
 
 
 --
--- TOC entry 3244 (class 2606 OID 68030)
+-- TOC entry 3244 (class 2606 OID 69670)
 -- Name: puente_cobro_factura puente_cobro_factura_id_cobro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12717,7 +12719,7 @@ ALTER TABLE ONLY public.puente_cobro_factura
 
 
 --
--- TOC entry 3245 (class 2606 OID 68035)
+-- TOC entry 3245 (class 2606 OID 69675)
 -- Name: puente_cobro_factura puente_cobro_factura_id_recibo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12726,7 +12728,7 @@ ALTER TABLE ONLY public.puente_cobro_factura
 
 
 --
--- TOC entry 3246 (class 2606 OID 68040)
+-- TOC entry 3246 (class 2606 OID 69680)
 -- Name: puente_gasto_concepto puente_gasto_concepto_id_concepto_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12735,7 +12737,7 @@ ALTER TABLE ONLY public.puente_gasto_concepto
 
 
 --
--- TOC entry 3247 (class 2606 OID 68045)
+-- TOC entry 3247 (class 2606 OID 69685)
 -- Name: puente_gasto_concepto puente_gasto_concepto_id_gasto_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12744,7 +12746,7 @@ ALTER TABLE ONLY public.puente_gasto_concepto
 
 
 --
--- TOC entry 3248 (class 2606 OID 68050)
+-- TOC entry 3248 (class 2606 OID 69690)
 -- Name: puente_mensaje_usuario puente_mensaje_usuario_id_mensaje_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12753,7 +12755,7 @@ ALTER TABLE ONLY public.puente_mensaje_usuario
 
 
 --
--- TOC entry 3249 (class 2606 OID 68055)
+-- TOC entry 3249 (class 2606 OID 69695)
 -- Name: puente_mensaje_usuario puente_mensaje_usuario_receptor_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12762,7 +12764,7 @@ ALTER TABLE ONLY public.puente_mensaje_usuario
 
 
 --
--- TOC entry 3250 (class 2606 OID 68060)
+-- TOC entry 3250 (class 2606 OID 69700)
 -- Name: puente_persona_condominio puente_persona_condominio_ci_persona_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12771,7 +12773,7 @@ ALTER TABLE ONLY public.puente_persona_condominio
 
 
 --
--- TOC entry 3251 (class 2606 OID 68065)
+-- TOC entry 3251 (class 2606 OID 69705)
 -- Name: puente_persona_condominio puente_persona_condominio_rif_condominio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12780,7 +12782,7 @@ ALTER TABLE ONLY public.puente_persona_condominio
 
 
 --
--- TOC entry 3252 (class 2606 OID 68070)
+-- TOC entry 3252 (class 2606 OID 69710)
 -- Name: puente_sancion_unidad puente_sancion_unidad_id_sancion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12789,7 +12791,7 @@ ALTER TABLE ONLY public.puente_sancion_unidad
 
 
 --
--- TOC entry 3253 (class 2606 OID 68075)
+-- TOC entry 3253 (class 2606 OID 69715)
 -- Name: puente_sancion_unidad puente_sancion_unidad_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12798,7 +12800,7 @@ ALTER TABLE ONLY public.puente_sancion_unidad
 
 
 --
--- TOC entry 3254 (class 2606 OID 68080)
+-- TOC entry 3254 (class 2606 OID 69720)
 -- Name: puente_tipo_funcion puente_tipo_funcion_id_funcion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12807,7 +12809,7 @@ ALTER TABLE ONLY public.puente_tipo_funcion
 
 
 --
--- TOC entry 3255 (class 2606 OID 68085)
+-- TOC entry 3255 (class 2606 OID 69725)
 -- Name: puente_tipo_funcion puente_tipo_funcion_id_tipo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12816,7 +12818,7 @@ ALTER TABLE ONLY public.puente_tipo_funcion
 
 
 --
--- TOC entry 3256 (class 2606 OID 68090)
+-- TOC entry 3256 (class 2606 OID 69730)
 -- Name: puente_unidad_propietarios puente_unidad_propietarios_ci_propietario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12825,7 +12827,7 @@ ALTER TABLE ONLY public.puente_unidad_propietarios
 
 
 --
--- TOC entry 3257 (class 2606 OID 68095)
+-- TOC entry 3257 (class 2606 OID 69735)
 -- Name: puente_unidad_propietarios puente_unidad_propietarios_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12834,7 +12836,7 @@ ALTER TABLE ONLY public.puente_unidad_propietarios
 
 
 --
--- TOC entry 3258 (class 2606 OID 68100)
+-- TOC entry 3258 (class 2606 OID 69740)
 -- Name: recibo recibo_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12843,7 +12845,7 @@ ALTER TABLE ONLY public.recibo
 
 
 --
--- TOC entry 3259 (class 2606 OID 68105)
+-- TOC entry 3259 (class 2606 OID 69745)
 -- Name: responsable responsable_ci_persona_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12852,7 +12854,7 @@ ALTER TABLE ONLY public.responsable
 
 
 --
--- TOC entry 3260 (class 2606 OID 68110)
+-- TOC entry 3260 (class 2606 OID 69750)
 -- Name: unidad unidad_id_tipo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12861,7 +12863,7 @@ ALTER TABLE ONLY public.unidad
 
 
 --
--- TOC entry 3261 (class 2606 OID 68115)
+-- TOC entry 3261 (class 2606 OID 69755)
 -- Name: usuario usuario_ci_persona_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12870,7 +12872,7 @@ ALTER TABLE ONLY public.usuario
 
 
 --
--- TOC entry 3262 (class 2606 OID 68120)
+-- TOC entry 3262 (class 2606 OID 69760)
 -- Name: usuario usuario_id_tipo_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12879,7 +12881,7 @@ ALTER TABLE ONLY public.usuario
 
 
 --
--- TOC entry 3263 (class 2606 OID 68125)
+-- TOC entry 3263 (class 2606 OID 69765)
 -- Name: visita visita_ci_visitante_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12888,7 +12890,7 @@ ALTER TABLE ONLY public.visita
 
 
 --
--- TOC entry 3264 (class 2606 OID 68130)
+-- TOC entry 3264 (class 2606 OID 69770)
 -- Name: visita visita_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12896,7 +12898,7 @@ ALTER TABLE ONLY public.visita
     ADD CONSTRAINT visita_id_unidad_fkey FOREIGN KEY (id_unidad) REFERENCES public.unidad(id);
 
 
--- Completed on 2020-07-28 21:06:30
+-- Completed on 2020-07-28 21:19:56
 
 --
 -- PostgreSQL database dump complete
