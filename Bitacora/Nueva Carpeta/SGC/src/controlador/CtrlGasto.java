@@ -200,7 +200,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
                 modelo.setProveedor(modProveedor);
                 modelo.setCalcular(vista.jCalcular.getSelectedItem().toString());
                 modelo.setMes(vista.txtMes.getSelectedIndex() + 1);
-                modelo.setAnio(vista.txtAño.getYear());
+                modelo.setAnio(Integer.parseInt(vista.txtAño.getSelectedItem().toString()));
                 modelo.setObservacion(vista.txaObservaciones.getText());
                 modelo.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
 
@@ -655,7 +655,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
         modelo.setProveedor(modProveedor);
         modelo.setCalcular(vista.jCalcular.getSelectedItem().toString());
         modelo.setMes(vista.txtMes.getSelectedIndex() + 1);
-        modelo.setAnio(vista.txtAño.getYear());
+        modelo.setAnio(Integer.parseInt(vista.txtAño.getSelectedItem().toString()));
         modelo.setObservacion(vista.txaObservaciones.getText());
         modelo.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
 
@@ -932,7 +932,8 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
             vista.jCalcular.setSelectedItem(modelo.getCalcular());
             vista.cbxMoneda.setSelectedItem(modelo.getMoneda());
             vista.txtMes.setSelectedIndex(modelo.getMes() - 1);
-            vista.txtAño.setYear(modelo.getAnio());
+            int w= modelo.getAnio()-1920;
+            vista.txtAño.setSelectedIndex(w);
             vista.txaObservaciones.setText(modelo.getObservacion());
             vista.txtNmeses.setText(String.valueOf(modelo.getNumMeses()));
 
