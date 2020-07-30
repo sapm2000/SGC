@@ -199,7 +199,7 @@ public class Sancion extends ConexionBD {
         ps = null;
         rs = null;
 
-        String sql = "SELECT id_sancion, tipo, sancion.monto, id_unidad, moneda FROM puente_sancion_unidad inner join sancion on puente_sancion_unidad.id_sancion=sancion.id inner join unidad on puente_sancion_unidad.id_unidad=unidad.id where sancion.mes=? and sancion.anio=?";
+        String sql = "SELECT id_sancion, tipo, sancion.monto, id_unidad, moneda, unidad.alicuota FROM puente_sancion_unidad inner join sancion on puente_sancion_unidad.id_sancion=sancion.id inner join unidad on puente_sancion_unidad.id_unidad=unidad.id where sancion.mes=? and sancion.anio=?";
         try {
             ps = con.prepareStatement(sql);
 
@@ -217,6 +217,7 @@ public class Sancion extends ConexionBD {
                 modsan.setMonto(rs.getDouble(3));
                 modsan.uni.setId(rs.getInt(4));
                 modsan.setMoneda(rs.getString(5));
+                modsan.uni.setAlicuota(rs.getFloat(6));
 
                 listaSancion.add(modsan);
             }
