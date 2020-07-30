@@ -56,10 +56,11 @@ public class VisCerrarMes extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         txtParidad = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtAnio = new rojeru_san.componentes.RSYearDate();
         txtMes = new newscomponents.RSDateMonth();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        txtAnio = new newscomponents.RSDateYear();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
@@ -123,14 +124,6 @@ public class VisCerrarMes extends javax.swing.JPanel {
         jLabel5.setText("Paridad:");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, -1, -1));
 
-        txtAnio.setBackground(new java.awt.Color(255, 255, 255));
-        txtAnio.setForeground(new java.awt.Color(255, 255, 255));
-        txtAnio.setToolTipText("Elija el año");
-        txtAnio.setColorBackground(new java.awt.Color(0, 94, 159));
-        txtAnio.setColorButtonHover(new java.awt.Color(0, 151, 255));
-        txtAnio.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel2.add(txtAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 130, 30));
-
         txtMes.setColorArrow(new java.awt.Color(0, 94, 159));
         txtMes.setColorBorde(new java.awt.Color(255, 255, 255));
         txtMes.setColorBoton(new java.awt.Color(255, 255, 255));
@@ -147,6 +140,19 @@ public class VisCerrarMes extends javax.swing.JPanel {
 
         jSeparator4.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 180, 10));
+
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 100, 10));
+
+        txtAnio.setColorArrow(new java.awt.Color(0, 94, 159));
+        txtAnio.setColorBorde(new java.awt.Color(255, 255, 255));
+        txtAnio.setColorBoton(new java.awt.Color(255, 255, 255));
+        txtAnio.setColorDisabledIndex(new java.awt.Color(255, 255, 255));
+        txtAnio.setColorDisabledIndexText(new java.awt.Color(0, 94, 159));
+        txtAnio.setColorFondo(new java.awt.Color(0, 94, 159));
+        txtAnio.setColorListaItemsTXT(new java.awt.Color(0, 94, 159));
+        txtAnio.setColorSeleccion(new java.awt.Color(0, 94, 159));
+        jPanel2.add(txtAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, 100, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 320, 210));
 
@@ -192,9 +198,10 @@ public class VisCerrarMes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    public rojeru_san.componentes.RSYearDate txtAnio;
+    public newscomponents.RSDateYear txtAnio;
     public newscomponents.RSDateMonth txtMes;
     public javax.swing.JTextField txtParidad;
     // End of variables declaration//GEN-END:variables

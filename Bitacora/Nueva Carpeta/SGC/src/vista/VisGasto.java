@@ -95,14 +95,15 @@ public class VisGasto extends javax.swing.JPanel {
         panelAsamblea = new javax.swing.JPanel();
         labelAsamblea = new javax.swing.JLabel();
         jAsamblea = new javax.swing.JComboBox<>();
+        jSeparator2 = new javax.swing.JSeparator();
         jLabel17 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         cbxMoneda = new javax.swing.JComboBox<>();
         jSeparator5 = new javax.swing.JSeparator();
         txtNombre = new javax.swing.JTextField();
-        txtAño = new rojeru_san.componentes.RSYearDate();
         txtMes = new newscomponents.RSDateMonth();
         jSeparator6 = new javax.swing.JSeparator();
+        txtAño = new newscomponents.RSDateYear();
         jLabel10 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -358,6 +359,9 @@ public class VisGasto extends javax.swing.JPanel {
 
         jPanel2.add(panelTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 360, 170));
 
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 110, 10));
+
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Seleccione el concepto gasto");
@@ -382,12 +386,6 @@ public class VisGasto extends javax.swing.JPanel {
         txtNombre.setBorder(null);
         jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 280, 20));
 
-        txtAño.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
-        txtAño.setColorBackground(new java.awt.Color(0, 94, 159));
-        txtAño.setColorButtonHover(new java.awt.Color(0, 151, 255));
-        txtAño.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel2.add(txtAño, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 120, 30));
-
         txtMes.setColorArrow(new java.awt.Color(0, 94, 159));
         txtMes.setColorBorde(new java.awt.Color(255, 255, 255));
         txtMes.setColorBoton(new java.awt.Color(255, 255, 255));
@@ -401,6 +399,16 @@ public class VisGasto extends javax.swing.JPanel {
 
         jSeparator6.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 280, 10));
+
+        txtAño.setColorArrow(new java.awt.Color(0, 94, 159));
+        txtAño.setColorBorde(new java.awt.Color(255, 255, 255));
+        txtAño.setColorBoton(new java.awt.Color(255, 255, 255));
+        txtAño.setColorDisabledIndex(new java.awt.Color(255, 255, 255));
+        txtAño.setColorDisabledIndexText(new java.awt.Color(0, 94, 159));
+        txtAño.setColorFondo(new java.awt.Color(0, 94, 159));
+        txtAño.setColorListaItemsTXT(new java.awt.Color(0, 94, 159));
+        txtAño.setColorSeleccion(new java.awt.Color(0, 94, 159));
+        jPanel2.add(txtAño, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 110, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
@@ -488,6 +496,7 @@ public class VisGasto extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
@@ -502,7 +511,7 @@ public class VisGasto extends javax.swing.JPanel {
     public javax.swing.JPanel panelTipo;
     public javax.swing.JRadioButton si;
     public javax.swing.JTextArea txaObservaciones;
-    public rojeru_san.componentes.RSYearDate txtAño;
+    public newscomponents.RSDateYear txtAño;
     public newscomponents.RSDateMonth txtMes;
     public javax.swing.JTextField txtNmeses;
     public javax.swing.JTextField txtNombre;
