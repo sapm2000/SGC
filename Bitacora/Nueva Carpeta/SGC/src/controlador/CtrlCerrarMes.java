@@ -258,18 +258,30 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                                         for (int w = 0; w < numRegistro; w++) {
 
                                                             double parte_cuota = parte_periodo * listaunidades.get(w).getAlicuota();
+                                                            parte_cuota = Math.round(parte_cuota * 100);
+                                                            parte_cuota = parte_cuota / 100;
 
                                                             if (listaGastos.get(z).getMoneda().equals("BOLÍVAR")) {
 
                                                                 double paridad = Double.parseDouble(vista.txtParidad.getText());
                                                                 double total_dolar = parte_cuota / paridad;
+                                                             
+
                                                                 modc.setMonto_bolivar(parte_cuota);
+                                                                total_dolar = Math.round(total_dolar * 100);
+                                                                total_dolar = total_dolar / 100;
+                                                                if (total_dolar==0) {
+                                                                    total_dolar=0.01;
+                                                                }
                                                                 modc.setMonto_dolar(total_dolar);
 
                                                             } else {
                                                                 double paridad = Double.parseDouble(vista.txtParidad.getText());
                                                                 double total_bolivar = parte_cuota * paridad;
+                                                                total_bolivar = Math.round(total_bolivar * 100);
+                                                                total_bolivar = total_bolivar / 100;
                                                                 modc.setMonto_bolivar(total_bolivar);
+
                                                                 modc.setMonto_dolar(parte_cuota);
                                                             }
                                                             modc.setId(listaGastos.get(z).getId());
@@ -292,12 +304,23 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                                             if (listaGastos.get(z).getMoneda().equals("BOLÍVAR")) {
                                                                 double paridad = Double.parseDouble(vista.txtParidad.getText());
                                                                 double total_dolar = parte_cuota / paridad;
+                                                                parte_cuota = Math.round(parte_cuota * 100);
+                                                                parte_cuota = parte_cuota / 100;
                                                                 modc.setMonto_bolivar(parte_cuota);
+                                                                total_dolar = Math.round(total_dolar * 100);
+                                                                total_dolar = total_dolar / 100;
+                                                                 if (total_dolar==0) {
+                                                                    total_dolar=0.01;
+                                                                }
                                                                 modc.setMonto_dolar(total_dolar);
                                                             } else {
                                                                 double paridad = Double.parseDouble(vista.txtParidad.getText());
                                                                 double total_bolivar = parte_cuota * paridad;
+                                                                total_bolivar = Math.round(total_bolivar * 100);
+                                                                total_bolivar = total_bolivar / 100;
                                                                 modc.setMonto_bolivar(total_bolivar);
+                                                                parte_cuota = Math.round(parte_cuota * 100);
+                                                                parte_cuota = parte_cuota / 100;
                                                                 modc.setMonto_dolar(parte_cuota);
                                                             }
                                                             modc.uni.setId(listaunidades.get(w).getId());
@@ -354,13 +377,22 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                         modc.uni.setId(listasanciones.get(j).uni.getId());
 
                                         if (vista.cbxMoneda.getSelectedItem().toString().equals("DÓLAR")) {
-
+                                            var3 = Math.round(var3 * 100);
+                                            var3 = var3 / 100;
                                             modc.setMonto_dolar(var3);
-                                            modc.setMonto_bolivar(var3 * Double.parseDouble(vista.txtParidad.getText()));
+                                            double var4 = var3 * Double.parseDouble(vista.txtParidad.getText());
+                                            var4 = Math.round(var4 * 100);
+                                            var4 = var4 / 100;
+                                            modc.setMonto_bolivar(var4);
 
                                         } else {
+                                            var3 = Math.round(var3 * 100);
+                                            var3 = var3 / 100;
                                             modc.setMonto_bolivar(var3);
-                                            modc.setMonto_dolar(var3 / Double.parseDouble(vista.txtParidad.getText()));
+                                            double var4 = var3 / Double.parseDouble(vista.txtParidad.getText());
+                                            var4 = Math.round(var4 * 100);
+                                            var4 = var4 / 100;
+                                            modc.setMonto_dolar(var4);
 
                                         }
                                         modc.setParidad(Double.parseDouble(vista.txtParidad.getText()));
@@ -378,10 +410,16 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                         modc.setId(listasanciones.get(j).getId());
                                         if (listasanciones.get(j).getMoneda().equals("DÓLAR")) {
                                             modc.setMonto_dolar(listasanciones.get(j).getMonto());
-                                            modc.setMonto_bolivar(listasanciones.get(j).getMonto() * Double.parseDouble(vista.txtParidad.getText()));
+                                            double var10 = listasanciones.get(j).getMonto() * Double.parseDouble(vista.txtParidad.getText());
+                                            var10 = Math.round(var10 * 100);
+                                            var10 = var10 / 100;
+                                            modc.setMonto_bolivar(var10);
                                         } else {
                                             modc.setMonto_bolivar(listasanciones.get(j).getMonto());
-                                            modc.setMonto_dolar(listasanciones.get(j).getMonto() / Double.parseDouble(vista.txtParidad.getText()));
+                                            double var10 = listasanciones.get(j).getMonto() / Double.parseDouble(vista.txtParidad.getText());
+                                            var10 = Math.round(var10 * 100);
+                                            var10 = var10 / 100;
+                                            modc.setMonto_dolar(var10);
                                         }
 
                                         modc.gasto.setId(Integer.parseInt(String.valueOf(id_sancion[j])));
@@ -420,8 +458,12 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                         double var9 = Double.parseDouble(String.valueOf(factor[l])) / 100;
 
                                         double parte_cuota = monto * var9;
-
-                                        modc.setMonto_dolar(parte_cuota / Double.parseDouble(vista.txtParidad.getText()));
+                                        parte_cuota = Math.round(parte_cuota * 100);
+                                        parte_cuota = parte_cuota / 100;
+                                        double var10 = parte_cuota / Double.parseDouble(vista.txtParidad.getText());
+                                        var10 = Math.round(var10 * 100);
+                                        var10 = var10 / 100;
+                                        modc.setMonto_dolar(var10);
                                         modc.setMonto_bolivar(parte_cuota);
                                         modc.gasto.setId(listainteres.get(l).getId());
 

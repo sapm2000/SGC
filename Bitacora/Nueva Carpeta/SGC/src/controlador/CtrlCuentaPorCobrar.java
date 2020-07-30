@@ -286,10 +286,10 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
                 columna[0] = listaCierremes.get(i).getMes_cierre();
                 columna[1] = listaCierremes.get(i).getAño_cierre();
-                columna[2] = Validacion.formatopago.format(listaCierremes.get(i).getMonto_bolivar());
-                columna[3] = Validacion.formatopago.format(listaCierremes.get(i).getMonto_dolar());
-                columna[4] = Validacion.formatopago.format(listaCierremes.get(i).getSaldo_restante_dolar()); //limito los decimales
-                columna[5] = Validacion.formatopago.format(listaCierremes.get(i).getSaldo_restante_bs());
+                columna[2] = Validacion.formatopago1.format(listaCierremes.get(i).getMonto_bolivar());
+                columna[3] = Validacion.formatopago1.format(listaCierremes.get(i).getMonto_dolar());
+                columna[4] = Validacion.formatopago1.format(listaCierremes.get(i).getSaldo_restante_dolar()); //limito los decimales
+                columna[5] = Validacion.formatopago1.format(listaCierremes.get(i).getSaldo_restante_bs());
                 columna[6] = listaCierremes.get(i).getMoneda_dominante();
 
                 modeloT.addRow(columna);
@@ -383,8 +383,8 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
                 columna[0] = listaCierremes.get(i).getMes_cierre();
                 columna[1] = listaCierremes.get(i).getAño_cierre();
-                columna[2] = Validacion.formatopago.format(listaCierremes.get(i).getMonto_bolivar());
-                columna[3] =  Validacion.formatopago.format(listaCierremes.get(i).getMonto_dolar());
+                columna[2] = Validacion.formatopago1.format(listaCierremes.get(i).getMonto_bolivar());
+                columna[3] =  Validacion.formatopago1.format(listaCierremes.get(i).getMonto_dolar());
                 columna[4] = listaCierremes.get(i).getSaldo_restante_dolar();
                 columna[5] = listaCierremes.get(i).getSaldo_restante_bs();
                 columna[6] = listaCierremes.get(i).getMoneda_dominante();
@@ -601,10 +601,10 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                                                         varsaldo = 0;
                                                                         montototal = lista_detalles.get(q).getSaldo_restante_bs(); //si el saldo restante es 0 quiere decir que el monto pagado a ese gasto es el total
                                                                     }
-                                                                    modcuen.setMonto(Double.parseDouble(Validacion.formatopago.format(montototal))); //seteamos el monto que se ha pagado del gasto
+                                                                    modcuen.setMonto(Double.parseDouble(Validacion.formatopago1.format(montototal))); //seteamos el monto que se ha pagado del gasto
                                                                     modcuen.cer.setId(lista_detalles.get(q).getId());//seteamos id del gasto
                                                                     modcuen.setMoneda(vista.cbxMoneda.getSelectedItem().toString());//seteamos la moneda
-                                                                    modc.setSaldo_restante_bs(Double.parseDouble(Validacion.formatopago.format(varsaldo)));//seteamos el saldo restante del gasto
+                                                                    modc.setSaldo_restante_bs(Double.parseDouble(Validacion.formatopago1.format(varsaldo)));//seteamos el saldo restante del gasto
                                                                     modc.setId(lista_detalles.get(q).getId());
                                                                     modc.actualizarTotalBolivar(modc);//actualizo el saldo restante en bs
                                                                     if (montototal != 0) {
@@ -631,10 +631,10 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                                                         montototal = lista_detalles.get(q).getSaldo_restante_dolar() * Double.parseDouble(vista.txtParidad.getText());//si el saldo restante es 0 quiere decir que el monto pagado a ese gasto es el total * la paridad
 
                                                                     }
-                                                                    modcuen.setMonto(Double.parseDouble(Validacion.formatopago.format(montototal))); //seteamos el monto que se ha pagado del gasto
+                                                                    modcuen.setMonto(Double.parseDouble(Validacion.formatopago1.format(montototal))); //seteamos el monto que se ha pagado del gasto
                                                                     modcuen.cer.setId(lista_detalles.get(q).getId());//seteamos id del gasto
                                                                     modcuen.setMoneda(vista.cbxMoneda.getSelectedItem().toString());//seteamos la moneda
-                                                                    modc.setSaldo_restante_dolar(Double.parseDouble(Validacion.formatopago.format(varsaldo)));//seteamos el saldo restante del gasto
+                                                                    modc.setSaldo_restante_dolar(Double.parseDouble(Validacion.formatopago1.format(varsaldo)));//seteamos el saldo restante del gasto
                                                                     modc.setId(lista_detalles.get(q).getId());
                                                                     modc.actualizarTotalDolar(modc);//actualizo el saldo restante en dolar
                                                                     if (montototal != 0) {
@@ -663,10 +663,10 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                                                         varsaldo = 0;
                                                                         montototal = lista_detalles.get(q).getSaldo_restante_dolar(); //si el saldo restante es 0 quiere decir que el monto pagado a ese gasto es el total
                                                                     }
-                                                                    modcuen.setMonto(Double.parseDouble(Validacion.formatopago.format(montototal))); //seteamos el monto que se ha pagado del gasto
+                                                                    modcuen.setMonto(Double.parseDouble(Validacion.formatopago1.format(montototal))); //seteamos el monto que se ha pagado del gasto
                                                                     modcuen.cer.setId(lista_detalles.get(q).getId());//seteamos id del gasto
                                                                     modcuen.setMoneda(vista.cbxMoneda.getSelectedItem().toString());//seteamos la moneda
-                                                                    modc.setSaldo_restante_dolar(Double.parseDouble(Validacion.formatopago.format(varsaldo)));//seteamos el saldo restante del gasto
+                                                                    modc.setSaldo_restante_dolar(Double.parseDouble(Validacion.formatopago1.format(varsaldo)));//seteamos el saldo restante del gasto
                                                                     modc.setId(lista_detalles.get(q).getId());
                                                                     modc.actualizarTotalDolar(modc);//actualizo el saldo restante en dolar
                                                                     if (montototal != 0) {
@@ -689,10 +689,10 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                                                         montototal = lista_detalles.get(q).getSaldo_restante_bs() / Double.parseDouble(vista.txtParidad.getText()); //si el saldo restante es 0 quiere decir que el monto pagado a ese gasto es el total / la paridad
 
                                                                     }
-                                                                    modcuen.setMonto(Double.parseDouble(Validacion.formatopago.format(montototal)));//seteamos el monto que se ha pagado del gasto
+                                                                    modcuen.setMonto(Double.parseDouble(Validacion.formatopago1.format(montototal)));//seteamos el monto que se ha pagado del gasto
                                                                     modcuen.cer.setId(lista_detalles.get(q).getId());//seteamos id del gasto
                                                                     modcuen.setMoneda(vista.cbxMoneda.getSelectedItem().toString());//seteamos la moneda
-                                                                    modc.setSaldo_restante_bs(Double.parseDouble(Validacion.formatopago.format(varsaldo)));//seteamos el saldo restante del gasto
+                                                                    modc.setSaldo_restante_bs(Double.parseDouble(Validacion.formatopago1.format(varsaldo)));//seteamos el saldo restante del gasto
                                                                     modc.setId(lista_detalles.get(q).getId());
                                                                     modc.actualizarTotalBolivar(modc);//actualizo el saldo restante en bs
                                                                     if (montototal != 0) {
@@ -760,7 +760,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
         if (datos != null) {
             for (Fondo datosX : datos) {
                 modfon = datosX;
-                vista.jComboFondo.addItem(modfon.getTipo() + " " +Validacion.formatopago.format( modfon.getSaldo() )+ " " + modfon.getMoneda());
+                vista.jComboFondo.addItem(modfon.getTipo() + " " +Validacion.formatopago1.format( modfon.getSaldo() )+ " " + modfon.getMoneda());
             }
 
         }

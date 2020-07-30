@@ -246,7 +246,7 @@ public class Unidad extends ConexionBD {
         rs = null;
         ResultSet rs2 = null;
 
-        String sql = "SELECT * FROM v_unidad WHERE activo = true order by id_tipo";
+        String sql = "SELECT * FROM v_unidad WHERE activo = true order by id";
 
         try {
             ps = con.prepareStatement(sql);

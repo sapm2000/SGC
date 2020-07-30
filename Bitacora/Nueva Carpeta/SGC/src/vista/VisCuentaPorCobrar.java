@@ -130,7 +130,7 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
         jTable1.setRowHeight(35);
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 640, 230));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 640, 210));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 94, 159));
@@ -245,6 +245,7 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
         txtParidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtParidad.setForeground(new java.awt.Color(255, 255, 255));
         txtParidad.setBorder(null);
+        txtParidad.setEnabled(false);
         jPanel2.add(txtParidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 110, 270, 20));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -320,7 +321,7 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
         jTable2.getTableHeader().setResizingAllowed(false);
         jTable2.getTableHeader().setReorderingAllowed(false);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 450, 630, 230));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 450, 630, 210));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
         add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 510, 300));
@@ -340,7 +341,7 @@ public class VisCuentaPorCobrar extends javax.swing.JPanel {
         btnGuardar.setBorder(null);
         btnGuardar.setBorderPainted(false);
         btnGuardar.setContentAreaFilled(false);
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGuardar.setHideActionText(true);
         btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnGuardar.setIconTextGap(10);
