@@ -517,7 +517,8 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                 JOptionPane.showMessageDialog(null, "Seleccione el número de la unidad ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
                             } else {
                                 modcuen.uni.setId(listaunidades.get(ind).getId()); //seteo el id de la unidad 
-                                modcuen.setMonto(Double.parseDouble(vista.txtMonto.getText())); //seteo el monto ingresado en la casilla de monto
+                                String como = Validacion.formatopago.format(Double.parseDouble(vista.txtMonto.getText()));
+                                modcuen.setMonto(Double.parseDouble(como)); //seteo el monto ingresado en la casilla de monto
                                 modcuen.setReferencia(vista.txtReferencia.getText()); //seteo el numero de referencia
                                 java.sql.Date sqlDate = convert(vista.txtFecha.getDatoFecha()); //seteo la fecha y la convierto a formato sql
                                 modcuen.setFecha(sqlDate);
@@ -574,7 +575,8 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
                                         JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
                                         modcuen.buscId(modcuen); //busco el ultimo id que viene siendo el pago que acabo de cargar
-                                        double monto_total = Double.parseDouble(vista.txtMonto.getText()); //declaro variable que obtiene el valor del monto ingresado
+                                        
+                                        double monto_total = Double.parseDouble(Validacion.formatopago.format(Double.parseDouble(vista.txtMonto.getText()))); //declaro variable que obtiene el valor del monto ingresado
 
                                         for (int i = 0; i < vista.jTable1.getRowCount(); i++) {
                                             if (monto_total > 0) {//si todavia queda dinero sin utilizar continua el ciclo
@@ -905,5 +907,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
         c.setBorder(BorderFactory.createLineBorder(new Color(255, 255, 255), 2));
     }
+    
+    
 
 }

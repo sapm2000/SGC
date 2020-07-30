@@ -721,7 +721,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
         vista.txtId.setVisible(false);
         vista.txtId.setText(dato);
         vista.txaDescripcion.setText(modsan.getDescripcion());
-        vista.txtmonto.setText(String.valueOf(modsan.getMonto()));
+        vista.txtmonto.setText(String.valueOf(Validacion.formatopago.format(modsan.getMonto())));
         vista.jComboBox1.setSelectedItem(modsan.getTipo());
         int mes = modsan.getMes() - 1;
         vista.txtMes.setSelectedIndex(mes);
