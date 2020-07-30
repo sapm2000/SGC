@@ -197,12 +197,15 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                     int mes_c = listaGastos.get(z).getMes();
                                     int año_c = listaGastos.get(z).getAnio();
                                     int meses_r = listaGastos.get(z).getMesesRestantes();
-                                    System.out.println(listaGastos.get(z).getMesesRestantes());
+                                    int meses_t=listaGastos.get(z).getNumMeses();
+                                   
                                     tipo_cuota[z] = listaGastos.get(z).getCalcular();
-                                    int var1 = mes_c + meses_r;
+                                    int var1 = mes_c + meses_t;
+                                    System.out.println(var1+"="+mes_c+"+"+listaGastos.get(z).getMesesRestantes());
                                     double monto_t = listaGastos.get(z).getMonto();
-
-                                    double parte_periodo = monto_t / meses_r;
+                                    System.out.println("var1 "+var1);
+                                    System.out.println("gasto id:"+listaGastos.get(z).getId());
+                                    double parte_periodo = monto_t / meses_t;
 
                                     if (año >= año_c) {
 
@@ -230,9 +233,10 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                                     String tipo = String.valueOf(tipo_cuota[z]);
 
                                                     if (numRegistro > 0) {
-                                                        System.out.println(meses_r);
+                                                         
+                                                        System.out.println("antes"+meses_r);
                                                         modc.gasto.setMesesRestantes(meses_r - 1);
-                                                        System.out.println(modc.gasto.getMesesRestantes());
+                                                        System.out.println("despues"+modc.gasto.getMesesRestantes());
                                                         modc.gasto.setId(Integer.parseInt(String.valueOf(id_cuota[z])));
 
                                                         if (modc.gasto.getMesesRestantes() == 0) {
@@ -258,8 +262,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                                                 double total_dolar = parte_cuota / paridad;
                                                                 modc.setMonto_bolivar(parte_cuota);
                                                                 modc.setMonto_dolar(total_dolar);
-                                                                System.out.println(total_dolar);
-                                                                System.out.println(parte_cuota);
+                                                               
                                                             } else {
                                                                 double paridad = Double.parseDouble(vista.txtParidad.getText());
                                                                 double total_bolivar = parte_cuota * paridad;
