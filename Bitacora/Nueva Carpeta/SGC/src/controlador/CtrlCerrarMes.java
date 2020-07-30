@@ -194,17 +194,18 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
 
                                 for (int z = 0; z < numCuotas; z++) {
                                     id_cuota[z] = listaGastos.get(z).getId();
+                                    mes = vista.txtMes.getSelectedIndex() + 1;
                                     int mes_c = listaGastos.get(z).getMes();
                                     int año_c = listaGastos.get(z).getAnio();
                                     int meses_r = listaGastos.get(z).getMesesRestantes();
-                                    int meses_t=listaGastos.get(z).getNumMeses();
-                                   
+                                    int meses_t = listaGastos.get(z).getNumMeses();
+
                                     tipo_cuota[z] = listaGastos.get(z).getCalcular();
                                     int var1 = mes_c + meses_t;
-                                    System.out.println(var1+"="+mes_c+"+"+listaGastos.get(z).getMesesRestantes());
+                                    System.out.println(var1 + "=" + mes_c + "+" + listaGastos.get(z).getMesesRestantes());
                                     double monto_t = listaGastos.get(z).getMonto();
-                                    System.out.println("var1 "+var1);
-                                    System.out.println("gasto id:"+listaGastos.get(z).getId());
+                                    System.out.println("var1 " + var1);
+                                    System.out.println("gasto id:" + listaGastos.get(z).getId());
                                     double parte_periodo = monto_t / meses_t;
 
                                     if (año >= año_c) {
@@ -219,9 +220,11 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                             if (var1 > 13) {
                                                 int var2 = var1;
                                                 var1 = var1 - 12;
+                                                mes = mes - 12;
                                                 año_c = año_c + 1;
                                                 if (var2 > 25) {
                                                     var1 = var1 - 12;
+                                                    mes = mes - 12;
                                                     año_c = año_c + 1;
                                                 }
                                             }
@@ -233,10 +236,10 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                                     String tipo = String.valueOf(tipo_cuota[z]);
 
                                                     if (numRegistro > 0) {
-                                                         
-                                                        System.out.println("antes"+meses_r);
+
+                                                        System.out.println("antes" + meses_r);
                                                         modc.gasto.setMesesRestantes(meses_r - 1);
-                                                        System.out.println("despues"+modc.gasto.getMesesRestantes());
+                                                        System.out.println("despues" + modc.gasto.getMesesRestantes());
                                                         modc.gasto.setId(Integer.parseInt(String.valueOf(id_cuota[z])));
 
                                                         if (modc.gasto.getMesesRestantes() == 0) {
@@ -262,7 +265,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                                                 double total_dolar = parte_cuota / paridad;
                                                                 modc.setMonto_bolivar(parte_cuota);
                                                                 modc.setMonto_dolar(total_dolar);
-                                                               
+
                                                             } else {
                                                                 double paridad = Double.parseDouble(vista.txtParidad.getText());
                                                                 double total_bolivar = parte_cuota * paridad;
