@@ -507,7 +507,7 @@ public class CerrarMes extends ConexionBD {
         ps = null;
         rs = null;
 
-        String sql = "SELECT unidad.n_unidad, recibo.mes, recibo.anio, sum(recibo.monto_dolar), sum(recibo.monto_bolivar) FROM public.recibo inner join unidad on recibo.id_unidad=unidad.id group by unidad.n_unidad, recibo.mes, recibo.anio;";
+        String sql = "SELECT unidad.n_unidad, recibo.mes, recibo.anio, sum(recibo.monto_dolar), sum(recibo.monto_bolivar) FROM public.recibo inner join unidad on recibo.id_unidad=unidad.id group by unidad.n_unidad, recibo.mes, recibo.anio order by recibo.anio, recibo.mes;";
         try {
             ps = con.prepareStatement(sql);
 

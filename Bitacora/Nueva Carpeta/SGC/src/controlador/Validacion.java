@@ -28,10 +28,11 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
 
     public static DecimalFormatSymbols simbolos = DecimalFormatSymbols.getInstance(Locale.ENGLISH);
 
-    public static DecimalFormat formato1 = new DecimalFormat("##.##", simbolos);
-    public static DecimalFormat formatopago = new DecimalFormat("##.##", simbolos);
+    public static DecimalFormat formato1 = new DecimalFormat("##.###", simbolos);
+    public static DecimalFormat formatopago = new DecimalFormat("##.###", simbolos);
+    public static DecimalFormat formatopago1 = new DecimalFormat("##.##", simbolos);
     //public static DecimalFormat formato1 = new DecimalFormat("#.##", simbolos);
-    public static DecimalFormat formato2 = new DecimalFormat("##.##", simbolos);
+    public static DecimalFormat formato2 = new DecimalFormat("##.###", simbolos);
     public static DecimalFormat formatoalicuota = new DecimalFormat("#.##%", simbolos);
 
     public static java.sql.Date convert(java.util.Date uDate) {

@@ -5,7 +5,7 @@
 -- Dumped from database version 12.2
 -- Dumped by pg_dump version 12.2
 
--- Started on 2020-07-28 21:19:55
+-- Started on 2020-07-29 20:47:38
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,7 +19,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 292 (class 1255 OID 68979)
+-- TOC entry 292 (class 1255 OID 75485)
 -- Name: agregar_asambleas(character varying, date, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -47,7 +47,7 @@ $$;
 ALTER FUNCTION public.agregar_asambleas(nombre2 character varying, fecha2 date, descripcion2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 293 (class 1255 OID 68980)
+-- TOC entry 293 (class 1255 OID 75486)
 -- Name: agregar_banco(character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -74,7 +74,7 @@ $$;
 ALTER FUNCTION public.agregar_banco(nombre2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 294 (class 1255 OID 68981)
+-- TOC entry 294 (class 1255 OID 75487)
 -- Name: agregar_categoria(integer, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -102,7 +102,7 @@ $$;
 ALTER FUNCTION public.agregar_categoria(id_usuario2 integer, nombre2 character varying, descripcion2 character varying) OWNER TO postgres;
 
 --
--- TOC entry 295 (class 1255 OID 68982)
+-- TOC entry 295 (class 1255 OID 75488)
 -- Name: agregar_concepto(character varying, character varying, integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -130,7 +130,7 @@ $$;
 ALTER FUNCTION public.agregar_concepto(nombre2 character varying, descripcion2 character varying, id_categoria2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 296 (class 1255 OID 68983)
+-- TOC entry 296 (class 1255 OID 75489)
 -- Name: agregar_condominio(integer, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -160,7 +160,7 @@ $$;
 ALTER FUNCTION public.agregar_condominio(id_usuario2 integer, rif2 character varying, razon_social2 character varying, telefono2 character varying, correo_electronico2 character varying) OWNER TO postgres;
 
 --
--- TOC entry 297 (class 1255 OID 68984)
+-- TOC entry 297 (class 1255 OID 75490)
 -- Name: agregar_cuenta(character varying, character varying, integer, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -197,7 +197,7 @@ $$;
 ALTER FUNCTION public.agregar_cuenta(n_cuenta2 character varying, tipo2 character varying, id_banco2 integer, ci_rif2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 299 (class 1255 OID 68985)
+-- TOC entry 299 (class 1255 OID 75491)
 -- Name: agregar_cuenta_pagar(character varying, character varying, character varying, double precision, date, double precision, integer, integer, character varying, integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -227,7 +227,7 @@ $$;
 ALTER FUNCTION public.agregar_cuenta_pagar(descripcion2 character varying, num_ref2 character varying, moneda2 character varying, monto2 double precision, fecha2 date, tasa_cambio2 double precision, id_gasto2 integer, id_forma_pago2 integer, n_cuenta2 character varying, id_fondo2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 301 (class 1255 OID 68986)
+-- TOC entry 301 (class 1255 OID 75492)
 -- Name: agregar_fondos(integer, character varying, date, character varying, character varying, double precision, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -256,7 +256,7 @@ $$;
 ALTER FUNCTION public.agregar_fondos(id_usuario2 integer, tipo2 character varying, fecha2 date, descripcion2 character varying, observaciones2 character varying, monto_inicial2 double precision, moneda2 character varying) OWNER TO postgres;
 
 --
--- TOC entry 302 (class 1255 OID 68987)
+-- TOC entry 302 (class 1255 OID 75493)
 -- Name: agregar_forma_pago(character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -284,7 +284,7 @@ $$;
 ALTER FUNCTION public.agregar_forma_pago(nombre2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 316 (class 1255 OID 68988)
+-- TOC entry 316 (class 1255 OID 75494)
 -- Name: agregar_gasto(character varying, character varying, character varying, character varying, integer, integer, integer, integer, text, integer, double precision, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -312,7 +312,7 @@ $$;
 ALTER FUNCTION public.agregar_gasto(nombre2 character varying, tipo2 character varying, id_proveedor2 character varying, calcular_por2 character varying, mes2 integer, anio2 integer, n_meses2 integer, id_asamblea2 integer, observacion2 text, meses_restantes2 integer, monto2 double precision, moneda2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 317 (class 1255 OID 68989)
+-- TOC entry 317 (class 1255 OID 75495)
 -- Name: agregar_interes(character varying, double precision, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -340,7 +340,7 @@ $$;
 ALTER FUNCTION public.agregar_interes(nombre2 character varying, factor2 double precision, rif_condominio2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 318 (class 1255 OID 68990)
+-- TOC entry 318 (class 1255 OID 75496)
 -- Name: agregar_propietario(character varying, character varying, character varying, character varying, character varying, character varying, character varying, boolean, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -386,7 +386,7 @@ $$;
 ALTER FUNCTION public.agregar_propietario(_cedula character varying, _p_nombre character varying, _s_nombre character varying, _p_apellido character varying, _s_apellido character varying, _telefono character varying, _correo character varying, _existe boolean, _id_usuario integer) OWNER TO postgres;
 
 --
--- TOC entry 319 (class 1255 OID 68991)
+-- TOC entry 319 (class 1255 OID 75497)
 -- Name: agregar_proveedor(character varying, character varying, character varying, character varying, character varying, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -414,7 +414,7 @@ $$;
 ALTER FUNCTION public.agregar_proveedor(cedula2 character varying, nombre2 character varying, telefono2 character varying, correo2 character varying, contacto2 character varying, direccion2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 320 (class 1255 OID 68992)
+-- TOC entry 320 (class 1255 OID 75498)
 -- Name: agregar_sancion(character varying, integer, integer, double precision, character varying, character varying, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -442,7 +442,7 @@ $$;
 ALTER FUNCTION public.agregar_sancion(tipo2 character varying, mes2 integer, anio2 integer, monto2 double precision, descripcion2 character varying, estado2 character varying, moneda2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 321 (class 1255 OID 68993)
+-- TOC entry 321 (class 1255 OID 75499)
 -- Name: agregar_tipo_unidad(character varying, double precision, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -470,7 +470,7 @@ $$;
 ALTER FUNCTION public.agregar_tipo_unidad(tipo2 character varying, area2 double precision, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 322 (class 1255 OID 68994)
+-- TOC entry 322 (class 1255 OID 75500)
 -- Name: agregar_unidad(character varying, character varying, character varying, integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -498,7 +498,7 @@ $$;
 ALTER FUNCTION public.agregar_unidad(n_unidad2 character varying, n_documento2 character varying, direccion2 character varying, id_tipo2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 323 (class 1255 OID 68995)
+-- TOC entry 323 (class 1255 OID 75501)
 -- Name: agregar_visita(integer, character varying, integer, character varying, character varying, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -526,7 +526,7 @@ $$;
 ALTER FUNCTION public.agregar_visita(id_unidad2 integer, ci_persona2 character varying, n_personas2 integer, matricula2 character varying, modelo2 character varying, color2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 324 (class 1255 OID 68996)
+-- TOC entry 324 (class 1255 OID 75502)
 -- Name: calcular_alicuota(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -548,7 +548,7 @@ $$;
 ALTER FUNCTION public.calcular_alicuota() OWNER TO postgres;
 
 --
--- TOC entry 298 (class 1255 OID 68997)
+-- TOC entry 298 (class 1255 OID 75503)
 -- Name: cambiar_clave(character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -577,7 +577,7 @@ $$;
 ALTER FUNCTION public.cambiar_clave(usuario2 character varying, password_nuevo character varying, password_actual character varying) OWNER TO postgres;
 
 --
--- TOC entry 325 (class 1255 OID 68998)
+-- TOC entry 325 (class 1255 OID 75504)
 -- Name: cambiar_pregunta(character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -606,7 +606,7 @@ $$;
 ALTER FUNCTION public.cambiar_pregunta(usuario2 character varying, pregunta2 character varying, respuesta2 character varying, password2 character varying) OWNER TO postgres;
 
 --
--- TOC entry 326 (class 1255 OID 68999)
+-- TOC entry 326 (class 1255 OID 75505)
 -- Name: eliminar_banco(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -635,7 +635,7 @@ $$;
 ALTER FUNCTION public.eliminar_banco(id2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 327 (class 1255 OID 69000)
+-- TOC entry 327 (class 1255 OID 75506)
 -- Name: eliminar_categoria(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -663,7 +663,7 @@ $$;
 ALTER FUNCTION public.eliminar_categoria(id_usuario2 integer, id2 integer) OWNER TO postgres;
 
 --
--- TOC entry 328 (class 1255 OID 69001)
+-- TOC entry 328 (class 1255 OID 75507)
 -- Name: eliminar_concepto(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -691,7 +691,7 @@ $$;
 ALTER FUNCTION public.eliminar_concepto(id2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 329 (class 1255 OID 69002)
+-- TOC entry 329 (class 1255 OID 75508)
 -- Name: eliminar_cuenta(character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -719,7 +719,7 @@ $$;
 ALTER FUNCTION public.eliminar_cuenta(n_cuenta2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 330 (class 1255 OID 69003)
+-- TOC entry 330 (class 1255 OID 75509)
 -- Name: eliminar_fondos(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -747,7 +747,7 @@ $$;
 ALTER FUNCTION public.eliminar_fondos(id_usuario2 integer, id2 integer) OWNER TO postgres;
 
 --
--- TOC entry 331 (class 1255 OID 69004)
+-- TOC entry 331 (class 1255 OID 75510)
 -- Name: eliminar_forma_pago(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -775,7 +775,7 @@ $$;
 ALTER FUNCTION public.eliminar_forma_pago(id2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 332 (class 1255 OID 69005)
+-- TOC entry 332 (class 1255 OID 75511)
 -- Name: eliminar_interes(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -803,7 +803,7 @@ $$;
 ALTER FUNCTION public.eliminar_interes(id2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 333 (class 1255 OID 69006)
+-- TOC entry 333 (class 1255 OID 75512)
 -- Name: eliminar_mensaje(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -845,7 +845,7 @@ $$;
 ALTER FUNCTION public.eliminar_mensaje() OWNER TO postgres;
 
 --
--- TOC entry 334 (class 1255 OID 69007)
+-- TOC entry 334 (class 1255 OID 75513)
 -- Name: eliminar_proveedor(character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -873,7 +873,7 @@ $$;
 ALTER FUNCTION public.eliminar_proveedor(cedula2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 335 (class 1255 OID 69008)
+-- TOC entry 335 (class 1255 OID 75514)
 -- Name: eliminar_sancion(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -901,7 +901,7 @@ $$;
 ALTER FUNCTION public.eliminar_sancion(id2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 336 (class 1255 OID 69009)
+-- TOC entry 336 (class 1255 OID 75515)
 -- Name: eliminar_tipo_unidad(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -929,7 +929,7 @@ $$;
 ALTER FUNCTION public.eliminar_tipo_unidad(tipo2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 300 (class 1255 OID 69010)
+-- TOC entry 300 (class 1255 OID 75516)
 -- Name: eliminar_unidad(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -957,7 +957,7 @@ $$;
 ALTER FUNCTION public.eliminar_unidad(id2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 303 (class 1255 OID 69011)
+-- TOC entry 303 (class 1255 OID 75517)
 -- Name: limpiar_mensaje(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -977,7 +977,7 @@ CREATE FUNCTION public.limpiar_mensaje() RETURNS void
 ALTER FUNCTION public.limpiar_mensaje() OWNER TO postgres;
 
 --
--- TOC entry 291 (class 1255 OID 69012)
+-- TOC entry 291 (class 1255 OID 75518)
 -- Name: llenar_bitacora(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1003,7 +1003,7 @@ $$;
 ALTER FUNCTION public.llenar_bitacora() OWNER TO postgres;
 
 --
--- TOC entry 337 (class 1255 OID 69013)
+-- TOC entry 337 (class 1255 OID 75519)
 -- Name: login(character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1031,7 +1031,7 @@ $$;
 ALTER FUNCTION public.login(usu character varying, pass character varying) OWNER TO postgres;
 
 --
--- TOC entry 338 (class 1255 OID 69014)
+-- TOC entry 338 (class 1255 OID 75520)
 -- Name: mayuscula_asambleas(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1051,7 +1051,7 @@ $$;
 ALTER FUNCTION public.mayuscula_asambleas() OWNER TO postgres;
 
 --
--- TOC entry 339 (class 1255 OID 69015)
+-- TOC entry 339 (class 1255 OID 75521)
 -- Name: mayuscula_banco(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1070,7 +1070,7 @@ $$;
 ALTER FUNCTION public.mayuscula_banco() OWNER TO postgres;
 
 --
--- TOC entry 340 (class 1255 OID 69016)
+-- TOC entry 340 (class 1255 OID 75522)
 -- Name: mayuscula_categoriagasto(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1090,7 +1090,7 @@ $$;
 ALTER FUNCTION public.mayuscula_categoriagasto() OWNER TO postgres;
 
 --
--- TOC entry 341 (class 1255 OID 69017)
+-- TOC entry 341 (class 1255 OID 75523)
 -- Name: mayuscula_cobro_unidad(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1109,7 +1109,7 @@ $$;
 ALTER FUNCTION public.mayuscula_cobro_unidad() OWNER TO postgres;
 
 --
--- TOC entry 342 (class 1255 OID 69018)
+-- TOC entry 342 (class 1255 OID 75524)
 -- Name: mayuscula_concepto_gasto(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1129,7 +1129,7 @@ $$;
 ALTER FUNCTION public.mayuscula_concepto_gasto() OWNER TO postgres;
 
 --
--- TOC entry 343 (class 1255 OID 69019)
+-- TOC entry 343 (class 1255 OID 75525)
 -- Name: mayuscula_condominio(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1149,7 +1149,7 @@ $$;
 ALTER FUNCTION public.mayuscula_condominio() OWNER TO postgres;
 
 --
--- TOC entry 344 (class 1255 OID 69020)
+-- TOC entry 344 (class 1255 OID 75526)
 -- Name: mayuscula_cuenta(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1168,7 +1168,7 @@ $$;
 ALTER FUNCTION public.mayuscula_cuenta() OWNER TO postgres;
 
 --
--- TOC entry 345 (class 1255 OID 69021)
+-- TOC entry 345 (class 1255 OID 75527)
 -- Name: mayuscula_cuenta_pagar(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1187,7 +1187,7 @@ $$;
 ALTER FUNCTION public.mayuscula_cuenta_pagar() OWNER TO postgres;
 
 --
--- TOC entry 346 (class 1255 OID 69022)
+-- TOC entry 346 (class 1255 OID 75528)
 -- Name: mayuscula_detalle_pagos(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1206,7 +1206,7 @@ $$;
 ALTER FUNCTION public.mayuscula_detalle_pagos() OWNER TO postgres;
 
 --
--- TOC entry 347 (class 1255 OID 69023)
+-- TOC entry 347 (class 1255 OID 75529)
 -- Name: mayuscula_fondos(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1227,7 +1227,7 @@ $$;
 ALTER FUNCTION public.mayuscula_fondos() OWNER TO postgres;
 
 --
--- TOC entry 348 (class 1255 OID 69024)
+-- TOC entry 348 (class 1255 OID 75530)
 -- Name: mayuscula_forma_pago(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1246,7 +1246,7 @@ $$;
 ALTER FUNCTION public.mayuscula_forma_pago() OWNER TO postgres;
 
 --
--- TOC entry 349 (class 1255 OID 69025)
+-- TOC entry 349 (class 1255 OID 75531)
 -- Name: mayuscula_gasto(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1267,7 +1267,7 @@ $$;
 ALTER FUNCTION public.mayuscula_gasto() OWNER TO postgres;
 
 --
--- TOC entry 350 (class 1255 OID 69026)
+-- TOC entry 350 (class 1255 OID 75532)
 -- Name: mayuscula_interes(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1286,7 +1286,7 @@ $$;
 ALTER FUNCTION public.mayuscula_interes() OWNER TO postgres;
 
 --
--- TOC entry 351 (class 1255 OID 69027)
+-- TOC entry 351 (class 1255 OID 75533)
 -- Name: mayuscula_persona(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1309,7 +1309,7 @@ $$;
 ALTER FUNCTION public.mayuscula_persona() OWNER TO postgres;
 
 --
--- TOC entry 352 (class 1255 OID 69028)
+-- TOC entry 352 (class 1255 OID 75534)
 -- Name: mayuscula_proveedores(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1331,7 +1331,7 @@ $$;
 ALTER FUNCTION public.mayuscula_proveedores() OWNER TO postgres;
 
 --
--- TOC entry 353 (class 1255 OID 69029)
+-- TOC entry 353 (class 1255 OID 75535)
 -- Name: mayuscula_sancion(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1350,7 +1350,7 @@ $$;
 ALTER FUNCTION public.mayuscula_sancion() OWNER TO postgres;
 
 --
--- TOC entry 354 (class 1255 OID 69030)
+-- TOC entry 354 (class 1255 OID 75536)
 -- Name: mayuscula_tipo_unidad(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1369,7 +1369,7 @@ $$;
 ALTER FUNCTION public.mayuscula_tipo_unidad() OWNER TO postgres;
 
 --
--- TOC entry 355 (class 1255 OID 69031)
+-- TOC entry 355 (class 1255 OID 75537)
 -- Name: mayuscula_tipo_usuario(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1388,7 +1388,7 @@ $$;
 ALTER FUNCTION public.mayuscula_tipo_usuario() OWNER TO postgres;
 
 --
--- TOC entry 356 (class 1255 OID 69032)
+-- TOC entry 356 (class 1255 OID 75538)
 -- Name: mayuscula_unidad(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1409,7 +1409,7 @@ $$;
 ALTER FUNCTION public.mayuscula_unidad() OWNER TO postgres;
 
 --
--- TOC entry 357 (class 1255 OID 69033)
+-- TOC entry 357 (class 1255 OID 75539)
 -- Name: mayuscula_visita(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1430,7 +1430,7 @@ $$;
 ALTER FUNCTION public.mayuscula_visita() OWNER TO postgres;
 
 --
--- TOC entry 358 (class 1255 OID 69034)
+-- TOC entry 358 (class 1255 OID 75540)
 -- Name: modificar_banco(integer, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1458,7 +1458,7 @@ $$;
 ALTER FUNCTION public.modificar_banco(id2 integer, nombre2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 359 (class 1255 OID 69035)
+-- TOC entry 359 (class 1255 OID 75541)
 -- Name: modificar_categoria(integer, character varying, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1486,7 +1486,7 @@ $$;
 ALTER FUNCTION public.modificar_categoria(id_usuario2 integer, nombre2 character varying, descripcion2 character varying, id2 integer) OWNER TO postgres;
 
 --
--- TOC entry 360 (class 1255 OID 69036)
+-- TOC entry 360 (class 1255 OID 75542)
 -- Name: modificar_concepto(integer, character varying, character varying, integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1514,7 +1514,7 @@ $$;
 ALTER FUNCTION public.modificar_concepto(id2 integer, nombre2 character varying, descripcion2 character varying, id_categoria2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 361 (class 1255 OID 69037)
+-- TOC entry 361 (class 1255 OID 75543)
 -- Name: modificar_condominio(integer, character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1542,7 +1542,7 @@ $$;
 ALTER FUNCTION public.modificar_condominio(id_usuario2 integer, rif2 character varying, razon_social2 character varying, telefono2 character varying, correo_electronico2 character varying) OWNER TO postgres;
 
 --
--- TOC entry 362 (class 1255 OID 69038)
+-- TOC entry 362 (class 1255 OID 75544)
 -- Name: modificar_cuenta(character varying, integer, character varying, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1571,7 +1571,7 @@ $$;
 ALTER FUNCTION public.modificar_cuenta(tipo2 character varying, id_banco2 integer, ci_persona2 character varying, n_cuenta2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 363 (class 1255 OID 69039)
+-- TOC entry 363 (class 1255 OID 75545)
 -- Name: modificar_fondos(integer, character varying, character varying, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1600,7 +1600,7 @@ $$;
 ALTER FUNCTION public.modificar_fondos(id_usuario2 integer, tipo2 character varying, descripcion2 character varying, observaciones2 character varying, id2 integer) OWNER TO postgres;
 
 --
--- TOC entry 364 (class 1255 OID 69040)
+-- TOC entry 364 (class 1255 OID 75546)
 -- Name: modificar_forma_pago(integer, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1628,7 +1628,7 @@ $$;
 ALTER FUNCTION public.modificar_forma_pago(id2 integer, nombre2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 365 (class 1255 OID 69041)
+-- TOC entry 365 (class 1255 OID 75547)
 -- Name: modificar_gasto(integer, character varying, character varying, character varying, character varying, integer, integer, integer, integer, text, integer, double precision, double precision, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1656,7 +1656,7 @@ $$;
 ALTER FUNCTION public.modificar_gasto(id2 integer, nombre2 character varying, tipo2 character varying, id_proveedor2 character varying, calcular_por2 character varying, mes2 integer, anio2 integer, n_meses2 integer, id_asamblea2 integer, observacion2 text, meses_restantes2 integer, monto2 double precision, saldo2 double precision, moneda2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 366 (class 1255 OID 69042)
+-- TOC entry 366 (class 1255 OID 75548)
 -- Name: modificar_interes(integer, character varying, double precision, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1684,7 +1684,7 @@ $$;
 ALTER FUNCTION public.modificar_interes(id2 integer, nombre2 character varying, factor2 double precision, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 367 (class 1255 OID 69043)
+-- TOC entry 367 (class 1255 OID 75549)
 -- Name: modificar_proveedor(character varying, character varying, character varying, character varying, character varying, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1712,7 +1712,7 @@ $$;
 ALTER FUNCTION public.modificar_proveedor(cedula2 character varying, nombre2 character varying, telefono2 character varying, correo2 character varying, contacto2 character varying, direccion2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 368 (class 1255 OID 69044)
+-- TOC entry 368 (class 1255 OID 75550)
 -- Name: modificar_sancion(character varying, integer, integer, double precision, character varying, character varying, integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1740,7 +1740,7 @@ $$;
 ALTER FUNCTION public.modificar_sancion(tipo2 character varying, mes2 integer, anio2 integer, monto2 double precision, descripcion2 character varying, moneda2 character varying, id2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 369 (class 1255 OID 69045)
+-- TOC entry 369 (class 1255 OID 75551)
 -- Name: modificar_tipo_unidad(character varying, double precision, integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1768,7 +1768,7 @@ $$;
 ALTER FUNCTION public.modificar_tipo_unidad(tipo2 character varying, area2 double precision, id2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 370 (class 1255 OID 69046)
+-- TOC entry 370 (class 1255 OID 75552)
 -- Name: modificar_tipo_usuario(character varying, integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1798,7 +1798,7 @@ $$;
 ALTER FUNCTION public.modificar_tipo_usuario(_tipo character varying, _id integer, _id_usuario integer) OWNER TO postgres;
 
 --
--- TOC entry 371 (class 1255 OID 69047)
+-- TOC entry 371 (class 1255 OID 75553)
 -- Name: modificar_unidad(character varying, character varying, integer, integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1826,7 +1826,7 @@ $$;
 ALTER FUNCTION public.modificar_unidad(n_documento2 character varying, direccion2 character varying, id_tipo2 integer, id2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 372 (class 1255 OID 69048)
+-- TOC entry 372 (class 1255 OID 75554)
 -- Name: pagar_gasto(); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1859,7 +1859,7 @@ $$;
 ALTER FUNCTION public.pagar_gasto() OWNER TO postgres;
 
 --
--- TOC entry 373 (class 1255 OID 69049)
+-- TOC entry 373 (class 1255 OID 75555)
 -- Name: reactivar_banco(character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1887,7 +1887,7 @@ $$;
 ALTER FUNCTION public.reactivar_banco(nombre_banco2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 374 (class 1255 OID 69050)
+-- TOC entry 374 (class 1255 OID 75556)
 -- Name: reactivar_categoria(character varying, character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1915,7 +1915,7 @@ $$;
 ALTER FUNCTION public.reactivar_categoria(nombre2 character varying, descripcion2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 375 (class 1255 OID 69051)
+-- TOC entry 375 (class 1255 OID 75557)
 -- Name: reactivar_concepto(character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1943,7 +1943,7 @@ $$;
 ALTER FUNCTION public.reactivar_concepto(nombre2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 376 (class 1255 OID 69052)
+-- TOC entry 376 (class 1255 OID 75558)
 -- Name: reactivar_cuenta(character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1971,7 +1971,7 @@ $$;
 ALTER FUNCTION public.reactivar_cuenta(n_cuenta2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 377 (class 1255 OID 69053)
+-- TOC entry 377 (class 1255 OID 75559)
 -- Name: reactivar_fondo(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -1999,7 +1999,7 @@ $$;
 ALTER FUNCTION public.reactivar_fondo(id2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 378 (class 1255 OID 69054)
+-- TOC entry 378 (class 1255 OID 75560)
 -- Name: reactivar_forma_pago(character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2027,7 +2027,7 @@ $$;
 ALTER FUNCTION public.reactivar_forma_pago(nombre2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 379 (class 1255 OID 69055)
+-- TOC entry 379 (class 1255 OID 75561)
 -- Name: reactivar_interes(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2055,7 +2055,7 @@ $$;
 ALTER FUNCTION public.reactivar_interes(id2 integer, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 380 (class 1255 OID 69056)
+-- TOC entry 380 (class 1255 OID 75562)
 -- Name: reactivar_proveedor(character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2083,7 +2083,7 @@ $$;
 ALTER FUNCTION public.reactivar_proveedor(cedula2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 381 (class 1255 OID 69057)
+-- TOC entry 381 (class 1255 OID 75563)
 -- Name: reactivar_tipo_unidad(character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2111,7 +2111,7 @@ $$;
 ALTER FUNCTION public.reactivar_tipo_unidad(tipo2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 382 (class 1255 OID 69058)
+-- TOC entry 382 (class 1255 OID 75564)
 -- Name: reactivar_unidad(character varying, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2139,7 +2139,7 @@ $$;
 ALTER FUNCTION public.reactivar_unidad(n_unidad2 character varying, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 383 (class 1255 OID 69059)
+-- TOC entry 383 (class 1255 OID 75565)
 -- Name: registrar_cuota(integer, integer, integer, integer, double precision, double precision, character varying, character varying, double precision, double precision, double precision, double precision, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2171,7 +2171,7 @@ $$;
 ALTER FUNCTION public.registrar_cuota(id_unidad2 integer, id_gasto2 integer, mes2 integer, anio2 integer, monto_dolar2 double precision, monto_bolivar2 double precision, tipo_gasto2 character varying, moneda_dominante2 character varying, paridad2 double precision, saldo_restante_bolivar2 double precision, saldo_restante_dolar2 double precision, alicuota2 double precision, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 384 (class 1255 OID 69060)
+-- TOC entry 384 (class 1255 OID 75566)
 -- Name: registrar_interes(integer, integer, integer, integer, double precision, double precision, character varying, character varying, double precision, double precision, double precision, double precision, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2203,7 +2203,7 @@ $$;
 ALTER FUNCTION public.registrar_interes(id_unidad2 integer, id_gasto2 integer, mes2 integer, anio2 integer, monto_dolar2 double precision, monto_bolivar2 double precision, tipo_gasto2 character varying, moneda_dominante2 character varying, paridad2 double precision, saldo_restante_bolivar2 double precision, saldo_restante_dolar2 double precision, alicuota2 double precision, id_usuario2 integer) OWNER TO postgres;
 
 --
--- TOC entry 385 (class 1255 OID 69061)
+-- TOC entry 385 (class 1255 OID 75567)
 -- Name: registrar_salida(integer, integer); Type: FUNCTION; Schema: public; Owner: postgres
 --
 
@@ -2236,7 +2236,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 202 (class 1259 OID 69062)
+-- TOC entry 202 (class 1259 OID 75568)
 -- Name: asambleas; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2251,7 +2251,7 @@ CREATE TABLE public.asambleas (
 ALTER TABLE public.asambleas OWNER TO postgres;
 
 --
--- TOC entry 203 (class 1259 OID 69068)
+-- TOC entry 203 (class 1259 OID 75574)
 -- Name: asambleas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2276,7 +2276,7 @@ ALTER SEQUENCE public.asambleas_id_seq OWNED BY public.asambleas.id;
 
 
 --
--- TOC entry 204 (class 1259 OID 69070)
+-- TOC entry 204 (class 1259 OID 75576)
 -- Name: banco; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2290,7 +2290,7 @@ CREATE TABLE public.banco (
 ALTER TABLE public.banco OWNER TO postgres;
 
 --
--- TOC entry 205 (class 1259 OID 69074)
+-- TOC entry 205 (class 1259 OID 75580)
 -- Name: banco_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2315,7 +2315,7 @@ ALTER SEQUENCE public.banco_id_seq OWNED BY public.banco.id;
 
 
 --
--- TOC entry 206 (class 1259 OID 69076)
+-- TOC entry 206 (class 1259 OID 75582)
 -- Name: bitacora; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2333,7 +2333,7 @@ CREATE TABLE public.bitacora (
 ALTER TABLE public.bitacora OWNER TO postgres;
 
 --
--- TOC entry 207 (class 1259 OID 69083)
+-- TOC entry 207 (class 1259 OID 75589)
 -- Name: bitacora_id_bitacora_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2358,7 +2358,7 @@ ALTER SEQUENCE public.bitacora_id_bitacora_seq OWNED BY public.bitacora.id_bitac
 
 
 --
--- TOC entry 208 (class 1259 OID 69085)
+-- TOC entry 208 (class 1259 OID 75591)
 -- Name: categoriagasto; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2373,7 +2373,7 @@ CREATE TABLE public.categoriagasto (
 ALTER TABLE public.categoriagasto OWNER TO postgres;
 
 --
--- TOC entry 209 (class 1259 OID 69089)
+-- TOC entry 209 (class 1259 OID 75595)
 -- Name: categoriagasto_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2398,7 +2398,7 @@ ALTER SEQUENCE public.categoriagasto_id_seq OWNED BY public.categoriagasto.id;
 
 
 --
--- TOC entry 210 (class 1259 OID 69091)
+-- TOC entry 210 (class 1259 OID 75597)
 -- Name: cobro_unidad; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2420,7 +2420,7 @@ CREATE TABLE public.cobro_unidad (
 ALTER TABLE public.cobro_unidad OWNER TO postgres;
 
 --
--- TOC entry 211 (class 1259 OID 69097)
+-- TOC entry 211 (class 1259 OID 75603)
 -- Name: cobro_unidad_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2445,7 +2445,7 @@ ALTER SEQUENCE public.cobro_unidad_id_seq OWNED BY public.cobro_unidad.id;
 
 
 --
--- TOC entry 212 (class 1259 OID 69099)
+-- TOC entry 212 (class 1259 OID 75605)
 -- Name: concepto_gasto; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2461,7 +2461,7 @@ CREATE TABLE public.concepto_gasto (
 ALTER TABLE public.concepto_gasto OWNER TO postgres;
 
 --
--- TOC entry 213 (class 1259 OID 69103)
+-- TOC entry 213 (class 1259 OID 75609)
 -- Name: concepto_gasto_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2486,7 +2486,7 @@ ALTER SEQUENCE public.concepto_gasto_id_seq OWNED BY public.concepto_gasto.id;
 
 
 --
--- TOC entry 214 (class 1259 OID 69105)
+-- TOC entry 214 (class 1259 OID 75611)
 -- Name: condominio; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2502,7 +2502,7 @@ CREATE TABLE public.condominio (
 ALTER TABLE public.condominio OWNER TO postgres;
 
 --
--- TOC entry 215 (class 1259 OID 69110)
+-- TOC entry 215 (class 1259 OID 75616)
 -- Name: cuenta; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2519,7 +2519,7 @@ CREATE TABLE public.cuenta (
 ALTER TABLE public.cuenta OWNER TO postgres;
 
 --
--- TOC entry 216 (class 1259 OID 69114)
+-- TOC entry 216 (class 1259 OID 75620)
 -- Name: cuenta_pagar; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2541,7 +2541,7 @@ CREATE TABLE public.cuenta_pagar (
 ALTER TABLE public.cuenta_pagar OWNER TO postgres;
 
 --
--- TOC entry 217 (class 1259 OID 69117)
+-- TOC entry 217 (class 1259 OID 75623)
 -- Name: cuenta_pagar_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2566,7 +2566,7 @@ ALTER SEQUENCE public.cuenta_pagar_id_seq OWNED BY public.cuenta_pagar.id;
 
 
 --
--- TOC entry 218 (class 1259 OID 69119)
+-- TOC entry 218 (class 1259 OID 75625)
 -- Name: detalle_pagos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2589,7 +2589,7 @@ CREATE TABLE public.detalle_pagos (
 ALTER TABLE public.detalle_pagos OWNER TO postgres;
 
 --
--- TOC entry 219 (class 1259 OID 69125)
+-- TOC entry 219 (class 1259 OID 75631)
 -- Name: detalle_pagos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2614,7 +2614,7 @@ ALTER SEQUENCE public.detalle_pagos_id_seq OWNED BY public.detalle_pagos.id;
 
 
 --
--- TOC entry 220 (class 1259 OID 69127)
+-- TOC entry 220 (class 1259 OID 75633)
 -- Name: fondos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2634,7 +2634,7 @@ CREATE TABLE public.fondos (
 ALTER TABLE public.fondos OWNER TO postgres;
 
 --
--- TOC entry 221 (class 1259 OID 69134)
+-- TOC entry 221 (class 1259 OID 75640)
 -- Name: fondos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2659,7 +2659,7 @@ ALTER SEQUENCE public.fondos_id_seq OWNED BY public.fondos.id;
 
 
 --
--- TOC entry 222 (class 1259 OID 69136)
+-- TOC entry 222 (class 1259 OID 75642)
 -- Name: forma_pago; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2673,7 +2673,7 @@ CREATE TABLE public.forma_pago (
 ALTER TABLE public.forma_pago OWNER TO postgres;
 
 --
--- TOC entry 223 (class 1259 OID 69143)
+-- TOC entry 223 (class 1259 OID 75649)
 -- Name: forma_pago_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2698,7 +2698,7 @@ ALTER SEQUENCE public.forma_pago_id_seq OWNED BY public.forma_pago.id;
 
 
 --
--- TOC entry 224 (class 1259 OID 69145)
+-- TOC entry 224 (class 1259 OID 75651)
 -- Name: funcion; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2711,7 +2711,7 @@ CREATE TABLE public.funcion (
 ALTER TABLE public.funcion OWNER TO postgres;
 
 --
--- TOC entry 225 (class 1259 OID 69151)
+-- TOC entry 225 (class 1259 OID 75657)
 -- Name: funcion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2736,7 +2736,7 @@ ALTER SEQUENCE public.funcion_id_seq OWNED BY public.funcion.id;
 
 
 --
--- TOC entry 226 (class 1259 OID 69153)
+-- TOC entry 226 (class 1259 OID 75659)
 -- Name: gasto; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2763,7 +2763,7 @@ CREATE TABLE public.gasto (
 ALTER TABLE public.gasto OWNER TO postgres;
 
 --
--- TOC entry 227 (class 1259 OID 69162)
+-- TOC entry 227 (class 1259 OID 75668)
 -- Name: gasto_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2788,7 +2788,7 @@ ALTER SEQUENCE public.gasto_id_seq OWNED BY public.gasto.id;
 
 
 --
--- TOC entry 228 (class 1259 OID 69164)
+-- TOC entry 228 (class 1259 OID 75670)
 -- Name: interes; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2804,7 +2804,7 @@ CREATE TABLE public.interes (
 ALTER TABLE public.interes OWNER TO postgres;
 
 --
--- TOC entry 229 (class 1259 OID 69171)
+-- TOC entry 229 (class 1259 OID 75677)
 -- Name: interes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2829,7 +2829,7 @@ ALTER SEQUENCE public.interes_id_seq OWNED BY public.interes.id;
 
 
 --
--- TOC entry 230 (class 1259 OID 69173)
+-- TOC entry 230 (class 1259 OID 75679)
 -- Name: mensaje; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2846,7 +2846,7 @@ CREATE TABLE public.mensaje (
 ALTER TABLE public.mensaje OWNER TO postgres;
 
 --
--- TOC entry 231 (class 1259 OID 69179)
+-- TOC entry 231 (class 1259 OID 75685)
 -- Name: mensaje_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2871,7 +2871,7 @@ ALTER SEQUENCE public.mensaje_id_seq OWNED BY public.mensaje.id;
 
 
 --
--- TOC entry 232 (class 1259 OID 69181)
+-- TOC entry 232 (class 1259 OID 75687)
 -- Name: persona; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2890,7 +2890,7 @@ CREATE TABLE public.persona (
 ALTER TABLE public.persona OWNER TO postgres;
 
 --
--- TOC entry 233 (class 1259 OID 69187)
+-- TOC entry 233 (class 1259 OID 75693)
 -- Name: propietario; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2903,7 +2903,7 @@ CREATE TABLE public.propietario (
 ALTER TABLE public.propietario OWNER TO postgres;
 
 --
--- TOC entry 234 (class 1259 OID 69191)
+-- TOC entry 234 (class 1259 OID 75697)
 -- Name: proveedores; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2921,7 +2921,7 @@ CREATE TABLE public.proveedores (
 ALTER TABLE public.proveedores OWNER TO postgres;
 
 --
--- TOC entry 235 (class 1259 OID 69195)
+-- TOC entry 235 (class 1259 OID 75701)
 -- Name: puente_asambleas_propietario; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2935,7 +2935,7 @@ CREATE TABLE public.puente_asambleas_propietario (
 ALTER TABLE public.puente_asambleas_propietario OWNER TO postgres;
 
 --
--- TOC entry 236 (class 1259 OID 69198)
+-- TOC entry 236 (class 1259 OID 75704)
 -- Name: puente_asambleas_propietario_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -2960,7 +2960,7 @@ ALTER SEQUENCE public.puente_asambleas_propietario_id_seq OWNED BY public.puente
 
 
 --
--- TOC entry 237 (class 1259 OID 69200)
+-- TOC entry 237 (class 1259 OID 75706)
 -- Name: puente_cobro_factura; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -2976,7 +2976,7 @@ CREATE TABLE public.puente_cobro_factura (
 ALTER TABLE public.puente_cobro_factura OWNER TO postgres;
 
 --
--- TOC entry 238 (class 1259 OID 69206)
+-- TOC entry 238 (class 1259 OID 75712)
 -- Name: puente_cobro_factura_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3001,7 +3001,7 @@ ALTER SEQUENCE public.puente_cobro_factura_id_seq OWNED BY public.puente_cobro_f
 
 
 --
--- TOC entry 239 (class 1259 OID 69208)
+-- TOC entry 239 (class 1259 OID 75714)
 -- Name: puente_gasto_concepto; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3016,7 +3016,7 @@ CREATE TABLE public.puente_gasto_concepto (
 ALTER TABLE public.puente_gasto_concepto OWNER TO postgres;
 
 --
--- TOC entry 240 (class 1259 OID 69211)
+-- TOC entry 240 (class 1259 OID 75717)
 -- Name: puente_gasto_concepto_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3041,7 +3041,7 @@ ALTER SEQUENCE public.puente_gasto_concepto_id_seq OWNED BY public.puente_gasto_
 
 
 --
--- TOC entry 241 (class 1259 OID 69213)
+-- TOC entry 241 (class 1259 OID 75719)
 -- Name: puente_mensaje_usuario; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3057,7 +3057,7 @@ CREATE TABLE public.puente_mensaje_usuario (
 ALTER TABLE public.puente_mensaje_usuario OWNER TO postgres;
 
 --
--- TOC entry 242 (class 1259 OID 69218)
+-- TOC entry 242 (class 1259 OID 75724)
 -- Name: puente_mensaje_usuario_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3082,7 +3082,7 @@ ALTER SEQUENCE public.puente_mensaje_usuario_id_seq OWNED BY public.puente_mensa
 
 
 --
--- TOC entry 243 (class 1259 OID 69220)
+-- TOC entry 243 (class 1259 OID 75726)
 -- Name: puente_persona_condominio; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3096,7 +3096,7 @@ CREATE TABLE public.puente_persona_condominio (
 ALTER TABLE public.puente_persona_condominio OWNER TO postgres;
 
 --
--- TOC entry 244 (class 1259 OID 69223)
+-- TOC entry 244 (class 1259 OID 75729)
 -- Name: puente_persona_condominio_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3121,7 +3121,7 @@ ALTER SEQUENCE public.puente_persona_condominio_id_seq OWNED BY public.puente_pe
 
 
 --
--- TOC entry 245 (class 1259 OID 69225)
+-- TOC entry 245 (class 1259 OID 75731)
 -- Name: puente_sancion_unidad; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3135,7 +3135,7 @@ CREATE TABLE public.puente_sancion_unidad (
 ALTER TABLE public.puente_sancion_unidad OWNER TO postgres;
 
 --
--- TOC entry 246 (class 1259 OID 69228)
+-- TOC entry 246 (class 1259 OID 75734)
 -- Name: puente_sancion_unidad_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3160,7 +3160,7 @@ ALTER SEQUENCE public.puente_sancion_unidad_id_seq OWNED BY public.puente_sancio
 
 
 --
--- TOC entry 247 (class 1259 OID 69230)
+-- TOC entry 247 (class 1259 OID 75736)
 -- Name: puente_tipo_funcion; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3178,7 +3178,7 @@ CREATE TABLE public.puente_tipo_funcion (
 ALTER TABLE public.puente_tipo_funcion OWNER TO postgres;
 
 --
--- TOC entry 248 (class 1259 OID 69233)
+-- TOC entry 248 (class 1259 OID 75739)
 -- Name: puente_tipo_funcion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3203,7 +3203,7 @@ ALTER SEQUENCE public.puente_tipo_funcion_id_seq OWNED BY public.puente_tipo_fun
 
 
 --
--- TOC entry 249 (class 1259 OID 69235)
+-- TOC entry 249 (class 1259 OID 75741)
 -- Name: puente_unidad_propietarios; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3221,7 +3221,7 @@ CREATE TABLE public.puente_unidad_propietarios (
 ALTER TABLE public.puente_unidad_propietarios OWNER TO postgres;
 
 --
--- TOC entry 250 (class 1259 OID 69240)
+-- TOC entry 250 (class 1259 OID 75746)
 -- Name: puente_unidad_propietarios_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3246,7 +3246,7 @@ ALTER SEQUENCE public.puente_unidad_propietarios_id_seq OWNED BY public.puente_u
 
 
 --
--- TOC entry 251 (class 1259 OID 69242)
+-- TOC entry 251 (class 1259 OID 75748)
 -- Name: recibo; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3270,7 +3270,7 @@ CREATE TABLE public.recibo (
 ALTER TABLE public.recibo OWNER TO postgres;
 
 --
--- TOC entry 252 (class 1259 OID 69248)
+-- TOC entry 252 (class 1259 OID 75754)
 -- Name: recibo_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3295,7 +3295,7 @@ ALTER SEQUENCE public.recibo_id_seq OWNED BY public.recibo.id;
 
 
 --
--- TOC entry 253 (class 1259 OID 69250)
+-- TOC entry 253 (class 1259 OID 75756)
 -- Name: responsable; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3308,7 +3308,7 @@ CREATE TABLE public.responsable (
 ALTER TABLE public.responsable OWNER TO postgres;
 
 --
--- TOC entry 254 (class 1259 OID 69254)
+-- TOC entry 254 (class 1259 OID 75760)
 -- Name: sancion; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3327,7 +3327,7 @@ CREATE TABLE public.sancion (
 ALTER TABLE public.sancion OWNER TO postgres;
 
 --
--- TOC entry 255 (class 1259 OID 69257)
+-- TOC entry 255 (class 1259 OID 75763)
 -- Name: sancion_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3352,7 +3352,7 @@ ALTER SEQUENCE public.sancion_id_seq OWNED BY public.sancion.id;
 
 
 --
--- TOC entry 256 (class 1259 OID 69259)
+-- TOC entry 256 (class 1259 OID 75765)
 -- Name: tipo_unidad; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3367,7 +3367,7 @@ CREATE TABLE public.tipo_unidad (
 ALTER TABLE public.tipo_unidad OWNER TO postgres;
 
 --
--- TOC entry 257 (class 1259 OID 69263)
+-- TOC entry 257 (class 1259 OID 75769)
 -- Name: tipo_unidad_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3392,7 +3392,7 @@ ALTER SEQUENCE public.tipo_unidad_id_seq OWNED BY public.tipo_unidad.id;
 
 
 --
--- TOC entry 258 (class 1259 OID 69265)
+-- TOC entry 258 (class 1259 OID 75771)
 -- Name: tipo_usuario; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3406,7 +3406,7 @@ CREATE TABLE public.tipo_usuario (
 ALTER TABLE public.tipo_usuario OWNER TO postgres;
 
 --
--- TOC entry 259 (class 1259 OID 69272)
+-- TOC entry 259 (class 1259 OID 75778)
 -- Name: tipo_usuario_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3431,7 +3431,7 @@ ALTER SEQUENCE public.tipo_usuario_id_seq OWNED BY public.tipo_usuario.id;
 
 
 --
--- TOC entry 260 (class 1259 OID 69274)
+-- TOC entry 260 (class 1259 OID 75780)
 -- Name: unidad; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3449,7 +3449,7 @@ CREATE TABLE public.unidad (
 ALTER TABLE public.unidad OWNER TO postgres;
 
 --
--- TOC entry 261 (class 1259 OID 69278)
+-- TOC entry 261 (class 1259 OID 75784)
 -- Name: unidad_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3474,7 +3474,7 @@ ALTER SEQUENCE public.unidad_id_seq OWNED BY public.unidad.id;
 
 
 --
--- TOC entry 262 (class 1259 OID 69280)
+-- TOC entry 262 (class 1259 OID 75786)
 -- Name: usuario; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -3493,7 +3493,7 @@ CREATE TABLE public.usuario (
 ALTER TABLE public.usuario OWNER TO postgres;
 
 --
--- TOC entry 263 (class 1259 OID 69284)
+-- TOC entry 263 (class 1259 OID 75790)
 -- Name: usuario_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -3518,7 +3518,7 @@ ALTER SEQUENCE public.usuario_id_seq OWNED BY public.usuario.id;
 
 
 --
--- TOC entry 264 (class 1259 OID 69286)
+-- TOC entry 264 (class 1259 OID 75792)
 -- Name: v_area_total; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3532,7 +3532,7 @@ CREATE VIEW public.v_area_total AS
 ALTER TABLE public.v_area_total OWNER TO postgres;
 
 --
--- TOC entry 265 (class 1259 OID 69290)
+-- TOC entry 265 (class 1259 OID 75796)
 -- Name: v_asambleas; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3547,7 +3547,7 @@ CREATE VIEW public.v_asambleas AS
 ALTER TABLE public.v_asambleas OWNER TO postgres;
 
 --
--- TOC entry 266 (class 1259 OID 69294)
+-- TOC entry 266 (class 1259 OID 75800)
 -- Name: v_propietario; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3567,7 +3567,7 @@ CREATE VIEW public.v_propietario AS
 ALTER TABLE public.v_propietario OWNER TO postgres;
 
 --
--- TOC entry 267 (class 1259 OID 69298)
+-- TOC entry 267 (class 1259 OID 75804)
 -- Name: v_asambleas_propietario; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3585,7 +3585,7 @@ CREATE VIEW public.v_asambleas_propietario AS
 ALTER TABLE public.v_asambleas_propietario OWNER TO postgres;
 
 --
--- TOC entry 268 (class 1259 OID 69302)
+-- TOC entry 268 (class 1259 OID 75808)
 -- Name: v_bandeja_entrada; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3612,7 +3612,7 @@ CREATE VIEW public.v_bandeja_entrada AS
 ALTER TABLE public.v_bandeja_entrada OWNER TO postgres;
 
 --
--- TOC entry 269 (class 1259 OID 69307)
+-- TOC entry 269 (class 1259 OID 75813)
 -- Name: v_bandeja_salida; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3634,7 +3634,7 @@ CREATE VIEW public.v_bandeja_salida AS
 ALTER TABLE public.v_bandeja_salida OWNER TO postgres;
 
 --
--- TOC entry 270 (class 1259 OID 69312)
+-- TOC entry 270 (class 1259 OID 75818)
 -- Name: v_bitacora; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3656,7 +3656,7 @@ CREATE VIEW public.v_bitacora AS
 ALTER TABLE public.v_bitacora OWNER TO postgres;
 
 --
--- TOC entry 271 (class 1259 OID 69317)
+-- TOC entry 271 (class 1259 OID 75823)
 -- Name: v_concepto_gasto; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3674,7 +3674,7 @@ CREATE VIEW public.v_concepto_gasto AS
 ALTER TABLE public.v_concepto_gasto OWNER TO postgres;
 
 --
--- TOC entry 272 (class 1259 OID 69321)
+-- TOC entry 272 (class 1259 OID 75827)
 -- Name: v_condominio; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3689,7 +3689,7 @@ CREATE VIEW public.v_condominio AS
 ALTER TABLE public.v_condominio OWNER TO postgres;
 
 --
--- TOC entry 273 (class 1259 OID 69325)
+-- TOC entry 273 (class 1259 OID 75831)
 -- Name: v_cuenta; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3714,7 +3714,7 @@ CREATE VIEW public.v_cuenta AS
 ALTER TABLE public.v_cuenta OWNER TO postgres;
 
 --
--- TOC entry 274 (class 1259 OID 69330)
+-- TOC entry 274 (class 1259 OID 75836)
 -- Name: v_cuenta_pagar; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3747,7 +3747,7 @@ CREATE VIEW public.v_cuenta_pagar AS
 ALTER TABLE public.v_cuenta_pagar OWNER TO postgres;
 
 --
--- TOC entry 275 (class 1259 OID 69335)
+-- TOC entry 275 (class 1259 OID 75841)
 -- Name: v_dueno_unidad; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3764,7 +3764,7 @@ CREATE VIEW public.v_dueno_unidad AS
 ALTER TABLE public.v_dueno_unidad OWNER TO postgres;
 
 --
--- TOC entry 276 (class 1259 OID 69339)
+-- TOC entry 276 (class 1259 OID 75845)
 -- Name: v_gasto; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3796,7 +3796,7 @@ CREATE VIEW public.v_gasto AS
 ALTER TABLE public.v_gasto OWNER TO postgres;
 
 --
--- TOC entry 277 (class 1259 OID 69344)
+-- TOC entry 277 (class 1259 OID 75850)
 -- Name: v_gasto_concepto; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3814,7 +3814,7 @@ CREATE VIEW public.v_gasto_concepto AS
 ALTER TABLE public.v_gasto_concepto OWNER TO postgres;
 
 --
--- TOC entry 278 (class 1259 OID 69349)
+-- TOC entry 278 (class 1259 OID 75855)
 -- Name: v_mensaje_usuario; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3832,7 +3832,7 @@ CREATE VIEW public.v_mensaje_usuario AS
 ALTER TABLE public.v_mensaje_usuario OWNER TO postgres;
 
 --
--- TOC entry 279 (class 1259 OID 69354)
+-- TOC entry 279 (class 1259 OID 75860)
 -- Name: v_perfil; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3856,7 +3856,7 @@ CREATE VIEW public.v_perfil AS
 ALTER TABLE public.v_perfil OWNER TO postgres;
 
 --
--- TOC entry 280 (class 1259 OID 69359)
+-- TOC entry 280 (class 1259 OID 75865)
 -- Name: v_permisos; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3879,7 +3879,7 @@ CREATE VIEW public.v_permisos AS
 ALTER TABLE public.v_permisos OWNER TO postgres;
 
 --
--- TOC entry 281 (class 1259 OID 69364)
+-- TOC entry 281 (class 1259 OID 75870)
 -- Name: v_responsable; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3899,7 +3899,7 @@ CREATE VIEW public.v_responsable AS
 ALTER TABLE public.v_responsable OWNER TO postgres;
 
 --
--- TOC entry 282 (class 1259 OID 69368)
+-- TOC entry 282 (class 1259 OID 75874)
 -- Name: v_tipo_funcion; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3919,7 +3919,7 @@ CREATE VIEW public.v_tipo_funcion AS
 ALTER TABLE public.v_tipo_funcion OWNER TO postgres;
 
 --
--- TOC entry 283 (class 1259 OID 69372)
+-- TOC entry 283 (class 1259 OID 75878)
 -- Name: v_tipo_unidad; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3934,7 +3934,7 @@ CREATE VIEW public.v_tipo_unidad AS
 ALTER TABLE public.v_tipo_unidad OWNER TO postgres;
 
 --
--- TOC entry 284 (class 1259 OID 69376)
+-- TOC entry 284 (class 1259 OID 75882)
 -- Name: v_tipo_usuario; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3948,7 +3948,7 @@ CREATE VIEW public.v_tipo_usuario AS
 ALTER TABLE public.v_tipo_usuario OWNER TO postgres;
 
 --
--- TOC entry 285 (class 1259 OID 69380)
+-- TOC entry 285 (class 1259 OID 75886)
 -- Name: v_unidad; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3971,7 +3971,7 @@ CREATE VIEW public.v_unidad AS
 ALTER TABLE public.v_unidad OWNER TO postgres;
 
 --
--- TOC entry 286 (class 1259 OID 69385)
+-- TOC entry 286 (class 1259 OID 75891)
 -- Name: v_unidad_propietario; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -3997,7 +3997,7 @@ CREATE VIEW public.v_unidad_propietario AS
 ALTER TABLE public.v_unidad_propietario OWNER TO postgres;
 
 --
--- TOC entry 287 (class 1259 OID 69390)
+-- TOC entry 287 (class 1259 OID 75896)
 -- Name: v_usuario; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -4015,7 +4015,7 @@ CREATE VIEW public.v_usuario AS
 ALTER TABLE public.v_usuario OWNER TO postgres;
 
 --
--- TOC entry 288 (class 1259 OID 69394)
+-- TOC entry 288 (class 1259 OID 75900)
 -- Name: visita; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -4037,7 +4037,7 @@ CREATE TABLE public.visita (
 ALTER TABLE public.visita OWNER TO postgres;
 
 --
--- TOC entry 289 (class 1259 OID 69399)
+-- TOC entry 289 (class 1259 OID 75905)
 -- Name: v_visita; Type: VIEW; Schema: public; Owner: postgres
 --
 
@@ -4064,7 +4064,7 @@ CREATE VIEW public.v_visita AS
 ALTER TABLE public.v_visita OWNER TO postgres;
 
 --
--- TOC entry 290 (class 1259 OID 69404)
+-- TOC entry 290 (class 1259 OID 75910)
 -- Name: visita_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -4089,7 +4089,7 @@ ALTER SEQUENCE public.visita_id_seq OWNED BY public.visita.id;
 
 
 --
--- TOC entry 3074 (class 2604 OID 69406)
+-- TOC entry 3074 (class 2604 OID 75912)
 -- Name: asambleas id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4097,7 +4097,7 @@ ALTER TABLE ONLY public.asambleas ALTER COLUMN id SET DEFAULT nextval('public.as
 
 
 --
--- TOC entry 3076 (class 2604 OID 69407)
+-- TOC entry 3076 (class 2604 OID 75913)
 -- Name: banco id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4105,7 +4105,7 @@ ALTER TABLE ONLY public.banco ALTER COLUMN id SET DEFAULT nextval('public.banco_
 
 
 --
--- TOC entry 3078 (class 2604 OID 69408)
+-- TOC entry 3078 (class 2604 OID 75914)
 -- Name: bitacora id_bitacora; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4113,7 +4113,7 @@ ALTER TABLE ONLY public.bitacora ALTER COLUMN id_bitacora SET DEFAULT nextval('p
 
 
 --
--- TOC entry 3080 (class 2604 OID 69409)
+-- TOC entry 3080 (class 2604 OID 75915)
 -- Name: categoriagasto id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4121,7 +4121,7 @@ ALTER TABLE ONLY public.categoriagasto ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 3081 (class 2604 OID 69410)
+-- TOC entry 3081 (class 2604 OID 75916)
 -- Name: cobro_unidad id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4129,7 +4129,7 @@ ALTER TABLE ONLY public.cobro_unidad ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
--- TOC entry 3083 (class 2604 OID 69411)
+-- TOC entry 3083 (class 2604 OID 75917)
 -- Name: concepto_gasto id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4137,7 +4137,7 @@ ALTER TABLE ONLY public.concepto_gasto ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 3087 (class 2604 OID 69412)
+-- TOC entry 3087 (class 2604 OID 75918)
 -- Name: cuenta_pagar id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4145,7 +4145,7 @@ ALTER TABLE ONLY public.cuenta_pagar ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
--- TOC entry 3088 (class 2604 OID 69413)
+-- TOC entry 3088 (class 2604 OID 75919)
 -- Name: detalle_pagos id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4153,7 +4153,7 @@ ALTER TABLE ONLY public.detalle_pagos ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
--- TOC entry 3090 (class 2604 OID 69414)
+-- TOC entry 3090 (class 2604 OID 75920)
 -- Name: fondos id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4161,7 +4161,7 @@ ALTER TABLE ONLY public.fondos ALTER COLUMN id SET DEFAULT nextval('public.fondo
 
 
 --
--- TOC entry 3092 (class 2604 OID 69415)
+-- TOC entry 3092 (class 2604 OID 75921)
 -- Name: forma_pago id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4169,7 +4169,7 @@ ALTER TABLE ONLY public.forma_pago ALTER COLUMN id SET DEFAULT nextval('public.f
 
 
 --
--- TOC entry 3093 (class 2604 OID 69416)
+-- TOC entry 3093 (class 2604 OID 75922)
 -- Name: funcion id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4177,7 +4177,7 @@ ALTER TABLE ONLY public.funcion ALTER COLUMN id SET DEFAULT nextval('public.func
 
 
 --
--- TOC entry 3097 (class 2604 OID 69417)
+-- TOC entry 3097 (class 2604 OID 75923)
 -- Name: gasto id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4185,7 +4185,7 @@ ALTER TABLE ONLY public.gasto ALTER COLUMN id SET DEFAULT nextval('public.gasto_
 
 
 --
--- TOC entry 3099 (class 2604 OID 69418)
+-- TOC entry 3099 (class 2604 OID 75924)
 -- Name: interes id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4193,7 +4193,7 @@ ALTER TABLE ONLY public.interes ALTER COLUMN id SET DEFAULT nextval('public.inte
 
 
 --
--- TOC entry 3103 (class 2604 OID 69419)
+-- TOC entry 3103 (class 2604 OID 75925)
 -- Name: mensaje id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4201,7 +4201,7 @@ ALTER TABLE ONLY public.mensaje ALTER COLUMN id SET DEFAULT nextval('public.mens
 
 
 --
--- TOC entry 3109 (class 2604 OID 69420)
+-- TOC entry 3109 (class 2604 OID 75926)
 -- Name: puente_asambleas_propietario id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4209,7 +4209,7 @@ ALTER TABLE ONLY public.puente_asambleas_propietario ALTER COLUMN id SET DEFAULT
 
 
 --
--- TOC entry 3110 (class 2604 OID 69421)
+-- TOC entry 3110 (class 2604 OID 75927)
 -- Name: puente_cobro_factura id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4217,7 +4217,7 @@ ALTER TABLE ONLY public.puente_cobro_factura ALTER COLUMN id SET DEFAULT nextval
 
 
 --
--- TOC entry 3111 (class 2604 OID 69422)
+-- TOC entry 3111 (class 2604 OID 75928)
 -- Name: puente_gasto_concepto id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4225,7 +4225,7 @@ ALTER TABLE ONLY public.puente_gasto_concepto ALTER COLUMN id SET DEFAULT nextva
 
 
 --
--- TOC entry 3114 (class 2604 OID 69423)
+-- TOC entry 3114 (class 2604 OID 75929)
 -- Name: puente_mensaje_usuario id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4233,7 +4233,7 @@ ALTER TABLE ONLY public.puente_mensaje_usuario ALTER COLUMN id SET DEFAULT nextv
 
 
 --
--- TOC entry 3115 (class 2604 OID 69424)
+-- TOC entry 3115 (class 2604 OID 75930)
 -- Name: puente_persona_condominio id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4241,7 +4241,7 @@ ALTER TABLE ONLY public.puente_persona_condominio ALTER COLUMN id SET DEFAULT ne
 
 
 --
--- TOC entry 3116 (class 2604 OID 69425)
+-- TOC entry 3116 (class 2604 OID 75931)
 -- Name: puente_sancion_unidad id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4249,7 +4249,7 @@ ALTER TABLE ONLY public.puente_sancion_unidad ALTER COLUMN id SET DEFAULT nextva
 
 
 --
--- TOC entry 3117 (class 2604 OID 69426)
+-- TOC entry 3117 (class 2604 OID 75932)
 -- Name: puente_tipo_funcion id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4257,7 +4257,7 @@ ALTER TABLE ONLY public.puente_tipo_funcion ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
--- TOC entry 3120 (class 2604 OID 69427)
+-- TOC entry 3120 (class 2604 OID 75933)
 -- Name: puente_unidad_propietarios id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4265,7 +4265,7 @@ ALTER TABLE ONLY public.puente_unidad_propietarios ALTER COLUMN id SET DEFAULT n
 
 
 --
--- TOC entry 3121 (class 2604 OID 69428)
+-- TOC entry 3121 (class 2604 OID 75934)
 -- Name: recibo id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4273,7 +4273,7 @@ ALTER TABLE ONLY public.recibo ALTER COLUMN id SET DEFAULT nextval('public.recib
 
 
 --
--- TOC entry 3123 (class 2604 OID 69429)
+-- TOC entry 3123 (class 2604 OID 75935)
 -- Name: sancion id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4281,7 +4281,7 @@ ALTER TABLE ONLY public.sancion ALTER COLUMN id SET DEFAULT nextval('public.sanc
 
 
 --
--- TOC entry 3125 (class 2604 OID 69430)
+-- TOC entry 3125 (class 2604 OID 75936)
 -- Name: tipo_unidad id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4289,7 +4289,7 @@ ALTER TABLE ONLY public.tipo_unidad ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 3127 (class 2604 OID 69431)
+-- TOC entry 3127 (class 2604 OID 75937)
 -- Name: tipo_usuario id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4297,7 +4297,7 @@ ALTER TABLE ONLY public.tipo_usuario ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
--- TOC entry 3129 (class 2604 OID 69432)
+-- TOC entry 3129 (class 2604 OID 75938)
 -- Name: unidad id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4305,7 +4305,7 @@ ALTER TABLE ONLY public.unidad ALTER COLUMN id SET DEFAULT nextval('public.unida
 
 
 --
--- TOC entry 3131 (class 2604 OID 69433)
+-- TOC entry 3131 (class 2604 OID 75939)
 -- Name: usuario id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4313,7 +4313,7 @@ ALTER TABLE ONLY public.usuario ALTER COLUMN id SET DEFAULT nextval('public.usua
 
 
 --
--- TOC entry 3134 (class 2604 OID 69434)
+-- TOC entry 3134 (class 2604 OID 75940)
 -- Name: visita id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -4321,7 +4321,7 @@ ALTER TABLE ONLY public.visita ALTER COLUMN id SET DEFAULT nextval('public.visit
 
 
 --
--- TOC entry 3458 (class 0 OID 69062)
+-- TOC entry 3458 (class 0 OID 75568)
 -- Dependencies: 202
 -- Data for Name: asambleas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -4339,7 +4339,7 @@ INSERT INTO public.asambleas VALUES (10, 'CISTERNA', 'REUNION PARA PEDIR UNA CIS
 
 
 --
--- TOC entry 3460 (class 0 OID 69070)
+-- TOC entry 3460 (class 0 OID 75576)
 -- Dependencies: 204
 -- Data for Name: banco; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -4357,7 +4357,7 @@ INSERT INTO public.banco VALUES (10, 'BANCO DEL TESORO', true);
 
 
 --
--- TOC entry 3462 (class 0 OID 69076)
+-- TOC entry 3462 (class 0 OID 75582)
 -- Dependencies: 206
 -- Data for Name: bitacora; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10470,10 +10470,12 @@ INSERT INTO public.bitacora VALUES (5902, 'UPDATE', 'unidad', NULL, '(47,47,4327
 INSERT INTO public.bitacora VALUES (5903, 'UPDATE', 'unidad', 1, '(49,49,234234242343234,"CALLE 5",t,0.008921330089213302,4)', '(49,49,234234242343234,"CALLE 5",t,0.0088,4)', '2020-07-28 21:05:26');
 INSERT INTO public.bitacora VALUES (5904, 'Modificado', 'gasto', 1, '(1,PAPELERIA,ORDINARIO,J-12345678,ALICUOTA,10,2020,1,,-,1,500000,500000,Pendiente,Pendiente,BOLÍVAR)', '(1,PAPELERIA,ORDINARIO,J-12345678,ALICUOTA,10,2019,1,,-,1,500000,500000,Pendiente,Pendiente,BOLÍVAR)', '2020-07-28 21:19:06');
 INSERT INTO public.bitacora VALUES (5905, 'Modificado', 'gasto', 1, '(2,"COMPRA DE ESCOBAS",ORDINARIO,J-01654632,ALICUOTA,10,2020,1,,-,1,100000,100000,Pendiente,Pendiente,BOLÍVAR)', '(2,"COMPRA DE ESCOBAS",ORDINARIO,J-01654632,ALICUOTA,10,2019,1,,-,1,100000,100000,Pendiente,Pendiente,BOLÍVAR)', '2020-07-28 21:19:19');
+INSERT INTO public.bitacora VALUES (5906, 'Modificado', 'gasto', 1, '(3,LIMPIAPISOS,ORDINARIO,J-01654632,ALICUOTA,10,2019,1,,-,1,50000,50000,Pendiente,Pendiente,BOLÍVAR)', '(3,LIMPIAPISOS,EXTRAORDINARIO,J-01654632,ALICUOTA,10,2019,5,,-,5,50000,50000,Pendiente,Pendiente,BOLÍVAR)', '2020-07-29 20:46:11');
+INSERT INTO public.bitacora VALUES (5907, 'Modificado', 'gasto', 1, '(26,ALUMBRADO,EXTRAORDINARIO,J-01214000,ALICUOTA,12,2019,1,,-,1,1500000,1500000,Pendiente,Pendiente,BOLÍVAR)', '(26,ALUMBRADO,EXTRAORDINARIO,J-01214000,ALICUOTA,12,2019,2,,-,2,1500000,1500000,Pendiente,Pendiente,BOLÍVAR)', '2020-07-29 20:46:21');
 
 
 --
--- TOC entry 3464 (class 0 OID 69085)
+-- TOC entry 3464 (class 0 OID 75591)
 -- Dependencies: 208
 -- Data for Name: categoriagasto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10491,7 +10493,7 @@ INSERT INTO public.categoriagasto VALUES (8, 'SEGUROS', 'CATEGORÍA DE SEGUROS',
 
 
 --
--- TOC entry 3466 (class 0 OID 69091)
+-- TOC entry 3466 (class 0 OID 75597)
 -- Dependencies: 210
 -- Data for Name: cobro_unidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10499,7 +10501,7 @@ INSERT INTO public.categoriagasto VALUES (8, 'SEGUROS', 'CATEGORÍA DE SEGUROS',
 
 
 --
--- TOC entry 3468 (class 0 OID 69099)
+-- TOC entry 3468 (class 0 OID 75605)
 -- Dependencies: 212
 -- Data for Name: concepto_gasto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10562,7 +10564,7 @@ INSERT INTO public.concepto_gasto VALUES (55, 'CORPOLECT', '-', 10, false);
 
 
 --
--- TOC entry 3470 (class 0 OID 69105)
+-- TOC entry 3470 (class 0 OID 75611)
 -- Dependencies: 214
 -- Data for Name: condominio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10571,7 +10573,7 @@ INSERT INTO public.condominio VALUES ('123456789', 'URB. EL JARDÍN', '025401234
 
 
 --
--- TOC entry 3471 (class 0 OID 69110)
+-- TOC entry 3471 (class 0 OID 75616)
 -- Dependencies: 215
 -- Data for Name: cuenta; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10583,7 +10585,7 @@ INSERT INTO public.cuenta VALUES ('01347894501212105416', 'AHORRO', 5, 'V-000000
 
 
 --
--- TOC entry 3472 (class 0 OID 69114)
+-- TOC entry 3472 (class 0 OID 75620)
 -- Dependencies: 216
 -- Data for Name: cuenta_pagar; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10591,7 +10593,7 @@ INSERT INTO public.cuenta VALUES ('01347894501212105416', 'AHORRO', 5, 'V-000000
 
 
 --
--- TOC entry 3474 (class 0 OID 69119)
+-- TOC entry 3474 (class 0 OID 75625)
 -- Dependencies: 218
 -- Data for Name: detalle_pagos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10599,7 +10601,7 @@ INSERT INTO public.cuenta VALUES ('01347894501212105416', 'AHORRO', 5, 'V-000000
 
 
 --
--- TOC entry 3476 (class 0 OID 69127)
+-- TOC entry 3476 (class 0 OID 75633)
 -- Dependencies: 220
 -- Data for Name: fondos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10614,7 +10616,7 @@ INSERT INTO public.fondos VALUES ('PRESTACIONES SOCIALES', '2020-06-01', '-', '-
 
 
 --
--- TOC entry 3478 (class 0 OID 69136)
+-- TOC entry 3478 (class 0 OID 75642)
 -- Dependencies: 222
 -- Data for Name: forma_pago; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10632,7 +10634,7 @@ INSERT INTO public.forma_pago VALUES (10, 'PAYPAL', true);
 
 
 --
--- TOC entry 3480 (class 0 OID 69145)
+-- TOC entry 3480 (class 0 OID 75651)
 -- Dependencies: 224
 -- Data for Name: funcion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10664,12 +10666,11 @@ INSERT INTO public.funcion VALUES (24, 'Bitacora');
 
 
 --
--- TOC entry 3482 (class 0 OID 69153)
+-- TOC entry 3482 (class 0 OID 75659)
 -- Dependencies: 226
 -- Data for Name: gasto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.gasto VALUES (3, 'LIMPIAPISOS', 'ORDINARIO', 'J-01654632', 'ALICUOTA', 10, 2019, 1, NULL, '-', 1, 50000, 50000, 'Pendiente', 'Pendiente', 'BOLÍVAR');
 INSERT INTO public.gasto VALUES (4, 'ALUMBRADO', 'EXTRAORDINARIO', 'J-34567890', 'ALICUOTA', 10, 2019, 1, NULL, '-', 1, 50, 50, 'Pendiente', 'Pendiente', 'DÓLAR');
 INSERT INTO public.gasto VALUES (5, 'PINTURA', 'ORDINARIO', 'J-34567890', 'ALICUOTA', 10, 2019, 1, NULL, '-', 1, 250, 250, 'Pendiente', 'Pendiente', 'DÓLAR');
 INSERT INTO public.gasto VALUES (6, 'PINTURA', 'ORDINARIO', 'J-01214000', 'ALICUOTA', 10, 2019, 1, NULL, 'PINTURA PARA REPASAR LAS LINEAS DEL ESTACIONAMIENTO', 1, 40, 40, 'Pendiente', 'Pendiente', 'DÓLAR');
@@ -10692,7 +10693,6 @@ INSERT INTO public.gasto VALUES (22, 'VACACIONES IRIS', 'EXTRAORDINARIO', 'V-138
 INSERT INTO public.gasto VALUES (23, 'ARTÍCULOS DE FERRETERIA', 'ORDINARIO', 'J-34567890', 'ALICUOTA', 12, 2019, 1, NULL, '-', 1, 500000, 500000, 'Pendiente', 'Pendiente', 'BOLÍVAR');
 INSERT INTO public.gasto VALUES (24, 'PORTON', 'EXTRAORDINARIO', 'J-23456789', 'ALICUOTA', 12, 2019, 1, NULL, '-', 1, 25, 25, 'Pendiente', 'Pendiente', 'DÓLAR');
 INSERT INTO public.gasto VALUES (25, 'TUBERIAS', 'EXTRAORDINARIO', 'J-34567890', 'ALICUOTA', 12, 2019, 1, NULL, '-', 1, 40, 40, 'Pendiente', 'Pendiente', 'DÓLAR');
-INSERT INTO public.gasto VALUES (26, 'ALUMBRADO', 'EXTRAORDINARIO', 'J-01214000', 'ALICUOTA', 12, 2019, 1, NULL, '-', 1, 1500000, 1500000, 'Pendiente', 'Pendiente', 'BOLÍVAR');
 INSERT INTO public.gasto VALUES (27, 'PINTAR', 'ORDINARIO', 'V-13843549', 'ALICUOTA', 12, 2019, 1, NULL, '-', 1, 15, 15, 'Pendiente', 'Pendiente', 'DÓLAR');
 INSERT INTO public.gasto VALUES (28, 'CERCADO ELECTRICO', 'ORDINARIO', 'J-34567890', 'ALICUOTA', 12, 2019, 1, NULL, '-', 1, 80, 80, 'Pendiente', 'Pendiente', 'BOLÍVAR');
 INSERT INTO public.gasto VALUES (29, 'HIDRO', 'ORDINARIO', 'V-19444578', 'ALICUOTA', 12, 2019, 1, NULL, '', 1, 70, 70, 'Pendiente', 'Pendiente', 'DÓLAR');
@@ -10769,10 +10769,12 @@ INSERT INTO public.gasto VALUES (98, 'PARQUE INFANTIL', 'EXTRAORDINARIO', 'J-345
 INSERT INTO public.gasto VALUES (100, 'COMPRA DE CLORO PARA PISCINA', 'ORDINARIO', 'J-01248325', 'ALICUOTA', 7, 2020, 1, NULL, '-', 1, 5, 5, 'Pendiente', 'Pendiente', 'DÓLAR');
 INSERT INTO public.gasto VALUES (1, 'PAPELERIA', 'ORDINARIO', 'J-12345678', 'ALICUOTA', 10, 2019, 1, NULL, '-', 1, 500000, 500000, 'Pendiente', 'Pendiente', 'BOLÍVAR');
 INSERT INTO public.gasto VALUES (2, 'COMPRA DE ESCOBAS', 'ORDINARIO', 'J-01654632', 'ALICUOTA', 10, 2019, 1, NULL, '-', 1, 100000, 100000, 'Pendiente', 'Pendiente', 'BOLÍVAR');
+INSERT INTO public.gasto VALUES (3, 'LIMPIAPISOS', 'EXTRAORDINARIO', 'J-01654632', 'ALICUOTA', 10, 2019, 5, NULL, '-', 5, 50000, 50000, 'Pendiente', 'Pendiente', 'BOLÍVAR');
+INSERT INTO public.gasto VALUES (26, 'ALUMBRADO', 'EXTRAORDINARIO', 'J-01214000', 'ALICUOTA', 12, 2019, 2, NULL, '-', 2, 1500000, 1500000, 'Pendiente', 'Pendiente', 'BOLÍVAR');
 
 
 --
--- TOC entry 3484 (class 0 OID 69164)
+-- TOC entry 3484 (class 0 OID 75670)
 -- Dependencies: 228
 -- Data for Name: interes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10782,7 +10784,7 @@ INSERT INTO public.interes VALUES (1, 'COMPENSATORIO', 1, true, '123456789');
 
 
 --
--- TOC entry 3486 (class 0 OID 69173)
+-- TOC entry 3486 (class 0 OID 75679)
 -- Dependencies: 230
 -- Data for Name: mensaje; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10790,7 +10792,7 @@ INSERT INTO public.interes VALUES (1, 'COMPENSATORIO', 1, true, '123456789');
 
 
 --
--- TOC entry 3488 (class 0 OID 69181)
+-- TOC entry 3488 (class 0 OID 75687)
 -- Dependencies: 232
 -- Data for Name: persona; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10810,7 +10812,7 @@ INSERT INTO public.persona VALUES ('V-7888725', 'KATHERINE', 'ALEJANDRA', 'MORA'
 
 
 --
--- TOC entry 3489 (class 0 OID 69187)
+-- TOC entry 3489 (class 0 OID 75693)
 -- Dependencies: 233
 -- Data for Name: propietario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10829,7 +10831,7 @@ INSERT INTO public.propietario VALUES ('V-7888725', true);
 
 
 --
--- TOC entry 3490 (class 0 OID 69191)
+-- TOC entry 3490 (class 0 OID 75697)
 -- Dependencies: 234
 -- Data for Name: proveedores; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10851,7 +10853,7 @@ INSERT INTO public.proveedores VALUES ('J-31365564', 'CÁMARAS SR', '02547899843
 
 
 --
--- TOC entry 3491 (class 0 OID 69195)
+-- TOC entry 3491 (class 0 OID 75701)
 -- Dependencies: 235
 -- Data for Name: puente_asambleas_propietario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10941,7 +10943,7 @@ INSERT INTO public.puente_asambleas_propietario VALUES (82, 10, 'V-7888725');
 
 
 --
--- TOC entry 3493 (class 0 OID 69200)
+-- TOC entry 3493 (class 0 OID 75706)
 -- Dependencies: 237
 -- Data for Name: puente_cobro_factura; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -10949,7 +10951,7 @@ INSERT INTO public.puente_asambleas_propietario VALUES (82, 10, 'V-7888725');
 
 
 --
--- TOC entry 3495 (class 0 OID 69208)
+-- TOC entry 3495 (class 0 OID 75714)
 -- Dependencies: 239
 -- Data for Name: puente_gasto_concepto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11057,7 +11059,7 @@ INSERT INTO public.puente_gasto_concepto VALUES (100, 100, 25, 5);
 
 
 --
--- TOC entry 3497 (class 0 OID 69213)
+-- TOC entry 3497 (class 0 OID 75719)
 -- Dependencies: 241
 -- Data for Name: puente_mensaje_usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11065,7 +11067,7 @@ INSERT INTO public.puente_gasto_concepto VALUES (100, 100, 25, 5);
 
 
 --
--- TOC entry 3499 (class 0 OID 69220)
+-- TOC entry 3499 (class 0 OID 75726)
 -- Dependencies: 243
 -- Data for Name: puente_persona_condominio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11073,7 +11075,7 @@ INSERT INTO public.puente_gasto_concepto VALUES (100, 100, 25, 5);
 
 
 --
--- TOC entry 3501 (class 0 OID 69225)
+-- TOC entry 3501 (class 0 OID 75731)
 -- Dependencies: 245
 -- Data for Name: puente_sancion_unidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11092,7 +11094,7 @@ INSERT INTO public.puente_sancion_unidad VALUES (12, 10, 10);
 
 
 --
--- TOC entry 3503 (class 0 OID 69230)
+-- TOC entry 3503 (class 0 OID 75736)
 -- Dependencies: 247
 -- Data for Name: puente_tipo_funcion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11124,7 +11126,7 @@ INSERT INTO public.puente_tipo_funcion VALUES (24, 1, 24, true, true, true, true
 
 
 --
--- TOC entry 3505 (class 0 OID 69235)
+-- TOC entry 3505 (class 0 OID 75741)
 -- Dependencies: 249
 -- Data for Name: puente_unidad_propietarios; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11340,7 +11342,7 @@ INSERT INTO public.puente_unidad_propietarios VALUES (208, 'V-7888725', 101, '20
 
 
 --
--- TOC entry 3507 (class 0 OID 69242)
+-- TOC entry 3507 (class 0 OID 75748)
 -- Dependencies: 251
 -- Data for Name: recibo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11348,7 +11350,7 @@ INSERT INTO public.puente_unidad_propietarios VALUES (208, 'V-7888725', 101, '20
 
 
 --
--- TOC entry 3509 (class 0 OID 69250)
+-- TOC entry 3509 (class 0 OID 75756)
 -- Dependencies: 253
 -- Data for Name: responsable; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11357,7 +11359,7 @@ INSERT INTO public.responsable VALUES ('V-00000000', true);
 
 
 --
--- TOC entry 3510 (class 0 OID 69254)
+-- TOC entry 3510 (class 0 OID 75760)
 -- Dependencies: 254
 -- Data for Name: sancion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11375,7 +11377,7 @@ INSERT INTO public.sancion VALUES (10, 'INTERES DE MORA', 7, 2020, 10000000, '-'
 
 
 --
--- TOC entry 3512 (class 0 OID 69259)
+-- TOC entry 3512 (class 0 OID 75765)
 -- Dependencies: 256
 -- Data for Name: tipo_unidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11393,7 +11395,7 @@ INSERT INTO public.tipo_unidad VALUES (10, 85, 'LIRIO', true);
 
 
 --
--- TOC entry 3514 (class 0 OID 69265)
+-- TOC entry 3514 (class 0 OID 75771)
 -- Dependencies: 258
 -- Data for Name: tipo_usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11402,7 +11404,7 @@ INSERT INTO public.tipo_usuario VALUES (1, 'ADMINISTRADOR', true);
 
 
 --
--- TOC entry 3516 (class 0 OID 69274)
+-- TOC entry 3516 (class 0 OID 75780)
 -- Dependencies: 260
 -- Data for Name: unidad; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11511,7 +11513,7 @@ INSERT INTO public.unidad VALUES (49, '49', '234234242343234', 'CALLE 5', true, 
 
 
 --
--- TOC entry 3518 (class 0 OID 69280)
+-- TOC entry 3518 (class 0 OID 75786)
 -- Dependencies: 262
 -- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11520,7 +11522,7 @@ INSERT INTO public.usuario VALUES (1, 'Ingresar Usuario', '455831477b82574f6bf87
 
 
 --
--- TOC entry 3520 (class 0 OID 69394)
+-- TOC entry 3520 (class 0 OID 75900)
 -- Dependencies: 288
 -- Data for Name: visita; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -11551,7 +11553,7 @@ SELECT pg_catalog.setval('public.banco_id_seq', 10, true);
 -- Name: bitacora_id_bitacora_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.bitacora_id_bitacora_seq', 5905, true);
+SELECT pg_catalog.setval('public.bitacora_id_bitacora_seq', 5907, true);
 
 
 --
@@ -11789,7 +11791,7 @@ SELECT pg_catalog.setval('public.visita_id_seq', 1, false);
 
 
 --
--- TOC entry 3136 (class 2606 OID 69436)
+-- TOC entry 3136 (class 2606 OID 75942)
 -- Name: asambleas asambleas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11798,7 +11800,7 @@ ALTER TABLE ONLY public.asambleas
 
 
 --
--- TOC entry 3138 (class 2606 OID 69438)
+-- TOC entry 3138 (class 2606 OID 75944)
 -- Name: banco banco_nombre_banco_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11807,7 +11809,7 @@ ALTER TABLE ONLY public.banco
 
 
 --
--- TOC entry 3140 (class 2606 OID 69440)
+-- TOC entry 3140 (class 2606 OID 75946)
 -- Name: banco banco_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11816,7 +11818,7 @@ ALTER TABLE ONLY public.banco
 
 
 --
--- TOC entry 3142 (class 2606 OID 69442)
+-- TOC entry 3142 (class 2606 OID 75948)
 -- Name: bitacora bitacora_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11825,7 +11827,7 @@ ALTER TABLE ONLY public.bitacora
 
 
 --
--- TOC entry 3144 (class 2606 OID 69444)
+-- TOC entry 3144 (class 2606 OID 75950)
 -- Name: categoriagasto categoriagasto_nombre_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11834,7 +11836,7 @@ ALTER TABLE ONLY public.categoriagasto
 
 
 --
--- TOC entry 3146 (class 2606 OID 69446)
+-- TOC entry 3146 (class 2606 OID 75952)
 -- Name: categoriagasto categoriagasto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11843,7 +11845,7 @@ ALTER TABLE ONLY public.categoriagasto
 
 
 --
--- TOC entry 3148 (class 2606 OID 69448)
+-- TOC entry 3148 (class 2606 OID 75954)
 -- Name: cobro_unidad cobro_unidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11852,7 +11854,7 @@ ALTER TABLE ONLY public.cobro_unidad
 
 
 --
--- TOC entry 3150 (class 2606 OID 69450)
+-- TOC entry 3150 (class 2606 OID 75956)
 -- Name: concepto_gasto concepto_gasto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11861,7 +11863,7 @@ ALTER TABLE ONLY public.concepto_gasto
 
 
 --
--- TOC entry 3152 (class 2606 OID 69452)
+-- TOC entry 3152 (class 2606 OID 75958)
 -- Name: condominio condominio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11870,7 +11872,7 @@ ALTER TABLE ONLY public.condominio
 
 
 --
--- TOC entry 3156 (class 2606 OID 69454)
+-- TOC entry 3156 (class 2606 OID 75960)
 -- Name: cuenta_pagar cuenta_pagar_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11879,7 +11881,7 @@ ALTER TABLE ONLY public.cuenta_pagar
 
 
 --
--- TOC entry 3154 (class 2606 OID 69456)
+-- TOC entry 3154 (class 2606 OID 75962)
 -- Name: cuenta cuenta_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11888,7 +11890,7 @@ ALTER TABLE ONLY public.cuenta
 
 
 --
--- TOC entry 3158 (class 2606 OID 69458)
+-- TOC entry 3158 (class 2606 OID 75964)
 -- Name: detalle_pagos detalle_pagos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11897,7 +11899,7 @@ ALTER TABLE ONLY public.detalle_pagos
 
 
 --
--- TOC entry 3160 (class 2606 OID 69460)
+-- TOC entry 3160 (class 2606 OID 75966)
 -- Name: fondos fondos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11906,7 +11908,7 @@ ALTER TABLE ONLY public.fondos
 
 
 --
--- TOC entry 3162 (class 2606 OID 69462)
+-- TOC entry 3162 (class 2606 OID 75968)
 -- Name: forma_pago forma_pago_forma_pago_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11915,7 +11917,7 @@ ALTER TABLE ONLY public.forma_pago
 
 
 --
--- TOC entry 3164 (class 2606 OID 69464)
+-- TOC entry 3164 (class 2606 OID 75970)
 -- Name: forma_pago forma_pago_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11924,7 +11926,7 @@ ALTER TABLE ONLY public.forma_pago
 
 
 --
--- TOC entry 3166 (class 2606 OID 69466)
+-- TOC entry 3166 (class 2606 OID 75972)
 -- Name: funcion funcion_funcion_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11933,7 +11935,7 @@ ALTER TABLE ONLY public.funcion
 
 
 --
--- TOC entry 3168 (class 2606 OID 69468)
+-- TOC entry 3168 (class 2606 OID 75974)
 -- Name: funcion funcion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11942,7 +11944,7 @@ ALTER TABLE ONLY public.funcion
 
 
 --
--- TOC entry 3170 (class 2606 OID 69470)
+-- TOC entry 3170 (class 2606 OID 75976)
 -- Name: gasto gasto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11951,7 +11953,7 @@ ALTER TABLE ONLY public.gasto
 
 
 --
--- TOC entry 3172 (class 2606 OID 69472)
+-- TOC entry 3172 (class 2606 OID 75978)
 -- Name: interes interes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11960,7 +11962,7 @@ ALTER TABLE ONLY public.interes
 
 
 --
--- TOC entry 3174 (class 2606 OID 69474)
+-- TOC entry 3174 (class 2606 OID 75980)
 -- Name: mensaje mensaje_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11969,7 +11971,7 @@ ALTER TABLE ONLY public.mensaje
 
 
 --
--- TOC entry 3176 (class 2606 OID 69476)
+-- TOC entry 3176 (class 2606 OID 75982)
 -- Name: persona persona_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11978,7 +11980,7 @@ ALTER TABLE ONLY public.persona
 
 
 --
--- TOC entry 3178 (class 2606 OID 69478)
+-- TOC entry 3178 (class 2606 OID 75984)
 -- Name: propietario propietario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11987,7 +11989,7 @@ ALTER TABLE ONLY public.propietario
 
 
 --
--- TOC entry 3180 (class 2606 OID 69480)
+-- TOC entry 3180 (class 2606 OID 75986)
 -- Name: proveedores proveedores_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -11996,7 +11998,7 @@ ALTER TABLE ONLY public.proveedores
 
 
 --
--- TOC entry 3182 (class 2606 OID 69482)
+-- TOC entry 3182 (class 2606 OID 75988)
 -- Name: puente_asambleas_propietario puente_asambleas_propietario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12005,7 +12007,7 @@ ALTER TABLE ONLY public.puente_asambleas_propietario
 
 
 --
--- TOC entry 3184 (class 2606 OID 69484)
+-- TOC entry 3184 (class 2606 OID 75990)
 -- Name: puente_cobro_factura puente_cobro_factura_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12014,7 +12016,7 @@ ALTER TABLE ONLY public.puente_cobro_factura
 
 
 --
--- TOC entry 3186 (class 2606 OID 69486)
+-- TOC entry 3186 (class 2606 OID 75992)
 -- Name: puente_gasto_concepto puente_gasto_concepto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12023,7 +12025,7 @@ ALTER TABLE ONLY public.puente_gasto_concepto
 
 
 --
--- TOC entry 3188 (class 2606 OID 69488)
+-- TOC entry 3188 (class 2606 OID 75994)
 -- Name: puente_mensaje_usuario puente_mensaje_usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12032,7 +12034,7 @@ ALTER TABLE ONLY public.puente_mensaje_usuario
 
 
 --
--- TOC entry 3190 (class 2606 OID 69490)
+-- TOC entry 3190 (class 2606 OID 75996)
 -- Name: puente_persona_condominio puente_persona_condominio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12041,7 +12043,7 @@ ALTER TABLE ONLY public.puente_persona_condominio
 
 
 --
--- TOC entry 3192 (class 2606 OID 69492)
+-- TOC entry 3192 (class 2606 OID 75998)
 -- Name: puente_sancion_unidad puente_sancion_unidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12050,7 +12052,7 @@ ALTER TABLE ONLY public.puente_sancion_unidad
 
 
 --
--- TOC entry 3194 (class 2606 OID 69494)
+-- TOC entry 3194 (class 2606 OID 76000)
 -- Name: puente_tipo_funcion puente_tipo_funcion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12059,7 +12061,7 @@ ALTER TABLE ONLY public.puente_tipo_funcion
 
 
 --
--- TOC entry 3196 (class 2606 OID 69496)
+-- TOC entry 3196 (class 2606 OID 76002)
 -- Name: puente_unidad_propietarios puente_unidad_propietarios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12068,7 +12070,7 @@ ALTER TABLE ONLY public.puente_unidad_propietarios
 
 
 --
--- TOC entry 3198 (class 2606 OID 69498)
+-- TOC entry 3198 (class 2606 OID 76004)
 -- Name: recibo recibo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12077,7 +12079,7 @@ ALTER TABLE ONLY public.recibo
 
 
 --
--- TOC entry 3200 (class 2606 OID 69500)
+-- TOC entry 3200 (class 2606 OID 76006)
 -- Name: responsable responsable_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12086,7 +12088,7 @@ ALTER TABLE ONLY public.responsable
 
 
 --
--- TOC entry 3202 (class 2606 OID 69502)
+-- TOC entry 3202 (class 2606 OID 76008)
 -- Name: sancion sancion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12095,7 +12097,7 @@ ALTER TABLE ONLY public.sancion
 
 
 --
--- TOC entry 3204 (class 2606 OID 69504)
+-- TOC entry 3204 (class 2606 OID 76010)
 -- Name: tipo_unidad tipo_unidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12104,7 +12106,7 @@ ALTER TABLE ONLY public.tipo_unidad
 
 
 --
--- TOC entry 3206 (class 2606 OID 69506)
+-- TOC entry 3206 (class 2606 OID 76012)
 -- Name: tipo_unidad tipo_unidad_tipo_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12113,7 +12115,7 @@ ALTER TABLE ONLY public.tipo_unidad
 
 
 --
--- TOC entry 3208 (class 2606 OID 69508)
+-- TOC entry 3208 (class 2606 OID 76014)
 -- Name: tipo_usuario tipo_usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12122,7 +12124,7 @@ ALTER TABLE ONLY public.tipo_usuario
 
 
 --
--- TOC entry 3210 (class 2606 OID 69510)
+-- TOC entry 3210 (class 2606 OID 76016)
 -- Name: tipo_usuario tipo_usuario_tipo_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12131,7 +12133,7 @@ ALTER TABLE ONLY public.tipo_usuario
 
 
 --
--- TOC entry 3212 (class 2606 OID 69512)
+-- TOC entry 3212 (class 2606 OID 76018)
 -- Name: unidad unidad_n_documento_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12140,7 +12142,7 @@ ALTER TABLE ONLY public.unidad
 
 
 --
--- TOC entry 3214 (class 2606 OID 69514)
+-- TOC entry 3214 (class 2606 OID 76020)
 -- Name: unidad unidad_n_unidad_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12149,7 +12151,7 @@ ALTER TABLE ONLY public.unidad
 
 
 --
--- TOC entry 3216 (class 2606 OID 69516)
+-- TOC entry 3216 (class 2606 OID 76022)
 -- Name: unidad unidad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12158,7 +12160,7 @@ ALTER TABLE ONLY public.unidad
 
 
 --
--- TOC entry 3218 (class 2606 OID 69518)
+-- TOC entry 3218 (class 2606 OID 76024)
 -- Name: usuario usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12167,7 +12169,7 @@ ALTER TABLE ONLY public.usuario
 
 
 --
--- TOC entry 3220 (class 2606 OID 69520)
+-- TOC entry 3220 (class 2606 OID 76026)
 -- Name: usuario usuario_usuario_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12176,7 +12178,7 @@ ALTER TABLE ONLY public.usuario
 
 
 --
--- TOC entry 3222 (class 2606 OID 69522)
+-- TOC entry 3222 (class 2606 OID 76028)
 -- Name: visita visita_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12185,7 +12187,7 @@ ALTER TABLE ONLY public.visita
 
 
 --
--- TOC entry 3265 (class 2620 OID 69523)
+-- TOC entry 3265 (class 2620 OID 76029)
 -- Name: asambleas tg_asambleas; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12193,7 +12195,7 @@ CREATE TRIGGER tg_asambleas BEFORE INSERT ON public.asambleas FOR EACH ROW EXECU
 
 
 --
--- TOC entry 3267 (class 2620 OID 69524)
+-- TOC entry 3267 (class 2620 OID 76030)
 -- Name: banco tg_banco; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12201,7 +12203,7 @@ CREATE TRIGGER tg_banco BEFORE INSERT OR UPDATE ON public.banco FOR EACH ROW EXE
 
 
 --
--- TOC entry 3302 (class 2620 OID 69525)
+-- TOC entry 3302 (class 2620 OID 76031)
 -- Name: unidad tg_calcular_alicuota; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12209,7 +12211,7 @@ CREATE TRIGGER tg_calcular_alicuota AFTER INSERT OR UPDATE OF n_documento, direc
 
 
 --
--- TOC entry 3269 (class 2620 OID 69526)
+-- TOC entry 3269 (class 2620 OID 76032)
 -- Name: categoriagasto tg_categoria_gasto; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12217,7 +12219,7 @@ CREATE TRIGGER tg_categoria_gasto BEFORE INSERT OR UPDATE ON public.categoriagas
 
 
 --
--- TOC entry 3272 (class 2620 OID 69527)
+-- TOC entry 3272 (class 2620 OID 76033)
 -- Name: concepto_gasto tg_concepto_gasto; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12225,7 +12227,7 @@ CREATE TRIGGER tg_concepto_gasto BEFORE INSERT OR UPDATE ON public.concepto_gast
 
 
 --
--- TOC entry 3274 (class 2620 OID 69528)
+-- TOC entry 3274 (class 2620 OID 76034)
 -- Name: condominio tg_condominio; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12233,7 +12235,7 @@ CREATE TRIGGER tg_condominio BEFORE INSERT OR UPDATE ON public.condominio FOR EA
 
 
 --
--- TOC entry 3276 (class 2620 OID 69529)
+-- TOC entry 3276 (class 2620 OID 76035)
 -- Name: cuenta tg_cuenta; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12241,7 +12243,7 @@ CREATE TRIGGER tg_cuenta BEFORE INSERT OR UPDATE ON public.cuenta FOR EACH ROW E
 
 
 --
--- TOC entry 3278 (class 2620 OID 69530)
+-- TOC entry 3278 (class 2620 OID 76036)
 -- Name: cuenta_pagar tg_cuenta_pagar; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12249,7 +12251,7 @@ CREATE TRIGGER tg_cuenta_pagar BEFORE INSERT OR UPDATE ON public.cuenta_pagar FO
 
 
 --
--- TOC entry 3290 (class 2620 OID 69531)
+-- TOC entry 3290 (class 2620 OID 76037)
 -- Name: mensaje tg_eliminar_mensaje; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12257,7 +12259,7 @@ CREATE TRIGGER tg_eliminar_mensaje AFTER UPDATE ON public.mensaje FOR EACH ROW E
 
 
 --
--- TOC entry 3295 (class 2620 OID 69532)
+-- TOC entry 3295 (class 2620 OID 76038)
 -- Name: puente_mensaje_usuario tg_eliminar_puente_mensaje; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12265,7 +12267,7 @@ CREATE TRIGGER tg_eliminar_puente_mensaje AFTER UPDATE ON public.puente_mensaje_
 
 
 --
--- TOC entry 3282 (class 2620 OID 69533)
+-- TOC entry 3282 (class 2620 OID 76039)
 -- Name: fondos tg_fondos; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12273,7 +12275,7 @@ CREATE TRIGGER tg_fondos BEFORE INSERT OR UPDATE ON public.fondos FOR EACH ROW E
 
 
 --
--- TOC entry 3284 (class 2620 OID 69534)
+-- TOC entry 3284 (class 2620 OID 76040)
 -- Name: forma_pago tg_forma_pago; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12281,7 +12283,7 @@ CREATE TRIGGER tg_forma_pago BEFORE INSERT OR UPDATE ON public.forma_pago FOR EA
 
 
 --
--- TOC entry 3286 (class 2620 OID 69535)
+-- TOC entry 3286 (class 2620 OID 76041)
 -- Name: gasto tg_gasto; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12289,7 +12291,7 @@ CREATE TRIGGER tg_gasto BEFORE INSERT OR UPDATE ON public.gasto FOR EACH ROW EXE
 
 
 --
--- TOC entry 3288 (class 2620 OID 69536)
+-- TOC entry 3288 (class 2620 OID 76042)
 -- Name: interes tg_interes; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12297,7 +12299,7 @@ CREATE TRIGGER tg_interes BEFORE INSERT OR UPDATE ON public.interes FOR EACH ROW
 
 
 --
--- TOC entry 3266 (class 2620 OID 69537)
+-- TOC entry 3266 (class 2620 OID 76043)
 -- Name: asambleas tg_mayuscula_asambleas; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12305,7 +12307,7 @@ CREATE TRIGGER tg_mayuscula_asambleas BEFORE INSERT OR UPDATE ON public.asamblea
 
 
 --
--- TOC entry 3268 (class 2620 OID 69538)
+-- TOC entry 3268 (class 2620 OID 76044)
 -- Name: banco tg_mayuscula_banco; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12313,7 +12315,7 @@ CREATE TRIGGER tg_mayuscula_banco BEFORE INSERT OR UPDATE ON public.banco FOR EA
 
 
 --
--- TOC entry 3270 (class 2620 OID 69539)
+-- TOC entry 3270 (class 2620 OID 76045)
 -- Name: categoriagasto tg_mayuscula_categoriagasto; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12321,7 +12323,7 @@ CREATE TRIGGER tg_mayuscula_categoriagasto BEFORE INSERT OR UPDATE ON public.cat
 
 
 --
--- TOC entry 3271 (class 2620 OID 69540)
+-- TOC entry 3271 (class 2620 OID 76046)
 -- Name: cobro_unidad tg_mayuscula_cobro_unidad; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12329,7 +12331,7 @@ CREATE TRIGGER tg_mayuscula_cobro_unidad BEFORE INSERT OR UPDATE ON public.cobro
 
 
 --
--- TOC entry 3273 (class 2620 OID 69541)
+-- TOC entry 3273 (class 2620 OID 76047)
 -- Name: concepto_gasto tg_mayuscula_concepto_gasto; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12337,7 +12339,7 @@ CREATE TRIGGER tg_mayuscula_concepto_gasto BEFORE INSERT OR UPDATE ON public.con
 
 
 --
--- TOC entry 3275 (class 2620 OID 69542)
+-- TOC entry 3275 (class 2620 OID 76048)
 -- Name: condominio tg_mayuscula_condominio; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12345,7 +12347,7 @@ CREATE TRIGGER tg_mayuscula_condominio BEFORE INSERT OR UPDATE ON public.condomi
 
 
 --
--- TOC entry 3277 (class 2620 OID 69543)
+-- TOC entry 3277 (class 2620 OID 76049)
 -- Name: cuenta tg_mayuscula_cuenta; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12353,7 +12355,7 @@ CREATE TRIGGER tg_mayuscula_cuenta BEFORE INSERT OR UPDATE ON public.cuenta FOR 
 
 
 --
--- TOC entry 3279 (class 2620 OID 69544)
+-- TOC entry 3279 (class 2620 OID 76050)
 -- Name: cuenta_pagar tg_mayuscula_cuenta_pagar; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12361,7 +12363,7 @@ CREATE TRIGGER tg_mayuscula_cuenta_pagar BEFORE INSERT OR UPDATE ON public.cuent
 
 
 --
--- TOC entry 3281 (class 2620 OID 69545)
+-- TOC entry 3281 (class 2620 OID 76051)
 -- Name: detalle_pagos tg_mayuscula_detalle_pagos; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12369,7 +12371,7 @@ CREATE TRIGGER tg_mayuscula_detalle_pagos BEFORE INSERT OR UPDATE ON public.deta
 
 
 --
--- TOC entry 3283 (class 2620 OID 69546)
+-- TOC entry 3283 (class 2620 OID 76052)
 -- Name: fondos tg_mayuscula_fondos; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12377,7 +12379,7 @@ CREATE TRIGGER tg_mayuscula_fondos BEFORE INSERT OR UPDATE ON public.fondos FOR 
 
 
 --
--- TOC entry 3285 (class 2620 OID 69547)
+-- TOC entry 3285 (class 2620 OID 76053)
 -- Name: forma_pago tg_mayuscula_forma_pago; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12385,7 +12387,7 @@ CREATE TRIGGER tg_mayuscula_forma_pago BEFORE INSERT OR UPDATE ON public.forma_p
 
 
 --
--- TOC entry 3287 (class 2620 OID 69548)
+-- TOC entry 3287 (class 2620 OID 76054)
 -- Name: gasto tg_mayuscula_gasto; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12393,7 +12395,7 @@ CREATE TRIGGER tg_mayuscula_gasto BEFORE INSERT OR UPDATE ON public.gasto FOR EA
 
 
 --
--- TOC entry 3289 (class 2620 OID 69549)
+-- TOC entry 3289 (class 2620 OID 76055)
 -- Name: interes tg_mayuscula_interes; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12401,7 +12403,7 @@ CREATE TRIGGER tg_mayuscula_interes BEFORE INSERT OR UPDATE ON public.interes FO
 
 
 --
--- TOC entry 3291 (class 2620 OID 69550)
+-- TOC entry 3291 (class 2620 OID 76056)
 -- Name: persona tg_mayuscula_persona; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12409,7 +12411,7 @@ CREATE TRIGGER tg_mayuscula_persona BEFORE INSERT OR UPDATE ON public.persona FO
 
 
 --
--- TOC entry 3293 (class 2620 OID 69551)
+-- TOC entry 3293 (class 2620 OID 76057)
 -- Name: proveedores tg_mayuscula_proveedores; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12417,7 +12419,7 @@ CREATE TRIGGER tg_mayuscula_proveedores BEFORE INSERT OR UPDATE ON public.provee
 
 
 --
--- TOC entry 3297 (class 2620 OID 69552)
+-- TOC entry 3297 (class 2620 OID 76058)
 -- Name: sancion tg_mayuscula_sancion; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12425,7 +12427,7 @@ CREATE TRIGGER tg_mayuscula_sancion BEFORE INSERT OR UPDATE ON public.sancion FO
 
 
 --
--- TOC entry 3299 (class 2620 OID 69553)
+-- TOC entry 3299 (class 2620 OID 76059)
 -- Name: tipo_unidad tg_mayuscula_tipo_unidad; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12433,7 +12435,7 @@ CREATE TRIGGER tg_mayuscula_tipo_unidad BEFORE INSERT OR UPDATE ON public.tipo_u
 
 
 --
--- TOC entry 3301 (class 2620 OID 69554)
+-- TOC entry 3301 (class 2620 OID 76060)
 -- Name: tipo_usuario tg_mayuscula_tipo_usuario; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12441,7 +12443,7 @@ CREATE TRIGGER tg_mayuscula_tipo_usuario BEFORE INSERT OR UPDATE ON public.tipo_
 
 
 --
--- TOC entry 3303 (class 2620 OID 69555)
+-- TOC entry 3303 (class 2620 OID 76061)
 -- Name: unidad tg_mayuscula_unidad; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12449,7 +12451,7 @@ CREATE TRIGGER tg_mayuscula_unidad BEFORE INSERT OR UPDATE ON public.unidad FOR 
 
 
 --
--- TOC entry 3305 (class 2620 OID 69556)
+-- TOC entry 3305 (class 2620 OID 76062)
 -- Name: visita tg_mayuscula_visita; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12457,7 +12459,7 @@ CREATE TRIGGER tg_mayuscula_visita BEFORE INSERT OR UPDATE ON public.visita FOR 
 
 
 --
--- TOC entry 3292 (class 2620 OID 69557)
+-- TOC entry 3292 (class 2620 OID 76063)
 -- Name: propietario tg_propietario; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12465,7 +12467,7 @@ CREATE TRIGGER tg_propietario BEFORE INSERT OR UPDATE ON public.propietario FOR 
 
 
 --
--- TOC entry 3294 (class 2620 OID 69558)
+-- TOC entry 3294 (class 2620 OID 76064)
 -- Name: proveedores tg_proveedores; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12473,7 +12475,7 @@ CREATE TRIGGER tg_proveedores BEFORE INSERT OR UPDATE ON public.proveedores FOR 
 
 
 --
--- TOC entry 3296 (class 2620 OID 69559)
+-- TOC entry 3296 (class 2620 OID 76065)
 -- Name: recibo tg_recibo; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12481,7 +12483,7 @@ CREATE TRIGGER tg_recibo BEFORE INSERT OR UPDATE ON public.recibo FOR EACH ROW E
 
 
 --
--- TOC entry 3280 (class 2620 OID 69560)
+-- TOC entry 3280 (class 2620 OID 76066)
 -- Name: cuenta_pagar tg_restar_saldo; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12489,7 +12491,7 @@ CREATE TRIGGER tg_restar_saldo AFTER INSERT ON public.cuenta_pagar FOR EACH ROW 
 
 
 --
--- TOC entry 3298 (class 2620 OID 69561)
+-- TOC entry 3298 (class 2620 OID 76067)
 -- Name: sancion tg_sancion; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12497,7 +12499,7 @@ CREATE TRIGGER tg_sancion BEFORE INSERT OR UPDATE ON public.sancion FOR EACH ROW
 
 
 --
--- TOC entry 3300 (class 2620 OID 69562)
+-- TOC entry 3300 (class 2620 OID 76068)
 -- Name: tipo_unidad tg_tipo_unidad; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12505,7 +12507,7 @@ CREATE TRIGGER tg_tipo_unidad BEFORE INSERT OR UPDATE ON public.tipo_unidad FOR 
 
 
 --
--- TOC entry 3304 (class 2620 OID 69563)
+-- TOC entry 3304 (class 2620 OID 76069)
 -- Name: unidad tg_unidad; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12513,7 +12515,7 @@ CREATE TRIGGER tg_unidad BEFORE INSERT OR UPDATE ON public.unidad FOR EACH ROW E
 
 
 --
--- TOC entry 3306 (class 2620 OID 69564)
+-- TOC entry 3306 (class 2620 OID 76070)
 -- Name: visita tg_visita; Type: TRIGGER; Schema: public; Owner: postgres
 --
 
@@ -12521,7 +12523,7 @@ CREATE TRIGGER tg_visita BEFORE INSERT ON public.visita FOR EACH ROW EXECUTE FUN
 
 
 --
--- TOC entry 3223 (class 2606 OID 69565)
+-- TOC entry 3223 (class 2606 OID 76071)
 -- Name: bitacora bitacora_id_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12530,7 +12532,7 @@ ALTER TABLE ONLY public.bitacora
 
 
 --
--- TOC entry 3224 (class 2606 OID 69570)
+-- TOC entry 3224 (class 2606 OID 76076)
 -- Name: cobro_unidad cobro_unidad_id_cuenta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12539,7 +12541,7 @@ ALTER TABLE ONLY public.cobro_unidad
 
 
 --
--- TOC entry 3225 (class 2606 OID 69575)
+-- TOC entry 3225 (class 2606 OID 76081)
 -- Name: cobro_unidad cobro_unidad_id_fondo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12548,7 +12550,7 @@ ALTER TABLE ONLY public.cobro_unidad
 
 
 --
--- TOC entry 3226 (class 2606 OID 69580)
+-- TOC entry 3226 (class 2606 OID 76086)
 -- Name: cobro_unidad cobro_unidad_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12557,7 +12559,7 @@ ALTER TABLE ONLY public.cobro_unidad
 
 
 --
--- TOC entry 3227 (class 2606 OID 69585)
+-- TOC entry 3227 (class 2606 OID 76091)
 -- Name: concepto_gasto concepto_gasto_id_categoria_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12566,7 +12568,7 @@ ALTER TABLE ONLY public.concepto_gasto
 
 
 --
--- TOC entry 3228 (class 2606 OID 69590)
+-- TOC entry 3228 (class 2606 OID 76096)
 -- Name: cuenta cuenta_ci_persona_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12575,7 +12577,7 @@ ALTER TABLE ONLY public.cuenta
 
 
 --
--- TOC entry 3229 (class 2606 OID 69595)
+-- TOC entry 3229 (class 2606 OID 76101)
 -- Name: cuenta cuenta_id_banco_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12584,7 +12586,7 @@ ALTER TABLE ONLY public.cuenta
 
 
 --
--- TOC entry 3231 (class 2606 OID 69600)
+-- TOC entry 3231 (class 2606 OID 76106)
 -- Name: cuenta_pagar cuenta_pagar_id_fondo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12593,7 +12595,7 @@ ALTER TABLE ONLY public.cuenta_pagar
 
 
 --
--- TOC entry 3232 (class 2606 OID 69605)
+-- TOC entry 3232 (class 2606 OID 76111)
 -- Name: cuenta_pagar cuenta_pagar_id_forma_pago_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12602,7 +12604,7 @@ ALTER TABLE ONLY public.cuenta_pagar
 
 
 --
--- TOC entry 3233 (class 2606 OID 69610)
+-- TOC entry 3233 (class 2606 OID 76116)
 -- Name: cuenta_pagar cuenta_pagar_id_gasto_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12611,7 +12613,7 @@ ALTER TABLE ONLY public.cuenta_pagar
 
 
 --
--- TOC entry 3234 (class 2606 OID 69615)
+-- TOC entry 3234 (class 2606 OID 76121)
 -- Name: cuenta_pagar cuenta_pagar_n_cuenta_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12620,7 +12622,7 @@ ALTER TABLE ONLY public.cuenta_pagar
 
 
 --
--- TOC entry 3230 (class 2606 OID 69620)
+-- TOC entry 3230 (class 2606 OID 76126)
 -- Name: cuenta cuenta_rif_condominio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12629,7 +12631,7 @@ ALTER TABLE ONLY public.cuenta
 
 
 --
--- TOC entry 3235 (class 2606 OID 69625)
+-- TOC entry 3235 (class 2606 OID 76131)
 -- Name: detalle_pagos detalle_pagos_id_gasto_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12638,7 +12640,7 @@ ALTER TABLE ONLY public.detalle_pagos
 
 
 --
--- TOC entry 3236 (class 2606 OID 69630)
+-- TOC entry 3236 (class 2606 OID 76136)
 -- Name: detalle_pagos detalle_pagos_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12647,7 +12649,7 @@ ALTER TABLE ONLY public.detalle_pagos
 
 
 --
--- TOC entry 3237 (class 2606 OID 69635)
+-- TOC entry 3237 (class 2606 OID 76141)
 -- Name: gasto gasto_id_asamblea_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12656,7 +12658,7 @@ ALTER TABLE ONLY public.gasto
 
 
 --
--- TOC entry 3238 (class 2606 OID 69640)
+-- TOC entry 3238 (class 2606 OID 76146)
 -- Name: gasto gasto_id_proveedor_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12665,7 +12667,7 @@ ALTER TABLE ONLY public.gasto
 
 
 --
--- TOC entry 3239 (class 2606 OID 69645)
+-- TOC entry 3239 (class 2606 OID 76151)
 -- Name: interes interes_rif_condominio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12674,7 +12676,7 @@ ALTER TABLE ONLY public.interes
 
 
 --
--- TOC entry 3240 (class 2606 OID 69650)
+-- TOC entry 3240 (class 2606 OID 76156)
 -- Name: mensaje mensaje_emisor_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12683,7 +12685,7 @@ ALTER TABLE ONLY public.mensaje
 
 
 --
--- TOC entry 3241 (class 2606 OID 69655)
+-- TOC entry 3241 (class 2606 OID 76161)
 -- Name: propietario propietario_ci_persona_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12692,7 +12694,7 @@ ALTER TABLE ONLY public.propietario
 
 
 --
--- TOC entry 3242 (class 2606 OID 69660)
+-- TOC entry 3242 (class 2606 OID 76166)
 -- Name: puente_asambleas_propietario puente_asambleas_propietario_ci_propietario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12701,7 +12703,7 @@ ALTER TABLE ONLY public.puente_asambleas_propietario
 
 
 --
--- TOC entry 3243 (class 2606 OID 69665)
+-- TOC entry 3243 (class 2606 OID 76171)
 -- Name: puente_asambleas_propietario puente_asambleas_propietario_id_asamblea_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12710,7 +12712,7 @@ ALTER TABLE ONLY public.puente_asambleas_propietario
 
 
 --
--- TOC entry 3244 (class 2606 OID 69670)
+-- TOC entry 3244 (class 2606 OID 76176)
 -- Name: puente_cobro_factura puente_cobro_factura_id_cobro_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12719,7 +12721,7 @@ ALTER TABLE ONLY public.puente_cobro_factura
 
 
 --
--- TOC entry 3245 (class 2606 OID 69675)
+-- TOC entry 3245 (class 2606 OID 76181)
 -- Name: puente_cobro_factura puente_cobro_factura_id_recibo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12728,7 +12730,7 @@ ALTER TABLE ONLY public.puente_cobro_factura
 
 
 --
--- TOC entry 3246 (class 2606 OID 69680)
+-- TOC entry 3246 (class 2606 OID 76186)
 -- Name: puente_gasto_concepto puente_gasto_concepto_id_concepto_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12737,7 +12739,7 @@ ALTER TABLE ONLY public.puente_gasto_concepto
 
 
 --
--- TOC entry 3247 (class 2606 OID 69685)
+-- TOC entry 3247 (class 2606 OID 76191)
 -- Name: puente_gasto_concepto puente_gasto_concepto_id_gasto_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12746,7 +12748,7 @@ ALTER TABLE ONLY public.puente_gasto_concepto
 
 
 --
--- TOC entry 3248 (class 2606 OID 69690)
+-- TOC entry 3248 (class 2606 OID 76196)
 -- Name: puente_mensaje_usuario puente_mensaje_usuario_id_mensaje_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12755,7 +12757,7 @@ ALTER TABLE ONLY public.puente_mensaje_usuario
 
 
 --
--- TOC entry 3249 (class 2606 OID 69695)
+-- TOC entry 3249 (class 2606 OID 76201)
 -- Name: puente_mensaje_usuario puente_mensaje_usuario_receptor_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12764,7 +12766,7 @@ ALTER TABLE ONLY public.puente_mensaje_usuario
 
 
 --
--- TOC entry 3250 (class 2606 OID 69700)
+-- TOC entry 3250 (class 2606 OID 76206)
 -- Name: puente_persona_condominio puente_persona_condominio_ci_persona_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12773,7 +12775,7 @@ ALTER TABLE ONLY public.puente_persona_condominio
 
 
 --
--- TOC entry 3251 (class 2606 OID 69705)
+-- TOC entry 3251 (class 2606 OID 76211)
 -- Name: puente_persona_condominio puente_persona_condominio_rif_condominio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12782,7 +12784,7 @@ ALTER TABLE ONLY public.puente_persona_condominio
 
 
 --
--- TOC entry 3252 (class 2606 OID 69710)
+-- TOC entry 3252 (class 2606 OID 76216)
 -- Name: puente_sancion_unidad puente_sancion_unidad_id_sancion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12791,7 +12793,7 @@ ALTER TABLE ONLY public.puente_sancion_unidad
 
 
 --
--- TOC entry 3253 (class 2606 OID 69715)
+-- TOC entry 3253 (class 2606 OID 76221)
 -- Name: puente_sancion_unidad puente_sancion_unidad_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12800,7 +12802,7 @@ ALTER TABLE ONLY public.puente_sancion_unidad
 
 
 --
--- TOC entry 3254 (class 2606 OID 69720)
+-- TOC entry 3254 (class 2606 OID 76226)
 -- Name: puente_tipo_funcion puente_tipo_funcion_id_funcion_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12809,7 +12811,7 @@ ALTER TABLE ONLY public.puente_tipo_funcion
 
 
 --
--- TOC entry 3255 (class 2606 OID 69725)
+-- TOC entry 3255 (class 2606 OID 76231)
 -- Name: puente_tipo_funcion puente_tipo_funcion_id_tipo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12818,7 +12820,7 @@ ALTER TABLE ONLY public.puente_tipo_funcion
 
 
 --
--- TOC entry 3256 (class 2606 OID 69730)
+-- TOC entry 3256 (class 2606 OID 76236)
 -- Name: puente_unidad_propietarios puente_unidad_propietarios_ci_propietario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12827,7 +12829,7 @@ ALTER TABLE ONLY public.puente_unidad_propietarios
 
 
 --
--- TOC entry 3257 (class 2606 OID 69735)
+-- TOC entry 3257 (class 2606 OID 76241)
 -- Name: puente_unidad_propietarios puente_unidad_propietarios_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12836,7 +12838,7 @@ ALTER TABLE ONLY public.puente_unidad_propietarios
 
 
 --
--- TOC entry 3258 (class 2606 OID 69740)
+-- TOC entry 3258 (class 2606 OID 76246)
 -- Name: recibo recibo_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12845,7 +12847,7 @@ ALTER TABLE ONLY public.recibo
 
 
 --
--- TOC entry 3259 (class 2606 OID 69745)
+-- TOC entry 3259 (class 2606 OID 76251)
 -- Name: responsable responsable_ci_persona_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12854,7 +12856,7 @@ ALTER TABLE ONLY public.responsable
 
 
 --
--- TOC entry 3260 (class 2606 OID 69750)
+-- TOC entry 3260 (class 2606 OID 76256)
 -- Name: unidad unidad_id_tipo_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12863,7 +12865,7 @@ ALTER TABLE ONLY public.unidad
 
 
 --
--- TOC entry 3261 (class 2606 OID 69755)
+-- TOC entry 3261 (class 2606 OID 76261)
 -- Name: usuario usuario_ci_persona_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12872,7 +12874,7 @@ ALTER TABLE ONLY public.usuario
 
 
 --
--- TOC entry 3262 (class 2606 OID 69760)
+-- TOC entry 3262 (class 2606 OID 76266)
 -- Name: usuario usuario_id_tipo_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12881,7 +12883,7 @@ ALTER TABLE ONLY public.usuario
 
 
 --
--- TOC entry 3263 (class 2606 OID 69765)
+-- TOC entry 3263 (class 2606 OID 76271)
 -- Name: visita visita_ci_visitante_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12890,7 +12892,7 @@ ALTER TABLE ONLY public.visita
 
 
 --
--- TOC entry 3264 (class 2606 OID 69770)
+-- TOC entry 3264 (class 2606 OID 76276)
 -- Name: visita visita_id_unidad_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -12898,7 +12900,7 @@ ALTER TABLE ONLY public.visita
     ADD CONSTRAINT visita_id_unidad_fkey FOREIGN KEY (id_unidad) REFERENCES public.unidad(id);
 
 
--- Completed on 2020-07-28 21:19:56
+-- Completed on 2020-07-29 20:47:40
 
 --
 -- PostgreSQL database dump complete
