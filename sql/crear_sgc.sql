@@ -368,6 +368,15 @@ CREATE TABLE IF NOT EXISTS bitacora (
 	fecha_hora timestamp without time zone DEFAULT LOCALTIMESTAMP(0)
 );
 
+-- sesion_usuario
+--DROP TABLE sesion_usuario;
+CREATE TABLE IF NOT EXISTS sesion_usuario(
+id serial NOT NULL PRIMARY KEY,
+fecha_entrada timestamp DEFAULT localtimestamp(0),
+fecha_salida timestamp DEFAULT localtimestamp(0),
+id_usuario int NOT NULL REFERENCES usuario(id)
+);
+
 
 -------- Funciones --------
 --pagar_gasto
@@ -445,12 +454,16 @@ CREATE FUNCTION login(usu character varying, pass character varying) RETURNS boo
 DECLARE
 	usu1 character varying;
 	pass1 character varying;
+	_id_usuario
 
 BEGIN
 	usu1 := (SELECT usuario FROM usuario where usuario=usu AND password=pass);
 	pass1 := (SELECT password FROM usuario where usuario=usu AND password=pass);
 
 	IF usu = usu1 AND pass = pass1 THEN 
+	
+	INSERT INTO sesion_usuario (fecha_entrada, id_usuario) VALUES (default,1);
+	
 		RETURN TRUE;
 		
 	ELSE
