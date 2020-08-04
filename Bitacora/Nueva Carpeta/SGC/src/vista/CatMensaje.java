@@ -82,16 +82,18 @@ public class CatMensaje extends javax.swing.JPanel {
         btnMensaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/email.png"))); // NOI18N
         btnMensaje.setText("Nuevo Mensaje");
         btnMensaje.setToolTipText("Crear un nuevo mensaje");
+        btnMensaje.setBorder(null);
         btnMensaje.setBorderPainted(false);
         btnMensaje.setContentAreaFilled(false);
-        btnMensaje.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMensaje.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMensaje.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/email.png"))); // NOI18N
         btnMensaje.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/email (1).png"))); // NOI18N
         btnMensaje.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/email (1).png"))); // NOI18N
         btnMensaje.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/email (1).png"))); // NOI18N
-        add(btnMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 80, 150, -1));
+        add(btnMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 70, 160, -1));
 
         panelBandejas.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        panelBandejas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelBandejas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
@@ -130,14 +132,15 @@ public class CatMensaje extends javax.swing.JPanel {
         btnEliminar.setForeground(new java.awt.Color(0, 94, 159));
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eemail.png"))); // NOI18N
         btnEliminar.setText(" Eliminar");
+        btnEliminar.setBorder(null);
         btnEliminar.setBorderPainted(false);
         btnEliminar.setContentAreaFilled(false);
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eemail.png"))); // NOI18N
         btnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eemail (1).png"))); // NOI18N
         btnEliminar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eemail (1).png"))); // NOI18N
         btnEliminar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/eemail (1).png"))); // NOI18N
-        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 120, 130, 20));
+        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 120, 110, -1));
 
         jSeparator6.setBackground(new java.awt.Color(0, 94, 159));
         jSeparator6.setForeground(new java.awt.Color(0, 94, 159));

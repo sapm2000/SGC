@@ -119,7 +119,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Este responsable ya existe en la base de datos, se recuperarán los datos para el nuevo registro ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "Este responsable ya existe en la base de datos, se recuperarán los datos para el nuevo registro ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                     if (modelo.reactivar()) {
 
@@ -133,7 +133,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Registro Guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, a);
+                        JOptionPane.showMessageDialog(null, "Registro Guardado ", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, a);
                         CtrlVentana.cambiarVista(catalogo);
                         llenarTabla();
 
@@ -149,7 +149,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "No se pudo reactivar ", "Advertencia", JOptionPane.WARNING_MESSAGE, b);
+                        JOptionPane.showMessageDialog(null, "No se pudo reactivar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, b);
                     }
 
                 } else {
@@ -167,7 +167,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Esta persona ya está registrada ", "Advertencia", JOptionPane.WARNING_MESSAGE, d);
+                        JOptionPane.showMessageDialog(null, "Esta persona ya está registrada ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, d);
 
                     } else {
 
@@ -184,7 +184,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "Esta persona está registrada en la base de datos como propietario, se utilizarán los datos de ese registro ", "Advertencia", JOptionPane.WARNING_MESSAGE, d);
+                            JOptionPane.showMessageDialog(null, "Esta persona está registrada en la base de datos como propietario, se utilizarán los datos de ese registro ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, d);
 
                             if (modelo.registrar(true)) {
 
@@ -198,7 +198,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
                                 UIManager.put("Label.background", Color.blue);
                                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, f);
+                                JOptionPane.showMessageDialog(null, "Registro guardado ", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, f);
                                 CtrlVentana.cambiarVista(catalogo);
                                 llenarTabla();
 
@@ -214,7 +214,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
                                 UIManager.put("Label.background", Color.blue);
                                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                JOptionPane.showMessageDialog(null, "Error al registrar", "Advertencia", JOptionPane.INFORMATION_MESSAGE, g);
+                                JOptionPane.showMessageDialog(null, "Error al registrar", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, g);
 
                             }
 
@@ -232,7 +232,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
                                 UIManager.put("Label.background", Color.blue);
                                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, k);
+                                JOptionPane.showMessageDialog(null, "Registro guardado ", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, k);
                                 CtrlVentana.cambiarVista(catalogo);
                                 llenarTabla();
 
@@ -249,7 +249,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
                                 UIManager.put("Label.background", Color.blue);
                                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                JOptionPane.showMessageDialog(null, "Error al registrar ", "Advertencia", JOptionPane.WARNING_MESSAGE, j);
+                                JOptionPane.showMessageDialog(null, "Error al registrar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, j);
 
                             }
                         }
@@ -279,7 +279,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Registro modificado ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, l);
+                    JOptionPane.showMessageDialog(null, "Registro modificado ", "MODIFICACIÓN DE DATOS", JOptionPane.INFORMATION_MESSAGE, l);
                     CtrlVentana.cambiarVista(catalogo);
                     llenarTabla();
 
@@ -296,7 +296,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Error al modificar ", "Advertencia", JOptionPane.WARNING_MESSAGE, m);
+                    JOptionPane.showMessageDialog(null, "Error al modificar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, m);
 
                 }
             }
@@ -332,7 +332,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
                 UIManager.put("Label.background", Color.blue);
                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                JOptionPane.showMessageDialog(null, "Registro eliminado ", "Eliminación de datos", JOptionPane.INFORMATION_MESSAGE, n);
+                JOptionPane.showMessageDialog(null, "Registro eliminado ", "ELIMINACIÓN SATISFACTORIA", JOptionPane.INFORMATION_MESSAGE, n);
                 CtrlVentana.cambiarVista(catalogo);
                 llenarTabla();
 
@@ -349,7 +349,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
                 UIManager.put("Label.background", Color.blue);
                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                JOptionPane.showMessageDialog(null, "Error al eliminar ", "Advertencia", JOptionPane.WARNING_MESSAGE, o);
+                JOptionPane.showMessageDialog(null, "Error al eliminar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, o);
 
             }
         }
@@ -531,7 +531,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(vista, mensaje, "Advertencia", JOptionPane.WARNING_MESSAGE, q);
+            JOptionPane.showMessageDialog(vista, mensaje, "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, q);
         }
 
         return resultado;

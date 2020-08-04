@@ -147,7 +147,7 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Registro guardado", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "Registro guardado", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                     llenarTabla(catalogo.tabla);
                     limpiar();
                     CtrlVentana.cambiarVista(catalogo);
@@ -168,7 +168,7 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Registro Modificado", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "Registro Modificado", "MODIFICACIÓN DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                         llenarTabla(catalogo.tabla);
                         limpiar();
                         CtrlVentana.cambiarVista(catalogo);
@@ -187,7 +187,7 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "No se pudo registrar", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "No se pudo registrar", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                     }
                 }
             }
@@ -211,7 +211,7 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
                 UIManager.put("Label.background", Color.blue);
                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                JOptionPane.showMessageDialog(null, "No puede eliminar el banco porque tiene cuentas asignadas", "Información", JOptionPane.INFORMATION_MESSAGE, p);
+                JOptionPane.showMessageDialog(null, "No puede eliminar el banco porque tiene cuentas asignadas", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
             } else {
 
                 if (modban.eliminar(modban)) {
@@ -224,7 +224,7 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Registro Eliminado", "Información", JOptionPane.INFORMATION_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "Registro Eliminado", "ELIMINACIÓN SATISFACTORIA", JOptionPane.INFORMATION_MESSAGE, p);
                     CtrlVentana.cambiarVista(catalogo);
                     llenarTabla(catalogo.tabla);
 
@@ -242,7 +242,7 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Error al Eliminar", "Información", JOptionPane.WARNING_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "Error al Eliminar", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                 }
 
@@ -268,7 +268,7 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "No puede colocar el nombre de un banco que ya existio, si quiere colocar este nombre debe registrarlo nuevamente", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "No puede colocar el nombre de un banco que ya existio, si quiere colocar este nombre debe registrarlo nuevamente", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                 } else {
                     if (modban.modificar(modban)) {
@@ -285,7 +285,7 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Registro modificado", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "Registro modificado", "MODIFICACIÓN DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                         CtrlVentana.cambiarVista(catalogo);
                         llenarTabla(catalogo.tabla);
                         limpiar();
@@ -304,7 +304,7 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Este registro ya existe", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "Este registro ya existe", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                     }
                 }
@@ -492,7 +492,7 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, msj, "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;

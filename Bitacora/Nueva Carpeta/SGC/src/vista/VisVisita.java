@@ -162,7 +162,7 @@ public class VisVisita extends javax.swing.JPanel {
         btnBuscarPersona.setBorder(null);
         btnBuscarPersona.setBorderPainted(false);
         btnBuscarPersona.setContentAreaFilled(false);
-        btnBuscarPersona.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnBuscarPersona.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarPersona.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
         btnBuscarPersona.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
         btnBuscarPersona.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/busqueda (1).png"))); // NOI18N
@@ -304,7 +304,7 @@ public class VisVisita extends javax.swing.JPanel {
         btnEntrada.setBorder(null);
         btnEntrada.setBorderPainted(false);
         btnEntrada.setContentAreaFilled(false);
-        btnEntrada.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEntrada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEntrada.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enter (1).png"))); // NOI18N
         btnEntrada.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enter.png"))); // NOI18N
         btnEntrada.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enter (1).png"))); // NOI18N
@@ -324,7 +324,7 @@ public class VisVisita extends javax.swing.JPanel {
         btnSalida.setBorder(null);
         btnSalida.setBorderPainted(false);
         btnSalida.setContentAreaFilled(false);
-        btnSalida.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSalida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalida.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logout (3).png"))); // NOI18N
         btnSalida.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logout (4).png"))); // NOI18N
         btnSalida.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logout (3).png"))); // NOI18N
@@ -339,7 +339,7 @@ public class VisVisita extends javax.swing.JPanel {
         btnNuevo.setBorder(null);
         btnNuevo.setBorderPainted(false);
         btnNuevo.setContentAreaFilled(false);
-        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNuevo.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btnNuevo.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N
         btnNuevo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/simbolo-grueso-adicional (1).png"))); // NOI18N

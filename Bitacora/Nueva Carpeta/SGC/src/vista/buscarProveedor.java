@@ -149,7 +149,7 @@ public class buscarProveedor extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jTextField1.setToolTipText("Buscador");
         jTextField1.setBorder(null);
-        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 190, 20));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 470));

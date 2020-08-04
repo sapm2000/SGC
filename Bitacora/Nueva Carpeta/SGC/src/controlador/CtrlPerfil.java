@@ -91,7 +91,7 @@ public class CtrlPerfil implements ActionListener, ItemListener {
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(vista, "Datos modificados ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
+            JOptionPane.showMessageDialog(vista, "Datos modificados ", "MODIFICACIÓN DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
         } else {
 
             UIManager UI = new UIManager();
@@ -106,7 +106,7 @@ public class CtrlPerfil implements ActionListener, ItemListener {
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(vista, "Datos no modificados ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(vista, "Datos no modificados ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
         }
 
@@ -135,7 +135,7 @@ public class CtrlPerfil implements ActionListener, ItemListener {
                 UIManager.put("Label.background", Color.blue);
                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                JOptionPane.showMessageDialog(vista, "Datos modificados ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                JOptionPane.showMessageDialog(vista, "Datos modificados ", "MODIFICACIÓN DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
             } else {
 
                 UIManager UI = new UIManager();
@@ -150,7 +150,7 @@ public class CtrlPerfil implements ActionListener, ItemListener {
                 UIManager.put("Label.background", Color.blue);
                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                JOptionPane.showMessageDialog(vista, "Datos no modificados ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                JOptionPane.showMessageDialog(vista, "Datos no modificados ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
             }
         } else {
 
@@ -166,7 +166,7 @@ public class CtrlPerfil implements ActionListener, ItemListener {
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(vista, "Contraseñas no coinciden ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(vista, "Contraseñas no coinciden ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
         }
 
     }

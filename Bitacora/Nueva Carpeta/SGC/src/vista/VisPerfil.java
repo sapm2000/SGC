@@ -147,7 +147,7 @@ public class VisPerfil extends javax.swing.JPanel {
         jLabel61.setForeground(new java.awt.Color(255, 255, 255));
         jLabel61.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel61.setText("Editar Clave");
-        jPanelClave.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 828, 30));
+        jPanelClave.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 0, 828, 30));
 
         jSeparator10.setForeground(new java.awt.Color(255, 255, 255));
         jPanelClave.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 220, 240, 10));
@@ -206,7 +206,7 @@ public class VisPerfil extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Editar Pregunta Secreta");
-        jPanelPregunta.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 828, -1));
+        jPanelPregunta.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 10, 828, -1));
 
         txtPregunta.setBackground(new java.awt.Color(0, 94, 159));
         txtPregunta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -246,7 +246,7 @@ public class VisPerfil extends javax.swing.JPanel {
         btnProcesarPregunta.setBorder(null);
         btnProcesarPregunta.setBorderPainted(false);
         btnProcesarPregunta.setContentAreaFilled(false);
-        btnProcesarPregunta.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
+        btnProcesarPregunta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProcesarPregunta.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible.png"))); // NOI18N
         btnProcesarPregunta.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
         btnProcesarPregunta.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N

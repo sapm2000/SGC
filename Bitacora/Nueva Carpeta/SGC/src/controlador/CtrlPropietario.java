@@ -118,7 +118,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Registro Guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "Registro Guardado ", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                         CtrlVentana.cambiarVista(catalogo);
                         llenarTabla();
 
@@ -136,7 +136,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "No se pudo reactivar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "No se pudo reactivar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                     }
                 } else {
@@ -155,7 +155,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Esta persona ya está registrada ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "Esta persona ya está registrada ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                     } else {
 
@@ -173,7 +173,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "Esta persona está registrada en la BD como responsable, se utilizarán los datos de ese registro ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "Esta persona está registrada en la base de datos como responsable, se utilizarán los datos de ese registro ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                             if (modelo.registrar(true)) {
 
@@ -187,7 +187,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
                                 UIManager.put("Label.background", Color.blue);
                                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, f);
+                                JOptionPane.showMessageDialog(null, "Registro guardado ", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, f);
                                 CtrlVentana.cambiarVista(catalogo);
                                 System.out.println("poli1");
                                 llenarTabla();
@@ -204,7 +204,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
                                 UIManager.put("Label.background", Color.blue);
                                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                JOptionPane.showMessageDialog(null, "Error al registrar ", "Advertencia", JOptionPane.WARNING_MESSAGE, l);
+                                JOptionPane.showMessageDialog(null, "Error al registrar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, l);
                             }
 
                         } else {
@@ -215,14 +215,14 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
                                 UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
                                 UI.put("Panel.background", new ColorUIResource(255, 255, 255));
 
-                                Icon a = new ImageIcon(getClass().getResource("/img/warning.png"));
+                                Icon a = new ImageIcon(getClass().getResource("/img/check.png"));
                                 UIManager.put("Button.background", Color.white);
                                 UIManager.put("Button.font", Color.blue);
                                 UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
                                 UIManager.put("Label.background", Color.blue);
                                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, a);
+                                JOptionPane.showMessageDialog(null, "Registro guardado ", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, a);
                                 CtrlVentana.cambiarVista(catalogo);
                                 System.out.println("poli2");
                                 llenarTabla();
@@ -240,7 +240,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
                                 UIManager.put("Label.background", Color.blue);
                                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                JOptionPane.showMessageDialog(null, "Error al registrar ", "Advertencia", JOptionPane.WARNING_MESSAGE, s);
+                                JOptionPane.showMessageDialog(null, "Error al registrar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, s);
                             }
                         }
                     }
@@ -270,7 +270,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Registro modificado ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, d);
+                    JOptionPane.showMessageDialog(null, "Registro modificado ", "MODIFICACIÓN DE DATOS", JOptionPane.INFORMATION_MESSAGE, d);
                     CtrlVentana.cambiarVista(catalogo);
                     llenarTabla();
 
@@ -287,7 +287,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Eror al modificar ", "Advertencia", JOptionPane.WARNING_MESSAGE, h);
+                    JOptionPane.showMessageDialog(null, "Eror al modificar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, h);
 
                 }
             }
@@ -306,7 +306,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
                 UIManager.put("Label.background", Color.blue);
                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                JOptionPane.showMessageDialog(null, "Registro eliminado", "Información", JOptionPane.INFORMATION_MESSAGE, j);
+                JOptionPane.showMessageDialog(null, "Registro eliminado", "ELIMINACIÓN SATISFACTORIA", JOptionPane.INFORMATION_MESSAGE, j);
                 CtrlVentana.cambiarVista(catalogo);
                 llenarTabla();
 
@@ -323,7 +323,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
                 UIManager.put("Label.background", Color.blue);
                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                JOptionPane.showMessageDialog(null, "Error al eliminar", "Advertencia", JOptionPane.WARNING_MESSAGE, k);
+                JOptionPane.showMessageDialog(null, "Error al eliminar", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, k);
 
             }
         }
@@ -503,7 +503,7 @@ public class CtrlPropietario implements ActionListener, MouseListener, KeyListen
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(vista, mensaje, "Advertencia", JOptionPane.WARNING_MESSAGE, k);
+            JOptionPane.showMessageDialog(vista, mensaje, "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, k);
         }
 
         return resultado;

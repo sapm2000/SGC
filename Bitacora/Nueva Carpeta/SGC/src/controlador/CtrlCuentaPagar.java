@@ -224,7 +224,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "Pago registrado ", "Pagado", JOptionPane.INFORMATION_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "Pago registrado ", "PAGADO", JOptionPane.INFORMATION_MESSAGE, p);
 
 //                        } else {
 //                            System.out.println("Error al restar el saldo del gasto");
@@ -248,7 +248,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Error al registrar el pago ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "Error al registrar el pago ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                 }
 
                 llenarTablaGastos(vista.tablaGastos, "Pendiente");
@@ -703,7 +703,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(vista, mensaje, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(vista, mensaje, "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;

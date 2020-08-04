@@ -141,7 +141,7 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Debe seleccionar al menos 1 registro de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar al menos 1 registro de la tabla", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                 } else {
                     for (int fila = 0; fila < vista.tablaAsistentes.getRowCount(); fila++) {
@@ -164,7 +164,7 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Registro guardado", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "Registro guardado", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                         llenarTabla(catalogo.tabla);
                         CtrlVentana.cambiarVista(catalogo);
 
@@ -181,7 +181,7 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "No se pudo registrar", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "No se pudo registrar", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                     }
                 }
@@ -484,7 +484,7 @@ public class CtrlAsamblea implements ActionListener, KeyListener, MouseListener,
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, msj, "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;

@@ -268,7 +268,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "No pueden modificar cuotas especiales que incluyan un periodo ya cerrado ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "No pueden modificar cuotas especiales que incluyan un periodo ya cerrado ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                 } else {
                     Double monto;
@@ -311,7 +311,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Registro modificado ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "Registro modificado ", "MODIFICACIÓN DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                         llenarTabla(catalogo.tabla);
                         CtrlVentana.cambiarVista(catalogo);
 
@@ -329,7 +329,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "No se pudo modificar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "No se pudo modificar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                     }
                 }
             }
@@ -355,7 +355,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Registro eliminado", "Información", JOptionPane.INFORMATION_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "Registro eliminado", "ELIMINACIÓN DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                     llenarTabla(catalogo.tabla);
                     CtrlVentana.cambiarVista(catalogo);
                 } else {
@@ -372,7 +372,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "No se pudo eliminar", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "No se pudo eliminar", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                 }
             } else if (modelo.getMonto() > modelo.getSaldo()) {
@@ -390,7 +390,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
                 UIManager.put("Label.background", Color.blue);
                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                JOptionPane.showMessageDialog(null, "No se puede eliminar porque el gasto esta siendo pagado", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                JOptionPane.showMessageDialog(null, "No se puede eliminar porque el gasto esta siendo pagado", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
             }
 
@@ -714,7 +714,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(null, "No puede registrar gastos que incluyan un período ya cerrado ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, "No puede registrar gastos que incluyan un período ya cerrado ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
         } else {
             Double monto;
@@ -756,7 +756,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
                 UIManager.put("Label.background", Color.blue);
                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                JOptionPane.showMessageDialog(null, "Registro guardado ", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                 llenarTabla(catalogo.tabla);
                 CtrlVentana.cambiarVista(catalogo);
 
@@ -774,7 +774,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
                 UIManager.put("Label.background", Color.blue);
                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                JOptionPane.showMessageDialog(null, "No se pudo registrar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                JOptionPane.showMessageDialog(null, "No se pudo registrar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
             }
         }
 
@@ -899,7 +899,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, msj, "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;

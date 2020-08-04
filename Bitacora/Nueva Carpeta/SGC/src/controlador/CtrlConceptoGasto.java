@@ -131,7 +131,7 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Por favor seleccione una categoría ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "Por favor seleccione una categoría ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                 } else {
 
@@ -150,7 +150,7 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "Registro guardado ", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                             llenarTabla(catalogo.tabla);
                             CtrlVentana.cambiarVista(catalogo);
 
@@ -168,7 +168,7 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "No se pudo registrar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "No se pudo registrar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                         }
 
                     } else {
@@ -187,7 +187,7 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "Registro guardado ", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                             llenarTabla(catalogo.tabla);
                             CtrlVentana.cambiarVista(catalogo);
 
@@ -205,7 +205,7 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "No se pudo registrar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "No se pudo registrar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                         }
                     }
                 }
@@ -233,7 +233,7 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Por favor seleccione una categoría ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "Por favor seleccione una categoría ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                 } else {
 
                     if (modelo.buscarInactivo(modelo)) {
@@ -250,7 +250,7 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "No puede colocar un concepto que ya existio, si quiere colocar este concepto debe registrarlo nuevamente ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "No puede colocar un concepto que ya existio, si quiere colocar este concepto debe registrarlo nuevamente ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                     } else {
 
@@ -268,7 +268,7 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "Registro modificado ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "Registro modificado ", "MODIFICACIÓN DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                             llenarTabla(catalogo.tabla);
                             limpiar();
                             CtrlVentana.cambiarVista(catalogo);
@@ -287,7 +287,7 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "Este Registro ya Existe ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "Este Registro ya Existe ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                         }
                     }
@@ -313,7 +313,7 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
                 UIManager.put("Label.background", Color.blue);
                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                JOptionPane.showMessageDialog(null, "Registro Eliminado ", "Información", JOptionPane.INFORMATION_MESSAGE, p);
+                JOptionPane.showMessageDialog(null, "Registro Eliminado ", "ELIMINACIÓN SATISFACTORIA", JOptionPane.INFORMATION_MESSAGE, p);
                 CtrlVentana.cambiarVista(catalogo);
                 llenarTabla(catalogo.tabla);
 
@@ -331,7 +331,7 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
                 UIManager.put("Label.background", Color.blue);
                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                JOptionPane.showMessageDialog(null, "Error al Eliminar ", "¡Cuidado!", JOptionPane.WARNING_MESSAGE, p);
+                JOptionPane.showMessageDialog(null, "Error al Eliminar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
             }
 //            }
@@ -503,7 +503,7 @@ public class CtrlConceptoGasto implements ActionListener, MouseListener, KeyList
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, msj, "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;

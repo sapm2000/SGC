@@ -106,7 +106,7 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(null, "Debe ingresar un Usuario y una Contraseña", "Error en la operacion", JOptionPane.ERROR_MESSAGE, y);
+            JOptionPane.showMessageDialog(null, "Debe ingresar un Usuario y una Contraseña", "ERROR EN LA OPERACIÓN", JOptionPane.ERROR_MESSAGE, y);
 
         } else {
 
@@ -145,7 +145,7 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
                     
-                    JOptionPane.showMessageDialog(null, "Los datos del condominio no están configurados,\npor favor ingrese los datos a continuación", "Información", JOptionPane.INFORMATION_MESSAGE, y);
+                    JOptionPane.showMessageDialog(null, "Los datos del condominio no están configurados,\npor favor ingrese los datos a continuación", "INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE, y);
                     condominio = new CtrlCondominio(false);
                 }
 
@@ -164,7 +164,7 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
                 UIManager.put("Label.background", Color.blue);
                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
                 
-                JOptionPane.showMessageDialog(null, "Acceso Denegado", "Error", JOptionPane.ERROR_MESSAGE, y);
+                JOptionPane.showMessageDialog(null, "Acceso Denegado", "ERROR", JOptionPane.ERROR_MESSAGE, y);
             }
         }
     }
