@@ -159,7 +159,7 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Este registro ya existe ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "Este registro ya existe ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                 } else {
 
@@ -179,7 +179,7 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Registro Guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "Registro Guardado ", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                         Llenartablainteres(catalogo.tabla);
                         CtrlVentana.cambiarVista(catalogo);
                         limpiar();
@@ -200,7 +200,7 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "Registro Guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "Registro Guardado ", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                             Llenartablainteres(catalogo.tabla);
                             CtrlVentana.cambiarVista(catalogo);
                         }
@@ -232,7 +232,7 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Este registro ya existe ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "Este registro ya existe ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                 } else {
                     if (modelo.buscarInactivo(modelo)) {
 
@@ -248,7 +248,7 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "No puede colocar un interes que ya existio, si quiere colocar este interes debe registrarlo nuevamente", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "No puede colocar un interes que ya existio, si quiere colocar este interes debe registrarlo nuevamente", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                     } else {
                         if (modelo.modificar_Interes(modelo)) {
@@ -265,7 +265,7 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "Registro Modificado ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "Registro Modificado ", "MODIFICACIÓN DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
 
                             Llenartablainteres(catalogo.tabla);
                             CtrlVentana.cambiarVista(catalogo);
@@ -293,7 +293,7 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(null, "Registro eliminado ", "Información", JOptionPane.INFORMATION_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, "Registro eliminado ", "ELIMINACIÓN SATISFACTORIA", JOptionPane.INFORMATION_MESSAGE, p);
             CtrlVentana.cambiarVista(catalogo);
             Llenartablainteres(catalogo.tabla);
         }
@@ -364,7 +364,7 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, msj, "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;

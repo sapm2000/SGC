@@ -104,7 +104,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Esta persona ya tiene un usuario en la base de datos, se recuperarán los datos ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "Esta persona ya tiene un usuario en la base de datos, se recuperarán los datos ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                     if (modelo.reactivar()) {
 
@@ -118,7 +118,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Usuario habilitado ", "Habilitar", JOptionPane.WARNING_MESSAGE, a);
+                        JOptionPane.showMessageDialog(null, "Usuario habilitado ", "HABILITAR", JOptionPane.WARNING_MESSAGE, a);
                         llenarTabla(catalogo.tabla);
                         CtrlVentana.cambiarVista(catalogo);
                         limpiar();
@@ -134,7 +134,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "No se pudo habilitar el usuario ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "No se pudo habilitar el usuario ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                     }
                 } else {
@@ -151,7 +151,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Esta persona ya tiene un usuario ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "Esta persona ya tiene un usuario ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                     } else {
                         if (modelo.existe()) {
@@ -167,7 +167,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "Este nombre de usuario ya existe ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "Este nombre de usuario ya existe ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                         } else {
 
                             if (modelo.registrar()) {
@@ -183,7 +183,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
                                 UIManager.put("Label.background", Color.blue);
                                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                                JOptionPane.showMessageDialog(null, "Registro guardado ", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                                 llenarTabla(catalogo.tabla);
                                 CtrlVentana.cambiarVista(catalogo);
                                 limpiar();
@@ -200,7 +200,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
                                 UIManager.put("Label.background", Color.blue);
                                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                JOptionPane.showMessageDialog(null, "Error al Registrar Usuario ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                                JOptionPane.showMessageDialog(null, "Error al Registrar Usuario ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                             }
                         }
@@ -270,7 +270,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            int result = JOptionPane.showConfirmDialog(catalogo, "¿Desea Eliminar Usuario?", "Eliminar usuario", botonDialogo, JOptionPane.WARNING_MESSAGE, p);
+            int result = JOptionPane.showConfirmDialog(catalogo, "¿Desea Eliminar Usuario?", "ELIMINACIÓN DE USUARIO", botonDialogo, JOptionPane.WARNING_MESSAGE, p);
             if (result == 0) {
                 modelo.eliminar();
                 llenarTabla(catalogo.tabla);
@@ -408,7 +408,7 @@ public class CtrlUsuario implements ActionListener, MouseListener, KeyListener, 
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, msj, "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;

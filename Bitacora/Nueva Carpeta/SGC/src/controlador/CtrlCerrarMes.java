@@ -170,7 +170,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "Este mes ya se ha cerrado ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "Este mes ya se ha cerrado ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                         } else {
                             modc.setMes_cierre(vista.txtMes.getSelectedIndex() + 1);
                             modc.setAño_cierre(Integer.parseInt(vista.txtAnio.getSelectedItem().toString()));
@@ -494,7 +494,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                 UIManager.put("Label.background", Color.blue);
                                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                JOptionPane.showMessageDialog(null, "Cierre satisfactorio ", "¡Felicidades!", JOptionPane.INFORMATION_MESSAGE, p);
+                                JOptionPane.showMessageDialog(null, "Cierre satisfactorio ", "¡FELICIDADES!", JOptionPane.INFORMATION_MESSAGE, p);
                                 Llenartabla(catalogo.tabla);
                                 CtrlVentana.cambiarVista(catalogo);
                             } else {
@@ -513,7 +513,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                 UIManager.put("Label.background", Color.blue);
                                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                JOptionPane.showMessageDialog(null, "No hay gastos por cerrar ", "¡Felicidades!", JOptionPane.INFORMATION_MESSAGE, p);
+                                JOptionPane.showMessageDialog(null, "No hay gastos por cerrar ", "¡FELICIDADES!", JOptionPane.INFORMATION_MESSAGE, p);
                             }
                         }
                     } else {
@@ -530,7 +530,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "No puede cerrar un mes que no ha concluido ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "No puede cerrar un mes que no ha concluido ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                     }
                 } else {
 
@@ -546,7 +546,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "No puede cerrar un mes que no ha concluido ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "No puede cerrar un mes que no ha concluido ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                 }
             }
         }
@@ -622,7 +622,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, msj, "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;

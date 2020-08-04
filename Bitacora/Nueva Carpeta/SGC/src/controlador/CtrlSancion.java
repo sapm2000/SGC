@@ -336,7 +336,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "seleccione un año valido", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "seleccione un año valido", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                 } else {
                     modsan.setTipo(vista.jComboBox1.getSelectedItem().toString());
                     if (modsan.getTipo().equals("Seleccione el Tipo de Deuda")) {
@@ -353,7 +353,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "seleccione un tipo de deuda ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "seleccione un tipo de deuda ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                     } else {
                         modsan.setDescripcion(vista.txaDescripcion.getText());
                         modsan.setMonto(Double.parseDouble(vista.txtmonto.getText()));
@@ -383,7 +383,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "Debe seleccionar al menos 1 registro de la tabla ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "Debe seleccionar al menos 1 registro de la tabla ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                         } else {
 
                             if (modc.buscarfechas(modc)) {
@@ -400,7 +400,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                                 UIManager.put("Label.background", Color.blue);
                                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                JOptionPane.showMessageDialog(null, "No puede registrar Sanciones a un periodo ya cerrado ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                                JOptionPane.showMessageDialog(null, "No puede registrar Sanciones a un periodo ya cerrado ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                             } else {
 
                                 if (modsan.buscarSancionRepetido(modsan) && modsan.getTipo().equals("INTERES DE MORA")) {
@@ -417,7 +417,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                                     UIManager.put("Label.background", Color.blue);
                                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                    JOptionPane.showMessageDialog(null, "No puede guardar mas de un interes de mora al mes ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                                    JOptionPane.showMessageDialog(null, "No puede guardar mas de un interes de mora al mes ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                                 } else {
                                     if (modsan.registrarsancion(modsan)) {
 
@@ -433,7 +433,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                                         UIManager.put("Label.background", Color.blue);
                                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                        JOptionPane.showMessageDialog(null, "Registro Guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                                        JOptionPane.showMessageDialog(null, "Registro Guardado ", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                                         modsan.buscId(modsan);
                                         listaunidades = moduni.listar();
 
@@ -462,7 +462,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                                         UIManager.put("Label.background", Color.blue);
                                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                        JOptionPane.showMessageDialog(null, "Error al guardar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                                        JOptionPane.showMessageDialog(null, "Error al guardar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                                     }
                                 }
@@ -493,7 +493,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Seleccione un año valido ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "Seleccione un año valido ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                 } else {
                     modsan.setTipo(vista.jComboBox1.getSelectedItem().toString());
                     if (modsan.getTipo().equals("Seleccione el Tipo de Deuda")) {
@@ -510,7 +510,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Seleccione un tipo de deuda ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "Seleccione un tipo de deuda ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                     } else {
                         modsan.setDescripcion(vista.txaDescripcion.getText());
                         modsan.setId(Integer.parseInt(vista.txtId.getText()));
@@ -546,7 +546,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "Debe seleccionar al menos 1 registro de la tabla ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "Debe seleccionar al menos 1 registro de la tabla ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                         } else {
 
                             if (modc.buscarfechas(modc)) {
@@ -563,7 +563,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                                 UIManager.put("Label.background", Color.blue);
                                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                JOptionPane.showMessageDialog(null, "No puede registrar Sanciones a un periodo ya cerrado ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                                JOptionPane.showMessageDialog(null, "No puede registrar Sanciones a un periodo ya cerrado ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                             } else {
 
                                 if (x == 0 || x == modsan.getId()) {
@@ -581,7 +581,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                                         UIManager.put("Label.background", Color.blue);
                                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                        JOptionPane.showMessageDialog(null, "Registro Modificado ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                                        JOptionPane.showMessageDialog(null, "Registro Modificado ", "MODIFICACIÓN DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
 
                                         modsan.borrarpuentesancion(modsan);
                                         listaunimod = modsan.listarunidadesmod();
@@ -610,7 +610,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                                         UIManager.put("Label.background", Color.blue);
                                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                        JOptionPane.showMessageDialog(null, "Este registro ya existe ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                                        JOptionPane.showMessageDialog(null, "Este registro ya existe ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                                     }
                                 } else {
@@ -627,7 +627,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
                                     UIManager.put("Label.background", Color.blue);
                                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                    JOptionPane.showMessageDialog(null, "Este registro ya existe ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                                    JOptionPane.showMessageDialog(null, "Este registro ya existe ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                                 }
                             }
 
@@ -655,7 +655,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(null, "Registro eliminado ", "Eliminación de datos", JOptionPane.INFORMATION_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, "Registro eliminado ", "ELIMICACIÓN SATISFACTORIA", JOptionPane.INFORMATION_MESSAGE, p);
             CtrlVentana.cambiarVista(catalogo);
             LlenartablaSancion(catalogo.tabla);
         }
@@ -754,7 +754,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(null, "Las sanciones procesadas no pueden ser modificados ni eliminados ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, "Las sanciones procesadas no pueden ser modificadas ni eliminadas ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
         } else {
             vista.btnEliminar.setEnabled(true);
             vista.btnModificar.setEnabled(true);
@@ -905,7 +905,7 @@ public class CtrlSancion implements ActionListener, MouseListener, KeyListener, 
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, msj, "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;

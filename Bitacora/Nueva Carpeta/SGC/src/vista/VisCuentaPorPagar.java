@@ -38,6 +38,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
     public VisCuentaPorPagar() {
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUI(new MyScrollBarUI());
+        jScrollPane3.getVerticalScrollBar().setUI(new MyScrollBarUI());
         tablaGastos.getTableHeader().setDefaultRenderer(new Headercolor());
         cbxCuenta.setUI(new CustomUI());
         cbxFondo.setUI(new CustomUI());
@@ -57,8 +58,6 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         txtGasto = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
-        txtDescripcion = new javax.swing.JTextField();
-        jSeparator7 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         cbxFormaPago = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
@@ -80,6 +79,8 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         txtPariedad = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         txtFecha = new rojeru_san.componentes.RSDateChooser();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtDescripcion = new javax.swing.JTextArea();
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -114,7 +115,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Gasto:");
-        jPanel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 20));
+        jPanel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
 
         txtGasto.setBackground(new java.awt.Color(0, 94, 159));
         txtGasto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -122,34 +123,24 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         txtGasto.setBorder(null);
         txtGasto.setEnabled(false);
         txtGasto.setNextFocusableComponent(txtDescripcion);
-        jPanel.add(txtGasto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 240, 20));
+        jPanel.add(txtGasto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 240, 20));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 240, 10));
+        jPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 240, 10));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Descripción:");
-        jPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 90, 20));
-
-        txtDescripcion.setBackground(new java.awt.Color(0, 94, 159));
-        txtDescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtDescripcion.setForeground(new java.awt.Color(255, 255, 255));
-        txtDescripcion.setBorder(null);
-        txtDescripcion.setNextFocusableComponent(cbxFormaPago);
-        jPanel.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 240, 20));
-
-        jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 240, 10));
+        jPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 90, 20));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("<html>\nForma <br> de Pago:\n</html>");
-        jPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, 40));
+        jPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 136, -1, -1));
 
         cbxFormaPago.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cbxFormaPago.setNextFocusableComponent(txtFecha);
-        jPanel.add(cbxFormaPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 133, 240, 30));
+        jPanel.add(cbxFormaPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 240, 30));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -254,6 +245,21 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         txtFecha.setFuente(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jPanel.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, 40));
 
+        jScrollPane3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
+        jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        txtDescripcion.setBackground(new java.awt.Color(0, 94, 159));
+        txtDescripcion.setColumns(20);
+        txtDescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtDescripcion.setForeground(new java.awt.Color(255, 255, 255));
+        txtDescripcion.setLineWrap(true);
+        txtDescripcion.setRows(5);
+        txtDescripcion.setToolTipText("Ingrese una descripción");
+        txtDescripcion.setWrapStyleWord(true);
+        jScrollPane3.setViewportView(txtDescripcion);
+
+        jPanel.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 240, 70));
+
         add(jPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, 760, 290));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu700-350 (2).png"))); // NOI18N
@@ -301,7 +307,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         btnMostrarProcesados.setBorder(null);
         btnMostrarProcesados.setBorderPainted(false);
         btnMostrarProcesados.setContentAreaFilled(false);
-        btnMostrarProcesados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMostrarProcesados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMostrarProcesados.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/management (1).png"))); // NOI18N
         btnMostrarProcesados.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/management.png"))); // NOI18N
         btnMostrarProcesados.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/management.png"))); // NOI18N
@@ -319,7 +325,7 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
         btnPagos.setBorder(null);
         btnPagos.setBorderPainted(false);
         btnPagos.setContentAreaFilled(false);
-        btnPagos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnPagos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPagos.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice (1).png"))); // NOI18N
         btnPagos.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice.png"))); // NOI18N
         btnPagos.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/invoice.png"))); // NOI18N
@@ -366,16 +372,16 @@ public class VisCuentaPorPagar extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     public javax.swing.JPanel jPanel;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JSeparator jSeparator7;
     public javax.swing.JPanel panelPariedad;
     public javax.swing.JPanel panelReferencia;
     public javax.swing.JTable tablaGastos;
-    public javax.swing.JTextField txtDescripcion;
+    public javax.swing.JTextArea txtDescripcion;
     public rojeru_san.componentes.RSDateChooser txtFecha;
     public javax.swing.JTextField txtGasto;
     public javax.swing.JTextField txtMonto;

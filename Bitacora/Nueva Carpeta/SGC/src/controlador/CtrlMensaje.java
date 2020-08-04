@@ -108,7 +108,7 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Mensaje enviado ", "Mensaje", JOptionPane.INFORMATION_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "Mensaje enviado ", "MENSAJE", JOptionPane.INFORMATION_MESSAGE, p);
                     llenarTablaEnviados();
                     llenarTablaRecibidos();
                     contenedor.setComponentAt(1, catalogo);
@@ -128,7 +128,7 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "No se pudo enviar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "No se pudo enviar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                 }
             }
         }
@@ -170,7 +170,7 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(catalogo, "No se pudo eliminar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                            JOptionPane.showMessageDialog(catalogo, "No se pudo eliminar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                         }
                     }
                 }
@@ -203,7 +203,7 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(catalogo, "No se pudo eliminar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                            JOptionPane.showMessageDialog(catalogo, "No se pudo eliminar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                         }
                     }
                 }
@@ -598,7 +598,7 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, msj, "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;

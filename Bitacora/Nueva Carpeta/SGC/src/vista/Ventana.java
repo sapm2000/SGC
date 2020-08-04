@@ -62,14 +62,14 @@ public class Ventana extends javax.swing.JFrame {
         menuArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/file (1).png"))); // NOI18N
         menuArchivo.setText("Archivos");
         menuArchivo.setToolTipText("Gestiones del sistema");
-        menuArchivo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        menuArchivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menuArchivo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jBanco.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jBanco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banco.png"))); // NOI18N
         jBanco.setText("Bancos");
         jBanco.setToolTipText("Gestionar bancos");
-        jBanco.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jBanco.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBanco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBancoActionPerformed(evt);
@@ -81,7 +81,7 @@ public class Ventana extends javax.swing.JFrame {
         jCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gastos.png"))); // NOI18N
         jCategoria.setText("Categoría Gastos");
         jCategoria.setToolTipText("Gestionar las categorias de los gastos");
-        jCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCategoriaActionPerformed(evt);
@@ -93,7 +93,7 @@ public class Ventana extends javax.swing.JFrame {
         jConcepto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/analisis.png"))); // NOI18N
         jConcepto.setText("Concepto Gastos");
         jConcepto.setToolTipText("Gestionar los conceptos de los gastos");
-        jConcepto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jConcepto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jConcepto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jConceptoActionPerformed(evt);
@@ -105,7 +105,7 @@ public class Ventana extends javax.swing.JFrame {
         jCondominio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/condominio.png"))); // NOI18N
         jCondominio.setText("Condominio");
         jCondominio.setToolTipText("Gestionar los condominios");
-        jCondominio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jCondominio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jCondominio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCondominioActionPerformed(evt);
@@ -117,7 +117,7 @@ public class Ventana extends javax.swing.JFrame {
         jCuenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cuota.png"))); // NOI18N
         jCuenta.setText("Cuentas Bancarias");
         jCuenta.setToolTipText("Gestionar las cuentas bancarias");
-        jCuenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jCuenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCuentaActionPerformed(evt);
@@ -128,7 +128,7 @@ public class Ventana extends javax.swing.JFrame {
         jGasto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jGasto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/presupuesto.png"))); // NOI18N
         jGasto.setText("Gasto");
-        jGasto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jGasto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jGasto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jGastoActionPerformed(evt);
@@ -139,7 +139,7 @@ public class Ventana extends javax.swing.JFrame {
         jFondo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/hucha.png"))); // NOI18N
         jFondo.setText("Fondo");
-        jFondo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jFondo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jFondo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFondoActionPerformed(evt);
@@ -150,14 +150,14 @@ public class Ventana extends javax.swing.JFrame {
         jFormaPago.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jFormaPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pattern (2) (1) (1).png"))); // NOI18N
         jFormaPago.setText("Forma de Pago");
-        jFormaPago.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jFormaPago.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menuArchivo.add(jFormaPago);
 
         jUsuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/administracion.png"))); // NOI18N
         jUsuario.setText("Gestionar Usuarios");
         jUsuario.setToolTipText("Gestionar los usuarios");
-        jUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jUsuarioActionPerformed(evt);
@@ -169,7 +169,7 @@ public class Ventana extends javax.swing.JFrame {
         jInteres.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/caro.png"))); // NOI18N
         jInteres.setText("Interes");
         jInteres.setToolTipText("Gestionar los intereses de los condominios");
-        jInteres.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jInteres.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jInteres.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jInteresMouseClicked(evt);
@@ -186,7 +186,7 @@ public class Ventana extends javax.swing.JFrame {
         jPropietarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton-cuadrado-de-la-llave-de-la-casa.png"))); // NOI18N
         jPropietarios.setText("Propietarios");
         jPropietarios.setToolTipText("Gestionar los propietarios de las unidades");
-        jPropietarios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPropietarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPropietarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPropietariosActionPerformed(evt);
@@ -198,7 +198,7 @@ public class Ventana extends javax.swing.JFrame {
         jProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/proveedor.png"))); // NOI18N
         jProveedores.setText("Proveedores");
         jProveedores.setToolTipText("Gestionar los proveedores");
-        jProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jProveedoresActionPerformed(evt);
@@ -210,7 +210,7 @@ public class Ventana extends javax.swing.JFrame {
         jResponsable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/responsibility.png"))); // NOI18N
         jResponsable.setText("Responsable");
         jResponsable.setToolTipText("Gestionar el responsable");
-        jResponsable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jResponsable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jResponsable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jResponsableActionPerformed(evt);
@@ -221,7 +221,7 @@ public class Ventana extends javax.swing.JFrame {
         jSancion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jSancion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/no-stopping.png"))); // NOI18N
         jSancion.setText("Sanciones");
-        jSancion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jSancion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jSancion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jSancionActionPerformed(evt);
@@ -232,14 +232,14 @@ public class Ventana extends javax.swing.JFrame {
         jTipoUnidad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTipoUnidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pattern (1) (2).png"))); // NOI18N
         jTipoUnidad.setText("Tipos de Unidades");
-        jTipoUnidad.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTipoUnidad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menuArchivo.add(jTipoUnidad);
 
         jTipo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTipo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/team.png"))); // NOI18N
         jTipo.setText("Tipos de Usuarios");
         jTipo.setToolTipText("Gestionar los tipos de usuario");
-        jTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTipoActionPerformed(evt);
@@ -250,7 +250,7 @@ public class Ventana extends javax.swing.JFrame {
         jUnidades.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jUnidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/casa.png"))); // NOI18N
         jUnidades.setText("Unidades");
-        jUnidades.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jUnidades.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jUnidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jUnidadesActionPerformed(evt);
@@ -262,7 +262,7 @@ public class Ventana extends javax.swing.JFrame {
 
         menuProceso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cogwheel (1).png"))); // NOI18N
         menuProceso.setText("Procesos");
-        menuProceso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        menuProceso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menuProceso.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         menuProceso.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cogwheel.png"))); // NOI18N
         menuProceso.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cogwheel (1).png"))); // NOI18N
@@ -272,7 +272,7 @@ public class Ventana extends javax.swing.JFrame {
         pAsamblea.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         pAsamblea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mesa-redonda.png"))); // NOI18N
         pAsamblea.setText("Asambleas");
-        pAsamblea.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pAsamblea.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pAsamblea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pAsambleaActionPerformed(evt);
@@ -283,7 +283,7 @@ public class Ventana extends javax.swing.JFrame {
         pCuentasporCobrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         pCuentasporCobrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/dar-dinero.png"))); // NOI18N
         pCuentasporCobrar.setText("Cuentas por Cobrar");
-        pCuentasporCobrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pCuentasporCobrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pCuentasporCobrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pCuentasporCobrarActionPerformed(evt);
@@ -294,7 +294,7 @@ public class Ventana extends javax.swing.JFrame {
         pCuentapagar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         pCuentapagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/metodo-de-pago.png"))); // NOI18N
         pCuentapagar.setText("Cuentas por Pagar");
-        pCuentapagar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pCuentapagar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pCuentapagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pCuentapagarActionPerformed(evt);
@@ -305,7 +305,7 @@ public class Ventana extends javax.swing.JFrame {
         pCerrarMes.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         pCerrarMes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/factura.png"))); // NOI18N
         pCerrarMes.setText("Generar Recibo");
-        pCerrarMes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pCerrarMes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pCerrarMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pCerrarMesActionPerformed(evt);
@@ -316,7 +316,7 @@ public class Ventana extends javax.swing.JFrame {
         pVisitas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         pVisitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/autorizacion.png"))); // NOI18N
         pVisitas.setText("Visitas Autorizadas");
-        pVisitas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pVisitas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pVisitas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pVisitasActionPerformed(evt);
@@ -346,18 +346,19 @@ public class Ventana extends javax.swing.JFrame {
         menuAyudas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/educacion.png"))); // NOI18N
         menuAyudas.setText("Ayudas");
         menuAyudas.setToolTipText("");
-        menuAyudas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        menuAyudas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menuAyudas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         barraMenu.add(menuAyudas);
 
         menuPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user (1).png"))); // NOI18N
         menuPerfil.setText("Usuario");
-        menuPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        menuPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menuPerfil.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jPerfil.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/datos-del-usuario.png"))); // NOI18N
         jPerfil.setText("Perfil");
+        jPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menuPerfil.add(jPerfil);
 
         barraMenu.add(menuPerfil);

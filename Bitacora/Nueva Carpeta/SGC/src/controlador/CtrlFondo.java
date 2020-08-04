@@ -176,7 +176,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Ingrese la fecha de creación del fondo ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "Ingrese la fecha de creación del fondo ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                 } else {
                     java.sql.Date sqlDate = convert(vista.jDateChooser1.getDatoFecha());
                     modelo.setFecha(sqlDate);
@@ -199,7 +199,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Este fondo ya está registrado ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "Este fondo ya está registrado ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                     } else {
 
                         if (modelo.registrar(modelo)) {
@@ -216,7 +216,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "Registro guardado ", "REGISTROS DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                             llenarTabla(catalogo.tabla);
                             CtrlVentana.cambiarVista(catalogo);
 
@@ -234,7 +234,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "No se pudo registrar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "No se pudo registrar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                         }
                     }
                 }
@@ -275,7 +275,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                                 UIManager.put("Label.background", Color.blue);
                                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                JOptionPane.showMessageDialog(null, "Registro modificado ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                                JOptionPane.showMessageDialog(null, "Registro modificado ", "MODIFICACIÓN DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                                 llenarTabla(catalogo.tabla);
                                 CtrlVentana.cambiarVista(catalogo);
 
@@ -293,7 +293,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                                 UIManager.put("Label.background", Color.blue);
                                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                JOptionPane.showMessageDialog(null, "Este registro ya existe ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                                JOptionPane.showMessageDialog(null, "Este registro ya existe ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                             }
 
                         } else {
@@ -310,7 +310,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "El saldo no puede ser negativo ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "El saldo no puede ser negativo ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                         }
 
                     } else {
@@ -327,7 +327,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "No pudo ser modificado el fondo ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "No pudo ser modificado el fondo ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                     }
 
                 } else {
@@ -352,7 +352,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "Registro modificado ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "Registro modificado ", "MODIFICACIÓN DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                             llenarTabla(catalogo.tabla);
                             CtrlVentana.cambiarVista(catalogo);
 
@@ -370,7 +370,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "Este registro ya existe ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "Este registro ya existe ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                         }
 
                     } else {
@@ -387,7 +387,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "El saldo no puede ser negativo ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "El saldo no puede ser negativo ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                     }
                 }
             }
@@ -412,7 +412,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Registro eliminado ", "Información", JOptionPane.INFORMATION_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "Registro eliminado ", "ELIMINACIÓN SATISFACTORIA", JOptionPane.INFORMATION_MESSAGE, p);
                     llenarTabla(catalogo.tabla);
                     CtrlVentana.cambiarVista(catalogo);
 
@@ -430,7 +430,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Error al eliminar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "Error al eliminar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                 }
 
             } else {
@@ -447,7 +447,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
                 UIManager.put("Label.background", Color.blue);
                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                JOptionPane.showMessageDialog(null, "No se puede eliminar un fondo con saldo mayor a 0 ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                JOptionPane.showMessageDialog(null, "No se puede eliminar un fondo con saldo mayor a 0 ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
             }
         }
 
@@ -508,7 +508,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, msj, "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;

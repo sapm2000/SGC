@@ -287,7 +287,7 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener, KeyListen
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, msj, "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;
@@ -464,7 +464,7 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener, KeyListen
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
             // Informa al usuario
-            JOptionPane.showMessageDialog(null, "Registro modificado ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, "Registro modificado ", "MODIFICACIÓN DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
             // Actualiza la tabla para reflejar los cambios
             llenarTabla();
             // Muestra el catálogo
@@ -484,7 +484,7 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener, KeyListen
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(null, "Error al modificar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, "Error al modificar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
         }
     }
@@ -591,7 +591,7 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener, KeyListen
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
             // Informa al usuario
-            JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, "Registro guardado ", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
             // Actualiza la tabla para reflejar los cambios
             llenarTabla();
             // Muestra el catálogo
@@ -611,7 +611,7 @@ public class CtrlTipoUsuario implements ActionListener, MouseListener, KeyListen
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(null, "Error al registrar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, "Error al registrar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
         }
     }
 

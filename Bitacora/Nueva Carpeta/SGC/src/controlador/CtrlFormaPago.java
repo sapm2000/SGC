@@ -142,7 +142,7 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Registro Guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "Registro Guardado ", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                     Llenartabla(catalogo.tabla);
                     CtrlVentana.cambiarVista(catalogo);
                     limpiar();
@@ -162,7 +162,7 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Registro Guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "Registro Guardado ", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                         Llenartabla(catalogo.tabla);
                         CtrlVentana.cambiarVista(catalogo);
                         limpiar();
@@ -181,7 +181,7 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "Este Registro Ya Existe ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                     }
                 }
@@ -205,7 +205,7 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "No puede colocar el nombre de un metodo de pago que ya existio, si quiere colocar este nombre debe registrarlo nuevamente ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "No puede colocar el nombre de un metodo de pago que ya existio, si quiere colocar este nombre debe registrarlo nuevamente ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                 } else {
 
                     if (modfor.modificar(modfor)) {
@@ -222,7 +222,7 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Registro modificado ", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "Registro modificado ", "MODIFICACIÓN DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                         CtrlVentana.cambiarVista(catalogo);
                         Llenartabla(catalogo.tabla);
                         limpiar();
@@ -241,7 +241,7 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Este Registro ya Existe ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "Este Registro ya Existe ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
                     }
                 }
@@ -264,7 +264,7 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
                 UIManager.put("Label.background", Color.blue);
                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                JOptionPane.showMessageDialog(null, "Registro Eliminado ", "Información", JOptionPane.INFORMATION_MESSAGE, p);
+                JOptionPane.showMessageDialog(null, "Registro Eliminado ", "ELIMINACIÓN SATISFACTORIA", JOptionPane.INFORMATION_MESSAGE, p);
                 CtrlVentana.cambiarVista(catalogo);
                 Llenartabla(catalogo.tabla);
 
@@ -282,7 +282,7 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
                 UIManager.put("Label.background", Color.blue);
                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                JOptionPane.showMessageDialog(null, "Error al Eliminar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                JOptionPane.showMessageDialog(null, "Error al Eliminar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
 
             }
 
@@ -332,7 +332,7 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, msj, "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;
