@@ -265,13 +265,12 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
 
                                                                 double paridad = Double.parseDouble(vista.txtParidad.getText());
                                                                 double total_dolar = parte_cuota / paridad;
-                                                             
 
                                                                 modc.setMonto_bolivar(parte_cuota);
                                                                 total_dolar = Math.round(total_dolar * 100);
                                                                 total_dolar = total_dolar / 100;
-                                                                if (total_dolar==0) {
-                                                                    total_dolar=0.01;
+                                                                if (total_dolar == 0) {
+                                                                    total_dolar = 0.01;
                                                                 }
                                                                 modc.setMonto_dolar(total_dolar);
 
@@ -309,8 +308,8 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
                                                                 modc.setMonto_bolivar(parte_cuota);
                                                                 total_dolar = Math.round(total_dolar * 100);
                                                                 total_dolar = total_dolar / 100;
-                                                                 if (total_dolar==0) {
-                                                                    total_dolar=0.01;
+                                                                if (total_dolar == 0) {
+                                                                    total_dolar = 0.01;
                                                                 }
                                                                 modc.setMonto_dolar(total_dolar);
                                                             } else {

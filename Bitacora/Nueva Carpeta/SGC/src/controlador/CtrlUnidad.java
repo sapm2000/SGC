@@ -504,7 +504,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
                 do {
 
                     hola = "";
-                    
+
                     UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
                     UI.put("Panel.background", new ColorUIResource(255, 255, 255));
 
@@ -515,8 +515,8 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    hola = (String) JOptionPane.showInputDialog(null,"Por favor, ingrese la paridad a trabajar", "PARIDAD", 0, q, null, null); //ventana que se despliega para que ingresen la paridad 
-                    
+                    hola = (String) JOptionPane.showInputDialog(null, "Por favor, ingrese la paridad a trabajar", "PARIDAD", 0, q, null, null); //ventana que se despliega para que ingresen la paridad 
+
                     if (hola == null) {
 
                         break outer;
@@ -859,7 +859,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
             fa = fa + listax.size();
             listaCierremes = modc.listarpagostotales(listaDominante.get(s).getMoneda_dominante()); // buscamos los datos por cada mes, año, unidad, se suman y multiplican/dividen por la paridad para obtener el total a mostrar
             int numRegistro = listaCierremes.size();
-           
+
             for (int i = 0; i < numRegistro; i++) { //llenamos la columna con los datos obtenidos
 
                 columna[0] = listaCierremes.get(i).getMes_cierre();
@@ -916,7 +916,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
         modeloT.addColumn("Razón Social");
         modeloT.addColumn("monto bs");
         modeloT.addColumn("monto $");
-        
+
         modeloT.addColumn("tipo de gasto");
 
         Object[] columna = new Object[5];
@@ -929,7 +929,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
             columna[1] = listadetallegasto.get(i).prove.getNombre();
             columna[2] = Validacion.formatopago.format(listadetallegasto.get(i).getMonto_bolivar());
             columna[3] = Validacion.formatopago.format(listadetallegasto.get(i).getMonto_dolar());
-           
+
             columna[4] = listadetallegasto.get(i).getTipo_gasto();
 
             modeloT.addRow(columna);
@@ -942,7 +942,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
         tablaD.getColumnModel().getColumn(2).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(3).setCellRenderer(tcr);
         tablaD.getColumnModel().getColumn(4).setCellRenderer(tcr);
-      
+
     }
 
     public void llenardetalleinteres(JTable tablaD, String mone) {

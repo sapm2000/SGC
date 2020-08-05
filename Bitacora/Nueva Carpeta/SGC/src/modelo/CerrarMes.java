@@ -253,7 +253,7 @@ public class CerrarMes extends ConexionBD {
             ps.setDouble(ind++, getMonto_dolar());
             ps.setDouble(ind++, uni.getAlicuota());
             ps.setInt(ind++, SGC.usuarioActual.getId());
-            
+
             if (ps.execute()) {
                 rs = ps.getResultSet();
                 rs.next();
@@ -718,7 +718,7 @@ public class CerrarMes extends ConexionBD {
                 modc.prove.setNombre(rs.getString(3));
                 modc.setMonto_dolar(rs.getDouble(4));
                 modc.setMonto_bolivar(rs.getDouble(5));
-              
+
                 modc.prove.setCedulaRif(rs.getString(6));
                 modc.setTipo_gasto(rs.getString(7));
 
