@@ -130,7 +130,7 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
                         
-                    JOptionPane.showMessageDialog(null, "Archivo no compatible ", "Incompatibilidad",JOptionPane.WARNING_MESSAGE,  p);
+                    JOptionPane.showMessageDialog(null, "Archivo no compatible ", "INCOMPATIBILIDAD",JOptionPane.WARNING_MESSAGE,  p);
                 }
             }
         }
@@ -179,7 +179,7 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
                                 UIManager.put("Label.background", Color.blue);
                                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
                                 
-                                JOptionPane.showMessageDialog(null, "Error ", "Advertencia",JOptionPane.WARNING_MESSAGE,  p);
+                                JOptionPane.showMessageDialog(null, "Error ", "ADVERTENCIA",JOptionPane.WARNING_MESSAGE,  p);
                             }
                         }
                         UIManager UI = new UIManager();
@@ -194,7 +194,7 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
                         
-                        JOptionPane.showMessageDialog(null, "Datos actualizados ", "Actualizacion de datos",JOptionPane.WARNING_MESSAGE,  p);
+                        JOptionPane.showMessageDialog(null, "Datos actualizados ", "ACTUALIZACIÓN DE DATOS",JOptionPane.WARNING_MESSAGE,  p);
                     }
 
                 } else {
@@ -235,7 +235,7 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
                                 UIManager.put("Label.background", Color.blue);
                                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
                                 
-                                JOptionPane.showMessageDialog(null, "Error ", "Advertencia",JOptionPane.WARNING_MESSAGE,  p);
+                                JOptionPane.showMessageDialog(null, "Error ", "ADVERTENCIA",JOptionPane.WARNING_MESSAGE,  p);
                             }
                         }
                         UIManager UI = new UIManager();
@@ -251,7 +251,7 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
                         
-                        JOptionPane.showMessageDialog(null, "Datos registrados ", "Registro de datos",JOptionPane.WARNING_MESSAGE,  p);
+                        JOptionPane.showMessageDialog(null, "Datos registrados ", "REGISTRO DE DATOS",JOptionPane.WARNING_MESSAGE,  p);
                         SGC.condominioActual = modelo;
 
                         CtrlVentana ctrlMenu = new CtrlVentana();
@@ -419,7 +419,7 @@ public class CtrlCondominio implements ActionListener, MouseListener, KeyListene
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
             
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, msj, "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;

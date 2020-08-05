@@ -140,7 +140,7 @@ public class VisMensaje extends javax.swing.JPanel {
         btnEnviar.setBorder(null);
         btnEnviar.setBorderPainted(false);
         btnEnviar.setContentAreaFilled(false);
-        btnEnviar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEnviar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEnviar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enviar (1).png"))); // NOI18N
         btnEnviar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enviar (1).png"))); // NOI18N
         btnEnviar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/enviar (1).png"))); // NOI18N
@@ -191,7 +191,7 @@ public class VisMensaje extends javax.swing.JPanel {
         btnSalir.setBorder(null);
         btnSalir.setBorderPainted(false);
         btnSalir.setContentAreaFilled(false);
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSalir.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow.png"))); // NOI18N
         btnSalir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow (1).png"))); // NOI18N
         btnSalir.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/left-arrow (1).png"))); // NOI18N

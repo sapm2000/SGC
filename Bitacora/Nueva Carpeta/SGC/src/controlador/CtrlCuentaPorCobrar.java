@@ -81,7 +81,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
             UIManager.put("Input.border", createLineBorder(new Color(0, 94, 159), 3));
             UIManager.put("Input.font", new Font("Tahoma", Font.BOLD, 12));
 
-            hola = JOptionPane.showInputDialog(null, "¿A que paridad va a trabajar?, Por favor ingrese ", null, 0, q, null, null); //ventana que se despliega para que ingresen la paridad 
+            hola = JOptionPane.showInputDialog(null, "¿A que paridad va a trabajar?, Por favor ingrese ", "PARIDAD", 0, q, null, null); //ventana que se despliega para que ingresen la paridad 
             e = String.valueOf(hola);
             if (e != null && isValidDouble(e) == true) {
                 this.moduni = new Unidad();
@@ -454,7 +454,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Debe seleccionar al menos 1 registro de la tabla ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "Debe seleccionar al menos 1 registro de la tabla ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                 } else {
                     if (ind2 == -2) { //si la opcion seleccionada en cuenta es la de "seleccione" lance un mensaje y detenga la ejecucion
 
@@ -470,7 +470,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Seleccione una cuenta ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "Seleccione una cuenta ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                     } else {
                         if (ind2 == -1) { //si la opcion seleccionada en cuenta es la de "otros" seteo esa palabra en el numero de cuenta
                             modcuen.setId_cuenta("OTROS");
@@ -493,7 +493,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "Seleccione el fondo a depositar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "Seleccione el fondo a depositar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                         } else {
 
                             modcuen.setId_fondo(listafondo.get(ind1).getId()); //seteo el id del fondo del combobox
@@ -514,7 +514,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                 UIManager.put("Label.background", Color.blue);
                                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                JOptionPane.showMessageDialog(null, "Seleccione el número de la unidad ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                                JOptionPane.showMessageDialog(null, "Seleccione el número de la unidad ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                             } else {
                                 modcuen.uni.setId(listaunidades.get(ind).getId()); //seteo el id de la unidad 
                                 String como = Validacion.formatopago1.format(Double.parseDouble(vista.txtMonto.getText()));
@@ -553,7 +553,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                     UIManager.put("Label.background", Color.blue);
                                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                    JOptionPane.showMessageDialog(null, "No puede ingresar mas dinero de lo que debe ", "Advertencia", JOptionPane.WARNING_MESSAGE, p); //si el monto ingresado es superior al que ha selccionado en al tabla detiene la ejecucion y lanza mensaje
+                                    JOptionPane.showMessageDialog(null, "No puede ingresar mas dinero de lo que debe ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p); //si el monto ingresado es superior al que ha selccionado en al tabla detiene la ejecucion y lanza mensaje
                                 } else {
                                     modcuen.setParidad(Double.parseDouble(vista.txtParidad.getText())); //seteo la paridad que se va a utilizar para calcular el pago
                                     modcuen.setMoneda(vista.cbxMoneda.getSelectedItem().toString()); //seteo la moneda 
@@ -576,7 +576,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                         UIManager.put("Label.background", Color.blue);
                                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                                        JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                                        JOptionPane.showMessageDialog(null, "Registro guardado ", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                                         modcuen.buscId(modcuen); //busco el ultimo id que viene siendo el pago que acabo de cargar
                                         
                                         double monto_total = Double.parseDouble(Validacion.formatopago1.format(Double.parseDouble(vista.txtMonto.getText()))); //declaro variable que obtiene el valor del monto ingresado
@@ -685,7 +685,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                                             double montototal = 0;
                                                             for (int q = 0; q < lista_detalles.size(); q++) {// ciclo para pagar cada uno de los gastos dentro del recibo
                                                                 if (monto_total > 0) {//si todavia queda dinero sin utilizar continua el ciclo
-                                                                     JOptionPane.showMessageDialog(null, "msfmdskgnjfd");
+                                                                    
                                                                     varsaldo = lista_detalles.get(q).getSaldo_restante_bs() - (monto_total * Double.parseDouble(vista.txtParidad.getText())); //esta variable es igual al saldo restante del gasto menos el monto ingresado dividido por la paridad
                                                                     montototal = monto_total; //esta variable mantiene el valor del monto ingresado siempre que sea positivo
                                                                     monto_total = monto_total - (lista_detalles.get(q).getSaldo_restante_bs() / Double.parseDouble(vista.txtParidad.getText()));//el monto restante disponible para continuar el ciclo es = al monto ingresado-el saldo restante del gasto/la paridad
@@ -851,7 +851,7 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, msj, "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;

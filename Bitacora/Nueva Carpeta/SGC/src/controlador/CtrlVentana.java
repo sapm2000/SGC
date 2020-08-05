@@ -120,7 +120,7 @@ public class CtrlVentana implements ActionListener {
                 UIManager.put("Label.background", Color.blue);
                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                int result = JOptionPane.showConfirmDialog(null, "¿Desea salir del sistema?", "Salir", botonDialogo, JOptionPane.INFORMATION_MESSAGE, p);
+                int result = JOptionPane.showConfirmDialog(null, "¿Desea salir del sistema?", "SALIR", botonDialogo, JOptionPane.INFORMATION_MESSAGE, p);
 
                 if (result == 0) {
                     System.exit(0);

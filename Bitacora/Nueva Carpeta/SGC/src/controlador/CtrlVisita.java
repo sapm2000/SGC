@@ -166,7 +166,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "Registro guardado ", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                             llenarTabla();
                             limpiar();
 
@@ -184,7 +184,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "No se pudo registrar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "No se pudo registrar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                         }
 
                     } else {
@@ -201,7 +201,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "No se pudo registrar a la persona ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "No se pudo registrar a la persona ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                     }
 
                 } else {
@@ -220,7 +220,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Registro guardado ", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "Registro guardado ", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                         llenarTabla();
                         limpiar();
 
@@ -238,7 +238,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "No se pudo registrar ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "No se pudo registrar ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                     }
                 }
             }
@@ -260,7 +260,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
                 UIManager.put("Label.background", Color.blue);
                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                JOptionPane.showMessageDialog(null, "Salida registrada ", "Salida de visitas", JOptionPane.INFORMATION_MESSAGE, p);
+                JOptionPane.showMessageDialog(null, "Salida registrada ", "SALIDA DE VISITAS", JOptionPane.INFORMATION_MESSAGE, p);
                 vista.btnEntrada.setEnabled(true);
                 vista.btnSalida.setEnabled(false);
                 llenarTabla();
@@ -280,7 +280,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
                 UIManager.put("Label.background", Color.blue);
                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                JOptionPane.showMessageDialog(null, "No se pudo registrar la salida ", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                JOptionPane.showMessageDialog(null, "No se pudo registrar la salida ", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
             }
         }
 
@@ -617,7 +617,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(vista, mensaje, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(vista, mensaje, "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;

@@ -201,7 +201,7 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Esta cuenta ya está registrada en la base de datos, se recuperarán los datos", "Información", JOptionPane.INFORMATION_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "Esta cuenta ya está registrada en la base de datos, se recuperarán los datos", "INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE, p);
 
                     if (modelo.reactivar()) {
 
@@ -215,7 +215,7 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Cuenta habilitada", "Habilitación de cuenta", JOptionPane.INFORMATION_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "Cuenta habilitada", "HABILITACIÓN DE CUENTA", JOptionPane.INFORMATION_MESSAGE, p);
                         llenarTabla(catalogo.tabla);
                         CtrlVentana.cambiarVista(catalogo);
                         limpiar();
@@ -230,7 +230,7 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
                         UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-                        JOptionPane.showMessageDialog(null, "No se pudo habilitar la cuenta", "Habilitación de cuenta", JOptionPane.INFORMATION_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "No se pudo habilitar la cuenta", "HABILITACIÓN DE CUENTA", JOptionPane.INFORMATION_MESSAGE, p);
                     }
 
                 } else {
@@ -251,7 +251,7 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "Registro guardado", "Registro de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "Registro guardado", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                             llenarTabla(catalogo.tabla);
                             CtrlVentana.cambiarVista(catalogo);
                             limpiar();
@@ -270,7 +270,7 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
                             UIManager.put("Label.background", Color.blue);
                             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            JOptionPane.showMessageDialog(null, "No se pudo registrar", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                            JOptionPane.showMessageDialog(null, "No se pudo registrar", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                         }
 
                     } else {
@@ -287,7 +287,7 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Este número de cuenta ya existe", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "Este número de cuenta ya existe", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                     }
                 }
             }
@@ -318,7 +318,7 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "Registro modificado", "Modificación de datos", JOptionPane.INFORMATION_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "Registro modificado", "MODIFICACIÓN DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                     llenarTabla(catalogo.tabla);
                     CtrlVentana.cambiarVista(catalogo);
 
@@ -336,7 +336,7 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                    JOptionPane.showMessageDialog(null, "No se pudo modificar", "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "No se pudo modificar", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
                 }
             }
         }
@@ -357,7 +357,7 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
                 UIManager.put("Label.background", Color.blue);
                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                JOptionPane.showMessageDialog(null, "Registro eliminado", "Información", JOptionPane.INFORMATION_MESSAGE, p);
+                JOptionPane.showMessageDialog(null, "Registro eliminado", "ELIMINACIÓN SATISFACTORIA", JOptionPane.INFORMATION_MESSAGE, p);
                 llenarTabla(catalogo.tabla);
                 CtrlVentana.cambiarVista(catalogo);
 
@@ -375,7 +375,7 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
                 UIManager.put("Label.background", Color.blue);
                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                JOptionPane.showMessageDialog(null, "No se pudo eliminar", "¡Cuidado!", JOptionPane.WARNING_MESSAGE, p);
+                JOptionPane.showMessageDialog(null, "No se pudo eliminar", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
             }
         }
 
@@ -673,7 +673,7 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-            JOptionPane.showMessageDialog(null, msj, "Advertencia", JOptionPane.WARNING_MESSAGE, p);
+            JOptionPane.showMessageDialog(null, msj, "ADVERTENCIA", JOptionPane.WARNING_MESSAGE, p);
         }
 
         return resultado;
