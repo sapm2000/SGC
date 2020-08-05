@@ -64,7 +64,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
     private Funcion permiso;
 
     public CtrlGasto() {
-        
+
         this.modConcepto = new ConceptoGasto();
         this.modProveedor = new Proveedores();
 
@@ -159,9 +159,9 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == catalogo.btnNuevo) {
-            
+
             modelo = new Gasto();
-            
+
             llenarTablaConcepto(vista.jTable, "Registrar");
 
             this.vista.btnGuardar.setEnabled(true);
@@ -206,27 +206,27 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
 
                 //Se verifica si el monto es ordinario o extraordinario
                 if (modelo.getTipo().equals("ORDINARIO")) {
-                    
+
                     //Si es ordinario, el número de meses que aplica es == 1
                     modelo.setNumMeses(1);
                     modelo.setMesesRestantes(1);
                     modelo.setAsamblea(null);
 
                 } else if (modelo.getTipo().equals("EXTRAORDINARIO")) {
-                    
+
                     //Si es extraordinario, el número de meses que aplica se obtiene del usuario
                     modelo.setNumMeses(Integer.parseInt(vista.txtNmeses.getText()));
                     modelo.setMesesRestantes(modelo.getNumMeses());
 
                     //Se verifica si el gasto fue seleccionado en una asamblea y se guarda la asamblea en ese caso
                     if (vista.si.isSelected()) {
-                        
+
                         modelo.setAsamblea(listaAsambleas.get(vista.jAsamblea.getSelectedIndex() - 1));
 
                     } else if (vista.no.isSelected()) {
-                        
+
                         modelo.setAsamblea(null);
-                        
+
                     }
                 }
 
@@ -738,7 +738,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
 
             //Se guardan en el modelo el monto y el saldo
             modelo.setMonto(montoTotal);
-           
+
             modelo.setSaldo(montoTotal);
 
             //Si se logró el registro
@@ -932,7 +932,7 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
             vista.jCalcular.setSelectedItem(modelo.getCalcular());
             vista.cbxMoneda.setSelectedItem(modelo.getMoneda());
             vista.txtMes.setSelectedIndex(modelo.getMes() - 1);
-            int w= modelo.getAnio()-1920;
+            int w = modelo.getAnio() - 1920;
             vista.txtAño.setSelectedIndex(w);
             vista.txaObservaciones.setText(modelo.getObservacion());
             vista.txtNmeses.setText(String.valueOf(modelo.getNumMeses()));

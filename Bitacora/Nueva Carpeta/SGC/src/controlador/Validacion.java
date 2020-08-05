@@ -1,6 +1,5 @@
 package controlador;
 
-import static com.sun.javafx.scene.control.skin.Utils.getResource;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Event;
@@ -18,7 +17,6 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import static javax.swing.BorderFactory.createLineBorder;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
@@ -79,13 +77,13 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
         char c = evt.getKeyChar();
 
         if (evt.isControlDown() && (c == 'c' || c == 'v')) {
-            
+
             UIManager UI = new UIManager();
             UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
             UI.put("Panel.background", new ColorUIResource(255, 255, 255));
 
             int botonDialogo = JOptionPane.OK_OPTION;
-            
+
             UIManager.put("Button.background", Color.white);
             UIManager.put("Button.font", Color.blue);
             UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
@@ -106,19 +104,18 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
 
         if (!Character.isLetter(c) && c != KeyEvent.VK_SPACE && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_DELETE) {
 
-            
             UIManager UI = new UIManager();
             UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
             UI.put("Panel.background", new ColorUIResource(255, 255, 255));
-            
+
             int botonDialogo = JOptionPane.OK_OPTION;
-            
+
             UIManager.put("Button.background", Color.white);
             UIManager.put("Button.font", Color.blue);
             UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-            
+
             JOptionPane.showMessageDialog(null, "Este campo solo permite ingresar letras. No se permiten caracteres especiales o números.", "Error!", JOptionPane.ERROR_MESSAGE, new ImageIcon("/img/warning.png"));
             evt.consume();
         }
@@ -130,19 +127,19 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
         char c = evt.getKeyChar();
 
         if (!Character.isDigit(c) && c != KeyEvent.VK_SPACE && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_DELETE) {
-            
+
             UIManager UI = new UIManager();
             UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
             UI.put("Panel.background", new ColorUIResource(255, 255, 255));
 
             int botonDialogo = JOptionPane.OK_OPTION;
-            
+
             UIManager.put("Button.background", Color.white);
             UIManager.put("Button.font", Color.blue);
             UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-            
+
             JOptionPane.showMessageDialog(null, "Este campo solo permite ingresar números. No se permiten caracteres especiales o letras.", "Error!", JOptionPane.ERROR_MESSAGE, new ImageIcon("/img/warning.png"));
             evt.consume();
         }
@@ -164,19 +161,19 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
         char c = evt.getKeyChar();
 
         if ((c == ' ')) {
-            
+
             UIManager UI = new UIManager();
             UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
             UI.put("Panel.background", new ColorUIResource(255, 255, 255));
 
             int botonDialogo = JOptionPane.OK_OPTION;
-            
+
             UIManager.put("Button.background", Color.white);
             UIManager.put("Button.font", Color.blue);
             UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
             UIManager.put("Label.background", Color.blue);
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-            
+
             JOptionPane.showMessageDialog(null, "Este campo no permite ingresar espacios.", "Error!", JOptionPane.ERROR_MESSAGE, new ImageIcon("/img/warning.png"));
             evt.consume();
         }
@@ -234,21 +231,21 @@ public abstract class Validacion implements ActionListener, MouseListener, KeyLi
             }
         }
     }
-    
-    public static boolean email(String correo){
+
+    public static boolean email(String correo) {
         Pattern pat = null;
         Matcher mat = null;
         pat = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-						+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-        
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+
         mat = pat.matcher(correo);
-        
-        if(mat.find()){
+
+        if (mat.find()) {
             return true;
-        }else{
+        } else {
             return false;
         }
-        
+
     }
 
     public static String encriptar(String textoSinEncriptar) {

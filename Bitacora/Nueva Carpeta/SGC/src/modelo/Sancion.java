@@ -381,8 +381,6 @@ public class Sancion extends ConexionBD {
             ps = con.prepareStatement(sql);
             ps.setInt(1, getId());
 
-           
-
             rs = ps.executeQuery();
 
             while (rs.next()) {
