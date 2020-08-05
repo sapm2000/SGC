@@ -454,7 +454,7 @@ CREATE FUNCTION login(usu character varying, pass character varying) RETURNS boo
 DECLARE
 	usu1 character varying;
 	pass1 character varying;
-	_id_usuario
+	--_id_usuario
 
 BEGIN
 	usu1 := (SELECT usuario FROM usuario where usuario=usu AND password=pass);
@@ -462,7 +462,7 @@ BEGIN
 
 	IF usu = usu1 AND pass = pass1 THEN 
 	
-	INSERT INTO sesion_usuario (fecha_entrada, id_usuario) VALUES (default,1);
+	--INSERT INTO sesion_usuario (fecha_entrada, id_usuario) VALUES (default,1);
 	
 		RETURN TRUE;
 		
