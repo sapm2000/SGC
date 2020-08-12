@@ -368,6 +368,15 @@ CREATE TABLE IF NOT EXISTS bitacora (
 	fecha_hora timestamp without time zone DEFAULT LOCALTIMESTAMP(0)
 );
 
+-- sesion_usuario
+--DROP TABLE sesion_usuario;
+CREATE TABLE IF NOT EXISTS sesion_usuario(
+id serial NOT NULL PRIMARY KEY,
+fecha_entrada timestamp DEFAULT localtimestamp(0),
+fecha_salida timestamp DEFAULT localtimestamp(0),
+id_usuario int NOT NULL REFERENCES usuario(id)
+);
+
 
 -------- Funciones --------
 --pagar_gasto
@@ -445,12 +454,16 @@ CREATE FUNCTION login(usu character varying, pass character varying) RETURNS boo
 DECLARE
 	usu1 character varying;
 	pass1 character varying;
+	--_id_usuario
 
 BEGIN
 	usu1 := (SELECT usuario FROM usuario where usuario=usu AND password=pass);
 	pass1 := (SELECT password FROM usuario where usuario=usu AND password=pass);
 
 	IF usu = usu1 AND pass = pass1 THEN 
+	
+	--INSERT INTO sesion_usuario (fecha_entrada, id_usuario) VALUES (default,1);
+	
 		RETURN TRUE;
 		
 	ELSE
@@ -523,7 +536,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 	
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Modificado'
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 	RETURN true;
 	
@@ -548,7 +561,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN	
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Eliminado', valor_nuevo = null
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -572,7 +585,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 	
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Registro', valor_viejo = null
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -624,7 +637,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
-		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Modificado'
+		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 	RETURN true;
 		
@@ -648,7 +661,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Eliminado', valor_nuevo = null
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 	RETURN true;
 		
@@ -663,17 +676,16 @@ $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION reactivar_categoria(
 	nombre2 character varying,
-	descripcion2 character varying,
 	id_usuario2 integer
 ) RETURNS boolean AS $$
 DECLARE
 	resul int;
 BEGIN
-	UPDATE categoriagasto SET descripcion = descripcion2, activo = true WHERE nombre = nombre2;
+	UPDATE categoriagasto SET activo = true WHERE nombre = nombre2;
 	GET DIAGNOSTICS resul = ROW_COUNT;
 	
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Registro', valor_viejo = null
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -765,7 +777,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Modificado'
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -789,7 +801,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Eliminado', valor_nuevo = null
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 	RETURN true;
 		
@@ -813,7 +825,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Registro', valor_viejo = null
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -935,7 +947,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Modificado'
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -959,7 +971,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 	
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Eliminado', valor_nuevo = null
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 	   	WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -983,7 +995,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 	
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Registro', valor_viejo = null
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -1030,7 +1042,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 -------- Funciones Fondos --------
---agregar_fondos
+-- agregar_fondos
 -- DROP FUNCTION agregar_fondos;
 
 CREATE OR REPLACE FUNCTION agregar_fondos(
@@ -1078,7 +1090,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'modificado'
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -1101,7 +1113,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Eliminado', valor_nuevo = null
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -1125,7 +1137,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Registro', valor_viejo = null
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -1174,7 +1186,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Modificado'
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -1198,7 +1210,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Eliminado', valor_nuevo = null
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -1222,7 +1234,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Registro', valor_viejo = null
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -1294,7 +1306,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 	
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Modificado'
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -1383,7 +1395,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
-	 	UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Modificado'
+	 	UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -1406,7 +1418,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
-	 	UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Eliminado', valor_nuevo = null
+	 	UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -1429,7 +1441,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
-	 	UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Registro', valor_viejo = null
+	 	UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -1451,6 +1463,7 @@ CREATE OR REPLACE FUNCTION agregar_propietario(
 	_correo character varying,
 	_existe boolean,
 	_id_usuario int
+	
 ) RETURNS boolean AS $$
 DECLARE
 	resul integer;
@@ -1474,7 +1487,7 @@ BEGIN
 	INSERT INTO propietario (ci_persona) VALUES (_cedula) ON CONFLICT DO NOTHING;
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
-	IF resul <> 1 THEN
+	IF resul <> 1 THEN 
 		RAISE WARNING 'No se pudo agregar en propietario';
 		RETURN false;
 
@@ -1488,8 +1501,99 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- modificar_propietario
+
+CREATE OR REPLACE FUNCTION modificar_propietario(
+	_cedula character varying,
+	_p_nombre character varying,
+	_s_nombre character varying,
+	_p_apellido character varying,
+	_s_apellido character varying,
+	_telefono character varying,
+	_correo character varying,
+	_id_usuario int
+) RETURNS boolean AS $$
+DECLARE
+	resul integer;
+	--fila_nuevo RECORD;
+	--fila_viejo RECORD;
+BEGIN
+	--SELECT cedula, p_nombre, s_nombre, p_apellido, s_apellido, telefono, correo INTO fila_viejo FROM persona WHERE cedula = _cedula;
+
+	
+		UPDATE persona SET p_nombre=_p_nombre, s_nombre=_s_nombre, p_apellido=_p_apellido, s_apellido=_s_apellido, telefono=_telefono, correo=_correo WHERE cedula = _cedula;
+		GET DIAGNOSTICS resul = ROW_COUNT;
+
+		IF resul <> 1 THEN
+			
+			RETURN false;
+		ELSE
+			--SELECT cedula, p_nombre, s_nombre, p_apellido, s_apellido, telefono, correo INTO fila_nuevo FROM persona WHERE cedula = _cedula;
+		END IF;
+	
+	GET DIAGNOSTICS resul = ROW_COUNT;
+
+	IF resul <> 1 THEN 
+		
+		RETURN false;
+
+	ELSE
+		
+		UPDATE bitacora SET id_usuario = _id_usuario, tabla = 'propietario' WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora) AND tabla = 'persona';
+		RETURN true;
+	END IF;
+END;
+$$ LANGUAGE plpgsql;
+	
 -- eliminar_propietario
+CREATE OR REPLACE FUNCTION eliminar_propietario(
+	_cedula character varying,
+	_id_usuario integer
+)RETURNS boolean AS $$
+DECLARE
+	resul integer;
+	fila_viejo RECORD;
+BEGIN
+	SELECT cedula, p_nombre, s_nombre, p_apellido, s_apellido, telefono, correo INTO fila_viejo FROM persona WHERE cedula = _cedula;
+	
+UPDATE propietario SET activo=false WHERE ci_persona=_cedula;
+GET DIAGNOSTICS resul = ROW_COUNT;
+
+IF resul > 0 THEN
+	 	UPDATE bitacora SET id_usuario = _id_usuario, valor_viejo=fila_viejo
+		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
+		RETURN true;
+		
+	ELSE
+		RETURN false;
+	END IF;
+END;
+$$ LANGUAGE plpgsql;
+
 -- reactivar_propietario
+
+CREATE OR REPLACE FUNCTION reactivar_propietario(
+	_cedula character varying,
+	_id_usuario integer
+)RETURNS boolean AS $$
+DECLARE
+	resul integer;
+	fila_nuevo RECORD;
+BEGIN
+	SELECT cedula, p_nombre, s_nombre, p_apellido, s_apellido, telefono, correo INTO fila_nuevo FROM persona WHERE cedula = _cedula;
+	
+UPDATE propietario SET activo=true WHERE ci_persona=_cedula;
+GET DIAGNOSTICS resul = ROW_COUNT;
+
+IF resul > 0 THEN
+	 	UPDATE bitacora SET id_usuario = _id_usuario, valor_nuevo =fila_nuevo 
+		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
+		RETURN true;
+		
+	ELSE
+		RETURN false;
+	END IF;
+END;
+$$ LANGUAGE plpgsql;
 
 -------- Funciones Proveedor --------
 -- agregar_proveedor
@@ -1538,7 +1642,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Modificado'
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -1561,7 +1665,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Eliminado', valor_nuevo = null
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -1584,7 +1688,151 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Registro', valor_viejo = null
+ 		UPDATE bitacora SET id_usuario = id_usuario2
+		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
+		RETURN true;
+		
+	ELSE
+		RETURN false;
+	END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+-------- Funciones Responsable --------
+-- agregar_responsable
+CREATE OR REPLACE FUNCTION agregar_responsable(
+	_cedula character varying,
+	_p_nombre character varying,
+	_s_nombre character varying,
+	_p_apellido character varying,
+	_s_apellido character varying,
+	_telefono character varying,
+	_correo character varying,
+	_existe boolean,
+	_id_usuario int
+	
+) RETURNS boolean AS $$
+DECLARE
+	resul integer;
+	fila RECORD;
+BEGIN
+	IF _existe = false THEN
+		RAISE INFO 'Agregando en la tabla persona...';
+		INSERT INTO persona (cedula, p_nombre, s_nombre, p_apellido, s_apellido, telefono, correo) VALUES (_cedula, _p_nombre, _s_nombre, _p_apellido, _s_apellido, _telefono, _correo) ON CONFLICT DO NOTHING;
+		GET DIAGNOSTICS resul = ROW_COUNT;
+
+		IF resul <> 1 THEN
+			RAISE WARNING 'No se pudo agregar en persona';
+			RETURN false;
+		ELSE
+			RAISE INFO 'Éxito';
+			SELECT * INTO fila FROM persona WHERE cedula = _cedula;
+		END IF;
+	END IF;
+
+	RAISE INFO 'Agregando en la tabla propietario...';
+	INSERT INTO responsable (ci_persona) VALUES (_cedula) ON CONFLICT DO NOTHING;
+	GET DIAGNOSTICS resul = ROW_COUNT;
+
+	IF resul <> 1 THEN 
+		RAISE WARNING 'No se pudo agregar en propietario';
+		RETURN false;
+
+	ELSE
+		RAISE INFO 'Éxito';
+		RAISE INFO 'Actualizando la bitácora...';
+		UPDATE bitacora SET id_usuario = _id_usuario, valor_nuevo = fila WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora) AND tabla = 'responsable';
+		RETURN true;
+	END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+-- modificar_responsable
+
+CREATE OR REPLACE FUNCTION modificar_responsable(
+	_cedula character varying,
+	_p_nombre character varying,
+	_s_nombre character varying,
+	_p_apellido character varying,
+	_s_apellido character varying,
+	_telefono character varying,
+	_correo character varying,
+	_id_usuario int
+) RETURNS boolean AS $$
+DECLARE
+	resul integer;
+	--fila_nuevo RECORD;
+	--fila_viejo RECORD;
+BEGIN
+	--SELECT cedula, p_nombre, s_nombre, p_apellido, s_apellido, telefono, correo INTO fila_viejo FROM persona WHERE cedula = _cedula;
+
+	
+		UPDATE persona SET p_nombre=_p_nombre, s_nombre=_s_nombre, p_apellido=_p_apellido, s_apellido=_s_apellido, telefono=_telefono, correo=_correo WHERE cedula = _cedula;
+		GET DIAGNOSTICS resul = ROW_COUNT;
+
+		IF resul <> 1 THEN
+			
+			RETURN false;
+		ELSE
+			--SELECT cedula, p_nombre, s_nombre, p_apellido, s_apellido, telefono, correo INTO fila_nuevo FROM persona WHERE cedula = _cedula;
+		END IF;
+	
+	GET DIAGNOSTICS resul = ROW_COUNT;
+
+	IF resul <> 1 THEN 
+		
+		RETURN false;
+
+	ELSE
+		
+		UPDATE bitacora SET id_usuario = _id_usuario, tabla = 'responsable' WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora) AND tabla = 'persona';
+		RETURN true;
+	END IF;
+END;
+$$ LANGUAGE plpgsql;
+	
+-- eliminar_responsable
+CREATE OR REPLACE FUNCTION eliminar_responsable(
+	_cedula character varying,
+	_id_usuario integer
+)RETURNS boolean AS $$
+DECLARE
+	resul integer;
+	fila_viejo RECORD;
+BEGIN
+	SELECT cedula, p_nombre, s_nombre, p_apellido, s_apellido, telefono, correo INTO fila_viejo FROM persona WHERE cedula = _cedula;
+	
+UPDATE responsable SET activo=false WHERE ci_persona=_cedula;
+GET DIAGNOSTICS resul = ROW_COUNT;
+
+IF resul > 0 THEN
+	 	UPDATE bitacora SET id_usuario = _id_usuario, valor_viejo= fila_viejo
+		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
+		RETURN true;
+		
+	ELSE
+		RETURN false;
+	END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+-- reactivar_responsable
+
+CREATE OR REPLACE FUNCTION reactivar_responsable(
+	_cedula character varying,
+	_id_usuario integer
+)RETURNS boolean AS $$
+DECLARE
+	resul integer;
+	fila_nuevo RECORD;
+BEGIN
+	SELECT cedula, p_nombre, s_nombre, p_apellido, s_apellido, telefono, correo INTO fila_nuevo FROM persona WHERE cedula = _cedula;
+	
+UPDATE responsable SET activo=true WHERE ci_persona=_cedula;
+GET DIAGNOSTICS resul = ROW_COUNT;
+
+IF resul > 0 THEN
+	 	UPDATE bitacora SET id_usuario = _id_usuario, valor_nuevo=fila_nuevo
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -1643,7 +1891,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Modificado'
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -1664,9 +1912,8 @@ DECLARE
 BEGIN
 	DELETE FROM sancion WHERE id=id2;
 	GET DIAGNOSTICS resul = ROW_COUNT;
-
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Eliminado', valor_nuevo = null
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -1716,7 +1963,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Modificado'
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -1729,17 +1976,17 @@ $$ LANGUAGE plpgsql;
 -- eliminar_tipo_unidad
 -- DROP FUNCTION eliminar_tipo_unidad;
 CREATE OR REPLACE FUNCTION eliminar_tipo_unidad(
-	tipo2 integer,
+	tipo2 character varying,
 	id_usuario2 integer
 ) RETURNS boolean AS $$
 DECLARE
 	resul int;
 BEGIN
-	UPDATE tipo_unidad SET activo = false WHERE id = tipo2;
+	UPDATE tipo_unidad SET activo = false WHERE tipo = tipo2;
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Eliminado', valor_nuevo = null
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -1762,7 +2009,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Registro', valor_viejo = null
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -1773,9 +2020,34 @@ END;
 $$ LANGUAGE plpgsql;
 
 -------- Funciones tipo_usuario --------
+-- agregar_tipo_usuario
+-- DROP FUNCTION agregar_tipo_usuario;
+CREATE OR REPLACE FUNCTION agregar_tipo_usuario(
+	_tipo character varying,
+	_id_usuario integer
+) RETURNS boolean AS $$
+DECLARE
+	resul int;
+	
+BEGIN
+	INSERT INTO tipo_usuario (tipo) VALUES (_tipo);
+	GET DIAGNOSTICS resul = ROW_COUNT;
+
+	IF resul > 0 THEN
+	
+ 		UPDATE bitacora SET id_usuario = _id_usuario
+		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
+		RETURN true;
+		
+	ELSE
+		RETURN false;
+	END IF;
+END;
+$$ LANGUAGE plpgsql;
+
 -- modificar_tipo_usuario
 -- DROP FUNCTION modificar_tipo_usuario;
-CREATE OR REPLACE FUNCTION modificar_tipo_usuario (
+CREATE OR REPLACE FUNCTION modificar_tipo_usuario(
 	_tipo character varying,
 	_id integer,
 	_id_usuario integer
@@ -1789,7 +2061,53 @@ BEGIN
 
 	IF resul > 0 THEN
 	
- 		UPDATE bitacora SET id_usuario = _id_usuario, operacion = 'Modificado'
+ 		UPDATE bitacora SET id_usuario = _id_usuario
+		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
+		RETURN true;
+		
+	ELSE
+		RETURN false;
+	END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+-- eliminar_tipo_usuario
+-- DROP FUNCTION eliminar_tipo_usuario;
+CREATE OR REPLACE FUNCTION eliminar_tipo_usuario(
+	tipo2 character varying,
+	id_usuario2 integer
+) RETURNS boolean AS $$
+DECLARE
+	resul int;
+BEGIN
+	UPDATE tipo_usuario SET activo = false WHERE tipo = tipo2;
+	GET DIAGNOSTICS resul = ROW_COUNT;
+
+	IF resul > 0 THEN
+ 		UPDATE bitacora SET id_usuario = id_usuario2
+		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
+		RETURN true;
+		
+	ELSE
+		RETURN false;
+	END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+-- reactivar_tipo_usuario
+-- DROP FUNCTION reactivar_tipo_usuario;
+CREATE OR REPLACE FUNCTION reactivar_tipo_usuario(
+	tipo2 character varying,
+	id_usuario2 integer
+) RETURNS boolean AS $$
+DECLARE
+	resul int;
+BEGIN
+	UPDATE tipo_usuario SET activo = true WHERE tipo = tipo2;
+	GET DIAGNOSTICS resul = ROW_COUNT;
+
+	IF resul > 0 THEN
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -1842,7 +2160,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Modificado'
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -1865,7 +2183,7 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Eliminado', valor_nuevo = null
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 	RETURN true;
 		
@@ -1888,7 +2206,104 @@ BEGIN
 	GET DIAGNOSTICS resul = ROW_COUNT;
 
 	IF resul > 0 THEN
- 		UPDATE bitacora SET id_usuario = id_usuario2, operacion = 'Registro', valor_viejo = null
+ 		UPDATE bitacora SET id_usuario = id_usuario2
+		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
+		RETURN true;
+		
+	ELSE
+		RETURN false;
+	END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+-------- Funciones Usuario --------
+-- agregar_usuario
+-- DROP FUNCTION agregar_usuario;
+CREATE OR REPLACE FUNCTION agregar_usuario(
+_usuario character varying,
+_password character varying,
+_pregunta character varying,
+_respuesta character varying,
+_ci_persona character varying,
+_id_tipo_usuario integer,
+_id_usuario integer
+) RETURNS boolean AS $$
+DECLARE
+	resul int;
+BEGIN
+	INSERT INTO usuario(usuario,password,pregunta,respuesta,ci_persona,id_tipo_usuario) VALUES(_usuario,_password,_pregunta,_respuesta,_ci_persona,_id_tipo_usuario);
+		GET DIAGNOSTICS resul = ROW_COUNT;
+
+	IF resul > 0 THEN
+		UPDATE bitacora SET id_usuario = _id_usuario 
+		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
+		RETURN true;
+		ELSE
+		RETURN false;
+	END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+-- modificar_usuario
+
+CREATE OR REPLACE FUNCTION modificar_usuario(
+_id integer,
+_id_tipo_usuario integer,
+_id_usuario integer
+) RETURNS boolean AS $$
+DECLARE
+	resul int;
+BEGIN
+	UPDATE usuario SET id_tipo_usuario=_id_tipo_usuario WHERE id=_id;
+	GET DIAGNOSTICS resul = ROW_COUNT;
+
+	IF resul > 0 THEN
+		UPDATE bitacora SET id_usuario = _id_usuario 
+		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
+		RETURN true;
+	ELSE
+		RETURN false;
+	END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+-- eliminar_usuario
+-- DROP FUNCTION eliminar_usuario;
+CREATE OR REPLACE FUNCTION eliminar_usuario(
+	id2 integer,
+	id_usuario2 integer
+) RETURNS boolean AS $$
+DECLARE
+	resul int;
+BEGIN
+	UPDATE usuario SET activo = false WHERE id = id2;
+	GET DIAGNOSTICS resul = ROW_COUNT;
+
+	IF resul > 0 THEN
+ 		UPDATE bitacora SET id_usuario = id_usuario2
+		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
+	RETURN true;
+		
+	ELSE
+		RETURN false;
+	END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+-- reactivar_usuario
+-- DROP FUNCTION reactivar_usuario;
+CREATE OR REPLACE FUNCTION reactivar_usuario(
+	id2 integer,
+	id_usuario2 integer
+) RETURNS boolean AS $$
+DECLARE
+	resul int;
+BEGIN
+	UPDATE usuario SET activo = true WHERE id = id2;
+	GET DIAGNOSTICS resul = ROW_COUNT;
+
+	IF resul > 0 THEN
+ 		UPDATE bitacora SET id_usuario = id_usuario2
 		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
 		RETURN true;
 		
@@ -2265,22 +2680,44 @@ BEGIN
 	RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
-
+	
 -- llenar_bitacora
 CREATE OR REPLACE FUNCTION llenar_bitacora() RETURNS TRIGGER AS $$
 BEGIN
 	IF TG_OP = 'INSERT' THEN
 		INSERT INTO bitacora (operacion, tabla, valor_nuevo)
-		VALUES ('Registro', TG_TABLE_NAME, NEW);
+		VALUES ('REGISTRO', TG_TABLE_NAME, NEW);
 		RETURN NEW;
 		END IF;
 	IF TG_OP = 'UPDATE' THEN
 		INSERT INTO bitacora (operacion, tabla, valor_viejo, valor_nuevo)
-		VALUES (TG_OP, TG_TABLE_NAME, OLD, NEW);
+		VALUES ('MODIFICAR', TG_TABLE_NAME, OLD, NEW);
 		RETURN NEW;
+	END IF;
+	IF TG_OP = 'DELETE' THEN
+		INSERT INTO bitacora (operacion, tabla, valor_viejo)
+		VALUES ('ELIMINAR', TG_TABLE_NAME, OLD);
+		RETURN OLD;
 	END IF;
 	RETURN NEW;
 END;
+$$ LANGUAGE plpgsql;
+
+--eliminacion_bitacora
+CREATE OR  REPLACE FUNCTION eliminacion_bitacora() RETURNS TRIGGER AS $$
+BEGIN
+	IF old.activo = true THEN
+	INSERT INTO bitacora (operacion, tabla, valor_viejo)
+	VALUES ('ELIMINAR', TG_TABLE_NAME, OLD);
+	RETURN NEW;
+	
+	ELSE
+	
+	INSERT INTO bitacora (operacion, tabla, valor_nuevo)
+	VALUES ('REACTIVAR', TG_TABLE_NAME, NEW);
+	RETURN NEW;
+	END IF;
+END
 $$ LANGUAGE plpgsql;
 
 --------- Trigers mayúsculas --------
@@ -2325,7 +2762,7 @@ BEFORE INSERT OR UPDATE
 ON condominio
 FOR EACH ROW
 EXECUTE PROCEDURE mayuscula_condominio();
-
+ 
 -- tg_mayuscula_cuenta
 CREATE TRIGGER tg_mayuscula_cuenta
 BEFORE INSERT OR UPDATE
@@ -2433,12 +2870,20 @@ ON asambleas
 FOR EACH ROW
 EXECUTE PROCEDURE llenar_bitacora();
 
---tg_banco
+-- tg_banco
+-- DROP TRIGGER tg_banco
 CREATE TRIGGER tg_banco
-BEFORE INSERT OR UPDATE
+BEFORE INSERT OR UPDATE OF nombre_banco
 ON banco
 FOR EACH ROW
 EXECUTE PROCEDURE llenar_bitacora();
+
+-- tg_eliminacion_banco
+CREATE TRIGGER tg_eliminacion_banco
+BEFORE UPDATE OF activo
+ON banco
+FOR EACH ROW
+EXECUTE PROCEDURE eliminacion_bitacora();
 
 --tg_calcular_alicuota
 CREATE TRIGGER tg_calcular_alicuota
@@ -2447,19 +2892,33 @@ ON unidad
 FOR EACH STATEMENT
 EXECUTE PROCEDURE calcular_alicuota();
 
---tg_categoria_gasto
+-- tg_categoria_gasto
 CREATE TRIGGER tg_categoria_gasto
-BEFORE INSERT OR UPDATE
+BEFORE INSERT OR UPDATE OF nombre, descripcion
 ON categoriagasto
 FOR EACH ROW
 EXECUTE PROCEDURE llenar_bitacora();
 
+-- tg_eliminacion_categoria_gasto
+CREATE TRIGGER tg_eliminacion_categoria_gasto
+BEFORE UPDATE OF activo
+ON categoriagasto
+FOR EACH ROW
+EXECUTE PROCEDURE eliminacion_bitacora();
+
 --tg_concepto_gasto
 CREATE TRIGGER tg_concepto_gasto
-BEFORE INSERT OR UPDATE
+BEFORE INSERT OR UPDATE OF nom_concepto, descripcion, id_categoria
 ON concepto_gasto
 FOR EACH ROW
 EXECUTE PROCEDURE llenar_bitacora();
+
+-- tg_eliminacion_concepto_gasto
+CREATE TRIGGER tg_eliminacion_concepto_gasto
+BEFORE UPDATE OF activo
+ON concepto_gasto
+FOR EACH ROW
+EXECUTE PROCEDURE eliminacion_bitacora();
 
 --tg_condominio
 CREATE TRIGGER tg_condominio
@@ -2470,10 +2929,17 @@ EXECUTE PROCEDURE llenar_bitacora();
 
 --tg_cuenta
 CREATE TRIGGER tg_cuenta
-BEFORE INSERT OR  UPDATE
+BEFORE INSERT OR  UPDATE OF n_cuenta, tipo, id_banco, ci_persona, rif_condominio 
 ON cuenta
 FOR EACH ROW
 EXECUTE PROCEDURE llenar_bitacora();
+
+-- tg_eliminacion_cuenta
+CREATE TRIGGER tg_eliminacion_cuenta
+BEFORE UPDATE OF activo
+ON cuenta
+FOR EACH ROW
+EXECUTE PROCEDURE eliminacion_bitacora();
 
 --tg_cuenta_pagar
 CREATE TRIGGER tg_cuenta_pagar
@@ -2484,17 +2950,31 @@ EXECUTE PROCEDURE llenar_bitacora();
 
 --tg_fondos
 CREATE TRIGGER tg_fondos
-BEFORE INSERT OR UPDATE
+BEFORE INSERT OR UPDATE OF tipo, fecha, descripcion, observaciones, monto_inicial, saldo, moneda
 ON fondos
 FOR EACH ROW
 EXECUTE PROCEDURE llenar_bitacora();
 
+-- tg_eliminacion_fondos
+CREATE TRIGGER tg_eliminacion_fondos
+BEFORE UPDATE OF activo
+ON fondos
+FOR EACH ROW
+EXECUTE PROCEDURE eliminacion_bitacora();
+
 --tg_forma_pago
 CREATE TRIGGER tg_forma_pago
-BEFORE INSERT OR UPDATE
+BEFORE INSERT OR UPDATE OF forma_pago
 ON forma_pago
 FOR EACH ROW
 EXECUTE PROCEDURE llenar_bitacora();
+
+-- tg_eliminacion_forma_pago
+CREATE TRIGGER tg_eliminacion_forma_pago
+BEFORE UPDATE OF activo
+ON forma_pago
+FOR EACH ROW
+EXECUTE PROCEDURE eliminacion_bitacora();
 
 --tg_gasto
 CREATE TRIGGER tg_gasto
@@ -2505,24 +2985,59 @@ EXECUTE PROCEDURE llenar_bitacora();
 
 --tg_interes
 CREATE TRIGGER tg_interes
-BEFORE INSERT OR UPDATE
+BEFORE INSERT OR UPDATE OF nombre, factor
 ON interes
 FOR EACH ROW
 EXECUTE PROCEDURE llenar_bitacora();
 
---tg_propietario
+-- tg_eliminacion_interes
+CREATE TRIGGER tg_eliminacion_interes
+BEFORE UPDATE OF activo
+ON interes
+FOR EACH ROW
+EXECUTE PROCEDURE eliminacion_bitacora();
+
+-- tg_propietario
 CREATE TRIGGER tg_propietario
-BEFORE INSERT OR UPDATE
+BEFORE INSERT
 ON propietario
 FOR EACH ROW
 EXECUTE PROCEDURE llenar_bitacora();
 
+-- tg_persona
+CREATE TRIGGER tg_persona
+BEFORE UPDATE 
+ON persona
+FOR EACH ROW
+EXECUTE PROCEDURE llenar_bitacora(); 
+
+-- tg_eliminacion_propietario
+CREATE TRIGGER tg_eliminacion_propietario
+BEFORE UPDATE OF activo
+ON propietario
+FOR EACH ROW
+EXECUTE PROCEDURE eliminacion_bitacora();
+
 --tg_proveedores
 CREATE TRIGGER tg_proveedores
-BEFORE INSERT OR UPDATE
+BEFORE INSERT OR UPDATE OF cedula, nombre, telefono, correo, contacto, direccion
 ON proveedores
 FOR EACH ROW
 EXECUTE PROCEDURE llenar_bitacora();
+
+-- tg_responsable
+CREATE TRIGGER tg_responsable
+BEFORE INSERT
+ON responsable
+FOR EACH ROW
+EXECUTE PROCEDURE llenar_bitacora();
+
+-- tg_eliminacion_proveedores
+CREATE TRIGGER tg_eliminacion_proveedores
+BEFORE UPDATE OF activo
+ON proveedores
+FOR EACH ROW
+EXECUTE PROCEDURE eliminacion_bitacora();
 
 --tg_recibo
 CREATE TRIGGER tg_recibo
@@ -2531,26 +3046,75 @@ ON recibo
 FOR EACH ROW
 EXECUTE PROCEDURE llenar_bitacora();
 
+-- tg_eliminacion_responsable
+CREATE TRIGGER tg_eliminacion_responsable
+BEFORE UPDATE OF activo
+ON responsable
+FOR EACH ROW
+EXECUTE PROCEDURE eliminacion_bitacora();
+
 --tg_sancion
 CREATE TRIGGER tg_sancion
-BEFORE INSERT OR UPDATE
+BEFORE INSERT OR UPDATE OR  DELETE
 ON sancion
 FOR EACH ROW
 EXECUTE PROCEDURE llenar_bitacora();
 
 --tg_tipo_unidad
 CREATE TRIGGER tg_tipo_unidad
-BEFORE INSERT OR UPDATE
+BEFORE INSERT OR UPDATE OF area, tipo
 ON tipo_unidad
 FOR EACH ROW
 EXECUTE PROCEDURE llenar_bitacora();
 
+-- tg_eliminacion_tipo_unidad
+CREATE TRIGGER tg_eliminacion_tipo_unidad
+BEFORE UPDATE OF activo
+ON tipo_unidad
+FOR EACH ROW
+EXECUTE PROCEDURE eliminacion_bitacora();
+
+--tg_tipo_usuario
+CREATE TRIGGER tg_tipo_usuario
+BEFORE INSERT OR UPDATE OF tipo
+ON tipo_usuario
+FOR EACH ROW
+EXECUTE PROCEDURE llenar_bitacora();
+
+-- tg_eliminacion_tipo_usuario
+CREATE TRIGGER tg_eliminacion_tipo_usuario
+BEFORE UPDATE OF activo
+ON tipo_usuario
+FOR EACH ROW
+EXECUTE PROCEDURE eliminacion_bitacora();
+
 --tg_unidad
 CREATE TRIGGER tg_unidad
-BEFORE INSERT OR UPDATE
+BEFORE INSERT OR UPDATE OF n_unidad, n_documento, direccion, id_tipo 
 ON unidad
 FOR EACH ROW
 EXECUTE PROCEDURE llenar_bitacora();
+
+-- tg_eliminacion_unidad
+CREATE TRIGGER tg_eliminacion_unidad
+BEFORE UPDATE OF activo
+ON unidad
+FOR EACH ROW
+EXECUTE PROCEDURE eliminacion_bitacora();
+
+--tg_usuario
+CREATE TRIGGER tg_usuario
+BEFORE INSERT OR UPDATE OF id_tipo_usuario
+ON usuario
+FOR EACH ROW
+EXECUTE PROCEDURE llenar_bitacora();
+
+-- tg_eliminacion_usuario
+CREATE TRIGGER tg_eliminacion_usuario
+BEFORE UPDATE OF activo
+ON usuario
+FOR EACH ROW
+EXECUTE PROCEDURE eliminacion_bitacora();
 
 -- tg_visita
 CREATE TRIGGER tg_visita
