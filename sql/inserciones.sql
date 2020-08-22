@@ -59,18 +59,18 @@ SELECT * FROM condominio;
 SELECT * FROM bitacora WHERE tabla='condominio' ORDER BY id_bitacora;
 
 -- fondos
-SELECT agregar_fondos(1,'PRINCIPAL', '2020-06-01', 'CUENTA EN BOLIVARES', 'NINGUNO', 15000000.0, 'BOLIVAR');
-SELECT modificar_fondos(1,'PRINCIPAL EN BOLIVARES','CUENTA EN BOLIVARES PARA GASTOS','NINGUNA',1);
-SELECT eliminar_fondos(1,1);
-SELECT reactivar_fondo(1,1);
+    SELECT agregar_fondos(1,'PRINCIPAL', '2020-06-01', 'CUENTA EN BOLIVARES', 'NINGUNO', 15000000.0, 'BOLIVAR');
+    SELECT modificar_fondos(1,'PRINCIPAL EN BOLIVARES','CUENTA EN BOLIVARES PARA GASTOS','NINGUNA',1);
+    SELECT eliminar_fondos(1,1);
+    SELECT reactivar_fondo(1,1);
 
-SELECT agregar_fondos(1,'CAJACHICA', '2020-06-02', 'CUENTA EN DOLARES', 'NINGUNO', 15000.0, 'DOLAR');
-SELECT modificar_fondos(1,'CAJA CHICA EN DOLARES','CUENTA EN DOLARES PARA GASTOS','NINGUNA',2);
-SELECT eliminar_fondos(1,2);
-SELECT reactivar_fondo(2,1);
+    SELECT agregar_fondos(1,'CAJACHICA', '2020-06-02', 'CUENTA EN DOLARES', 'NINGUNO', 15000.0, 'DOLAR');
+    SELECT modificar_fondos(1,'CAJA CHICA EN DOLARES','CUENTA EN DOLARES PARA GASTOS','NINGUNA',2);
+    SELECT eliminar_fondos(1,2);
+    SELECT reactivar_fondo(2,1);
 
-SELECT * FROM fondos;
-SELECT * FROM bitacora WHERE tabla='fondos' ORDER BY id_bitacora;
+    SELECT * FROM fondos;
+    SELECT * FROM bitacora WHERE tabla='fondos' ORDER BY id_bitacora;
 
 -- forma pago
 SELECT agregar_forma_pago('PAGO MOVIL',1);
