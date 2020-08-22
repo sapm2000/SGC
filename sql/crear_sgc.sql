@@ -1478,7 +1478,7 @@ BEGIN
 			RAISE WARNING 'No se pudo agregar en persona';
 			RETURN false;
 		ELSE
-			RAISE INFO 'Éxito';
+			RAISE INFO 'Exito';
 			SELECT * INTO fila FROM persona WHERE cedula = _cedula;
 		END IF;
 	END IF;
@@ -1492,8 +1492,8 @@ BEGIN
 		RETURN false;
 
 	ELSE
-		RAISE INFO 'Éxito';
-		RAISE INFO 'Actualizando la bitácora...';
+		RAISE INFO 'Exito';
+		RAISE INFO 'Actualizando la bitacora...';
 		UPDATE bitacora SET id_usuario = _id_usuario, valor_nuevo = fila WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora) AND tabla = 'propietario';
 		RETURN true;
 	END IF;
@@ -1725,7 +1725,7 @@ BEGIN
 			RAISE WARNING 'No se pudo agregar en persona';
 			RETURN false;
 		ELSE
-			RAISE INFO 'Éxito';
+			RAISE INFO 'Exito';
 			SELECT * INTO fila FROM persona WHERE cedula = _cedula;
 		END IF;
 	END IF;
@@ -1739,8 +1739,8 @@ BEGIN
 		RETURN false;
 
 	ELSE
-		RAISE INFO 'Éxito';
-		RAISE INFO 'Actualizando la bitácora...';
+		RAISE INFO 'Exito';
+		RAISE INFO 'Actualizando la bitacora...';
 		UPDATE bitacora SET id_usuario = _id_usuario, valor_nuevo = fila WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora) AND tabla = 'responsable';
 		RETURN true;
 	END IF;
