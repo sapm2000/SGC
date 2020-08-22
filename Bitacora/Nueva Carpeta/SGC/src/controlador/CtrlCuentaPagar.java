@@ -194,6 +194,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
                 modelo.setMonto(Double.parseDouble(vista.txtMonto.getText()));
                 modelo.setFecha(new java.sql.Date(vista.txtFecha.getDatoFecha().getTime()));
                 ind = vista.cbxFondo.getSelectedIndex() - 1;
+                System.out.println(listaFondo.get(ind));
                 modelo.setFondo(listaFondo.get(ind));
                 modelo.setMoneda(vista.cbxMoneda.getSelectedItem().toString());
 
@@ -443,6 +444,9 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
 
             for (Fondo item : listaFondo) {
                 vista.cbxFondo.addItem(Validacion.formatoDecimal(item.getSaldo()) + simbolo + " - " + item.getTipo());
+            }
+            for (Fondo item : listaFondo) {
+                System.out.println(listaFondo);
             }
         }
     }
