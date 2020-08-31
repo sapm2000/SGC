@@ -265,24 +265,6 @@ CREATE TABLE visita (
     id_unidad integer NOT NULL REFERENCES unidad (id)
 );
 
--- detalle_pagos
--- DROP TABLE detalle_pagos;
-CREATE TABLE detalle_pagos (
-    id serial NOT NULL PRIMARY KEY,
-    mes bigint NOT NULL,
-    anio bigint NOT NULL,
-    monto_dolar double precision NOT NULL,
-    id_gasto integer NOT NULL REFERENCES gasto (id),
-    id_unidad integer NOT NULL REFERENCES unidad (id),
-    tipo_gasto character varying NOT NULL,
-    monto_bolivar double precision NOT NULL,
-    paridad double precision NOT NULL,
-    moneda_dominante character varying NOT NULL,
-	saldo_restante_bolivar double precision NOT NULL,
-    saldo_restante_dolar double precision
-);
-
-
 -------- Tablas puente --------
 -- puente_asambleas_propietario
 CREATE TABLE puente_asambleas_propietario(
