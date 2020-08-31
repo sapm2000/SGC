@@ -2441,16 +2441,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- mayuscula_detalle_pagos
--- DROP FUNCTION mayuscula_detalle_pagos();
-CREATE OR REPLACE FUNCTION mayuscula_detalle_pagos() RETURNS TRIGGER AS $$
-BEGIN
-	
-	NEW.tipo_gasto = UPPER(NEW.tipo_gasto);
-	
-	RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
 
 -- mayuscula_fondos
 -- DROP FUNCTION mayuscula_fondos();
@@ -2758,13 +2748,6 @@ BEFORE INSERT OR UPDATE
 ON cuenta_pagar
 FOR EACH ROW
 EXECUTE PROCEDURE mayuscula_cuenta_pagar();
-
--- tg_mayuscula_detalle_pagos
-CREATE TRIGGER tg_mayuscula_detalle_pagos
-BEFORE INSERT OR UPDATE
-ON detalle_pagos
-FOR EACH ROW
-EXECUTE PROCEDURE mayuscula_detalle_pagos();
 
 -- tg_mayuscula_fondos
 CREATE TRIGGER tg_mayuscula_fondos
