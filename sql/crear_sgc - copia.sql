@@ -265,24 +265,6 @@ CREATE TABLE visita (
     id_unidad integer NOT NULL REFERENCES unidad (id)
 );
 
--- detalle_pagos
--- DROP TABLE detalle_pagos;
-CREATE TABLE detalle_pagos (
-    id serial NOT NULL PRIMARY KEY,
-    mes bigint NOT NULL,
-    anio bigint NOT NULL,
-    monto_dolar double precision NOT NULL,
-    id_gasto integer NOT NULL REFERENCES gasto (id),
-    id_unidad integer NOT NULL REFERENCES unidad (id),
-    tipo_gasto character varying NOT NULL,
-    monto_bolivar double precision NOT NULL,
-    paridad double precision NOT NULL,
-    moneda_dominante character varying NOT NULL,
-	saldo_restante_bolivar double precision NOT NULL,
-    saldo_restante_dolar double precision
-);
-
-
 -------- Tablas puente --------
 -- puente_asambleas_propietario
 CREATE TABLE puente_asambleas_propietario(
@@ -21367,6 +21349,35 @@ INSERT INTO public.puente_cobro_factura VALUES (3875, 830, 39, 0.01, 'DÓLAR');
 INSERT INTO public.puente_cobro_factura VALUES (3876, 930, 39, 0.01, 'DÓLAR');
 INSERT INTO public.puente_cobro_factura VALUES (3877, 1030, 39, 0.09, 'DÓLAR');
 INSERT INTO public.puente_cobro_factura VALUES (3878, 1130, 39, 0.03, 'DÓLAR');
+
+INSERT INTO public.visita VALUES (2, '2020-06-01', '08:20:20', '2020-06-01', '18:25:25', 2, 'KJ525', 'AVEO', 'GRIS', 'V-8517596', 1);
+INSERT INTO public.visita VALUES (3, '2020-06-02', '01:25:41', '2020-06-02', '04:25:30', 2, '2P6JH', '4-RUNNER', 'PLATEADO', 'V-20888725', 2);
+INSERT INTO public.visita VALUES (10, '2020-06-02', '13:02:01', '2020-06-02', '20:15:59', 3, 'PLO52', 'SILVERADO', 'ROJA', 'V-20458966', 3);
+INSERT INTO public.visita VALUES (11, '2020-06-03', '12:20:06', '2020-06-03', '21:01:06', 1, 'L26KJ5', 'LUV-DMAX', 'PLATEADA', 'V-27328852', 4);
+INSERT INTO public.visita VALUES (12, '2020-06-03', '01:02:03', '2020-06-03', '18:17:16', 2, '48PK95', 'SPARK', 'VERDE', 'V-27699315', 6);
+INSERT INTO public.visita VALUES (15, '2020-06-03', '07:30:31', '2020-06-03', '14:16:14', 1, 'FA81FG10', 'TUNDRA', 'NEGRA', 'V-26943430', 7);
+INSERT INTO public.visita VALUES (16, '2020-06-03', '08:07:06', '2020-06-03', '10:09:06', 2, 'OP956', 'YARIS', 'BLANCO', 'V-27458101', 21);
+
+INSERT INTO public.mensaje VALUES (1, 'Urgente', 'PENDIENTE CUOTAS DEL MES DE AGOSTO. RECUERDE CANCELAR. LO MA PRONTO POSIBLE.', 1, '2020-08-25 20:26:27', true);
+INSERT INTO public.mensaje VALUES (2, 'Urgente', 'RECUERDEN CANCELAR LA CUOTA ESPECIAL DEL MES DE AGOSTO', 1, '2020-08-25 20:26:59', true);
+INSERT INTO public.mensaje VALUES (3, 'Urgente', 'VECINOS POR FAVOR UTILIZAR DEBIDAMENTE LAS AREAS COMUNES', 1, '2020-08-25 20:27:22', true);
+INSERT INTO public.mensaje VALUES (4, 'Urgente', 'LES RECORDAMOS QUE ESTE MARTES 25 SERA LA ASAMBLEA. A LAS 8 PM. ', 1, '2020-08-25 20:27:56', true);
+INSERT INTO public.mensaje VALUES (5, 'Urgente', 'RECORDAMOS. QUE DEBEN CANCELAR LO MAS PRONTO POSIBLE LAS CUOTAS QUE DEBEN', 1, '2020-08-25 20:28:55', true);
+INSERT INTO public.mensaje VALUES (6, 'Urgente', 'VECINOS POR FAVOR RECUERDEN LIMPIAR EL FRENTE DE SUS HOGARES.
+', 1, '2020-08-25 20:29:29', true);
+INSERT INTO public.mensaje VALUES (7, 'Urgente', 'EL ASEO PASO LOS LUNES A LAS 7 AM Y JUEVES A LAS 7 AM
+
+', 1, '2020-08-25 20:30:13', true);
+INSERT INTO public.mensaje VALUES (8, 'Urgente', 'EL CAMBIO DE GUARDIA ES TODOS LOS DIAS A LAS 8 AM. 
+
+', 1, '2020-08-25 20:30:42', true);
+INSERT INTO public.mensaje VALUES (9, 'Urgente', 'VECINOS RECUERDEN NO TENER VOLUMEN ALTO DESPUES DE LAS 9 PM. PARA NO SER SANCIONADOS
+
+', 1, '2020-08-25 20:31:15', true);
+INSERT INTO public.mensaje VALUES (10, 'Urgente', 'VECINOS ESTA SEMANA LLEGA LA PLANTA ELECTRICA PARA TODA LA URB. 
+
+', 1, '2020-08-25 20:31:43', true);
+
 
 
 
