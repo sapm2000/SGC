@@ -301,13 +301,6 @@ CREATE TABLE puente_mensaje_usuario (
 	activo_receptor boolean NOT null DEFAULT true
 );
 
--- puente_persona_condominio
-CREATE TABLE puente_persona_condominio (
-	id serial NOT null PRIMARY KEY,
-	ci_persona character varying(11) NOT null REFERENCES persona (cedula),
-	rif_condominio character varying(15) NOT null REFERENCES condominio (rif)
-);
-
 -- puente_sancion_unidad
 -- DROP TABLE puente_sancion_unidad
 CREATE TABLE puente_sancion_unidad (

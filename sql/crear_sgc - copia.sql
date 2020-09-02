@@ -301,13 +301,6 @@ CREATE TABLE puente_mensaje_usuario (
 	activo_receptor boolean NOT null DEFAULT true
 );
 
--- puente_persona_condominio
-CREATE TABLE puente_persona_condominio (
-	id serial NOT null PRIMARY KEY,
-	ci_persona character varying(11) NOT null REFERENCES persona (cedula),
-	rif_condominio character varying(15) NOT null REFERENCES condominio (rif)
-);
-
 -- puente_sancion_unidad
 -- DROP TABLE puente_sancion_unidad
 CREATE TABLE puente_sancion_unidad (
@@ -3316,7 +3309,6 @@ CREATE OR REPLACE VIEW v_visita AS
 	FROM visita AS vis
 	INNER JOIN unidad AS u ON u.id = vis.id_unidad
 	INNER JOIN persona AS per ON per.cedula = vis.ci_visitante;
-
 
 
 INSERT INTO public.condominio VALUES ('123456789', 'URB. EL JARDÍN', '02540123402', 'UR1ELJARDIN@HOTMAIL.COM', true);
@@ -21361,6 +21353,18 @@ INSERT INTO public.mensaje VALUES (9, 'Urgente', 'VECINOS RECUERDEN NO TENER VOL
 INSERT INTO public.mensaje VALUES (10, 'Urgente', 'VECINOS ESTA SEMANA LLEGA LA PLANTA ELECTRICA PARA TODA LA URB. 
 
 ', 1, '2020-08-25 20:31:43', true);
+
+INSERT INTO public.puente_mensaje_usuario VALUES (1, 1, 1, false, true);
+INSERT INTO public.puente_mensaje_usuario VALUES (2, 2, 1, false, true);
+INSERT INTO public.puente_mensaje_usuario VALUES (3, 3, 1, false, true);
+INSERT INTO public.puente_mensaje_usuario VALUES (4, 4, 1, false, true);
+INSERT INTO public.puente_mensaje_usuario VALUES (5, 5, 1, false, true);
+INSERT INTO public.puente_mensaje_usuario VALUES (6, 6, 1, false, true);
+INSERT INTO public.puente_mensaje_usuario VALUES (7, 7, 1, false, true);
+INSERT INTO public.puente_mensaje_usuario VALUES (8, 8, 1, false, true);
+INSERT INTO public.puente_mensaje_usuario VALUES (9, 9, 1, false, true);
+INSERT INTO public.puente_mensaje_usuario VALUES (10, 10, 1, false, true);
+
 
 
 
