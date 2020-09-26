@@ -1,5 +1,5 @@
 -- correr primero desde la linea 4 hasta la 11
--- correr con la bd vacia
+
 -- persona
 INSERT INTO persona (cedula, p_nombre, p_apellido, telefono, correo) VALUES ('V-00000000', 'Admin', 'Istrador', '0000-0000000', 'admin@admin.com');
 
@@ -231,3 +231,255 @@ SELECT reactivar_usuario(3, 1);
 SELECT * FROM usuario;
 SELECT * FROM bitacora WHERE tabla='usuario' ORDER BY id_bitacora;
 
+-- 5 funciones logicas
+
+CREATE OR REPLACE FUNCTION cambiar_pregunta(usuario2 character varying, pregunta2 character varying, respuesta2 character varying, password2 character varying) RETURNS boolean AS $$
+DECLARE
+	password_bd character varying;
+	usuario_bd character varying;
+
+BEGIN
+	usuario_bd := (SELECT usuario FROM usuario where usuario=usuario2 AND password=password2);
+	password_bd := (SELECT password FROM usuario where usuario=usuario2 AND password=password2);
+	
+	IF password2 = password_bd AND usuario2 = usuario_bd THEN
+		UPDATE usuario SET pregunta = pregunta2, respuesta = respuesta2 WHERE usuario = usuario2;
+		RETURN TRUE;
+	
+	ELSE
+		RETURN FALSE;
+	END IF;
+	END;
+$$ LANGUAGE plpgsql;
+	
+-- cambiar_clave
+CREATE OR REPLACE FUNCTION cambiar_clave(usuario2 character varying, password_nuevo character varying, password_actual character varying) RETURNS boolean AS $$ 
+DECLARE
+	password_bd character varying;
+	usuario_bd character varying;
+
+BEGIN
+	usuario_bd := (SELECT usuario FROM usuario where usuario=usuario2 AND password=password_actual);
+	password_bd := (SELECT password FROM usuario where usuario=usuario2 AND password=password_actual);
+	
+	IF password_actual = password_bd AND usuario2 = usuario_bd THEN
+		UPDATE usuario SET password = password_nuevo WHERE usuario = usuario2;
+		RETURN TRUE;
+	
+	ELSE 
+		RETURN FALSE;
+	END IF;
+	END;
+$$ LANGUAGE plpgsql;
+	
+-- login
+CREATE FUNCTION login(usu character varying, pass character varying) RETURNS boolean AS $$
+DECLARE
+	usu1 character varying;
+	pass1 character varying;
+	--_id_usuario
+
+BEGIN
+	usu1 := (SELECT usuario FROM usuario where usuario=usu AND password=pass);
+	pass1 := (SELECT password FROM usuario where usuario=usu AND password=pass);
+
+	IF usu = usu1 AND pass = pass1 THEN 
+	
+	--INSERT INTO sesion_usuario (fecha_entrada, id_usuario) VALUES (default,1);
+	
+		RETURN TRUE;
+		
+	ELSE
+		RETURN FALSE;
+	END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+-- eliminar_mensaje
+
+CREATE OR REPLACE FUNCTION eliminar_mensaje() RETURNS TRIGGER AS $$
+DECLARE
+	emisor_bd boolean;
+	receptor_bd integer;
+BEGIN
+	emisor_bd := true;
+	--RAISE INFO 'Consultando si el emisor eliminó el mensaje con id: %...', OLD.id;
+	emisor_bd := (SELECT activo_emisor FROM mensaje AS msj WHERE msj.id = NEW.id);
+	--RAISE INFO 'El resultado es %', emisor_bd;
+
+	IF emisor_bd = true THEN
+		--RAISE INFO 'Emisor no ha eliminado el mensaje';
+		RETURN null;
+	
+	ELSE
+		--RAISE INFO 'Emisor eliminó el mensaje. Buscando en receptores...';
+		receptor_bd := (SELECT COUNT(*) FROM puente_mensaje_usuario WHERE activo_receptor = true AND id_mensaje = OLD.id);
+	
+		IF receptor_bd = 0 THEN
+			--RAISE INFO 'Todos los receptores eliminaron el mensaje';
+			DELETE FROM puente_mensaje_usuario WHERE id_mensaje = OLD.id;
+			DELETE FROM mensaje WHERE id = old.id;
+			
+			RETURN NEW;
+			
+		ELSE
+			RETURN null;
+		END IF;
+	END IF;
+END;
+
+-------- Funciones Asambleas --------
+-- agregar_asambleas
+-- DROP FUNCTION agregar_asambleas;
+CREATE OR REPLACE FUNCTION agregar_asambleas(
+	nombre2 character varying,
+	fecha2 date,
+	descripcion2 character varying,
+	id_usuario2 integer
+) RETURNS boolean AS $$
+DECLARE
+	resul int;
+BEGIN
+	INSERT INTO asambleas(nombre, descripcion, fecha) VALUES (nombre2, descripcion2, fecha2);
+	GET DIAGNOSTICS resul = ROW_COUNT;
+	
+	IF resul>0 THEN
+ 		UPDATE bitacora SET id_usuario = id_usuario2
+		WHERE bitacora.id_bitacora = (SELECT MAX(id_bitacora) FROM bitacora);
+	RETURN true;
+	
+	ELSE
+		RETURN false;
+	END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+-- funciones matematicas
+
+-- limpiar_mensaje
+-- DROP FUNCTION limpiar_mensaje;
+
+	CREATE FUNCTION limpiar_mensaje() RETURNS void AS $$
+	BEGIN
+
+		DELETE FROM puente_mensaje_usuario AS pu WHERE (SELECT id FROM mensaje AS me WHERE pu.id_mensaje = me.id) = id_mensaje AND ((LOCALTIMESTAMP(0)::DATE) - (SELECT fecha FROM mensaje AS me WHERE pu.id_mensaje = me.id)::DATE > 90) ;
+		
+		DELETE FROM mensaje WHERE (LOCALTIMESTAMP(0)::DATE - fecha::DATE) > 90;
+	 
+	END;
+	$$ LANGUAGE plpgsql;
+		
+
+CREATE OR REPLACE FUNCTION pagar_gasto(id2 integer, monto2 double precision) RETURNS void AS $$
+DECLARE
+	saldo_bd double precision;
+BEGIN
+	UPDATE gasto SET saldo = saldo - monto2 WHERE id = id2;
+	
+	saldo_bd := (SELECT saldo FROM gasto WHERE id = id2);
+
+	IF saldo_bd = 0 THEN
+		UPDATE gasto SET pagado = 'Pagado' WHERE id = id2;
+	END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+-- calcular alicuota
+
+CREATE OR REPLACE FUNCTION calcular_alicuota() RETURNS TRIGGER AS $$
+DECLARE
+	area_total double precision;
+BEGIN
+	area_total := (SELECT SUM(tp.area) FROM unidad AS u INNER JOIN tipo_unidad AS tp ON u.id_tipo = tp.id WHERE 	 u.activo = true);
+		
+	UPDATE unidad SET alicuota = (SELECT area FROM tipo_unidad WHERE id = id_tipo) / area_total;
+	
+RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- pagar gasto
+
+CREATE OR REPLACE FUNCTION pagar_gasto() RETURNS TRIGGER AS $$
+DECLARE
+
+	saldo_bd double precision;
+	
+BEGIN
+	
+	UPDATE fondos SET saldo = saldo - NEW.monto WHERE id = NEW.id_fondo;
+
+	UPDATE gasto SET saldo = saldo - NEW.monto WHERE id = NEW.id_gasto;
+	
+	saldo_bd := (SELECT saldo FROM gasto WHERE id = NEW.id_gasto);
+
+	IF saldo_bd = 0 THEN
+	
+		UPDATE gasto SET pagado = 'Pagado' WHERE id = NEW.id_gasto;
+		
+	END IF;
+	
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- 10 inner joins
+--1
+SELECT pro.ci_persona, p_nombre, s_nombre, p_apellido, s_apellido, telefono, correo, pro.activo 
+	FROM propietario AS pro
+	INNER JOIN persona AS per ON per.cedula = pro.ci_persona;
+
+--2
+SELECT asa.id, pr.ci_persona AS cedula, pr.p_nombre AS nombre, pr.p_apellido AS apellido, pu.id AS id_puente
+	FROM v_propietario AS pr
+	INNER JOIN puente_asambleas_propietario AS pu ON pu.ci_propietario = pr.ci_persona
+	INNER JOIN asambleas AS asa ON asa.id = pu.id_asamblea;
+--3
+SELECT id_bitacora, operacion, tabla, usu.usuario, usu.ci_persona AS cedula,
+	CONCAT(per.p_nombre,' ', per.p_apellido) AS persona, valor_viejo, valor_nuevo, fecha_hora AS fecha FROM bitacora 
+	INNER JOIN usuario AS usu ON id_usuario = usu.id 
+	INNER JOIN persona AS per ON cedula = usu.ci_persona;
+--4
+	SELECT cg.id, cg.nom_concepto AS nombre, cg.descripcion, cat.id AS id_categoria, cat.nombre AS nombre_categoria, cg.activo
+	FROM concepto_gasto AS cg
+	INNER JOIN categoriagasto AS cat ON cat.id = cg.id_categoria;
+--5
+SELECT n_cuenta, tipo, id_banco, nombre_banco AS banco, ci_persona, per.p_nombre AS nombre, per.p_apellido AS apellido, rif_condominio, razon_social, cue.activo
+	FROM cuenta AS cue
+	INNER JOIN banco AS ban ON ban.id = cue.id_banco
+	LEFT JOIN persona AS per ON per.cedula = cue.ci_persona
+	LEFT JOIN condominio AS co ON co.rif = cue.rif_condominio
+	WHERE cue.activo = true;
+--6
+	SELECT cp.id, cp.num_ref, cp.descripcion, cp.monto, cp.moneda, cp.tasa_cambio, cp.fecha, cp.id_gasto, ga.nombre AS gasto, cp.n_cuenta, cu.id_banco, b.nombre_banco AS banco, cp.id_fondo, f.tipo AS fondo, cp.id_forma_pago, fp.forma_pago
+	FROM cuenta_pagar AS cp
+	INNER JOIN gasto AS ga ON ga.id = cp.id_gasto
+	INNER JOIN cuenta AS cu ON cu.n_cuenta = cp.n_cuenta
+	INNER JOIN banco AS b ON b.id = cu.id_banco
+	INNER JOIN fondos AS f ON f.id = cp.id_fondo
+	INNER JOIN forma_pago AS fp ON fp.id = cp.id_forma_pago
+	ORDER BY fecha DESC;
+--7
+SELECT prop.ci_persona, puente.id, puente.id_unidad, puente.fecha_hasta
+	FROM propietario AS prop
+	LEFT JOIN puente_unidad_propietarios AS puente ON prop.ci_persona = puente.ci_propietario
+	WHERE prop.activo = true AND puente.fecha_hasta IS null;
+--8
+SELECT me.id, me.asunto, me.contenido, me.fecha, me.emisor AS id_emisor, u.ci_persona AS cedula, pe.p_nombre AS nombre, pe.p_apellido AS apellido
+	FROM mensaje AS me
+	INNER JOIN usuario AS u ON u.id = me.emisor
+	INNER JOIN persona AS pe ON pe.cedula = u.ci_persona
+	WHERE activo_emisor = true;
+--9
+SELECT me.id, me.asunto, me.contenido, me.fecha, me.emisor AS id_emisor, u1.ci_persona AS cedula, pe.p_nombre AS nombre, pe.p_apellido AS apellido, pu.receptor, pu.leido, pu.activo_receptor
+	FROM mensaje AS me
+	INNER JOIN usuario AS u1 ON u1.id = me.emisor
+	INNER JOIN puente_mensaje_usuario AS pu ON pu.id_mensaje = me.id
+	INNER JOIN usuario AS u2 ON u2.id = pu.receptor
+	INNER JOIN persona AS pe ON pe.cedula = u1.ci_persona
+	WHERE activo_receptor = true;
+--10
+SELECT pu.id_mensaje, pu.receptor AS id_receptor, u.ci_persona AS cedula, pe.p_nombre AS nombre, pe.p_apellido AS apellido
+	FROM puente_mensaje_usuario AS pu
+	INNER JOIN usuario AS u ON u.id = pu.receptor
+	INNER JOIN persona AS pe ON pe.cedula = u.ci_persona;
