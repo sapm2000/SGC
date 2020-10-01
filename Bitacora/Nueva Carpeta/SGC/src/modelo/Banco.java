@@ -49,8 +49,8 @@ public class Banco extends ConexionBD {
         }
 
     }
-    
-     public int contar() {
+
+    public int contar() {
 
         ps = null;
         rs = null;
@@ -251,19 +251,15 @@ public class Banco extends ConexionBD {
         ps = null;
         rs = null;
         con = getConexion();
-        String sql = "SELECT * FROM banco WHERE nombre_banco=? and activo=false";
+        String sql = "SELECT * FROM banco WHERE nombre_banco=? AND activo=false";
 
         try {
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, getNombre_banco());
+            ps.setString(1, nombre_banco.toUpperCase());
             rs = ps.executeQuery();
-            if (rs.next()) {
 
-                return true;
-            }
-
-            return false;
+            return rs.next();
 
         } catch (SQLException e) {
 
@@ -271,18 +267,10 @@ public class Banco extends ConexionBD {
             return false;
 
         } finally {
-            try {
 
-                con.close();
-
-            } catch (SQLException e) {
-
-                System.err.println(e);
-
-            }
+            cerrar();
 
         }
-
     }
 
     public boolean eliminar(Banco modban) {
@@ -341,7 +329,7 @@ public class Banco extends ConexionBD {
 
             ps.setString(ind++, getNombre_banco());
             ps.setInt(ind++, SGC.usuarioActual.getId());
-            
+
             if (ps.execute()) {
                 rs = ps.getResultSet();
                 rs.next();
