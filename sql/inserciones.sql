@@ -1,5 +1,5 @@
 -- correr primero desde la linea 4 hasta la 11
-
+-- correr con la bd vacia
 -- persona
 INSERT INTO persona (cedula, p_nombre, p_apellido, telefono, correo) VALUES ('V-00000000', 'Admin', 'Istrador', '0000-0000000', 'admin@admin.com');
 
