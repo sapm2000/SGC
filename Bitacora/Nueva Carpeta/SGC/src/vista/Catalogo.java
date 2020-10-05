@@ -7,10 +7,22 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.sql.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComponent;
 import javax.swing.JScrollBar;
 import javax.swing.JTable;
+import javax.swing.WindowConstants;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.plaf.basic.BasicScrollBarUI;
+import modelo.ConexionBD;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 public class Catalogo extends javax.swing.JPanel {
@@ -56,6 +68,7 @@ public class Catalogo extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -124,11 +137,42 @@ public class Catalogo extends javax.swing.JPanel {
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoformu500-350 (2).png"))); // NOI18N
         add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 300, 500, -1));
+
+        jButton1.setText("generar reporte");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            ConexionBD con = new ConexionBD();
+            Connection conn = con.getConexion();
+            
+            JasperReport reporte = null;
+            String path = "src\\reportes\\banco.jasper";
+             
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+            
+            JasperPrint jprint = JasperFillManager.fillReport(path, null,conn);
+            
+            JasperViewer view = new JasperViewer(jprint, false);
+            
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            
+            view.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnNuevo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

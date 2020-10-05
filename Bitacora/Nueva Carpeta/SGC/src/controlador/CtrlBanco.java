@@ -130,13 +130,9 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
         }
 
         if (e.getSource() == vista.btnGuardar) {
-
             if (validar()) {
-
                 modban.setNombre_banco(vista.txtnombre_banco.getText());
-
                 if (modban.buscarInactivo(modban)) {
-                    System.out.println("poli1");
                     modban.activar(modban);
 
                     UIManager UI = new UIManager();
@@ -157,10 +153,9 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
                     CtrlVentana.cambiarVista(catalogo);
 
                 } else {
-                    System.out.println("poli2");
 
                     if (modban.registrar(modban)) {
-                        System.out.println("poli3");
+
                         UIManager UI = new UIManager();
                         UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
                         UI.put("Panel.background", new ColorUIResource(255, 255, 255));
@@ -179,7 +174,6 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
                         CtrlVentana.cambiarVista(catalogo);
 
                     } else {
-                        System.out.println("poli4");
 
                         UIManager UI = new UIManager();
                         UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
