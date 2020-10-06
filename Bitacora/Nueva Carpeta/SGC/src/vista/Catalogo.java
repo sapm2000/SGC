@@ -153,7 +153,7 @@ public class Catalogo extends javax.swing.JPanel {
             Connection conn = con.getConexion();
             
             JasperReport reporte = null;
-            String path = "src\\reportes\\banco.jasper";
+            String path = "src\\reportes\\unidad.jasper";
              
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
             
