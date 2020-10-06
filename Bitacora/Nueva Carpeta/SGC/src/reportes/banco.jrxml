@@ -2,7 +2,53 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="banco" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1352ea26-c876-449b-8fd9-9d1d009f2bc0">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="116"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="New Dataset 1" uuid="d08f5492-5245-4376-9be3-1f5687250bd4">
+		<queryString language="SQL">
+			<![CDATA[select * from banco]]>
+		</queryString>
+		<field name="nombre_banco" class="java.lang.String"/>
+	</subDataset>
 	<queryString>
 		<![CDATA[select * from banco]]>
 	</queryString>
@@ -30,30 +76,35 @@
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="43" splitType="Stretch">
-			<frame>
-				<reportElement mode="Opaque" x="197" y="25" width="179" height="18" backcolor="#00369F" uuid="dcf5cde4-9d2e-485e-99b8-9d7b70babfdf"/>
-			</frame>
-			<staticText>
-				<reportElement x="197" y="25" width="179" height="18" forecolor="#FFFFFF" uuid="af7c4b65-a187-4792-bc6f-2255e802aeff"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Tahoma" size="14" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Bancos]]></text>
-			</staticText>
-		</band>
+		<band height="43" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="41" splitType="Stretch">
-			<textField>
-				<reportElement x="197" y="0" width="179" height="20" uuid="15ba4bc5-ac83-4e63-b498-89260330aead">
-					<property name="net.sf.jasperreports.export.pdf.tag.table"/>
-				</reportElement>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Tahoma" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nombre_banco}]]></textFieldExpression>
-			</textField>
+		<band height="210" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table 1" style="table 1" x="131" y="0" width="360" height="140" uuid="f41baae0-7b98-4836-9df2-50c64db4f1be"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 1" uuid="62f72a3b-35fe-4971-ab2b-bb503b242082">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="9e1230f5-7069-402d-8a8c-2747408b14c8">
+						<jr:tableHeader style="table 1_TH" height="30"/>
+						<jr:tableFooter style="table 1_TH" height="30"/>
+						<jr:columnHeader style="table 1_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="2a5228c2-607a-44fe-972f-8808192ba78f"/>
+								<text><![CDATA[nombre_banco]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30"/>
+						<jr:detailCell style="table 1_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="5441622d-4b3b-4288-9fc0-ddbf67ac1fad"/>
+								<textFieldExpression><![CDATA[$F{nombre_banco}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
 		</band>
 	</detail>
 	<columnFooter>
