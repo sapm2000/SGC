@@ -172,31 +172,30 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
     public void actionPerformed(ActionEvent e) {
         
-       if (e.getSource() == catalogo.reportes) {
-            
-          
+        if (e.getSource() == catalogo.reportes) {
+
             try {
-            ConexionBD con = new ConexionBD();
-            Connection conn = con.getConexion();
-            
-            JasperReport reporte = null;
-            String path = "src\\reportes\\unidad.jasper";
-            
-            Map parametro = new HashMap();
-            parametro.put("area", 80);
-             
-            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
-            
-            JasperPrint jprint = JasperFillManager.fillReport(path, parametro,conn);
-            
-            JasperViewer view = new JasperViewer(jprint, false);
-            
-            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-            
-            view.setVisible(true);
-        } catch (JRException ex) {
-            Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                ConexionBD con = new ConexionBD();
+                Connection conn = con.getConexion();
+
+                JasperReport reporte = null;
+                String path = "src\\reportes\\unidad.jasper";
+
+                Map parametro = new HashMap();
+                parametro.put("area", 80);
+
+                reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+
+                JasperPrint jprint = JasperFillManager.fillReport(path, parametro, conn);
+
+                JasperViewer view = new JasperViewer(jprint, false);
+
+                view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+                view.setVisible(true);
+            } catch (JRException ex) {
+                Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         if (e.getSource() == catalogo.btnNuevo) {
