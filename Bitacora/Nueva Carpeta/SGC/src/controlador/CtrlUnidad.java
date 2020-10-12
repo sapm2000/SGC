@@ -17,6 +17,8 @@ import static java.lang.String.valueOf;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -179,10 +181,13 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
             
             JasperReport reporte = null;
             String path = "src\\reportes\\unidad.jasper";
+            
+            Map parametro = new HashMap();
+            parametro.put("area", 80);
              
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
             
-            JasperPrint jprint = JasperFillManager.fillReport(path, null,conn);
+            JasperPrint jprint = JasperFillManager.fillReport(path, parametro,conn);
             
             JasperViewer view = new JasperViewer(jprint, false);
             
