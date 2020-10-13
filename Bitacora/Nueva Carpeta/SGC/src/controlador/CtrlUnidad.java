@@ -171,7 +171,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
     }
 
     public void actionPerformed(ActionEvent e) {
-        
+
         if (e.getSource() == catalogo.reportes) {
 
             try {
@@ -181,12 +181,16 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
                 JasperReport reporte = null;
                 String path = "src\\reportes\\unidad.jasper";
 
-                Map parametro = new HashMap();
-                parametro.put("area", 80);
+                
+               String x = catalogo.txtBuscar.getText();
+               Double y = Double.parseDouble(x);
+                Map parametros = new HashMap();
+                parametros.put("n_unidad", x);
+                parametros.put("area", y);
 
                 reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
 
-                JasperPrint jprint = JasperFillManager.fillReport(path, parametro, conn);
+                JasperPrint jprint = JasperFillManager.fillReport(path, parametros, conn);
 
                 JasperViewer view = new JasperViewer(jprint, false);
 
@@ -199,7 +203,7 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
         }
 
         if (e.getSource() == catalogo.btnNuevo) {
-            
+
             this.vista.btnGuardar.setEnabled(true);
             this.vista.btnModificar.setEnabled(false);
             this.vista.btnEliminar.setEnabled(false);

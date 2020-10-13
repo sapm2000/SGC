@@ -1,164 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="unidad" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8f5c2a0f-b459-4949-a60f-8a644df58117">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="unidad" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d8de617c-52f6-4584-9b3a-b420602e85c3">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<style name="table">
-		<box>
-			<pen lineWidth="1.0" lineColor="#000000"/>
-		</box>
-	</style>
-	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
-		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
-		</box>
-	</style>
-	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
-		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
-		</box>
-	</style>
-	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
-		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
-		</box>
-	</style>
-	<subDataset name="New Dataset 1" uuid="af47ee8f-b270-4415-a2e9-cf1f25a7d0b2">
-		<queryString language="SQL">
-			<![CDATA[select * from unidad]]>
-		</queryString>
-		<field name="n_unidad" class="java.lang.String"/>
-		<field name="n_documento" class="java.lang.String"/>
-		<field name="direccion" class="java.lang.String"/>
-		<field name="alicuota" class="java.lang.Double"/>
-	</subDataset>
+	<parameter name="n_unidad" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="area" class="java.lang.Double">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
-		<![CDATA[select * from unidad]]>
+		<![CDATA[SELECT * FROM v_unidad WHERE activo = true and n_unidad like '%$P!{n_unidad}%' or n_documento like '%$P!{n_unidad}%' or direccion like '%$P!{n_unidad}%' or tipo like '%$P!{n_unidad}%' or alicuota=$P{area} or area=$P{area}]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer"/>
 	<field name="n_unidad" class="java.lang.String"/>
 	<field name="n_documento" class="java.lang.String"/>
 	<field name="direccion" class="java.lang.String"/>
-	<field name="activo" class="java.lang.Boolean"/>
 	<field name="alicuota" class="java.lang.Double"/>
 	<field name="id_tipo" class="java.lang.Integer"/>
+	<field name="tipo" class="java.lang.String"/>
+	<field name="area" class="java.lang.Double"/>
+	<field name="activo" class="java.lang.Boolean"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
 	<title>
-		<band height="79" splitType="Stretch">
-			<frame>
-				<reportElement mode="Opaque" x="0" y="0" width="555" height="79" backcolor="#00369F" uuid="33894d81-af36-4a90-aa9f-9394c4e6a7c1"/>
-				<staticText>
-					<reportElement x="0" y="0" width="555" height="79" forecolor="#FFFFFF" uuid="7e4ab7e3-fb95-4876-9c49-be61ce3ee0bb"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Tahoma" size="32"/>
-					</textElement>
-					<text><![CDATA[Listado de Unidades]]></text>
-				</staticText>
-			</frame>
-		</band>
+		<band height="79" splitType="Stretch"/>
 	</title>
 	<pageHeader>
-		<band height="29" splitType="Stretch"/>
+		<band height="40" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band splitType="Stretch"/>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="100" height="20" uuid="3b7f7747-3892-48b8-bd18-29f2f6edae2e"/>
+				<text><![CDATA[n_unidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="162" y="2" width="100" height="20" uuid="7ba54ab6-6e49-484b-b2d0-aadb4d0fb510"/>
+				<text><![CDATA[n_documento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="399" y="2" width="100" height="20" uuid="d6a6fdea-9143-4606-a305-96e49b2487c8"/>
+				<text><![CDATA[direccion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="2" width="62" height="20" uuid="8079387b-d10e-4fe8-90c4-a2b7688e1898"/>
+				<text><![CDATA[alicuota]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="286" y="2" width="100" height="20" uuid="ba8740bd-ec86-4c33-8a50-058e34740d36"/>
+				<text><![CDATA[tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="501" y="2" width="54" height="20" uuid="95ee3cd5-946f-4e56-be2c-802fcf0afd0f"/>
+				<text><![CDATA[area]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band splitType="Stretch"/>
-	</detail>
-	<summary>
-		<band height="190" splitType="Stretch">
-			<componentElement>
-				<reportElement key="table" style="table" mode="Opaque" x="35" y="0" width="52" height="34" forecolor="#FFFFFF" backcolor="#000000" uuid="c6b1c900-0700-4e96-bb73-f6a319dab6a1"/>
-				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="New Dataset 1" uuid="5ec2333c-35ff-4d01-bae7-e2bf9032bffe">
-						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-					</datasetRun>
-					<jr:column width="108" uuid="e12a976a-8a88-4bec-ae88-ecf9a0ca8f75">
-						<jr:columnHeader style="table" height="27" rowSpan="1">
-							<staticText>
-								<reportElement mode="Opaque" x="0" y="0" width="108" height="27" forecolor="#FFFFFF" backcolor="#00369F" uuid="0c840ab8-ca00-4cf2-b60c-b664758829a4"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="Tahoma" size="12" isBold="true"/>
-								</textElement>
-								<text><![CDATA[N° de Unidad]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell style="table_TD" height="30" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="108" height="30" uuid="a63a979a-4ba7-4427-aff8-ae73315a89ab"/>
-								<textElement textAlignment="Justified" verticalAlignment="Middle">
-									<font fontName="Tahoma" size="12"/>
-									<paragraph leftIndent="5"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{n_unidad}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="119" uuid="4eedc42a-862e-426c-b592-ef1a7d9cd857">
-						<jr:columnHeader style="table_CH" height="27" rowSpan="1">
-							<staticText>
-								<reportElement mode="Opaque" x="0" y="0" width="119" height="27" forecolor="#FFFFFF" backcolor="#00369F" uuid="63577b39-9765-43ce-9a3b-3ae7d59c7bd8"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="Tahoma" size="12" isBold="true"/>
-								</textElement>
-								<text><![CDATA[N° de Documento]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell style="table_TD" height="30" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="119" height="30" uuid="61d4c6a9-c3a5-435e-bef2-10474b7f9d20"/>
-								<textElement textAlignment="Justified" verticalAlignment="Middle">
-									<font fontName="Tahoma" size="12"/>
-									<paragraph leftIndent="5"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{n_documento}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="162" uuid="bd4c1171-3eae-4200-a6ca-09c8d55e52a7">
-						<jr:columnHeader style="table_CH" height="27" rowSpan="1">
-							<staticText>
-								<reportElement mode="Opaque" x="0" y="0" width="162" height="27" forecolor="#FFFFFF" backcolor="#00369F" uuid="90a47304-5af9-4078-9aa3-00d0ac4af1d9"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="Tahoma" size="12" isBold="true"/>
-								</textElement>
-								<text><![CDATA[Dirección]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell style="table_TD" height="30" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="162" height="30" uuid="aa25d247-27b1-4394-8fcd-f71e4b51abf3"/>
-								<textElement textAlignment="Justified" verticalAlignment="Middle">
-									<font fontName="Tahoma" size="12"/>
-									<paragraph leftIndent="5"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="98" uuid="773cfa69-99c8-4b8f-81e7-1ae349da279e">
-						<jr:columnHeader style="table_CH" height="27" rowSpan="1">
-							<staticText>
-								<reportElement mode="Opaque" x="0" y="0" width="98" height="27" forecolor="#FFFFFF" backcolor="#00369F" uuid="b095849d-3b7b-4720-86ce-3f725d2c7acf"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font fontName="Tahoma" size="12" isBold="true"/>
-								</textElement>
-								<text><![CDATA[Alícuota]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell style="table_TD" height="30" rowSpan="1">
-							<textField>
-								<reportElement x="0" y="0" width="98" height="30" uuid="543a924c-9c00-4f15-ba3b-1eaa94ad6db2"/>
-								<textElement textAlignment="Justified" verticalAlignment="Middle">
-									<font fontName="Tahoma" size="12"/>
-									<paragraph leftIndent="5"/>
-								</textElement>
-								<textFieldExpression><![CDATA[$F{alicuota}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-				</jr:table>
-			</componentElement>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="3" width="100" height="20" uuid="58476880-df14-4fc2-9704-2dc9ea84ffe5"/>
+				<textFieldExpression><![CDATA[$F{n_unidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="162" y="3" width="100" height="20" uuid="5fcd2ea5-48db-4c46-beab-08e3e94fc1d3"/>
+				<textFieldExpression><![CDATA[$F{n_documento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="399" y="3" width="100" height="20" uuid="031f8f65-d43a-4369-87d8-25909d6c259a"/>
+				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="3" width="62" height="20" uuid="53c7fce0-f1fa-47d0-8aed-b8c6c9252f22"/>
+				<textFieldExpression><![CDATA[$F{alicuota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="286" y="3" width="100" height="20" uuid="8ab1f48c-2c97-411c-a440-066dbca078e2"/>
+				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="501" y="3" width="54" height="20" uuid="6b8e863b-51f5-4fbd-b8f7-7c4f8016917c"/>
+				<textFieldExpression><![CDATA[$F{area}]]></textFieldExpression>
+			</textField>
 		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
 	</summary>
 </jasperReport>
