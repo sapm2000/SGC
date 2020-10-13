@@ -183,10 +183,10 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
 
                 
                String x = catalogo.txtBuscar.getText();
-               Double y = Double.parseDouble(x);
+               
                 Map parametros = new HashMap();
                 parametros.put("n_unidad", x);
-                parametros.put("area", y);
+             
 
                 reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
 
