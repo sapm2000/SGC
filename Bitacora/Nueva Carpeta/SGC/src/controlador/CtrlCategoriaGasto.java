@@ -11,7 +11,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static javax.swing.BorderFactory.createLineBorder;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -21,13 +26,21 @@ import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import modelo.CategoriaGasto;
+import modelo.ConexionBD;
 import modelo.Funcion;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import sgc.SGC;
 import vista.Catalogo;
 import vista.VisCategoriaGasto;
@@ -57,7 +70,7 @@ public class CtrlCategoriaGasto implements ActionListener, MouseListener, KeyLis
             catalogo.btnNuevo.setEnabled(true);
         }
         this.catalogo.btnNuevo.addActionListener(this);
-
+        this.catalogo.reportes.addActionListener(this);
         this.vista.btnModificar.addActionListener(this);
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
@@ -72,6 +85,36 @@ public class CtrlCategoriaGasto implements ActionListener, MouseListener, KeyLis
     }
 
     public void actionPerformed(ActionEvent e) {
+        
+        if (e.getSource() == catalogo.reportes) {
+
+            try {
+                ConexionBD con = new ConexionBD();
+                Connection conn = con.getConexion();
+
+                JasperReport reporte = null;
+                String path = "src\\reportes\\categoria_gasto.jasper";
+
+                
+               String x = catalogo.txtBuscar.getText();
+               
+                Map parametros = new HashMap();
+               parametros.put("categoria", x);
+             
+
+                reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+
+                JasperPrint jprint = JasperFillManager.fillReport(path, parametros, conn);
+
+                JasperViewer view = new JasperViewer(jprint, false);
+
+                view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+                view.setVisible(true);
+            } catch (JRException ex) {
+                Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
         if (e.getSource() == catalogo.btnNuevo) {
 
