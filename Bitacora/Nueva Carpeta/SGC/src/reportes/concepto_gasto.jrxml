@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="concepto_gasto" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="59041426-6c64-4bef-8f3a-d421e0a71029">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="6"/>
 	<parameter name="concepto" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -19,45 +19,124 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="79" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="79" backcolor="#00369F" uuid="15b9993e-3160-41fe-bb6c-8460256af71e"/>
+				<image>
+					<reportElement x="20" y="0" width="82" height="79" uuid="4a05b86c-6d26-4331-ba56-adf6ed4e0280"/>
+					<imageExpression><![CDATA["C:\\Users\\Maryo\\Documents\\NetBeansProjects\\SGC\\Bitacora\\Nueva Carpeta\\SGC\\src\\img\\condominio1 (2).png"]]></imageExpression>
+				</image>
+				<image>
+					<reportElement x="485" y="11" width="45" height="51" uuid="63e0c1c7-f309-40b0-ada8-38b9911472a6"/>
+					<imageExpression><![CDATA["C:\\Users\\Maryo\\Documents\\NetBeansProjects\\SGC\\Bitacora\\Nueva Carpeta\\SGC\\src\\img\\analisis.png"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="102" y="0" width="383" height="79" forecolor="#FFFFFF" uuid="d7acfe6c-445a-4b83-ab31-8560c4af5dff"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="26" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Listado de Concepto Gastos]]></text>
+				</staticText>
+			</frame>
+		</band>
 	</title>
 	<pageHeader>
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch">
+		<band height="38" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="2" width="555" height="36" backcolor="#00369F" uuid="cadfedf9-95e3-4e41-9bdf-4359973a1872"/>
+				<line>
+					<reportElement x="171" y="0" width="1" height="36" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="f35d9154-51d3-4bdc-bb49-5331246b4fe9"/>
+				</line>
+				<line>
+					<reportElement x="394" y="0" width="1" height="36" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="613d6b28-d91f-464f-b59d-cee0d0fee777"/>
+				</line>
+			</frame>
 			<staticText>
-				<reportElement x="34" y="2" width="100" height="20" uuid="1a980d26-e51c-4bb3-b822-c60f26fc24e5"/>
-				<text><![CDATA[nombre]]></text>
+				<reportElement x="0" y="2" width="172" height="36" forecolor="#FFFFFF" uuid="1a980d26-e51c-4bb3-b822-c60f26fc24e5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Concepto Gasto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="160" y="2" width="100" height="20" uuid="4a50fbd2-feee-4112-8c0d-ad3ed2967d5a"/>
-				<text><![CDATA[descripcion]]></text>
+				<reportElement x="172" y="2" width="222" height="36" forecolor="#FFFFFF" uuid="4a50fbd2-feee-4112-8c0d-ad3ed2967d5a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="377" y="2" width="100" height="20" uuid="13e70117-4672-4555-a2aa-2c18e24adddc"/>
-				<text><![CDATA[nombre_categoria]]></text>
+				<reportElement x="394" y="2" width="161" height="36" forecolor="#FFFFFF" uuid="13e70117-4672-4555-a2aa-2c18e24adddc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Categoría Gasto]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="57" splitType="Stretch">
 			<textField>
-				<reportElement x="34" y="34" width="100" height="20" uuid="c9b8c9c0-9d25-461d-b162-52fac3298f56"/>
+				<reportElement x="0" y="0" width="172" height="56" uuid="c9b8c9c0-9d25-461d-b162-52fac3298f56"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="14"/>
+					<paragraph leftIndent="10" rightIndent="5"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="160" y="37" width="185" height="20" uuid="9e0922ef-2c30-4ce3-ba71-a4c6976b2cb8"/>
+				<reportElement x="172" y="0" width="222" height="56" uuid="9e0922ef-2c30-4ce3-ba71-a4c6976b2cb8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="14"/>
+					<paragraph leftIndent="10" rightIndent="5"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="377" y="45" width="100" height="20" uuid="50db6fc7-6aad-44c5-914e-d8ce9fc56c8d"/>
+				<reportElement x="394" y="0" width="161" height="56" uuid="50db6fc7-6aad-44c5-914e-d8ce9fc56c8d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="14"/>
+					<paragraph leftIndent="10" rightIndent="5"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_categoria}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="0" y="56" width="555" height="1" forecolor="#00369F" backcolor="#00369F" uuid="ac7602cf-75b4-4025-8015-9ad64853c17e"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="1" height="56" forecolor="#00369F" backcolor="#00369F" uuid="edfa1278-43c8-49ee-b8cb-15e145d6c110"/>
+			</line>
+			<line>
+				<reportElement x="393" y="0" width="1" height="56" forecolor="#00369F" backcolor="#00369F" uuid="6e826c0f-003b-43d5-9c5c-6a03a1ae7d14"/>
+			</line>
+			<line>
+				<reportElement x="172" y="0" width="1" height="56" forecolor="#00369F" backcolor="#00369F" uuid="182362dd-d378-4c7a-b80c-fadfd2e64398"/>
+			</line>
+			<line>
+				<reportElement x="554" y="0" width="1" height="56" forecolor="#00369F" backcolor="#00369F" uuid="5fd32feb-b9c3-4cc9-aabf-b3fcbc940211"/>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="9" splitType="Stretch"/>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="433" y="14" width="80" height="20" uuid="43d087ae-0208-4016-bc43-8a7bec5cb366"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="513" y="14" width="40" height="20" uuid="2ac7198d-aebb-49a9-8098-0f3ba9b667e6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch"/>
