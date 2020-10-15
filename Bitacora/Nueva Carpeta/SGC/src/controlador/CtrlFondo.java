@@ -59,7 +59,6 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
         stylecombo(vista.cbxMoneda);
 
 //        vista.jDateChooser1.set(new Date());
-
         llenarTabla(catalogo.tabla);
         permisoBtn();
 
@@ -162,7 +161,7 @@ public class CtrlFondo implements ActionListener, MouseListener, KeyListener, Wi
         if (e.getSource() == vista.btnGuardar) {
             if (validar()) {
                 modelo.setTipo(vista.txtTipo.getText());
-                if (vista.jDateChooser1.getDatoFecha()== null) {
+                if (vista.jDateChooser1.getDatoFecha() == null) {
 
                     UIManager UI = new UIManager();
                     UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));

@@ -55,12 +55,12 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
 
         catalogo.lblTitulo.setText("Forma de Pago");
         Llenartabla(catalogo.tabla);
-        
+
         permisoBtn();
 
         if (permiso.getRegistrar()) {
             catalogo.btnNuevo.setEnabled(true);
-    }
+        }
 
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnLimpiar.addActionListener(this);
@@ -96,7 +96,7 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
 
         int numRegistro = listaFormaPago.size();
         for (int i = 0; i < numRegistro; i++) {
-            
+
             columna[0] = listaFormaPago.get(i).getForma_pago();
 
             modeloT.addRow(columna);

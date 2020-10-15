@@ -395,7 +395,7 @@ public class CtrlTipoUnidad implements ActionListener, MouseListener, KeyListene
         } else if (Double.parseDouble(vista.txtArea.getText()) < 10) {
             msj += "El campo Área debe ser mayor que 10 ";
             resultado = false;
-        } 
+        }
 
         if (!resultado) {
 

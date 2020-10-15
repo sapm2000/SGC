@@ -85,7 +85,7 @@ public class CtrlCategoriaGasto implements ActionListener, MouseListener, KeyLis
     }
 
     public void actionPerformed(ActionEvent e) {
-        
+
         if (e.getSource() == catalogo.reportes) {
 
             try {
@@ -95,12 +95,10 @@ public class CtrlCategoriaGasto implements ActionListener, MouseListener, KeyLis
                 JasperReport reporte = null;
                 String path = "src\\reportes\\categoria_gasto.jasper";
 
-                
-               String x = catalogo.txtBuscar.getText();
-               
+                String x = catalogo.txtBuscar.getText();
+
                 Map parametros = new HashMap();
-               parametros.put("categoria", x);
-             
+                parametros.put("categoria", x);
 
                 reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
 
@@ -173,7 +171,7 @@ public class CtrlCategoriaGasto implements ActionListener, MouseListener, KeyLis
         if (permiso.getModificar()) {
             vista.btnModificar.setEnabled(true);
         }
-        
+
         if (permiso.getEliminar()) {
             vista.btnEliminar.setEnabled(true);
         }
@@ -223,9 +221,9 @@ public class CtrlCategoriaGasto implements ActionListener, MouseListener, KeyLis
     public void llenarTabla(JTable tablaD) {
 
         listaCatGas = modelo.listar();
-        
+
         DefaultTableModel modeloT = new DefaultTableModel() {
-            
+
             @Override
             public boolean isCellEditable(int row, int column) {
 

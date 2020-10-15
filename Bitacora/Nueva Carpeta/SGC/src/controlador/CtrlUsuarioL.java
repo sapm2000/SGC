@@ -26,15 +26,15 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
     PantallaPrincipal pp = new PantallaPrincipal();
     private CtrlCondominio condominio;
     private Condominio modCondominio;
-    
+
     private Mensaje modMsj;
 
     public CtrlUsuarioL(VisInicioUsuario vistau) {
 
         this.vistaU = vistau;
-        
+
         modMsj = new Mensaje();
-        
+
         eventos();
 
     }
@@ -92,7 +92,7 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
         String pass = new String(p);
 
         if (vistaU.txtUsuario.getText().isEmpty() || pass.isEmpty()) {
-            
+
             UIManager UI = new UIManager();
 
             UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
@@ -116,14 +116,14 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
             usu.setPassword(Validacion.encriptar(pass));
 
             if (usu.login()) {
-                
+
                 usu.consultarPerfil();
                 SGC.usuarioActual = usu;
                 vistaU.dispose();
 
                 modCondominio = new Condominio();
                 modMsj.eliminarMensaje();
-                
+
                 if (modCondominio.existe()) {
                     modCondominio.buscar();
                     SGC.condominioActual = modCondominio;
@@ -131,7 +131,7 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
                     CtrlVentana ctrlMenu = new CtrlVentana();
 
                 } else {
-                    
+
                     UIManager UI = new UIManager();
 
                     UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
@@ -144,13 +144,13 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
                     UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
                     UIManager.put("Label.background", Color.blue);
                     UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-                    
+
                     JOptionPane.showMessageDialog(null, "Los datos del condominio no están configurados,\npor favor ingrese los datos a continuación", "INFORMACIÓN", JOptionPane.INFORMATION_MESSAGE, y);
                     condominio = new CtrlCondominio(false);
                 }
 
             } else {
-                
+
                 UIManager UI = new UIManager();
 
                 UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
@@ -163,7 +163,7 @@ public class CtrlUsuarioL implements ActionListener, FocusListener {
                 UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
                 UIManager.put("Label.background", Color.blue);
                 UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-                
+
                 JOptionPane.showMessageDialog(null, "Acceso Denegado", "ERROR", JOptionPane.ERROR_MESSAGE, y);
             }
         }

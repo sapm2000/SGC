@@ -11,7 +11,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import static javax.swing.BorderFactory.createLineBorder;
 import javax.swing.Icon;
@@ -24,14 +29,22 @@ import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Banco;
+import modelo.ConexionBD;
 import modelo.Cuenta;
 import modelo.Funcion;
 import modelo.Persona;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import sgc.SGC;
 import vista.Catalogo;
 import vista.VisCuenta;
@@ -92,70 +105,99 @@ public class CtrlCuenta implements ActionListener, ItemListener, MouseListener, 
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
             JOptionPane.showMessageDialog(null, "No existen bancos, debe registrar uno para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
-       
+
             new CtrlBanco();
 
         } else {
 
-        this.catalogo = new Catalogo();
-        this.vista = new VisCuenta();
-        this.modelo = new Cuenta();
+            this.catalogo = new Catalogo();
+            this.vista = new VisCuenta();
+            this.modelo = new Cuenta();
 
-        catPersonas = new Catalogo();
-        catPersonas.lblTitulo.setText("Buscar Persona");
-        catPersonas.remove(catPersonas.btnNuevo);
+            catPersonas = new Catalogo();
+            catPersonas.lblTitulo.setText("Buscar Persona");
+            catPersonas.remove(catPersonas.btnNuevo);
 
-        ventanaBuscar = new JFrame("Buscar Persona");
-        ventanaBuscar.setSize(1366, 740);
-        ventanaBuscar.add(catPersonas);
+            ventanaBuscar = new JFrame("Buscar Persona");
+            ventanaBuscar.setSize(1366, 740);
+            ventanaBuscar.add(catPersonas);
 
-        catalogo.lblTitulo.setText("Cuenta");
+            catalogo.lblTitulo.setText("Cuenta");
 
-        stylecombo(vista.cbxBanco);
-        stylecombo(vista.cbxTipo);
+            stylecombo(vista.cbxBanco);
+            stylecombo(vista.cbxTipo);
 
-        crearCbxBanco();
-        llenarTabla(catalogo.tabla);
+            crearCbxBanco();
+            llenarTabla(catalogo.tabla);
 
-        permisoBtn();
+            permisoBtn();
 
-        if (permiso.getRegistrar()) {
-            catalogo.btnNuevo.setEnabled(true);
-        }
+            if (permiso.getRegistrar()) {
+                catalogo.btnNuevo.setEnabled(true);
+            }
 
-        Component[] components = vista.jPanel2.getComponents();
+            Component[] components = vista.jPanel2.getComponents();
 
-        JComponent[] com = {
-            vista.txtCedula, vista.txtN_cuenta, vista.txtBeneficiario
-        };
+            JComponent[] com = {
+                vista.txtCedula, vista.txtN_cuenta, vista.txtBeneficiario
+            };
 
-        Validacion.copiar(components);
-        Validacion.pegar(com);
+            Validacion.copiar(components);
+            Validacion.pegar(com);
 
-        this.catalogo.btnNuevo.addActionListener(this);
-        this.catalogo.tabla.addMouseListener(this);
-        this.catalogo.txtBuscar.addKeyListener(this);
+            this.catalogo.btnNuevo.addActionListener(this);
+            this.catalogo.tabla.addMouseListener(this);
+            this.catalogo.txtBuscar.addKeyListener(this);
+            this.catalogo.reportes.addActionListener(this);
 
-        this.vista.txtCedula.addActionListener(this);
-        this.vista.btnBuscarPersona.addActionListener(this);
-        this.vista.btnGuardar.addActionListener(this);
-        this.vista.btnModificar.addActionListener(this);
-        this.vista.btnEliminar.addActionListener(this);
-        this.vista.btnLimpiar.addActionListener(this);
-        this.vista.btnSalir.addActionListener(this);
-        vista.cbxBanco.addItemListener(this);
-        vista.cbxTipo.addItemListener(this);
-        this.vista.txtCedula.addKeyListener(this);
-        this.vista.txtN_cuenta.addKeyListener(this);
-        this.vista.txtBeneficiario.addKeyListener(this);
+            this.vista.txtCedula.addActionListener(this);
+            this.vista.btnBuscarPersona.addActionListener(this);
+            this.vista.btnGuardar.addActionListener(this);
+            this.vista.btnModificar.addActionListener(this);
+            this.vista.btnEliminar.addActionListener(this);
+            this.vista.btnLimpiar.addActionListener(this);
+            this.vista.btnSalir.addActionListener(this);
+            vista.cbxBanco.addItemListener(this);
+            vista.cbxTipo.addItemListener(this);
+            this.vista.txtCedula.addKeyListener(this);
+            this.vista.txtN_cuenta.addKeyListener(this);
+            this.vista.txtBeneficiario.addKeyListener(this);
 
-        this.catPersonas.tabla.addMouseListener(this);
+            this.catPersonas.tabla.addMouseListener(this);
 
-        CtrlVentana.cambiarVista(catalogo);
+            CtrlVentana.cambiarVista(catalogo);
         }
     }
 
     public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == catalogo.reportes) {
+
+            try {
+                ConexionBD con = new ConexionBD();
+                Connection conn = con.getConexion();
+
+                JasperReport reporte = null;
+                String path = "src\\reportes\\cuenta_bancaria.jasper";
+
+                String x = catalogo.txtBuscar.getText();
+
+                Map parametros = new HashMap();
+                parametros.put("cuentas", x);
+
+                reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+
+                JasperPrint jprint = JasperFillManager.fillReport(path, parametros, conn);
+
+                JasperViewer view = new JasperViewer(jprint, false);
+
+                view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+                view.setVisible(true);
+            } catch (JRException ex) {
+                Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
         if (e.getSource() == catalogo.btnNuevo) {
 

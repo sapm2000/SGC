@@ -143,8 +143,8 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
         if (e.getSource() == catalogo.btnEliminar) {
 
             int indice = catalogo.panelBandejas.getSelectedIndex();
-            
-                // Si la pestaña seleccionada del panel de pestañas es Enviados
+
+            // Si la pestaña seleccionada del panel de pestañas es Enviados
             if (indice == 0) {
 
                 // Para cada fila de la tabla Enviados
@@ -155,7 +155,7 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
 
                         //Se obtiene el mensaje seleccionado y lo elimina
                         if (listaEnviados.get(i).eliminarEnviado()) {
-                            
+
                         } else {
 
                             UIManager UI = new UIManager();
@@ -177,7 +177,7 @@ public class CtrlMensaje implements ActionListener, MouseListener, KeyListener, 
 
                 llenarTablaEnviados();
 
-            // Si la pestaña seleccionada del panel de pestañas es Recibidos
+                // Si la pestaña seleccionada del panel de pestañas es Recibidos
             } else if (indice == 1) {
 
                 // Para cada fila de la tabla Recibidos

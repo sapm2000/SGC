@@ -87,7 +87,6 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
             vista.txtTelefono.addKeyListener(this);
             vista.txtCorreo.addKeyListener(this);
             vista.txtCorreo.addFocusListener(this);
-            
 
             CtrlVentana.cambiarVista(vista);
             vista.cbxCedula.addItemListener(this);
@@ -302,9 +301,9 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
             }
         }
         if (e.getSource() == vista.btnEliminar) {
-            
-                if (modelo.tieneUsuario()) {
-                    
+
+            if (modelo.tieneUsuario()) {
+
                 UIManager UI = new UIManager();
                 UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
                 UI.put("Panel.background", new ColorUIResource(255, 255, 255));
@@ -318,8 +317,8 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
                 JOptionPane.showMessageDialog(null, "No se pudo eliminar, el Responsable tiene un Usuario", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, n);
                 CtrlVentana.cambiarVista(catalogo);
-                      
-                }else if (modelo.eliminar()) {
+
+            } else if (modelo.eliminar()) {
 
                 UIManager UI = new UIManager();
                 UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
@@ -353,7 +352,7 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
             }
         }
-        
+
         if (e.getSource() == vista.btnLimpiar) {
             limpiar();
         }
@@ -625,13 +624,13 @@ public class CtrlResponsable implements ActionListener, MouseListener, KeyListen
 
     @Override
     public void focusLost(FocusEvent e) {
-        if(Validacion.email(vista.txtCorreo.getText())){
-        
-        }else{
+        if (Validacion.email(vista.txtCorreo.getText())) {
+
+        } else {
             JOptionPane.showMessageDialog(null, "Email incorrecto");
             vista.txtCorreo.requestFocus();
         }
-        
+
     }
 
 }

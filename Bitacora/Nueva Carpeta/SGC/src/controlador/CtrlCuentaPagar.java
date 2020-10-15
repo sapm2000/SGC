@@ -63,7 +63,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
         this.modFormaPago = new FormaPago();
         this.modFondo = new Fondo();
         this.modGasto = new Gasto();
-        
+
         if (modFormaPago.contar() == 0) {
 
             UIManager UI = new UIManager();
@@ -97,7 +97,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
             JOptionPane.showMessageDialog(null, "No existen Fondos, debe registrar uno para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
-       
+
             new CtrlFondo();
 
         } else if (modGasto.contar() == 0) {
@@ -115,56 +115,56 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
             UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
             JOptionPane.showMessageDialog(null, "No existen Gastos, debe registrar uno para continuar ", "ADVERTENCIA", JOptionPane.INFORMATION_MESSAGE, p);
-       
+
             new CtrlGasto();
 
         } else {
-        
-        this.vista = new VisCuentaPorPagar();
-        this.modelo = new CuentaPagar();
 
-        this.modCuenta = new Cuenta();
+            this.vista = new VisCuentaPorPagar();
+            this.modelo = new CuentaPagar();
 
-        this.catPagos = new Catalogo();
-        this.catGastosProcesados = new Catalogo();
+            this.modCuenta = new Cuenta();
 
-        this.vista.panelReferencia.setVisible(false);
-        this.vista.panelPariedad.setVisible(false);
+            this.catPagos = new Catalogo();
+            this.catGastosProcesados = new Catalogo();
 
-        this.catPagos.lblTitulo.setText("Gastos pagados");
+            this.vista.panelReferencia.setVisible(false);
+            this.vista.panelPariedad.setVisible(false);
 
-        this.catGastosProcesados.lblTitulo.setText("Cuentas Procesadas");
+            this.catPagos.lblTitulo.setText("Gastos pagados");
 
-        this.vista.btnProcesar.addActionListener(this);
-        this.vista.btnMostrarProcesados.addActionListener(this);
-        this.vista.btnPagos.addActionListener(this);
-        this.vista.cbxFormaPago.addItemListener(this);
-        this.vista.cbxMoneda.addItemListener(this);
-        this.vista.cbxFondo.addItemListener(this);
-        this.vista.tablaGastos.addMouseListener(this);
-        this.vista.txtPariedad.addKeyListener(this);
-        this.vista.setVisible(true);
+            this.catGastosProcesados.lblTitulo.setText("Cuentas Procesadas");
 
-        this.catPagos.txtBuscar.addKeyListener(this);
+            this.vista.btnProcesar.addActionListener(this);
+            this.vista.btnMostrarProcesados.addActionListener(this);
+            this.vista.btnPagos.addActionListener(this);
+            this.vista.cbxFormaPago.addItemListener(this);
+            this.vista.cbxMoneda.addItemListener(this);
+            this.vista.cbxFondo.addItemListener(this);
+            this.vista.tablaGastos.addMouseListener(this);
+            this.vista.txtPariedad.addKeyListener(this);
+            this.vista.setVisible(true);
 
-        crearCbxFormaPago();
-        crearCbxCuenta();
-        llenarTablaGastos(vista.tablaGastos, "Pendiente");
+            this.catPagos.txtBuscar.addKeyListener(this);
 
-        Component[] components = vista.jPanel.getComponents();
-        JComponent[] com = {vista.txtFecha, vista.txtDescripcion, vista.txtMonto, vista.txtGasto, vista.txtPariedad};
-        Validacion.copiar(components);
-        Validacion.pegar(com);
+            crearCbxFormaPago();
+            crearCbxCuenta();
+            llenarTablaGastos(vista.tablaGastos, "Pendiente");
 
-        CtrlVentana.cambiarVista(vista);
-        vista.cbxCuenta.addItemListener(this);
-        stylecombo(vista.cbxCuenta);
-        vista.cbxFondo.addItemListener(this);
-        stylecombo(vista.cbxFondo);
-        vista.cbxFormaPago.addItemListener(this);
-        stylecombo(vista.cbxFormaPago);
-        vista.cbxMoneda.addItemListener(this);
-        stylecombo(vista.cbxMoneda);
+            Component[] components = vista.jPanel.getComponents();
+            JComponent[] com = {vista.txtFecha, vista.txtDescripcion, vista.txtMonto, vista.txtGasto, vista.txtPariedad};
+            Validacion.copiar(components);
+            Validacion.pegar(com);
+
+            CtrlVentana.cambiarVista(vista);
+            vista.cbxCuenta.addItemListener(this);
+            stylecombo(vista.cbxCuenta);
+            vista.cbxFondo.addItemListener(this);
+            stylecombo(vista.cbxFondo);
+            vista.cbxFormaPago.addItemListener(this);
+            stylecombo(vista.cbxFormaPago);
+            vista.cbxMoneda.addItemListener(this);
+            stylecombo(vista.cbxMoneda);
         }
     }
 
@@ -210,31 +210,27 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
                 if (modelo.registrar()) {
 
 //                    if (modelo.getFondo().restarFondo(modelo.getMonto().floatValue())) {
-
 //                        if (modGasto.restarSaldo(montoARestar)) {
+                    UIManager UI = new UIManager();
+                    UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
+                    UI.put("Panel.background", new ColorUIResource(255, 255, 255));
 
-                            UIManager UI = new UIManager();
-                            UI.put("OptionPane.border", createLineBorder(new Color(0, 94, 159), 5));
-                            UI.put("Panel.background", new ColorUIResource(255, 255, 255));
+                    int botonDialogo = JOptionPane.OK_OPTION;
+                    Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
+                    UIManager.put("Button.background", Color.white);
+                    UIManager.put("Button.font", Color.blue);
+                    UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
+                    UIManager.put("Label.background", Color.blue);
+                    UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                            int botonDialogo = JOptionPane.OK_OPTION;
-                            Icon p = new ImageIcon(getClass().getResource("/img/check.png"));
-                            UIManager.put("Button.background", Color.white);
-                            UIManager.put("Button.font", Color.blue);
-                            UIManager.put("Button.font", new Font("Tahoma", Font.BOLD, 12));
-                            UIManager.put("Label.background", Color.blue);
-                            UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
-
-                            JOptionPane.showMessageDialog(null, "Pago registrado ", "PAGADO", JOptionPane.INFORMATION_MESSAGE, p);
+                    JOptionPane.showMessageDialog(null, "Pago registrado ", "PAGADO", JOptionPane.INFORMATION_MESSAGE, p);
 
 //                        } else {
 //                            System.out.println("Error al restar el saldo del gasto");
 //                        }
-
 //                    } else {
 //                        System.out.println("Error al restar el saldo del fondo");
 //                    }
-
                 } else {
 
                     UIManager UI = new UIManager();
@@ -615,7 +611,7 @@ public class CtrlCuentaPagar implements ActionListener, ItemListener, KeyListene
             formaPagoEstaSeleccionado = true;
         }
 
-        if (vista.txtFecha.getDatoFecha()== null) {
+        if (vista.txtFecha.getDatoFecha() == null) {
             resultado = false;
             mensaje += "Debe seleccionar una Fecha de pago \n";
         }

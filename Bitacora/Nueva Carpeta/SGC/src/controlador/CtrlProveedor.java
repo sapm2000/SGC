@@ -589,9 +589,9 @@ public class CtrlProveedor implements ActionListener, WindowListener, KeyListene
 
     @Override
     public void focusLost(FocusEvent e) {
-        if(Validacion.email(vista.txtCorreo.getText())){
-        
-        }else{
+        if (Validacion.email(vista.txtCorreo.getText())) {
+
+        } else {
             JOptionPane.showMessageDialog(null, "Email incorrecto");
             vista.txtCorreo.requestFocus();
         }

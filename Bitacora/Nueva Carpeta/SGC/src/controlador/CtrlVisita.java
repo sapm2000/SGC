@@ -51,9 +51,9 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
     private DefaultTableModel dm;
 
     public CtrlVisita() {
-        
+
         this.modUnidad = new Unidad();
-        
+
         if (modUnidad.contar() == 0) {
 
             UIManager UI = new UIManager();
@@ -73,42 +73,42 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
             new CtrlUnidad();
 
         } else {
-        
-        this.modelo = new Visita();
-        this.vista = new VisVisita();
 
-        catPersonas = new Catalogo();
-        catPersonas.lblTitulo.setText("Buscar Persona");
-        catPersonas.remove(catPersonas.btnNuevo);
+            this.modelo = new Visita();
+            this.vista = new VisVisita();
 
-        ventanaBuscar = new JFrame("Buscar Persona");
-        ventanaBuscar.setSize(1366, 740);
-        ventanaBuscar.add(catPersonas);
+            catPersonas = new Catalogo();
+            catPersonas.lblTitulo.setText("Buscar Persona");
+            catPersonas.remove(catPersonas.btnNuevo);
 
-        this.modPersona = new Persona();
+            ventanaBuscar = new JFrame("Buscar Persona");
+            ventanaBuscar.setSize(1366, 740);
+            ventanaBuscar.add(catPersonas);
 
-        this.vista.btnBuscarPersona.addActionListener(this);
-        this.vista.btnNuevo.addActionListener(this);
-        this.vista.btnEntrada.addActionListener(this);
-        this.vista.btnSalida.addActionListener(this);
-        vista.cbxCedula.addItemListener(this);
-        vista.cbxUnidad.addItemListener(this);
-        this.vista.tabla.addMouseListener(this);
+            this.modPersona = new Persona();
 
-        this.catPersonas.tabla.addMouseListener(this);
+            this.vista.btnBuscarPersona.addActionListener(this);
+            this.vista.btnNuevo.addActionListener(this);
+            this.vista.btnEntrada.addActionListener(this);
+            this.vista.btnSalida.addActionListener(this);
+            vista.cbxCedula.addItemListener(this);
+            vista.cbxUnidad.addItemListener(this);
+            this.vista.tabla.addMouseListener(this);
 
-        vista.btnSalida.setEnabled(false);
-        vista.txtNombre.setEditable(false);
-        vista.txtApellido.setEditable(false);
+            this.catPersonas.tabla.addMouseListener(this);
 
-        stylecombo(vista.cbxCedula);
-        stylecombo(vista.cbxUnidad);
-        crearCbxUnidad();
+            vista.btnSalida.setEnabled(false);
+            vista.txtNombre.setEditable(false);
+            vista.txtApellido.setEditable(false);
 
-        llenarTabla();
+            stylecombo(vista.cbxCedula);
+            stylecombo(vista.cbxUnidad);
+            crearCbxUnidad();
 
-        CtrlVentana.cambiarVista(vista);
-        
+            llenarTabla();
+
+            CtrlVentana.cambiarVista(vista);
+
         }
     }
 

@@ -142,7 +142,6 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
                 Map parametro = new HashMap();
                 JOptionPane.showMessageDialog(null, x);
                 parametro.put("banco", x);
-             
 
                 reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
 

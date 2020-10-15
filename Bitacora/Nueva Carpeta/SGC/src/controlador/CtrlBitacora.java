@@ -131,13 +131,12 @@ public class CtrlBitacora implements ActionListener, KeyListener, MouseListener 
 
         if (e.getSource() == catalogo.tabla) {
 
-            int fila = this.catalogo.tabla.getSelectedRow(); 
+            int fila = this.catalogo.tabla.getSelectedRow();
             int columna = this.catalogo.tabla.getSelectedColumn();
             String dato = String.valueOf(this.catalogo.tabla.getValueAt(fila, columna));
-            
+
             modelo = listar.get(fila);
 
-            
             vista.txtTabla.setText(modelo.getTabla());
             vista.txtUsuario.setText(modelo.getUsuario().getUsuario());
             vista.txtFecha.setText(modelo.getFecha_hora().toString());

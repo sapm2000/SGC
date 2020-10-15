@@ -56,8 +56,8 @@ public class Cuenta extends ConexionBD {
         }
 
     }
-    
-     public int contar() {
+
+    public int contar() {
 
         ps = null;
         rs = null;
@@ -227,7 +227,7 @@ public class Cuenta extends ConexionBD {
         ps = null;
         rs = null;
 
-        String sql = "SELECT * FROM v_cuenta;";
+        String sql = "SELECT * FROM v_cuenta where activo = true;";
 
         try {
             ps = con.prepareStatement(sql);
@@ -314,7 +314,7 @@ public class Cuenta extends ConexionBD {
             ps.setString(ind++, getBeneficiario().getCedula());
             ps.setString(ind++, getN_cuenta());
             ps.setInt(ind++, SGC.usuarioActual.getId());
-            
+
             if (ps.execute()) {
                 rs = ps.getResultSet();
                 rs.next();
