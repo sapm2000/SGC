@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cuenta_bancaria" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="373a5804-55d8-4cea-9398-9dc5e29d3312">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT * FROM v_cuenta where activo = true]]>
+	</queryString>
+	<field name="n_cuenta" class="java.lang.String"/>
+	<field name="tipo" class="java.lang.String"/>
+	<field name="id_banco" class="java.lang.Long"/>
+	<field name="banco" class="java.lang.String"/>
+	<field name="ci_persona" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="apellido" class="java.lang.String"/>
+	<field name="rif_condominio" class="java.lang.String"/>
+	<field name="razon_social" class="java.lang.String"/>
+	<field name="activo" class="java.lang.Boolean"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -10,10 +26,76 @@
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="214" y="2" width="100" height="20" uuid="47f72c91-229b-4918-985f-a12c3de28eb1"/>
+				<text><![CDATA[n_cuenta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="2" width="100" height="20" uuid="22ceb12e-938f-440a-883e-9cb59b196533"/>
+				<text><![CDATA[tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="2" width="100" height="20" uuid="7b3d57a1-135a-44dd-91e6-8ca8f5c6d7ad"/>
+				<text><![CDATA[id_banco]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="425" y="2" width="100" height="20" uuid="1c2b96da-282f-480d-ac48-a3f26abd6745"/>
+				<text><![CDATA[banco]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="352" y="2" width="100" height="20" uuid="3614b60d-9613-43da-a906-c4bbb5386ffe"/>
+				<text><![CDATA[ci_persona]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="504" y="2" width="100" height="20" uuid="49ba7b60-81d5-4b18-a71e-05cae00d48aa"/>
+				<text><![CDATA[nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="2" width="100" height="20" uuid="cf8e1f0a-ee17-44f6-aec7-bc6c7b9ca911"/>
+				<text><![CDATA[apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="308" y="2" width="100" height="20" uuid="3b804d0f-d740-4767-832b-7eb0f4d28089"/>
+				<text><![CDATA[razon_social]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="214" y="51" width="100" height="20" uuid="72636b15-dfe8-4866-8dbf-0c1437416888"/>
+				<textFieldExpression><![CDATA[$F{n_cuenta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="104" width="100" height="20" uuid="299a522b-5350-4043-a63c-46aa1f659447"/>
+				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="355" y="27" width="100" height="20" uuid="957328ef-6b37-45c2-a4e4-d3be7ebcc1c3"/>
+				<textFieldExpression><![CDATA[$F{id_banco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="425" y="75" width="100" height="20" uuid="926f9420-013e-45bf-bff3-e6a46a5e1e89"/>
+				<textFieldExpression><![CDATA[$F{banco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="352" y="105" width="100" height="20" uuid="ea36d796-c194-445e-a448-591e7740cdf0"/>
+				<textFieldExpression><![CDATA[$F{ci_persona}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="504" y="27" width="100" height="20" uuid="8718612a-0bce-4dd3-8d63-101d9f2881d0"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="292" y="19" width="100" height="20" uuid="31353027-7e86-43f7-9013-3132d0d9d1bf"/>
+				<textFieldExpression><![CDATA[$F{apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="308" y="87" width="100" height="20" uuid="42f83fe5-53b8-4415-a806-d854bdf3dad5"/>
+				<textFieldExpression><![CDATA[$F{razon_social}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>
