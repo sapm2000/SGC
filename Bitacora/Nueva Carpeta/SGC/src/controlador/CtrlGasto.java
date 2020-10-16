@@ -171,8 +171,8 @@ public class CtrlGasto implements ActionListener, MouseListener, KeyListener, Wi
     }
 
     public void actionPerformed(ActionEvent e) {
-        
-         if (e.getSource() == catalogo.reportes) {
+
+        if (e.getSource() == catalogo.reportes) {
 
             try {
                 ConexionBD con = new ConexionBD();
