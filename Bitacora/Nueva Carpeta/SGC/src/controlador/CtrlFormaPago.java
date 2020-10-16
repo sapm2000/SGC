@@ -82,7 +82,7 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
         this.catalogo.btnNuevo.addActionListener(this);
         this.catalogo.tabla.addMouseListener(this);
         this.catalogo.txtBuscar.addKeyListener(this);
-            this.catalogo.reportes.addActionListener(this);
+        this.catalogo.reportes.addActionListener(this);
         CtrlVentana.cambiarVista(catalogo);
 
     }
@@ -126,8 +126,8 @@ public class CtrlFormaPago implements ActionListener, KeyListener, MouseListener
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-          if (e.getSource() == catalogo.reportes) {
+
+        if (e.getSource() == catalogo.reportes) {
 
             try {
                 ConexionBD con = new ConexionBD();
