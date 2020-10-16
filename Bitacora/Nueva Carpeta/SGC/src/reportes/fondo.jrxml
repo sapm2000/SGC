@@ -3,8 +3,11 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="fondo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
-		<![CDATA[SELECT id, tipo, fecha, descripcion, observaciones, monto_inicial, saldo, moneda FROM fondos WHERE activo=true and tipo like '%%' or fecha like '%%']]>
+		<![CDATA[SELECT id, tipo, fecha, descripcion, observaciones, monto_inicial, saldo, moneda FROM fondos WHERE activo=true and tipo like '%$P!{fondo}%' or cast(fecha as varchar) like '%$P!{fondo}%' or descripcion like '%$P!{fondo}%' or observaciones like '%$P!{fondo}%' or cast(monto_inicial as varchar) like '%$P!{fondo}%' or cast(saldo as varchar) like '%$P!{fondo}%' or moneda like '%$P!{fondo}%']]>
 	</queryString>
 	<field name="id" class="java.lang.Integer"/>
 	<field name="tipo" class="java.lang.String"/>
