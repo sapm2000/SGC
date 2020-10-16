@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="gasto" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="958c5dea-d8d9-4a7d-9756-f7b44312a6ff">
 	<property name="ireport.zoom" value="1.9487171000000074"/>
-	<property name="ireport.x" value="221"/>
+	<property name="ireport.x" value="209"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="gasto" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -63,10 +63,6 @@
 				<line>
 					<reportElement x="54" y="0" width="1" height="59" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="42e5b7d1-45dc-491d-ae9f-8c4de14c3622"/>
 				</line>
-				<staticText>
-					<reportElement x="763" y="26" width="20" height="20" uuid="918fd076-c597-44c6-acb5-924fafd9e1a5"/>
-					<text><![CDATA[pagado]]></text>
-				</staticText>
 			</frame>
 			<staticText>
 				<reportElement x="0" y="0" width="55" height="60" forecolor="#FFFFFF" uuid="94837aec-5371-430c-b41b-6a0f2d3aef65"/>
@@ -325,7 +321,7 @@
 				<reportElement x="801" y="1" width="1" height="100" forecolor="#00369F" backcolor="#00369F" uuid="c98fe770-3c5c-477a-92e7-2e7a1a4051fc"/>
 			</line>
 			<textField>
-				<reportElement x="731" y="34" width="70" height="36" uuid="a9027da7-3fd1-4fd7-8c39-8d1e21366b80"/>
+				<reportElement x="731" y="26" width="70" height="44" uuid="a9027da7-3fd1-4fd7-8c39-8d1e21366b80"/>
 				<textFieldExpression><![CDATA[$F{pagado}]]></textFieldExpression>
 			</textField>
 		</band>
