@@ -81,7 +81,7 @@
 				<text><![CDATA[asamblea]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="22" width="100" height="20" uuid="5cb7f6d0-1329-4235-91ca-9859d70110d9"/>
+				<reportElement x="13" y="22" width="100" height="20" uuid="5cb7f6d0-1329-4235-91ca-9859d70110d9"/>
 				<text><![CDATA[estado]]></text>
 			</staticText>
 		</band>
