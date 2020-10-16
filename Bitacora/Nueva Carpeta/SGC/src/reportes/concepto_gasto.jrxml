@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="concepto_gasto" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="59041426-6c64-4bef-8f3a-d421e0a71029">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="6"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="concepto" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -22,13 +22,13 @@
 		<band height="79" splitType="Stretch">
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="555" height="79" backcolor="#00369F" uuid="15b9993e-3160-41fe-bb6c-8460256af71e"/>
-				<image>
+				<image hAlign="Center" vAlign="Middle">
 					<reportElement x="20" y="0" width="82" height="79" uuid="4a05b86c-6d26-4331-ba56-adf6ed4e0280"/>
-					<imageExpression><![CDATA["C:\\Users\\Maryo\\Documents\\NetBeansProjects\\SGC\\Bitacora\\Nueva Carpeta\\SGC\\src\\img\\condominio1 (2).png"]]></imageExpression>
+					<imageExpression><![CDATA["imagenes\\condominio1 (2).png"]]></imageExpression>
 				</image>
-				<image>
-					<reportElement x="485" y="11" width="45" height="51" uuid="63e0c1c7-f309-40b0-ada8-38b9911472a6"/>
-					<imageExpression><![CDATA["C:\\Users\\Maryo\\Documents\\NetBeansProjects\\SGC\\Bitacora\\Nueva Carpeta\\SGC\\src\\img\\analisis.png"]]></imageExpression>
+				<image hAlign="Center" vAlign="Middle">
+					<reportElement x="485" y="13" width="54" height="51" uuid="63e0c1c7-f309-40b0-ada8-38b9911472a6"/>
+					<imageExpression><![CDATA["imagenes\\analisis.png"]]></imageExpression>
 				</image>
 				<staticText>
 					<reportElement x="102" y="0" width="383" height="79" forecolor="#FFFFFF" uuid="d7acfe6c-445a-4b83-ab31-8560c4af5dff"/>

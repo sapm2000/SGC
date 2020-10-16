@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="categoria_gasto" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="34493938-1f5d-472f-8b15-f4862f016022">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="49"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="categoria" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -19,13 +19,13 @@
 		<band height="79" splitType="Stretch">
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="555" height="79" backcolor="#00369F" uuid="57c54453-b055-418f-971d-436b08924e63"/>
-				<image>
+				<image hAlign="Center" vAlign="Middle">
 					<reportElement x="20" y="0" width="82" height="79" uuid="d14f2ba9-2635-4b62-aef2-916d1dfe4704"/>
-					<imageExpression><![CDATA["C:\\Users\\Maryo\\Documents\\NetBeansProjects\\SGC\\Bitacora\\Nueva Carpeta\\SGC\\src\\img\\condominio1 (2).png"]]></imageExpression>
+					<imageExpression><![CDATA["imagenes\\condominio1 (2).png"]]></imageExpression>
 				</image>
-				<image>
+				<image hAlign="Center" vAlign="Middle">
 					<reportElement x="485" y="11" width="57" height="51" uuid="58027cab-bdd7-4238-ab5f-a7482f8ad0c2"/>
-					<imageExpression><![CDATA["C:\\Users\\Maryo\\Documents\\NetBeansProjects\\SGC\\Bitacora\\Nueva Carpeta\\SGC\\src\\img\\gastos.png"]]></imageExpression>
+					<imageExpression><![CDATA["imagenes\\gastos.png"]]></imageExpression>
 				</image>
 				<staticText>
 					<reportElement x="102" y="0" width="383" height="79" forecolor="#FFFFFF" uuid="a198a522-e9d6-41c5-84a2-19d647a266ea"/>
