@@ -181,12 +181,22 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
                 JasperReport reporte = null;
                 String path = "src\\reportes\\unidad.jasper";
 
-                
-               String x = catalogo.txtBuscar.getText();
-               
+                String x = catalogo.txtBuscar.getText();
+                double y = 0;
+                String z;
+                if (isNumeric(x) || isValidDouble(x)) {
+                    y = Double.parseDouble(x);
+                    y = y / 100;
+                    z = valueOf(y);
+                } else {
+                    y = y;
+                    z = valueOf(x);
+                }
+
+             
                 Map parametros = new HashMap();
                 parametros.put("n_unidad", x);
-             
+                parametros.put("alicuota", z);
 
                 reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
 
@@ -1252,5 +1262,14 @@ public class CtrlUnidad implements ActionListener, MouseListener, KeyListener, W
         }
 
         return isValid;
+    }
+
+    private static boolean isNumeric(String cadena) {
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
     }
 }

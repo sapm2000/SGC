@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="gasto" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="958c5dea-d8d9-4a7d-9756-f7b44312a6ff">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT * FROM v_gasto]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="tipo" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="id_proveedor" class="java.lang.String"/>
+	<field name="moneda" class="java.lang.String"/>
+	<field name="proveedor" class="java.lang.String"/>
+	<field name="calcular_por" class="java.lang.String"/>
+	<field name="mes" class="java.lang.Integer"/>
+	<field name="anio" class="java.lang.Integer"/>
+	<field name="monto" class="java.lang.Double"/>
+	<field name="saldo" class="java.lang.Double"/>
+	<field name="n_meses" class="java.lang.Integer"/>
+	<field name="meses_restantes" class="java.lang.Integer"/>
+	<field name="id_asamblea" class="java.lang.Integer"/>
+	<field name="asamblea" class="java.lang.String"/>
+	<field name="fecha_asamblea" class="java.sql.Date"/>
+	<field name="observacion" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String"/>
+	<field name="pagado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="82" splitType="Stretch">
+			<staticText>
+				<reportElement x="499" y="61" width="100" height="20" uuid="94837aec-5371-430c-b41b-6a0f2d3aef65"/>
+				<text><![CDATA[id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="2" width="100" height="20" uuid="de7a66c2-30f8-45a4-bbf0-ec9e5b17d637"/>
+				<text><![CDATA[nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="261" y="2" width="100" height="20" uuid="78de0136-34eb-4e6a-b5b5-d10ca92255fe"/>
+				<text><![CDATA[proveedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="61" width="100" height="20" uuid="ae0c1520-f1e5-4e7a-a909-423da40ad166"/>
+				<text><![CDATA[calcular_por]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="261" y="61" width="100" height="20" uuid="c1bc4ea3-7845-4b7f-9f28-3d024f6f8df6"/>
+				<text><![CDATA[mes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="134" y="61" width="100" height="20" uuid="b90cd777-2c74-4899-9a8c-e1da1a841602"/>
+				<text><![CDATA[anio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="61" width="100" height="20" uuid="4f72c3d7-eb92-442d-9a69-7802e7be661f"/>
+				<text><![CDATA[monto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="437" y="41" width="100" height="20" uuid="9d9f3933-f2c1-449b-b7b3-2427e5a9db2b"/>
+				<text><![CDATA[saldo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="134" y="2" width="100" height="20" uuid="1689910c-f47e-443a-83b0-cb61bae94290"/>
+				<text><![CDATA[n_meses]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="2" width="100" height="20" uuid="60b7a5f3-44f3-4c67-9038-cb1b0ca09729"/>
+				<text><![CDATA[meses_restantes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="274" y="41" width="100" height="20" uuid="36d2c707-69ec-48bd-a664-20489e31608b"/>
+				<text><![CDATA[asamblea]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="22" width="100" height="20" uuid="5cb7f6d0-1329-4235-91ca-9859d70110d9"/>
+				<text><![CDATA[estado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="496" y="30" width="100" height="20" uuid="bdc5d648-22aa-4d20-80ff-1ce3f721aa9a"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="392" y="10" width="100" height="20" uuid="3f64393d-67b5-43ba-9495-9974222ab03e"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="261" y="27" width="100" height="20" uuid="576bcca8-b1b6-4585-b93f-d29d14eae44d"/>
+				<textFieldExpression><![CDATA[$F{proveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="13" y="88" width="100" height="20" uuid="36badbf4-7b57-4c88-a78d-5863729ce691"/>
+				<textFieldExpression><![CDATA[$F{calcular_por}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="261" y="85" width="100" height="20" uuid="f82484c6-e996-4330-899d-583b8cc235bc"/>
+				<textFieldExpression><![CDATA[$F{mes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="134" y="88" width="100" height="20" uuid="00cddd87-2ad8-4393-83f6-876d78c9aeea"/>
+				<textFieldExpression><![CDATA[$F{anio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="399" y="88" width="100" height="20" uuid="9b09267b-7997-4a31-973d-615b02351aa6"/>
+				<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="437" y="65" width="100" height="20" uuid="a5063c1f-c6a1-429b-bc62-4209c757b5d2"/>
+				<textFieldExpression><![CDATA[$F{saldo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="134" y="17" width="100" height="20" uuid="2d298dcb-36af-4f04-b3d0-e426f3df06fc"/>
+				<textFieldExpression><![CDATA[$F{n_meses}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="13" y="17" width="100" height="20" uuid="7629af89-6b72-47d4-a63a-43452201ca74"/>
+				<textFieldExpression><![CDATA[$F{meses_restantes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="261" y="57" width="100" height="20" uuid="3c6c5cce-d9c6-4c5a-8fc0-37b809ba2ae2"/>
+				<textFieldExpression><![CDATA[$F{asamblea}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="13" y="57" width="100" height="20" uuid="02232622-02b4-4e72-8ace-6f6e87f32e1f"/>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
