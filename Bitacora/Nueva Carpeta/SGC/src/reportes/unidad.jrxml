@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="unidad" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d8de617c-52f6-4584-9b3a-b420602e85c3">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="77"/>
-	<property name="ireport.y" value="15"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="n_unidad" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -10,7 +10,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT * FROM v_unidad WHERE activo = true and n_unidad like '%$P!{n_unidad}%' or n_documento like '%$P!{n_unidad}%' or direccion like '%$P!{n_unidad}%' or tipo like '%$P!{n_unidad}%' or alicuota=$P{area} or area=$P{area}]]>
+		<![CDATA[SELECT * FROM v_unidad WHERE activo = true and n_unidad like '%$P!{n_unidad}%' or n_documento like '%$P!{n_unidad}%' or direccion like '%$P!{n_unidad}%' or tipo like '%$P!{n_unidad}%' OR CAST(area as varchar) like '%$P!{n_unidad}%' or cast(alicuota as varchar) like '%$P!{n_unidad}%']]>
 	</queryString>
 	<field name="id" class="java.lang.Integer"/>
 	<field name="n_unidad" class="java.lang.String"/>
@@ -28,14 +28,6 @@
 		<band height="79" splitType="Stretch">
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="802" height="79" backcolor="#00369F" uuid="ccbdc8d6-fafa-4140-a5e5-937f65374f19"/>
-				<image>
-					<reportElement x="20" y="0" width="82" height="79" uuid="88899278-095a-4aaa-a216-5cf17ecd8f05"/>
-					<imageExpression><![CDATA["C:\\Users\\Maryo\\Documents\\NetBeansProjects\\SGC\\Bitacora\\Nueva Carpeta\\SGC\\src\\img\\condominio1 (2).png"]]></imageExpression>
-				</image>
-				<image>
-					<reportElement x="721" y="11" width="61" height="56" uuid="00567f59-1304-4d2a-aef5-74fdd71de38a"/>
-					<imageExpression><![CDATA["C:\\Users\\Maryo\\Documents\\NetBeansProjects\\SGC\\Bitacora\\Nueva Carpeta\\SGC\\src\\img\\pattern (1) (2).png"]]></imageExpression>
-				</image>
 				<staticText>
 					<reportElement x="102" y="0" width="619" height="79" forecolor="#FFFFFF" uuid="db0e5bcf-4872-490d-9ff3-e54b89a218c0"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
