@@ -59,7 +59,7 @@
 			<textField>
 				<reportElement x="20" y="0" width="509" height="34" uuid="3637aa78-9fee-44b5-86b3-46a599e28ee9"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Tahoma" size="14"/>
+					<font fontName="Tahoma" size="12"/>
 					<paragraph leftIndent="10" rightIndent="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre_banco}]]></textFieldExpression>
