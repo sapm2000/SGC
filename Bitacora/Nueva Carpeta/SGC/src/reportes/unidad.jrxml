@@ -118,7 +118,7 @@
 			<textField>
 				<reportElement x="20" y="0" width="137" height="46" uuid="58476880-df14-4fc2-9704-2dc9ea84ffe5"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Tahoma" size="14"/>
+					<font fontName="Tahoma" size="12"/>
 					<paragraph leftIndent="10" rightIndent="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{n_unidad}]]></textFieldExpression>
@@ -126,7 +126,7 @@
 			<textField>
 				<reportElement x="234" y="0" width="175" height="46" uuid="5fcd2ea5-48db-4c46-beab-08e3e94fc1d3"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Tahoma" size="14"/>
+					<font fontName="Tahoma" size="12"/>
 					<paragraph leftIndent="10" rightIndent="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{n_documento}]]></textFieldExpression>
@@ -134,7 +134,7 @@
 			<textField>
 				<reportElement x="509" y="0" width="212" height="46" uuid="031f8f65-d43a-4369-87d8-25909d6c259a"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Tahoma" size="14"/>
+					<font fontName="Tahoma" size="12"/>
 					<paragraph leftIndent="10" rightIndent="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
@@ -142,7 +142,7 @@
 			<textField>
 				<reportElement x="157" y="0" width="77" height="46" uuid="53c7fce0-f1fa-47d0-8aed-b8c6c9252f22"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Tahoma" size="14"/>
+					<font fontName="Tahoma" size="12"/>
 					<paragraph leftIndent="10" rightIndent="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{alicuota}]]></textFieldExpression>
@@ -150,7 +150,7 @@
 			<textField>
 				<reportElement x="409" y="0" width="100" height="46" uuid="8ab1f48c-2c97-411c-a440-066dbca078e2"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Tahoma" size="14"/>
+					<font fontName="Tahoma" size="12"/>
 					<paragraph leftIndent="10" rightIndent="5"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
