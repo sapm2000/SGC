@@ -9,7 +9,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static javax.swing.BorderFactory.createLineBorder;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -19,13 +24,21 @@ import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.Condominio;
+import modelo.ConexionBD;
 import modelo.Funcion;
 import modelo.Interes;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import sgc.SGC;
 import vista.Catalogo;
 import vista.VisInteres;
@@ -76,6 +89,7 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
         this.vista.btnModificar.addActionListener(this);
         this.vista.btnEliminar.addActionListener(this);
         this.vista.btnSalir.addActionListener(this);
+        this.catalogo.reportes.addActionListener(this);
         vista.txtNombreinteres.addKeyListener(this);
         vista.txtFactor.addKeyListener(this);
 
@@ -124,6 +138,34 @@ public class CtrlInteres implements ActionListener, MouseListener, KeyListener {
     }
 
     public void actionPerformed(ActionEvent e) {
+        
+          if (e.getSource() == catalogo.reportes) {
+
+            try {
+                ConexionBD con = new ConexionBD();
+                Connection conn = con.getConexion();
+
+                JasperReport reporte = null;
+                String path = "src\\reportes\\interes.jasper";
+
+                String x = catalogo.txtBuscar.getText();
+
+                Map parametros = new HashMap();
+                parametros.put("interes", x);
+
+                reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+
+                JasperPrint jprint = JasperFillManager.fillReport(path, parametros, conn);
+
+                JasperViewer view = new JasperViewer(jprint, false);
+
+                view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+                view.setVisible(true);
+            } catch (JRException ex) {
+                Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
         if (e.getSource() == catalogo.btnNuevo) {
 
