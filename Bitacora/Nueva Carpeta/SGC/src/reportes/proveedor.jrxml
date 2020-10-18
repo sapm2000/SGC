@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="proveedor" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="38586d18-985a-42d9-91e5-1184ec0a3b1d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="proveedor" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT cedula, nombre, telefono, correo, contacto, direccion FROM proveedores where activo = true and cedula like '%$P!{proveedor}%' or nombre like '%$P!{proveedor}%' or telefono like '%$P!{proveedor}%' or correo like '%$P!{proveedor}%' or contacto like '%$P!{proveedor}%' or direccion like '%$P!{proveedor}%']]>
+	</queryString>
+	<field name="cedula" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.String"/>
+	<field name="correo" class="java.lang.String"/>
+	<field name="contacto" class="java.lang.String"/>
+	<field name="direccion" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="32" y="2" width="100" height="20" uuid="dd2d4780-1c6d-4f41-840d-6d15eaf00a09"/>
+				<text><![CDATA[cedula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="151" y="2" width="100" height="20" uuid="a8430227-f5cd-4d67-a5a8-a783d44c87b7"/>
+				<text><![CDATA[nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="302" y="2" width="100" height="20" uuid="731844f4-7dd0-46f8-899d-ad6de3d2bafa"/>
+				<text><![CDATA[telefono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="358" y="2" width="100" height="20" uuid="99adb561-4367-48bd-a135-2d9d42b564f4"/>
+				<text><![CDATA[correo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="247" y="2" width="100" height="20" uuid="67f739ff-345e-4119-8c99-108c99764b00"/>
+				<text><![CDATA[contacto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="458" y="2" width="100" height="20" uuid="6e9fa738-0c2f-40a4-a924-bddbb51e9569"/>
+				<text><![CDATA[direccion]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="32" y="27" width="100" height="20" uuid="9bfe334d-8d13-4ad5-870b-37234760a456"/>
+				<textFieldExpression><![CDATA[$F{cedula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="151" y="43" width="100" height="20" uuid="d8125207-db67-4eb8-955c-11e1e6bb1d60"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="302" y="43" width="100" height="20" uuid="4e891fa6-d2cd-48d6-982a-626b50f42147"/>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="358" y="20" width="100" height="20" uuid="fe62077d-7d2e-4551-99a1-038c574b8b26"/>
+				<textFieldExpression><![CDATA[$F{correo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="247" y="34" width="100" height="20" uuid="7da75007-b0cc-4618-8f5d-25b78a90ed11"/>
+				<textFieldExpression><![CDATA[$F{contacto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="54" width="100" height="20" uuid="caee24a7-d6ca-403f-b7c9-11b05dfc07f1"/>
+				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
