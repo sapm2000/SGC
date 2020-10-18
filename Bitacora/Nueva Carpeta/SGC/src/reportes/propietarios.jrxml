@@ -25,10 +25,10 @@
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="802" height="79" backcolor="#00369F" uuid="a823f27d-fec6-40ba-8597-cd0524f01354"/>
 				<frame>
-					<reportElement mode="Opaque" x="728" y="0" width="62" height="79" uuid="7544bca9-9e7f-4af0-a3e3-b6d0a01f3364"/>
+					<reportElement mode="Opaque" x="703" y="0" width="84" height="79" uuid="7544bca9-9e7f-4af0-a3e3-b6d0a01f3364"/>
 				</frame>
 				<staticText>
-					<reportElement x="102" y="0" width="615" height="79" forecolor="#FFFFFF" uuid="6d125684-5a23-47cb-b9fe-f80f1566a5ab"/>
+					<reportElement x="102" y="0" width="601" height="79" forecolor="#FFFFFF" uuid="6d125684-5a23-47cb-b9fe-f80f1566a5ab"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Tahoma" size="26" isBold="true"/>
 					</textElement>
@@ -39,7 +39,7 @@
 					<imageExpression><![CDATA["imagenes\\condominio1 (2).png"]]></imageExpression>
 				</image>
 				<image hAlign="Center" vAlign="Middle">
-					<reportElement mode="Transparent" x="718" y="0" width="84" height="79" uuid="c3d33eb0-a53f-48e3-8cac-a6f6e0400089"/>
+					<reportElement mode="Transparent" x="703" y="0" width="84" height="79" uuid="c3d33eb0-a53f-48e3-8cac-a6f6e0400089"/>
 					<imageExpression><![CDATA["imagenes\\boton-cuadrado-de-la-llave-de-la-casa.png"]]></imageExpression>
 				</image>
 			</frame>
@@ -103,7 +103,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="42" splitType="Stretch">
+		<band height="41" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="118" height="40" uuid="17f1413a-b54b-4381-a05c-07f767bf2b18"/>
 				<textElement verticalAlignment="Middle">
@@ -113,7 +113,7 @@
 				<textFieldExpression><![CDATA[$F{ci_persona}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="118" y="0" width="194" height="40" uuid="bdc0b026-848e-478a-8480-0217fcbc9d59"/>
+				<reportElement x="118" y="0" width="95" height="40" uuid="bdc0b026-848e-478a-8480-0217fcbc9d59"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="12"/>
 					<paragraph leftIndent="10" rightIndent="5"/>
@@ -121,7 +121,7 @@
 				<textFieldExpression><![CDATA[$F{p_nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="312" y="0" width="199" height="40" uuid="0a32f473-225f-43a6-bb54-3b1fa9367f92"/>
+				<reportElement x="312" y="0" width="99" height="40" uuid="0a32f473-225f-43a6-bb54-3b1fa9367f92"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="12"/>
 					<paragraph leftIndent="10" rightIndent="5"/>
@@ -151,26 +151,34 @@
 				<reportElement x="0" y="0" width="1" height="41" forecolor="#00369F" backcolor="#00369F" uuid="20055929-5146-4839-b79a-31da982db5a6"/>
 			</line>
 			<line>
-				<reportElement x="119" y="0" width="1" height="40" forecolor="#00369F" backcolor="#00369F" uuid="67885a30-fe66-4dca-bb89-a62b7ce1a803"/>
+				<reportElement x="117" y="0" width="1" height="40" forecolor="#00369F" backcolor="#00369F" uuid="67885a30-fe66-4dca-bb89-a62b7ce1a803"/>
 			</line>
 			<line>
 				<reportElement x="311" y="0" width="1" height="40" forecolor="#00369F" backcolor="#00369F" uuid="ec433d57-b37f-4647-bebe-ebb702d4989f"/>
 			</line>
 			<line>
-				<reportElement x="802" y="1" width="1" height="40" forecolor="#00369F" backcolor="#00369F" uuid="8f245b72-d586-4473-b6fb-09376ba87375"/>
+				<reportElement x="801" y="1" width="1" height="40" forecolor="#00369F" backcolor="#00369F" uuid="8f245b72-d586-4473-b6fb-09376ba87375"/>
 			</line>
 			<line>
 				<reportElement x="701" y="0" width="1" height="40" forecolor="#00369F" backcolor="#00369F" uuid="7c8eb207-e1e7-4272-a282-b9cef6c31ca3"/>
 			</line>
 			<line>
-				<reportElement x="512" y="0" width="1" height="40" forecolor="#00369F" backcolor="#00369F" uuid="f1ae58db-6515-4884-9fa1-5ff3b30b099e"/>
+				<reportElement x="511" y="1" width="1" height="40" forecolor="#00369F" backcolor="#00369F" uuid="f1ae58db-6515-4884-9fa1-5ff3b30b099e"/>
 			</line>
 			<textField>
-				<reportElement x="216" y="22" width="100" height="20" uuid="92cee702-ac98-463e-9353-14fac2ae3e97"/>
+				<reportElement x="213" y="0" width="100" height="41" uuid="92cee702-ac98-463e-9353-14fac2ae3e97"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="12"/>
+					<paragraph leftIndent="10" rightIndent="5"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{s_nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="429" y="16" width="100" height="20" uuid="8291c843-42ce-4a75-a546-b44424ec09a4"/>
+				<reportElement x="411" y="0" width="101" height="41" uuid="8291c843-42ce-4a75-a546-b44424ec09a4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="12"/>
+					<paragraph leftIndent="10" rightIndent="5"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{s_apellido}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -182,7 +190,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
 				<reportElement x="762" y="25" width="40" height="20" uuid="de51d56a-d33c-4f4d-a380-98682a3c074f"/>

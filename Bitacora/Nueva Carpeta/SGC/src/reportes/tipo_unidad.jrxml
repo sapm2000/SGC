@@ -17,37 +17,106 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="79" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="79" backcolor="#00369F" uuid="391052eb-a72a-4d0f-b428-c53dd5d7eabf"/>
+				<staticText>
+					<reportElement x="102" y="0" width="356" height="79" forecolor="#FFFFFF" uuid="d84f5437-9e5b-4e9b-a0d7-fae6521bf947"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="26" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Listado de Tipo de Unidad]]></text>
+				</staticText>
+				<image hAlign="Center">
+					<reportElement x="0" y="0" width="102" height="79" uuid="d4eee0ce-9a45-4e42-9e2e-b4047cea9d68"/>
+					<imageExpression><![CDATA["imagenes\\condominio1 (2).png"]]></imageExpression>
+				</image>
+				<frame>
+					<reportElement mode="Opaque" x="458" y="0" width="84" height="79" forecolor="#FFFFFF" uuid="d6310e5d-5bd6-4568-a0b5-3ce84c3b0c05"/>
+				</frame>
+				<image hAlign="Center" vAlign="Middle">
+					<reportElement x="458" y="0" width="84" height="79" forecolor="#FFFFFF" uuid="8104bd36-8558-43a0-9b5d-59d53b1fe241"/>
+					<imageExpression><![CDATA["imagenes\\pattern (1) (2).png"]]></imageExpression>
+				</image>
+			</frame>
+		</band>
 	</title>
 	<pageHeader>
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch">
+		<band height="35" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="102" y="0" width="369" height="35" backcolor="#00369F" uuid="c35cca49-7598-4414-b414-bb9bb514222c"/>
+				<line>
+					<reportElement x="243" y="0" width="1" height="35" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="80ecfe0f-3d6b-4d8f-861b-4f23bd1f94dd"/>
+				</line>
+			</frame>
 			<staticText>
-				<reportElement x="118" y="2" width="100" height="20" uuid="b26a749f-665d-406c-af35-94b48e6e699b"/>
-				<text><![CDATA[tipo]]></text>
+				<reportElement x="102" y="0" width="243" height="35" forecolor="#FFFFFF" uuid="b26a749f-665d-406c-af35-94b48e6e699b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo / Nombre del Tipo de Unidad]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="356" y="2" width="100" height="20" uuid="d1f0b5f4-1883-4ce1-b94e-03629c1f4e64"/>
-				<text><![CDATA[area]]></text>
+				<reportElement x="345" y="0" width="126" height="35" forecolor="#FFFFFF" uuid="d1f0b5f4-1883-4ce1-b94e-03629c1f4e64"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Área]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="45" splitType="Stretch">
 			<textField>
-				<reportElement x="118" y="31" width="100" height="20" uuid="ada1a966-ae27-4b27-a492-851c54c025e3"/>
+				<reportElement x="103" y="0" width="243" height="45" uuid="ada1a966-ae27-4b27-a492-851c54c025e3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="12"/>
+					<paragraph leftIndent="10" rightIndent="5"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="356" y="47" width="100" height="20" uuid="b2dd80bb-997e-4c66-a69a-c1341d95cb42"/>
+				<reportElement x="346" y="0" width="126" height="45" uuid="b2dd80bb-997e-4c66-a69a-c1341d95cb42"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="12"/>
+					<paragraph leftIndent="10" rightIndent="5"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{area}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="102" y="0" width="1" height="44" forecolor="#00369F" backcolor="#00369F" uuid="b83b8e48-e2c9-42f8-b792-7b6f085f4ec4"/>
+			</line>
+			<line>
+				<reportElement x="470" y="0" width="1" height="44" forecolor="#00369F" backcolor="#00369F" uuid="934caffc-d00a-456e-bf64-7964d7f238c2"/>
+			</line>
+			<line>
+				<reportElement x="102" y="44" width="369" height="1" forecolor="#00369F" backcolor="#00369F" uuid="93d54216-07c0-4749-94ee-d306751eb338"/>
+			</line>
+			<line>
+				<reportElement x="346" y="0" width="1" height="44" forecolor="#00369F" backcolor="#00369F" uuid="8f62e774-7e66-402f-869b-f33f6c27bb62"/>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="435" y="25" width="80" height="20" uuid="6e8d07c7-93b9-4b35-b11c-14c621ca6a1a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="25" width="40" height="20" uuid="297a94fe-3fb0-469f-b710-ceca481f4b4e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch"/>
