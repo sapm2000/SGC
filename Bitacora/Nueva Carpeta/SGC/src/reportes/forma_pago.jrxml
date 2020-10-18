@@ -23,8 +23,11 @@
 					<reportElement x="20" y="0" width="82" height="79" uuid="e56264dc-086d-4b41-bff3-03cef91f97b1"/>
 					<imageExpression><![CDATA["imagenes\\condominio1 (2).png"]]></imageExpression>
 				</image>
+				<frame>
+					<reportElement mode="Opaque" x="484" y="10" width="60" height="59" uuid="540c510f-0f1f-476c-9bbe-924b55ee9c22"/>
+				</frame>
 				<image hAlign="Center" vAlign="Middle">
-					<reportElement x="485" y="13" width="58" height="51" uuid="2219f955-5fb0-4653-ba44-ec29b7a60b36"/>
+					<reportElement x="485" y="10" width="59" height="59" uuid="2219f955-5fb0-4653-ba44-ec29b7a60b36"/>
 					<imageExpression><![CDATA["imagenes\\pattern (2) (1) (1).png"]]></imageExpression>
 				</image>
 				<staticText>
@@ -82,7 +85,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Tahoma" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
 				<reportElement x="514" y="25" width="40" height="20" uuid="476527dd-f308-4e30-8e9c-2765158bfdb0"/>

@@ -20,15 +20,15 @@
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="555" height="79" backcolor="#00369F" uuid="1dbef3c3-8e25-44bd-b53d-f9f8fd2a6466"/>
 				<image hAlign="Center" vAlign="Middle">
-					<reportElement x="20" y="0" width="82" height="79" uuid="825e5851-d729-4045-aeda-a8ddf222e414"/>
+					<reportElement x="14" y="0" width="82" height="79" uuid="825e5851-d729-4045-aeda-a8ddf222e414"/>
 					<imageExpression><![CDATA["imagenes\\condominio1 (2).png"]]></imageExpression>
 				</image>
 				<image hAlign="Center" vAlign="Middle">
-					<reportElement x="472" y="14" width="57" height="51" uuid="ff3eff16-cda6-477a-9679-609e018c0f4b"/>
+					<reportElement x="474" y="10" width="79" height="58" uuid="ff3eff16-cda6-477a-9679-609e018c0f4b"/>
 					<imageExpression><![CDATA["imagenes\\banco.png"]]></imageExpression>
 				</image>
 				<staticText>
-					<reportElement x="102" y="0" width="370" height="79" forecolor="#FFFFFF" uuid="0ad910ec-5c9b-467c-bc7d-2cf865ec73f1"/>
+					<reportElement x="96" y="0" width="376" height="79" forecolor="#FFFFFF" uuid="0ad910ec-5c9b-467c-bc7d-2cf865ec73f1"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Tahoma" size="26" isBold="true"/>
 					</textElement>

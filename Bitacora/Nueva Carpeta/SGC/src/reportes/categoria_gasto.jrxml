@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="categoria_gasto" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="34493938-1f5d-472f-8b15-f4862f016022">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="0.8264462809917371"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="categoria" class="java.lang.String">
@@ -20,15 +20,18 @@
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="555" height="79" backcolor="#00369F" uuid="57c54453-b055-418f-971d-436b08924e63"/>
 				<image hAlign="Center" vAlign="Middle">
-					<reportElement x="20" y="0" width="82" height="79" uuid="d14f2ba9-2635-4b62-aef2-916d1dfe4704"/>
+					<reportElement x="12" y="0" width="82" height="79" uuid="d14f2ba9-2635-4b62-aef2-916d1dfe4704"/>
 					<imageExpression><![CDATA["imagenes\\condominio1 (2).png"]]></imageExpression>
 				</image>
+				<frame>
+					<reportElement mode="Opaque" x="485" y="10" width="58" height="59" uuid="1e2040f1-7011-4380-916a-368505e7be7a"/>
+				</frame>
 				<image hAlign="Center" vAlign="Middle">
-					<reportElement x="485" y="11" width="57" height="51" uuid="58027cab-bdd7-4238-ab5f-a7482f8ad0c2"/>
+					<reportElement x="485" y="0" width="58" height="79" uuid="58027cab-bdd7-4238-ab5f-a7482f8ad0c2"/>
 					<imageExpression><![CDATA["imagenes\\gastos.png"]]></imageExpression>
 				</image>
 				<staticText>
-					<reportElement x="102" y="0" width="383" height="79" forecolor="#FFFFFF" uuid="a198a522-e9d6-41c5-84a2-19d647a266ea"/>
+					<reportElement x="94" y="0" width="391" height="79" forecolor="#FFFFFF" uuid="a198a522-e9d6-41c5-84a2-19d647a266ea"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Tahoma" size="26" isBold="true"/>
 					</textElement>
@@ -41,22 +44,22 @@
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="42" splitType="Stretch">
+		<band height="40" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="20" y="2" width="512" height="40" backcolor="#00369F" uuid="b893dcb6-6282-48c8-a8b3-2ea5b5dd9d1a"/>
+				<reportElement mode="Opaque" x="21" y="0" width="512" height="40" backcolor="#00369F" uuid="b893dcb6-6282-48c8-a8b3-2ea5b5dd9d1a"/>
 			</frame>
 			<line>
-				<reportElement x="252" y="2" width="1" height="40" forecolor="#FFFFFF" uuid="3bcfe497-9d4c-45ea-8079-120ff9f989f0"/>
+				<reportElement x="251" y="0" width="1" height="40" forecolor="#FFFFFF" uuid="3bcfe497-9d4c-45ea-8079-120ff9f989f0"/>
 			</line>
 			<staticText>
-				<reportElement x="20" y="2" width="231" height="40" forecolor="#FFFFFF" uuid="8502f48b-6a9d-4e31-bee1-5e3f4a0f50ed"/>
+				<reportElement x="20" y="0" width="231" height="40" forecolor="#FFFFFF" uuid="8502f48b-6a9d-4e31-bee1-5e3f4a0f50ed"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Categoría Gasto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="251" y="2" width="281" height="40" forecolor="#FFFFFF" uuid="4de6f4fa-a0ca-4f66-b6c1-51ed7743b676"/>
+				<reportElement x="251" y="0" width="281" height="40" forecolor="#FFFFFF" uuid="4de6f4fa-a0ca-4f66-b6c1-51ed7743b676"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="14" isBold="true"/>
 				</textElement>

@@ -29,7 +29,7 @@
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="802" height="79" backcolor="#00369F" uuid="ccbdc8d6-fafa-4140-a5e5-937f65374f19"/>
 				<staticText>
-					<reportElement x="102" y="0" width="619" height="79" forecolor="#FFFFFF" uuid="db0e5bcf-4872-490d-9ff3-e54b89a218c0"/>
+					<reportElement x="102" y="0" width="601" height="79" forecolor="#FFFFFF" uuid="db0e5bcf-4872-490d-9ff3-e54b89a218c0"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Tahoma" size="26" isBold="true"/>
 					</textElement>
@@ -39,9 +39,12 @@
 					<reportElement x="0" y="0" width="102" height="79" uuid="c9cc90a7-861e-4c74-b84c-a6ab1c43b3d3"/>
 					<imageExpression><![CDATA["imagenes\\condominio1 (2).png"]]></imageExpression>
 				</image>
+				<frame>
+					<reportElement mode="Opaque" x="703" y="0" width="82" height="79" uuid="166e05cb-97cb-4c47-97ee-4a6f80bd04c7"/>
+				</frame>
 				<image hAlign="Center" vAlign="Middle">
-					<reportElement x="722" y="0" width="80" height="79" uuid="aa544216-0204-41ce-8fd5-ab293883fc45"/>
-					<imageExpression><![CDATA["imagenes\\pattern (1) (2).png"]]></imageExpression>
+					<reportElement x="703" y="0" width="82" height="79" uuid="aa544216-0204-41ce-8fd5-ab293883fc45"/>
+					<imageExpression><![CDATA["imagenes\\casa.png"]]></imageExpression>
 				</image>
 			</frame>
 		</band>

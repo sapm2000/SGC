@@ -23,8 +23,11 @@
 					<reportElement x="20" y="0" width="82" height="79" uuid="12afc15d-a5e9-4a10-8c4a-8b333e193112"/>
 					<imageExpression><![CDATA["imagenes\\condominio1 (2).png"]]></imageExpression>
 				</image>
+				<frame>
+					<reportElement mode="Opaque" x="485" y="10" width="61" height="59" uuid="501c9ff4-e5cc-45b9-baea-99744d966b45"/>
+				</frame>
 				<image hAlign="Center" vAlign="Middle">
-					<reportElement x="485" y="13" width="58" height="51" uuid="0f12806e-9d7d-4a09-be60-69935f557868"/>
+					<reportElement x="485" y="10" width="61" height="59" uuid="0f12806e-9d7d-4a09-be60-69935f557868"/>
 					<imageExpression><![CDATA["imagenes\\caro.png"]]></imageExpression>
 				</image>
 				<staticText>
@@ -120,14 +123,14 @@
 	<columnFooter>
 		<band height="45" splitType="Stretch">
 			<textField>
-				<reportElement x="433" y="25" width="80" height="20" uuid="6a3c39ef-5b58-4a9a-88ca-233e9a90f92a"/>
+				<reportElement x="434" y="25" width="80" height="20" uuid="6a3c39ef-5b58-4a9a-88ca-233e9a90f92a"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Tahoma" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="513" y="25" width="40" height="20" uuid="e62fd938-d614-46be-99ef-dc1e22b051ea"/>
+				<reportElement x="514" y="25" width="40" height="20" uuid="e62fd938-d614-46be-99ef-dc1e22b051ea"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" isBold="true"/>
 				</textElement>
