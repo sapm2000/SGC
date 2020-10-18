@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sancion" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d27cb35f-ed73-4fe7-baad-1766d966585f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="sancion" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT sancion.id, tipo, mes, anio, monto, descripcion, count(id_sancion) as total, estado, moneda FROM sancion inner join puente_sancion_unidad on puente_sancion_unidad.id_sancion=sancion.id inner join unidad on puente_sancion_unidad.id_unidad=unidad.id  where tipo like '%$P!{sancion}%' or cast (sancion.id as varchar) like '%$P!{sancion}%' or cast (mes as varchar) like '%$P!{sancion}%' or cast(anio as varchar) like '%$P!{sancion}%' or cast (monto as varchar) like '%$P!{sancion}%' or descripcion like '%$P!{sancion}%' or estado like '%$P!{sancion}%' or moneda like '%$P!{sancion}%' group by sancion.id]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="tipo" class="java.lang.String"/>
+	<field name="mes" class="java.lang.Long"/>
+	<field name="anio" class="java.lang.Long"/>
+	<field name="monto" class="java.lang.Double"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<field name="total" class="java.lang.Long"/>
+	<field name="estado" class="java.lang.String"/>
+	<field name="moneda" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="27" y="2" width="100" height="20" uuid="3768945e-31b5-4576-a0bf-de6b0b1e6667"/>
+				<text><![CDATA[id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="161" y="2" width="100" height="20" uuid="08c94e66-5e67-46c0-a3bb-bef81c8bf7ca"/>
+				<text><![CDATA[tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="76" y="2" width="100" height="20" uuid="9c8794ba-89f8-4ec5-b28c-6e2770e1ade5"/>
+				<text><![CDATA[mes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="226" y="2" width="100" height="20" uuid="f9f403bd-0c21-47de-b5cf-4ffa09844f40"/>
+				<text><![CDATA[anio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="257" y="2" width="100" height="20" uuid="e744e1cd-6f42-4535-a14a-26f0c78c051d"/>
+				<text><![CDATA[monto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="325" y="2" width="100" height="20" uuid="ccfdc82b-e41a-4316-9f6d-2728fc357116"/>
+				<text><![CDATA[descripcion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="428" y="2" width="100" height="20" uuid="514138e7-42d6-4642-b3e3-616bbbd687b9"/>
+				<text><![CDATA[estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="482" y="2" width="100" height="20" uuid="f2d7c2b7-8d32-4969-a625-990a63674b77"/>
+				<text><![CDATA[moneda]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="27" y="23" width="100" height="20" uuid="eec69c7e-aef3-4980-b11e-41a54c01c438"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="161" y="41" width="100" height="20" uuid="f53e7c29-d704-4a00-8686-0805fdfde3fc"/>
+				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="76" y="78" width="100" height="20" uuid="afa3db47-954a-4b1f-941a-6b6f3bbaabcb"/>
+				<textFieldExpression><![CDATA[$F{mes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="226" y="87" width="100" height="20" uuid="9e261165-8b05-4cdd-8e26-b894f96f4c7a"/>
+				<textFieldExpression><![CDATA[$F{anio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="257" y="16" width="100" height="20" uuid="083d012a-a620-40c2-a38e-63dc9d5b3e82"/>
+				<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="325" y="66" width="100" height="20" uuid="24ea53b3-ef80-4abc-b7b9-e05442049730"/>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="428" y="58" width="100" height="20" uuid="f4788ecc-cdf6-4f54-ada1-c7e66ff71835"/>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="482" y="101" width="100" height="20" uuid="f49c320d-c7a9-4efa-8a20-20302703b453"/>
+				<textFieldExpression><![CDATA[$F{moneda}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
