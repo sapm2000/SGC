@@ -8,7 +8,7 @@
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT nombre, descripcion, fecha, count(nombre) as asistente
-FROM asambleas inner join puente_asambleas_propietario ON puente_asambleas_propietario.id_asamblea = asambleas.id where nombre like '%$P!{asambleas}%' or descripcion like '%$P!{asambleas}%' or cast(fecha as varchar) like '%$P!{asambleas}%'   group by nombre, descripcion, fecha]]>
+FROM asambleas inner join puente_asambleas_propietario ON puente_asambleas_propietario.id_asamblea = asambleas.id where nombre like '%$P!{asambleas}%' or descripcion like '%$P!{asambleas}%' or cast(fecha as varchar) like '%$P!{asambleas}%'   group by nombre, descripcion, fecha having cast(count(nombre) as varchar) like '%$P!{asambleas}%']]>
 	</queryString>
 	<field name="nombre" class="java.lang.String"/>
 	<field name="descripcion" class="java.lang.String"/>

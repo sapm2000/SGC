@@ -13,8 +13,13 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import static javax.swing.BorderFactory.createLineBorder;
 import javax.swing.Icon;
@@ -25,16 +30,24 @@ import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.CerrarMes;
+import modelo.ConexionBD;
 import modelo.Gasto;
 
 import modelo.Interes;
 import modelo.Sancion;
 import modelo.Unidad;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import vista.Catalogo;
 import vista.PantallaPrincipal;
 import vista.VisCerrarMes;
@@ -84,6 +97,7 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
         vista.btnSalir.addActionListener(this);
         catalogo.btnNuevo.addActionListener(this);
         catalogo.txtBuscar.addKeyListener(this);
+        catalogo.reportes.addActionListener(this);
 
     }
 
@@ -137,6 +151,34 @@ public class CtrlCerrarMes extends JComboBox implements ActionListener, KeyListe
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        if (e.getSource() == catalogo.reportes) {
+
+            try {
+                ConexionBD con = new ConexionBD();
+                Connection conn = con.getConexion();
+
+                JasperReport reporte = null;
+                String path = "src\\reportes\\cerrar.jasper";
+
+                String x = catalogo.txtBuscar.getText();
+
+                Map parametros = new HashMap();
+                parametros.put("cerrar", x);
+
+                reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+
+                JasperPrint jprint = JasperFillManager.fillReport(path, parametros, conn);
+
+                JasperViewer view = new JasperViewer(jprint, false);
+
+                view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+                view.setVisible(true);
+            } catch (JRException ex) {
+                Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
         if (e.getSource() == catalogo.btnNuevo) {
             CtrlVentana.cambiarVista(vista);
