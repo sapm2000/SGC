@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="asambleas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c25169ba-91de-44c8-9e27-f1de3d50d2bd">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="asambleas" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT nombre, descripcion, fecha, count(nombre) as asistente
+FROM asambleas inner join puente_asambleas_propietario ON puente_asambleas_propietario.id_asamblea = asambleas.id group by nombre, descripcion, fecha having cast(count(nombre) as varchar) like '%$P!{asambleas}%'  or nombre like '%$P!{asambleas}%' or descripcion like '%$P!{asambleas}%' or cast(fecha as varchar) like '%$P!{asambleas}%']]>
+	</queryString>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<field name="asistente" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="51" y="2" width="100" height="20" uuid="359eab57-342d-4032-87c4-46941adb412d"/>
+				<text><![CDATA[nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="218" y="2" width="100" height="20" uuid="4fee0c64-8a5a-4d04-85ca-aa5b38e04860"/>
+				<text><![CDATA[descripcion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="347" y="2" width="100" height="20" uuid="4e57f416-d4a1-4c66-9c7c-e27fba5d3479"/>
+				<text><![CDATA[fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="494" y="2" width="100" height="20" uuid="b8f49a9f-ae06-4e05-80a4-293627130446"/>
+				<text><![CDATA[asistente]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="51" y="59" width="100" height="20" uuid="17de6101-d599-4584-87dc-72bcc954a2f2"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="218" y="62" width="100" height="20" uuid="d018a87d-a209-4c98-b573-b9a9fbecdcb6"/>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="347" y="59" width="100" height="20" uuid="342e5399-2866-4c43-a312-2d9b0d7c8e8d"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="494" y="60" width="100" height="20" uuid="db7a042c-e864-4896-a16f-06ed7767c1bb"/>
+				<textFieldExpression><![CDATA[$F{asistente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
