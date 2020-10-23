@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cerrar" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1722f09a-acc7-488e-a3de-fd92f3370202">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cerrar" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT unidad.n_unidad, recibo.mes, recibo.anio, ROUND(sum(recibo.monto_dolar::numeric),2) as montod, ROUND(sum(recibo.monto_bolivar::numeric),2) montos FROM public.recibo inner join unidad on recibo.id_unidad=unidad.id group by unidad.n_unidad, recibo.mes, recibo.anio  having cast(ROUND(sum(recibo.monto_dolar::numeric),2) as varchar) like '%$P!{cerrar}%' or cast(ROUND(sum(recibo.monto_bolivar::numeric),2) as varchar) like '%$P!{cerrar}%' or n_unidad like '%$P!{cerrar}%' or cast(mes as varchar) like '%$P!{cerrar}%' or cast(anio as varchar) like '%$P!{cerrar}%' order by recibo.anio, recibo.mes]]>
+	</queryString>
+	<field name="n_unidad" class="java.lang.String"/>
+	<field name="mes" class="java.lang.Integer"/>
+	<field name="anio" class="java.lang.Integer"/>
+	<field name="montod" class="java.math.BigDecimal"/>
+	<field name="montos" class="java.math.BigDecimal"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -10,10 +24,52 @@
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="23" y="2" width="100" height="20" uuid="c7bb888d-328d-4d89-97a4-4aedb4b1dab5"/>
+				<text><![CDATA[n_unidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="2" width="100" height="20" uuid="86ab838c-a493-4c9e-a5ce-04a9ca92cfea"/>
+				<text><![CDATA[mes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="263" y="2" width="100" height="20" uuid="351fc995-2a15-463b-8d80-2672279ea9eb"/>
+				<text><![CDATA[anio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="383" y="2" width="100" height="20" uuid="a892234c-6d5d-4ac5-8485-cca46c4679ef"/>
+				<text><![CDATA[montod]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="483" y="2" width="100" height="20" uuid="809a22e8-46c1-4e49-9978-24909656be10"/>
+				<text><![CDATA[montos]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="23" y="36" width="100" height="20" uuid="f2f120e5-9993-4f94-a59a-50eaf215ab66"/>
+				<textFieldExpression><![CDATA[$F{n_unidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="46" width="100" height="20" uuid="00ea77b9-5504-4751-a65a-c956894c1355"/>
+				<textFieldExpression><![CDATA[$F{mes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="53" width="100" height="20" uuid="1ad1b2a5-f8da-4eb8-8021-ce6e48d205d1"/>
+				<textFieldExpression><![CDATA[$F{anio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="383" y="55" width="100" height="20" uuid="922f8e8e-cb6c-4990-9fe3-a8f805a69e85"/>
+				<textFieldExpression><![CDATA[$F{montod}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="483" y="53" width="100" height="20" uuid="258008d8-a279-4a6e-ba1b-f6b25c76f7dd"/>
+				<textFieldExpression><![CDATA[$F{montos}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>
