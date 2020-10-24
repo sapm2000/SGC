@@ -15,7 +15,12 @@ import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import static java.lang.String.valueOf;
+import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import static javax.swing.BorderFactory.createLineBorder;
 import javax.swing.Icon;
@@ -26,6 +31,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -33,11 +39,19 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableRowSorter;
 import modelo.CerrarMes;
+import modelo.ConexionBD;
 import modelo.Cuenta;
 import modelo.CuentasPorCobrar;
 import modelo.Fondo;
 import modelo.FormaPago;
 import modelo.Unidad;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import vista.Catalogo;
 import vista.VisCuentaPorCobrar;
 
 /**
@@ -635,6 +649,28 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
                                                                     }
                                                                 }
+                                                                try {
+                                                                    ConexionBD con = new ConexionBD();
+                                                                    Connection conn = con.getConexion();
+
+                                                                    JasperReport reporte = null;
+                                                                    String path = "src\\reportes\\mes_pago.jasper";
+
+                                                                    Map parametros = new HashMap();
+                                                                    parametros.put("n_unidad", vista.jComboUnidad.getSelectedItem().toString());
+
+                                                                    reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+
+                                                                    JasperPrint jprint = JasperFillManager.fillReport(path, parametros, conn);
+
+                                                                    JasperViewer view = new JasperViewer(jprint, false);
+
+                                                                    view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+                                                                    view.setVisible(true);
+                                                                } catch (JRException ex) {
+                                                                    Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+                                                                }
                                                             }
 
                                                             if ((vista.jTable1.getValueAt(i, 6).equals("DÓLAR"))) {//si el recibo la moneda dominante es en dolar
@@ -665,6 +701,28 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
 
                                                                     }
                                                                 }
+                                                                try {
+                                                                    ConexionBD con = new ConexionBD();
+                                                                    Connection conn = con.getConexion();
+
+                                                                    JasperReport reporte = null;
+                                                                    String path = "src\\reportes\\mes_pago.jasper";
+
+                                                                    Map parametros = new HashMap();
+                                                                    parametros.put("n_unidad", vista.jComboUnidad.getSelectedItem().toString());
+
+                                                                    reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+
+                                                                    JasperPrint jprint = JasperFillManager.fillReport(path, parametros, conn);
+
+                                                                    JasperViewer view = new JasperViewer(jprint, false);
+
+                                                                    view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+                                                                    view.setVisible(true);
+                                                                } catch (JRException ex) {
+                                                                    Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
+                                                                }
 
                                                             }
 
@@ -694,7 +752,31 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                                                         if (montototal != 0) {
                                                                             modcuen.guardarpuentepagos(modcuen);//guardamos el detalle del pago del gasto en especifico
                                                                         }
+
                                                                     }
+                                                                }
+
+                                                                try {
+                                                                    ConexionBD con = new ConexionBD();
+                                                                    Connection conn = con.getConexion();
+
+                                                                    JasperReport reporte = null;
+                                                                    String path = "src\\reportes\\mes_pago.jasper";
+
+                                                                    Map parametros = new HashMap();
+                                                                    parametros.put("n_unidad", vista.jComboUnidad.getSelectedItem().toString());
+
+                                                                    reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+
+                                                                    JasperPrint jprint = JasperFillManager.fillReport(path, parametros, conn);
+
+                                                                    JasperViewer view = new JasperViewer(jprint, false);
+
+                                                                    view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+                                                                    view.setVisible(true);
+                                                                } catch (JRException ex) {
+                                                                    Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
                                                                 }
                                                             }
                                                             if ((vista.jTable1.getValueAt(i, 6).equals("BOLÍVAR"))) {//si el recibo la moneda dominante es en bs
@@ -722,6 +804,28 @@ public class CtrlCuentaPorCobrar implements ActionListener, ItemListener, KeyLis
                                                                         }
 
                                                                     }
+                                                                }
+                                                                try {
+                                                                    ConexionBD con = new ConexionBD();
+                                                                    Connection conn = con.getConexion();
+
+                                                                    JasperReport reporte = null;
+                                                                    String path = "src\\reportes\\mes_pago.jasper";
+
+                                                                    Map parametros = new HashMap();
+                                                                    parametros.put("n_unidad", vista.jComboUnidad.getSelectedItem().toString());
+
+                                                                    reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+
+                                                                    JasperPrint jprint = JasperFillManager.fillReport(path, parametros, conn);
+
+                                                                    JasperViewer view = new JasperViewer(jprint, false);
+
+                                                                    view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+                                                                    view.setVisible(true);
+                                                                } catch (JRException ex) {
+                                                                    Logger.getLogger(Catalogo.class.getName()).log(Level.SEVERE, null, ex);
                                                                 }
                                                             }
                                                         }
