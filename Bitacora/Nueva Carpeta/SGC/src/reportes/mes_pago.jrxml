@@ -21,10 +21,10 @@
 	<title>
 		<band height="139" splitType="Stretch">
 			<subreport>
-				<reportElement x="0" y="0" width="555" height="139" uuid="cb5df976-cb4b-46d7-b64b-baad8a793d52"/>
+				<reportElement x="0" y="0" width="555" height="139" uuid="d7c76db0-a3a6-490b-95e4-e0ee0cd9cf60"/>
 				<subreportParameter name="n_unidad"/>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "recibo_unidad.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["recibo_unidad.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</title>
