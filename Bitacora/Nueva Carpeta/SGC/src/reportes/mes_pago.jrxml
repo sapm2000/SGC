@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mes_pago" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aa4f2d67-4164-4d96-abe3-68957ef2d616">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\rma\\Documents\\NetBeansProjects\\SGC\\Bitacora\\Nueva Carpeta\\SGC\\src\\reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT mes, anio,sum(monto_bolivar),sum(monto_bolivar/400000), sum(saldo_restante_bolivar) as b,sum(saldo_restante_bolivar/400000) as d, moneda_dominante FROM recibo inner join puente_cobro_factura on puente_cobro_factura.id_recibo = recibo.id inner join cobro_unidad ON cobro_unidad.id = puente_cobro_factura.id_cobro where  cobro_unidad.id=(SELECT max(id) FROM cobro_unidad)  group by mes, anio, moneda_dominante having sum(saldo_restante_bolivar)>0;]]>
+	</queryString>
+	<field name="mes" class="java.lang.Integer"/>
+	<field name="anio" class="java.lang.Integer"/>
+	<field name="sum" class="java.lang.Double"/>
+	<field name="b" class="java.lang.Double"/>
+	<field name="d" class="java.lang.Double"/>
+	<field name="moneda_dominante" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="139" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="139" uuid="cb5df976-cb4b-46d7-b64b-baad8a793d52"/>
+				<subreportParameter name="n_unidad"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "recibo_unidad.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="37" width="100" height="20" uuid="ca1c3d58-1cf0-4039-9f5d-dad864cde252"/>
+				<textFieldExpression><![CDATA[$F{mes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="246" y="50" width="100" height="20" uuid="9f5c5767-fe52-461e-a8e3-31cc592cba63"/>
+				<textFieldExpression><![CDATA[$F{anio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="214" y="90" width="100" height="20" uuid="f5c160da-9bfd-470c-a0d7-377b97b4001a"/>
+				<textFieldExpression><![CDATA[$F{sum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="472" y="77" width="100" height="20" uuid="30a14d2c-fe48-46c5-906a-1e571ce05e11"/>
+				<textFieldExpression><![CDATA[$F{b}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="461" y="11" width="100" height="20" uuid="7b4a97f2-b53a-47b2-a8f9-afaec7752d7c"/>
+				<textFieldExpression><![CDATA[$F{d}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="18" width="100" height="20" uuid="b01b6ac1-fa14-463b-9350-36c75fe7fa2a"/>
+				<textFieldExpression><![CDATA[$F{moneda_dominante}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
