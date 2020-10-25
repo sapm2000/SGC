@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mes_pago" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aa4f2d67-4164-4d96-abe3-68957ef2d616">
-	<property name="ireport.zoom" value="1.0"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mes_pago" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aa4f2d67-4164-4d96-abe3-68957ef2d616">
+	<property name="ireport.zoom" value="0.9090909090909101"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\Users\\rma\\Documents\\NetBeansProjects\\SGC\\Bitacora\\Nueva Carpeta\\SGC\\src\\reportes\\"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT mes, anio,sum(monto_bolivar),sum(monto_bolivar/400000), sum(saldo_restante_bolivar) as b,sum(saldo_restante_bolivar/400000) as d, moneda_dominante FROM recibo inner join puente_cobro_factura on puente_cobro_factura.id_recibo = recibo.id inner join cobro_unidad ON cobro_unidad.id = puente_cobro_factura.id_cobro where  cobro_unidad.id=(SELECT max(id) FROM cobro_unidad)  group by mes, anio, moneda_dominante having sum(saldo_restante_bolivar)>0;]]>
+		<![CDATA[SELECT mes, anio,sum(monto_bolivar)as montob,sum(monto_bolivar/400000) as montod, sum(saldo_restante_bolivar) as b,sum(saldo_restante_bolivar/400000) as d, moneda_dominante FROM recibo inner join puente_cobro_factura on puente_cobro_factura.id_recibo = recibo.id inner join cobro_unidad ON cobro_unidad.id = puente_cobro_factura.id_cobro where  cobro_unidad.id=(SELECT max(id) FROM cobro_unidad)  group by mes, anio, moneda_dominante having sum(saldo_restante_bolivar)>0;]]>
 	</queryString>
 	<field name="mes" class="java.lang.Integer"/>
 	<field name="anio" class="java.lang.Integer"/>
-	<field name="sum" class="java.lang.Double"/>
+	<field name="montob" class="java.lang.Double"/>
+	<field name="montod" class="java.lang.Double"/>
 	<field name="b" class="java.lang.Double"/>
 	<field name="d" class="java.lang.Double"/>
 	<field name="moneda_dominante" class="java.lang.String"/>
@@ -19,48 +20,193 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="139" splitType="Stretch">
+		<band height="39" splitType="Stretch">
 			<subreport>
-				<reportElement x="0" y="0" width="555" height="139" uuid="d7c76db0-a3a6-490b-95e4-e0ee0cd9cf60"/>
+				<reportElement x="-19" y="0" width="40" height="37" uuid="d7c76db0-a3a6-490b-95e4-e0ee0cd9cf60"/>
 				<subreportParameter name="n_unidad"/>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression><![CDATA["recibo_unidad.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</title>
-	<pageHeader>
-		<band height="35" splitType="Stretch"/>
-	</pageHeader>
+	<columnHeader>
+		<band height="37">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="37" backcolor="#00369F" uuid="f8484a75-20ed-4e30-ae83-63b7514007fa"/>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="37" forecolor="#FFFFFF" uuid="73022ef4-57f4-49f8-9bad-8bfc8191e9db"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ Mes a Cobrar]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="100" y="0" width="61" height="37" forecolor="#FFFFFF" uuid="41dc0d63-ff55-4c7d-ae34-10e20179001d"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Año]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="161" y="0" width="120" height="37" forecolor="#FFFFFF" uuid="8b2dc36f-dad0-4918-b63c-3efb63abc83a"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Monto en Dólares]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="281" y="0" width="142" height="37" forecolor="#FFFFFF" uuid="f19a9b7a-e8ba-4347-8876-584e82179606"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Monto en Bolívares]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="423" y="0" width="120" height="37" forecolor="#FFFFFF" uuid="89e3ea21-e81a-4f8b-96c1-c08dd0ace543"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Saldo Restante en Dólares]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="543" y="0" width="142" height="37" forecolor="#FFFFFF" uuid="3541c331-a6ce-4895-a7fa-6635bb02ab0f"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Saldo Restante en Bolívares]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="685" y="0" width="117" height="37" forecolor="#FFFFFF" uuid="81396e47-09b8-4b41-9aa1-bb5f6f6cf0a3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Moneda Dominante]]></text>
+				</staticText>
+				<line>
+					<reportElement x="161" y="0" width="1" height="37" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="15c708c1-cd52-47ca-add6-8e20e8790579"/>
+				</line>
+				<line>
+					<reportElement x="100" y="0" width="1" height="37" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="6f97bb3c-9f22-4900-a5a2-c922315f8544"/>
+				</line>
+				<line>
+					<reportElement x="281" y="0" width="1" height="37" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="e6e266e7-5901-4fdc-9c63-ae7ef3b07228"/>
+				</line>
+				<line>
+					<reportElement x="423" y="0" width="1" height="37" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="98f5b882-89e6-49d7-a3e6-6c580f1b241c"/>
+				</line>
+				<line>
+					<reportElement x="543" y="0" width="1" height="37" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="b27c8551-37da-43e5-954e-e44ad83c5790"/>
+				</line>
+				<line>
+					<reportElement x="684" y="0" width="1" height="37" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="21e6cdc6-7ea3-4620-9f0a-29eceaab9384"/>
+				</line>
+			</frame>
+		</band>
+	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="46" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="37" width="100" height="20" uuid="ca1c3d58-1cf0-4039-9f5d-dad864cde252"/>
+				<reportElement x="0" y="0" width="100" height="45" uuid="ca1c3d58-1cf0-4039-9f5d-dad864cde252"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="12" isBold="false"/>
+					<paragraph leftIndent="10" rightIndent="5"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{mes}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="246" y="50" width="100" height="20" uuid="9f5c5767-fe52-461e-a8e3-31cc592cba63"/>
+				<reportElement x="100" y="0" width="61" height="45" uuid="9f5c5767-fe52-461e-a8e3-31cc592cba63"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="12" isBold="false"/>
+					<paragraph leftIndent="10" rightIndent="5"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{anio}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="214" y="90" width="100" height="20" uuid="f5c160da-9bfd-470c-a0d7-377b97b4001a"/>
-				<textFieldExpression><![CDATA[$F{sum}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="472" y="77" width="100" height="20" uuid="30a14d2c-fe48-46c5-906a-1e571ce05e11"/>
+				<reportElement x="543" y="0" width="142" height="45" uuid="30a14d2c-fe48-46c5-906a-1e571ce05e11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="12" isBold="false"/>
+					<paragraph leftIndent="10" rightIndent="5"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{b}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="461" y="11" width="100" height="20" uuid="7b4a97f2-b53a-47b2-a8f9-afaec7752d7c"/>
+				<reportElement x="423" y="0" width="120" height="45" uuid="7b4a97f2-b53a-47b2-a8f9-afaec7752d7c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="12" isBold="false"/>
+					<paragraph leftIndent="10" rightIndent="5"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{d}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="240" y="18" width="100" height="20" uuid="b01b6ac1-fa14-463b-9350-36c75fe7fa2a"/>
+				<reportElement x="685" y="0" width="117" height="45" uuid="b01b6ac1-fa14-463b-9350-36c75fe7fa2a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="12" isBold="false"/>
+					<paragraph leftIndent="10" rightIndent="5"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{moneda_dominante}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="161" y="0" width="120" height="45" uuid="ce3bd697-6bd9-41d4-a5a6-a0501879a07f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="12"/>
+					<paragraph leftIndent="10" rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{montod}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="281" y="0" width="142" height="45" uuid="c24eca76-50d6-4769-8483-abe8de804c4b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="12"/>
+					<paragraph leftIndent="10" rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{montob}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="100" y="0" width="1" height="45" forecolor="#00369F" backcolor="#00369F" uuid="6eab4614-bac4-45d0-bd25-28115b1c2e1c"/>
+			</line>
+			<line>
+				<reportElement x="161" y="0" width="1" height="45" forecolor="#00369F" backcolor="#00369F" uuid="097c3e1d-ee95-4785-92f8-0cb80e0f9c61"/>
+			</line>
+			<line>
+				<reportElement x="281" y="0" width="1" height="45" forecolor="#00369F" backcolor="#00369F" uuid="83fa3282-2445-444a-a5ea-8068f7d9e21f"/>
+			</line>
+			<line>
+				<reportElement x="423" y="0" width="1" height="45" forecolor="#00369F" backcolor="#00369F" uuid="dec5277b-9b51-47af-a54a-70334769ffd5"/>
+			</line>
+			<line>
+				<reportElement x="543" y="0" width="1" height="45" forecolor="#00369F" backcolor="#00369F" uuid="59cd93a5-7a71-4665-bb20-bfd85b178310"/>
+			</line>
+			<line>
+				<reportElement x="684" y="0" width="1" height="45" forecolor="#00369F" backcolor="#00369F" uuid="73b17173-54c5-4a2a-82ed-48d27716985f"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="1" height="45" forecolor="#00369F" backcolor="#00369F" uuid="21a32fe9-70bd-4dbf-9678-1cd6da310774"/>
+			</line>
+			<line>
+				<reportElement x="801" y="0" width="1" height="45" forecolor="#00369F" backcolor="#00369F" uuid="43ec196e-26c1-45a0-b534-4099c0ba8878"/>
+			</line>
+			<line>
+				<reportElement x="1" y="45" width="800" height="1" forecolor="#00369F" backcolor="#00369F" uuid="fbd24479-f311-49a8-9747-a27c55e24bce"/>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="684" y="25" width="80" height="20" uuid="c0c3d0e1-7df6-4b95-8937-80e90aa5ef1b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="764" y="25" width="40" height="20" uuid="3f4409f5-b73b-4168-84d9-bc972d747090"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch"/>
