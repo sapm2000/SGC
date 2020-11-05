@@ -3297,10 +3297,9 @@ CREATE OR REPLACE VIEW v_unidad_propietario AS
 -- v_usuario
 -- DROP VIEW v_usuario;
 CREATE OR REPLACE VIEW v_usuario AS	
-	SELECT u.id, u.usuario, u.ci_persona AS cedula, pe.p_nombre AS nombre, pe.p_apellido AS apellido
+	SELECT u.id, u.usuario, u.ci_persona AS cedula, pe.p_nombre AS nombre, pe.p_apellido AS apellido, u.activo
 	FROM usuario AS u
-	INNER JOIN persona AS pe ON pe.cedula = u.ci_persona
-	WHERE u.activo = true;
+	INNER JOIN persona AS pe ON pe.cedula = u.ci_persona;
 
 -- v_visita
 -- DROP VIEW v_visita;

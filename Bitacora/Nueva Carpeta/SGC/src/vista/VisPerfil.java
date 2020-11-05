@@ -53,28 +53,28 @@ public class VisPerfil extends javax.swing.JPanel {
         cbxConfigurar = new javax.swing.JComboBox<>();
         jPanelClave = new javax.swing.JPanel();
         jSeparator11 = new javax.swing.JSeparator();
-        txtPassActual = new javax.swing.JTextField();
         jSeparator12 = new javax.swing.JSeparator();
         jLabel61 = new javax.swing.JLabel();
         jSeparator10 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtConfirmar = new javax.swing.JTextField();
         btnProcesarPassword = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        txtPassNuevo = new javax.swing.JTextField();
+        txtPassActual = new javax.swing.JPasswordField();
+        txtPassNuevo = new javax.swing.JPasswordField();
+        txtConfirmar = new javax.swing.JPasswordField();
         jPanelPregunta = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtPregunta = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtRespuesta = new javax.swing.JTextField();
         btnProcesarPregunta = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        txtPassActualPregunta = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
         jSeparator8 = new javax.swing.JSeparator();
         jSeparator9 = new javax.swing.JSeparator();
+        txtRespuesta = new javax.swing.JPasswordField();
+        txtPassActualPregunta = new javax.swing.JPasswordField();
         jLabel18 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
@@ -129,17 +129,6 @@ public class VisPerfil extends javax.swing.JPanel {
         jSeparator11.setForeground(new java.awt.Color(255, 255, 255));
         jPanelClave.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 240, 10));
 
-        txtPassActual.setBackground(new java.awt.Color(0, 94, 159));
-        txtPassActual.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtPassActual.setForeground(new java.awt.Color(255, 255, 255));
-        txtPassActual.setBorder(null);
-        txtPassActual.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPassActualActionPerformed(evt);
-            }
-        });
-        jPanelClave.add(txtPassActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 240, 20));
-
         jSeparator12.setForeground(new java.awt.Color(255, 255, 255));
         jPanelClave.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 240, 10));
 
@@ -164,12 +153,6 @@ public class VisPerfil extends javax.swing.JPanel {
         jLabel8.setText("Confirmar Contraseña:");
         jPanelClave.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, 160, 20));
 
-        txtConfirmar.setBackground(new java.awt.Color(0, 94, 159));
-        txtConfirmar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtConfirmar.setForeground(new java.awt.Color(255, 255, 255));
-        txtConfirmar.setBorder(null);
-        jPanelClave.add(txtConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 240, 20));
-
         btnProcesarPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnProcesarPassword.setForeground(new java.awt.Color(255, 255, 255));
         btnProcesarPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible.png"))); // NOI18N
@@ -178,7 +161,7 @@ public class VisPerfil extends javax.swing.JPanel {
         btnProcesarPassword.setBorder(null);
         btnProcesarPassword.setBorderPainted(false);
         btnProcesarPassword.setContentAreaFilled(false);
-        btnProcesarPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProcesarPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnProcesarPassword.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible.png"))); // NOI18N
         btnProcesarPassword.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
         btnProcesarPassword.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
@@ -191,11 +174,23 @@ public class VisPerfil extends javax.swing.JPanel {
         jLabel9.setText("<html>Ingresar Nueva <br> Contraseña:</html>");
         jPanelClave.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 120, 30));
 
+        txtPassActual.setBackground(new java.awt.Color(0, 94, 159));
+        txtPassActual.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtPassActual.setForeground(new java.awt.Color(255, 255, 255));
+        txtPassActual.setBorder(null);
+        jPanelClave.add(txtPassActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 240, 20));
+
         txtPassNuevo.setBackground(new java.awt.Color(0, 94, 159));
         txtPassNuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtPassNuevo.setForeground(new java.awt.Color(255, 255, 255));
         txtPassNuevo.setBorder(null);
         jPanelClave.add(txtPassNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 240, 20));
+
+        txtConfirmar.setBackground(new java.awt.Color(0, 94, 159));
+        txtConfirmar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtConfirmar.setForeground(new java.awt.Color(255, 255, 255));
+        txtConfirmar.setBorder(null);
+        jPanelClave.add(txtConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 240, 20));
 
         jPanel1.add(jPanelClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 800, 330));
 
@@ -232,12 +227,6 @@ public class VisPerfil extends javax.swing.JPanel {
         jLabel5.setToolTipText("");
         jPanelPregunta.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, 80, -1));
 
-        txtRespuesta.setBackground(new java.awt.Color(0, 94, 159));
-        txtRespuesta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtRespuesta.setForeground(new java.awt.Color(255, 255, 255));
-        txtRespuesta.setBorder(null);
-        jPanelPregunta.add(txtRespuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, 240, 20));
-
         btnProcesarPregunta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnProcesarPregunta.setForeground(new java.awt.Color(255, 255, 255));
         btnProcesarPregunta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible.png"))); // NOI18N
@@ -246,7 +235,7 @@ public class VisPerfil extends javax.swing.JPanel {
         btnProcesarPregunta.setBorder(null);
         btnProcesarPregunta.setBorderPainted(false);
         btnProcesarPregunta.setContentAreaFilled(false);
-        btnProcesarPregunta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProcesarPregunta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnProcesarPregunta.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible.png"))); // NOI18N
         btnProcesarPregunta.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
         btnProcesarPregunta.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/disco-flexible1.png"))); // NOI18N
@@ -264,17 +253,6 @@ public class VisPerfil extends javax.swing.JPanel {
         jLabel10.setText("Ingresar Contraseña Actual:\n");
         jPanelPregunta.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 210, 20));
 
-        txtPassActualPregunta.setBackground(new java.awt.Color(0, 94, 159));
-        txtPassActualPregunta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtPassActualPregunta.setForeground(new java.awt.Color(255, 255, 255));
-        txtPassActualPregunta.setBorder(null);
-        txtPassActualPregunta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPassActualPreguntaActionPerformed(evt);
-            }
-        });
-        jPanelPregunta.add(txtPassActualPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 240, 20));
-
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
         jPanelPregunta.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 240, 10));
 
@@ -283,6 +261,18 @@ public class VisPerfil extends javax.swing.JPanel {
 
         jSeparator9.setForeground(new java.awt.Color(255, 255, 255));
         jPanelPregunta.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 210, 240, 10));
+
+        txtRespuesta.setBackground(new java.awt.Color(0, 94, 159));
+        txtRespuesta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtRespuesta.setForeground(new java.awt.Color(255, 255, 255));
+        txtRespuesta.setBorder(null);
+        jPanelPregunta.add(txtRespuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, 240, 20));
+
+        txtPassActualPregunta.setBackground(new java.awt.Color(0, 94, 159));
+        txtPassActualPregunta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtPassActualPregunta.setForeground(new java.awt.Color(255, 255, 255));
+        txtPassActualPregunta.setBorder(null);
+        jPanelPregunta.add(txtPassActualPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 240, 20));
 
         jPanel1.add(jPanelPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 800, 330));
 
@@ -451,14 +441,6 @@ public class VisPerfil extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtApellidosActionPerformed
 
-    private void txtPassActualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActualActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPassActualActionPerformed
-
-    private void txtPassActualPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActualPreguntaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPassActualPreguntaActionPerformed
-
     private void btnProcesarPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcesarPreguntaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnProcesarPreguntaActionPerformed
@@ -517,14 +499,14 @@ public class VisPerfil extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator9;
     public javax.swing.JTabbedPane panelPestana;
     public javax.swing.JTextField txtApellidos;
-    public javax.swing.JTextField txtConfirmar;
+    public javax.swing.JPasswordField txtConfirmar;
     public javax.swing.JTextField txtCorreo;
     public javax.swing.JTextField txtNombres;
-    public javax.swing.JTextField txtPassActual;
-    public javax.swing.JTextField txtPassActualPregunta;
-    public javax.swing.JTextField txtPassNuevo;
+    public javax.swing.JPasswordField txtPassActual;
+    public javax.swing.JPasswordField txtPassActualPregunta;
+    public javax.swing.JPasswordField txtPassNuevo;
     public javax.swing.JTextField txtPregunta;
-    public javax.swing.JTextField txtRespuesta;
+    public javax.swing.JPasswordField txtRespuesta;
     public javax.swing.JTextField txtTelefono;
     public javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables

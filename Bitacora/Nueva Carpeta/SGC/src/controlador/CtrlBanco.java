@@ -208,7 +208,7 @@ public class CtrlBanco implements ActionListener, MouseListener, KeyListener, Wi
                         UIManager.put("Label.background", Color.blue);
                         UIManager.put("Label.font", new Font("Tahoma", Font.BOLD, 12));
 
-                        JOptionPane.showMessageDialog(null, "Registro Modificado", "MODIFICACIÓN DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
+                        JOptionPane.showMessageDialog(null, "Registro guardado", "REGISTRO DE DATOS", JOptionPane.INFORMATION_MESSAGE, p);
                         llenarTabla(catalogo.tabla);
                         limpiar();
                         CtrlVentana.cambiarVista(catalogo);

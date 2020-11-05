@@ -129,6 +129,7 @@ public class CtrlVisita implements ActionListener, ItemListener, MouseListener, 
                 boolean auto;
 
                 modelo.getVisitante().setCedula(modPersona.getCedula());
+                personaExiste = modelo.getVisitante().existePersona();
                 ind = vista.cbxUnidad.getSelectedIndex() - 1;
 
                 if (!personaExiste) {

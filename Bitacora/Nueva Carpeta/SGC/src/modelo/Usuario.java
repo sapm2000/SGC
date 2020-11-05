@@ -111,7 +111,7 @@ public class Usuario extends ConexionBD {
 
         int ind;
 
-        String sql = "SELECT ci_persona FROM v_usuario_inactivo WHERE ci_persona = ?;";
+        String sql = "SELECT cedula FROM v_usuario WHERE cedula = ? AND activo = false;";
 
         try {
             ps = con.prepareStatement(sql);
@@ -150,7 +150,7 @@ public class Usuario extends ConexionBD {
             ps = null;
             Usuario usu;
 
-            String sql = "SELECT * FROM v_usuario;";
+            String sql = "SELECT * FROM v_usuario WHERE activo = true;";
 
             ps = con.prepareStatement(sql);
 
